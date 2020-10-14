@@ -7,8 +7,11 @@ import {
   Link,
   Route,
 } from "react-router-dom";
-import Login from './components/Login.js'
-import Register from './components/Register.js'
+import Login from './components/Login.js';
+import Register from './components/Register.js';
+import Feed from './components/Feed';
+import Leaderboards from './components/Leaderboards';
+import DailyProblems from './components/DailyProblems';
 import Home from './components/Home.js';
 import {Navbar, Nav} from 'react-bootstrap';
 import { RiShieldUserLine } from 'react-icons/ri';
@@ -24,9 +27,9 @@ function App() {
       <Navbar>
         <Navbar.Brand className="tasq" href="/">tasq</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link className="links" href="#home">Daily Problem</Nav.Link>
-        <Nav.Link className="links" href="#home">Feed</Nav.Link>
-        <Nav.Link className="links" href="#features">Leaderboard</Nav.Link>
+        <Nav.Link className="links" href="/DailyProblems">Daily Problem</Nav.Link>
+        <Nav.Link className="links" href="/Feed">Feed</Nav.Link>
+        <Nav.Link className="links" href="/Leaderboards">Leaderboard</Nav.Link>
         {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
       </Nav>
         <Navbar.Toggle />
@@ -41,6 +44,15 @@ function App() {
         <Switch>
           <Route path="/Register">
             <Register />
+          </Route>
+          <Route path="/Feed">
+            <Feed />
+          </Route>
+          <Route path="/DailyProblems">
+            <DailyProblems />
+          </Route>
+          <Route path="/Leaderboards">
+            <Leaderboards />
           </Route>
           <Route path="/Login">
             <Login />
