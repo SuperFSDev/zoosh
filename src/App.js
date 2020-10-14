@@ -11,7 +11,7 @@ import Login from './components/Login.js'
 import Register from './components/Register.js'
 import Home from './components/Home.js';
 import {Navbar, Nav} from 'react-bootstrap';
-import { AiOutlineUser } from 'react-icons/ai';
+import { RiShieldUserLine } from 'react-icons/ri';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -34,7 +34,7 @@ function App() {
           {/* <Navbar.Text>
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text> */}
-        <Nav.Link className="links" href="/Login"> <button className="btn-profile"><AiOutlineUser size={55}/></button></Nav.Link>
+        <Nav.Link className="links" href="/Login"> <button className="btn-profile"><RiShieldUserLine size={45} color={"navy"}/></button></Nav.Link>
         </Navbar.Collapse>
       </Navbar>
 
