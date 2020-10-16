@@ -9,7 +9,11 @@ import FacebookLogin from 'react-facebook-login';
 import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
 
-const login = user => {
+const [login, setLogin] = useState(false);
+const [data, setData] = useState({});
+const [picture, setPicture] = useState('');
+
+const loginUser = user => {
     return axios.post('http://localhost:4000/users/login', {
         firstname: user.firstname,
         lastname: user.lastname,
@@ -31,11 +35,8 @@ const login = user => {
     });
 }
 
-const [login, setLogin] = useState(false);
-const [data, setData] = useState({});
-const [picture, setPicture] = useState('');
-
 const responseFacebook = (response) => {
+
     console.log(response);
     setData(response);
     setPicture(response.picture.data.url);
@@ -47,7 +48,6 @@ const responseFacebook = (response) => {
 }
 
 class Login extends React.Component {
-    
 
    constructor(){
        super();
@@ -86,7 +86,7 @@ class Login extends React.Component {
        }
        //pass in user object to login and if the response
        //passes validation in method, push user to home page
-       login(User).then(response => {
+       loginUser(User).then(response => {
            if(response) {
                window.location = '/';
            }
