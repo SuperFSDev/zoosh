@@ -32,35 +32,3 @@ app.use('/users', Users)
 
 //log connection to server
 app.listen(port, () => console.log("Server is up!"));
-
-
-/*const Schema = mongoose.Schema;
-
-const UserSchema = new Schema({
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String
-})
-
-// create a user model
-var UserModel = mongoose.model('users', UserSchema);
-
-app.post('/users/register', (req,res)=>{
-    console.log('Post request Successful');
-    console.log(req.body.firstname);
-    console.log(req.body.lastname);
-    console.log(req.body.email);
-
-    UserModel.create({
-        firstname:req.body.firstname, 
-        lastname:req.body.lastname, 
-        email:req.body.email,
-        password:req.body.password
-    });
-
-    res.json('post recieved!');
-})
-
-//log connection to server
-app.listen(port, () => console.log("Server is up!"))*/
