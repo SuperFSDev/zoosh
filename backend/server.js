@@ -1,43 +1,66 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+// Express imports
+const express = require('express');
+const app = express();
+const port = 4000;
 
-const url = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
-const client = new MongoClient(url);
+// Access cluster through link
+const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
+mongoose.connect(mongoDB,{useNewUrlParser:true});
 
- // The database to use
- const dbName = "tasqdb";
+ //Use headers to give browser access to resources
+ app.use(cors());
+ app.use(function (req, res, next) {
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+     res.header("Access-Control-Allow-Headers",
+         "Origin, X-Requested-With, Content-Type, Accept");
+     next();
+ });
 
- async function run() {
-    try {
-         await client.connect();
-         console.log("Connected correctly to server");
-         const db = client.db(dbName);
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-         // Use the users collection.
-         const col = db.collection("users");
+// parse application/json
+app.use(bodyParser.json())
 
-         /* Test data
-         let user = {
-             "name": { "first": "Conor", "last": "Shortt" },
-             "birth": new Date(1998, 5, 24),
-             "death": new Date(2341, 5, 7),
-             "contribs": [ "Turing machine", "Turing test", "Turingery" ],
-             "views": 1250000
-         }*/
+//Put the verification module (./routes/Users) into the variable Users
+var Users = require('./routes/Users');
+app.use('/users', Users)
 
-         // Insert a single document, wait for promise so we can read it back
-         const p = await col.insertOne(user);
-         // Find one document
-         const myDoc = await col.findOne();
-         // Print to the console
-         console.log(myDoc);
+//log connection to server
+app.listen(port, () => console.log("Server is up!"));
 
-        } catch (err) {
-         console.log(err.stack);
-     }
 
-     finally {
-        await client.close();
-    }
-}
+/*const Schema = mongoose.Schema;
 
-run().catch(console.dir);
+const UserSchema = new Schema({
+    firstname: String,
+    lastname: String,
+    email: String,
+    password: String
+})
+
+// create a user model
+var UserModel = mongoose.model('users', UserSchema);
+
+app.post('/users/register', (req,res)=>{
+    console.log('Post request Successful');
+    console.log(req.body.firstname);
+    console.log(req.body.lastname);
+    console.log(req.body.email);
+
+    UserModel.create({
+        firstname:req.body.firstname, 
+        lastname:req.body.lastname, 
+        email:req.body.email,
+        password:req.body.password
+    });
+
+    res.json('post recieved!');
+})
+
+//log connection to server
+app.listen(port, () => console.log("Server is up!"))*/
