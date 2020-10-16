@@ -15,6 +15,12 @@ function Register() {
           <div class="register-card">
           <h1>Create an Account</h1>
           <Form>
+          <Form.Group controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="email" placeholder="Create a Username" required/>
+              <Form.Text className="text-muted">
+              </Form.Text>
+            </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />

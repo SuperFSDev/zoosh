@@ -213,11 +213,10 @@ hr {
 /* REGISTER PAGE */
 .register-card{
   width: 30rem;
-  height: 36rem;
+  height: 42rem;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
-  margin-top: 1rem;
   border-radius: 25px;
   margin-right: 40rem;
 }
