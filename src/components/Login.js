@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import {Nav, Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginSVG from '../images/login.png'
+import { FaFacebookF } from 'react-icons/fa';
+import {FcGoogle} from 'react-icons/fc';
+import FacebookLogin from 'react-facebook-login';
+import { Card, Image } from 'react-bootstrap';
 
 
 function Login() {
+
+  const [login, setLogin] = useState(false);
+  const [data, setData] = useState({});
+  const [picture, setPicture] = useState('');
+
+  const responseFacebook = (response) => {
+    console.log(response);
+    setData(response);
+    setPicture(response.picture.data.url);
+    if (response.accessToken) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }
+  
   return (
     <>
     <div className="container">
@@ -27,15 +47,33 @@ function Login() {
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Keep me signed in" />
               </Form.Group>
-              <span>
-              <Nav.Link className="links2" href="#"><p>Forgot Password?</p></Nav.Link>
-              <Nav.Link className="links2" href="/Register">Create an Account?</Nav.Link>
-              </span>
-              
-
               <Button variant="primary" type="submit">
                 Next
               </Button>
+              <hr/>
+              {/* <button className="fb-login"> */}
+                  { !login && 
+                    <FacebookLogin
+                      className="fb-login"
+                      appId="1177500526020242"
+                      autoLoad={true}
+                      fields="name,picture"
+                      scope="public_profile,user_friends"
+                      callback={responseFacebook}
+                      icon="fa-facebook" />
+                  }
+                  { login &&
+                    <Image src={picture} roundedCircle />
+                  }
+                 {/* <FaFacebookF/> */}
+                {/* </button> */}
+              <div className="spacing"></div>
+              <button className="google-login">Login with Google <FcGoogle/></button>
+
+              <div className="auth-options">
+                <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
+                <Nav.Link className="links2" href="/Register"><p className="create-account">Create an Account?</p></Nav.Link>
+              </div>   
             </Form>
          </div>
         </div>
