@@ -12,6 +12,7 @@ import Register from './components/Register.js';
 import Feed from './components/Feed';
 import Leaderboards from './components/Leaderboards';
 import DailyProblems from './components/DailyProblems';
+import Facebook from './components/Facebook';
 import Home from './components/Home.js';
 import {Navbar, Nav} from 'react-bootstrap';
 import { RiShieldUserLine } from 'react-icons/ri';
@@ -49,7 +50,7 @@ function App() {
             <Feed />
           </Route>
           <Route path="/DailyProblems">
-            <DailyProblems />
+            <Facebook />
           </Route>
           <Route path="/Leaderboards">
             <Leaderboards />

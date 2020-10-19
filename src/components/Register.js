@@ -44,7 +44,7 @@ class Register extends React.Component {
         e.preventDefault();
 
         const newUser = {
-            username: this.state.lastname,
+            username: this.state.username,
             email: this.state.email,
             password: this.state.password
         };
@@ -79,7 +79,7 @@ class Register extends React.Component {
           <Form>
           <Form.Group controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Create a Username" required value={this.state.email} onChange={this.onChangeUsername}/>
+              <Form.Control type="text" placeholder="Create a Username" required value={this.state.username} onChange={this.onChangeUsername}/>
               <Form.Text className="text-muted">
               </Form.Text>
             </Form.Group>
