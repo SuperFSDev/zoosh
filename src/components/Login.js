@@ -34,18 +34,6 @@ const loginUser = async user => {
   }
 }
 
-/*const responseFacebook = (response) => {
-
-  console.log(response);
-  setData(response);
-  setPicture(response.picture.data.url);
-  if (response.accessToken) {
-    setLogin(true);
-  } else {
-    setLogin(false);
-  }
-}*/
-
 class Login extends React.Component {
 
   constructor() {
@@ -117,7 +105,7 @@ class Login extends React.Component {
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Next
-                  </Button>
+                </Button>
                 <hr />
                 {/* <button className="fb-login"> */}
                 {/*!login &&

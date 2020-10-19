@@ -59,7 +59,7 @@ class Register extends React.Component {
     if (!newUser.username || !newUser.email || !newUser.password) {
       alert('Invalid or Empty input(s)');
       console.log('Invalid Parameters');
-    } else if(this.state.password != this.state.retype) {
+    } else if(this.state.password !== this.state.retype) {
       alert('Passwords do not match.');
     }
     else {

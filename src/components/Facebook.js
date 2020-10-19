@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Nav, Form, Button } from 'react-bootstrap';
 
 export default class Facebook extends Component {
+
+    showContent = false;
+    fbContent = "";
 
     state = {
         isLoggedIn: false,
@@ -21,16 +26,14 @@ export default class Facebook extends Component {
         });
     };
 
-    componentClicked = () => console.log("component clicked");
+    componentClicked = () => console.log("clicked");
 
     render() {
 
-        let fbContent;
-
         if (this.state.isLoggedIn) {
-            fbContent = (
+            this.fbContent = (
                 <div style={{
-                    width: '500px',
+                    width: '400px',
                     margin: 'auto',
                     background: '#f4f4f4',
                     padding: '20px'
@@ -39,7 +42,7 @@ export default class Facebook extends Component {
                 </div>
             );
         } else {
-            fbContent = (<FacebookLogin
+            this.fbContent = (<FacebookLogin
                 className="fb-login"
                     appId="1177500526020242"
                     autoLoad={true}
@@ -50,6 +53,6 @@ export default class Facebook extends Component {
             />
             );
         }
-        return <div>{fbContent}</div>;
+        return <div>{this.fbContent}</div>;
     }
 }

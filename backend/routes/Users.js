@@ -57,6 +57,9 @@ users.post('/register', (req, res) => {
     .catch(err => {
         res.send(err);
     })
+    
+    console.log("User has been registered!");
+    console.log(userData);
 })
 
 //Login to site
@@ -82,7 +85,10 @@ users.post('/login', (req, res) => {
                 let token = jwt.sign(payload, process.env.SECRET_KEY, {
                     expiresIn: 1440
                 })
+                console.log(token);
                 res.send(token)
+
+                console.log("User " + user.username + " has been logged in!")
             }else{
                 res.json({error: "Invalid login details"})
             }
