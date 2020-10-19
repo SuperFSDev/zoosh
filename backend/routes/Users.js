@@ -22,16 +22,12 @@ process.env.SECRET_KEY = 'secret';
 
 //Register users
 users.post('/register', (req, res) => {
-    console.log(req.body);
 
     const userData = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     }
-
-    console.log(userData);
 
     //Check if user is already registered
     //If User is not registered encrypt password using bcrypt
@@ -77,8 +73,7 @@ users.post('/login', (req, res) => {
             if(bcrypt.compareSync(req.body.password, user.password)){
                 const payload = {
                     _id: user.id,
-                    firstname: user.firstname,
-                    lastname: user.lastname,
+                    username: user.username,
                     email: user.email
                 }
                 //associate a key to a payload (user in this case)

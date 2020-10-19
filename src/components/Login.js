@@ -7,6 +7,7 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import FacebookLogin from 'react-facebook-login';
 import { Card, Image } from 'react-bootstrap';
+import Facebook from './Facebook';
 import axios from 'axios';
 
 /*const [login, setLogin] = useState(false);
@@ -16,8 +17,7 @@ const [picture, setPicture] = useState('');*/
 const loginUser = async user => {
   try {
     const response = await axios.post('http://localhost:4000/users/login', {
-      firstname: user.firstname,
-      lastname: user.lastname,
+      username: user.username,
       email: user.email,
       password: user.password
     });
@@ -136,6 +136,7 @@ class Login extends React.Component {
                 {/* <FaFacebookF/> */}
                 {/* </button> */}
                 <div className="spacing"></div>
+                <Facebook/>
                 <button className="google-login">Login with Google <FcGoogle /></button>
 
                 <div className="auth-options">
