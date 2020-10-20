@@ -10,6 +10,26 @@ const port = 4000;
 const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
 mongoose.connect(mongoDB,{useNewUrlParser:true});
 
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    username:String})
+
+
+    const PostSchema = new Schema({
+        user:String,
+        post:String,
+        time:String
+    })
+
+
+const UserModel = mongoose.model('user', userSchema);
+
+
+const PostModel = mongoose.model('post', PostSchema);
+
+
+
  //Use headers to give browser access to resources
  app.use(cors());
  app.use(function (req, res, next) {
@@ -29,6 +49,28 @@ app.use(bodyParser.json())
 //Put the verification module (./routes/Users) into the variable Users
 var Users = require('./routes/Users');
 app.use('/users', Users)
+
+app.get('/api/users', (req, res) => {
+
+    UserModel.find((error, data) =>{
+        res.json({users:data});
+        console.log(data);
+    })
+
+})
+
+
+app.get('/api/posts', (req, res) => {
+
+    PostModel.find((error, data) =>{
+        res.json({posts:data});
+        console.log(data);
+    })
+
+})
+
+
+
 
 //log connection to server
 app.listen(port, () => console.log("Server is up!"));
