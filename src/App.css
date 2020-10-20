@@ -329,3 +329,44 @@ hr {
   margin-top: 5rem;
   color:gray;
 }
+
+/* USER PROFILE */
+
+.default-profile-picture{
+  width: 200px;
+  border-radius: 50%;
+  /* border-style: solid; */
+  /* border-color: lightgray; */
+}
+
+/* DAILY PYTHON */
+
+.daily-card{
+  margin:auto;
+  width: 400px;
+  height:500px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.spacing{
+  margin-top: 3rem;
+}
+
+.btn-copy{
+  margin-top: 15rem;
+  width:100px;
+  height:50px;
+  border-radius:35px;
+  border-style: solid;
+  outline:none !important;
+  background: #512CB0;
+  border-color: #512CB0;
+  color:white;
+}
+
+.btn-copy:hover{
+  background:gray;
+  border-color: gray;
+  color:white;
+}

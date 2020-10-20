@@ -9,6 +9,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 class Register extends React.Component {
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -80,6 +81,7 @@ class Register extends React.Component {
     });
   }
 
+
   render() {
     return (
       <>
@@ -115,16 +117,17 @@ class Register extends React.Component {
                   value={this.state.retype}
                   onChange={this.onChangeRetype}/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" >
                   Create Account
-            </Button>
+                </Button>
+
                 <hr />
                 <button className="fb-login">Create with Facebook <FaFacebookF /></button>
                 <div className="spacing"></div>
                 <button className="google-login">Create with Google <FcGoogle /></button>
                 <span>
                   <hr />
-                  <Nav.Link className="links2" href="/Login">Already have an account?</Nav.Link>
+                  <Nav.Link className="links2" href="/login">Already have an account?</Nav.Link>
                 </span>
               </Form>
             </div>

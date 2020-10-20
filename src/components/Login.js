@@ -129,7 +129,7 @@ class Login extends React.Component {
 
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  <Nav.Link className="links2" href="/Register"><p className="create-account">Create an Account?</p></Nav.Link>
+                  <Nav.Link className="links2" href="/register"><p className="create-account">Create an Account?</p></Nav.Link>
                 </div>
               </Form>
             </div>

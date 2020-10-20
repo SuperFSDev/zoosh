@@ -22,6 +22,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+  
   return (
     <div className="App">
       {/* <Home/> */}
@@ -30,9 +31,9 @@ function App() {
       <Navbar>
         <Navbar.Brand className="tasq" href="/">tasq</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link className="links" href="/DailyProblems">Daily Problem</Nav.Link>
-        <Nav.Link className="links" href="/Feed">Feed</Nav.Link>
-        <Nav.Link className="links" href="/Leaderboards">Leaderboard</Nav.Link>
+        <Nav.Link className="links" href="/dailyProblems">Daily Problem</Nav.Link>
+        <Nav.Link className="links" href="/feed">Feed</Nav.Link>
+        <Nav.Link className="links" href="/leaderboards">Leaderboard</Nav.Link>
         {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
       </Nav>
         <Navbar.Toggle />
@@ -40,35 +41,35 @@ function App() {
           {/* <Navbar.Text>
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text> */}
-        <Nav.Link className="links" href="/Login">Log In</Nav.Link>
-        <Nav.Link className="links" href="/Register"> <button className="btn-profile">Sign Up</button></Nav.Link>
+        <Nav.Link className="links" href="/login">Log In</Nav.Link>
+        <Nav.Link className="links" href="/register"> <button className="btn-profile">Sign Up</button></Nav.Link>
         {/* <Nav.Link className="links" href="/Login"> <button className="btn-profile"><RiShieldUserLine size={45} color={"navy"}/></button></Nav.Link> */}
         </Navbar.Collapse>
       </Navbar>
 
         <Switch>
-          <Route path="/Register">
+          <Route path="/register">
             <Register />
           </Route>
-          <Route path="/Feed">
+          <Route path="/feed">
             <Feed />
           </Route>
-          <Route path="/DailyProblems">
+          <Route path="/dailyProblems">
             <Facebook />
           </Route>
-          <Route path="/Daily">
+          <Route path="/daily">
             <Daily />
           </Route>
-          <Route path="/Leaderboards">
+          <Route path="/leaderboards">
             <Leaderboards />
           </Route>
-          <Route path="/Login">
+          <Route path="/login">
             <Login />
           </Route>
-          <Route path="/Python">
+          <Route path="/python">
             <Python />
           </Route>
-          <Route path="/UI">
+          <Route path="/dailydesign">
             <UI />
           </Route>
           <Route path="/">
