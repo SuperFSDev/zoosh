@@ -363,12 +363,33 @@ hr {
   background: #512CB0;
   border-color: #512CB0;
   color:white;
+  font-weight: 500;
 }
 
 .btn-copy:hover{
   background:gray;
   border-color: gray;
   color:white;
+}
+
+.btn-sandbox{
+  margin-top: 15rem;
+  margin: 10px;
+  width:200px;
+  height:50px;
+  border-radius:35px;
+  border-style: solid;
+  outline:none !important;
+  background: black;
+  border-color: black;
+  color:white;
+  font-weight: 500;
+}
+
+.btn-sandbox:hover{
+  background:lightgray;
+  border-color: lightgray;
+  color:black;
 }
 
 
