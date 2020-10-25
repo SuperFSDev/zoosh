@@ -18,8 +18,11 @@ function Home() {
             <span id="b"><p className="greeting">Get Started with Daily Tasks</p></span><br/>
             <Nav.Link className="links2" href="/daily"><button class="get-started-btn">Let's Go   <AiOutlineArrowRight/></button></Nav.Link>
         </div>
-        
-        </div>
+
+        <div id="container-mobile">
+          <p>Hello World</p>
+        </div>        
+      </div>
       <div className="spacing-home"></div>
     </>
   );

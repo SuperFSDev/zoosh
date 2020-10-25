@@ -208,9 +208,14 @@ hr {
   margin:0;
   padding:0;
   width:100%;
+  max-width:700px;
   height:400px;
   display: flex;
   justify-content: space-evenly;
+}
+
+#container-mobile{
+  display:none;
 }
 
 
@@ -443,6 +448,10 @@ hr {
 
 }
 
+.App-mobile{
+  display: none;
+}
+
 
 
 .userPicture{
@@ -467,4 +476,52 @@ padding-left: 4rem;
   padding-left: 5rem;
 
 
+}
+
+/* DESKTOP RESPONSIVE */
+
+.container-mobile{
+  display: none;
+}
+
+
+/* MOBILE RESPONSIVE */
+
+@media only screen and (max-width: 600px) {
+  #container-mobile {
+    margin:0;
+    padding:0;
+    width:100%;
+    max-width:50px;
+    height:400px;
+    display: flex;
+    justify-content: space-evenly;
   }
+
+  #container{
+    display: none;
+  }
+
+  #container-options{
+    display: none;
+  }
+
+  .App{
+    display: none;
+  }
+
+  .App-mobile{
+    display: block;
+  }
+
+  #nav-dropdown{
+    margin-right: 10rem;
+    background: white;
+  }
+
+  .links-mobile{
+    font-size: 20px;
+  }
+}
+
+

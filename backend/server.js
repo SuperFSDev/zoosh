@@ -22,13 +22,20 @@ const userSchema = new Schema({
         time:String
     })
 
+    //creating problem schema
+const ProblemSchema = new Schema({
+    problem_type: Number,
+    title: String,
+    content: String
+})
+
+// create a model
+const ProblemModel = mongoose.model('problems', ProblemSchema);
+
 
 const UserModel = mongoose.model('user', userSchema);
 
-
 const PostModel = mongoose.model('post', PostSchema);
-
-
 
  //Use headers to give browser access to resources
  app.use(cors());
@@ -59,7 +66,6 @@ app.get('/api/users', (req, res) => {
 
 })
 
-
 app.get('/api/posts', (req, res) => {
 
     PostModel.find((error, data) =>{
@@ -69,8 +75,14 @@ app.get('/api/posts', (req, res) => {
 
 })
 
+app.get('/api/problems', (req, res) => {
 
+    ProblemModel.find((error, data) =>{
+        res.json({problems:data});
+        console.log(data);
+    })
 
+})
 
 //log connection to server
 app.listen(port, () => console.log("Server is up!"));

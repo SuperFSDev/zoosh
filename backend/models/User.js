@@ -8,8 +8,10 @@ const UserSchema = new Schema({
     password: String
 })
 
+
 // create a user model
 var UserModel = mongoose.model('users', UserSchema);
+
 
 //export model
 module.exports = UserModel;
