@@ -6,6 +6,7 @@ import RegisterImg from '../images/register.png'
 import axios from 'axios';
 import { FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 class Register extends React.Component {
 
@@ -85,6 +86,10 @@ class Register extends React.Component {
   render() {
     return (
       <>
+      <Breadcrumb className="breadcrumb">
+              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
+              <Breadcrumb.Item active>Register</Breadcrumb.Item>
+      </Breadcrumb>
         <div className="container">
           <div id="divLeft"><img className="WebImage2" src={RegisterImg} /></div>
           <div id="divRight">

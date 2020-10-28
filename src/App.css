@@ -48,7 +48,7 @@ body{
 .tasq{
   color:#27FBBE !important;
   text-decoration: none;
-  font-size: 5rem !important;
+  font-size: 4rem !important;
   font-weight: bolder;
   margin-left: 3rem;
 }
@@ -60,6 +60,39 @@ body{
 .links{
   margin-left: 3rem;
   font-size: 1.5rem;
+
+}
+
+.sign-up-link{
+  font-size: 1.5rem;
+}
+
+.links-sub:hover{
+  /* color: #27FBBE !important; */
+  background:lightblue;
+}
+
+.links-sub-python:hover{
+  /* color: #27FBBE !important; */
+  background:#CEECF5 !important;
+  transition: 0.5s;
+}
+
+.links-sub-ui:hover{
+  /* color: #27FBBE !important; */
+  background:#F6CECE !important;
+  transition: 0.5s;
+}
+
+.new-badge{
+  background:#512CB0 !important;
+}
+
+.links:hover{
+  color: black !important;
+  border-radius: 5px;
+  background:#F2F2F2;
+  transition: 0.5s;
 }
 
 .links2{
@@ -93,14 +126,13 @@ body{
 
 
 .btn-profile{
-  border-radius: 35px;
-  font-weight: 500;
+  border-radius: 5px;
   background-color: white;
   color: black;
   border: none;
   margin-right: 2rem;
   outline: none !important;
-  width: 8rem;
+  width: 10rem;
   height: 4rem;
   background-color: #27FBBE;
   outline: none;
@@ -110,7 +142,14 @@ body{
 .btn-profile:hover{
   background-color: gray;
   color: white;
+}
 
+.hr-nav{
+
+}
+
+.breadcrumb{
+  background-color:white!important;
 }
 
 hr {
@@ -262,6 +301,7 @@ hr {
 }
 
 .greeting{
+  font-size:5vh;
 }
 
 #container{

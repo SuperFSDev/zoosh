@@ -15,7 +15,7 @@ function Home() {
       <div>
         <div id="container">
             <span id="a"><img className="img1" src={Developer}/></span>
-            <span id="b"><p className="greeting">Get Started with Daily Tasks</p></span><br/>
+            <span id="b"><p className="greeting">Get Started with Free Daily Coding Tasks</p></span><br/>
             <Nav.Link className="links2" href="/daily"><button class="get-started-btn">Let's Go   <AiOutlineArrowRight/></button></Nav.Link>
         </div>
 

@@ -1,16 +1,10 @@
 import React from 'react';
 import '../App.css';
 import { Card, Nav, Button, Form } from 'react-bootstrap';
-
 import axios from 'axios';
-
-
-
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 class Feed extends React.Component {
-
-  
-
 
 componentDidMount() {
   axios.get('http://localhost:4000/api/Users')
@@ -52,12 +46,15 @@ render(){
   var{posts} = this.state;
 
   return (
-
      <>
+     <Breadcrumb className="breadcrumb">
+              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
+              <Breadcrumb.Item active>Feed</Breadcrumb.Item>
+      </Breadcrumb>
        <h4 className="tasq">Feed</h4>
-<div className="containerFeedLeft">
-  <h2>News</h2>
-  </div>
+      <div className="containerFeedLeft">
+          <h2>News</h2>
+      </div>
 
 
   <div className="containerFeedMiddle">

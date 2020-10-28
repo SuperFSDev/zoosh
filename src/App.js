@@ -11,13 +11,16 @@ import Register from './components/Register.js';
 import Feed from './components/Feed';
 import Daily from './components/Daily';
 import Leaderboard from './components/Leaderboard';
-import DailyProblems from './components/DailyProblems';
 import Facebook from './components/Facebook';
 import Home from './components/Home.js';
 import Python from './components/Tasks/Python';
 import UI from './components/Tasks/DailyUi';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Badge from 'react-bootstrap/Badge'
+import {SiPython} from 'react-icons/si'
+import {AiOutlineBlock} from 'react-icons/ai'
+
 
 function App() {
   
@@ -28,7 +31,12 @@ function App() {
       <Navbar>
         <Navbar.Brand className="tasq" href="/">tasq</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link className="links" href="/dailyProblems">Daily Problem</Nav.Link>
+        <NavDropdown style={{"color" : "#27FBBE"}} className="links" title="Daily Problem" id="nav-dropdown">
+          <NavDropdown.Item className="links-sub-python" eventKey="4.1" href="/python"><br/><SiPython/> <b>Python</b> <Badge className="new-badge" variant="primary"> New</Badge><br/><p>Start learning Python today!</p><br/></NavDropdown.Item>
+          <NavDropdown.Item className="links-sub-ui" eventKey="4.2" href="/dailydesign"><br/><AiOutlineBlock/> <b>UI</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><p>Start improving your UI design today!</p><br/></NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item className="links-sub" eventKey="4.4" href="/daily">See All</NavDropdown.Item>
+        </NavDropdown>
         <Nav.Link className="links" href="/feed">Feed</Nav.Link>
         <Nav.Link className="links" href="/leaderboard">Leaderboard</Nav.Link>
         {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
@@ -39,9 +47,10 @@ function App() {
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text> */}
         <Nav.Link className="links" href="/login">Log In</Nav.Link>
-        <Nav.Link className="links" href="/register"> <button className="btn-profile">Sign Up</button></Nav.Link>
+        <Nav.Link className="sign-up-link" href="/register"> <button className="btn-profile">Join for Free</button></Nav.Link>
         </Navbar.Collapse>
       </Navbar>
+      <hr className="hr-nav"/>
 
         <Switch>
           <Route path="/register">

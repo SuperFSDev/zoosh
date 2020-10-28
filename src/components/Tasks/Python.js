@@ -4,6 +4,7 @@ import DesignData from '../../data/design.json'
 import { FiCopy } from 'react-icons/fi';
 import { getParameters } from "codesandbox/lib/api/define";
 import axios from 'axios';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 class DailyUi extends React.Component {
 
@@ -63,6 +64,13 @@ class DailyUi extends React.Component {
 
       return (
         <>
+            <Breadcrumb className="breadcrumb">
+              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
+              <Breadcrumb.Item href="\daily">
+                All Problems
+              </Breadcrumb.Item>
+              <Breadcrumb.Item active>Python</Breadcrumb.Item>
+            </Breadcrumb>
             <div className="spacing"></div>
             <div className="daily-card">
             {problems.map(problem =>  (
