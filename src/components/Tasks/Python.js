@@ -5,6 +5,7 @@ import { FiCopy } from 'react-icons/fi';
 import { getParameters } from "codesandbox/lib/api/define";
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Copy from '../Copy'
 
 class DailyUi extends React.Component {
 
@@ -80,7 +81,8 @@ class DailyUi extends React.Component {
             </div>
             ))}  
             <button className="btn-sandbox" onClick={this.onSubmit}>Create in Sandbox</button>
-            <button className="btn-copy">Copy <FiCopy/></button>
+            {/* <button className="btn-copy">Copy <FiCopy/></button> */}
+            <Copy/>
             </div>
         </>
       );

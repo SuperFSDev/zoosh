@@ -129,6 +129,7 @@ class Login extends React.Component {
                 {/* <FaFacebookF/> */}
                 {/* </button> */}
                 <div className="spacing"></div>
+                <button className="google-login">Login with Google <Facebook className="fb-login"/></button>
                 <Facebook/>
                 <button className="google-login">Login with Google <FcGoogle /></button>
 

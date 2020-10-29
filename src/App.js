@@ -3,13 +3,14 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Link,
   Route,
 } from "react-router-dom";
 import Login from './components/Login.js';
 import Register from './components/Register.js';
 import Feed from './components/Feed';
 import Daily from './components/Daily';
+import Java from './components/Tasks/Java';
+import Cpp from './components/Tasks/Cpp';
 import Leaderboard from './components/Leaderboard';
 import Facebook from './components/Facebook';
 import Home from './components/Home.js';
@@ -20,10 +21,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Badge from 'react-bootstrap/Badge'
 import {SiPython} from 'react-icons/si'
 import {AiOutlineBlock} from 'react-icons/ai'
-
+import {FaJava} from 'react-icons/fa'
+import {IoIosCode} from 'react-icons/io'
 
 function App() {
-  
   return (
     <>
     <div className="App">
@@ -32,20 +33,18 @@ function App() {
         <Navbar.Brand className="tasq" href="/">tasq</Navbar.Brand>
         <Nav className="mr-auto">
         <NavDropdown style={{"color" : "#27FBBE"}} className="links" title="Daily Problem" id="nav-dropdown">
-          <NavDropdown.Item className="links-sub-python" eventKey="4.1" href="/python"><br/><SiPython/> <b>Python</b> <Badge className="new-badge" variant="primary"> New</Badge><br/><p>Start learning Python today!</p><br/></NavDropdown.Item>
-          <NavDropdown.Item className="links-sub-ui" eventKey="4.2" href="/dailydesign"><br/><AiOutlineBlock/> <b>UI</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><p>Start improving your UI design today!</p><br/></NavDropdown.Item>
+          <NavDropdown.Item className="links-sub-python" eventKey="4.1" href="/python"><br/><SiPython/> <b>Python</b> <Badge className="new-badge" variant="primary"> New</Badge><br/><p>Start learning Python today.</p><br/></NavDropdown.Item>
+          <NavDropdown.Item className="links-sub-java" eventKey="4.2" href="/java"><br/><FaJava/> <b>Java</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><p>Start learning Java today.</p><br/></NavDropdown.Item>
+          <NavDropdown.Item className="links-sub-C" eventKey="4.2" href="/cpp"><br/><IoIosCode/> <b>C++</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><p>Start learning C++ today.</p><br/></NavDropdown.Item>
+          <NavDropdown.Item className="links-sub-ui" eventKey="4.2" href="/dailydesign"><br/><AiOutlineBlock/> <b>UI</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><p>Start improving your UI design today.</p><br/></NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item className="links-sub" eventKey="4.4" href="/daily">See All</NavDropdown.Item>
         </NavDropdown>
         <Nav.Link className="links" href="/feed">Feed</Nav.Link>
         <Nav.Link className="links" href="/leaderboard">Leaderboard</Nav.Link>
-        {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
       </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          {/* <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
-          </Navbar.Text> */}
         <Nav.Link className="links" href="/login">Log In</Nav.Link>
         <Nav.Link className="sign-up-link" href="/register"> <button className="btn-profile">Join for Free</button></Nav.Link>
         </Navbar.Collapse>
@@ -55,6 +54,12 @@ function App() {
         <Switch>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/java">
+            <Java/>
+          </Route>
+          <Route path="/cpp">
+            <Cpp/>
           </Route>
           <Route path="/feed">
             <Feed />
