@@ -1,14 +1,14 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const problems = express.Router();
+const posts = express.Router();
+const app = express();
 
 //import model
 const ProblemModel = require('../models/Problem');
 
 //Use headers to give browser access to resources
-problems.use(cors());
-problems.use(function (req, res, next) {
+posts.use(cors());
+posts.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers",
@@ -16,7 +16,7 @@ problems.use(function (req, res, next) {
     next();
 });
 
-problems.get('/problems', (req, res) => {
+posts.get('/problems', (req, res) => {
 
     ProblemModel.find((error, data) =>{
         res.json({problems:data});
@@ -25,4 +25,4 @@ problems.get('/problems', (req, res) => {
 
 })
 
-module.exports = problems;
+module.exports = posts;

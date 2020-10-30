@@ -7,7 +7,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 class Feed extends React.Component {
 
 componentDidMount() {
-  axios.get('http://localhost:4000/api/Users')
+  axios.get('http://localhost:4000/users/getUsers')
   .then((response)=>{
       this.setState({users: response.data.users})
   })
@@ -16,7 +16,7 @@ componentDidMount() {
   });
 
 
-  axios.get('http://localhost:4000/api/posts')
+  axios.get('http://localhost:4000/posts/posts')
   .then((response)=>{
       this.setState({posts: response.data.posts})
   })
