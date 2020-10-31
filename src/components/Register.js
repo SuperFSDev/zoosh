@@ -7,6 +7,7 @@ import axios from 'axios';
 import { FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import LoginModal from './LoginModal';
 
 class Register extends React.Component {
 
@@ -88,7 +89,7 @@ class Register extends React.Component {
       <>
       <Breadcrumb className="breadcrumb">
               <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-              <Breadcrumb.Item active>Register</Breadcrumb.Item>
+              <Breadcrumb.Item active>Create an Account</Breadcrumb.Item>
       </Breadcrumb>
         <div className="container">
           <div id="divLeft"><img className="WebImage2" src={RegisterImg} /></div>
@@ -97,14 +98,14 @@ class Register extends React.Component {
               <h1>Create an Account</h1>
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicUsername">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" placeholder="Create a Username" required value={this.state.username} onChange={this.onChangeUsername} />
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter your full name" required value={this.state.username} onChange={this.onChangeUsername} />
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email"
+                  <Form.Control type="email" placeholder="@gmit.ie, @nuig.ie. @gti.ie"
                     value={this.state.email}
                     onChange={this.onChangeEmail} />
                   <Form.Text className="text-muted">
@@ -116,20 +117,15 @@ class Register extends React.Component {
                     value={this.state.password}
                     onChange={this.onChangePassword} />
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword">
+                {/* <Form.Group controlId="formBasicPassword">
                   <Form.Label>Re-type Password</Form.Label>
                   <Form.Control type="password" placeholder="Re-type Password" 
                   value={this.state.retype}
                   onChange={this.onChangeRetype}/>
-                </Form.Group>
+                </Form.Group> */}
                 <Button variant="primary" type="submit" >
                   Create Account
                 </Button>
-
-                <hr />
-                <button className="fb-login">Create with Facebook <FaFacebookF /></button>
-                <div className="spacing"></div>
-                <button className="google-login">Create with Google <FcGoogle /></button>
                 <span>
                   <hr />
                   <Nav.Link className="links2" href="/login">Already have an account?</Nav.Link>

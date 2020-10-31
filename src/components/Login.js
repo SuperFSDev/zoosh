@@ -87,13 +87,13 @@ class Login extends React.Component {
       <>
       <Breadcrumb className="breadcrumb">
               <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-              <Breadcrumb.Item active>Login</Breadcrumb.Item>
+              <Breadcrumb.Item active>Log In</Breadcrumb.Item>
       </Breadcrumb>
         <div className="container">
           <div id="divLeft"><img className="WebImage2" src={LoginSVG} /></div>
           <div id="divRight">
             <div class="login-card">
-              <h1>Sign In</h1>
+              <h1>Log In</h1>
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
@@ -128,11 +128,6 @@ class Login extends React.Component {
                 }
                 {/* <FaFacebookF/> */}
                 {/* </button> */}
-                <div className="spacing"></div>
-                <button className="google-login">Login with Google <Facebook className="fb-login"/></button>
-                <Facebook/>
-                <button className="google-login">Login with Google <FcGoogle /></button>
-
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
                   <Nav.Link className="links2" href="/register"><p className="create-account">Create an Account?</p></Nav.Link>

@@ -22,15 +22,10 @@ function Home() {
       <div>
         <div id="container">
             <span id="a"><img className="img1" src={Developer}/></span>
-            <span id="b"><p className="greeting">Get Started with  <OverlayTrigger overlay={popover} placement="top" delay={{ show: 250, hide: 400 }} ><b style={{color:"#512CB0"}}>Free</b></OverlayTrigger> Daily Coding Tasks</p></span><br/>
-            <Nav.Link className="links2" href="/daily"><button class="btn-start get-started-btn">Let's Go   <AiOutlineArrowRight/></button></Nav.Link>
+            <span id="b"><p className="greeting">Join Club's and Societies today  <OverlayTrigger overlay={popover} placement="top" delay={{ show: 250, hide: 400 }} ><b style={{color:"#512CB0"}}></b></OverlayTrigger></p></span><br/>
+            <Nav.Link className="links2" href="/register"><button class="btn-start get-started-btn">Create an Account   <AiOutlineArrowRight/></button></Nav.Link>
         </div>
-
-        <div id="container-mobile">
-          <p>Hello World</p>
-        </div>        
       </div>
-      <div className="spacing-home"></div>
     </>
   );
 }
