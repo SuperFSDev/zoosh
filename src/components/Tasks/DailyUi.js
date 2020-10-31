@@ -18,7 +18,7 @@ class DailyUi extends React.Component {
   
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/problems')
+    axios.get('http://localhost:4000/problems/problems')
     .then((response)=>{
         this.setState({problems: response.data.problems})
     })

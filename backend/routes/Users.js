@@ -3,6 +3,7 @@ const cors = require('cors');
 const users = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const app = express();
 
 //import model
 const UserModel = require('../models/User');
@@ -120,6 +121,15 @@ users.get('/settings', (req, res) => {
     .catch(err => {
         res.send(err)
     })
+})
+
+users.get('/getUsers', (req, res) => {
+
+    UserModel.find((error, data) =>{
+        res.json({users:data});
+        console.log(data);
+    })
+
 })
 
 module.exports = users;
