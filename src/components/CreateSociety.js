@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
-import LeaderboardList from './Lists/LeaderboardList';
+import CreateASoc from './Socs/CreateASoc';
 
 function Leaderboard() {
   return (
-    <LeaderboardList/>
+    <CreateASoc/>
   );
 }
 

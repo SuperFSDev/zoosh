@@ -3,7 +3,6 @@ const cors = require('cors');
 const users = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const app = express();
 
 //import model
 const UserModel = require('../models/User');
@@ -26,7 +25,7 @@ process.env.SECRET_KEY = 'secret';
 users.post('/register', (req, res) => {
 
     const userData = {
-        username: req.body.username,
+        fullname: req.body.fullname,
         email: req.body.email,
         password: req.body.password
     }
@@ -78,7 +77,7 @@ users.post('/login', (req, res) => {
             if(bcrypt.compareSync(req.body.password, user.password)){
                 const payload = {
                     _id: user.id,
-                    username: user.username,
+                    fullname: user.fullname,
                     email: user.email
                 }
                 //associate a key to a payload (user in this case)
@@ -90,7 +89,7 @@ users.post('/login', (req, res) => {
                 console.log(token);
                 res.send(token)
 
-                console.log("User " + user.username + " has been logged in!")
+                console.log("User " + user.fullname + " has been logged in!")
             }else{
                 res.json({error: "Invalid login details"})
             }

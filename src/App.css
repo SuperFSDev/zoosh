@@ -121,7 +121,7 @@ body{
 }
 
 .WebImage2{
-  width: 50rem;
+  width: 35rem;
   height: auto;
   margin-top: 3rem;
   margin-right: 50rem;
@@ -139,16 +139,18 @@ body{
 
 
 .btn-profile{
-  border-radius: 5px;
-  background-color: white;
+  border-radius: 25px;
   color: black;
   border: none;
   margin-right: 2rem;
   outline: none !important;
-  width: 10rem;
-  height: 4rem;
-  background-color: #27FBBE;
+  border-color: gray;
+  border-style: solid;
+  width: 6rem;
+  height: 2rem;
+  background-color: white;
   outline: none;
+  border-width: 1px;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   transition: 0.3s;
 }
@@ -275,7 +277,7 @@ hr {
 .register-card{
   text-align: center;
   width: 30rem;
-  height: 30rem;
+  height: 28rem;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
@@ -491,15 +493,16 @@ hr {
   color:black;
 }
 
-
+/* FEED */
 .containerFeedLeft{
   width: 25%;
   height: 100rem;
   outline: none !important;
-  background-color: rgb(148, 148, 148);
+  background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(13, 0, 134);
+  text-align: center;
   border-style: solid;
 
 }
@@ -513,9 +516,8 @@ hr {
   float: left;
   padding-bottom: 10rem;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(32, 0, 121);
   border-style: solid;
-
 }
 
 .containerFeedRight{
@@ -523,9 +525,10 @@ hr {
   height: 100rem;
   outline: none !important;
   float: right;
-  background-color: #27FBBE;
+  background-color: #ffffff;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(11, 0, 161);
+  text-align: center;
   border-style: solid;
 
 
@@ -536,10 +539,23 @@ hr {
   height: 20rem;
   border-style: solid;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(0, 11, 160);
   outline: none !important;
   margin: auto;
 
+}
+
+
+.react-calendar__month-view__weekdays {
+  color: rgb(105, 105, 105);
+}
+
+.react-calendar__navigation button {
+  font-size: 1em;
+}
+.Calender{
+
+  margin: auto;
 }
 
 .App-mobile{

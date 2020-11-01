@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import '../App.css';
+import '../../App.css';
 import { Nav, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginSVG from '../images/login.png'
-import { FaFacebookF } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-import FacebookLogin from 'react-facebook-login';
+import LoginSVG from '../../images/login.png'
 import { Card, Image } from 'react-bootstrap';
-import Facebook from './Facebook';
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
@@ -18,7 +14,7 @@ const [picture, setPicture] = useState('');*/
 const loginUser = async user => {
   try {
     const response = await axios.post('http://localhost:4000/users/login', {
-      username: user.username,
+      fullname: user.fullname,
       email: user.email,
       password: user.password
     });
