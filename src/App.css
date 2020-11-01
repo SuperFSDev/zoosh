@@ -491,15 +491,16 @@ hr {
   color:black;
 }
 
-
+/* FEED */
 .containerFeedLeft{
   width: 25%;
   height: 100rem;
   outline: none !important;
-  background-color: rgb(148, 148, 148);
+  background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(13, 0, 134);
+  text-align: center;
   border-style: solid;
 
 }
@@ -513,9 +514,8 @@ hr {
   float: left;
   padding-bottom: 10rem;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(32, 0, 121);
   border-style: solid;
-
 }
 
 .containerFeedRight{
@@ -523,9 +523,10 @@ hr {
   height: 100rem;
   outline: none !important;
   float: right;
-  background-color: #27FBBE;
+  background-color: #ffffff;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(11, 0, 161);
+  text-align: center;
   border-style: solid;
 
 
@@ -536,10 +537,23 @@ hr {
   height: 20rem;
   border-style: solid;
   border-radius: 25px;
-  border-color: black;
+  border-color: rgb(0, 11, 160);
   outline: none !important;
   margin: auto;
 
+}
+
+
+.react-calendar__month-view__weekdays {
+  color: rgb(105, 105, 105);
+}
+
+.react-calendar__navigation button {
+  font-size: 1em;
+}
+.Calender{
+
+  margin: auto;
 }
 
 .App-mobile{

@@ -3,6 +3,8 @@ import '../App.css';
 import { Card, Nav, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 
 class Feed extends React.Component {
 
@@ -23,12 +25,7 @@ componentDidMount() {
   .catch((error)=>{
       console.log(error);
   });
-
-
 }
-
-
-
 
   constructor(props) {
     super(props);
@@ -51,22 +48,17 @@ render(){
               <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
               <Breadcrumb.Item active>Feed</Breadcrumb.Item>
       </Breadcrumb>
-       <h4 className="tasq">Feed</h4>
+       <h4 className="header" align="Center">Feed</h4>
       <div className="containerFeedLeft">
-          <h2>News</h2>
+          <h2>Activities</h2>
+          <Calendar className="Calender" />
       </div>
 
 
   <div className="containerFeedMiddle">
-
- 
 {posts.map(post=>  (
 
-<div key={post.id}>
-
-
-
-     
+<div key={post.id}>    
   <Card className='FeedLayout'>
     <Card.Body>
 <Card.Title>{post.user}</Card.Title>
@@ -83,19 +75,37 @@ render(){
               <Form.Text className="text-muted">
               </Form.Text>
     </Form>
-    </Card.Footer>
-   
+    </Card.Footer>  
   </Card>
+  
   </div>
 ))}
+
+<Card className='FeedLayout'>
+    <Card.Body>
+<Card.Title>Thomas</Card.Title>
+      <Card.Text>
+          <h4>Hello Everyone!</h4>
+ 
+      </Card.Text>
+<big className="text-muted"> Time posted 9:00</big>
+    </Card.Body>
+    <Card.Footer>
+    <Button variant="primary" className='LikeButton'>Like</Button>
+    
+    <Form className='CommentBox'>
+              <Form.Control  type="Text" placeholder="Comment" />
+              <Form.Text className="text-muted">
+              </Form.Text>
+    </Form>
+    </Card.Footer>  
+  </Card>
   </div>
 
 
 
-  <div className="containerFeedRight">
-
+  <div className="containerFeedRight">  
 <h2>Users</h2>
- 
 {users.map(user=>  (
 
 <div key={user.id}>
