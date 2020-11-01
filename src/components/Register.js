@@ -15,22 +15,22 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      fullname: '',
       email: '',
       password: '',
       retype: ''
     };
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeFullname = this.onChangeFullname.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRetype = this.onChangeRetype.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChangeUsername(e) {
+  onChangeFullname(e) {
     this.setState({
-      username: e.target.value
+      fullname: e.target.value
     });
   }
   onChangeEmail(e) {
@@ -54,12 +54,12 @@ class Register extends React.Component {
     e.preventDefault();
 
     const newUser = {
-      username: this.state.username,
+      fullname: this.state.fullname,
       email: this.state.email,
       password: this.state.password
     };
 
-    if (!newUser.username || !newUser.email || !newUser.password) {
+    if (!newUser.fullname || !newUser.email || !newUser.password) {
       alert('Invalid or Empty input(s)');
       console.log('Invalid Parameters');
     } else if(this.state.password !== this.state.retype) {
@@ -76,7 +76,7 @@ class Register extends React.Component {
     }
 
     this.setState({
-      username: '',
+      fullname: '',
       email: '',
       password: '',
       retype: ''
@@ -99,7 +99,7 @@ class Register extends React.Component {
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label>Full Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your full name" required value={this.state.username} onChange={this.onChangeUsername} />
+                  <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} />
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>

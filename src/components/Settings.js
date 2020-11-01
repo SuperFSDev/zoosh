@@ -52,8 +52,8 @@ class Settings extends React.Component {
                         <Table striped bordered hover variant="dark" style={{width: '15rem', alignItems:'center'}}>
                             <tbody>
                                 <tr>
-                                    <td>Username:</td>
-                                    <td>{this.state.firstname}</td>
+                                    <td>Full Name:</td>
+                                    <td>{this.state.fullname}</td>
                                     <td><Button style={{background:'#4717F6'}}>Edit</Button></td>
                                 </tr>
                                 <tr>

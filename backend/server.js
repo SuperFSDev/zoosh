@@ -8,7 +8,7 @@ const port = 4000;
 
 // Access cluster through link
 const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Use headers to give browser access to resources
 app.use(cors());
@@ -39,4 +39,4 @@ var Posts = require('./routes/Posts');
 app.use('/posts', Posts)
 
 //log connection to server
-app.listen(port, () => console.log("Server is up!"));
+app.listen(port, () => console.log("Server is up on port " + port));
