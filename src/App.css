@@ -546,6 +546,15 @@ hr {
 
 }
 
+.PostComment{
+
+width: 40rem;
+margin: auto;
+padding-bottom: 5rem;
+padding-top: 5rem;
+
+}
+
 
 .react-calendar__month-view__weekdays {
   color: rgb(105, 105, 105);

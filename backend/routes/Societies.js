@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const societies = express.Router();
+const app = express();
 
 //import model
 const SocietyModel = require('../models/Society');

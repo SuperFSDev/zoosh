@@ -4,7 +4,7 @@ const posts = express.Router();
 const app = express();
 
 //import model
-const ProblemModel = require('../models/Problem');
+const PostModel = require('../models/Post');
 
 //Use headers to give browser access to resources
 posts.use(cors());
@@ -16,10 +16,22 @@ posts.use(function (req, res, next) {
     next();
 });
 
-posts.get('/problems', (req, res) => {
+posts.post('/NewPosts', (req, res) => {
 
-    ProblemModel.find((error, data) =>{
-        res.json({problems:data});
+    PostModel.create({
+        user: req.body.user,
+        post: req.body.post,
+        time: req.body.time,
+      
+    });
+})
+
+
+
+posts.get('/getPosts', (req, res) => {
+
+    PostModel.find((error, data) =>{
+        res.json({posts:data});
         console.log(data);
     })
 
