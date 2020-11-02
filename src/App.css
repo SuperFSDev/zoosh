@@ -496,47 +496,66 @@ hr {
 
 /* FEED */
 .containerFeedLeft{
-  width: 25%;
+  width: 15%;
   height: 100rem;
   outline: none !important;
   background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
-  border-color: rgb(13, 0, 134);
+  /* border-color: rgb(13, 0, 134); */
   text-align: center;
-  border-style: solid;
+  /* border-style: solid; */
 
 }
 
 
 .containerFeedMiddle{
-  width: 60%;
+  margin-top: 5vh;
+  width: 70%;
   height: 100%;
   outline: none !important;
   background-color:rgb(255, 255, 255);
   float: left;
   padding-bottom: 10rem;
   border-radius: 25px;
-  border-color: rgb(32, 0, 121);
-  border-style: solid;
+  /* border-color: rgb(32, 0, 121);
+  border-style: solid; */
 }
 
 .containerFeedRight{
+  margin-top: 5vh;
   width: 15%;
-  height: 100rem;
+  height: 50vh;
   outline: none !important;
   float: right;
   background-color: #ffffff;
-  border-radius: 25px;
-  border-color: rgb(11, 0, 161);
+  border-radius: 10px;
+  border-color: lightgray;
   text-align: center;
   border-style: solid;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  border-width: 1px;
+}
 
+.discussion-post{
+  border-radius: 10px;
+  margin:auto;
+  width:60vh;
+  height:20vh;
+  background-color:white;
+  border-style:solid;
+  border-width: 1px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  border-color: lightgray;
+}
 
+.post-field{
+  width: 55vh;
+  height:20vh;
 }
 
 .FeedLayout{
-  width: 50%;
+  width: 60vh;
   height: 20rem;
   border-style: solid;
   border-radius: 25px;
@@ -545,14 +564,23 @@ hr {
   margin: auto;
 
 }
-
-.PostComment{
-
-width: 40rem;
-margin: auto;
-padding-bottom: 5rem;
-padding-top: 5rem;
-
+.anchor{
+  text-align: center;
+}
+.post-btn{
+  margin-top: 2vh;
+  width:30vh;
+  height:5vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  background:#ec615b;
+  color: white;
+}
+.post-btn:hover{
+  background:#b94a46;
+  color: white;
 }
 
 

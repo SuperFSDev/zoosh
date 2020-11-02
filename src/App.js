@@ -24,13 +24,13 @@ class App extends React.Component {
           <Router> 
             <NavBar/>   
             <Switch>
-              <Route exact path="/feed" component={Feed}/>
+              {/* <Route exact path="/feed" component={Feed}/> */}
               <Route path="/dailyProblems" component={Facebook}/>
               <Route path="/list-of-clubs-and-societies" component={SocsList}/>
               <Route path="/create-a-society" component={CreateSociety}/>
               <Route path="/leaderboard" component={Leaderboard}/>
               <Route path="/profile" component={Profile}/>
-              <Route path="/" component={Home}/>
+              <Route path="/" component={Feed}/>
             </Switch>
           </Router>
         </div>

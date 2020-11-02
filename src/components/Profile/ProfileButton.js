@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Nav} from 'react-bootstrap'
+import {Nav, NavDropdown} from 'react-bootstrap'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -73,6 +73,7 @@ export default function CustomizedMenus() {
         <StyledMenuItem>
           <Invite/>
         </StyledMenuItem>
+        <NavDropdown.Divider />   
         <Nav.Link href="/login"><StyledMenuItem>
           <ListItemText primary="Logout"/>
         </StyledMenuItem></Nav.Link>

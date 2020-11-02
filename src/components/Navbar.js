@@ -1,13 +1,13 @@
 import React from 'react';
 import '../App.css';
 import {Navbar, Nav, NavDropdown, Badge} from 'react-bootstrap';
-import LoginModal from './auth/LoginModal'
 import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function NavBar() {
   return (
     <div>
+      <div id="top"></div>
       <Navbar>
         <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
         <Nav className="mr-auto">
@@ -25,13 +25,7 @@ export default function NavBar() {
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-        {/* <Navbar.Text className="Signed-in-as">
-          Signed in as: <a href="#login">John Doe</a>
-        </Navbar.Text> */}
-        {/* <Nav.Link className="links" href="/login">Log In</Nav.Link> */}
         <ProfileButton/>
-        {/* <LoginModal/> */}
-        {/* <Nav.Link className="sign-up-link" href="/register"> <button className="btn-profile">Join for Free</button></Nav.Link> */}
         </Navbar.Collapse>
       </Navbar>
     </div>
