@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import {Table, Breadcrumb} from 'react-bootstrap'
+import {Table, Breadcrumb, Nav} from 'react-bootstrap'
 
 function LeaderboardList() {
   return (
@@ -9,7 +9,7 @@ function LeaderboardList() {
               <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
               <Breadcrumb.Item active>Leaderboard</Breadcrumb.Item>
       </Breadcrumb>
-      <Table striped bordered hover>
+      <Table  bordered hover>
           <thead>
             <tr>
               <th>Rank</th>
@@ -21,19 +21,19 @@ function LeaderboardList() {
           <tbody>
             <tr>
               <td>#1</td>
-              <td>Conor Shortt</td>
+              <td><Nav.Link href="profile">Conor Shortt</Nav.Link></td>
               <td>GMIT</td>
               <td>999</td>
             </tr>
             <tr>
               <td>#2</td>
-              <td>Thomas Kenny</td>
+              <td><Nav.Link href="profile">Thomas Kenny</Nav.Link></td>
               <td>GMIT</td>
               <td>555</td>
             </tr>
             <tr>
               <td>#3</td>
-              <td>Aaron Moran</td>
+              <td><Nav.Link href="profile">Aaron Moran</Nav.Link></td>
               <td>GMIT</td>
               <td>333</td>
             </tr>

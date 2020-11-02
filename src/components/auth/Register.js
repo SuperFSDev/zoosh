@@ -4,22 +4,24 @@ import { Nav, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterImg from '../../images/register.png'
 import axios from 'axios';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import PreNavbar from '../PreNavbar'
+import TextField from '@material-ui/core/TextField';
 
 class Register extends React.Component {
-
 
   constructor(props) {
     super(props);
     this.state = {
       fullname: '',
       email: '',
-      password: ''
+      password: '',
+      retype: ''
     };
 
     this.onChangeFullname = this.onChangeFullname.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeRetype = this.onChangeRetype.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -38,6 +40,11 @@ class Register extends React.Component {
       password: e.target.value
     });
   }
+  onChangeRetype(e) {
+    this.setState({
+      retype: e.target.value
+    });
+  }
 
   onSubmit(e) {
 
@@ -52,6 +59,8 @@ class Register extends React.Component {
     if (!newUser.fullname || !newUser.email || !newUser.password) {
       alert('Invalid or Empty input(s)');
       console.log('Invalid Parameters');
+    } else if(this.state.password !== this.state.retype) {
+      alert('Passwords do not match.');
     }
     else {
 
@@ -75,45 +84,37 @@ class Register extends React.Component {
   render() {
     return (
       <>
-      <Breadcrumb className="breadcrumb">
-              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-              <Breadcrumb.Item active>Create an Account</Breadcrumb.Item>
-      </Breadcrumb>
+      <PreNavbar/>
         <div className="container">
           <div id="divLeft"><img className="WebImage2" src={RegisterImg} /></div>
           <div id="divRight">
+            <div><h1 className="reg-head">Join clubs and Socities today</h1></div><br/>
             <div class="register-card">
-              <h1>Create an Account</h1>
+              <br/>
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicUsername">
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} />
+                  <TextField className="textfield-name" type="text" placeholder="Enter your Full Name" required value={this.state.fullname} onChange={this.onChangeFullname} id="outlined-basic" label="Full Name" variant="outlined" />
+                  {/* <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="@gmit.ie, @nuig.ie. @gti.ie"
+                  <TextField className="textfield-email" type="email" required  placeholder="@gmit.ie, @nuig.ie. @gti.ie" value={this.state.email} onChange={this.onChangeEmail}  id="outlined-basic" label="Email Address" variant="outlined" />
+                  {/* <Form.Control type="email" placeholder="@gmit.ie, @nuig.ie. @gti.ie"
                     value={this.state.email}
-                    onChange={this.onChangeEmail} />
+                    onChange={this.onChangeEmail} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password"
+                  <TextField className="textfield-pw" type="password" required placeholder="Create a Password" value={this.state.password} onChange={this.onChangePassword} id="outlined-basic" label="Password" variant="outlined" />
+                  {/* <Form.Control type="password" placeholder="Password"
                     value={this.state.password}
-                    onChange={this.onChangePassword} />
+                    onChange={this.onChangePassword} /> */}
                 </Form.Group>
-                {/* <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Re-type Password</Form.Label>
-                  <Form.Control type="password" placeholder="Re-type Password" 
-                  value={this.state.retype}
-                  onChange={this.onChangeRetype}/>
-                </Form.Group> */}
-                <Button variant="primary" type="submit" >
+                <button className="register-btn" variant="primary" type="submit" >
                   Create Account
-                </Button>
+                </button>
                 <span>
                   <hr />
                   <Nav.Link className="links2" href="/login">Already have an account?</Nav.Link>

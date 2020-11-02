@@ -139,15 +139,15 @@ body{
 
 
 .btn-profile{
-  border-radius: 25px;
+  border-radius: 5px;;
   color: black;
   border: none;
   margin-right: 2rem;
   outline: none !important;
   border-color: gray;
   border-style: solid;
-  width: 6rem;
-  height: 2rem;
+  width: 12rem;
+  height: 3rem;
   background-color: white;
   outline: none;
   border-width: 1px;
@@ -158,6 +158,10 @@ body{
 .btn-profile:hover{
   background-color: gray;
   color: white;
+}
+
+.profile-score{
+  color: darkorange;
 }
 
 .breadcrumb{
@@ -175,11 +179,12 @@ hr {
 
 .login-card{
   width: 30rem;
-  height: 28rem;
+  height: 24rem;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
   margin-top: 1rem;
+  padding-top: 1rem;
   border-radius: 25px;
   margin-right: 40rem;
   text-align: center;
@@ -195,10 +200,6 @@ hr {
 #divLeft{
   width: 600px;
   float: left;
-
-}
-
-.auth-options{
 }
 
 .forgot-pw{
@@ -266,6 +267,7 @@ hr {
   height:400px;
   display: flex;
   justify-content: space-evenly;
+  margin-top: 5rem;
 }
 
 #container-mobile{
@@ -277,14 +279,13 @@ hr {
 .register-card{
   text-align: center;
   width: 30rem;
-  height: 28rem;
+  height: 24rem;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
   border-radius: 25px;
   margin-right: 40rem;
 }
-
 
 /* SUBSCRIBE BY EMAIL */
 
@@ -647,5 +648,97 @@ padding-left: 4rem;
 }
 
 .submit-soc{
-  
+  text-align:center;
+  width:30vh;
+  height:5vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  background:#ec615b;
+  color: white;
+}
+.submit-soc:hover{
+  background:#b94a46;
+  color: white;
+}
+.textfield-create-a-soc{
+  width:40vh;
+}
+.create-soc-div{
+  text-align:center;
+}
+
+/* LOGIN TEXTBOXES */
+
+.textfield-pw{
+  width: 30vh;
+}
+.textfield-name{
+  width: 30vh;
+}
+.textfield-email{
+  width: 30vh;
+}
+.login-btn{
+  width:30vh;
+  height:5vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  background:#ec615b;
+  color: white;
+}
+.login-btn:hover{
+  background:#b94a46;
+  color: white;
+}
+
+/* REGISTER BUTTON */
+.register-btn{
+  width:30vh;
+  height:5vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  background:#ec615b;
+  color: white;
+}
+.register-btn:hover{
+  background:#b94a46;
+  color: white;
+}
+
+/* USER PROFILE */
+/* USER PROFILE */
+
+.user-image{
+  margin-top:5rem;
+  width:171px;
+  height:180px;
+}
+
+.user-profile{
+  text-align: center;
+}
+
+.stars{
+  color: darkorange;
+}
+
+.score{
+  font-weight: bolder;
+}
+
+.profile-cards{
+  margin:auto !important;
+  text-align: center;
+
+}
+.row-profile{
+  margin:auto !important;
+  text-align: center;
+
 }

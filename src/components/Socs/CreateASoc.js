@@ -2,6 +2,9 @@ import React from 'react';
 import '../../App.css';
 import { Form, Col, Button, Breadcrumb } from 'react-bootstrap'
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 class CreateASoc extends React.Component {
 
@@ -104,24 +107,20 @@ class CreateASoc extends React.Component {
                 <Form onSubmit={this.onSubmit}>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridSocName">
-                        <Form.Label>Society Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Society Name" required value={this.state.name} onChange={this.onChangeName}/>
+                        <TextField type="text" placeholder="Enter Society Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" label="Society Name" variant="outlined" />
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Group controlId="formGridCollege">
-                        <Form.Label>College</Form.Label>
-                        <Form.Control placeholder="GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege}/>
+                        <TextField placeholder="GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege} className="textfield-create-a-soc" id="outlined-basic" label="University/College" variant="outlined" />
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control placeholder="Enter Address" required value={this.state.address} onChange={this.onChangeAddress}/>
+                        <TextField placeholder="Enter Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" label="Address" variant="outlined" />
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
-                        <Form.Label>Category</Form.Label>
-                        <Form.Control placeholder="Enter Category" required value={this.state.category} onChange={this.onChangeCategory}/>
+                        <TextField placeholder="Enter Category" required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" />
                     </Form.Group>
 
                     <Form.Row>
@@ -129,12 +128,12 @@ class CreateASoc extends React.Component {
                     </Form.Row>
 
                     <Form.Group id="formGridCheckbox">
+                        {/* <FormControlLabel type="checkbox" label="Make Private" value={this.state.private} onChange={this.onChangePrivate} control={<Switch />} label="Make Private"/> */}
                         <Form.Check type="checkbox" label="Make Private" value={this.state.private} onChange={this.onChangePrivate}/>
                     </Form.Group>
-
-                    <Button className="submit-soc" variant="primary" type="submit">
-                            Create Society
-                    </Button>
+                    <div className="create-soc-div">
+                        <button className="submit-soc" variant="primary" type="submit">Create Society</button>
+                    </div>
                 </Form>
             </div>
             </>

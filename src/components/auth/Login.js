@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginSVG from '../../images/login.png'
 import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import PreNavbar from '../PreNavbar'
+import TextField from '@material-ui/core/TextField';
 
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
@@ -81,49 +82,32 @@ class Login extends React.Component {
   render() {
     return (
       <>
-      <Breadcrumb className="breadcrumb">
-              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-              <Breadcrumb.Item active>Log In</Breadcrumb.Item>
-      </Breadcrumb>
+      <PreNavbar/>
         <div className="container">
           <div id="divLeft"><img className="WebImage2" src={LoginSVG} /></div>
           <div id="divRight">
+          {/* <h1>Welcome Back</h1><br/> */}
             <div class="login-card">
-              <h1>Log In</h1>
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail} />
+                  {/* <Form.Label>Email address</Form.Label> */}
+                  <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
+                  {/* <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} />
+                  {/* <Form.Label>Password</Form.Label> */}
+                  <TextField type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
+                  {/* <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} /> */}
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Keep me signed in" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                  Next
-                </Button>
+                <button className="login-btn" variant="primary" type="submit">
+                  Log In
+                </button>
                 <hr />
-                {/* <button className="fb-login"> */}
-                {/*!login &&
-                  <FacebookLogin
-                    className="fb-login"
-                    appId="1177500526020242"
-                    autoLoad={true}
-                    fields="name,picture"
-                    scope="public_profile,user_friends"
-                    callback={responseFacebook}
-                    icon="fa-facebook" />
-                }
-                {login &&
-                  <Image src={picture} roundedCircle />
-                }
-                {/* <FaFacebookF/> */}
-                {/* </button> */}
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
                   <Nav.Link className="links2" href="/register"><p className="create-account">Create an Account?</p></Nav.Link>
