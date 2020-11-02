@@ -66,20 +66,20 @@ class CreateASoc extends React.Component {
 
         if (!newSoc.name || !newSoc.college || !newSoc.category || !newSoc.address) {
             alert('Invalid or Empty input(s)');
-            console.log('Invalid Parameters')
         }
         var validCollege = this.collegeList.some(college => college === this.state.college.toUpperCase());
-        alert(validCollege);
         if (!validCollege) {
             alert('College must be either NUIG, GMIT or GTI');
         }
         else {
-
             axios.post('http://localhost:4000/societies/create', newSoc)
-                .then()
-                .catch(console.log("error"))
+                .then(function(resp) {
+                    console.log(resp);
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
 
-            console.log('New society registered!');
             window.location = '/list-of-clubs-and-societies';
         }
 

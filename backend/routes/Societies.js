@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const societies = express.Router();
 
@@ -17,7 +16,9 @@ societies.use(function (req, res, next) {
 });
 
 // Register a society to the db
-users.post('/create', (req, res) => {
+societies.post('/create', (req, res) => {
+
+    console.log("In create society function");
 
     const socData = {
         name: req.body.name,

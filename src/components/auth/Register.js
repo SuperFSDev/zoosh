@@ -14,14 +14,12 @@ class Register extends React.Component {
     this.state = {
       fullname: '',
       email: '',
-      password: '',
-      retype: ''
+      password: ''
     };
 
     this.onChangeFullname = this.onChangeFullname.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeRetype = this.onChangeRetype.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -40,11 +38,6 @@ class Register extends React.Component {
       password: e.target.value
     });
   }
-  onChangeRetype(e) {
-    this.setState({
-      retype: e.target.value
-    });
-  }
 
   onSubmit(e) {
 
@@ -59,8 +52,6 @@ class Register extends React.Component {
     if (!newUser.fullname || !newUser.email || !newUser.password) {
       alert('Invalid or Empty input(s)');
       console.log('Invalid Parameters');
-    } else if(this.state.password !== this.state.retype) {
-      alert('Passwords do not match.');
     }
     else {
 

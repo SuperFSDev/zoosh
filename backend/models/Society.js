@@ -6,8 +6,8 @@ const SocietySchema = new Schema({
     name: String,
     college: String,
     category: String,
-    address: Address,
-    private: boolean
+    address: String,
+    private: Boolean
 })
 
 // create a model
