@@ -177,7 +177,7 @@ render(){
       <div class="anchor"><p>You reached the end. Back to <a href="#top">top</a></p></div>
   </div>
 
-  <div className="containerFeedRight">  
+  {/* <div className="containerFeedRight">  
       <h2>Users</h2><hr/>
       {users.map(user=>  (
 
@@ -186,7 +186,7 @@ render(){
 
       </div>
       ))}        
-  </div>
+  </div> */}
   </>
   );
 }

@@ -110,6 +110,7 @@ body{
 
 .links2{
   font-size: 15px;
+  text-decoration: none !important;
 }
 
 
@@ -179,14 +180,13 @@ hr {
 
 .login-card{
   width: 30rem;
-  height: 24rem;
+  height: 22rem;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
   margin-top: 1rem;
   padding-top: 1rem;
   border-radius: 25px;
-  margin-right: 40rem;
   text-align: center;
 }
 
@@ -284,7 +284,6 @@ hr {
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
   border-radius: 25px;
-  margin-right: 40rem;
 }
 
 /* SUBSCRIBE BY EMAIL */
@@ -709,13 +708,13 @@ padding-left: 4rem;
 /* LOGIN TEXTBOXES */
 
 .textfield-pw{
-  width: 30vh;
+  width: 40vh;
 }
 .textfield-name{
-  width: 30vh;
+  width: 40vh;
 }
 .textfield-email{
-  width: 30vh;
+  width: 40vh;
 }
 .login-btn{
   width:30vh;
@@ -724,11 +723,11 @@ padding-left: 4rem;
   border-style: solid;
   border:none;
   outline: none !important;
-  background:#ec615b;
+  background:#1A2E35;
   color: white;
 }
 .login-btn:hover{
-  background:#b94a46;
+  background:#27444e;
   color: white;
 }
 
@@ -740,11 +739,11 @@ padding-left: 4rem;
   border-style: solid;
   border:none;
   outline: none !important;
-  background:#ec615b;
+  background:#1A2E35;
   color: white;
 }
 .register-btn:hover{
-  background:#b94a46;
+  background:#27444e;
   color: white;
 }
 
@@ -778,4 +777,47 @@ padding-left: 4rem;
   margin:auto !important;
   text-align: center;
 
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color:white ;
+}
+
+.right {
+  right: 0;
+  background-color:#B1CBDC ;
+}
+
+.right2{
+  right: 0;
+  background-color:#F0F0F0;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.intro{
+  width:80vh;
+  height:auto;
+}
+
+.welcome{
+  width:100vh;
+  height:auto;
 }

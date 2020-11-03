@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import '../../App.css';
 import { Nav, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginSVG from '../../images/login.png'
+import LoginSVG from '../../images/welcome.png'
 import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
 import PreNavbar from '../PreNavbar'
 import TextField from '@material-ui/core/TextField';
+import Intro from '../../images/blogging.jpg'
 
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
@@ -82,13 +83,18 @@ class Login extends React.Component {
   render() {
     return (
       <>
-      <PreNavbar/>
-        <div className="container">
-          <div id="divLeft"><img className="WebImage2" src={LoginSVG} /></div>
-          <div id="divRight">
-          {/* <h1>Welcome Back</h1><br/> */}
-            <div class="login-card">
-              <Form onSubmit={this.onSubmit}>
+       <div>
+          <div className="split left">
+              <div className="centered">
+              <Nav.Link href="/"><h1 className="header">Name</h1></Nav.Link>
+                <img className="welcome" src={LoginSVG} />
+              </div>
+          </div>
+
+          <div className="split right">
+              <div className="centered">
+              <div class="login-card">
+              <Form  onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicEmail">
                   {/* <Form.Label>Email address</Form.Label> */}
                   <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
@@ -101,21 +107,22 @@ class Login extends React.Component {
                   <TextField type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
                   {/* <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} /> */}
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
+                {/* <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Keep me signed in" />
-                </Form.Group>
+                </Form.Group> */}
                 <button className="login-btn" variant="primary" type="submit">
                   Log In
                 </button>
                 <hr />
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  <Nav.Link className="links2" href="/register"><p className="create-account">Create an Account?</p></Nav.Link>
+                  <p className="create-account">New to our site?<a className="links2" href="/register"> Join Now</a></p>
                 </div>
               </Form>
             </div>
+              </div>
           </div>
-        </div>
+      </div>
       </>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import { Nav, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RegisterImg from '../../images/register.png'
+import RegisterImg from '../../images/registerVector.jpg'
 import axios from 'axios';
 import PreNavbar from '../PreNavbar'
 import TextField from '@material-ui/core/TextField';
@@ -84,12 +84,17 @@ class Register extends React.Component {
   render() {
     return (
       <>
-      <PreNavbar/>
-        <div className="container">
-          <div id="divLeft"><img className="WebImage2" src={RegisterImg} /></div>
-          <div id="divRight">
-            <div><h1 className="reg-head">Join clubs and Socities today</h1></div><br/>
-            <div class="register-card">
+        <div>
+          <div className="split left">
+              <div className="centered">
+                <Nav.Link href="/"><h1 className="header">Name</h1></Nav.Link>
+                <img className="intro" src={RegisterImg}/>
+              </div>
+          </div>
+
+          <div className="split right2">
+              <div className="centered">
+              <div class="register-card">
               <br/>
               <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="formBasicUsername">
@@ -121,6 +126,7 @@ class Register extends React.Component {
                 </span>
               </Form>
             </div>
+              </div>
           </div>
         </div>
       </>
