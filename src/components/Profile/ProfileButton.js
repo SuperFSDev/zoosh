@@ -51,12 +51,7 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <button
-        className="btn-profile"
-        onClick={handleClick}
-      >
-        John Doe<br/><RiStarSmileFill className="profile-score"/>123,521
-      </button>
+      <Nav.Link className="links" onClick={handleClick}>John Doe <RiStarSmileFill className="-i-vector-score"/>123,521</Nav.Link>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}

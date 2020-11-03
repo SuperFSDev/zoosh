@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import '../../App.css';
-import { Nav, Form, Button } from 'react-bootstrap';
+import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginSVG from '../../images/welcome.png'
 import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
-import PreNavbar from '../PreNavbar'
 import TextField from '@material-ui/core/TextField';
-import Intro from '../../images/blogging.jpg'
+import RegisterModal from './RegisterModal'
 
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
@@ -116,7 +115,7 @@ class Login extends React.Component {
                 <hr />
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  <p className="create-account">New to our site?<a className="links2" href="/register"> Join Now</a></p>
+                  <RegisterModal/>
                 </div>
               </Form>
             </div>

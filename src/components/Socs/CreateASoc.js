@@ -3,8 +3,6 @@ import '../../App.css';
 import { Form, Col, Button, Breadcrumb } from 'react-bootstrap'
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 
 class CreateASoc extends React.Component {
 

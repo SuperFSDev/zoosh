@@ -12,16 +12,7 @@ export default function UserProfile() {
       <p className="score"><RiStarSmileFill className="stars"/> 999,999</p>
       <div className="profile-cards">
         <div class="row-profile">
-            <div class="column">
-            <Nav.Link href="/python"><div className="socs-card">
-              <h1>Gaming</h1>
-            </div></Nav.Link>
-            </div>
-            <div class="column">
-            <Nav.Link href="/java"><div className="socs-card">
-              <h1>Politics</h1>
-            </div></Nav.Link>
-            </div>
+           
         </div>
       </div>
     </div>

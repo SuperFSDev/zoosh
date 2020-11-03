@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../App.css';
-import { Nav, Form, Button } from 'react-bootstrap';
+import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterImg from '../../images/registerVector.jpg'
 import axios from 'axios';
-import PreNavbar from '../PreNavbar'
 import TextField from '@material-ui/core/TextField';
 
 class Register extends React.Component {
