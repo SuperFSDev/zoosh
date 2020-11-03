@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
+import moment from 'moment'
 
 class Feed extends React.Component {
 
@@ -34,7 +35,7 @@ componentDidMount() {
       posts: [],
       user: '',
       post: '',
-      time: ''
+      time: new Date().getTime(),
       
     };
 
@@ -61,7 +62,7 @@ onChangePost(e) {
 }
 onChangeTime(e) {
     this.setState({
-      time: e.target.value
+      time: new Date().getTime(),
     });
 }
 onSubmit(e) {
@@ -71,7 +72,7 @@ onSubmit(e) {
   const newPost = {
       user: this.state.user,
       post: this.state.post,
-      time: this.state.time
+      time: new Date().getTime(),
      
   }
 
@@ -85,7 +86,7 @@ onSubmit(e) {
 this.setState({
   user: '',
   post: '',
-  time: ''
+  time: new Date().getTime(),
 
 
 
@@ -159,7 +160,7 @@ render(){
                   <Card.Text>
               {post.post}
                   </Card.Text>
-            <big className="text-muted"> Time posted {post.time}</big>
+            <big className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
                 </Card.Body>
                 <Card.Footer>
                 <Button variant="primary" className='LikeButton'>Like</Button>  
