@@ -154,13 +154,13 @@ render(){
         <div className="spacing"></div>
           {posts.map(post=>  (
             <div key={post.id}>    
-              <Card className='FeedLayout'>
+              <Card className='feedPost'>
                 <Card.Body>
             <Card.Title>{post.user}</Card.Title>
-                  <Card.Text>
-              {post.post}
+                  <Card.Text className="fontPost">
+                   {post.post}
                   </Card.Text>
-            <big className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
+            <big  className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
                 </Card.Body>
                 <Card.Footer>
                 <Button variant="primary" className='LikeButton'>Like</Button>  
