@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../App.css';
-import {Table, Breadcrumb, Nav} from 'react-bootstrap'
+import {Breadcrumb, Nav} from 'react-bootstrap'
 import axios from 'axios';
+import LeaderboardOptions from './Leaderboard-options'
 
-  class LeaderboardList extends React.Component {
+  class NewSocsList extends React.Component {
 
     componentDidMount() {
       axios.get('http://localhost:4000/societies/getSocieties')
@@ -42,14 +43,16 @@ import axios from 'axios';
           return (
           <>
           <Breadcrumb className="breadcrumb">
-                    <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Leaderboard</Breadcrumb.Item>
-            </Breadcrumb>
-          
+                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/list-of-clubs-and-societies">All Clubs and Societies</Breadcrumb.Item>
+                    <Breadcrumb.Item active>New</Breadcrumb.Item>            
+          </Breadcrumb>
+
+          <LeaderboardOptions/>
+
           <table className="-l-board-t-setup">
             <thead>
                 <tr>
-                  <th>Group</th><th>Category</th><th>Growth</th>
                 </tr>
             </thead>
             {societies.map(society=>  (
@@ -62,10 +65,10 @@ import axios from 'axios';
                     </tbody>
               </div>
             ))}    
-          </table> 
+          </table>   
       </>
         );
       }
     }
 
-    export default LeaderboardList;
+    export default NewSocsList;

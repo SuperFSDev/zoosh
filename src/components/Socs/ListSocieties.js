@@ -3,6 +3,7 @@ import '../../App.css';
 import { Nav } from 'react-bootstrap';
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import LeaderboardOptions from '../Lists/Leaderboard-options'
 
 class Daily extends React.Component {
 
@@ -47,18 +48,16 @@ class Daily extends React.Component {
   return (
     
     <>
-    
-
-    
-      <Breadcrumb className="breadcrumb">
-              <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-              <Breadcrumb.Item active>All Clubs and Societies</Breadcrumb.Item>
-      </Breadcrumb>
-
-      <div className="search-div">
-   
-        <input className="searchbar" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a topic.." title="Type in a category"/>
-      </div>
+      <div>
+          <Breadcrumb className="breadcrumb">
+                    <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item active>All Clubs and Societies</Breadcrumb.Item>
+            </Breadcrumb>
+        </div>
+        <div className="search-div">
+            <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society" title="Type in a category"/>
+        </div>
+        <LeaderboardOptions/>
       <div>  
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import { Form, Col, Button, Breadcrumb } from 'react-bootstrap'
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
+import {TextField,InputLabel,NativeSelect, FormControl, Select} from '@material-ui/core';
 
 class CreateASoc extends React.Component {
 
@@ -118,8 +118,31 @@ class CreateASoc extends React.Component {
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
-                        <TextField placeholder="Enter Category" required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" />
+                        <select className="-c-list-options" name="category" id="category" required>
+                            <option disabled selected="Choose a Category" value="choose">Choose a Category</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Music">Music</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        {/* <TextField placeholder="Enter Category" required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" /> */}
                     </Form.Group>
+
+
+                    {/* <FormControl variant="outlined">
+                            <InputLabel required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" >Category</InputLabel>
+                            <Select native label="Category"
+                                inputProps={{
+                                    name: 'category',
+                                    id: 'outlined-age-native-simple',
+                                }}>
+                            <option aria-label="None" value=""/>
+                            <option value={10}>Sport</option>
+                            <option value={20}>Music</option>
+                            <option value={30}>Politics</option>
+                            </Select>
+                        </FormControl> */}
 
                     <Form.Row>
                     

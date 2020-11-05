@@ -111,7 +111,7 @@ render(){
           <InputGroup value={this.state.post} onChange={this.onChangePost}>
             <InputGroup.Prepend>
             </InputGroup.Prepend>
-            <FormControl as="textarea" aria-label="With textarea" placeholder="Start a Discussion"/>
+            <FormControl className="post-form" as="textarea" aria-label="With textarea" placeholder="Start a Discussion"/>
             <DropdownButton
                 as={InputGroup.Append}
                 variant="outline-secondary"

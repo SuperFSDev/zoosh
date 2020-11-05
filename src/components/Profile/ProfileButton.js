@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {RiStarSmileFill} from 'react-icons/ri'
 import Invite from '../Common/InviteAFriend'
+import Avatar from './Avatar'
 
 const StyledMenu = withStyles({
   paper: {
@@ -51,7 +52,8 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <Nav.Link className="links" onClick={handleClick}>John Doe <RiStarSmileFill className="-i-vector-score"/>123,521</Nav.Link>
+      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>John Doe </Nav.Link>
+      {/* <RiStarSmileFill className="-i-vector-score"/>123,521 */}
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
