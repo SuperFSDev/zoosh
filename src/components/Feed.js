@@ -112,15 +112,14 @@ render(){
             <InputGroup.Prepend>
             </InputGroup.Prepend>
             <FormControl className="post-form" as="textarea" aria-label="With textarea" placeholder="Start a Discussion"/>
-            <DropdownButton
-                as={InputGroup.Append}
-                variant="outline-secondary"
-                title="Choose Club/Society"
-                id="input-group-dropdown-2"
-              >
-                <Dropdown.Item href="#">Computer Science</Dropdown.Item>
-                <Dropdown.Item href="#">Gaming</Dropdown.Item>
-              </DropdownButton>
+            <select className="-c-list-options" name="category" id="category" required>
+                            <option disabled selected="Choose a Category" value="choose">Choose a Category</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Music">Music</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Other">Other</option>
+            </select>
           </InputGroup>
               <div className="create-soc-div">
                   <button variant="primary" type="submit" class="post-btn">Post</button>
@@ -156,11 +155,11 @@ render(){
             <div key={post.id}>    
               <Card className='feedPost'>
                 <Card.Body>
-            <Card.Title>{post.user}</Card.Title>
+                  <Card.Title>{post.user}</Card.Title>
                   <Card.Text className="fontPost">
                    {post.post}
                   </Card.Text>
-            <big  className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
+                  <big  className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
                 </Card.Body>
                 <Card.Footer>
                 <Button variant="primary" className='LikeButton'>Like</Button>  

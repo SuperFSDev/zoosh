@@ -52,7 +52,7 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>John Doe </Nav.Link>
+      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>John Doe</Nav.Link>
       {/* <RiStarSmileFill className="-i-vector-score"/>123,521 */}
       <StyledMenu
         id="customized-menu"

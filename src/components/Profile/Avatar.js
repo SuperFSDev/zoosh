@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Img from '../../images/me.jpg'
+import Img from '../../images/blogging.jpg'
 
 export default function ImageAvatars() {
   return (

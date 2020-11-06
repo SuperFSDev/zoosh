@@ -24,7 +24,7 @@ export default function RegisterModal() {
         <DialogContent>
         <Form>
                 <Form.Group controlId="formBasicUsername">
-                  <TextField className="textfield-name" type="text" placeholder="Enter your Full Name" required id="outlined-basic" label="Full Name" variant="outlined" />
+                  <TextField className="textfield-name" type="text" required id="outlined-basic" label="Name" variant="outlined" />
                   {/* <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
