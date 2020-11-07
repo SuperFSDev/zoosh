@@ -1075,6 +1075,18 @@ padding-left: 4rem;
   background: white;
 }
 
+.filterBox{
+ 
+width: 10rem;
+font-size: large;
+border-radius:25px;
+padding-left: 2rem;
+border-color: lightgray;
+height: 3rem;
+
+
+}
+
 
 /* SOCIAL LINKS */
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');

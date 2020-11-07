@@ -5,6 +5,7 @@ import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import LeaderboardOptions from '../Lists/Leaderboard-options'
 
+
 class Daily extends React.Component {
 
 
@@ -23,39 +24,71 @@ class Daily extends React.Component {
     super(props);
     this.state = {
       societies:[],
-      searchValue:''
+      searchValue:'',
+      filterBy:''
  
     
       
     };
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
+
+
+
+
   updateSearch(event){
     this.setState({searchValue: event.target.value.substr(0,20)});
   }
 
- 
+  handleDropdownChange(e) {
+    this.setState({ filterBy: e.target.value });
+  }
 
 
 
   render(){
-  var{societies} = this.state;
+  
   let filteredSocietiesByName = this.state.societies.filter(
+
     (society)=>{
+       let filter = this.state.filterBy;
+       if (filter == "Name") {
+        return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
+         
+       } if (filter == "College") {
+        return society.college.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
+         
+       }  
+       if (filter == "Category") {
+        return society.category.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
+         
+       }  else{
+      
       return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
-    }
+    }}
 
   );
   return (
     
     <>
       <div>
+   
           <Breadcrumb className="breadcrumb">
                     <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
                     <Breadcrumb.Item active>All Clubs and Societies</Breadcrumb.Item>
             </Breadcrumb>
         </div>
         <div className="search-div">
-            <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society" title="Type in a category"/>
+            <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
+            />
+            <select id="dropdown" onChange={this.handleDropdownChange}  className="filterBox" placeholder="Filter">
+              <option value="n/a">n/a</option>
+              <option value="Name">Name</option>
+              <option value="College">College</option>
+              <option value="Category">Category</option>
+        
+            </select>
+             <h4>Filter by : {this.state.filterBy}</h4>
         </div>
         <LeaderboardOptions/>
       <div>  
