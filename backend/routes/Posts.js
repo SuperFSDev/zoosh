@@ -22,6 +22,7 @@ posts.post('/NewPosts', (req, res) => {
         user: req.body.user,
         post: req.body.post,
         time: req.body.time,
+        category: req.body.category
       
     });
 })

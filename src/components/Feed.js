@@ -38,17 +38,9 @@ componentDidMount() {
     super(props);
     this.state = {
       users: [],
-      posts: [],
-      user: '',
-      post: '',
-      time: new Date().getTime(),
-      
+      posts: []
+  
     };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeUser= this.onChangeUser.bind(this);
-    this.onChangePost = this.onChangePost.bind(this);
-    this.onChangeTime = this.onChangeTime.bind(this);
 
   } 
 
@@ -56,50 +48,6 @@ componentDidMount() {
 
   }
 
-  onChangeUser(e) {
-    this.setState({
-        user: e.target.value
-    });
-}
-onChangePost(e) {
-    this.setState({
-        post: e.target.value
-    });
-}
-onChangeTime(e) {
-    this.setState({
-      time: new Date().getTime(),
-    });
-}
-onSubmit(e) {
-
-  e.preventDefault();
-
-  const newPost = {
-      user: this.state.user,
-      post: this.state.post,
-      time: new Date().getTime(),
-     
-  }
-
-
-  axios.post('http://localhost:4000/posts/NewPosts', newPost)
-  .then()
-      .catch();
-
-
-
-this.setState({
-  user: '',
-  post: '',
-  time: new Date().getTime(),
-
-
-
-
-});
-window.location = '/feed';
-}
 
 render(){
   var{users} = this.state;
@@ -107,59 +55,20 @@ render(){
 
   return (
      <>
-             <Post  value={this.state.post} onChange={this.onChangePost}/>
+             <Post/>
 
       <div className="containerFeedLeft">
           {/* <h2>Activities</h2>
           <Calendar className="Calender" /> */}
       </div>
       <div className="containerFeedMiddle">
-        {/* <Form onSubmit={this.onSubmit}>
-          <div className="discussion-post">
-          <InputGroup value={this.state.post} onChange={this.onChangePost}>
-            <InputGroup.Prepend>
-            </InputGroup.Prepend>
-            <FormControl className="post-form" as="textarea" aria-label="With textarea" placeholder="Start a Discussion"/>
-            <select className="-c-list-options" name="category" id="category" required>
-                            <option disabled selected="Choose a Category" value="choose">Choose a Category</option>
-                            <option value="Sports">Sports</option>
-                            <option value="Music">Music</option>
-                            <option value="Politics">Politics</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Other">Other</option>
-            </select>
-          </InputGroup>
-              <div className="create-soc-div">
-                  <button variant="primary" type="submit" class="post-btn">Post</button>
-              </div>
-          </div> */}
-              {/* <input
-                type='text'
-                className='form-control'
-                value={this.state.user}
-                onChange={this.onChangeUser}
-              ></input>
-
-              <input
-                type='text'
-                className='form-control'
-                value={this.state.post}
-                onChange={this.onChangePost}
-              ></input>
-
-              <input
-                type='text'
-                className='form-control'
-                value={this.state.time}
-                onChange={this.onChangeTime}
-              ></input>   */}
-        {/* </Form> */}
+   
 
         {/* Back to top */}
         <a id="button"></a>
 
         <div className="spacing"></div>
-          {posts.map(post=>  (
+          {posts.reverse().map(post=>  (
             <div key={post.id}>    
             <Card.Footer className="-post-header-card"/>
               <Card className='feedPost'>
@@ -168,7 +77,9 @@ render(){
                   <Card.Title>{post.user}</Card.Title>
                   <Card.Text className="fontPost">
                    {post.post}
+                
                   </Card.Text>
+                  <big  className="text-muted">{post.category}</big><br></br>
                   <big  className="text-muted">{moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
                 </Card.Body>
 

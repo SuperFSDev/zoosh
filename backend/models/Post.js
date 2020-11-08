@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     user:String,
     post:String,
-    time:Date
+    time:Date,
+    category:String
 })
 
 
