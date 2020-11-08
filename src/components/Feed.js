@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
-import { Card, Button, Form, DropdownButton, InputGroup, FormControl, Dropdown } from 'react-bootstrap';
-import TextField from '@material-ui/core/TextField';
+import { Card, Form, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
@@ -11,7 +10,6 @@ import {FaRegCommentDots} from 'react-icons/fa'
 import {RiStarSmileLine} from 'react-icons/ri'
 import {BsThreeDots} from 'react-icons/bs'
 import Avatar from './Profile/Avatar'
-import PostStats from './Posts/PostStats'
 
 class Feed extends React.Component {
 
@@ -55,7 +53,7 @@ render(){
 
   return (
      <>
-             <Post/>
+      <Post/>
 
       <div className="containerFeedLeft">
           {/* <h2>Activities</h2>
@@ -79,14 +77,15 @@ render(){
                    {post.post}
                 
                   </Card.Text>
-                  <big  className="text-muted">{post.category}</big><br></br>
-                  <big  className="text-muted">{moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
+                  <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
+                  <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
+                  <div className="post-interactions">
+                    <RiStarSmileLine size="25" color="gray"/>      <FaRegCommentDots size="25" color="gray"/> <BsThreeDots size="25" color="gray"/>
+                  </div>
                 </Card.Body>
 
                 {/* <Card.Footer className="-post-footer-card"> */}
-                  <div>
-                    <RiStarSmileLine size="25" color="gray"/>      <FaRegCommentDots size="25" color="gray"/> <BsThreeDots size="25" color="gray"/>
-                  </div>
+  
                 
                 {/* <Button variant="primary" className='LikeButton'>Like</Button>   */}
                 <Form className='CommentBox'>

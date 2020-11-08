@@ -100,10 +100,13 @@ class Daily extends React.Component {
            
         {filteredSocietiesByName.map(society=>  (
 <div key={society.id}>
-        <Nav.Link href="/"><div className="python-card">
+          <div className="python-card">
+          <a href="/" className="-soc-l-navigation">
           <h1>{society.name}</h1> 
-          <h4>{society.category}</h4>         
-        </div></Nav.Link>
+          <h4>{society.category}</h4>        
+          {/* <h4>{society.college}</h4>          */}
+          </a>
+        </div>
         </div>
         
         ))}    

@@ -45,11 +45,32 @@ import axios from 'axios';
                     <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
                     <Breadcrumb.Item active>Leaderboard</Breadcrumb.Item>
             </Breadcrumb>
+            <table class="container">
+              <thead>
+                <tr>
+                  <th><h1>Rank</h1></th>
+                  <th><h1>Name</h1></th>
+                  <th><h1>College/University</h1></th>
+                  <th><h1>Score</h1></th>
+                </tr>
+              </thead>
+              <tbody>
+                  {societies.map(society=>  (
+                          <tr>
+                            <td>{society.id}</td>
+                            <td><a href="/profile">{society.name}</a></td>
+                            <td>{society.college}</td>
+                            <td>{society.score}</td>
+
+                          </tr>
+                ))}    
+              </tbody>
+            </table>
           
-          <table className="-l-board-t-setup">
+          {/* <table className="-l-board-t-setup">
             <thead>
                 <tr>
-                  <th>Group</th><th>Category</th><th>Growth</th>
+                  <th>Rank</th><th>Group</th><th>Category</th><th>Growth</th>
                 </tr>
             </thead>
             {societies.map(society=>  (
@@ -62,7 +83,7 @@ import axios from 'axios';
                     </tbody>
               </div>
             ))}    
-          </table> 
+          </table>  */}
       </>
         );
       }

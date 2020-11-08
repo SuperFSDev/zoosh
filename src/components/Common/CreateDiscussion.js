@@ -85,13 +85,6 @@ window.location = '/feed';
 
 
   render(){
-
-    
-
-
-
-
-
   return (
     <div className="create-a-post">
       <div>
@@ -103,6 +96,7 @@ window.location = '/feed';
           style={{ margin: 8, fontSize: 10,  }}
           placeholder="Whats on your mind"
           fullWidth
+          required
           margin="normal"
           value={this.state.post}
           onChange={this.onChangePost}
@@ -111,20 +105,17 @@ window.location = '/feed';
           }}
         />
         
-     
-        <div>
    
-            <select className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  required>
-                            <option disabled selected="Category" value="choose">Category</option>
-                            <option value="Sports">Sports</option>
+            <select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
+                            <option disabled selected value="choose">Club/Society</option>
+                            <option value="choose">Public</option>
+                            <option value="GMIT Comp Sci">GMIT Comp Sci</option>
                             <option value="Music">Music</option>
                             <option value="Politics">Politics</option>
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
             </select>
             <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
-           
-        </div>
         </Form>
       </div>
       

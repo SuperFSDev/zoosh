@@ -59,7 +59,7 @@ import LeaderboardOptions from './Leaderboard-options'
               <div key={society.id}>
                     <tbody className="-leaderboard-i-list">
                       <tr>
-                        <td><Nav.Link href="#">{society.name}</Nav.Link></td>
+                        <td><a href="#">{society.name}</a></td>
                         <td>{society.category}</td>
                       </tr>
                     </tbody>

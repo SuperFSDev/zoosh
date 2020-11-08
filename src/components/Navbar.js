@@ -5,7 +5,7 @@ import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BiHomeSmile} from 'react-icons/bi'
 import {MdShowChart} from 'react-icons/md'
-import {RiTeamLine} from 'react-icons/ri'
+import {RiTeamLine,RiNotification2Line} from 'react-icons/ri'
 import SearchBar from './Common/SearchBar'
 
 export default function NavBar() {
@@ -16,7 +16,7 @@ export default function NavBar() {
         <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
         <Nav className="mr-auto">
         <Nav.Link className="links" href="/"><BiHomeSmile className="-i-vector-img"/></Nav.Link>
-        {/* <Nav.Link className="links" href="/"> Clubs and Societies</Nav.Link> */}
+        <Nav.Link className="links" href="/leaderboard"><RiNotification2Line className="-i-vector-img"/></Nav.Link>
         <div class="dropdown">
         <Nav.Link className="links"><RiTeamLine  className="-i-vector-img"/></Nav.Link>
           <div class="dropdown-content">
@@ -37,6 +37,7 @@ export default function NavBar() {
           <NavDropdown.Item className="links-sub" eventKey="4.7" href="/list-of-clubs-and-societies">See All</NavDropdown.Item>
         </NavDropdown> */}
         <Nav.Link className="links" href="/leaderboard"><MdShowChart className="-i-vector-img"/></Nav.Link>
+
         </Nav>
         <Navbar.Toggle />
         <SearchBar/>
