@@ -6,6 +6,12 @@ import axios from 'axios';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
+import Post from './Common/CreateDiscussion'
+import {FaRegCommentDots} from 'react-icons/fa'
+import {RiStarSmileLine} from 'react-icons/ri'
+import {BsThreeDots} from 'react-icons/bs'
+import Avatar from './Profile/Avatar'
+import PostStats from './Posts/PostStats'
 
 class Feed extends React.Component {
 
@@ -101,12 +107,14 @@ render(){
 
   return (
      <>
+             <Post  value={this.state.post} onChange={this.onChangePost}/>
+
       <div className="containerFeedLeft">
           {/* <h2>Activities</h2>
           <Calendar className="Calender" /> */}
       </div>
       <div className="containerFeedMiddle">
-        <Form onSubmit={this.onSubmit}>
+        {/* <Form onSubmit={this.onSubmit}>
           <div className="discussion-post">
           <InputGroup value={this.state.post} onChange={this.onChangePost}>
             <InputGroup.Prepend>
@@ -124,7 +132,7 @@ render(){
               <div className="create-soc-div">
                   <button variant="primary" type="submit" class="post-btn">Post</button>
               </div>
-          </div>
+          </div> */}
               {/* <input
                 type='text'
                 className='form-control'
@@ -145,7 +153,7 @@ render(){
                 value={this.state.time}
                 onChange={this.onChangeTime}
               ></input>   */}
-        </Form>
+        {/* </Form> */}
 
         {/* Back to top */}
         <a id="button"></a>
@@ -153,23 +161,32 @@ render(){
         <div className="spacing"></div>
           {posts.map(post=>  (
             <div key={post.id}>    
+            <Card.Footer className="-post-header-card"/>
               <Card className='feedPost'>
                 <Card.Body>
+                  <a href="/profile" className="post-user-profile"><Avatar/>@JohnDoe</a>
                   <Card.Title>{post.user}</Card.Title>
                   <Card.Text className="fontPost">
                    {post.post}
                   </Card.Text>
-                  <big  className="text-muted"> Time posted:  {moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
+                  <big  className="text-muted">{moment(post.time).format("MMMM Do, YYYY H:mma")}</big>
                 </Card.Body>
-                <Card.Footer>
-                <Button variant="primary" className='LikeButton'>Like</Button>  
+
+                {/* <Card.Footer className="-post-footer-card"> */}
+                  <div>
+                    <RiStarSmileLine size="25" color="gray"/>      <FaRegCommentDots size="25" color="gray"/> <BsThreeDots size="25" color="gray"/>
+                  </div>
+                
+                {/* <Button variant="primary" className='LikeButton'>Like</Button>   */}
                 <Form className='CommentBox'>
-                          <Form.Control  type="Text" placeholder="Comment" />
+                          
+                          {/* <Form.Control  type="Text" placeholder="Comment" /> */}
                           <Form.Text className="text-muted">
                           </Form.Text>
                 </Form>
-                </Card.Footer>  
+                {/* </Card.Footer>   */}
               </Card>
+              
       <br></br>
       <br></br>
         </div>

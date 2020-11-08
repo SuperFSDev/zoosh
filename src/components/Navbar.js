@@ -15,17 +15,16 @@ export default function NavBar() {
       <Navbar>
         <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link className="links" href="/"><BiHomeSmile className="-i-vector-img"/> Home</Nav.Link>
+        <Nav.Link className="links" href="/"><BiHomeSmile className="-i-vector-img"/></Nav.Link>
         {/* <Nav.Link className="links" href="/"> Clubs and Societies</Nav.Link> */}
         <div class="dropdown">
-        <Nav.Link className="links"><RiTeamLine  className="-i-vector-img"/> Clubs and Societies</Nav.Link>
+        <Nav.Link className="links"><RiTeamLine  className="-i-vector-img"/></Nav.Link>
           <div class="dropdown-content">
             <a  className="links-create" href="/create-a-society">Create a Society</a>
             <a  className="links-sub" href="/join-a-club-or-society">Join a Club or Society</a><hr/>
             <a  className="links-sub-see-all" href="/list-of-clubs-and-societies">See All</a>
           </div>
         </div>
-
         {/* <NavDropdown style={{"color" : "#27FBBE"}} className="links" title="Clubs and Societies" id="nav-dropdown">
           <NavDropdown.Item className="-l-s-club-socs" eventKey="4.1" href="/"><br/><b>Fitness</b> <Badge className="new-badge" variant="primary"> New</Badge><br/><br/></NavDropdown.Item>
           <NavDropdown.Item className="-l-s-club-socs" eventKey="4.2" href="/"><br/><b>LGBTQ+</b> <Badge className="new-badge" variant="secondary"> New</Badge><br/><br/></NavDropdown.Item>
@@ -37,7 +36,7 @@ export default function NavBar() {
           <NavDropdown.Divider />   
           <NavDropdown.Item className="links-sub" eventKey="4.7" href="/list-of-clubs-and-societies">See All</NavDropdown.Item>
         </NavDropdown> */}
-        <Nav.Link className="links" href="/leaderboard"><MdShowChart/> Leaderboard</Nav.Link>
+        <Nav.Link className="links" href="/leaderboard"><MdShowChart className="-i-vector-img"/></Nav.Link>
         </Nav>
         <Navbar.Toggle />
         <SearchBar/>

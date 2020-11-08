@@ -82,13 +82,12 @@ class Daily extends React.Component {
             <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
             />
             <select id="dropdown" onChange={this.handleDropdownChange}  className="filterBox" placeholder="Filter">
-              <option value="n/a">n/a</option>
+              <option value="n/a">All</option>
               <option value="Name">Name</option>
               <option value="College">College</option>
               <option value="Category">Category</option>
         
             </select>
-             <h4>Filter by : {this.state.filterBy}</h4>
         </div>
         <LeaderboardOptions/>
       <div>  
