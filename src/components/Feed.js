@@ -52,7 +52,7 @@ render(){
   var{posts} = this.state;
 
   return (
-     <>
+     <div>
       <Post/>
 
       <div className="containerFeedLeft">
@@ -114,7 +114,7 @@ render(){
       </div>
       ))}        
   </div> */}
-  </>
+  </div>
   );
 }
 }

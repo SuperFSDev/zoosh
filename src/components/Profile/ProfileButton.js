@@ -4,9 +4,9 @@ import {Nav, NavDropdown} from 'react-bootstrap'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import {RiStarSmileFill} from 'react-icons/ri'
 import Invite from '../Common/InviteAFriend'
 import Avatar from './Avatar'
+import DarkMode from '../Common/Darkmode'
 
 const StyledMenu = withStyles({
   paper: {
@@ -69,6 +69,9 @@ export default function CustomizedMenus() {
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>
           <Invite/>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <DarkMode/>
         </StyledMenuItem>
         <NavDropdown.Divider />   
         <Nav.Link href="/login"><StyledMenuItem>

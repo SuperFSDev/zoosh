@@ -67,6 +67,10 @@ body{
   border-radius: 25px;
 }
 
+.links:hover{
+  color:#1869E7!important;
+}
+
 .-i-vector-img{
   width:35px;
   height: auto ;
@@ -196,6 +200,65 @@ body{
   color: darkorange;
 }
 
+/* DARKMODE */
+.dark-mode{
+  background-color: #15202b;
+  color : white;
+}
+.dark-mode p{
+  background-color: #15202b;
+  color : white;
+}
+
+.dark-mode .header{
+  background-color: #15202b;
+  color : white!important;
+}
+
+.dark-mode .containerFeedLeft{
+  background-color: #15202b;
+  color : white!important;
+}
+
+.dark-mode .containerFeedMiddle{
+  background-color: #15202b;
+  color : white!important;
+}
+
+.dark-mode .containerFeedRight{
+  background-color: #15202b;
+  color : white!important;
+}
+
+.dark-mode .links{
+  color : white!important;
+}
+
+.dark-mode .links:hover{
+  color:#1869E7!important;
+}
+
+.dark-mode .breadcrumb{
+  background-color: #15202b!important;
+  color : white!important;
+}
+
+.dark-mode .-post-header-card{
+  background-color: #15202b!important;
+}
+
+.dark-mode .create-a-post{
+  background-color: white!important;
+  border-radius: 25px;
+}
+
+.dark-mode .textfield-create-a-soc{
+  background-color: white!important;
+}
+
+.dark-mode nav{
+  /* background-color: #1b2938; */
+}
 /* BREADCRUMBS */
 .-breadcrumb-setting{
   background: whitesmoke;
