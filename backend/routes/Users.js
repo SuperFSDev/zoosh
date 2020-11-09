@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 //import model
 const UserModel = require('../models/User');
 
-
 //Use headers to give browser access to resources
 users.use(cors());
 users.use(function (req, res, next) {

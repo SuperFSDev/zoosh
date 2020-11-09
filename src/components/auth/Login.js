@@ -19,10 +19,8 @@ const loginUser = async user => {
       email: user.email,
       password: user.password
     });
-    //DEBUG
-    //console.log(response);
     if (response.data.error) {
-      alert('Invalid email or password');
+      console.log('Invalid email or password');
     } else if (response.data) {
       localStorage.setItem('usertoken', response.data);
       return response.data;
@@ -43,7 +41,7 @@ class Login extends React.Component {
 
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onLogin = this.onLogin.bind(this);
   }
 
   //handle input of the email box
@@ -61,7 +59,7 @@ class Login extends React.Component {
 
   //when button is pressed, set the state of user details
   //pass them into login and redirect to the homepage or display an error
-  onSubmit(e) {
+  onLogin(e) {
     e.preventDefault();
 
     //object to pass into login method
@@ -93,7 +91,7 @@ class Login extends React.Component {
           <div className="split right">
               <div className="centered">
               <div class="login-card">
-              <Form  onSubmit={this.onSubmit}>
+              <Form onSubmit={this.onLogin}>
                 <Form.Group controlId="formBasicEmail">
                   {/* <Form.Label>Email address</Form.Label> */}
                   <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
