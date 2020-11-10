@@ -9,18 +9,21 @@ import SocialLinks from './SocialLinks'
 export default function UserProfile() {
   return (
     <>
-      <div className="containerFeedLeft">
+      <div className="containerFeedLeftProfile">
 
       </div>
 
-      <div className="containerFeedMiddle">
-        <ProfilePicture/>
-        <ProfileUsername/>
-        <ProfileStats/>
-        <Status/>
+      <div className="containerFeedMiddleProfile">
+        <div className="profile-card">
+          <ProfilePicture/>
+          <ProfileUsername/>
+          <ProfileStats/>
+          {/* <Status/> */}
+        </div>
+        
       </div>
 
-      <div className="containerFeedRight">
+      <div className="containerFeedRightProfile">
         <SocialLinks/>
       </div>
     </>
