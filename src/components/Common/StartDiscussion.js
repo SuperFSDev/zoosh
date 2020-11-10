@@ -109,24 +109,39 @@ onSubmit(e) {
   return ( 
     <div className="create-a-post">
       <div>
-      <Form onSubmit={this.onSubmit} className="post-container">
-
-        <TextField
-          id="outlined-textarea"
-          label="Create a Post"
-          style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-          placeholder="Whats on your mind"         
-          fullWidth
-          required
-          multiline
-          variant="outlined"
-          margin="normal"
-          value={this.state.post}
-          onChange={this.onChangePost}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          />
+      <Form onSubmit={this.onSubmit} className="discussion-container">
+        <Form.Group className="discussion-container">
+            <TextField
+            id="outlined-textarea"
+            label="Title"
+            style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+            placeholder="Title"         
+            fullWidth
+            required
+            variant="outlined"
+            margin="normal"         
+            />
+        </Form.Group>
+        
+        <Form.Group className="discussion-container">
+             <TextField
+            id="outlined-textarea"
+            label="Discussion Content"
+            placeholder="Create a Discussion"         
+            style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+            fullWidth
+            required
+            multiline
+            variant="outlined"
+            margin="normal"
+            value={this.state.post}
+            onChange={this.onChangePost}
+            InputLabelProps={{
+                shrink: true,
+            }}
+            />
+        </Form.Group>
+           
           <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Tag a friend" />
 
       
@@ -139,7 +154,7 @@ onSubmit(e) {
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
             </select>
-            <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
+            <button className="create-post-discussion-btn-submit"  variant="primary" type="submit">Post Discussion</button>
         </Form>
       </div>
       
