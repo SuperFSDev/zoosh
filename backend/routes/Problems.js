@@ -20,7 +20,7 @@ problems.get('/problems', (req, res) => {
 
     ProblemModel.find((error, data) =>{
         res.json({problems:data});
-        console.log(data);
+        //console.log(data);
     })
 
 })

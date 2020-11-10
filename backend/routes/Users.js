@@ -85,10 +85,10 @@ users.post('/login', (req, res) => {
                 let token = jwt.sign(payload, process.env.SECRET_KEY, {
                     expiresIn: 1440
                 })
-                console.log(token);
-                res.send(token)
+                //console.log(token);
+                res.send(payload);
 
-                console.log("User " + user.fullname + " has been logged in!")
+                //console.log("User " + user.fullname + " has been logged in!")
             }else{
                 res.json({error: "Invalid login details"})
             }
@@ -125,7 +125,28 @@ users.get('/getUsers', (req, res) => {
 
     UserModel.find((error, data) =>{
         res.json({users:data});
-        console.log(data);
+        //console.log(data);
+    })
+
+})
+
+users.get('/getUsers/:email', (req, res) => {
+
+    console.log(req.params.email);
+
+    UserModel.findOne({
+        email: req.params.email
+    }).then(user => {
+        if(user){
+            console.log("found user");
+            console.log(user);
+            res.json({user:user});
+        }else{
+            res.send("User does not exist")
+        }
+    })
+    .catch(err => {
+        res.send(err)
     })
 
 })

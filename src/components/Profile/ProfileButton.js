@@ -41,6 +41,8 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  var user = JSON.parse(localStorage.getItem('user'));
+  var fullname = user.fullname;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -50,9 +52,14 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () =>{
+    localStorage.removeItem('user');
+    localStorage.removeItem('usertoken');
+  };
+
   return (
     <div>
-      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>John Doe</Nav.Link>
+      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>{fullname}</Nav.Link>
       {/* <RiStarSmileFill className="-i-vector-score"/>123,521 */}
       <StyledMenu
         id="customized-menu"
@@ -74,7 +81,7 @@ export default function CustomizedMenus() {
           <DarkMode/>
         </StyledMenuItem>
         <NavDropdown.Divider />   
-        <Nav.Link href="/login"><StyledMenuItem>
+        <Nav.Link href="/login" onClick={handleLogout}><StyledMenuItem>
           <ListItemText primary="Logout"/>
         </StyledMenuItem></Nav.Link>
       </StyledMenu>

@@ -34,7 +34,7 @@ posts.get('/getPosts', (req, res) => {
 
     PostModel.find((error, data) =>{
         res.json({posts:data});
-        console.log(data);
+        //console.log(data);
     })
 
 })
