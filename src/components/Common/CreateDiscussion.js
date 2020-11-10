@@ -2,8 +2,12 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Card, Button, Form, DropdownButton, InputGroup, FormControl, Dropdown, Nav } from 'react-bootstrap';
-import { MentionsInput, Mention } from 'react-mentions'
+import Select from 'react-select';
+
+
 class LayoutTextFeilds extends React.Component {
+
+  
   componentDidMount() {
     axios.get('http://localhost:4000/users/getUsers')
     .then((response)=>{
@@ -22,7 +26,7 @@ class LayoutTextFeilds extends React.Component {
       post: '',
       time: new Date().getTime(),
       category: '',
-      tag:''
+      tags:[]
       
     };
 
@@ -62,7 +66,7 @@ onChangeCategory(e) {
 }
 
 onChangeTag(e) {
-  this.setState({ tag: e.target.value });
+  this.setState({tags:e})
 }
 
 
@@ -74,7 +78,8 @@ onSubmit(e) {
       user: this.state.user,
       post: this.state.post,
       time: new Date().getTime(),
-      category: this.state.category
+      category: this.state.category,
+      tags:this.state.tags
      
   }
 
@@ -90,27 +95,36 @@ this.setState({
   post: '',
   time: new Date().getTime(),
   category: '',
-  tag:''
+  tags:[]
 });
 window.location = '/feed';
 }
   render(){
     
-    const userMentionData = this.state.users.map(user => ({
-      id: user._id,
-      display: user.fullname
-    }))
+    let options = this.state.users.map(function (user) {
+      return { value: user._id, label: user.fullname };
+    })
+
+       
   return ( 
     <div className="create-a-post">
+
+
+
       <div>
+
+     
       <Form onSubmit={this.onSubmit}>
-        <MentionsInput
-           className="mentionWrapper"
+      <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags}>
+ 
+    
+      </Select>
+
+        <TextField
           id="standard-full-width"
           label="Create a Post"
           style={{ margin: 8, fontSize: 20, maxLength:150}}         
-          placeholder="Whats on your mind"
-          
+          placeholder="Whats on your mind"         
           fullWidth
           required
           margin="normal"
@@ -120,16 +134,11 @@ window.location = '/feed';
             shrink: true,
           }}
           >
-          <Mention         
-          type="user"
-          markup= {"@__display__"}
-          trigger="@"
-          data={userMentionData}
-          value={this.state.tag}
-          onChange={this.onChangeTag}                       
-        /></MentionsInput>
+           
+        </TextField>
+       
 
-    
+
             <select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
                             <option disabled selected value="choose">Club/Society</option>
                             <option value="choose">Public</option>

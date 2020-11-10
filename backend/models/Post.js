@@ -6,7 +6,8 @@ const PostSchema = new Schema({
     user:String,
     post:String,
     time:Date,
-    category:String
+    category:String,
+    tags:Array
 })
 
 

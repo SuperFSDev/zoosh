@@ -74,8 +74,11 @@ render(){
                   <a href="/profile" className="post-user-profile"><Avatar/>@JohnDoe</a>
                   <Card.Title>{post.user}</Card.Title>
                   <Card.Text className="fontPost">
-                   {post.post}
-                
+                   {post.post}  {post.tags.map(tag=>  (
+            <div key={tag.value}>    
+                    <a href="/profile" className="post-user-profile"><Avatar/>@{tag.label}</a>
+                   </div>
+                        ))}
                   </Card.Text>
                   <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
                   <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
