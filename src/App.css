@@ -48,7 +48,7 @@ body{
 .header{
   /* color:#27FBBE !important; */
   text-decoration: none;
-  font-size: 4rem !important;
+  font-size: 2.5rem !important;
   font-weight: bolder;
   margin-left: 3rem;
   font-family: 'Righteous', cursive;
@@ -202,31 +202,40 @@ body{
 
 /* DARKMODE */
 .dark-mode{
-  background-color: #15202b;
+  background-color: #202124;
   color : white;
 }
 .dark-mode p{
-  background-color: #15202b;
-  color : white;
+  /* background-color: #202124; */
+  color : black;
+}
+
+.dark-mode #left-item-join{
+  color:gray;
+}
+
+.dark-mode .recommended-item:hover h4{
+  background: lightgray;
+  color:black;
 }
 
 .dark-mode .header{
-  background-color: #15202b;
+  background-color: #202124;
   color : white!important;
 }
 
 .dark-mode .containerFeedLeft{
-  background-color: #15202b;
+  background-color: #202124;
   color : white!important;
 }
 
 .dark-mode .containerFeedMiddle{
-  background-color: #15202b;
+  background-color: #202124;
   color : white!important;
 }
 
 .dark-mode .containerFeedRight{
-  background-color: #15202b;
+  background-color: #202124;
   color : white!important;
 }
 
@@ -239,17 +248,23 @@ body{
 }
 
 .dark-mode .breadcrumb{
-  background-color: #15202b!important;
+  background-color: #202124!important;
   color : white!important;
 }
 
 .dark-mode .-post-header-card{
-  background-color: #15202b!important;
+  background-color: #202124!important;
 }
 
 .dark-mode .create-a-post{
+  background-color: #202124!important;
+  border-radius: 25px;
+}
+
+.dark-mode #standard-full-width{
   background-color: white!important;
   border-radius: 25px;
+
 }
 
 .dark-mode .textfield-create-a-soc{
@@ -588,14 +603,15 @@ td, th {
 
 /* DAILY TASKS PAGE */
 .python-card{
-  padding-top:3rem;
+  padding-top:1rem;
   margin:auto;
   width: 400px;
-  height:150px;
+  height:auto;
   color: black;
   border-radius: 10px;
   background:whitesmoke;
   margin-top:3rem;
+  padding-bottom:10px;
   transition:0.2s;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
@@ -603,6 +619,39 @@ td, th {
 .python-card:hover {
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   transform: translateY(-0.25em);
+}
+
+.soc-item-list-join-btn{
+  background:whitesmoke;
+  border-radius: 25px;
+  border-width: 1px;
+  outline: none!important;
+  border-style: solid;
+  width:60px;
+  margin-left: 10px; /* remove all margins to fit two divs in the container */
+  display: inline-block; /* display block elements in one line */
+}
+
+.soc-item-list-join-btn:hover{
+  background:#1869E7;
+  color:white;
+}
+
+.soc-item-list-visit-btn:hover{
+  background:  #512CB0;
+  color:white;
+
+}
+
+.soc-item-list-visit-btn{
+  background:whitesmoke;
+  border-radius: 25px;
+  border-width: 1px;
+  outline: none!important;
+  border-style: solid;
+  width:60px;
+  margin-left: 10px; /* remove all margins to fit two divs in the container */
+  display: inline-block; /* display block elements in one line */
 }
 
 .head-selection{
@@ -741,7 +790,7 @@ td, th {
 
 
 .containerFeedLeft{
-  width: 25%;
+  width: 20%;
   height: 100rem;
   outline: none !important;
   background-color: rgb(255, 255, 255);
@@ -787,7 +836,7 @@ td, th {
 
 .containerFeedMiddle{
   margin-top: 5vh;
-  width: 50%;
+  width: 45%;
   height: 100%;
   outline: none !important;
   background-color:rgb(255, 255, 255);
@@ -799,12 +848,53 @@ td, th {
 }
 
 .containerFeedRight{
+  margin-top: 10vh;
   width: 25%;
   height: 50vh;
   outline: none !important;
   float: right;
   background-color: #ffffff;
-  text-align: center;
+}
+
+.-recommended-hr-style{
+  width:300px;
+}
+
+.recommended-item{
+  width:300px;
+  height:80px;
+  border-radius: 10px;
+  padding:10px;
+}
+
+
+#right-item-join{
+  background:whitesmoke;
+  border-radius: 25px;
+  border-width: 1px;
+  outline: none!important;
+  border-style: solid;
+  width:60px;
+  margin-left: 10px; /* remove all margins to fit two divs in the container */
+  display: inline-block; /* display block elements in one line */
+}
+
+#right-item-join:hover{
+  background:#1869E7;
+  color:white;
+}
+
+#left-item-join{
+  margin: 0px; /* remove all margins to fit two divs in the container */
+  display: inline-block; /* display block elements in one line */
+}
+
+.see-all-item{
+  padding:10px; 
+}
+
+.recommended-item:hover{
+  background-color: lightgray;
 }
 
 .discussion-post{

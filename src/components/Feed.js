@@ -10,6 +10,7 @@ import {FaRegCommentDots} from 'react-icons/fa'
 import {RiStarSmileLine} from 'react-icons/ri'
 import {BsThreeDots} from 'react-icons/bs'
 import Avatar from './Profile/Avatar'
+import Recommended from './Lists/Recommended'
 
 class Feed extends React.Component {
 
@@ -53,14 +54,13 @@ render(){
 
   return (
      <div>
-      <Post/>
-
       <div className="containerFeedLeft">
           {/* <h2>Activities</h2>
           <Calendar className="Calender" /> */}
       </div>
       <div className="containerFeedMiddle">
    
+      <Post/>
 
         {/* Back to top */}
         <a id="button"></a>
@@ -104,16 +104,17 @@ render(){
       <div class="anchor"><p>You reached the end. Back to <a href="#top">top</a></p></div>
   </div>
 
-  {/* <div className="containerFeedRight">  
-      <h2>Users</h2><hr/>
+  <div className="containerFeedRight">
+    <Recommended/>  
+      {/* <h2>Users</h2><hr/>
       {users.map(user=>  (
 
       <div key={user.id}>
       <h4>{user.username}</h4>
 
       </div>
-      ))}        
-  </div> */}
+      ))}         */}
+  </div>
   </div>
   );
 }

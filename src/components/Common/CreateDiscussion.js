@@ -108,9 +108,9 @@ window.location = '/feed';
            className="mentionWrapper"
           id="standard-full-width"
           label="Create a Post"
-          style={{ margin: 8, fontSize: 20,}}         
+          style={{ margin: 8, fontSize: 20, maxLength:150}}         
           placeholder="Whats on your mind"
-   
+          
           fullWidth
           required
           margin="normal"

@@ -21,7 +21,7 @@ export default function NavBar() {
         <Nav.Link className="links"><RiTeamLine  className="-i-vector-img"/></Nav.Link>
           <div class="dropdown-content">
             <a  className="links-create" href="/create-a-society">Create a Society</a>
-            <a  className="links-sub" href="/join-a-club-or-society">Join a Club or Society</a><hr/>
+            <a  className="links-sub" href="/list-of-clubs-and-societies">Join a Club or Society</a><hr/>
             <a  className="links-sub-see-all" href="/list-of-clubs-and-societies">See All</a>
           </div>
         </div>

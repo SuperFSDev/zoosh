@@ -4,6 +4,7 @@ import { Nav } from 'react-bootstrap';
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import LeaderboardOptions from '../Lists/Leaderboard-options'
+import JoinOptions from '../Common/JoinSociety'
 
 
 class Daily extends React.Component {
@@ -99,11 +100,13 @@ class Daily extends React.Component {
       <div className="SocietyLayout">
            
         {filteredSocietiesByName.map(society=>  (
-<div key={society.id}>
+        <div key={society.id}>
           <div className="python-card">
           <a href="/" className="-soc-l-navigation">
           <h1>{society.name}</h1> 
-          <h4>{society.category}</h4>        
+          <h4>{society.category}</h4>
+          <JoinOptions/>
+          {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
           {/* <h4>{society.college}</h4>          */}
           </a>
         </div>
