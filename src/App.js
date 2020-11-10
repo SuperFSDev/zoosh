@@ -37,6 +37,7 @@ class App extends React.Component {
               <Route path="/leaderboard" component={Leaderboard}/>
               <Route path="/profile" component={Profile}/>
               <Route path="/" component={Feed}/>
+
             </Switch>
           </Router>
         </div>
@@ -46,6 +47,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/register" component={RegisterPage}/>
+          {/* <Route path="/" component={LoginPage}/> */}
           <Route path="/login" component={LoginPage}/>
           <Route component={DefaultRoutes} />
         </Switch>

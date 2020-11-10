@@ -94,7 +94,7 @@ class RegisterModal extends React.Component {
       <div>
         <p className="create-account">New to our site?<a onClick={this.handleClickOpen} className="links2"> Join Now</a></p>
         <Dialog className="login-modal" open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Create an Account</DialogTitle>
+          <DialogTitle id="form-dialog-title">Let's get Started</DialogTitle>
           <DialogContent>
             <Form onSubmit={this.onSubmit}>
               <Form.Group controlId="formBasicUsername">

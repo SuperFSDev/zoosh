@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../App.css';
 import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginSVG from '../../images/welcome.png'
+import LoginSVG from '../../images/team.jpg'
 import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
@@ -82,14 +82,10 @@ class Login extends React.Component {
       <>
        <div>
           <div className="split left">
-              <div className="centered">
-              <Nav.Link href="/"><h1 className="header">Name</h1></Nav.Link>
-                <img className="welcome" src={LoginSVG} />
-              </div>
-          </div>
+          <h1 className="header">Name</h1>
 
-          <div className="split right">
               <div className="centered">
+              <h1 className="welcome-intro">Join Clubs and Societies today</h1>
               <div class="login-card">
               <Form onSubmit={this.onLogin}>
                 <Form.Group controlId="formBasicEmail">
@@ -119,7 +115,26 @@ class Login extends React.Component {
             </div>
               </div>
           </div>
+
+          <div className="split right">
+              <div className="centered">
+              <img className="welcome" src={LoginSVG} />
+              </div>
+          </div>
+
+          <footer className="footer">
+            <div className="footer-items">
+              <div class="footer-column">
+                  <a className="footer-links" href="#"><p>About</p></a>
+                </div>
+                <div class="footer-column">
+                <a className="footer-links" href="#"><p>Report a Problem</p></a>
+                </div>
+            </div>
+          </footer>
+          
       </div>
+      
       </>
     );
   }
