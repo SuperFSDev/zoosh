@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import Avatar from '../Profile/Avatar'
-import axios from 'axios'
+import addUserToSoc from '../Socs/AddUserToSoc';
 
 class Recommended extends React.Component {
 
-    async addUserToSoc (soc) {
+    /*async addUserToSoc (soc) {
 
         const addUser = {
             society: soc,
@@ -20,25 +20,29 @@ class Recommended extends React.Component {
                 .catch(function(error){
                     console.log(error);
                 })
+    }*/
+
+    addUser(soc){
+        addUserToSoc(soc);
     }
 
     render() {
         return (
             <div>
-                <h2>Recommened Groups</h2>
+                <h2>Recommended Groups</h2>
                 <hr className="-recommended-hr-style" />
                 <div className="recommended-item">
                     <h4 class="recommended-society-name">Computer Science</h4>
-                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUserToSoc('Computer Science')}>Join</button></span>
+                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUser('Computer Science')}>Join</button></span>
                 </div>
                 <div className="recommended-item">
                     <h4>Rowing Club</h4>
-                    <span className="Join-option"><p id="left-item-join">NUIG</p><button id="right-item-join">Join</button></span>
+                    <span className="Join-option"><p id="left-item-join">NUIG</p><button id="right-item-join" onClick={() => this.addUser('Rowing Club')}>Join</button></span>
 
                 </div>
                 <div className="recommended-item">
                     <h4>Gaming Society</h4>
-                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Join</button></span>
+                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUser('Gaming Society')}>Join</button></span>
                 </div>
                 <div className="see-all-item">
                     <br />

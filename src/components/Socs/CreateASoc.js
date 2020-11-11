@@ -118,7 +118,7 @@ class CreateASoc extends React.Component {
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
-                        <select className="-c-list-options" name="category" id="category" required>
+                        <select className="-c-list-options" name="category" id="category" placeholder="Choose a Category" value={this.state.category} onChange={this.onChangeCategory}>
                             <option disabled selected="Choose a Category" value="choose">Choose a Category</option>
                             <option value="Sports">Sports</option>
                             <option value="Music">Music</option>
@@ -126,7 +126,6 @@ class CreateASoc extends React.Component {
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
                         </select>
-                        {/* <TextField placeholder="Enter Category" required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" /> */}
                     </Form.Group>
 
 
