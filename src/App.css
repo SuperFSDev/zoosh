@@ -799,6 +799,35 @@ td, th {
   width:800px;
 }
 
+.feed-comment{
+  cursor:pointer;
+  
+}
+
+.feed-comment:hover{
+  color:#1869E7!important;
+}
+
+.-post-reply-comment-div{
+  margin-top:5px;
+  width:auto;
+  height:100px;
+  background:whitesmoke;
+  padding:10px;
+  border-radius: 10px;
+}
+
+.post-reply{
+  width:500px;
+  margin:left;
+  height: auto;
+  outline:none;
+  cursor: text;
+  border-style:none;
+  background:whitesmoke;
+
+}
+
 .text-muted-society{
   background-color:lightblue;
   border-radius: 25px;

@@ -5,7 +5,7 @@ import {FaFacebookF,FaTwitter} from 'react-icons/fa'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 
-export default function ProfileURL() {
+export default function PostLinks() {
 
     const [open, setOpen] = React.useState(false);
     const [openReport, setOpenReport] = React.useState(false);
@@ -47,10 +47,8 @@ export default function ProfileURL() {
     <div class="dropdown2">
         <a className="dropdown2" href="#"><BsThreeDotsVertical  size={20}/></a>
         <div class="dropdown-content2">
-            <a href="#" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy URL</a>
-            <a href="#"><FaFacebookF size={18} /> Share</a>
-            <a href="#"><FaTwitter size={18}/> Share</a>            
-            <a href="#" onClick={handleClickReport}><MdReport size={20}/> Report</a>
+            <a href="#" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy Post</a>
+            <a href="#" onClick={handleClickReport}><MdReport size={20}/> Report Post</a>
         </div>
     </div>
 
@@ -62,7 +60,7 @@ export default function ProfileURL() {
         open={open}
         autoHideDuration={6000}
         onClose={handleCloseCopy}
-        message="Copied Account URL!"
+        message="Copied Post to clipboard!"
         action={
           <React.Fragment>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseCopy}>
@@ -79,7 +77,7 @@ export default function ProfileURL() {
         open={openReport}
         autoHideDuration={6000}
         onClose={handleCloseReport}
-        message="Account has been Reported"
+        message="Post has been Reported"
         action={
           <React.Fragment>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseReport}>

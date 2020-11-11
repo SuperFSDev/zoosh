@@ -8,10 +8,11 @@ import Post from './Common/CreateDiscussion'
 import Discussion from './Common/StartDiscussion'
 import {FaRegCommentDots} from 'react-icons/fa'
 import {RiStarSmileLine,RiChatSmile2Fill} from 'react-icons/ri'
-import {BsThreeDots} from 'react-icons/bs'
+import CommentReply from './Posts/CommentReply'
 import Avatar from './Profile/Avatar'
 import Recommended from './Lists/Recommended'
 import PostAvatar from './Posts/PostAvatar'
+import PostLinks from './Posts/PostLinks'
 
 class Feed extends React.Component {
 
@@ -38,14 +39,28 @@ componentDidMount() {
     super(props);
     this.state = {
       users: [],
-      posts: []
-  
+      posts: [],
+      toggle:false
     };
 
   } 
 
-  backToTop(e){
+  openComments(e){
+      var x = document.getElementById("myDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+  }
 
+   myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
 
 
@@ -93,15 +108,16 @@ render(){
                   <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
                   <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                   <div className="post-interactions">
-                    <RiStarSmileLine size="25" color="gray"/>      <FaRegCommentDots size="25" color="gray"/> <BsThreeDots size="25" color="gray"/>
+                  <div>
+                      
+                      <FaRegCommentDots size="25" color="gray" onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"></FaRegCommentDots><PostLinks/>
+
+                      {
+                        this.state.toggle ? <div  className="-post-reply-comment-div"><CommentReply/></div> : null
+                      }
+                  </div>
                   </div>
                 </Card.Body>  
-                <Form className='CommentBox'>
-                          {/* <Form.Control  type="Text" placeholder="Comment" /> */}
-                          <Form.Text className="text-muted">
-                          </Form.Text>
-                </Form>
-                {/* </Card.Footer>   */}
               </Card>
               
       <br></br>
