@@ -5,6 +5,7 @@ import ProfileStats from './ProfileStats';
 import ProfilePicture from './ProfilePicture'
 import Status from './UserStatus'
 import SocialLinks from './SocialLinks'
+import ProfileTabs from './ProfileTabs'
 
 export default function UserProfile() {
   return (
@@ -18,13 +19,14 @@ export default function UserProfile() {
           <ProfilePicture/>
           <ProfileUsername/>
           <ProfileStats/>
+          <ProfileTabs/>
           {/* <Status/> */}
         </div>
         
       </div>
 
       <div className="containerFeedRightProfile">
-        <SocialLinks/>
+
       </div>
     </>
   );

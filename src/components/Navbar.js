@@ -40,7 +40,7 @@ export default function NavBar() {
 
         </Nav>
         <Navbar.Toggle />
-        <SearchBar/>
+        {/* <SearchBar/> */}
         <Navbar.Collapse className="justify-content-end">
         <ProfileButton/>
         </Navbar.Collapse>

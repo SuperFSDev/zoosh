@@ -29,7 +29,6 @@ export default function SocialLinks() {
     />
     </form>
         <div id="social">
-            <a class="copyBtn smGlobalBtn" href="#" onClick={copyToClipboard}><BiLink/></a>
             <a class="facebookBtn smGlobalBtn" href="#" ></a>
 		      	<a class="twitterBtn smGlobalBtn" href="#" ></a>
 		</div>
