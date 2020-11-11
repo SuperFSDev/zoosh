@@ -78,8 +78,7 @@ render(){
             <Card.Footer className="-post-header-card"/>
               <Card className='feedPost'>
                 <Card.Body>
-                  <a href="/profile" className="post-user-profile"><PostAvatar/></a>
-                  <Card.Title>{post.user}</Card.Title>
+                  <a href="/profile" className="post-user-profile"><PostAvatar/>{post.user}</a>
                   <Card.Text className="fontPost">
                    {post.post} <br/>
                    

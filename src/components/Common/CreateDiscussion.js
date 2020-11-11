@@ -101,6 +101,9 @@ onSubmit(e) {
     }
 
   render(){
+    var user = JSON.parse(localStorage.getItem('user'));
+    var fullname = user.fullname;
+    this.state.user = fullname;
     
     let options = this.state.users.map(function (user) {
       return { value: user._id, label: user.fullname };

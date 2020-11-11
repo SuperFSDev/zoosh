@@ -5,7 +5,7 @@ import Img from '../../images/blogging.jpg'
 export default function PostAvatar() {
   return (
     <div>
-      <span className="-post-avatar-user-card"><Avatar alt="Aaron Moran" id="left-item-join-username" src={Img}/><p id="right-item-join-username">John Doe</p></span>
+      <span className="-post-avatar-user-card"><Avatar alt="Aaron Moran" id="left-item-join-username" src={Img}/></span>
     </div>
   );
 }
