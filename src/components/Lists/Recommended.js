@@ -1,33 +1,52 @@
 import React from 'react';
 import '../../App.css';
 import Avatar from '../Profile/Avatar'
+import axios from 'axios'
 
-export default function LeaderboardOptions() {
+class Recommended extends React.Component {
 
-  return (
-    <div>
-        <h2>Recommened Groups</h2>
-        <hr className="-recommended-hr-style"/>
-        <div className="recommended-item">
-            <h4 class="recommended-society-name">Computer Science</h4>
-            <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Join</button></span>
-        </div>
-        <div className="recommended-item">
-            <h4>Rowing Club</h4>
-            <span className="Join-option"><p id="left-item-join">NUIG</p><button id="right-item-join">Join</button></span>
-            
-        </div>
-        <div className="recommended-item">
-            <h4>Gaming Society</h4>
-            <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Join</button></span>
-        </div>
-        <div className="see-all-item">
-            <br/>
-            <a href="/list-of-clubs-and-societies">See All</a>
-        </div>
-        <div className="spacing"></div>
+    async addUserToSoc (soc) {
 
-        {/* <h2>People to Follow</h2>
+        const addUser = {
+            society: soc,
+            user: JSON.parse(localStorage.getItem('user'))
+        }
+
+        await axios.post('http://localhost:4000/societies/update', addUser)
+                .then(function(resp) {
+                    console.log(resp);
+                    alert("Successfully joined " + soc);
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+    }
+
+    render() {
+        return (
+            <div>
+                <h2>Recommened Groups</h2>
+                <hr className="-recommended-hr-style" />
+                <div className="recommended-item">
+                    <h4 class="recommended-society-name">Computer Science</h4>
+                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUserToSoc('Computer Science')}>Join</button></span>
+                </div>
+                <div className="recommended-item">
+                    <h4>Rowing Club</h4>
+                    <span className="Join-option"><p id="left-item-join">NUIG</p><button id="right-item-join">Join</button></span>
+
+                </div>
+                <div className="recommended-item">
+                    <h4>Gaming Society</h4>
+                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Join</button></span>
+                </div>
+                <div className="see-all-item">
+                    <br />
+                    <a href="/list-of-clubs-and-societies">See All</a>
+                </div>
+                <div className="spacing"></div>
+
+                {/* <h2>People to Follow</h2>
         <hr className="-recommended-hr-style"/>
         <div className="recommended-item">
             <h4 class="recommended-society-name">Aaron Moran</h4>
@@ -46,6 +65,9 @@ export default function LeaderboardOptions() {
             <br/>
             <a href="/list-of-clubs-and-societies">See All</a>
         </div> */}
-    </div>
-  );
+            </div>
+        );
+    }
 }
+
+export default Recommended;

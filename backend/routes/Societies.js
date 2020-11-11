@@ -34,25 +34,25 @@ societies.post('/create', (req, res) => {
     SocietyModel.findOne({
         name: req.body.name
     })
-    .then(society => {
-        // Checks if society exists in DB, if NOT, then proceed with creation.
-        if(!society){
-            SocietyModel.create(socData)
-            .then(society => {
-                res.json({status: society.name + ' has been registered'});
-            })
-            .catch(err => {
-                res.send(err);
-            })
-        // If society is true then it already exists in DB.
-        }else{
-            res.json({error: 'Society already exists'})
-        }
-    })
-    .catch(err => {
-        res.send(err);
-    })
-    
+        .then(society => {
+            // Checks if society exists in DB, if NOT, then proceed with creation.
+            if (!society) {
+                SocietyModel.create(socData)
+                    .then(society => {
+                        res.json({ status: society.name + ' has been registered' });
+                    })
+                    .catch(err => {
+                        res.send(err);
+                    })
+                // If society is true then it already exists in DB.
+            } else {
+                res.json({ error: 'Society already exists' })
+            }
+        })
+        .catch(err => {
+            res.send(err);
+        })
+
     console.log("Society has been registered!");
     console.log(socData);
 })
@@ -61,11 +61,35 @@ societies.post('/create', (req, res) => {
 // Get societies from database
 societies.get('/getSocieties', (req, res) => {
 
-    SocietyModel.find((error, data) =>{
-        res.json({societies:data});
+    SocietyModel.find((error, data) => {
+        res.json({ societies: data });
         console.log(data);
     })
 
+})
+
+societies.post('/update', (req, res) => {
+    
+    SocietyModel.findOneAndUpdate(
+        { name: req.body.society, },
+        { $addToSet: { users: req.body.user } },
+        { upsert: true, new: true, runValidators: true },
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
 })
 
 module.exports = societies;
