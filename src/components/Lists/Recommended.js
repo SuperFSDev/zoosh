@@ -1,77 +1,65 @@
 import React from 'react';
-import '../../App.css';
-import Avatar from '../Profile/Avatar'
+import Chip from '@material-ui/core/Chip';
 import addUserToSoc from '../Socs/AddUserToSoc';
 
-class Recommended extends React.Component {
+export default function Chips() {
 
-    /*async addUserToSoc (soc) {
+  const handleDelete = () => {
+    console.info('You clicked the delete icon.');
+    
+  };
 
-        const addUser = {
-            society: soc,
-            user: JSON.parse(localStorage.getItem('user'))
-        }
-
-        await axios.post('http://localhost:4000/societies/update', addUser)
-                .then(function(resp) {
-                    console.log(resp);
-                    alert("Successfully joined " + soc);
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
-    }*/
-
-    addUser(soc){
-        addUserToSoc(soc);
+  const addUser = (soc) =>{
+    addUserToSoc(soc);
+    console.info("Added to society")
     }
 
-    render() {
-        return (
-            <div>
-                <h2>Recommended Groups</h2>
-                <hr className="-recommended-hr-style" />
-                <div className="recommended-item">
-                    <h4 class="recommended-society-name">Computer Science</h4>
-                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUser('Computer Science')}>Join</button></span>
-                </div>
-                <div className="recommended-item">
-                    <h4>Rowing Club</h4>
-                    <span className="Join-option"><p id="left-item-join">NUIG</p><button id="right-item-join" onClick={() => this.addUser('Rowing Club')}>Join</button></span>
+  const handleClick = () => {
+    console.info('You clicked the Chip.');
+  };
 
-                </div>
-                <div className="recommended-item">
-                    <h4>Gaming Society</h4>
-                    <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join" onClick={() => this.addUser('Gaming Society')}>Join</button></span>
-                </div>
-                <div className="see-all-item">
-                    <br />
-                    <a href="/list-of-clubs-and-societies">See All</a>
-                </div>
-                <div className="spacing"></div>
+  return (
+    <div>
+        <h2 className="-recommended-header">Recommended Groups</h2>
+    <div className="recommended-chip">
+      <Chip
+        className="recommended-chip-item"
+        label="GMIT Computer Science"
+        clickable
+        id="chip"
+        color="primary"
+        onClick={() => addUser('Computer Science')}
+        onDelete={handleDelete} 
+        />
+        <Chip
+        className="recommended-chip-item"
+        label="NUIG Rowing Club"
+        clickable
+        color="secondary"
+        onClick={() => addUser('Rowing Club')}
+        onDelete={handleDelete}
+        />
+       <Chip
+        className="recommended-chip-item"
+        label="GMIT Debating"
+        clickable
+        color="secondary"
+        onClick={() => addUser('Rowing Club')}
+        onDelete={handleDelete}
+        />
+        <Chip
+        className="recommended-chip-item"
+        label="NUIG Mountain Climbing"
+        clickable
+        color="primary"
+        onClick={() => addUser('Rowing Club')}
+        onDelete={handleDelete}
+        />
+    </div>
+    <div className="explore-more-link">
+        <a href="/list-of-clubs-and-societies">Explore More</a>
+    </div>
+    </div>
 
-                {/* <h2>People to Follow</h2>
-        <hr className="-recommended-hr-style"/>
-        <div className="recommended-item">
-            <h4 class="recommended-society-name">Aaron Moran</h4>
-            <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Follow</button></span>
-        </div>
-        <div className="recommended-item">
-            <h4>Conor Shortt</h4>
-            <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Follow</button></span>
-            
-        </div>
-        <div className="recommended-item">
-            <h4>Thomas Kenny</h4>
-            <span className="Join-option"><p id="left-item-join">GMIT</p><button id="right-item-join">Follow</button></span>
-        </div>
-        <div className="see-all-item">
-            <br/>
-            <a href="/list-of-clubs-and-societies">See All</a>
-        </div> */}
-            </div>
-        );
-    }
+  );
 }
-
-export default Recommended;

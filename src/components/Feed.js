@@ -13,6 +13,9 @@ import Avatar from './Profile/Avatar'
 import Recommended from './Lists/Recommended'
 import PostAvatar from './Posts/PostAvatar'
 import PostLinks from './Posts/PostLinks'
+import {HiPencilAlt} from 'react-icons/hi'
+import {GoCommentDiscussion} from 'react-icons/go'
+import Contributors from './Lists/Contributors'
 
 class Feed extends React.Component {
 
@@ -76,24 +79,30 @@ render(){
       <div className="containerFeedMiddle">
 
       <Tabs defaultActiveKey="post" id="uncontrolled-tab-example" >
-        <Tab default eventKey="post" title="Create a Post" className="tab-options">
+        <Tab default eventKey="post" title={<HiPencilAlt size={25}/>} className="tab-options">
           <Post/>
         </Tab>
-        <Tab eventKey="discussion" title="Start a Discussion" className="tab-options">
+        <Tab eventKey="discussion" title={<GoCommentDiscussion size={25}/>} className="tab-options">
           <Discussion/>
         </Tab>
       </Tabs>
   
         {/* Back to top */}
         <a id="button"></a>
-
         <div className="spacing"></div>
+          <Card.Footer className="-post-header-card"/>
           {posts.reverse().map(post=>  (
             <div key={post.id}>    
-            <Card.Footer className="-post-header-card"/>
+            {/* <Card.Footer className="-post-header-card"/> */}
               <Card className='feedPost'>
                 <Card.Body>
-                  <a href="/profile" className="post-user-profile"><PostAvatar/>{post.user}</a>
+                  
+                  <div className="-u-prof-stats" id="social-user">
+                      <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span>
+                      <span className="username-wrapper"><a href="/profile">{post.user}</a></span>
+                      {/* <ProfileURL/> */}
+                  </div>
+    
                   <Card.Text className="fontPost">
                    {post.post} <br/>
                    
@@ -129,14 +138,7 @@ render(){
 
   <div className="containerFeedRight">
     <Recommended/>  
-      {/* <h2>Users</h2><hr/>
-      {users.map(user=>  (
-
-      <div key={user.id}>
-      <h4>{user.username}</h4>
-
-      </div>
-      ))}         */}
+    <Contributors/>  
   </div>
   </div>
   );

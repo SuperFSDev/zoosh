@@ -1,11 +1,9 @@
 import React from 'react';
 import '../../App.css';
 import ProfileUsername from './ProfileUsername'
-import ProfileStats from './ProfileStats';
 import ProfilePicture from './ProfilePicture'
-import Status from './UserStatus'
-import SocialLinks from './SocialLinks'
 import ProfileTabs from './ProfileTabs'
+import EditProfile from './EditProfile'
 
 export default function UserProfile() {
   return (
@@ -18,11 +16,10 @@ export default function UserProfile() {
         <div className="profile-card">
           <ProfilePicture/>
           <ProfileUsername/>
-          <ProfileStats/>
-          <ProfileTabs/>
-          {/* <Status/> */}
+          <EditProfile/>
         </div>
-        
+        <ProfileTabs/>
+
       </div>
 
       <div className="containerFeedRightProfile">

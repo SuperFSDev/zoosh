@@ -5,7 +5,7 @@ import Img from '../../images/blogging.jpg'
 export default function ImageAvatars() {
   return (
     <div>
-      <span className="avatar-user-card"><Avatar alt="Aaron Moran" src={Img}/></span>
+      <span className="avatar-user-card"><Avatar src={Img}/></span>
     </div>
   );
 }

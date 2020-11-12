@@ -75,8 +75,9 @@ export default function CustomizedMenus() {
           <ListItemText primary="Account Settings"/>
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>
-          <Invite/>
-        </StyledMenuItem>
+          <Nav.Link>Invite a Frirnd</Nav.Link>
+           {/* <Invite/>  */}
+         </StyledMenuItem>
         <StyledMenuItem>
           <DarkMode/>
         </StyledMenuItem>
@@ -84,7 +85,7 @@ export default function CustomizedMenus() {
         <Nav.Link href="/login" onClick={handleLogout}><StyledMenuItem>
           <ListItemText primary="Logout"/>
         </StyledMenuItem></Nav.Link>
-      </StyledMenu>
+      </StyledMenu> 
     </div>
   );
 }

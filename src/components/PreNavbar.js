@@ -8,7 +8,7 @@ export default function PreNavbar() {
   return (
     <div>
       <Navbar>
-        <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
+        <Navbar.Brand className="header" href="/"></Navbar.Brand>
         <Nav className="mr-auto">
         </Nav>
         <Navbar.Toggle />

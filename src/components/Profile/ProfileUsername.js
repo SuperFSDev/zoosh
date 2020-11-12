@@ -6,7 +6,7 @@ export default function ProfileUsername() {
 
   return (
     <div id="social">
-      <h1>{fullname}</h1>
+      <h3>{fullname} <b className="user-score">123</b></h3>
     </div>
   );
 }

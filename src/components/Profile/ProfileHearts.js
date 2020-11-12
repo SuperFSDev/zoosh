@@ -1,10 +1,10 @@
 import React from 'react';
-import {BiDonateHeart} from 'react-icons/bi'
+import {RiStarSmileLine} from 'react-icons/ri'
 
 export default function ProfileHearts() {
   return (
-    <div>
-      <BiDonateHeart/>123
+    <div className="-user-profile-score-total">
+      <RiStarSmileLine/>123
     </div>
   );
 }
