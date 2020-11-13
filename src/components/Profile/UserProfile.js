@@ -4,6 +4,7 @@ import ProfileUsername from './ProfileUsername'
 import ProfilePicture from './ProfilePicture'
 import ProfileTabs from './ProfileTabs'
 import EditProfile from './EditProfile'
+import ProfileURL from './ProfileURL'
 
 export default function UserProfile() {
   return (
@@ -16,7 +17,12 @@ export default function UserProfile() {
         <div className="profile-card">
           <ProfilePicture/>
           <ProfileUsername/>
-          <EditProfile/>
+          <div className="user-profile-btn-options">
+            <span className="user-profile-btn-options">
+              <EditProfile/>
+              <ProfileURL/>
+            </span>
+          </div>
         </div>
         <ProfileTabs/>
 

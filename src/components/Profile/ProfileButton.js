@@ -4,9 +4,9 @@ import {Nav, NavDropdown} from 'react-bootstrap'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Invite from '../Common/InviteAFriend'
-import Avatar from './Avatar'
 import DarkMode from '../Common/Darkmode'
+import Avatar from '@material-ui/core/Avatar';
+import Img from '../../images/blogging.jpg'
 
 const StyledMenu = withStyles({
   paper: {
@@ -59,8 +59,13 @@ export default function CustomizedMenus() {
 
   return (
     <div>
-      <Nav.Link className="l-prof-btn-default" onClick={handleClick}><Avatar/>{fullname}</Nav.Link>
-      {/* <RiStarSmileFill className="-i-vector-score"/>123,521 */}
+      <div id="#battleBox">
+        <Nav.Link className="l-prof-btn-default" onClick={handleClick}>
+            <Avatar src={Img} className="profile-btn-wrapper-left"/>
+            <b className="user-score-prof-btn">1,231</b>
+        </Nav.Link>
+      </div>
+      
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}

@@ -14,17 +14,17 @@ export default function NavBar() {
       <Navbar>
         <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link className="links" href="/"><BiHomeSmile className="-i-vector-img"/></Nav.Link>
-        <Nav.Link className="links" href="/leaderboard"><RiNotification2Line className="-i-vector-img"/></Nav.Link>
-        
-        <a className="links"><div class="dropdown"><RiTeamLine  className="-i-vector-img"/>
+        <a className="links" href="/"><BiHomeSmile className="-i-vector-img"/></a>
+        <a className="links" href="/leaderboard"><RiNotification2Line className="-i-vector-img"/></a>
+        <a className="links"><div class="dropdown">
+        <RiTeamLine  className="-i-vector-img" id="links"/>
           <div class="dropdown-content">
             <a  className="links-create" href="/create-a-society">Create a Society</a>
             <a  className="links-sub" href="/list-of-clubs-and-societies">Join a Club or Society</a><hr/>
             <a  className="links-sub-see-all" href="/list-of-clubs-and-societies">See All</a>
           </div>
         </div></a>
-        <Nav.Link className="links" href="/leaderboard"><MdShowChart className="-i-vector-img"/></Nav.Link>
+        <a className="links" href="/leaderboard"><MdShowChart className="-i-vector-img"/></a>
 
         </Nav>
         <Navbar.Toggle />

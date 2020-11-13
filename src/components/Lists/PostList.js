@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import { Card, Form, Badge, Tabs, Tab } from 'react-bootstrap';
+import { Card, Form, Badge, Tabs, Tab,Nav } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -9,6 +9,7 @@ import {RiStarSmileLine,RiChatSmile2Fill} from 'react-icons/ri'
 import CommentReply from '../Posts/CommentReply'
 import PostAvatar from '../Posts/PostAvatar'
 import PostLinks from '../Posts/PostLinks'
+import {FiThumbsUp,FiThumbsDown} from 'react-icons/fi'
 
 class PostList extends React.Component {
 
@@ -69,15 +70,14 @@ render(){
         {/* POST TAB */}
           <Card.Footer className="-post-header-card"/>
           {posts.reverse().map(post=>  (
-            <div key={post.id}>    
+            <div key={post._id}>    
             {/* <Card.Footer className="-post-header-card"/> */}
               <Card className='feedPost'>
 
-                <Card.Body>
-                  
+                <Card.Body>          
                   <div className="-u-prof-stats" id="social-user">
-                      <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span>
-                      <span className="username-wrapper"><a href="/profile">{post.user}</a></span>
+                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
+                      <span className="username-wrapper"><a href="/profile">{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><hr/>
                       {/* <ProfileURL/> */}
                   </div>
     
@@ -95,9 +95,9 @@ render(){
                   <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
                   <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                   <div className="post-interactions">
-                  <div>
-                      
-                      <FaRegCommentDots size="25" color="gray" onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"></FaRegCommentDots><PostLinks/>
+                  <div><hr/>
+                      <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
+                      <span className="voting-btn"><FaRegCommentDots size={20} onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"/></span><PostLinks/>
 
                       {
                         this.state.toggle ? <div  className="-post-reply-comment-div"><CommentReply/></div> : null

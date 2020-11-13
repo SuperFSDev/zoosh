@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import {Table, Breadcrumb, Nav} from 'react-bootstrap'
+import {Table, Breadcrumb, Nav, Tab, Col, Row} from 'react-bootstrap'
 import axios from 'axios';
 
   class LeaderboardList extends React.Component {
@@ -45,7 +45,10 @@ import axios from 'axios';
                     <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
                     <Breadcrumb.Item active>Leaderboard</Breadcrumb.Item>
             </Breadcrumb>
-            <table class="container">
+
+            <div>
+              <h1 className="c-s-header">TOP CLUBS AND SOCIEITIES</h1>
+              <table class="container">
               <thead>
                 <tr>
                   <th><h1>Rank</h1></th>
@@ -55,35 +58,43 @@ import axios from 'axios';
                 </tr>
               </thead>
               <tbody>
-                  {societies.map(society=>  (
-                          <tr>
-                            <td>{society.id}</td>
-                            <td><a href="/profile">{society.name}</a></td>
-                            <td>{society.college}</td>
-                            <td>{society.score}</td>
-
-                          </tr>
-                ))}    
+                {societies.map(society=>  (
+                  <tr>
+                    <td>{society.id}</td>
+                    <td><a href="/profile">{society.name}</a></td>
+                    <td>{society.college}</td>
+                    <td>{society.score}</td>
+                  </tr>
+                  ))}    
               </tbody>
             </table>
-          
-          {/* <table className="-l-board-t-setup">
-            <thead>
-                <tr>
-                  <th>Rank</th><th>Group</th><th>Category</th><th>Growth</th>
-                </tr>
-            </thead>
-            {societies.map(society=>  (
-              <div key={society.id}>
-                    <tbody className="-leaderboard-i-list">
-                      <tr>
-                        <td><Nav.Link href="#">{society.name}</Nav.Link></td>
-                        <td>{society.category}</td>
-                      </tr>
-                    </tbody>
-              </div>
-            ))}    
-          </table>  */}
+            </div>
+            
+
+                      <div>
+                        <h1 className="c-s-header">TOP COMMUNITY</h1>
+                        <div className="contributors-container-leaderboard">
+                              <div className="contributor-item-community">
+                              {societies.map(society=>  (
+                                <tr>
+                                  <p><b>1</b><a className="-contributor-user" href="/profile">{society.name}</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                  </tr>))}  
+                              </div>
+                        </div>
+                      </div>
+                     
+
+              {/* <div className="contributors-container-leaderboard">
+                            <div className="contributor-item-community">
+                                <p><b>1</b><a className="-contributor-user" href="/profile">Aaron Moran</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                <p><b>2</b><a className="-contributor-user"  href="/profile">John Doe</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                <p><b>3</b><a className="-contributor-user"  href="/profile">Conor Shortt</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                <p><b>4</b><a className="-contributor-user"  href="/profile">Mary Jane</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                <p><b>5</b><a className="-contributor-user"  href="/profile">Thomas Kenny</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                <a href="#">See More</a>
+
+                            </div>
+              </div> */}  
       </>
         );
       }

@@ -10,6 +10,7 @@ import {HiPencilAlt} from 'react-icons/hi'
 import {GoCommentDiscussion} from 'react-icons/go'
 import Contributors from './Lists/Contributors'
 import PostList from './Lists/PostList'
+import EventsList from './Lists/EventsList'
 
 class Feed extends React.Component {
 
@@ -24,19 +25,19 @@ render(){
       <Tabs defaultActiveKey="post" id="uncontrolled-tab-example" >
 
         {/* POST TAB */}
-        <Tab default eventKey="post" title={<HiPencilAlt size={25}/>} className="tab-options">
+        <Tab default eventKey="post" title={<GoCommentDiscussion size={25}/>} className="tab-options">
           <Post/>
           <PostList/>
         </Tab>
 
         {/* DISCUSSION TAB */}
-        <Tab eventKey="discussion" title={<GoCommentDiscussion size={25}/>} className="tab-options">
+        <Tab eventKey="discussion" title={<HiPencilAlt size={25}/>} className="tab-options">
           <Discussion/>
         </Tab>
 
         {/* EVENT TAB */}
         <Tab eventKey="events" title={<FaRegCalendarAlt size={25}/>} className="tab-options">
-          Events Page
+          <EventsList/>
         </Tab>
       </Tabs>
   
@@ -44,7 +45,7 @@ render(){
         <a id="button"></a>
         <div className="spacing"></div>
          
-      <div class="anchor"><p>You reached the end. Back to <a href="#top">top</a></p></div>
+      {/* <div class="anchor"><p>You reached the end. Back to <a href="#top">top</a></p></div> */}
   </div>
 
   <div className="containerFeedRight">

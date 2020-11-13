@@ -22,7 +22,7 @@ export default function EditProfile() {
     
   return (
     <div>
-    <button className="edit-profile-btn" onClick={handleClickOpen}><BiEdit size={20}/></button>
+    <button className="edit-profile-btn" onClick={handleClickOpen}><BiEdit size={25}/></button>
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
       <DialogContent>

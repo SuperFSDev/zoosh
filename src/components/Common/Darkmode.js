@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Nav} from 'react-bootstrap'
+import {FiMoon,FiSun} from 'react-icons/fi'
 
 function useThemeSwitcher() {
     const [mode, setMode] = useState(() => localStorage.getItem("mode"));
@@ -37,7 +38,7 @@ function useThemeSwitcher() {
                 setMode(mode => (mode === "dark" ? "light" : "dark"))
             }
         >
-            <small> {mode === "dark" ? "Light" : "Dark"} Mode</small>
+            <small> {mode === "dark" ? <FiSun  size={25}/>: <FiMoon size={25}/>}  Mode</small>
         </Nav.Link>
     );
 }
