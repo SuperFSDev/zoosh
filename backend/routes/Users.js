@@ -139,16 +139,13 @@ users.post('/addToSocList', (req, res) => {
         { upsert: true, new: true, runValidators: true },
 
         function (err, result) {
-            console.log("Looking for user");
-            console.log("User id = " + req.body.user_id);
 
             if (err) {
-                console.log("didn't find user");
                 res.send(err)   
             }
             else {
                 if(result){
-                    console.log("Found user");
+                    console.log(result);
                     res.send(result)
                 } else {
                     res.send("Society already exists in user model.");
@@ -159,17 +156,14 @@ users.post('/addToSocList', (req, res) => {
     )
 })
 
-users.get('/getUsers/:email', (req, res) => {
+// Gets one user
+users.get('/getUserSocieties', (req, res) => {
 
-    console.log(req.params.email);
-
-    UserModel.findOne({
-        email: req.params.email
+    UserModel.findById({
+        _id: req.query.id
     }).then(user => {
         if(user){
-            console.log("found user");
-            console.log(user);
-            res.json({user:user});
+            res.json({societies:user.societies});
         }else{
             res.send("User does not exist")
         }

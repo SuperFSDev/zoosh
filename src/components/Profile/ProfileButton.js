@@ -42,7 +42,9 @@ const StyledMenuItem = withStyles((theme) => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   var user = JSON.parse(localStorage.getItem('user'));
-  var fullname = user.fullname;
+  if(user)
+    var fullname = user.fullname;
+  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

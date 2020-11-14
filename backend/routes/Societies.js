@@ -78,12 +78,10 @@ societies.post('/update', (req, res) => {
         function (err, result) {
 
             if (err) {
-                console.log("didn't find society");
                 res.send(err)   
             }
             else {
                 if(result){
-                    console.log("Found society");
                     res.send(result)
                 } else {
                     res.send("User already exists");

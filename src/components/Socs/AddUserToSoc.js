@@ -7,7 +7,7 @@ export default async function addUserToSoc(soc) {
     const addUser = {
         society: soc,
         user: getUser,
-        user_id: getUser._id
+        user_id: getUser._id,
     }
 
     // Adds user to users array in society model.
@@ -25,6 +25,13 @@ export default async function addUserToSoc(soc) {
     await axios.post('http://localhost:4000/users/addToSocList', addUser)
         .then(function (resp) {
             console.log(resp);
+
+            // Update societies array in localStorage
+            if(!getUser.societies.includes(soc)) {
+                getUser.societies.push(soc);
+            }
+            console.log(getUser);
+            localStorage.setItem('user', JSON.stringify(getUser))
         })
         .catch(function (error) {
             console.log(error);

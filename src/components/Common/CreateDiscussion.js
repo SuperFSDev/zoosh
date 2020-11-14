@@ -99,7 +99,8 @@ class LayoutTextFeilds extends React.Component {
 
   render(){
     var user = JSON.parse(localStorage.getItem('user'));
-    var fullname = user.fullname;
+    if(user)
+      var fullname = user.fullname;
     this.state.user = fullname;
     
     let options = this.state.users.map(function (user) {
@@ -130,7 +131,7 @@ class LayoutTextFeilds extends React.Component {
           <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Tag a friend" />
 
       
-            <select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
+            {/*<select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
                             <option disabled selected value="choose">Club/Society</option>
                             <option value="choose">Public</option>
                             <option value="GMIT Comp Sci">GMIT Comp Sci</option>
@@ -138,7 +139,7 @@ class LayoutTextFeilds extends React.Component {
                             <option value="Politics">Politics</option>
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
-            </select>
+        </select>*/}
             <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
         </Form>
       </div>

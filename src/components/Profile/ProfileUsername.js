@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function ProfileUsername() {
   var user = JSON.parse(localStorage.getItem('user'));
-  var fullname = user.fullname;
+  if(user)
+    var fullname = user.fullname;
   var id = user._id;
 
   return (
