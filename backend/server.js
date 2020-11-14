@@ -38,6 +38,10 @@ app.use('/problems', Problems)
 var Posts = require('./routes/Posts');
 app.use('/posts', Posts)
 
+// Adds the "Discussions" route to the server.
+var Discussions = require('./routes/Discussions');
+app.use('/discussions', Discussions)
+
 // Adds the "Societies" route to the server.
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);

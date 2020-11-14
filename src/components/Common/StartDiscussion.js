@@ -5,7 +5,7 @@ import {Form, InputGroup, FormControl } from 'react-bootstrap';
 import Select from 'react-select';
 
 
-class LayoutTextFeilds extends React.Component {
+class StartDiscussion extends React.Component {
 
   
   componentDidMount() {
@@ -23,9 +23,10 @@ class LayoutTextFeilds extends React.Component {
       users: [],
       posts: [],
       user: '',
+      title:'',
       post: '',
       time: new Date().getTime(),
-      category: '',
+      category: [],
       tags:[]
       
     };
@@ -34,6 +35,7 @@ class LayoutTextFeilds extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeUser= this.onChangeUser.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangePost = this.onChangePost.bind(this);
     this.onChangeTime = this.onChangeTime.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -41,52 +43,52 @@ class LayoutTextFeilds extends React.Component {
 
   } 
 
-  backToTop(e){
-
-  }
-
   onChangeUser(e) {
     this.setState({
         user: e.target.value
     });
-}
-onChangePost(e) {
+  }
+  onChangeTitle(e) {
+      this.setState({
+          title: e.target.value
+      });
+  }
+
+  onChangePost(e) {
     this.setState({
         post: e.target.value
     });
-}
-onChangeTime(e) {
-    this.setState({
-      time: new Date().getTime(),
-    });
-}
+  }
+  onChangeTime(e) {
+      this.setState({
+        time: new Date().getTime(),
+      });
+  }
 
-onChangeCategory(e) {
-  this.setState({ category: e.target.value });
-}
+  onChangeCategory(e) {
+    this.setState({ category:e });
+  }
 
-onChangeTag(e) {
-  this.setState({tags:e})
-}
-
-
-onSubmit(e) {
-
-  e.preventDefault();
-
-  const newPost = {
-      user: this.state.user,
-      post: this.state.post,
-      time: new Date().getTime(),
-      category: this.state.category,
-      tags:this.state.tags
-     
+  onChangeTag(e) {
+    this.setState({tags:e})
   }
 
 
+  onSubmit(e) {
 
+    e.preventDefault();
 
-  axios.post('http://localhost:4000/posts/NewPosts', newPost)
+    const newDiscussion = {
+        user: this.state.user,
+        title: this.state.title,
+        post: this.state.post,
+        time: new Date().getTime(),
+        category: this.state.category,
+        tags:this.state.tags
+      
+    }
+    
+  axios.post('http://localhost:4000/discussions/NewDiscussions', newDiscussion)
     .then()
         .catch();
         
@@ -94,55 +96,56 @@ onSubmit(e) {
       user: '',
       post: '',
       time: new Date().getTime(),
-      category: '',
+      category: [],
       tags:[]
     });
     window.location = '/feed';
     }
 
   render(){
-    
-    let options = this.state.users.map(function (user) {
-      return { value: user._id, label: user.fullname };
-    })
+    var user = JSON.parse(localStorage.getItem('user'));
+    var fullname = user.fullname;
+    this.state.user = fullname;
 
   return ( 
     <div className="create-a-post">
       <div>
-      <Form onSubmit={this.onSubmit} className="discussion-container">
-        <Form.Group className="discussion-container">
-            <TextField
-            id="outlined-textarea"
-            label="Title"
-            style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-            placeholder="Title"         
-            fullWidth
-            required
-            variant="outlined"
-            margin="normal"         
-            />
-        </Form.Group>
-        
-        <Form.Group className="discussion-container">
-             <TextField
-            id="outlined-textarea"
-            label="Discussion Content"
-            placeholder="Create a Discussion"         
-            style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-            fullWidth
-            required
-            multiline
-            variant="outlined"
-            margin="normal"
-            value={this.state.post}
-            onChange={this.onChangePost}
-            InputLabelProps={{
-                shrink: true,
-            }}
-            />
-        </Form.Group>
-           
-          <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Tag a friend" />
+      <Form onSubmit={this.onSubmit} className="post-container">
+
+        <TextField
+          id="outlined-textarea"
+          label="Title"
+          style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+          placeholder="Whats on your mind"         
+          fullWidth
+          required
+          multiline
+          variant="outlined"
+          margin="normal"
+          value={this.state.title}
+          onChange={this.onChangeTitle}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          />
+
+        <TextField
+          id="outlined-textarea"
+          label="Content"
+          style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+          placeholder="Whats on your mind"         
+          fullWidth
+          required
+          multiline
+          variant="outlined"
+          margin="normal"
+          value={this.state.post}
+          onChange={this.onChangePost}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          />
+          {/* <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Tag a friend" /> */}
 
       
             <select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
@@ -154,7 +157,7 @@ onSubmit(e) {
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
             </select>
-            <button className="create-post-discussion-btn-submit"  variant="primary" type="submit">Post Discussion</button>
+            <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
         </Form>
       </div>
       
@@ -162,4 +165,4 @@ onSubmit(e) {
   );
 }
 }
-export default LayoutTextFeilds;
+export default StartDiscussion;

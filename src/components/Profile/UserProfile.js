@@ -20,12 +20,11 @@ export default function UserProfile() {
           <div className="user-profile-btn-options">
             <span className="user-profile-btn-options">
               <EditProfile/>
-              <ProfileURL/>
+              {/* <ProfileURL/> */}
             </span>
           </div>
         </div>
         <ProfileTabs/>
-
       </div>
 
       <div className="containerFeedRightProfile">

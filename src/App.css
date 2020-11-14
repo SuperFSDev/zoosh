@@ -56,22 +56,25 @@
 .links{
   text-align: center;
   margin:auto ;
-  margin-left: 15rem;
+  margin-left: 2rem;
   font-size: 1.5rem;
   /* background-color:#e1f5fe; */
   border-radius: 25px;
   padding:10px;
   color: black!important;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .links:active{
   color: black!important;
+  text-decoration: none;
 }
 
 .links:hover{
   color:#2b88d8!important;
   padding:10px;
+  text-decoration: none;
 }
 
 .-i-vector-img{
@@ -230,6 +233,30 @@
   padding:10px;
   border-radius: 20px;
   color:black;
+}
+
+.dark-mode .containerFeedMiddleProfileCell{
+  background-color: #202124!important;
+  border-radius: 20px;
+  color:black;
+}
+
+.dark-mode .containerFeedLeftProfileCell{
+  background-color: #202124!important;
+  border-radius: 20px;
+  color:black;
+}
+
+.dark-mode .user-profile-about{
+  background-color:white;
+}
+
+.user-profile-about-social{
+  background-color:white;
+}
+
+.user-profile-about-bio{
+  background-color:white;
 }
 
 
@@ -708,33 +735,6 @@ td, th {
   height: auto;
 }
 
-.get-started-btn{
-  margin-left: 73rem;
-  width: 180px;
-  height: 50px;
-  border-style: solid;
-  color: #2196f3;
-  border-color: #2196f3;
-  outline: none !important;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-  font-weight: 500;
-  position: relative;
-  background: transparent;
-  display: inline-block;
-  text-decoration: none;
-  border: 1px solid;
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-.get-started-btn:hover{
-  background:  #512CB0;
-  color: #fff;
-  border-color:  #512CB0;
-  font-weight: 500;
-}
-
 /* DAILY TASKS PAGE */
 .python-card{
   padding-top:1rem;
@@ -801,6 +801,48 @@ td, th {
 }
 .avatar-user-card{
   font-size:1rem;
+}
+
+.profile-social-icons{
+  display: inline-block;
+  text-align: center!important;
+}
+
+.user-profile-about{
+  width:auto;
+  height:auto;
+  margin:left;
+  margin-top:50px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  padding:10px;
+  border-radius: 10px;
+  margin-left:20px;
+  padding-right:10px;
+}
+
+.user-profile-about-bio{
+  width:auto;
+  height:auto;
+  margin:left;
+  margin-top:50px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  padding:10px;
+  border-radius: 10px;
+  margin-left:20px;
+  margin-bottom: 50px;
+}
+
+.user-profile-about-social{
+  width:auto;
+  height:auto;
+  margin:left;
+  margin-top:50px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  padding:10px;
+  border-radius: 10px;
+  margin-left:20px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .user-profile-btn-options{
@@ -1041,6 +1083,38 @@ td, th {
 
 }
 
+.containerFeedLeftProfileCell{
+  width: 35%;
+  height: 10rem;
+  outline: none !important;
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-radius: 25px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.containerFeedMiddleProfileCell{
+  width: 55%;
+  height: auto;
+  outline: none !important;
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.containerFeedRightProfileCell{
+  width: 25%;
+  height: auto;
+  outline: none !important;
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+}
+
+
 .profile-card{
   background:whitesmoke;
   border-radius: 10px;
@@ -1233,22 +1307,38 @@ td, th {
   padding:10px; 
 }
 
+.recommended-item{
+  width:250px;
+  padding:10px;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: whitesmoke;
+}
+
 .recommended-item:hover{
   background-color: lightgray;
 }
 
 .discussion-post{
-  border-radius: 10px;
-  margin:auto;
-  width:60vh;
-  height:20vh;
+  width:auto;
+  height:auto;
   background-color:white;
-  border-style:solid;
-  border-width: 1px;
+  color:black;
+  padding:10px;
+  margin-top:10px;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
   border-color: lightgray;
+  text-decoration: none!important;
+}
 
-  
+.discussion-post:hover{
+  background-color:whitesmoke;
+  transition:0.1s;
+  text-decoration: none!important;
+}
+
+.discussion-post-redirect{
+  text-decoration: none!important;
 }
 
 .post-field{
@@ -1540,6 +1630,20 @@ padding-left: 4rem;
 .user-score{
   background:#cce3f5;
   font-size:20px;
+  padding:5px;
+  border-radius: 5px;
+}
+
+.user-details{
+  background:#cce3f5;
+  font-size:15px;
+  padding:5px;
+  border-radius: 5px;
+}
+
+.user-details-views{
+  background:lightgreen;
+  font-size:15px;
   padding:5px;
   border-radius: 5px;
 }

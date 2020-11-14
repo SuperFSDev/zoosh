@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import {Form, InputGroup, FormControl } from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import Select from 'react-select';
 
 
@@ -41,45 +41,42 @@ class LayoutTextFeilds extends React.Component {
 
   } 
 
-  backToTop(e){
-
-  }
 
   onChangeUser(e) {
     this.setState({
         user: e.target.value
     });
 }
-onChangePost(e) {
-    this.setState({
-        post: e.target.value
-    });
-}
-onChangeTime(e) {
-    this.setState({
-      time: new Date().getTime(),
-    });
-}
+  onChangePost(e) {
+      this.setState({
+          post: e.target.value
+      });
+  }
+  onChangeTime(e) {
+      this.setState({
+        time: new Date().getTime(),
+      });
+  }
 
-onChangeCategory(e) {
-  this.setState({ category: e.target.value });
-}
+  onChangeCategory(e) {
+    this.setState({ category: e.target.value });
+  }
 
-onChangeTag(e) {
-  this.setState({tags:e})
-}
+  onChangeTag(e) {
+    this.setState({tags:e})
+  }
 
 
-onSubmit(e) {
+  onSubmit(e) {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const newPost = {
-      user: this.state.user,
-      post: this.state.post,
-      time: new Date().getTime(),
-      category: this.state.category,
-      tags:this.state.tags
+    const newPost = {
+        user: this.state.user,
+        post: this.state.post,
+        time: new Date().getTime(),
+        category: this.state.category,
+        tags:this.state.tags
      
   }
 

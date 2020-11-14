@@ -1,16 +1,18 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import {Tabs, Tab } from 'react-bootstrap';
 import 'react-calendar/dist/Calendar.css';
-import Post from './Common/CreateDiscussion'
-import Discussion from './Common/StartDiscussion'
+import Post from '../Common/CreateDiscussion'
+import Discussion from '../Common/StartDiscussion'
 import {FaRegCalendarAlt} from 'react-icons/fa'
-import Recommended from './Lists/Recommended'
+import Recommended from '../Lists/Recommended'
 import {HiPencilAlt} from 'react-icons/hi'
 import {GoCommentDiscussion} from 'react-icons/go'
-import Contributors from './Lists/Contributors'
-import PostList from './Lists/PostList'
-import EventsList from './Lists/EventsList'
+import Contributors from '../Lists/Contributors'
+import PostList from '../Lists/PostList'
+import DiscussionList from '../Lists/DiscussionList'
+
+import EventsList from '../Lists/EventsList'
 
 class Feed extends React.Component {
 
@@ -33,6 +35,7 @@ render(){
         {/* DISCUSSION TAB */}
         <Tab eventKey="discussion" title={<HiPencilAlt size={25}/>} className="tab-options">
           <Discussion/>
+          <DiscussionList/>
         </Tab>
 
         {/* EVENT TAB */}

@@ -13,7 +13,6 @@ export default function PreNavbar() {
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-        {/* <LoginModal/> */}
         </Navbar.Collapse>
       </Navbar>
     </div>

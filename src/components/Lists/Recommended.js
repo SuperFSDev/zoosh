@@ -21,6 +21,13 @@ export default function Chips() {
   return (
     <div>
         <h2 className="-recommended-header">Recommended Groups</h2>
+        
+        <div className="recommended-item">
+          <p>GMIT Computer Science</p>
+          <button className="soc-item-list-join-btn" onClick={() => addUser('Computer Science')}>Join</button>
+          <button className="soc-item-list-join-btn">Info</button>
+        </div>
+
     <div className="recommended-chip">
       <Chip
         className="recommended-chip-item"
