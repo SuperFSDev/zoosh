@@ -77,7 +77,8 @@ users.post('/login', (req, res) => {
                 const payload = {
                     _id: user.id,
                     fullname: user.fullname,
-                    email: user.email
+                    email: user.email,
+                    societies: user.societies
                 }
                 //associate a key to a payload (user in this case)
                 //and send this token if login details are correct
@@ -128,6 +129,34 @@ users.get('/getUsers', (req, res) => {
         //console.log(data);
     })
 
+})
+
+users.post('/addToSocList', (req, res) => {
+    
+    UserModel.findByIdAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { societies: req.body.society } },
+        { upsert: true, new: true, runValidators: true },
+
+        function (err, result) {
+            console.log("Looking for user");
+            console.log("User id = " + req.body.user_id);
+
+            if (err) {
+                console.log("didn't find user");
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log("Found user");
+                    res.send(result)
+                } else {
+                    res.send("Society already exists in user model.");
+                }
+            }
+
+        }
+    )
 })
 
 users.get('/getUsers/:email', (req, res) => {

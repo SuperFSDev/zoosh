@@ -17,7 +17,8 @@ const loginUser = async user => {
     const response = await axios.post('http://localhost:4000/users/login', {
       fullname: user.fullname,
       email: user.email,
-      password: user.password
+      password: user.password,
+      societies: user.societies
     });
     if (response.data.error) {
       console.log('Invalid email or password');

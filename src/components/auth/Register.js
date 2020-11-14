@@ -64,7 +64,11 @@ class Register extends React.Component {
     else {
 
       axios.post('http://localhost:4000/users/register', newUser)
-      .then()
+      .then(response =>{
+        if(response.data.error){
+          alert("User already exists");
+        }
+      })
       .catch(console.log("error"))
 
       console.log('New user registered!');
