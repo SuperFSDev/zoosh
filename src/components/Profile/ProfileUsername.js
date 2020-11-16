@@ -5,11 +5,12 @@ export default function ProfileUsername() {
   if(user)
     var fullname = user.fullname;
   var id = user._id;
+  var societies = user.societies;
 
   return (
     <div id="social">
       <h3>{fullname} <b className="user-score">1,231</b></h3>
-      {id}
+      {/* {id} */}
     </div>
   );
 }

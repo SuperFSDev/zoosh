@@ -3,6 +3,8 @@ import {RiFacebookCircleFill} from 'react-icons/ri'
 import {SiTwitter,SiInstagram,SiLinkedin} from 'react-icons/si'
 
 export default function ProfileME() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var fullname = user.fullname;
   return (
     <div>
             <div className="containerFeedLeftProfileCell">
@@ -10,7 +12,7 @@ export default function ProfileME() {
                     <h1>About</h1>
                 </div>
                 <div className="user-profile-about">
-                    <p>Full Name: <b className="user-details">Aaron Moran</b></p>
+                    <p>Full Name: <b className="user-details">{fullname}</b></p>
                     <p>College/University: <b className="user-details">GMIT</b></p>
                     <p>Studying: <b className="user-details">Software Development</b></p>
                     <p>Date of Birth: <b className="user-details">24/10/1998</b></p>

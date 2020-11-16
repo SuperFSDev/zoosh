@@ -7,7 +7,7 @@ import Discussion from '../Common/StartDiscussion'
 import {FaRegCalendarAlt} from 'react-icons/fa'
 import Recommended from '../Lists/Recommended'
 import {HiPencilAlt} from 'react-icons/hi'
-import {GoCommentDiscussion} from 'react-icons/go'
+import {MdForum} from 'react-icons/md'
 import Contributors from '../Lists/Contributors'
 import PostList from '../Lists/PostList'
 import DiscussionList from '../Lists/DiscussionList'
@@ -27,13 +27,13 @@ render(){
       <Tabs defaultActiveKey="post" id="uncontrolled-tab-example" >
 
         {/* POST TAB */}
-        <Tab default eventKey="post" title={<GoCommentDiscussion size={25}/>} className="tab-options">
+        <Tab default eventKey="post" title={<HiPencilAlt size={25}/>} className="tab-options">
           <Post/>
           <PostList/>
         </Tab>
 
         {/* DISCUSSION TAB */}
-        <Tab eventKey="discussion" title={<HiPencilAlt size={25}/>} className="tab-options">
+        <Tab eventKey="discussion" title={<MdForum size={25}/>} className="tab-options">
           <Discussion/>
           <DiscussionList/>
         </Tab>

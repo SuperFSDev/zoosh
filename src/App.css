@@ -58,7 +58,6 @@
   margin:auto ;
   margin-left: 2rem;
   font-size: 1.5rem;
-  /* background-color:#e1f5fe; */
   border-radius: 25px;
   padding:10px;
   color: black!important;
@@ -67,14 +66,21 @@
 }
 
 .links:active{
-  color: black!important;
+  color: blue!important;
   text-decoration: none;
+  background-color:whitesmoke;
 }
 
 .links:hover{
   color:#2b88d8!important;
   padding:10px;
   text-decoration: none;
+}
+
+a{
+  margin:auto ;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .-i-vector-img{
@@ -141,7 +147,6 @@
 }
 
 .links:hover{
-  color: black !important;
   border-radius: 25px !important;
   background:#F2F2F2;
   transition: 0.5s;
@@ -255,8 +260,31 @@
   background-color:white;
 }
 
+.user-profile-about-social-forum{
+  background:whitesmoke;
+  border-radius: 10px;
+  height:auto;
+  width:350px;
+  margin:auto ;
+  padding:10px;
+}
+
 .user-profile-about-bio{
   background-color:white;
+}
+
+.discussion-container{
+  width:600px;
+  background-color:white;
+  height:auto;
+  text-align: left;
+  margin: 0 auto;
+  margin-top:20px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  padding:10px;
+  border-radius: 10px;
+  margin-left:20px;
+  margin-bottom: 50px;
 }
 
 
@@ -1083,6 +1111,27 @@ td, th {
 
 }
 
+.containerFeedLeftForum{
+  width: 20%;
+  height: 10rem;
+  outline: none !important;
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+  margin-left: 300px;
+}
+
+.containerFeedMiddleForum{
+  width: 60%;
+  height: auto;
+  outline: none !important;
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+}
+
 .containerFeedLeftProfileCell{
   width: 35%;
   height: 10rem;
@@ -1121,6 +1170,16 @@ td, th {
   height:auto;
   width:350px;
   margin:auto ;
+}
+
+.forum-profile-card{
+  background:whitesmoke;
+  border-radius: 10px;
+  height:100px;
+  width:350px;
+  margin:auto ;
+  text-align: center;
+  vertical-align:middle;
 }
 
 .profile-card-username{
@@ -1479,6 +1538,7 @@ padding-left: 4rem;
   min-width: 230px;
   box-shadow: 0px 4px 2px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  margin-left:5px;
   text-align: left;
 }
 
