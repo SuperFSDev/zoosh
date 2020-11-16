@@ -5,10 +5,9 @@ const Schema = mongoose.Schema;
 const DiscussionSchema = new Schema({
     user:String,
     title:String,
-    post:String,
+    content:String,
     time:Date,
-    category:Array,
-    tags:Array
+    society:String,
 })
 
 

@@ -7,6 +7,25 @@ import Select from 'react-select';
 
 class StartDiscussion extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      societies: [],
+      posts: [],
+      user: '',
+      title: '',
+      content: '',
+      time: new Date().getTime(),
+      society: '',
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeContent = this.onChangeContent.bind(this);
+    this.onChangeSociety = this.onChangeSociety.bind(this);
+  }
+
   componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
@@ -36,59 +55,21 @@ class StartDiscussion extends React.Component {
         console.log(error);
       });
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      societies: [],
-      posts: [],
-      user: '',
-      title: '',
-      post: '',
-      time: new Date().getTime(),
-      category: [],
-      tags: []
 
-    };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeUser = this.onChangeUser.bind(this);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangePost = this.onChangePost.bind(this);
-    this.onChangeTime = this.onChangeTime.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeTag = this.onChangeTag.bind(this);
-
-  }
-
-  onChangeUser(e) {
-    this.setState({
-      user: e.target.value
-    });
-  }
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
   }
 
-  onChangePost(e) {
+  onChangeContent(e) {
     this.setState({
-      post: e.target.value
-    });
-  }
-  onChangeTime(e) {
-    this.setState({
-      time: new Date().getTime(),
+      content: e.target.value
     });
   }
 
-  onChangeCategory(e) {
-    this.setState({ category: e });
-  }
-
-  onChangeTag(e) {
-    this.setState({ tags: e })
+  onChangeSociety(e) {
+    this.setState({ society: e });
   }
 
 
@@ -99,11 +80,9 @@ class StartDiscussion extends React.Component {
     const newDiscussion = {
       user: this.state.user,
       title: this.state.title,
-      post: this.state.post,
+      content: this.state.content,
       time: new Date().getTime(),
-      category: this.state.category,
-      tags: this.state.tags
-
+      society: this.state.society,
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newDiscussion)
@@ -112,10 +91,10 @@ class StartDiscussion extends React.Component {
 
     this.setState({
       user: '',
-      post: '',
+      title: '',
+      content: '',
       time: new Date().getTime(),
-      category: [],
-      tags: []
+      society: ''
     });
     window.location = '/feed';
   }
@@ -158,13 +137,13 @@ class StartDiscussion extends React.Component {
               multiline
               variant="outlined"
               margin="normal"
-              value={this.state.post}
-              onChange={this.onChangePost}
+              value={this.state.content}
+              onChange={this.onChangeContent}
               InputLabelProps={{
                 shrink: true,
               }}
             />
-            <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Choose a society to post to..." />
+            <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." />
 
             <button className="create-post-btn-submit" variant="primary" type="submit">Post</button>
           </Form>
