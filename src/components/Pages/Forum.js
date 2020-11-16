@@ -6,6 +6,7 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import DiscussionList from '../Lists/DiscussionList'
 import FeedOptions from '../Lists/FeedOptions'
+import QuickOptions from '../Common/QuickOptions'
 
 class Forum extends React.Component {
 
@@ -17,7 +18,8 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-        <Discussion/>
+        <QuickOptions/>
+        {/* <Discussion/> */}
         <DiscussionList/>
       </div>
 

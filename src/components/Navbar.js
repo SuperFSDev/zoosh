@@ -1,11 +1,9 @@
 import React from 'react';
 import '../App.css';
-import {Navbar, Nav, NavDropdown, DropdownButton,} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BiHomeSmile} from 'react-icons/bi'
-import {MdShowChart} from 'react-icons/md'
-import {RiTeamLine,RiNotification2Line} from 'react-icons/ri'
+import QuickCreate from './Common/QuickCreate'
 import {HiPencilAlt} from 'react-icons/hi'
 
 export default function NavBar() {
@@ -31,7 +29,8 @@ export default function NavBar() {
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <button className="compose-post-navbar"><HiPencilAlt size={30}/></button>
+          <QuickCreate/>
+          {/* <button className="compose-post-navbar"><HiPencilAlt size={30}/></button> */}
           <div className="navbar-prof-btn">
             <ProfileButton/>
           </div>

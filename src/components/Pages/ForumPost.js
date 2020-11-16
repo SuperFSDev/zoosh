@@ -42,7 +42,7 @@ export default class ForumPost extends React.Component {
                 </span>
               </div>
             </div></a><br/>
-            <a href="/list-of-clubs-and-societies"><div className="profile-card-society">
+            <a href="/information"><div className="profile-card-society">
               {this.state.discussion.society}
             <div className="user-profile-btn-options">
                 <span className="user-profile-btn-options">

@@ -100,7 +100,7 @@ class Daily extends React.Component {
                     <div >
                       <span>
                         <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
-                        <button className="soc-item-list-visit-btn">Visit</button>
+                        <a HREF="/information"><button className="soc-item-list-visit-btn">Visit</button></a>
                       </span>
                     </div>
                     {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
