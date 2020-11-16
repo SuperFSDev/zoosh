@@ -29,7 +29,8 @@ class DiscussionList extends React.Component {
     var { discussions } = this.state;
 
     return (
-      <div>
+      <div className="global-feed">
+        <h1>Forums</h1>
         {/* DISCUSSION TAB */}
         {discussions.reverse().map(discussion => (
           <div key={discussion._id}>
@@ -40,10 +41,7 @@ class DiscussionList extends React.Component {
                 <big className="text-muted-society">#{discussion._id}</big>
                 <p>{moment(discussion.time).format("H:mma - MMM Do, YYYY.")}</p>
               </div>
-            </div></a>
-
-            <br></br>
-            <br></br>
+            </div></a><br/>
           </div>
         ))}
       </div>

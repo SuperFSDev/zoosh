@@ -140,7 +140,7 @@ class LayoutTextFeilds extends React.Component {
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
         </select>*/}
-            <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
+        <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
         </Form>
       </div>
       

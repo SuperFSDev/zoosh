@@ -28,7 +28,7 @@ export default function Chips() {
           <button className="soc-item-list-join-btn">Info</button>
         </div>
 
-    <div className="recommended-chip">
+    {/* <div className="recommended-chip">
       <Chip
         className="recommended-chip-item"
         label="GMIT Computer Science"
@@ -62,7 +62,7 @@ export default function Chips() {
         onClick={() => addUser('Rowing Club')}
         onDelete={handleDelete}
         />
-    </div>
+    </div> */}
     <div className="explore-more-link">
         <a href="/list-of-clubs-and-societies">Explore More</a>
     </div>

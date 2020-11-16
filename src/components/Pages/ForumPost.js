@@ -3,8 +3,6 @@ import '../../App.css';
 import ProfileUsername from '../Profile/ProfileUsername'
 import ProfileURL from '../Profile/ProfileURL'
 import ProfilePicture from '../Profile/ProfilePicture'
-import { RiFacebookCircleFill } from 'react-icons/ri'
-import { SiTwitter, SiInstagram, SiLinkedin } from 'react-icons/si'
 import axios from 'axios';
 
 export default class ForumPost extends React.Component {
@@ -36,15 +34,15 @@ export default class ForumPost extends React.Component {
       return (
         <>
           <div className="containerFeedLeftForum">
-            <a href="/profile"><div className="profile-card">
+            <a href="/profile"><div className="profile-card-forum">
               <ProfilePicture />
               <ProfileUsername />
               <div className="user-profile-btn-options">
                 <span className="user-profile-btn-options">
                 </span>
               </div>
-            </div></a><br />
-            <a href="/list-of-clubs-and-societies"><div className="profile-card">
+            </div></a><br/>
+            <a href="/list-of-clubs-and-societies"><div className="profile-card-society">
               {this.state.discussion.society}
             <div className="user-profile-btn-options">
                 <span className="user-profile-btn-options">
@@ -53,9 +51,9 @@ export default class ForumPost extends React.Component {
               </div>
             </div></a>
             <br />
-            <div className="user-profile-about-social-forum">
+            {/* <div className="user-profile-about-social-forum">
               <p className="profile-social-icons"><RiFacebookCircleFill size={25} /> <SiTwitter size={25} /> <SiInstagram size={25} /> <SiLinkedin size={25} /></p>
-            </div>
+            </div> */}
           </div>
 
           <div className="containerFeedMiddleForum">
