@@ -14,7 +14,8 @@ import CreateSociety from './components/Socs/CreateASoc';
 import Trending from './components/Lists/TrendingList'
 import NewSocs from './components/Lists/NewSocsList'
 import JoinSocs from './components/Socs/JoinSocModal';
-import Profile from './components/Profile/UserProfile'
+import Profile from './components/Profile/MyProfile'
+import ViewProfile from './components/Profile/UserProfile'
 import ForumPost from './components/Pages/ForumPost'
 import Forums from './components/Pages/Forum'
 import Events from './components/Pages/Events'
@@ -38,8 +39,9 @@ class App extends React.Component {
               <Route path="/forum-post" component={ForumPost}/>
               <Route path="/leaderboard" component={Leaderboard}/>
               <Route path="/information" component={InfoPage}/>
-
               <Route path="/profile" component={Profile}/>
+              <Route path="/user" component={ViewProfile}/>
+
               <Route path="/events" component={Events}/>
               <Route path="/forum" component={Forums}/>
 

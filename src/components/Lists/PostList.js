@@ -78,7 +78,7 @@ render(){
                 <Card.Body>          
                   <div className="-u-prof-stats" id="social-user">
                       {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                      <span className="username-wrapper"><a href="/profile">{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                      <span className="username-wrapper"><a href={"/user?id=" +user._id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
                       <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
                       {/* <ProfileURL/> */}
