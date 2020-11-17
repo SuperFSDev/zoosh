@@ -69,10 +69,12 @@ render(){
      <div className="global-feed">
        <h1>Global</h1>
         {/* POST TAB */}
-          {posts.reverse().map(post=>  (
-            <div key={post._id}>    
+          {users.reverse().map(user=>  (
+            <div key={user._id}>   
+              {user.posts.map(post=>  (
+            <div key={user._id}>  
               <Card className='feedPost'>
-
+               
                 <Card.Body>          
                   <div className="-u-prof-stats" id="social-user">
                       {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
@@ -106,6 +108,8 @@ render(){
                   </div>
                 </Card.Body>  
               </Card>
+                   </div>
+                   ))}
         </div>
       ))}
   </div>
