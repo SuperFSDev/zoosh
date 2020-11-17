@@ -8,7 +8,15 @@ import Select from 'react-select';
 class LayoutTextFeilds extends React.Component {
 
   
-  componentDidMount() {
+  async componentDidMount() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: user._id });
+
+
+
+
+        
+  
     axios.get('http://localhost:4000/users/getUsers')
     .then((response)=>{
         this.setState({users: response.data.users})
@@ -16,10 +24,25 @@ class LayoutTextFeilds extends React.Component {
     .catch((error)=>{
         console.log(error);
     });
+
+
+    
+    await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id: user._id
+      }
+    })
+      .then((response) => {
+        this.setState({ user: response.data.user });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       users: [],
       posts: [],
       user: '',
@@ -72,18 +95,20 @@ class LayoutTextFeilds extends React.Component {
     e.preventDefault();
 
     const newPost = {
+      user_id: this.state.id,
+      post:{ 
         user: this.state.user,
         post: this.state.post,
         time: new Date().getTime(),
         category: this.state.category,
         tags:this.state.tags
-     
+      }
   }
 
 
 
 
-  axios.post('http://localhost:4000/posts/NewPosts', newPost)
+ axios.post('http://localhost:4000/users/addPost', newPost)
     .then()
         .catch();
         
@@ -94,6 +119,8 @@ class LayoutTextFeilds extends React.Component {
       category: '',
       tags:[]
     });
+    
+    alert(JSON.stringify(newPost));
     window.location = '/feed';
     }
 

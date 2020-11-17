@@ -163,6 +163,34 @@ users.post('/edit-user-profile', (req, res) => {
     )
 })
 
+
+
+users.post('/addPost', (req, res) => {
+
+    UserModel.findByIdAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { posts: req.body.post } },
+        { upsert: true, new: true, runValidators: true },
+        //console.log('here now.' + req.body.post),
+        function (err, result) {
+
+            if (err) {  
+                console.log("error" + err);
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log("jkldsjflksjdflkjsl"+result);
+                    res.send(result)
+                } else {
+                    res.send("Society already exists in user model.");
+                }
+            }
+
+        }
+    )
+})
+
 users.post('/addToSocList', (req, res) => {
     
     UserModel.findByIdAndUpdate(

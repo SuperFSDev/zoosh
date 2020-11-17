@@ -10,7 +10,8 @@ const UserSchema = new Schema({
     course: String,
     dob: String,
     bio: String,
-    societies: {type: Array, "default" : []}
+    societies: {type: Array, "default" : []},
+    posts: {type: Array, "default" : []}
 })
 
 
