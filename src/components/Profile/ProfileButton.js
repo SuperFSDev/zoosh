@@ -76,13 +76,13 @@ export default function CustomizedMenus() {
         onClose={handleClose}
       >
         <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
-          <ListItemText primary="My Profile"/>
+          <ListItemText primary={fullname}/>
         </StyledMenuItem></Nav.Link>
         <Nav.Link href="/profile"><StyledMenuItem>
           <ListItemText primary="Account Settings"/>
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>
-          <Nav.Link>Invite a Frirnd</Nav.Link>
+          <Nav.Link>Invite a Friend</Nav.Link>
            {/* <Invite/>  */}
          </StyledMenuItem>
         <StyledMenuItem>

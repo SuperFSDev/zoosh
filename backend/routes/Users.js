@@ -156,7 +156,7 @@ users.post('/addToSocList', (req, res) => {
     )
 })
 
-// Gets one user
+// Gets one users societies
 users.get('/getUserSocieties', (req, res) => {
 
     UserModel.findById({
@@ -164,6 +164,24 @@ users.get('/getUserSocieties', (req, res) => {
     }).then(user => {
         if(user){
             res.json({societies:user.societies});
+        }else{
+            res.send("User does not exist")
+        }
+    })
+    .catch(err => {
+        res.send(err)
+    })
+
+})
+
+// Gets one users details
+users.get('/get-user-details', (req, res) => {
+
+    UserModel.findById({
+        _id: req.query.id
+    }).then(user => {
+        if(user){
+            res.json({user:user});
         }else{
             res.send("User does not exist")
         }
