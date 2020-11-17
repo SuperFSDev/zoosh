@@ -250,6 +250,7 @@ a{
   background-color: #202124!important;
   border-radius: 20px;
   color:black;
+
 }
 
 .dark-mode .user-profile-about{
@@ -841,8 +842,10 @@ td, th {
   height:auto;
   margin:left;
   margin-top:50px;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   padding:10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color:lightgray;
   border-radius: 10px;
   margin-left:20px;
   padding-right:10px;
@@ -853,9 +856,11 @@ td, th {
   height:auto;
   margin:left;
   margin-top:50px;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   padding:10px;
+  border-style: solid;
   border-radius: 10px;
+  border-width: 1px;
+  border-color:lightgray;
   margin-left:20px;
   margin-bottom: 50px;
 }
@@ -1252,6 +1257,23 @@ td, th {
   position:fixed!important;
 }
 
+.profile-mini{
+  display: none;
+}
+
+.profile-card-forum:hover + .profile-mini{
+  display:block;
+}
+
+.showme {
+  display: none;
+}
+
+.showhim:hover .showme {
+  display: block;
+}
+
+
 .profile-card-society{
   background:whitesmoke;
   border-radius: 10px;
@@ -1522,7 +1544,7 @@ td, th {
   border-radius: 10px;
   font-size: 20px;
   background-color: whitesmoke;
-
+  margin-top: 10px;
 }
 
 .recommended-item:hover{

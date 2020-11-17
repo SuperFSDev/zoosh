@@ -48,11 +48,7 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Tabs defaultActiveKey="post" id="controlled-tab-example">
-            <Tab eventKey="post" title={<VscTextSize size={30}/>}>
-                <Post/>
-            </Tab>
-        </Tabs>
+            <Post/>
         </Modal.Body>
       </Modal>
     );
@@ -74,14 +70,8 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Tabs defaultActiveKey="post" id="controlled-tab-example">
-            <Tab eventKey="post" title={<VscTextSize size={30}/>}>
                 <Discussion/>
-            </Tab>
-        </Tabs>
         </Modal.Body>
       </Modal>
     );
-  }
-
-  
+    }

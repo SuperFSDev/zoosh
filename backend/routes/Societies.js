@@ -68,6 +68,25 @@ societies.get('/getSocieties', (req, res) => {
 
 })
 
+societies.get('/get-societies-page', (req, res) => {
+
+    SocietyModel.findById({
+            _id: req.query.id
+        }).then(society => {
+            if (society) {
+                res.json({
+                    society: society
+                });
+            } else {
+                res.send("Society does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+})
+
 societies.post('/update', (req, res) => {
     
     SocietyModel.findOneAndUpdate(

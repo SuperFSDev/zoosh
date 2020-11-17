@@ -19,6 +19,7 @@ class Daily extends React.Component {
       });
   }
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -100,7 +101,7 @@ class Daily extends React.Component {
                     <div >
                       <span>
                         <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
-                        <a HREF="/information"><button className="soc-item-list-visit-btn">Visit</button></a>
+                        <a href={"/information?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a>
                       </span>
                     </div>
                     {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}

@@ -11,6 +11,7 @@ export default class ForumPost extends React.Component {
     super(props);
     this.state = {
       discussion: '',
+      societies: [],
     };
   }
 
@@ -28,6 +29,14 @@ export default class ForumPost extends React.Component {
         .catch((error) => {
           console.log(error);
         });
+
+      axios.get('http://localhost:4000/societies/getSocieties')
+        .then((response) => {
+          this.setState({ societies: response.data.societies })
+      })
+      .catch((error) => {
+          console.log(error);
+      });
     }
 
     render() {

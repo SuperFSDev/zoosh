@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import Post from '../Common/CreateDiscussion'
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import PostList from '../Lists/PostList'
@@ -18,7 +17,6 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-        {/* <Post/> */}
         <QuickOptions/>
         <PostList/>
       </div>
@@ -29,8 +27,7 @@ render(){
       </div>
   </div>
   );
+ }
 }
-}
-
 
 export default Feed;
