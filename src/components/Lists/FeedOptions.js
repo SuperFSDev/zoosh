@@ -6,12 +6,15 @@ import {FaRegCalendarAlt} from 'react-icons/fa'
 import {MdForum} from 'react-icons/md'
 
 export default function FeedOptions() {
+    
     var user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-      var fullname = user.fullname;
-    var id = user._id;
-    var societies = user.societies;
- 
+    if(user) 
+    {
+        var fullname = user.fullname;
+        var id = user._id;
+        var societies = user.societies;
+    }
+
     return (
         <div className="feed-options-container">
                 <div className="feed-options-item">

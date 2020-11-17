@@ -42,9 +42,9 @@ export default class ProfileME extends React.Component {
                     </div>
                     <div className="user-profile-about">
                         <p>Full Name: <b className="user-details">{this.state.user.fullname}</b></p>
-                        <p>College/University: <b className="user-details">GMIT</b></p>
-                        <p>Studying: <b className="user-details">Software Development</b></p>
-                        <p>Date of Birth: <b className="user-details">24/10/1998</b></p>
+                        <p>College/University: <b className="user-details">{this.state.user.college}</b></p>
+                        <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
+                        <p>Date of Birth: <b className="user-details">{this.state.user.dob}</b></p>
                         <p>Profile Views: <b className="user-details-views">1,900,200</b></p>
                     </div>
                     <div className="user-profile-about-social">
@@ -54,7 +54,7 @@ export default class ProfileME extends React.Component {
 
                 <div className="containerFeedMiddleProfileCell">
                     <div className="user-profile-about-bio">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>{this.state.user.bio}</p>
                     </div>
 
                 </div>

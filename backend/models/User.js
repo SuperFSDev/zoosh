@@ -6,6 +6,10 @@ const UserSchema = new Schema({
     fullname: String,
     email: String,
     password: String,
+    college: String,
+    course: String,
+    dob: String,
+    bio: String,
     societies: {type: Array, "default" : []}
 })
 
