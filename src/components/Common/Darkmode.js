@@ -25,8 +25,14 @@ function useThemeSwitcher() {
         if (mode === "dark") {
             document.body.classList.add("dark-mode");
             localStorage.setItem("mode", "dark");
-        } else {
+        }
+        else if(mode === "uwu") {
+            document.body.classList.add("uwu-mode");
+            localStorage.setItem("mode", "uwu");
+        } 
+        else {
             document.body.classList.remove("dark-mode");
+            document.body.classList.remove("uwu-mode");
             localStorage.setItem("mode", "light");
         }
     }, [mode]);

@@ -25,10 +25,10 @@ export default function Chips() {
         <div className="recommended-item">
           <p>GMIT Computer Science</p>
           <button className="soc-item-list-join-btn" onClick={() => addUser('Computer Science')}>Join</button>
-          <button className="soc-item-list-join-btn">Info</button>
+          <a href="/information"><button className="soc-item-list-join-btn">Info</button></a>
         </div>
 
-    <div className="recommended-chip">
+    {/* <div className="recommended-chip">
       <Chip
         className="recommended-chip-item"
         label="GMIT Computer Science"
@@ -62,7 +62,7 @@ export default function Chips() {
         onClick={() => addUser('Rowing Club')}
         onDelete={handleDelete}
         />
-    </div>
+    </div> */}
     <div className="explore-more-link">
         <a href="/list-of-clubs-and-societies">Explore More</a>
     </div>

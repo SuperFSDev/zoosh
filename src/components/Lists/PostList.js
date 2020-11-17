@@ -66,34 +66,34 @@ render(){
   var{posts} = this.state;
 
   return (
-     <div>
+     <div className="global-feed">
+       <h1>Global</h1>
         {/* POST TAB */}
-          <Card.Footer className="-post-header-card"/>
           {posts.reverse().map(post=>  (
             <div key={post._id}>    
-            {/* <Card.Footer className="-post-header-card"/> */}
               <Card className='feedPost'>
 
                 <Card.Body>          
                   <div className="-u-prof-stats" id="social-user">
                       {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                      <span className="username-wrapper"><a href="/profile">{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><hr/>
+                      <span className="username-wrapper"><a href="/profile">{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                      <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
+
                       {/* <ProfileURL/> */}
                   </div>
     
                   <Card.Text className="fontPost">
                    {post.post} <br/>
                    
-                   <div className="-user-tag">
+                   {/* <div className="-user-tag">
                     <RiChatSmile2Fill/>{post.tags.map(tag=>  (
                     <div key={tag.value} className="-user-tag">   
                       <a href="/profile">@{tag.label}</a> 
                     </div>
                           ))}
-                   </div>
+                   </div> */}
                   </Card.Text>
                   <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
-                  <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                   <div className="post-interactions">
                   <div><hr/>
                       <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
@@ -106,9 +106,6 @@ render(){
                   </div>
                 </Card.Body>  
               </Card>
-              
-      <br></br>
-      <br></br>
         </div>
       ))}
   </div>

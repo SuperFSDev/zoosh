@@ -1,14 +1,12 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import Post from '../Common/CreateDiscussion'
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import PostList from '../Lists/PostList'
 import FeedOptions from '../Lists/FeedOptions'
-import QuickOptions from '../Common/QuickOptions'
+import EventsList from '../Lists/EventsList'
 
-class Feed extends React.Component {
+class Events extends React.Component {
 
 render(){
   return (
@@ -18,9 +16,7 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-        {/* <Post/> */}
-        <QuickOptions/>
-        <PostList/>
+        <EventsList/>
       </div>
 
       <div className="containerFeedRight">
@@ -31,6 +27,4 @@ render(){
   );
 }
 }
-
-
-export default Feed;
+export default Events;

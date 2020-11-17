@@ -4,8 +4,8 @@ import '../../App.css';
 export default function EventsList() {
 
   return (
-    <div>
-        <h1 className="events-header">Upcoming Events</h1>
+    <div className="global-feed">
+      <h1>Upcoming Events</h1>
         <div>
           <div className="SocietyLayout">
               <div>
