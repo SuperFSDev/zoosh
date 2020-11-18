@@ -97,6 +97,7 @@ class LayoutTextFeilds extends React.Component {
     const newPost = {
       user_id: this.state.id,
       post:{ 
+        user_id:this.state.id,
         user: this.state.user,
         post: this.state.post,
         time: new Date().getTime(),
@@ -120,7 +121,6 @@ class LayoutTextFeilds extends React.Component {
       tags:[]
     });
     
-    alert(JSON.stringify(newPost));
     window.location = '/feed';
     }
 

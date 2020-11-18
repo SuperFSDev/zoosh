@@ -56,6 +56,7 @@ componentDidMount() {
 render(){
   var{users} = this.state;
   var{posts} = this.state;
+  console.log(posts)
   return (
      <div className="global-feed">
        <h1>Global</h1>
@@ -64,7 +65,8 @@ render(){
             <div key={user._id}>   
               {user.posts.map(post=>  (              
 <div hidden="true">
-               {posts.push(post)}   {/*  loop through users and add each post to an array */}
+               {posts.push(post)}
+             =    {/*  loop through users and add each post to an array */}
                </div>
     ))}    
         </div>
@@ -79,7 +81,7 @@ render(){
                <Card.Body>          
                  <div className="-u-prof-stats" id="social-user">
                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                     <span className="username-wrapper"><a href={"/user?id="}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                     <span className="username-wrapper"><a href={"/user?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
                      <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
                      {/* <ProfileURL/> */}
