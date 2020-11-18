@@ -11,7 +11,9 @@ const UserSchema = new Schema({
     dob: String,
     bio: String,
     societies: {type: Array, "default" : []},
-    posts: {type: Array, "default" : []}
+    posts: {type: Array, "default" : []},
+    followers: {type: Array, "default" : []},
+    following: {type: Array, "default" : []}
 })
 
 

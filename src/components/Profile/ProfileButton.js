@@ -76,17 +76,19 @@ export default function CustomizedMenus() {
         onClose={handleClose}
       >
         <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
-          <ListItemText primary={fullname}/>
+          <ListItemText>Hello {fullname}!</ListItemText>
         </StyledMenuItem></Nav.Link>
         <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
-          <ListItemText primary="Account Settings"/>
+          <ListItemText>Following 10</ListItemText>
+        </StyledMenuItem> </Nav.Link>
+        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+          <ListItemText>Account Settings</ListItemText>
+        </StyledMenuItem></Nav.Link>
+        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+          <ListItemText>Invite a Friend</ListItemText>
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>
-          <Nav.Link className="profile-dropdown-option">Invite a Friend</Nav.Link>
-           {/* <Invite/>  */}
-         </StyledMenuItem>
-        <StyledMenuItem>
-          <DarkMode/>
+          <ListItemText primary={<DarkMode/>}/>
         </StyledMenuItem>
         <NavDropdown.Divider />   
         <Nav.Link href="/login" onClick={handleLogout}><StyledMenuItem>

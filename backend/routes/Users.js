@@ -216,6 +216,11 @@ users.post('/addToSocList', (req, res) => {
     )
 })
 
+
+users.post('/followUser', (req, res) => {
+    // FOLLOW USER
+})
+
 // Gets one users societies
 users.get('/getUserSocieties', (req, res) => {
 

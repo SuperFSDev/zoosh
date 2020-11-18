@@ -41,10 +41,14 @@ export default class UserProfile extends React.Component {
         <div className="profile-card">
           <div id="social">
             <Image src={ProfilePic} className="user-image" roundedCircle />
-            <p className="society-header-name"> {this.state.user.fullname}</p>
-          </div>
+            <p> {this.state.user.fullname}</p>
+          </div> 
+          <div>
+            <button className="follow-btn">Follow</button>
+        </div>
         </div>
         <ProfileTabs/>
+       
 
       </div>
 

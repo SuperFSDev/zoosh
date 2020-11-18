@@ -16,6 +16,13 @@
   }
 }
 
+.navbar{
+  position:fixed!important;
+  width:100%;
+  background:white !important;
+  z-index:999;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -517,7 +524,6 @@ hr {
   width:100%;
   height:auto;   /* Height of the footer */
   padding-top:5px;
-  background:#E9F1FE;
   color:black;
   text-align:center;
 }
@@ -1144,9 +1150,10 @@ td, th {
 
 .containerFeedLeft{
   width: 20%;
+  margin-top: 8vh;
   height: 100rem;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
+  background-color: none!important;
   float: left;
   border-radius: 25px;
   text-align: center;
@@ -1165,6 +1172,7 @@ td, th {
 }
 
 .containerFeedMiddleProfile{
+  margin-top: 10vh;
   width: 60%;
   height: auto;
   outline: none !important;
@@ -1372,12 +1380,13 @@ td, th {
 }
 
 .containerFeedMiddle{
-  margin-top: 5vh;
-  width: 45%;
+  margin-top: 12vh;
+  width: 40%;
   height: auto;
   outline: none !important;
   background-color:rgb(255, 255, 255);
   float: left;
+  margin-left: 5rem;
   padding-bottom: 10rem;
   /* border-color:lightgray; */
   border-style: none; 
@@ -1385,7 +1394,7 @@ td, th {
 }
 
 .containerFeedRight{
-  margin-top: 10vh;
+  margin-top: 20vh;
   width: 25%;
   height: 50vh;
   outline: none !important;
@@ -1429,6 +1438,7 @@ td, th {
   text-align: left;
   margin-left: 5rem;
   position: fixed!important;
+  background-color:none!important;
 }
 
 .user-profile-container{
@@ -1450,7 +1460,6 @@ td, th {
   width:auto;
   padding:10px;
   height:auto;
-  background: white;
   border-radius: 5px;
   float: left;
 
@@ -1870,6 +1879,17 @@ padding-left: 4rem;
 /* USER PROFILE */
 /* USER PROFILE */
 
+.follow-btn{
+  width:auto;
+  padding:10px;
+  margin-bottom:1rem;
+}
+
+.follow-btn:hover{
+  background:lightgray;
+  color:black;
+}
+
 .user-image{
   margin-top:1rem;
   width:171px;
@@ -2039,7 +2059,7 @@ padding-left: 4rem;
 }
 
 .intro{
-  width:80vh;
+  width:auto;
   height:auto;
 }
 
@@ -2050,8 +2070,8 @@ padding-left: 4rem;
 }
 
 .welcome-intro{
-  font-size:5rem;
-  width:500px;
+  font-size:auto;
+  width:auto;
   text-align: left;
 }
 .SocietyLayout {
