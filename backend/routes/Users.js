@@ -217,8 +217,29 @@ users.post('/addToSocList', (req, res) => {
 })
 
 
-users.post('/followUser', (req, res) => {
+users.post('/addToFollowList', (req, res) => {
     // FOLLOW USER
+    UserModel.findByIdAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { following: req.body.user } },
+        { upsert: true, new: true, runValidators: true },
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("User already being followed.");
+                }
+            }
+
+        }
+    )
 })
 
 // Gets one users societies

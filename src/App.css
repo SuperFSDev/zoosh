@@ -918,19 +918,6 @@ td, th {
   margin-top: 3rem;
 }
 
-.btn-copy{
-  margin-top: 15rem;
-  width:100px;
-  height:50px;
-  border-radius:35px;
-  border-style: solid;
-  outline:none !important;
-  background: #512CB0;
-  border-color: #512CB0;
-  color:white;
-  font-weight: 500;
-}
-
 .copy-to-clipboard{
   display:hidden!important;
 }
@@ -941,25 +928,6 @@ td, th {
   color:white;
 }
 
-.btn-sandbox{
-  margin-top: 15rem;
-  margin: 10px;
-  width:200px;
-  height:50px;
-  border-radius:35px;
-  border-style: solid;
-  outline:none !important;
-  background: black;
-  border-color: black;
-  color:white;
-  font-weight: 500;
-}
-
-.btn-sandbox:hover{
-  background:lightgray;
-  border-color: lightgray;
-  color:black;
-}
 /* EVENTS FEED */
 .card2 {
   box-shadow: 2px 4px 8px 2px rgba(0,0,0,0.2);

@@ -1,9 +1,15 @@
 import React from 'react';
+import {Image} from 'react-bootstrap'
 import {BiHomeSmile} from 'react-icons/bi'
 import {MdShowChart} from 'react-icons/md'
 import {RiTeamLine,RiHeadphoneFill} from 'react-icons/ri'
 import {FaRegCalendarAlt} from 'react-icons/fa'
 import {MdForum} from 'react-icons/md'
+import Team from '../../images/group.png';
+import Home from '../../images/home.png';
+import Forum from '../../images/forum.png';
+import Leaderboard from '../../images/leaderboard.png';
+import Events from '../../images/events.png';
 
 export default function FeedOptions() {
     
@@ -22,22 +28,22 @@ export default function FeedOptions() {
                         <h3>{fullname} <b className="user-score">1,231</b></h3>
                     </div></a><br/>
                     <a href="/" className="feed-option-redirects"><div className="option-container">
-                        <BiHomeSmile className="-i-vector-img"/> Home
+                        <Image src={Home}/> Home
                     </div></a>
                     <a href="/forum" className="feed-option-redirects"><div className="option-container">
-                        <MdForum className="-i-vector-img"/> Forum
+                        <Image src={Forum}/> Forum
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
-                        <FaRegCalendarAlt className="-i-vector-img"/> Events
+                        <Image src={Events}/> Events
                     </div></a>
                     {/* <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
                         <RiHeadphoneFill className="-i-vector-img"/> Podcasts
                     </div></a> */}
                     <a href="/list-of-clubs-and-societies" className="feed-option-redirects"><div className="option-container">
-                        <RiTeamLine className="-i-vector-img"/> Clubs and Societies
+                        <Image src={Team}/> Clubs and Societies
                     </div></a>
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <MdShowChart className="-i-vector-img"/> Leaderboard
+                        <Image src={Leaderboard}/> Leaderboard
                     </div></a>
                 </div>
         </div>

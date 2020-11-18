@@ -1,11 +1,12 @@
 import React from 'react';
-import {Modal, Tabs, Tab} from 'react-bootstrap'
+import {Modal, Tabs, Tab,Image} from 'react-bootstrap'
 import {HiPencilAlt} from 'react-icons/hi'
 import Post from '../Common/CreateDiscussion'
 import Discussion from '../Common/StartDiscussion'
 import {VscTextSize,VscLink} from 'react-icons/vsc'
 import {MdForum} from 'react-icons/md'
 import {BsCardImage} from 'react-icons/bs'
+import Create from '../../images/pencil2.png'
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -46,7 +47,7 @@ function MyVerticallyCenteredModal(props) {
   
     return (
       <>
-       <button className="compose-post-navbar" onClick={() => setModalShow(true)}><HiPencilAlt size={30}/></button>
+       <button className="compose-post-navbar" onClick={() => setModalShow(true)}><Image src={Create}/></button>
   
         <MyVerticallyCenteredModal
           show={modalShow}

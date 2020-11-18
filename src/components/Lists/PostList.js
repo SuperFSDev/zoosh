@@ -1,15 +1,15 @@
 import React from 'react';
 import '../../App.css';
-import { Card, Form, Badge, Tabs, Tab,Nav } from 'react-bootstrap';
+import { Card, Badge, Tabs,Nav,Image } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import {FaRegCommentDots,FaRegCalendarAlt} from 'react-icons/fa'
-import {RiStarSmileLine,RiChatSmile2Fill} from 'react-icons/ri'
+import {FaRegCommentDots} from 'react-icons/fa'
 import CommentReply from '../Posts/CommentReply'
 import PostAvatar from '../Posts/PostAvatar'
 import PostLinks from '../Posts/PostLinks'
 import {FiThumbsUp,FiThumbsDown} from 'react-icons/fi'
+import Tag from '../../images/mailid.png'; // gives image path
 
 class PostList extends React.Component {
 
@@ -90,13 +90,13 @@ render(){
                  <Card.Text className="fontPost">
                   {post.post} <br/>
                   
-                  {/* <div className="-user-tag">
-                   <RiChatSmile2Fill/>{post.tags.map(tag=>  (
+                  <div className="-user-tag">
+                  {post.tags.map(tag=>  (
                    <div key={tag.value} className="-user-tag">   
-                     <a href="/profile">@{tag.label}</a> 
+                     <a href="/profile"><Image className="tag-img" src={Tag}/>{tag.label}</a> 
                    </div>
                          ))}
-                  </div> */}
+                  </div>
                  </Card.Text>
                  <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
                  <div className="post-interactions">

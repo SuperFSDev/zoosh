@@ -45,7 +45,7 @@ render(){
         {societies.reverse().map(society => (
           <div className="recommended-item"  key={society._id}>
             <p>{society.name}</p>
-             {/* <button className="soc-item-list-join-btn" onClick={() => addUser('Computer Science')}>Join</button> */}
+             <button className="soc-item-list-join-btn" onClick={() => this.addUser('Computer Science')}>Join</button>
               <a href={"/information?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a>
           </div>  ))}
     <div className="explore-more-link">

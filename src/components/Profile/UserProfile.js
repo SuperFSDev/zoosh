@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import ProfileTabs from './ProfileTabs'
+import FollowButton from '../Common/FollowButton'
 
 export default class UserProfile extends React.Component {
 
@@ -44,7 +45,7 @@ export default class UserProfile extends React.Component {
             <p> {this.state.user.fullname}</p>
           </div> 
           <div>
-            <button className="follow-btn">Follow</button>
+            <FollowButton/>
         </div>
         </div>
         <ProfileTabs/>
