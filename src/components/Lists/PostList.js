@@ -16,16 +16,8 @@ class PostList extends React.Component {
 componentDidMount() {
   axios.get('http://localhost:4000/users/getUsers')
   .then((response)=>{
-      this.setState({users: response.data.users})
-  })
-  .catch((error)=>{
-      console.log(error);
-  });
-
-
-  axios.get('http://localhost:4000/posts/getPosts')
-  .then((response)=>{
-      this.setState({posts: response.data.posts})
+      this.setState({users: response.data.users
+                                                })
   })
   .catch((error)=>{
       console.log(error);
@@ -64,53 +56,60 @@ componentDidMount() {
 render(){
   var{users} = this.state;
   var{posts} = this.state;
-
   return (
      <div className="global-feed">
        <h1>Global</h1>
         {/* POST TAB */}
-          {users.reverse().map(user=>  (
+          {users.map(user=>  (
             <div key={user._id}>   
-              {user.posts.map(post=>  (
-            <div key={user._id}>  
+              {user.posts.map(post=>  (              
+<div hidden="true">
+               {posts.push(post)}   {/*  loop through users and add each post to an array */}
+               </div>
+    ))}    
+        </div>
+      ))}
+
+
+{posts.sort((a,b)=> b.time- a.time).map(post=>  (  // sorts the posts by the time posted
+  
+            <div>  
               <Card className='feedPost'>
                
-                <Card.Body>          
-                  <div className="-u-prof-stats" id="social-user">
-                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                      <span className="username-wrapper"><a href={"/user?id=" +user._id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
-                      <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
+               <Card.Body>          
+                 <div className="-u-prof-stats" id="social-user">
+                     {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
+                     <span className="username-wrapper"><a href={"/user?id="}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                     <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
-                      {/* <ProfileURL/> */}
-                  </div>
-    
-                  <Card.Text className="fontPost">
-                   {post.post} <br/>
-                   
-                   {/* <div className="-user-tag">
-                    <RiChatSmile2Fill/>{post.tags.map(tag=>  (
-                    <div key={tag.value} className="-user-tag">   
-                      <a href="/profile">@{tag.label}</a> 
-                    </div>
-                          ))}
-                   </div> */}
-                  </Card.Text>
-                  <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
-                  <div className="post-interactions">
-                  <div><hr/>
-                      <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
-                      <span className="voting-btn"><FaRegCommentDots size={20} onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"/></span><PostLinks/>
-
-                      {
-                        this.state.toggle ? <div  className="-post-reply-comment-div"><CommentReply/></div> : null
-                      }
-                  </div>
-                  </div>
-                </Card.Body>  
-              </Card>
+                     {/* <ProfileURL/> */}
+                 </div>
+   
+                 <Card.Text className="fontPost">
+                  {post.post} <br/>
+                  
+                  {/* <div className="-user-tag">
+                   <RiChatSmile2Fill/>{post.tags.map(tag=>  (
+                   <div key={tag.value} className="-user-tag">   
+                     <a href="/profile">@{tag.label}</a> 
                    </div>
-                   ))}
-        </div>
+                         ))}
+                  </div> */}
+                 </Card.Text>
+                 <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
+                 <div className="post-interactions">
+                 <div><hr/>
+                     <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
+                     <span className="voting-btn"><FaRegCommentDots size={20} onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"/></span><PostLinks/>
+
+                     {
+                       this.state.toggle ? <div  className="-post-reply-comment-div"><CommentReply/></div> : null
+                     }
+                 </div>
+                 </div>
+               </Card.Body>  
+             </Card>
+             </div>
       ))}
   </div>
 

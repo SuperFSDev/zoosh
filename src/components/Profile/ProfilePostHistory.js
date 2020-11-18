@@ -54,7 +54,7 @@ export default class History extends React.Component {
           </div>
          
       </div>
-             {this.state.posts.map(post=>  (
+             {this.state.posts.reverse().map(post=>  (
            <div key={this.state.user._id}>  
              <Card className='userPosts'>
               
@@ -88,6 +88,7 @@ export default class History extends React.Component {
       
                   </div>
                   ))}
+                  
               
        </div>
 
