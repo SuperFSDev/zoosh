@@ -2315,3 +2315,10 @@ padding-left: 4rem;
   background:whitesmoke;
   color:black;
 }
+
+.userPosts{
+float: right;
+width: 40rem;
+}
+
+
