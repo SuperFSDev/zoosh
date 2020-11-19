@@ -14,6 +14,7 @@ class RegisterModal extends React.Component {
       fullname: '',
       email: '',
       password: '',
+      time: new Date().getTime(),
       open: false
     };
 
@@ -23,6 +24,7 @@ class RegisterModal extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.onChangeTime = this.onChangeTime.bind(this);
   }
 
   onChangeFullname(e) {
@@ -45,6 +47,11 @@ class RegisterModal extends React.Component {
       retype: e.target.value
     });
   }
+  onChangeTime(e) {
+    this.setState({
+      time: new Date().getTime(),
+    });
+  }
 
   onSubmit(e) {
 
@@ -53,7 +60,9 @@ class RegisterModal extends React.Component {
     const newUser = {
       fullname: this.state.fullname,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      time: new Date().getTime(),
+
     };
 
     if (!newUser.fullname || !newUser.email || !newUser.password) {
@@ -73,6 +82,7 @@ class RegisterModal extends React.Component {
       fullname: '',
       email: '',
       password: '',
+      time: new Date().getTime(),
       open: false
     });
   }

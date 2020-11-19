@@ -36,11 +36,11 @@ class App extends React.Component {
               <Route path="/join-a-club-or-society" component={JoinSocs}/>
               <Route path="/trending" component={Trending}/>
               <Route path="/new" component={NewSocs}/>
-              <Route path="/forum-post" component={ForumPost}/>
-              <Route path="/leaderboard" component={Leaderboard}/>
-              <Route path="/information" component={InfoPage}/>
-              <Route path="/profile" component={Profile}/>
-              <Route path="/user" component={ViewProfile}/>
+              <Route path="/f" component={ForumPost}/>
+              <Route path="/l" component={Leaderboard}/>
+              <Route path="/s" component={InfoPage}/>
+              <Route path="/me" component={Profile}/>
+              <Route path="/u" component={ViewProfile}/>
 
               <Route path="/events" component={Events}/>
               <Route path="/forum" component={Forums}/>

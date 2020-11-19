@@ -1,13 +1,12 @@
 import React from 'react';
 import '../../App.css';
-import { Nav } from 'react-bootstrap';
+import { Nav, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import LeaderboardOptions from '../Lists/Leaderboard-options'
 import AddUserToSoc from '../Socs/AddUserToSoc'
+import CreateASoc from './CreateASoc'
 
-
-class Daily extends React.Component {
+export default class Daily extends React.Component {
 
   componentDidMount() {
     axios.get('http://localhost:4000/societies/getSocieties')
@@ -68,12 +67,11 @@ class Daily extends React.Component {
     return (
 
       <>
-        <div>
-
-          <Breadcrumb className="breadcrumb">
-            <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-            <Breadcrumb.Item active>All Clubs and Societies</Breadcrumb.Item>
-          </Breadcrumb>
+         <div>
+          <div className="socs-options-btns">
+            <QuickOptions/>
+            {/* <button className="trending-soc"><Nav.Link href="/trending"><MdShowChart/> Discover</Nav.Link></button> */}
+          </div>
         </div>
         <div className="search-div">
           <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
@@ -87,43 +85,76 @@ class Daily extends React.Component {
           </select>
         </div>
 
-        <LeaderboardOptions />
+        {/* <div>
+          <div className="socs-options-btns">
+            <button className="trending-soc"><Nav.Link href="/list-of-clubs-and-societies">All</Nav.Link></button>
+            <button className="trending-soc"><Nav.Link href="/trending"><MdShowChart/> Trending</Nav.Link></button>
+            <button className="trending-soc"><Nav.Link href="/new"><HiOutlineFire/> New</Nav.Link></button>
+          </div>
+        </div> */}
         
         <div>
-          <div className="SocietyLayout">
+        <div className="SocietyLayout">
 
-            {filteredSocietiesByName.map(society => (
-              <div key={society.id}>
-                <div className="python-card">
-                  <a href="/" className="-soc-l-navigation">
-                    <h1>{society.name}</h1>
-                    <h4>{society.category}</h4>
-                    <div >
-                      <span>
-                        <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
-                        <a href={"/information?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a>
-                      </span>
-                    </div>
-                    {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
-                    {/* <h4>{society.college}</h4>          */}
-                  </a>
-                </div>
+          {filteredSocietiesByName.map(society => (
+            <div key={society.id}>
+              <div className="socs-list-items">
+                <a href="/" className="-soc-l-navigation">
+                  <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
+                  <p>{society.category}</p>                    
+                  <p><b>{society.college}</b></p>         
+                  <div >
+                    <span>
+                      <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
+                      {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a> */}
+                    </span>
+                  </div>
+                  {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
+                </a>
               </div>
+            </div>
 
-            ))}
+          ))}
           </div>
         </div>
-
-
-
-
-
-
-
-
-
       </>
     );
   }
 }
-export default Daily;
+
+
+// MODAL TO CREATE SOCIETY/CLUB
+function QuickOptions() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <div>
+        <div>
+            <button className="trending-soc" onClick={() => setModalShow(true)}>Create</button>
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+        </div>
+    </div>
+  );
+}
+
+// MODEL HANDLE
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+            <CreateASoc/>
+        </Modal.Body>
+      </Modal>
+    );
+  }

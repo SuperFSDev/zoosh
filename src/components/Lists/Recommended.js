@@ -46,7 +46,7 @@ render(){
           <div className="recommended-item"  key={society._id}>
             <p>{society.name}</p>
              <button className="soc-item-list-join-btn" onClick={() => this.addUser('Computer Science')}>Join</button>
-              <a href={"/information?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a>
+              <a href={"/s/?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a>
           </div>  ))}
     <div className="explore-more-link">
 

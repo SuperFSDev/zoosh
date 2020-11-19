@@ -3,6 +3,7 @@ import React from 'react';
 import { RiFacebookCircleFill } from 'react-icons/ri'
 import { SiTwitter, SiInstagram, SiLinkedin } from 'react-icons/si'
 import axios from 'axios';
+import moment from 'moment'
 
 export default class ProfileME extends React.Component {
 
@@ -42,9 +43,10 @@ export default class ProfileME extends React.Component {
                     </div>
                     <div className="user-profile-about">
                         <p>Full Name: <b className="user-details">{this.state.user.fullname}</b></p>
-                        <p>College/University: <b className="user-details">{this.state.user.college}</b></p>
+                        <p>Education: <b className="user-details">{this.state.user.college}</b></p>
                         <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
                         <p>Date of Birth: <b className="user-details">{this.state.user.dob}</b></p>
+                        <p>Joined: <b className="user-details">{moment(this.state.user.time).format("MMM Do, YYYY")}</b></p>
                         <p>Profile Views: <b className="user-details-views">1,900,200</b></p>
                     </div>
                     <div className="user-profile-about-social">

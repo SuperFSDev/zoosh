@@ -1169,7 +1169,8 @@ td, th {
   float: left;
   border-radius: 25px;
   text-align: center;
-  margin-left: 300px;
+  margin-left: 180px;
+  margin-top:7rem;
 }
 
 .containerFeedMiddleForum{
@@ -1180,6 +1181,7 @@ td, th {
   float: left;
   border-radius: 25px;
   text-align: center;
+  margin-top:7rem;
 }
 
 .containerFeedLeftProfileCell{
@@ -1417,6 +1419,7 @@ td, th {
 
 .option-container{
   padding:10px;
+  margin-left: 5px;
 }
 
 .option-container:hover{
@@ -1733,6 +1736,7 @@ padding-left: 4rem;
 /* SEARCH BAR */
 .search-div{
   text-align:center !important;
+  padding-top:100px;
 }
 
 .searchbar{
@@ -1772,6 +1776,27 @@ padding-left: 4rem;
 .submit-soc:hover{
   background:#27444e;
   color: white;
+}
+
+.forum-title:hover{
+  color:blue;
+}
+
+.socs-options-btns{
+  margin:auto!important;
+  text-align:center !important;
+  padding-top:5rem!important;
+}
+.accordion-cs:hover{
+  background: whitesmoke;
+  border-radius: 10px!important;
+}
+
+
+.accordion-cs{
+  border-style:none!important;
+  box-shadow:none!important;
+  text-align: left;
 }
 
 .socs-options-btns{
@@ -2043,12 +2068,31 @@ padding-left: 4rem;
   text-align: left;
 }
 .SocietyLayout {
+  width:50%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
+  margin:auto;
   text-align: center;
 }
 
+.socs-list-items{
+  padding-top:1rem;
+  margin:auto;
+  width: 200px;
+  height:auto;
+  color: black;
+  border-radius: 10px;
+  background:white;
+  margin-top:3rem;
+  padding-bottom:10px;
+  transition:0.2s;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.socs-list-items:hover {
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  transform: translateY(-0.25em);
+}
 /* SEARCHBAR */
 
 *,
@@ -2274,6 +2318,7 @@ padding-left: 4rem;
 
 .information-container{
   align-items: center!important;
+  padding-top:10rem;
 }
 
 .containerInformationMiddle{

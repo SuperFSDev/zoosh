@@ -1,9 +1,5 @@
 import React from 'react';
 import {Tabs, Tab,Image} from 'react-bootstrap'
-import {FaUserFriends} from 'react-icons/fa'
-import {CgAwards} from 'react-icons/cg'
-import {RiTeamLine} from 'react-icons/ri'
-import {BiBook} from 'react-icons/bi'
 import {SiAboutDotMe} from 'react-icons/si'
 import About from './ProfileME'
 import Achievements from './ProfileAchievements'
@@ -12,8 +8,6 @@ import History from './ProfilePostHistory'
 import Team from '../../images/group.png';
 import Book from '../../images/book.png';
 import Badge from '../../images/badge.png';
-import Leaderboard from '../../images/leaderboard.png';
-import Events from '../../images/events.png';
 
 export default function ProfileTabs() {
   return (

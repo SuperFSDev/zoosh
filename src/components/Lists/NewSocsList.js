@@ -2,7 +2,6 @@ import React from 'react';
 import '../../App.css';
 import {Breadcrumb, Nav} from 'react-bootstrap'
 import axios from 'axios';
-import LeaderboardOptions from './Leaderboard-options'
 
   class NewSocsList extends React.Component {
 
@@ -48,7 +47,6 @@ import LeaderboardOptions from './Leaderboard-options'
                     <Breadcrumb.Item active>New</Breadcrumb.Item>            
           </Breadcrumb>
 
-          <LeaderboardOptions/>
 
           <table className="-l-board-t-setup">
             <thead>

@@ -6,6 +6,7 @@ import Contributors from '../Lists/Contributors'
 import PostList from '../Lists/PostList'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
+import InfiniteScroll from '../Common/InfiniteScroll'
 
 class Feed extends React.Component {
 
@@ -19,6 +20,7 @@ render(){
       <div className="containerFeedMiddle">
         <QuickOptions/>
         <PostList/>
+        <InfiniteScroll/>
       </div>
 
       <div className="containerFeedRight">

@@ -1,7 +1,8 @@
-import React from 'react';
-import '../../App.css';
-import { Card, Badge} from 'react-bootstrap';
+import React from "react";
+import { render } from "react-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 import axios from 'axios';
+import { Card, Badge, Tabs,Nav,Image } from 'react-bootstrap';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {FaRegCommentDots} from 'react-icons/fa'
@@ -9,57 +10,61 @@ import CommentReply from '../Posts/CommentReply'
 import PostLinks from '../Posts/PostLinks'
 import {FiThumbsUp,FiThumbsDown} from 'react-icons/fi'
 
+export default class Infinite extends React.Component {
+  state = {
+    items: Array.from({ length: 20 })
+  };
 
-export default class History extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: '',
-      posts:[]
-    };
+  
+componentDidMount() {
+    axios.get('http://localhost:4000/users/getUsers')
+    .then((response)=>{
+        this.setState({users: response.data.users
+                                                  })
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
   }
+  
+    constructor(props) {
+      super(props);
+      this.state = {
+        users: [],
+        posts: [],
+        toggle:false
+      };
+  
+    } 
+  
 
-    componentDidMount() {
-      var user_id = new URLSearchParams(document.location.search).get("id");
-      axios.get('http://localhost:4000/users/get-user-details', {
-        params: {
-          id: user_id
-        }
-      })
-        .then((response) => {
-          this.setState({ user: response.data.user,
-             posts:response.data.user.posts
-          })
-          
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        
-    }
+  fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    setTimeout(() => {
+      this.setState({
+        posts: this.state.posts.concat(Array.from({ length: 5 }))
+      });
+    }, 500);
+  };
 
-  render(){
-    
-
-     return (
-
+  render() {
+  var{users} = this.state;
+  var{posts} = this.state;
+    return (
       <div>
-      <div className="containerFeedLeftProfileCell">
-          <div className="user-profile-about">
-              <h1>Post History</h1>
-              
-          </div>
-         
-      </div>
-             {this.state.posts.reverse().map(post=>  (
-           <div key={this.state.user._id}>  
-             <Card className='userPosts'>
-              
-               <Card.Body>          
+        <InfiniteScroll
+          dataLength={this.state.posts.length}
+          next={this.fetchMoreData}
+          hasMore={true}
+        >
+          {this.state.posts.map((i, post) => (
+            <Card className="feedPost" key={post}>
+              {post.user}
+              <Card.Body>          
                  <div className="-u-prof-stats" id="social-user">
                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                     <span className="username-wrapper"><a href={"/user?id=" +this.state.user._id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                     <span className="username-wrapper"><a href={"/user?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
                      <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
                      {/* <ProfileURL/> */}
@@ -80,17 +85,10 @@ export default class History extends React.Component {
                  </div>
                  </div>
                </Card.Body>  
-               <h1></h1>
-               
-             </Card>
-      
-                  </div>
-                  ))}
-                  
-              
-       </div>
-
-
-  );
-}
+            </Card>
+          ))}
+        </InfiniteScroll>
+      </div>
+    );
+  }
 }

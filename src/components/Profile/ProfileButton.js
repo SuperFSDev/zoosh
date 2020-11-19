@@ -75,16 +75,16 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
           <ListItemText>Hello {fullname}!</ListItemText>
         </StyledMenuItem></Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
           <ListItemText>Following 10</ListItemText>
         </StyledMenuItem> </Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
           <ListItemText>Account Settings</ListItemText>
         </StyledMenuItem></Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/profile"><StyledMenuItem>
+        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
           <ListItemText>Invite a Friend</ListItemText>
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>

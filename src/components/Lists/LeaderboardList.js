@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import {Table, Breadcrumb, Nav, Tab, Col, Row} from 'react-bootstrap'
 import axios from 'axios';
 
   class LeaderboardList extends React.Component {
@@ -42,12 +41,7 @@ import axios from 'axios';
         );
           return (
           <>
-          <Breadcrumb className="breadcrumb">
-                    <Breadcrumb.Item href="\">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Leaderboard</Breadcrumb.Item>
-            </Breadcrumb>
-
-            <div>
+            <div className="leaderboard">
               <h1 className="c-s-header">TOP CLUBS AND SOCIEITIES</h1>
               <table class="container">
               <thead>

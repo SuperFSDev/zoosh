@@ -26,7 +26,9 @@ users.post('/register', (req, res) => {
     const userData = {
         fullname: req.body.fullname,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,        
+        time: req.body.time,
+
     }
 
     //Check if user is already registered
@@ -217,29 +219,34 @@ users.post('/addToSocList', (req, res) => {
 })
 
 
-users.post('/addToFollowList', (req, res) => {
-    // FOLLOW USER
-    UserModel.findByIdAndUpdate(
-        { _id: req.body.user_id, },
-        { $addToSet: { following: req.body.user } },
-        { upsert: true, new: true, runValidators: true },
+users.post('/follow' , (req,res) => {
 
-        function (err, result) {
+    // Add to followers list
+    UserModel.findByIdAndUpdate(req.body.user_id,
+        {
+            $push:{followers:req.user_id}
+        },
+        
+        {
+            new:true
+        },(err,result)=>{
 
-            if (err) {
-                res.send(err)   
-            }
-            else {
-                if(result){
-                    console.log(result);
-                    res.send(result)
-                } else {
-                    res.send("User already being followed.");
-                }
-            }
-
+        if(result){
+            res.send(result)
+        } else{
+             res.send("Already Following");
         }
-    )
+        
+
+    // Add to following list
+    UserModel.findByIdAndUpdate(req.user_id,
+        {
+          $push:{following:req.body.user_id}
+          
+        },{new:true}).then(result=>{
+          res.json(result)
+        })
+    })
 })
 
 // Gets one users societies
