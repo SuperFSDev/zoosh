@@ -170,8 +170,10 @@ users.post('/edit-user-profile', (req, res) => {
 users.post('/addPost', (req, res) => {
 
     UserModel.findByIdAndUpdate(
-        { _id: req.body.user_id, },
-        { $addToSet: { posts: req.body.post } },
+        
+  { _id: req.body.user_id},
+  { score : req.body.score,
+         $addToSet: { posts: req.body.post } },
         { upsert: true, new: true, runValidators: true },
         //console.log('here now.' + req.body.post),
         function (err, result) {

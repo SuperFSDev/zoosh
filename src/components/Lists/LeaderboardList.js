@@ -56,7 +56,7 @@ import axios from 'axios';
                 {societies.sort((a,b)=> b.score - a.score).map(society=>  (
                   <tr>
                     <td>{i+=1}</td>
-                    <td><a href="/profile">{society.name}</a></td>
+                    <td><a  href={"/s?id="+society._id}>{society.name}</a></td>
                     <td>{society.college}</td>
                     <td>{society.score}</td>
                   </tr>
@@ -72,7 +72,7 @@ import axios from 'axios';
                               <div className="contributor-item-community">
                               {societies.map(society=>  (
                                 <tr>
-                                  <p><b>1</b><a className="-contributor-user" href="/profile">{society.name}</a><b  className="-contributor-user-score">123</b></p><hr/>
+                                  <p><b>1</b><a className="-contributor-user" href={"/s?id="+society._id}>{society.name}</a><b  className="-contributor-user-score">123</b></p><hr/>
                                   </tr>))}  
                               </div>
                         </div>

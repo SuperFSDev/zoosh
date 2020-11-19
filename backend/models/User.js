@@ -12,6 +12,7 @@ const UserSchema = new Schema({
     bio: String,
     time:Date,
     pic: { data: Buffer, contentType: String },
+    score:{type:Number , "default":0},
     societies: {type: Array, "default" : []},
     posts: {type: Array, "default" : []},
     followers:{type: Array, "default" : []},

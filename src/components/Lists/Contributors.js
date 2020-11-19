@@ -25,20 +25,21 @@ class Contributors extends React.Component {
   render(){
 
     var{users} = this.state;
+    let i = 0;
 
     return (
         <div className="contributors-container">
             <h2 className="-top-cont-header">Top Contributors</h2>
+            {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                 <div className="contributor-item">
-                    <p><b>1</b><a className="-contributor-user" href="/profile">Aaron Moran</a><b  className="-contributor-user-score">123</b></p><hr/>
-                    <p><b>2</b><a className="-contributor-user"  href="/profile">John Doe</a><b  className="-contributor-user-score">123</b></p><hr/>
-                    <p><b>3</b><a className="-contributor-user"  href="/profile">Conor Shortt</a><b  className="-contributor-user-score">123</b></p><hr/>
-                    <p><b>4</b><a className="-contributor-user"  href="/profile">Mary Jane</a><b  className="-contributor-user-score">123</b></p><hr/>
-                    <p><b>5</b><a className="-contributor-user"  href="/profile">Thomas Kenny</a><b  className="-contributor-user-score">123</b></p><hr/>
-                    <a href="#">See More</a>
-
-                </div>
+               
+            <p><b>{i+=1}</b><a className="-contributor-user" href={"/profile?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
+                    
+                 
         </div>
+           ))}    
+           <a href="#">See More</a>
+           </div>
   );
   }
 }

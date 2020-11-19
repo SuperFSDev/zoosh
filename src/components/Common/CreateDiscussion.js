@@ -6,7 +6,29 @@ import Select from 'react-select';
 
 
 class LayoutTextFeilds extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      score:50,
+      users: [],
+      posts: [],
+      user: '',
+      UniqueUser:'',
+      post: '',
+      time: new Date().getTime(),
+      category: '',
+      tags:[]
+      
+    };
 
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeUser= this.onChangeUser.bind(this);
+    this.onChangePost = this.onChangePost.bind(this);
+    this.onChangeTime = this.onChangeTime.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+    this.onChangeTag = this.onChangeTag.bind(this);
+  }
   
   async componentDidMount() {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -33,36 +55,19 @@ class LayoutTextFeilds extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({ user: response.data.user });
+        this.setState({ UniqueUser: response.data.user });
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      users: [],
-      posts: [],
-      user: '',
-      post: '',
-      time: new Date().getTime(),
-      category: '',
-      tags:[]
-      
-    };
+
 
     
 
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeUser= this.onChangeUser.bind(this);
-    this.onChangePost = this.onChangePost.bind(this);
-    this.onChangeTime = this.onChangeTime.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeTag = this.onChangeTag.bind(this);
 
-  } 
+
+  
 
 
   onChangeUser(e) {
@@ -96,6 +101,7 @@ class LayoutTextFeilds extends React.Component {
 
     const newPost = {
       user_id: this.state.id,
+      score:this.state.UniqueUser.score+50,
       post:{ 
         user_id:this.state.id,
         user: this.state.user,
@@ -115,12 +121,13 @@ class LayoutTextFeilds extends React.Component {
         
     this.setState({
       user: '',
+      score:+50,
       post: '',
       time: new Date().getTime(),
       category: '',
       tags:[]
     });
-    
+    alert(JSON.stringify(newPost));
     window.location = '/feed';
     }
 
@@ -137,6 +144,7 @@ class LayoutTextFeilds extends React.Component {
   return ( 
     <div className="create-a-post">
       <div>
+  
       <Form onSubmit={this.onSubmit} className="post-container">
 
         <TextField
