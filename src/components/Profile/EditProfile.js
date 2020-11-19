@@ -18,6 +18,8 @@ export default class EditProfile extends React.Component {
       // Original user details stored in user variable.
       user: '',
       // Edit details
+      profilePic: '',
+      picSrc: '',
       fullname: '',
       bio: '',
       college: '',
@@ -36,6 +38,7 @@ export default class EditProfile extends React.Component {
     this.onChangeDob = this.onChangeDob.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRetype = this.onChangeRetype.bind(this);
+    this.onChangePicture = this.onChangePicture.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -95,6 +98,20 @@ export default class EditProfile extends React.Component {
       retype: e.target.value
     });
   }
+  async onChangePicture(e) {
+    var pic = e.target.files[0];
+    var src = URL.createObjectURL(pic);
+
+    //alert(src);
+    //alert(pic);    
+    var b64 = await this.imageToB64(src);
+    alert(b64);
+
+    this.setState({
+      profilePic: b64,
+      picSrc: src
+    });
+  }
 
   onSubmit(e) {
 
@@ -114,6 +131,7 @@ export default class EditProfile extends React.Component {
 
     const updateUser = {
       user_id: this.state.id,
+      pic: this.state.profilePic,
       fullname: fullname,
       bio: bio,
       college: college,
@@ -166,6 +184,41 @@ export default class EditProfile extends React.Component {
     return x;
   }
 
+  picPreview() {
+    if(this.state.picSrc) {
+      return (
+        <img src={this.state.picSrc}/>
+      );
+    } else {
+      return (
+        <p>
+          No Preview
+        </p>
+      );
+    }
+  }
+
+  imageToB64(imgUrl) {
+    return new Promise(resolve =>{   
+      var img = new Image();
+      img.crossOrigin = 'Anonymous';
+
+      img.onload = function() {
+        var canvas = document.createElement('canvas'),
+          ctx = canvas.getContext('2d');
+      
+        canvas.height = img.naturalHeight / 4;
+        canvas.width = img.naturalWidth / 4;
+        ctx.drawImage(img, 0, 0);
+
+        var uri = canvas.toDataURL('image/png'),
+          b64 = uri.replace(/^data:image.+;base64,/, '');
+        resolve(b64);
+      };
+      img.src = imgUrl;
+    })
+  }
+
 
   render() {
     return (
@@ -175,6 +228,12 @@ export default class EditProfile extends React.Component {
           <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
           <DialogContent>
             <Form className="edit-profile-form" onSubmit={this.onSubmit}>
+              <Form.Group controlId="profilePic">
+                <Form.Label>Update Profile Picture</Form.Label>
+                <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
               <Form.Group controlId="formName">
                 <Form.Label>Change Name</Form.Label>
                 <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
@@ -229,4 +288,78 @@ export default class EditProfile extends React.Component {
       </div>
     );
   }
+
+  /*constructor(props) {
+    super(props);
+
+    this.state = {
+      picture: false,
+      src: false
+    }
+  }
+
+  handlePictureSelected(event) {
+    var picture = event.target.files[0];
+    var src     = URL.createObjectURL(picture);
+
+    this.setState({
+      picture: picture,
+      src: src
+    });
+  }
+
+  renderPreview() {
+    if(this.state.src) {
+      return (
+        <img src={this.state.src}/>
+      );
+    } else {
+      return (
+        <p>
+          No Preview
+        </p>
+      );
+    }
+  }
+
+  upload() {
+    var formData = new FormData();
+
+    formData.append("file", this.state.picture);
+
+    $.ajax({
+      url: "/some/api/endpoint",
+      method: "POST",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(response) {
+        // Code to handle a succesful upload
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h5>Picture Uploader</h5>
+
+        <input
+          type="file"
+          onChange={this.handlePictureSelected.bind(this)}
+        />
+        <br/>
+        <div>
+        {this.renderPreview()}
+        </div>
+        <hr/>
+        <button
+          onClick={this.upload.bind(this)}
+        >
+          Upload
+        </button>
+      </div>
+    );
+  }*/
 }

@@ -10,6 +10,7 @@ const UserSchema = new Schema({
     course: String,
     dob: String,
     bio: String,
+    pic: { data: Buffer, contentType: String },
     societies: {type: Array, "default" : []},
     posts: {type: Array, "default" : []},
     followers: {type: Array, "default" : []},
