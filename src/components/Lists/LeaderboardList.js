@@ -33,6 +33,7 @@ import axios from 'axios';
    
   
       render(){
+        let i = 0;
         let societies = this.state.societies.filter(
           (society)=>{
             return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
@@ -58,9 +59,9 @@ import axios from 'axios';
                 </tr>
               </thead>
               <tbody>
-                {societies.map(society=>  (
+                {societies.sort((a,b)=> b.score - a.score).map(society=>  (
                   <tr>
-                    <td>{society.id}</td>
+                    <td>{i+=1}</td>
                     <td><a href="/profile">{society.name}</a></td>
                     <td>{society.college}</td>
                     <td>{society.score}</td>
