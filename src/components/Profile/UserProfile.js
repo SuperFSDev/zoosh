@@ -12,6 +12,7 @@ import History from './ProfilePostHistory'
 import Team from '../../images/group.png';
 import Book from '../../images/book.png';
 import Badge from '../../images/badge.png';
+import addUserToFollow from './AddUserToFollow'
 
 export default class UserProfile extends React.Component {
 
@@ -39,10 +40,10 @@ export default class UserProfile extends React.Component {
         });
       }
     
-    // followUser(user){
-    //   addUserToFollow(user);
-    //   console.info("Followed User")
-    //   }
+    followUser(user){
+      addUserToFollow(user);
+      console.info("Followed User")
+    }
 
   render(){
      return (
@@ -58,7 +59,7 @@ export default class UserProfile extends React.Component {
             <p> {this.state.user.fullname}</p>
           </div> 
           <div>
-            <FollowButton/>
+            <button className="follow-btn" onClick={() => this.followUser(this.state.user)}>Follow</button>
         </div>
         </div>
         <ProfileTabs/>

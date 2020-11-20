@@ -236,36 +236,54 @@ users.post('/addToSocList', (req, res) => {
     )
 })
 
+users.post('/addToFollowingList', (req, res) => {
+    
+    UserModel.findByIdAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { following: req.body.acc} },
+        { upsert: true, new: true, runValidators: true },
 
-users.post('/follow' , (req,res) => {
+        function (err, result) {
+            if (err) {
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("User already following.");
+                }
+            }
 
-    // Add to followers list
-    UserModel.findByIdAndUpdate(req.body.user_id,
-        {
-            $push:{followers:req.user_id}
-        },
-        
-        {
-            new:true
-        },(err,result)=>{
-
-        if(result){
-            res.send(result)
-        } else{
-             res.send("Already Following");
         }
-        
-
-    // Add to following list
-    UserModel.findByIdAndUpdate(req.user_id,
-        {
-          $push:{following:req.body.user_id}
-          
-        },{new:true}).then(result=>{
-          res.json(result)
-        })
-    })
+    )
 })
+
+users.post('/updateFollowers', (req, res) => {
+    
+    UserModel.findOneAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { followers: req.body.user } },
+        { upsert: true, new: true, runValidators: true },
+        
+        function (err, result) {
+            if (err) {
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    res.send(result)
+                } else {
+                    res.send("User already followed");
+                }
+            }
+
+        }
+    )
+})
+
+
 
 // Gets one users societies
 users.get('/getUserSocieties', (req, res) => {
