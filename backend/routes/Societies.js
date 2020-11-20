@@ -64,7 +64,7 @@ societies.get('/getSocieties', (req, res) => {
 
     SocietyModel.find((error, data) => {
         res.json({ societies: data });
-        console.log(data);
+        //console.log(data);
     })
 
 })

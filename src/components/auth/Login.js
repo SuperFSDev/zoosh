@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import '../../App.css';
 import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,6 +18,7 @@ const loginUser = async user => {
       fullname: user.fullname,
       email: user.email,
       password: user.password,
+      platform: user.platform,
       societies: user.societies
     });
     if (response.data.error) {
@@ -37,12 +38,18 @@ class Login extends React.Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      platform: ''
     }
 
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onLogin = this.onLogin.bind(this);
+  }
+
+  // Set user platform once page loads.
+  componentDidMount() {
+    this.setState({platform: window.navigator.platform});
   }
 
   //handle input of the email box
@@ -64,13 +71,15 @@ class Login extends React.Component {
     e.preventDefault();
 
     //object to pass into login method
-    const User = {
+    const userDetails = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      platform: this.state.platform
     }
+
     //pass in user object to login and if the response
     //passes validation in method, push user to home page
-    loginUser(User).then(response => {
+    loginUser(userDetails).then(response => {
       if (response) {
         window.location = '/';
       }

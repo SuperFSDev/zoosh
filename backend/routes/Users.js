@@ -72,28 +72,44 @@ users.post('/login', (req, res) => {
     })
     .then(user => {
         if(user){
-            //using the compareSync function from bcrypt
-            //compare entered password with a stored hash in the database
-            //if it mathches assign the user to a payload
-            if(bcrypt.compareSync(req.body.password, user.password)){
-                const payload = {
-                    _id: user.id,
-                    fullname: user.fullname,
-                    email: user.email,
-                    societies: user.societies
-                }
-                //associate a key to a payload (user in this case)
-                //and send this token if login details are correct
-                //else return an error
-                let token = jwt.sign(payload, process.env.SECRET_KEY, {
-                    expiresIn: 1440
-                })
-                //console.log(token);
-                res.send(payload);
+            // Only use bcrypt if user is using windows, else compare passwords regularly.
+            var useBcrypt = req.body.platform.includes("Linux") ? false : true;
 
-                //console.log("User " + user.fullname + " has been logged in!")
-            }else{
-                res.json({error: "Invalid login details"})
+            console.log(useBcrypt);
+
+            if(!useBcrypt) {
+                if(req.body.password === user.password){
+                    const payload = {
+                        _id: user.id,
+                        fullname: user.fullname,
+                        email: user.email,
+                        societies: user.societies
+                    }
+                    console.log(payload);
+                    res.send(payload);
+
+                    console.log("User " + user.fullname + " has been logged in!")
+                }else{
+                    console.log("Invalid login details");
+                    res.json({error: "Invalid login details"})
+                }
+            }
+            else {
+                if(bcrypt.compareSync(req.body.password, user.password)){
+                    const payload = {
+                        _id: user.id,
+                        fullname: user.fullname,
+                        email: user.email,
+                        societies: user.societies
+                    }
+                    console.log(payload);
+
+                    res.send(payload);
+
+                    console.log("User " + user.fullname + " has been logged in!")
+                } else {
+                    res.json({error: "Invalid login details"})
+                }
             }
         }else{
             res.send({error: 'Invalid login details'})
