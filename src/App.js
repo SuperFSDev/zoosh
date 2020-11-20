@@ -21,6 +21,7 @@ import Forums from './components/Pages/Forum'
 import Events from './components/Pages/Events'
 import InfoPage from './components/Pages/InfoPage'
 import NavBar from './components/Navbar'
+import CommunityPage from './components/Pages/CommunityPage'
 
 class App extends React.Component {
   render(){
@@ -38,10 +39,10 @@ class App extends React.Component {
               <Route path="/new" component={NewSocs}/>
               <Route path="/f" component={ForumPost}/>
               <Route path="/l" component={Leaderboard}/>
-              <Route path="/s" component={InfoPage}/>
+              {/* <Route path="/s" component={InfoPage}/> */}
               <Route path="/me" component={Profile}/>
               <Route path="/u" component={ViewProfile}/>
-
+              <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/forum" component={Forums}/>
 

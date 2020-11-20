@@ -16,6 +16,7 @@ class CreateASoc extends React.Component {
             college: '',
             category: '',
             address: '',
+            description: '',
             private: false
         };
 
@@ -23,6 +24,7 @@ class CreateASoc extends React.Component {
         this.onChangeCollege = this.onChangeCollege.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -47,6 +49,12 @@ class CreateASoc extends React.Component {
             address: e.target.value
         });
     }
+
+    onChangeDescription(e) {
+        this.setState({
+            description: e.target.value
+        });
+    }
     onChangePrivate(e) {
         this.setState({
             private: e.target.value
@@ -62,6 +70,7 @@ class CreateASoc extends React.Component {
             college: this.state.college,
             category: this.state.category,
             address: this.state.address,
+            description: this.state.description,
             private: this.state.private
         };
 
@@ -89,6 +98,7 @@ class CreateASoc extends React.Component {
             college: '',
             category: '',
             address: '',
+            description: '',
             private: false
         });
     }
@@ -111,6 +121,10 @@ class CreateASoc extends React.Component {
 
                     <Form.Group controlId="formGridAddress">
                         <TextField placeholder="Enter Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" label="Address" variant="outlined" />
+                    </Form.Group>
+
+                    <Form.Group controlId="formGridDescription">
+                        <input type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} name="desc" placeholder="Description" maxLength={60}/>
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">

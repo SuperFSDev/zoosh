@@ -7,6 +7,7 @@ const SocietySchema = new Schema({
     college: String,
     category: String,
     address: String,
+    description: String,
     private: Boolean,
     users: {type: Array, "default" : []}
 })

@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import ProfileTabs from './ProfileTabs'
-import addUserToFollow from '../Profile/AddUserToFollow';
+import addUserToFollow from './AddUserToFollow';
 import {useParams} from 'react-router-dom'
 // import FollowButton from '../Common/FollowButton'
 

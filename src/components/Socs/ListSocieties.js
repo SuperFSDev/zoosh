@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../App.css';
-import { Nav, Modal } from 'react-bootstrap';
+import {Modal } from 'react-bootstrap';
 import axios from 'axios';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import AddUserToSoc from '../Socs/AddUserToSoc'
 import CreateASoc from './CreateASoc'
 
@@ -102,7 +101,8 @@ export default class Daily extends React.Component {
                 <a href="/" className="-soc-l-navigation">
                   <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
                   <p>{society.category}</p>                    
-                  <p><b>{society.college}</b></p>         
+                  <p><b>{society.college}</b></p>     
+                  <p maxLength={10}>{society.description}</p>     
                   <div >
                     <span>
                       <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
@@ -151,6 +151,7 @@ function MyVerticallyCenteredModal(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
+          <h3>Create</h3>
         </Modal.Header>
         <Modal.Body>
             <CreateASoc/>

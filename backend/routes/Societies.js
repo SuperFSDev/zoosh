@@ -26,6 +26,7 @@ societies.post('/create', (req, res) => {
         college: req.body.college,
         category: req.body.category,
         address: req.body.address,
+        description: req.body.description,
         private: req.body.private
     }
 

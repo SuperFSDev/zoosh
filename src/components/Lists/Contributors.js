@@ -33,7 +33,7 @@ class Contributors extends React.Component {
             {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                 <div className="contributor-item">
                
-            <p><b>{i+=1}</b><a className="-contributor-user" href={"/profile?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
+            <p><b>{i+=1}</b><a className="-contributor-user" href={"/u/?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
                     
                  
         </div>

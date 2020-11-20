@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <div>
       <div id="top"></div>
-      <Navbar className="navbar">
+      <Navbar className="navbar" fixed="top">
         <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
         <Nav className="mr-auto">
         {/* <a className="links" href="/"><BiHomeSmile className="-i-vector-img"/> Home</a> */}

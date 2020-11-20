@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import Discussion from '../Common/StartDiscussion'
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import DiscussionList from '../Lists/DiscussionList'
@@ -9,6 +8,11 @@ import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
 
 class Forum extends React.Component {
+
+  componentDidMount() {
+    document.body.style.backgroundColor = "#FCFCFC"
+  }
+
 
 render(){
   return (
@@ -19,7 +23,6 @@ render(){
 
       <div className="containerFeedMiddle">
         <QuickOptions/>
-        {/* <Discussion/> */}
         <DiscussionList/>
       </div>
 

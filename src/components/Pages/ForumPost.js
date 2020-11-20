@@ -7,6 +7,11 @@ import axios from 'axios';
 
 export default class ForumPost extends React.Component {
 
+  componentDidMount() {
+    document.body.style.backgroundColor = "#FCFCFC"
+  }
+
+
   constructor(props) {
     super(props);
     this.state = {
