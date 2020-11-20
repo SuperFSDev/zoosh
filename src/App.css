@@ -1175,12 +1175,75 @@ td, th {
   float: left;
   border-radius: 25px;
   text-align: center;
-  margin-top:10rem;
   margin-left: 11rem;
 }
 
 .containerFeedMiddleCommunity{
-  width: 50%;
+  width: 60%;
+  height: 10rem;
+  outline: none !important;
+  border-radius: 25px;
+  margin-top:10rem;
+  margin-left: 30rem;
+}
+
+.containerAccountSettingsMiddle{
+  width: 10%;
+  height: 10rem;
+  outline: none !important;
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+  margin-top:7rem;
+  margin-left: 30rem;
+}
+
+.containerAccountSettingsRight{
+  width: 1%;
+  height: 10rem;
+  outline: none !important;
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+  margin-top:7rem;
+  margin-left: 5rem;
+}
+
+.settings-btn-save{
+  width:150px;
+  height:50px;
+  border-radius: 25px;
+  border:1px solid black;
+  background:black;
+  color:white;
+}
+
+.settings-btn-save:hover{
+  background:white;
+  color:black;
+}
+
+.settings-btn-cancel{
+  margin:10px;
+  width:150px;
+  height:50px;
+  border-radius: 25px;
+  border:1px solid black;
+  background:black;
+  color:white;
+}
+
+.settings-btn-cancel:hover{
+  background:white;
+  color:black;
+}
+
+.settings-welcome{
+  width:200px;
+}
+
+.containerFeedRightCommunity{
+  width: 1%;
   height: 10rem;
   outline: none !important;
   float: left;
@@ -1474,7 +1537,15 @@ td, th {
   height:auto;
   border-radius: 5px;
   float: left;
+}
 
+.settings-options-item{
+  width:200px;
+  padding:10px;
+  height:auto;
+  border-radius: 5px;
+  text-align: left!important;
+  margin-left:1rem;
 }
 
 .-top-cont-header-leaderboard{
@@ -1989,6 +2060,8 @@ padding-left: 4rem;
 .edit-profile-form{
   width:500px;
   height:auto;
+  text-align: left;
+  margin-top:2rem;
 }
 
 .edit-profile-btn{

@@ -42,8 +42,10 @@ const StyledMenuItem = withStyles((theme) => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   var user = JSON.parse(localStorage.getItem('user'));
+
   if(user)
     var fullname = user.fullname;
+    var score = user.score;
   
 
   const handleClick = (event) => {
@@ -64,7 +66,7 @@ export default function CustomizedMenus() {
       <div id="#battleBox">
         <Nav.Link className="l-prof-btn-default" onClick={handleClick}>
             <Avatar src={Img} className="profile-btn-wrapper-left"/>
-            <b className="user-score-prof-btn">1,231</b>
+            <b className="user-score-prof-btn">1,200</b>
         </Nav.Link>
       </div>
       
@@ -81,7 +83,7 @@ export default function CustomizedMenus() {
         <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
           <ListItemText>Following 10</ListItemText>
         </StyledMenuItem> </Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
+        <Nav.Link className="profile-dropdown-option" href="/settings"><StyledMenuItem>
           <ListItemText>Account Settings</ListItemText>
         </StyledMenuItem></Nav.Link>
         <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>

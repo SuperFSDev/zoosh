@@ -3,10 +3,18 @@ import {Tabs, Tab,Image} from 'react-bootstrap'
 import Events from '../../images/events.png';
 import Team from '../../images/group.png';
 import Badge from '../../images/badge.png';
-import {VscFeedback} from 'react-icons/vsc'
 import Leaderboard from '../../images/leaderboard.png';
+import {VscFeedback} from 'react-icons/vsc'
 
-export default function CommunityTabs() {
+export default class CommunityTabs extends React.Component{
+    render(){
+        return(
+            <OptionTabs/>
+        );
+    }
+}
+
+function OptionTabs() {
   return (
     <div className="-profile-tabs">
     <Tabs  defaultActiveKey="me" id="uncontrolled-tab-example">
@@ -14,7 +22,7 @@ export default function CommunityTabs() {
             
         </Tab>
         <Tab className="profile-tab-items" eventKey="event" title={<Image src={Events}/>}>
-            
+
         </Tab>
         <Tab className="profile-tab-items" eventKey="profile" title={<Image src={Team}/>}>
             
