@@ -47,6 +47,7 @@ export default class ProfileME extends React.Component {
                         <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
                         <p>Date of Birth: <b className="user-details">{this.state.user.dob}</b></p>
                         <p>Joined: <b className="user-details">{moment(this.state.user.time).format("MMM D, YYYY")}</b></p>
+                        <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
                         <p>Profile Views: <b className="user-details-views">1,900,200</b></p>
                     </div>
                     <div className="user-profile-about-social">

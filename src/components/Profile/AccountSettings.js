@@ -1,15 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Nav, Form } from 'react-bootstrap';
-import { BiEdit } from 'react-icons/bi'
+import '../../App.css';
+import {Image, Form} from 'react-bootstrap'
 import axios from 'axios';
-import { HashPassword, ComparePassword } from '../auth/HashPassword';
 
-export default class EditProfile extends React.Component {
+export default class AccountSettings extends React.Component {
 
+    
   constructor(props) {
     super(props);
     this.state = {
@@ -219,78 +215,90 @@ export default class EditProfile extends React.Component {
   }
 
 
-  render() {
-    return (
-      <div>
-        <a href="/settings"><button className="edit-profile-btn"><BiEdit size={25} /></button></a>
+    render(){
+      return (
+        <div>
+            <div className="containerAccountSettingsMiddle">
+              <h1><p><ProfileUsername/></p></h1>
+                <div className="settings-options-item">
+                    <a href="/settings/profile" className="feed-option-redirects"><div className="option-container">
+                        Profile
+                    </div></a>
+                    <a href="/settings/account" className="feed-option-redirects"><div className="option-container">
+                        Account
+                    </div></a>
+                    <a href="/settings/notifications" className="feed-option-redirects"><div className="option-container">
+                        Notifications
+                    </div></a>
+                </div>
+            </div>
 
-        {/* <button className="edit-profile-btn" onClick={this.handleClickOpen}><BiEdit size={25} /></button> */}
-        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
-          <DialogContent>
-            <Form className="edit-profile-form" onSubmit={this.onSubmit}>
-              <Form.Group controlId="profilePic">
-                <Form.Label>Update Profile Picture</Form.Label>
-                <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formName">
-                <Form.Label>Change Name</Form.Label>
-                <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formBio">
-                <Form.Label>Change Bio</Form.Label>
-                <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formCollege">
-                <Form.Label>Change College</Form.Label>
-                <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formCourse">
-                <Form.Label>Change College Course</Form.Label>
-                <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formDob">
-                <Form.Label>Change Date of Birth</Form.Label>
-                <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formNewPassword">
-                <Form.Label>Change Password</Form.Label>
-                <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formConformPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Button variant="secondary" type="submit" >
-                Save changes
-              </Button>
-              <Button variant="primary" type="submit" >
-                Cancel
-              </Button>
-            </Form>
-          </DialogContent>
-        </Dialog>
-      </div>
-    );
-  }
+            <div className="containerAccountSettingsRight">
+                <div>
+                    <Form className="edit-profile-form" onSubmit={this.onSubmit}>
+                        <Form.Group controlId="profilePic">
+                            <Form.Label>Update Profile Picture</Form.Label>
+                            <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formName">
+                            <Form.Label>Change Name</Form.Label>
+                            <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formBio">
+                            <Form.Label>Change Bio</Form.Label>
+                            <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formCollege">
+                            <Form.Label>Change College</Form.Label>
+                            <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formCourse">
+                            <Form.Label>Change College Course</Form.Label>
+                            <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formDob">
+                            <Form.Label>Change Date of Birth</Form.Label>
+                            <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formNewPassword">
+                            <Form.Label>Change Password</Form.Label>
+                            <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="formConformPassword">
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype}/>
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
+                        <button className="settings-btn-save" variant="secondary" type="submit" >
+                            Save changes
+                        </button>
+                        <button className="settings-btn-cancel" variant="primary" type="submit" >
+                            Cancel
+                        </button>
+                        </Form>
+                </div>
+              
+            </div>
+        </div>
+        );
+    } 
 
-  /*constructor(props) {
+     /*constructor(props) {
     super(props);
 
     this.state = {
@@ -364,3 +372,18 @@ export default class EditProfile extends React.Component {
     );
   }*/
 }
+
+function ProfileUsername() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user)
+      var fullname = user.fullname;
+    var id = user._id;
+    var societies = user.societies;
+  
+    return (
+      <div id="social">
+        <h4 className="settings-welcome">Hello, {fullname}.</h4>
+        {/* {id} */}
+      </div>
+    );
+  }

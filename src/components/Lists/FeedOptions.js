@@ -9,14 +9,54 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
-export default function FeedOptions() {
+export default class Options extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        id: '',
+        user: ''
+    };
+}
+
+componentDidMount() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: user._id });
+
+    axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+            id: user._id
+        }
+    })
+        .then((response) => {
+            this.setState({ user: response.data.user })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+}
+
+render() {
+
+    return (
+        <div>
+           <FeedOptions/>
+        </div>
+    );
+
+}
+}
+
+function FeedOptions() {
     
     var user = JSON.parse(localStorage.getItem('user'));
     if(user) 
     {
         var fullname = user.fullname;
         var id = user._id;
+        var score = user.score;
         var societies = user.societies;
     }
 
@@ -24,7 +64,7 @@ export default function FeedOptions() {
         <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/profile" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <h3>{fullname} <b className="user-score">1,231</b></h3>
+                        <h3>{fullname} <b className="user-score">1,200</b></h3>
                     </div></a><br/>
                     <a href="/" className="feed-option-redirects"><div className="option-container">
                         <Image src={Home}/> Home
@@ -35,12 +75,6 @@ export default function FeedOptions() {
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
                         <Image src={Events}/> Events
                     </div></a>
-                    {/* <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <RiHeadphoneFill className="-i-vector-img"/> Podcasts
-                    </div></a> */}
-                    {/* <a href="/list-of-clubs-and-societies" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Team}/> Clubs and Societies
-                    </div></a> */}
                      <div>
                         <FeedAccordion/>
                     </div>

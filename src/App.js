@@ -22,6 +22,7 @@ import Events from './components/Pages/Events'
 import InfoPage from './components/Pages/InfoPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/CommunityPage'
+import AccountSettings from './components/Profile/AccountSettings'
 
 class App extends React.Component {
   render(){
@@ -36,6 +37,8 @@ class App extends React.Component {
               <Route path="/create-a-society" component={CreateSociety}/>
               <Route path="/join-a-club-or-society" component={JoinSocs}/>
               <Route path="/trending" component={Trending}/>
+              <Route path="/settings" component={AccountSettings}/>
+              <Route path="/settings/profile" component={AccountSettings}/>
               <Route path="/new" component={NewSocs}/>
               <Route path="/f" component={ForumPost}/>
               <Route path="/l" component={Leaderboard}/>
