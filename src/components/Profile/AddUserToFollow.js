@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default async function addUserToFollow(user) {
+export default function addUserToFollow(user) {
 
     var getUser = JSON.parse(localStorage.getItem('user'))
 
@@ -10,12 +10,14 @@ export default async function addUserToFollow(user) {
     }
 
     const followUser = {
-        id: user._id,
-        _id: getUser,
+        user_id: user._id,
+        user:{
+        followingUser: getUser
+        }
     }
 
     // Adds user to following array in user model.
-    await axios.post('http://localhost:4000/users/addToFollowingList',myUser)
+   axios.post('http://localhost:4000/users/addToFollowingList',myUser)
         //add to following array
         .then(function (resp) {
             console.log(resp);
@@ -26,11 +28,11 @@ export default async function addUserToFollow(user) {
 
 
     // Adds user to followers array in users model.
-    await axios.post('http://localhost:4000/users/updateFollowers',followUser)
+   axios.post('http://localhost:4000/users/updateFollowers',followUser)
         .then(function (resp) {
             console.log(resp);
             console.log(followUser);
-            alert("Followed " + user);
+            alert(JSON.stringify(followUser));
         })
         .catch(function (error) {
             console.log(error);
