@@ -237,13 +237,14 @@ users.post('/addToSocList', (req, res) => {
 })
 
 users.post('/addToFollowingList', (req, res) => {
-    
-    UserModel.findByIdAndUpdate(
+    //COMPLETE - FULLY FUNCTIONAL
+    UserModel.findOneAndUpdate(
         { _id: req.body.user_id, },
-        { $addToSet: { following: req.body.acc} },
+        { $addToSet: { following: req.body.user} },
         { upsert: true, new: true, runValidators: true },
 
         function (err, result) {
+            console.log(result);
             if (err) {
                 res.send(err)   
             }
@@ -260,22 +261,26 @@ users.post('/addToFollowingList', (req, res) => {
     )
 })
 
+
+
 users.post('/updateFollowers', (req, res) => {
     
-    UserModel.findOneAndUpdate(
+    UserModel.findByIdAndUpdate(
         { _id: req.body.user_id, },
         { $addToSet: { followers: req.body.user } },
         { upsert: true, new: true, runValidators: true },
-        
+
         function (err, result) {
+
             if (err) {
                 res.send(err)   
             }
             else {
                 if(result){
+                    
                     res.send(result)
                 } else {
-                    res.send("User already followed");
+                    res.send("User already exists");
                 }
             }
 
