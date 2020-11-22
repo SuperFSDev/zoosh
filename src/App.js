@@ -23,6 +23,7 @@ import InfoPage from './components/Pages/InfoPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
+import ForumExplore from './components/Pages/ForumExplore';
 
 class App extends React.Component {
   render(){
@@ -48,7 +49,7 @@ class App extends React.Component {
               <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/forum" component={Forums}/>
-
+              <Route path="/explore" component={ForumExplore}/>
               <Route path="/" component={Feed}/>
 
             </Switch>

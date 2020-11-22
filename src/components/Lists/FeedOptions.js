@@ -9,6 +9,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import {RiHeadphoneFill} from 'react-icons/ri'
 import axios from 'axios';
 
 export default class Options extends React.Component {
@@ -70,7 +71,7 @@ function FeedOptions() {
                         <Image src={Home}/> Home
                     </div></a>
                     <a href="/forum" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Forum}/> Forum
+                        <Image src={Forum}/> Forums
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
                         <Image src={Events}/> Events
@@ -78,6 +79,9 @@ function FeedOptions() {
                      <div>
                         <FeedAccordion/>
                     </div>
+                    {/* <a href="/events" className="feed-option-redirects"><div className="option-container">
+                        <RiHeadphoneFill size={30}/> Podcasts
+                    </div></a> */}
                     <a href="/l" className="feed-option-redirects"><div className="option-container">
                         <Image src={Leaderboard}/> Leaderboard
                     </div></a>

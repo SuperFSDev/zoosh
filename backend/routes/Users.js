@@ -288,6 +288,32 @@ users.post('/updateFollowers', (req, res) => {
     )
 })
 
+// FOLLOW A FORUM
+users.post('/addToForumList', (req, res) => {
+    
+    UserModel.findByIdAndUpdate(
+        { _id: req.body.user_id, },
+        { $addToSet: { forums: req.body.forum } },
+        { upsert: true, new: true, runValidators: true },
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already following forum");
+                }
+            }
+
+        }
+    )
+})
+
 
 
 // Gets one users societies

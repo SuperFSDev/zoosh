@@ -15,6 +15,7 @@ const UserSchema = new Schema({
     score:{type:Number , "default":0},
     societies: {type: Array, "default" : []},
     posts: {type: Array, "default" : []},
+    forums:{type: Array, "default" : []},
     followers:{type: Array, "default" : []},
     following:{type: Array, "default" : []},
 })

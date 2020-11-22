@@ -46,5 +46,9 @@ app.use('/discussions', Discussions)
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);
 
+// Adds the "Societies" route to the server.
+var Forums = require('./routes/Forums');
+app.use('/forums', Forums);
+
 //log connection to server
 app.listen(port, () => console.log("Server is up on port " + port));

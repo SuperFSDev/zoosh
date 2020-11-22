@@ -20,6 +20,7 @@ export default class UserProfile extends React.Component {
     super(props);
     this.state = {
       user: '',
+      isDisabled: false,
     };
   }
 
@@ -41,6 +42,9 @@ export default class UserProfile extends React.Component {
       }
     
     followUser(user){
+      this.setState({
+        isDisabled: true
+      });
       addUserToFollow(user);
       console.info("Followed User")
     }
@@ -59,7 +63,9 @@ export default class UserProfile extends React.Component {
             <p> {this.state.user.fullname}</p>
           </div> 
           <div>
-            <button className="follow-btn" onClick={() => this.followUser(this.state.user)}>Follow</button>
+            <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+            <button className="follow-btn">Unfollow</button>
+
         </div>
         </div>
         <ProfileTabs/>
@@ -74,27 +80,6 @@ export default class UserProfile extends React.Component {
  
 }
 
-function FollowButton() {
-  
-  const {userid} = useParams()
-
-  const followUser = ()=>{
-        fetch('http://localhost:4000/users/follow',{
-            method:"post",
-            body:JSON.stringify({
-                followId:userid
-            })
-        })
-    }
-
-      return (
-          <div>
-              <div>
-                <button className="follow-btn" onClick={()=>followUser()}>Follow</button> 
-              </div>
-         </div>
-  );
-}
 
 function ProfileTabs() {
   return (

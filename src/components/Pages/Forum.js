@@ -23,12 +23,15 @@ render(){
 
       <div className="containerFeedMiddle">
         <QuickOptions/>
+        <h1>Forums</h1>
+        <button className="forum-options-btn">Following</button>
+        <a href="/explore"><button className="forum-options-btn">Explore</button></a>
         <DiscussionList/>
       </div>
 
       <div className="containerFeedRight">
-        <Recommended/>  
-        <Contributors/>  
+        {/* <Recommended/>  
+        <Contributors/>   */}
       </div>
   </div>
   );

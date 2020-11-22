@@ -1,5 +1,5 @@
 import React from 'react';
-import {BsThreeDotsVertical} from 'react-icons/bs'
+import {BsThreeDots} from 'react-icons/bs'
 import {MdInsertLink,MdReport} from 'react-icons/md'
 import {FaFacebookF,FaTwitter} from 'react-icons/fa'
 import Snackbar from '@material-ui/core/Snackbar';
@@ -39,13 +39,9 @@ export default function PostLinks() {
 
   return (
     <>
-    {/* Facebook Share */}
-    {/* <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="VLTTcFCm"></script> */}
-
     {/* Dropdown URL links */}
     <div class="dropdown2">
-        <a className="dropdown2" href="#"><BsThreeDotsVertical  size={20}/></a>
+        <a className="dropdown2" href="#"><BsThreeDots  size={20}/></a>
         <div class="dropdown-content2">
             <a href="#" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy Post</a>
             <a href="#" onClick={handleClickReport}><MdReport size={20}/> Report Post</a>
