@@ -8,7 +8,6 @@ import AddUserToForum from '../Profile/AddUserToForum'
 class ForumExplore extends React.Component {
 
     componentDidMount() {
-        document.body.style.backgroundColor = "#FCFCFC"
 
         axios.get('http://localhost:4000/forums/getForums')
           .then((response) => {

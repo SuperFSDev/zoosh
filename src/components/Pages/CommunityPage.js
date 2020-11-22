@@ -18,7 +18,6 @@ export default class CommunityPage extends React.Component {
 
     componentDidMount() {
       var society_id = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#FCFCFC"
 
 
       axios.get('http://localhost:4000/societies/get-societies-page', {

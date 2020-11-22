@@ -74,53 +74,43 @@ render(){
 
   return (
      <div className="global-feed">
-       <h1>Global</h1>
         {/* POST TAB */}
         {followedUsers.map(user=>  (
-          
-            <div key={user._id}>   
-       
-                     
-<div hidden="true">
-{UserPosts.push(user.posts)}
- 
-             
-                {/*  loop through users and add each post to an array */}
-               </div>
-    
-  
-{console.log(UserPosts)}
-{UserPosts.map(post=>  (
-          
-          <div key={post._id} >
-{post.map(p=>  (
-  
-  <div hidden="true">
-{posts.push(p)}
-
-  </div>
-))}
+          <div key={user._id}>           
+            <div hidden="true">
+              {UserPosts.push(user.posts)}
+            {/*  loop through users and add each post to an array */}
             </div>
-      ))} 
-          </div>
-     
-                   
+            {console.log(UserPosts)}
+              {UserPosts.map(post=>  (      
+                <div key={post._id} >
+                  {post.map(p=>  (
+                    <div hidden="true">
+                      {posts.push(p)}
+                    </div>
+                    ))}
+                </div>
+              ))} 
+          </div>    
+        ))}
 
-
-
-           
-            
-     
-    ))}
-{posts.sort((a,b)=> b.time- a.time).map(post=>  (  // sorts the posts by the time posted
-  
+        {posts.sort((a,b)=> b.time- a.time).map(post=>  (  // sorts the posts by the time posted
             <div>  
               <Card className='feedPost'>
                
                <Card.Body>          
                  <div className="-u-prof-stats" id="social-user">
                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                     <span className="username-wrapper"><a href={"/u/?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                     <span className="username-wrapper">
+                     <div class="dropdown3">
+                          <a href={"/u/?id="+post.user_id} className="user-profile-shortlink">{post.user} <b className="user-score-post">1,200</b></a>
+                            <div class="dropdown-content3">
+                                <a href="#">{post.user}</a>
+                                <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
+                            </div>
+                        </div>
+                       {/* <a href={"/u/?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}
+                      </span><br/>
                      <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
                      {/* <ProfileURL/> */}
@@ -137,7 +127,7 @@ render(){
                          ))}
                   </div>
                  </Card.Text>
-                 <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
+                 <big  className="text-muted-society">#{post.category}</big>
                  <div className="post-interactions">
                  <div><hr/>
                      <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>

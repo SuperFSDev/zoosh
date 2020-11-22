@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Tabs, Tab,Image} from 'react-bootstrap'
 import {HiPencilAlt} from 'react-icons/hi'
-import Post from '../Common/CreateDiscussion'
+import Post from '../Common/CreatePost'
 import Discussion from '../Common/StartDiscussion'
 import {VscTextSize,VscLink} from 'react-icons/vsc'
 import {MdForum} from 'react-icons/md'

@@ -9,7 +9,6 @@ import EventsList from '../Lists/EventsList'
 class Events extends React.Component {
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FCFCFC"
   }
 
 

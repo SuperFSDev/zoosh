@@ -99,7 +99,7 @@ function FeedAccordion() {
           <AccordionSummary
             aria-controls="panel1a-content"
           >
-          <Typography><Image src={Team}/> Clubs and Societies</Typography>
+          <Typography className="accordion-title"><Image src={Team}/> Clubs and Societies</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>

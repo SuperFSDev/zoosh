@@ -6,38 +6,15 @@ export default function ProfileAchievements() {
   return (
     <div>
             <div className="containerFeedLeftProfileCell">
-                <div className="user-profile-about">
-                        <h1>Communities</h1><br/>
-                        </div>
                     </div>
-                    <div className="SocietyLayout">
+                    <div className="UsersSocietyLayout">
                         <div>
-                            <div className="python-card">
+                            <div className="users-communities-card">
                                 <a href="/"><h4><b>{societies[0]}</b></h4> </a>
                             <div >
                         </div>
-                    </div>
-
-                    <div className="SocietyLayout">
-                        <div>
-                            <div className="python-card">
-                                <a href="/"><h4><b>{societies[1]}</b></h4> </a>
-                            </div >
-                        </div>
-                    </div>
-                
-                    
+                    </div>         
                 </div>
-               
-            </div>
-
-            <div className="containerFeedMiddleProfileCell">
-               
-               
-            </div>
-
-            <div className="containerFeedRightProfileCell">
-
             </div>
     </div>
   );

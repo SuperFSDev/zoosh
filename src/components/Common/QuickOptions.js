@@ -2,15 +2,18 @@ import React from 'react';
 import '../../App.css';
 import {VscTextSize} from 'react-icons/vsc'
 import {MdForum} from 'react-icons/md'
-import {BsImage} from 'react-icons/bs'
-import {Modal, Tabs, Tab} from 'react-bootstrap'
-import Post from '../Common/CreateDiscussion'
+import {Modal} from 'react-bootstrap'
+import Post from './CreatePost'
 import Discussion from '../Common/StartDiscussion'
-import {BsCardImage} from 'react-icons/bs'
+import Link from '../Common/CreateLinkPost'
+import {BsCardImage,BsImage} from 'react-icons/bs'
+import {BiLink} from 'react-icons/bi'
 
 export default function QuickOptions() {
   const [modalShow, setModalShowText] = React.useState(false);
   const [modalShowForum, setModalShowForum] = React.useState(false);
+  const [modalShowLink, setModalShowLink] = React.useState(false);
+
 
   return (
     <div className="quick-options-container">
@@ -18,6 +21,7 @@ export default function QuickOptions() {
             <button className="quick-post-options"  onClick={() => setModalShowText(true)}><VscTextSize size={50}/></button>
             <button className="quick-post-options-forum" onClick={() => setModalShowForum(true)}><MdForum size={50}/></button>
             <button className="quick-post-options-image"><BsImage size={50}/></button>
+            <button className="quick-post-options-link" onClick={() => setModalShowLink(true)}><BiLink size={50}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}
@@ -27,6 +31,11 @@ export default function QuickOptions() {
             <MyVerticallyCenteredModalForum
                 show={modalShowForum}
                 onHide={() => setModalShowForum(false)}
+            />
+
+            <MyVerticallyCenteredModalLink
+                show={modalShowLink}
+                onHide={() => setModalShowLink(false)}
             />
         </div>
     </div>
@@ -55,7 +64,7 @@ function MyVerticallyCenteredModal(props) {
   }
 
 
-  function MyVerticallyCenteredModalForum(props) {
+function MyVerticallyCenteredModalForum(props) {
     return (
       <Modal
         {...props}
@@ -63,6 +72,7 @@ function MyVerticallyCenteredModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         textAlign="left"
+        className="modalOption"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -75,3 +85,24 @@ function MyVerticallyCenteredModal(props) {
       </Modal>
     );
     }
+
+function MyVerticallyCenteredModalLink(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Post A Link
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+                <Link/>
+        </Modal.Body>
+      </Modal>
+    );
+}

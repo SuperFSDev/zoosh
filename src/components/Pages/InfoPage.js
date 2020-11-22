@@ -9,7 +9,6 @@ import axios from 'axios';
 export default class InfoPage extends React.Component {
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FCFCFC"
   }
 
 

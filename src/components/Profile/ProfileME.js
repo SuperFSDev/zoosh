@@ -38,7 +38,7 @@ export default class ProfileME extends React.Component {
         return (
             <div>
                 <div className="containerFeedLeftProfileCell">
-                    <div className="user-profile-about">
+                    {/* <div className="user-profile-about">
                         <h1>About</h1>
                     </div>
                     <div className="user-profile-about">
@@ -52,13 +52,13 @@ export default class ProfileME extends React.Component {
                     </div>
                     <div className="user-profile-about-social">
                         <p className="profile-social-icons"><RiFacebookCircleFill size={25} /> <SiTwitter size={25} /> <SiInstagram size={25} /> <SiLinkedin size={25} /></p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="containerFeedMiddleProfileCell">
-                    <div className="user-profile-about-bio">
+                    {/* <div className="user-profile-about-bio">
                         <p>{this.state.user.bio}</p>
-                    </div>
+                    </div> */}
 
                 </div>
 

@@ -25,6 +25,11 @@
   z-index:999;
 }
 
+.dark-mode .navbar{
+  background-color: #202124!important;
+  color : white!important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -369,8 +374,8 @@ a{
 }
 
 .dark-mode .create-a-post{
-  background-color: #202124!important;
   border-radius: 25px;
+  color:black!important;
 }
 
 .dark-mode #standard-full-width{
@@ -792,6 +797,18 @@ td, th {
   transform: translateY(-0.25em);
 }
 
+.users-communities-card{
+  padding-top:1rem;
+  width: 400px;
+  height:auto;
+  color: black;
+  background:white;
+  margin-top:2rem;
+  padding-bottom:10px;
+  transition:0.2s;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
 .soc-item-list-join-btn{
   background:whitesmoke;
   border-radius: 25px;
@@ -845,16 +862,15 @@ td, th {
 }
 
 .user-profile-about{
-  width:auto;
+  width: 350px;
+  text-align: left;
   height:auto;
-  margin:left;
   margin-top:50px;
   padding:10px;
   border-style: solid;
   border-width: 1px;
   border-color:lightgray;
   border-radius: 10px;
-  margin-left:20px;
   padding-right:10px;
 }
 
@@ -956,8 +972,6 @@ td, th {
   text-align: center;
   margin-top: 5vh!important;
   width:auto;
-  border-style: solid;
-  border-width: 1px;
   border-color: lightgray;
   border-radius: 5px;
   padding:20px;
@@ -975,8 +989,11 @@ td, th {
 
 .miniprofile {
   display: none;
+}   
+
+.report-icon{
+  color:red;
 }
-   
 
 .user-profile-shortlink:hover + .miniprofile{
   display: block;
@@ -1008,12 +1025,27 @@ td, th {
   background-color: whitesmoke;
 }
 
+.quick-post-options-link{
+  border-style: none;
+  padding:15px;
+  border-radius: 50%;
+  outline:none!important;
+  margin-left:20px;
+  color:#964e4e !important;
+  background-color: whitesmoke;
+}
+
 .quick-post-options-image:hover{
   background:#cce3f5;
   color:gray!important;
 }
 
 .quick-post-options:hover{
+  background:#cce3f5;
+  color:gray!important;
+}
+
+.quick-post-options-link:hover{
   background:#cce3f5;
   color:gray!important;
 }
@@ -1141,15 +1173,13 @@ td, th {
   border-radius: 25px;
   text-align: center;
   margin-left: 5rem;
-  background-color:#FCFCFC;
 
 }
 
 .containerFeedLeftProfile{
-  width: 20%;
+  width: 1%;
   height: 10rem;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
   text-align: center;
@@ -1158,24 +1188,23 @@ td, th {
 
 .containerFeedMiddleProfile{
   margin-top: 10vh;
-  width: 60%;
-  height: auto;
-  outline: none !important;
-  background-color: rgb(255, 255, 255);
-  float: left;
-  border-radius: 25px;
-  text-align: center;
-}
-
-.containerFeedRightProfile{
   width: 20%;
   height: auto;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
   text-align: center;
+  margin-left: 10rem;
+}
 
+.containerFeedRightProfile{
+  width: 50%;
+  height: auto;
+  outline: none !important;
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+  margin-top:7.5rem;
 }
 
 .containerFeedLeftCommunity{
@@ -1233,6 +1262,10 @@ td, th {
   color:black;
 }
 
+.user-bio{
+  color:gray;
+}
+
 .settings-btn-cancel{
   margin:10px;
   width:150px;
@@ -1267,7 +1300,6 @@ td, th {
   width: 20%;
   height: 10rem;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
   float: left;
   border-radius: 25px;
   text-align: center;
@@ -1288,12 +1320,9 @@ td, th {
 
 .containerFeedLeftProfileCell{
   width: 35%;
-  height: 10rem;
+  height: 1rem;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
   float: left;
-  border-radius: 25px;
-  padding-right: 10px;
   text-align: left;
 }
 
@@ -1323,7 +1352,6 @@ td, th {
   border-radius: 10px;
   height:auto;
   width:350px;
-  margin:auto ;
 }
 
 .community-card{
@@ -1419,6 +1447,15 @@ td, th {
   background:#deecf9;
 }
 
+.dark-mode .feed-option-redirects{
+  color:white;
+}
+
+.dark-mode .option-container:hover{
+  color:black;
+}
+
+
 .feed-option-redirects{
   color: black;
 }
@@ -1486,7 +1523,6 @@ td, th {
   /* border-color:lightgray; */
   border-style: none; 
   border-width: 0.1px;
-  background-color: #FCFCFC;
 
 }
 
@@ -1501,7 +1537,6 @@ td, th {
   /* border-color:lightgray; */
   border-style: none; 
   border-width: 0.1px;
-  background-color: #FCFCFC;
 }
 
 .containerFeedRight{
@@ -1510,7 +1545,6 @@ td, th {
   height: 50vh;
   outline: none !important;
   float: right;
-  background-color: #FCFCFC;
 }
 
 .-recommended-hr-style{
@@ -1682,6 +1716,18 @@ td, th {
 
 .recommended-item-a{
   text-decoration: none!important;
+}
+
+.dark-mode .accordion-cs{
+  background:none!important;
+}
+
+.dark-mode .accordion-title{
+  color:white;
+}
+
+.dark-mode .accordion-title:hover{
+  color:black!important;
 }
 
 .accordion-cs{
@@ -2074,6 +2120,13 @@ padding-left: 4rem;
   border-radius: 5px;
 }
 
+.user-score-post{
+  background:#cce3f5;
+  font-size:10px;
+  padding:5px;
+  border-radius: 5px;
+}
+
 .user-details{
   background:#cce3f5;
   font-size:15px;
@@ -2291,9 +2344,10 @@ padding-left: 4rem;
   margin:left;
 }
 
-.followed-forums{
-
+.UsersSocietyLayout {
+  text-align: center;
 }
+
 
 .featured-forums{
   margin-top:3rem;
@@ -2508,9 +2562,6 @@ padding-left: 4rem;
   margin-left: 10rem!important;
 }
 
-.-profile-tabs{
-  margin-top:50px;
-}
 
 .smGlobalBtn{ /* global button class */
     display: inline-block;
@@ -2665,8 +2716,9 @@ padding-left: 4rem;
 }
 
 .userPosts{
-float: right;
-width: 40rem;
+  float: left;
+  width: 40rem;
+  text-align: left;
 }
 
 

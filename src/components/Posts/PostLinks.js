@@ -44,7 +44,7 @@ export default function PostLinks() {
         <a className="dropdown2" href="#"><BsThreeDots  size={20}/></a>
         <div class="dropdown-content2">
             <a href="#" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy Post</a>
-            <a href="#" onClick={handleClickReport}><MdReport size={20}/> Report Post</a>
+            <a href="#" onClick={handleClickReport}><MdReport className="report-icon" size={20}/> Report Post</a>
         </div>
     </div>
 

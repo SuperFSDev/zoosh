@@ -30,10 +30,10 @@ export default function MyProfile() {
             </span>
           </div>
         </div>
-        <ProfileTabs/>
       </div>
 
       <div className="containerFeedRightProfile">
+      <ProfileTabs/>
 
       </div>
     </>

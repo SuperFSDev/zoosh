@@ -11,7 +11,7 @@ import InfiniteScroll from '../Common/InfiniteScroll'
 class Feed extends React.Component {
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FCFCFC"
+    // document.body.style.backgroundColor = "#FCFCFC"
 }
 
 render(){
