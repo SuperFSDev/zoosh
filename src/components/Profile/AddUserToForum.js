@@ -1,28 +1,44 @@
 import axios from 'axios'
 
-export default async function addUserToForum(user) {
+export default function addUserToFollow(user) {
 
     var getUser = JSON.parse(localStorage.getItem('user'))
 
-    const addUser = {
-        forum: user,
-        user: getUser,
+    const myUser = {
         user_id: getUser._id,
+       
+        user: user,
+        
     }
 
-    // Adds society to societies array in user model.
-    await axios.post('http://localhost:4000/users/addToForumList', addUser)
+    const followUser = {
+        user_id: user._id,
+      
+        user: getUser
+        
+    }
+
+    // Adds user to following array in user model.
+   axios.post('http://localhost:4000/users/addToFollowingList',myUser)
+        //add to following array
         .then(function (resp) {
             console.log(resp);
-
-            // Update societies array in localStorage
-            if(!getUser.forums.includes(user)) {
-                getUser.forums.push(user);
-            }
-            console.log(getUser);
-            localStorage.setItem('user', JSON.stringify(getUser))
         })
         .catch(function (error) {
             console.log(error);
         })
+
+
+    // Adds user to followers array in users model.
+   axios.post('http://localhost:4000/users/updateFollowers',followUser)
+        .then(function (resp) {
+            console.log(resp);
+            console.log(followUser);
+            alert(JSON.stringify(followUser));
+        })
+        .catch(function (error) {
+            console.log(error);
+    })
+
 }
+

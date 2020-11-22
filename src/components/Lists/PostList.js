@@ -13,23 +13,36 @@ import Tag from '../../images/mailid.png'; // gives image path
 
 class PostList extends React.Component {
 
-componentDidMount() {
-  axios.get('http://localhost:4000/users/getUsers')
-  .then((response)=>{
-      this.setState({users: response.data.users
-                                                })
-  })
-  .catch((error)=>{
-      console.log(error);
-  });
-}
+  componentDidMount() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: user._id });
+  
+    axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+            id: user._id
+        }
+    })
+    .then((response) => {
+      this.setState({ user: response.data.user,
+         followedUsers:response.data.user.following,
+      })
+      
+    })
+        .catch((error) => {
+            console.log(error);
+        });
+  
+  }
 
   constructor(props) {
     super(props);
     this.state = {
       users: [],
       posts: [],
-      toggle:false
+      UserPosts: [],
+      toggle:false,
+      user:'',
+      followedUsers:[]
     };
 
   } 
@@ -56,42 +69,59 @@ componentDidMount() {
 render(){
   var{users} = this.state;
   var{posts} = this.state;
-  console.log(posts)
+  var{UserPosts} = this.state;
+  var{followedUsers} = this.state;
+
   return (
      <div className="global-feed">
        <h1>Global</h1>
         {/* POST TAB */}
-          {users.map(user=>  (
+        {followedUsers.map(user=>  (
+          
             <div key={user._id}>   
-              {user.posts.map(post=>  (              
-                <div hidden="true">
-                  {posts.push(post)}
-                      =    {/*  loop through users and add each post to an array */}
+       
+                     
+<div hidden="true">
+{UserPosts.push(user.posts)}
+ 
+             
+                {/*  loop through users and add each post to an array */}
                </div>
-              ))}    
+    
+  
+{console.log(UserPosts)}
+{UserPosts.map(post=>  (
+          
+          <div key={post._id} >
+{post.map(p=>  (
+  
+  <div hidden="true">
+{posts.push(p)}
+
+  </div>
+))}
             </div>
-        ))}
+      ))} 
+          </div>
+     
+                   
 
 
-          {posts.sort((a,b)=> b.time- a.time).map(post=>  (  // sorts the posts by the time posted
+
+           
+            
+     
+    ))}
+{posts.sort((a,b)=> b.time- a.time).map(post=>  (  // sorts the posts by the time posted
+  
             <div>  
               <Card className='feedPost'>
                
                <Card.Body>          
                  <div className="-u-prof-stats" id="social-user">
                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
-                     <span className="username-wrapper">
-                       {/* <a href={"/u/?id="+post.user_id} className="user-profile-shortlink">
-                        {post.user} */}
-                        <div class="dropdown3">
-                          <a href={"/u/?id="+post.user_id} className="user-profile-shortlink">{post.user}</a>
-                            <div class="dropdown-content3">
-                                <a href="#">{post.user}</a>
-                                <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
-                            </div>
-                        </div>
-                        <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}
-                      </span><big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big><hr/>
+                     <span className="username-wrapper"><a href={"/u/?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}</a></span><br/>
+                     <big  className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
 
                      {/* <ProfileURL/> */}
                  </div>
@@ -107,7 +137,7 @@ render(){
                          ))}
                   </div>
                  </Card.Text>
-                 <big  className="text-muted-society">#{post.category}</big> <br></br>
+                 <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
                  <div className="post-interactions">
                  <div><hr/>
                      <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
