@@ -10,7 +10,7 @@ export default function QuickEvent() {
 
   return (
     <div>
-            <button className="create-event-btn"  onClick={() => setModalShowEvent(true)}>Create Event <RiAddFill size={25}/></button>
+            <button className="post-option-btn-item-event"  onClick={() => setModalShowEvent(true)}>Create Event <RiAddFill size={25}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}

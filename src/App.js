@@ -60,7 +60,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/register" component={RegisterPage}/>
+          <Route path="/join" component={RegisterPage}/>
           {/* <Route path="/" component={LoginPage}/> */}
           <Route path="/login" component={LoginPage}/>
           <Route component={DefaultRoutes} />

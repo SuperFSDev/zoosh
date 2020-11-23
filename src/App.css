@@ -64,7 +64,7 @@
 }
 
 .mr-auto{
-  margin-left: 7rem;
+  /* margin-left: 7rem; */
 }
 
 .links{
@@ -463,23 +463,84 @@ hr {
 }
 
 .post-option-btns{
-  margin:auto;
-  text-align: center;
+  text-align: left;
   margin-top: 40px;
 }
 
 .post-option-btn-item{
-  /* border-radius: 25px!important; */
+  border-radius: 25px!important;
   width:100px;
   height:40px;
   margin-left: 10px;
-  border:1px black solid;
+  border:none;
   outline:none!important;
+  font-weight: bold;
+  color:gray;
+}
+
+.post-option-btn-item-event{
+  border-radius: 25px!important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width:150px;
+  height:40px;
+  margin-left: 10px;
+  border:none;
+  outline:none!important;
+  font-weight: bold;
+  color:gray;
+}
+
+.post-option-btn-item-event:hover{
+  background:#cce3f5;  ;
+  color:black;
+  transition: 0.2s;
+}
+
+.post-option-btn-item-discussion , .post-option-btn-item-global{
+  border-radius: 25px!important;
+  width:100px;
+  height:40px;
+  margin-left: 10px;
+  border:none;
+  outline:none!important;
+  background:#cce3f5;
+  font-weight: bold;
+
 }
 
 .post-option-btn-item:hover{
-  background:black;
-  color:white;
+  background:#cce3f5;  ;
+  color:black;
+  transition: 0.2s;
+}
+.invite-url{
+  width:300px;
+  border:1px lightgray solid;
+  padding:10px;
+  border-radius: 25px;
+  outline:none!important;
+}
+
+.copy-btn-to-clipboard{
+  border-radius: 25px!important;
+  width:100px;
+  height:40px;
+  margin-left: 10px;
+  border:none;
+  outline:none!important;
+  background:#cce3f5;
+  font-weight: bold;
+}
+
+.copy-btn-to-clipboard:hover{
+  background:lightgray;  ;
+  color:black;
+  transition: 0.2s;
+}
+
+.copy-container{
+  text-align: center;
 }
 
 .create-event-btn{
@@ -1191,7 +1252,7 @@ td, th {
 }
 
 .feedPost{
-  /* border-radius: 10px!important; */
+  border-radius: 10px!important;
   margin:auto;
   width:auto;
   height:auto;
@@ -1816,7 +1877,7 @@ td, th {
   text-decoration: none!important;
   border-style: solid;
   border-width: 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .discussion-post:hover{
@@ -2020,6 +2081,22 @@ padding-left: 4rem;
 
 }
 
+.search-div-navbar{
+  text-align:center !important;
+  padding-top:20px;
+  margin-bottom:15px;
+  margin: 0 auto;
+}
+
+.searchbar-nav-navbar{
+  border-radius: 25px;
+  width:400px;
+  height:40px;
+  padding:10px;
+  outline:none!important;
+  border:1px lightgray solid;
+}
+
 .forum-title{
   text-align: left;
 }
@@ -2168,8 +2245,8 @@ padding-left: 4rem;
 
 .user-image{
   margin-top:1rem;
-  width:171px;
-  height:180px;
+  width:191px;
+  height:200px;
   /* float: left; */
   text-align: center;
 }

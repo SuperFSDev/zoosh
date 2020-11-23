@@ -29,7 +29,7 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <h2 className="-top-cont-header">Top Contributors</h2>
+            <h4 className="-top-cont-header">Top Contributors</h4>
             {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                 <div className="contributor-item">
                

@@ -12,6 +12,9 @@ import Team from '../../images/group.png';
 import Book from '../../images/book.png';
 import Badge from '../../images/badge.png';
 import ProfilePic from '../../images/blogging.jpg'
+import { RiCake2Fill, RiEyeFill } from 'react-icons/ri'
+import { MdSchool } from 'react-icons/md'
+import moment from 'moment'
 
 export default function MyProfile() {
   return (
@@ -24,12 +27,31 @@ export default function MyProfile() {
         <div className="profile-card">
           <ProfilePicture/>
           <ProfileUsername/>
+         
           <div className="user-profile-btn-options">
             <span className="user-profile-btn-options">
               <EditProfile/>
             </span>
           </div>
         </div>
+
+        <div className="profile-card">
+            <div id="social">
+              <p className="user-bio"></p>
+            </div>
+          </div>
+          <div className="user-profile-about">
+            <p><SiAboutDotMe /> <b className="user-details"></b></p>
+            <p><MdSchool /> <b className="user-details"></b></p>
+            {/* <p>Studying: <b className="user-details">{this.state.user.course}</b></p> */}
+            {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
+            <p><RiCake2Fill /> <b className="user-details"></b></p>
+            <p>Profile Score: <b className="user-details-views"></b></p>
+            <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p>
+          </div>
+          <div className="user-profile-about">
+            <h4>Badges</h4>
+          </div>
       </div>
 
       <div className="containerFeedRightProfile">
@@ -45,9 +67,9 @@ function ProfileTabs() {
   return (
     <div className="-profile-tabs">
     <Tabs  defaultActiveKey="me" id="uncontrolled-tab-example">
-        <Tab className="profile-tab-items" eventKey="me" title={<SiAboutDotMe size={30}/>}>
+        {/* <Tab className="profile-tab-items" eventKey="me" title={<SiAboutDotMe size={30}/>}>
             <About/>
-        </Tab>
+        </Tab> */}
         <Tab className="profile-tab-items" eventKey="profile" title={<Image src={Team}/>}>
             <Communities/>
         </Tab>
