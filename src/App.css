@@ -2789,4 +2789,30 @@ padding-left: 4rem;
   text-align: left;
 }
 
+.edit-pic-btn{
+  width:5vh;
+  height:5vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  background:#1A2E35;
+  color: white;
+  margin-left: 150px;
+}
 
+.edit-pic-btn:hover{
+  background:whitesmoke;
+  color:black;
+}
+
+.edit-pic-txt{
+  width:15vh;
+  height:4vh;
+  border-radius: 25px;
+  border-style: solid;
+  border:none;
+  outline: none !important;
+  color: green;
+  margin-left: 116px;
+}

@@ -154,7 +154,7 @@ users.get('/getUsers', (req, res) => {
 
 users.post('/edit-user-profile', (req, res) => {
 
-    console.log(req.body.pic);
+    console.log("REQUEST PIC = " + req.body.pic);
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         UserModel.findByIdAndUpdate(
@@ -177,7 +177,7 @@ users.post('/edit-user-profile', (req, res) => {
                 }
                 else {
                     if(result){
-                        //console.log(result);
+                        console.log(result);
                         res.send(result)
                     } else {
                         res.send("error");

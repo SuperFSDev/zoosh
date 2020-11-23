@@ -1,7 +1,10 @@
 import React from 'react';
+import AvatarEditor from 'react-avatar-editor';
+import Dropzone from "react-dropzone";
 import '../../App.css';
-import { Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
+import { FcCheckmark } from "react-icons/fc";
 
 export default class AccountSettings extends React.Component {
 
@@ -12,7 +15,6 @@ export default class AccountSettings extends React.Component {
       // Original user details stored in user variable.
       user: '',
       // Edit details
-      profilePic: '',
       picSrc: '',
       fullname: '',
       bio: '',
@@ -22,7 +24,10 @@ export default class AccountSettings extends React.Component {
       password: '',
       retype: '',
       updateUser: '',
-      open: false
+      open: false,
+      scaledImage: '',
+      showEdited: false,
+      scale: 1
     };
 
     this.onChangeFullname = this.onChangeFullname.bind(this);
@@ -55,7 +60,7 @@ export default class AccountSettings extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  
+
   }
 
   onChangeFullname(e) {
@@ -93,19 +98,40 @@ export default class AccountSettings extends React.Component {
       retype: e.target.value
     });
   }
+
+  // AVATAR FUNCTIONS ==================================================================
   async onChangePicture(e) {
     var pic = e.target.files[0];
-    var src = URL.createObjectURL(pic);
-
-    //alert(src);
-    //alert(pic);    
-    var b64 = await this.imageToB64(src);
+    if (pic)
+      var src = URL.createObjectURL(pic);
 
     this.setState({
-      profilePic: b64,
       picSrc: src
     });
   }
+
+  onClickSave = () => {
+    if (this.editor) {
+      var scaledImg = this.editor.getImageScaledToCanvas();
+      scaledImg = scaledImg.toDataURL('image/jpeg', 1);
+      this.setState({ showEdited: true });
+      this.setState({ scaledImage: scaledImg });
+    }
+  }
+
+  handleScale = e => {
+    const scale = parseFloat(e.target.value);
+    this.setState({ scale });
+  };
+
+  setEditorRef = editor => {
+    if (editor) this.editor = editor;
+  };
+
+  handleDrop = acceptedFiles => {
+    this.setState({ image: acceptedFiles[0] });
+  };
+  // ===================================================================================
 
   onSubmit(e) {
 
@@ -122,7 +148,7 @@ export default class AccountSettings extends React.Component {
     var course = this.checkDetails(this.state.course, this.state.user.course);
     var dob = this.checkDetails(this.state.dob, this.state.user.dob);
     var password = this.checkDetails(this.state.password, this.state.user.password);
-    var pp = this.checkDetails(this.state.profilePic, this.state.user.pic);
+    var pp = this.checkDetails(this.state.scaledImage, this.state.user.pic);
 
     const updateUser = {
       user_id: this.state.id,
@@ -139,16 +165,18 @@ export default class AccountSettings extends React.Component {
       .then()
       .catch(console.log("error"))
 
-    
+
     this.user.pic = pp;
     localStorage.setItem('user', JSON.stringify(this.user));
 
     console.log('Updated user details.');
     window.location = '/profile';
 
+    // Reset state to undefined.
     this.setState({
       id: '',
       user: '',
+      picSrc: '',
       fullname: '',
       bio: '',
       college: '',
@@ -157,7 +185,10 @@ export default class AccountSettings extends React.Component {
       password: '',
       retype: '',
       updateUser: '',
-      open: false
+      open: false,
+      scaledImage: '',
+      showEdited: false,
+      scale: 1
     });
   }
 
@@ -182,30 +213,52 @@ export default class AccountSettings extends React.Component {
   }
 
   picPreview() {
-    if(this.state.picSrc) {
+    if (this.state.picSrc) {
       return (
-        <img height="100" width="100" src={this.state.picSrc}/>
-      );
-    } else {
-      return (
-        <p></p>
+        <>
+          <AvatarEditor
+            ref={this.setEditorRef}
+            scale={this.state.scale}
+            image={this.state.picSrc}
+            width={250}
+            height={250}
+            border={50}
+            color={[255, 255, 255, 0.6]} // RGBA
+            rotate={0}
+            borderRadius={200}
+          />
+          <div>
+            Zoom:
+            <input
+              name="scale"
+              type="range"
+              onChange={this.handleScale}
+              min={this.state.allowZoomOut ? "0.1" : "1"}
+              max="2"
+              step="0.01"
+              defaultValue="1"
+            />
+            <button className="edit-pic-btn" onClick={this.onClickSave}><FcCheckmark /></button>
+            {this.state.showEdited && <p className="edit-pic-txt">Edit Saved!</p>}
+          </div>
+        </>
       );
     }
   }
 
-  imageToB64(imgUrl) {
-    return new Promise(resolve =>{   
+  /*imageToB64(imgUrl) {
+    return new Promise(resolve => {
       var img = new Image();
       img.crossOrigin = 'Anonymous';
 
-      img.onload = function() {
+      img.onload = function () {
 
         img.height = img.naturalHeight / 4;
         img.width = img.naturalWidth / 4;
-        
+
         var canvas = document.createElement('canvas'),
           ctx = canvas.getContext('2d');
-      
+
         canvas.height = img.height;
         canvas.width = img.width;
 
@@ -217,179 +270,106 @@ export default class AccountSettings extends React.Component {
       };
       img.src = imgUrl;
     })
-  }
+  }*/
 
-
-    render(){
-      return (
-        <div>
-            <div className="containerAccountSettingsMiddle">
-              <h1><p><ProfileUsername/></p></h1>
-                <div className="settings-options-item">
-                    <a href="/settings/profile" className="feed-option-redirects"><div className="option-container">
-                        Profile
-                    </div></a>
-                    <a href="/settings/account" className="feed-option-redirects"><div className="option-container">
-                        Account
-                    </div></a>
-                    <a href="/settings/notifications" className="feed-option-redirects"><div className="option-container">
-                        Notifications
-                    </div></a>
-                </div>
-            </div>
-
-            <div className="containerAccountSettingsRight">
-                <div>
-                    {this.picPreview()}
-                    <Form className="edit-profile-form" onSubmit={this.onSubmit}>
-                        <Form.Group controlId="profilePic">
-                            <Form.Label>Update Profile Picture</Form.Label>
-                            <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formName">
-                            <Form.Label>Change Name</Form.Label>
-                            <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formBio">
-                            <Form.Label>Change Bio</Form.Label>
-                            <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formCollege">
-                            <Form.Label>Change College</Form.Label>
-                            <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formCourse">
-                            <Form.Label>Change College Course</Form.Label>
-                            <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formDob">
-                            <Form.Label>Change Date of Birth</Form.Label>
-                            <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formNewPassword">
-                            <Form.Label>Change Password</Form.Label>
-                            <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formConformPassword">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype}/>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <button className="settings-btn-save" variant="secondary" type="submit" >
-                            Save changes
-                        </button>
-                        <button className="settings-btn-cancel" variant="primary" type="submit" >
-                            Cancel
-                        </button>
-                        </Form>
-                </div>
-              
-            </div>
-        </div>
-        );
-    } 
-
-     /*constructor(props) {
-    super(props);
-
-    this.state = {
-      picture: false,
-      src: false
-    }
-  }
-
-  handlePictureSelected(event) {
-    var picture = event.target.files[0];
-    var src     = URL.createObjectURL(picture);
-
-    this.setState({
-      picture: picture,
-      src: src
-    });
-  }
-
-  renderPreview() {
-    if(this.state.src) {
-      return (
-        <img src={this.state.src}/>
-      );
-    } else {
-      return (
-        <p>
-          No Preview
-        </p>
-      );
-    }
-  }
-
-  upload() {
-    var formData = new FormData();
-
-    formData.append("file", this.state.picture);
-
-    $.ajax({
-      url: "/some/api/endpoint",
-      method: "POST",
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: function(response) {
-        // Code to handle a succesful upload
-      }
-    });
-  }
 
   render() {
     return (
       <div>
-        <h5>Picture Uploader</h5>
-
-        <input
-          type="file"
-          onChange={this.handlePictureSelected.bind(this)}
-        />
-        <br/>
-        <div>
-        {this.renderPreview()}
+        <div className="containerAccountSettingsMiddle">
+          <h1><p><ProfileUsername /></p></h1>
+          <div className="settings-options-item">
+            <a href="/settings/profile" className="feed-option-redirects"><div className="option-container">
+              Profile
+                    </div></a>
+            <a href="/settings/account" className="feed-option-redirects"><div className="option-container">
+              Account
+                    </div></a>
+            <a href="/settings/notifications" className="feed-option-redirects"><div className="option-container">
+              Notifications
+                    </div></a>
+          </div>
         </div>
-        <hr/>
-        <button
-          onClick={this.upload.bind(this)}
-        >
-          Upload
-        </button>
-      </div>
-    );
-  }*/
-}
 
-function ProfileUsername() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-      var fullname = user.fullname;
-    var id = user._id;
-    var societies = user.societies;
-  
-    return (
-      <div id="social">
-        <h4 className="settings-welcome">Hello, {fullname}.</h4>
-        {/* {id} */}
+        <div className="containerAccountSettingsRight">
+          <div>
+            {this.picPreview()}
+            <image src={`data:image/png;base64,${this.scaledImg}`} />
+            <Form className="edit-profile-form" onSubmit={this.onSubmit}>
+              <Form.Group controlId="profilePic">
+                <Form.Label>Update Profile Picture</Form.Label>
+                <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formName">
+                <Form.Label>Change Name</Form.Label>
+                <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formBio">
+                <Form.Label>Change Bio</Form.Label>
+                <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formCollege">
+                <Form.Label>Change College</Form.Label>
+                <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formCourse">
+                <Form.Label>Change College Course</Form.Label>
+                <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formDob">
+                <Form.Label>Change Date of Birth</Form.Label>
+                <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formNewPassword">
+                <Form.Label>Change Password</Form.Label>
+                <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formConformPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype} />
+                <Form.Text className="text-muted">
+                </Form.Text>
+              </Form.Group>
+              <button className="settings-btn-save" variant="secondary" type="submit" >
+                Save changes
+                        </button>
+              <button className="settings-btn-cancel" variant="primary" type="submit" >
+                Cancel
+                        </button>
+            </Form>
+          </div>
+
+        </div>
       </div>
     );
   }
+}
+
+function ProfileUsername() {
+  var user = JSON.parse(localStorage.getItem('user'));
+  if (user)
+    var fullname = user.fullname;
+  var id = user._id;
+  var societies = user.societies;
+
+  return (
+    <div id="social">
+      <h4 className="settings-welcome">Hello, {fullname}.</h4>
+      {/* {id} */}
+    </div>
+  );
+}

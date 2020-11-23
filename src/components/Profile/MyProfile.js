@@ -68,7 +68,7 @@ function ProfilePicture() {
 
   return (
     <div id="social">
-      <Image src={`data:image/jpeg;base64,${pp}`} className="user-image" roundedCircle />
+      <Image src={pp} className="user-image" roundedCircle />
     </div>
   );
 }

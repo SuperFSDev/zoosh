@@ -66,7 +66,7 @@ export default function CustomizedMenus() {
     <div>
       <div id="#battleBox">
         <Nav.Link className="l-prof-btn-default" onClick={handleClick}>
-            <Avatar src={`data:image/jpeg;base64,${profilePic}`} className="profile-btn-wrapper-left"/>
+            <Avatar src={profilePic} className="profile-btn-wrapper-left"/>
             <b className="user-score-prof-btn">1,200</b>
         </Nav.Link>
       </div>
