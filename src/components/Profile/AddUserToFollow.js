@@ -6,13 +6,13 @@ export default function addUserToFollow(user) {
 
     const myUser = {
         user_id: getUser._id,
-        user: user,
+        user: user._id,
     }
 
     const followUser = {
         user_id: user._id,
         user:{
-        followingUser: getUser
+        followingUser: getUser._id
         }
     }
 

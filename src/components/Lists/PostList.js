@@ -4,112 +4,88 @@ import { Card, Badge, Tabs, Nav, Image } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { FaRegCommentDots } from 'react-icons/fa'
+import { FaRegCommentDots, FaTintSlash } from 'react-icons/fa'
 import CommentReply from '../Posts/CommentReply'
 import PostAvatar from '../Posts/PostAvatar'
 import PostLinks from '../Posts/PostLinks'
 import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi'
 import Tag from '../../images/mailid.png'; // gives image path
+import { BsConeStriped } from 'react-icons/bs';
 
 class PostList extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      posts: [],
-      UserPosts: [],
       toggle: false,
-      user: '',
-      followedUsers: []
+      posts: [],
+      FollowingID:'',
+      empty:[]
+    
     };
+    
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    axios.get('http://localhost:4000/users/get-user-details', {
+    await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id
       }
     })
       .then((response) => {
         this.setState({
-          user: response.data.user
+          FollowingID: response.data.user.following
+          
         })
-        if (response.data.user.following) {
-          this.setState({
-            followedUsers: response.data.user.following
-          })
-        }
 
       })
       .catch((error) => {
         console.log(error);
       });
 
-  }
-
-  openComments(e) {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
+      for (var i = 0; i < this.state.FollowingID.length; i++) {
+        this.GetFollowedUser(this.state.FollowingID[i])
+      } 
+     
     }
-  }
 
-  myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
+    async GetFollowedUser(FollowingID){
+    await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id:FollowingID
+      }
+    })
+      .then((response) => {
+        this.setState({
+          posts: this.state.posts.concat(response.data.user.posts)
+        })
+        console.log("Posts = " + this.state.posts);
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
-  }
-
+      
+  
 
   render() {
-    var { users } = this.state;
-    var { posts } = this.state;
-    var { UserPosts } = this.state;
-    var { followedUsers } = this.state;
 
-    console.log(JSON.stringify(followedUsers));
+   
+  return (
+    <div>
+    <div className="post-option-btns">
+        <button className="post-option-btn-item">Global</button>
+        <a href="/discussions"><button className="post-option-btn-item">Discussions</button></a>
+        <button className="post-option-btn-item">Links</button>
+    </div>
 
-    if (followedUsers.length > 0) {
-      return (
-        <div>
-          <div className="post-option-btns">
-              <button className="post-option-btn-item">Global</button>
-              <a href="/discussions"><button className="post-option-btn-item">Discussions</button></a>
-              <button className="post-option-btn-item">Links</button>
-          </div>
-
-          <div className="global-feed">
-            {/* POST TAB */}
-            {followedUsers.map(user => (
-              <div key={user._id}>
-                <div hidden="true">
-                  {UserPosts.push(user.posts)}
-                  {/*  loop through users and add each post to an array */}
-                </div>
-                {console.log(UserPosts)}
-              </div>
-            ))}
-            {UserPosts.map(post => (
-              <div key={post._id} >
-                {post.map(p => (
-                  <div hidden="true">
-                    {posts.push(p)}
-
-                  </div>
-                ))}
-              </div>
-            ))}
-
-            {posts.sort((a, b) => b.time - a.time).map(post => (  // sorts the posts by the time posted
+    <div className="global-feed">
+      {/* POST TAB */}
+        {this.state.posts.sort((a, b) => b.time - a.time).map(post => (  // sorts the posts by the time posted
               <div>
                 <Card className='feedPost'>
 
@@ -161,11 +137,11 @@ class PostList extends React.Component {
         </div>
 
       );
-    } else {
-      return (<div>Hello</div>)
-    }
+    } 
+  
+    
   }
-}
+
 
 
 export default PostList;
