@@ -34,7 +34,7 @@ class DiscussionList extends React.Component {
         {/* DISCUSSION TAB */}
         {discussions.reverse().map(discussion => (
           <div key={discussion._id}>
-            <a href={"/f/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'>
+            <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'>
               
               <div>
                 <h1 className="forum-title">{discussion.title}</h1>

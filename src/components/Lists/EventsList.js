@@ -1,19 +1,45 @@
 import React from 'react';
 import '../../App.css';
+import axios from 'axios';
+import QuickEvent from '../Common/QuickEvent'
 
-export default function EventsList() {
+export default class EventsList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [],
+    };
+  }
+
+componentDidMount() {
+    axios.get('http://localhost:4000/events/getEvents')
+      .then((response) => {
+        this.setState({ events: response.data.events })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
+render(){
+  var { events } = this.state;
 
   return (
     <div className="global-feed">
       <h1>Upcoming Events</h1>
+      <QuickEvent/>
         <div>
-          <div className="SocietyLayout">
+          <div className="EventSocietyLayout">
+          {events.reverse().map(event => (
+          <div key={event._id}>
               <div>
-                <div className="python-card">
+                <div className="events-card">
                   <a href="/" className="-soc-l-navigation">
-                    <h4><b>Hackathon 2020</b></h4> 
-                    <p>GMIT Computer Science</p> 
-                    <p>Date Format</p>
+                    <h4><b>{event.title}</b></h4> 
+                    <p>{event.society}</p> 
+                    <p>{event.time}</p>
                     <div >
                     </div>
                   </a>
@@ -21,24 +47,10 @@ export default function EventsList() {
                 
               </div>
           </div>
-          <div className="SocietyLayout">
-              <div>
-                <div className="python-card">
-                  <a href="/" className="-soc-l-navigation">
-                    <h4><b>Hackathon 2020</b></h4> 
-                    <p>GMIT Computer Science</p> 
-                    <p>Date Format</p>
-                    <div >
-                    </div>
-                  </a>
-                </div>
-                
-              </div>
-          </div>
+          ))}
+        </div>
         </div>
     </div>
-
-    
-
   );
+  }
 }

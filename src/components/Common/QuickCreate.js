@@ -1,8 +1,8 @@
 import React from 'react';
 import {Modal, Tabs, Tab,Image} from 'react-bootstrap'
-import {HiPencilAlt} from 'react-icons/hi'
 import Post from '../Common/CreatePost'
 import Discussion from '../Common/StartDiscussion'
+import Link from '../Common/CreateLinkPost'
 import {VscTextSize,VscLink} from 'react-icons/vsc'
 import {MdForum} from 'react-icons/md'
 import {BsCardImage} from 'react-icons/bs'
@@ -34,7 +34,7 @@ function MyVerticallyCenteredModal(props) {
                 Images
             </Tab>
             <Tab eventKey="video" title={<VscLink size={30}/>}>
-                Link
+                <Link/>
             </Tab>
         </Tabs>
         </Modal.Body>

@@ -70,7 +70,7 @@ function FeedOptions() {
                     <a href="/" className="feed-option-redirects"><div className="option-container">
                         <Image src={Home}/> Home
                     </div></a>
-                    <a href="/forum" className="feed-option-redirects"><div className="option-container">
+                    <a href="/forums" className="feed-option-redirects"><div className="option-container">
                         <Image src={Forum}/> Forums
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
