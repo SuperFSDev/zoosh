@@ -83,9 +83,10 @@ users.post('/login', (req, res) => {
                         _id: user.id,
                         fullname: user.fullname,
                         email: user.email,
-                        societies: user.societies
+                        societies: user.societies,
+                        pic: user.pic
                     }
-                    console.log(payload);
+                    //console.log(payload);
                     res.send(payload);
 
                     console.log("User " + user.fullname + " has been logged in!")
@@ -101,9 +102,10 @@ users.post('/login', (req, res) => {
                         _id: user.id,
                         fullname: user.fullname,
                         email: user.email,
-                        societies: user.societies
+                        societies: user.societies,
+                        pic: user.pic
                     }
-                    console.log(payload);
+                    //console.log(payload);
 
                     res.send(payload);
 
@@ -152,10 +154,13 @@ users.get('/getUsers', (req, res) => {
 
 users.post('/edit-user-profile', (req, res) => {
 
+    console.log(req.body.pic);
+
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         UserModel.findByIdAndUpdate(
             { _id: req.body.user_id, },
             {
+                pic: req.body.pic,
                 fullname: req.body.fullname,
                 bio: req.body.bio,
                 college: req.body.college,
@@ -172,7 +177,7 @@ users.post('/edit-user-profile', (req, res) => {
                 }
                 else {
                     if(result){
-                        console.log(result);
+                        //console.log(result);
                         res.send(result)
                     } else {
                         res.send("error");

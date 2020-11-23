@@ -19,7 +19,8 @@ const loginUser = async user => {
       email: user.email,
       password: user.password,
       platform: user.platform,
-      societies: user.societies
+      societies: user.societies,
+      pic: user.pic
     });
     if (response.data.error) {
       alert('Invalid email or password');

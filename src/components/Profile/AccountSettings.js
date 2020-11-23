@@ -1,11 +1,10 @@
 import React from 'react';
 import '../../App.css';
-import {Image, Form} from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import axios from 'axios';
 
 export default class AccountSettings extends React.Component {
 
-    
   constructor(props) {
     super(props);
     this.state = {
@@ -41,12 +40,13 @@ export default class AccountSettings extends React.Component {
 
   async componentDidMount() {
 
-    var user = JSON.parse(localStorage.getItem('user'));
-    this.setState({ id: user._id });
+    var user;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: this.user._id });
 
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
-        id: user._id
+        id: this.user._id
       }
     })
       .then((response) => {
@@ -55,7 +55,7 @@ export default class AccountSettings extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-
+  
   }
 
   onChangeFullname(e) {
@@ -100,7 +100,6 @@ export default class AccountSettings extends React.Component {
     //alert(src);
     //alert(pic);    
     var b64 = await this.imageToB64(src);
-    alert(b64);
 
     this.setState({
       profilePic: b64,
@@ -123,10 +122,11 @@ export default class AccountSettings extends React.Component {
     var course = this.checkDetails(this.state.course, this.state.user.course);
     var dob = this.checkDetails(this.state.dob, this.state.user.dob);
     var password = this.checkDetails(this.state.password, this.state.user.password);
+    var pp = this.checkDetails(this.state.profilePic, this.state.user.pic);
 
     const updateUser = {
       user_id: this.state.id,
-      pic: this.state.profilePic,
+      pic: pp,
       fullname: fullname,
       bio: bio,
       college: college,
@@ -135,11 +135,13 @@ export default class AccountSettings extends React.Component {
       password: password
     };
 
-    alert(JSON.stringify(updateUser));
-
     axios.post('http://localhost:4000/users/edit-user-profile', updateUser)
       .then()
       .catch(console.log("error"))
+
+    
+    this.user.pic = pp;
+    localStorage.setItem('user', JSON.stringify(this.user));
 
     console.log('Updated user details.');
     window.location = '/profile';
@@ -182,13 +184,11 @@ export default class AccountSettings extends React.Component {
   picPreview() {
     if(this.state.picSrc) {
       return (
-        <img src={this.state.picSrc}/>
+        <img height="100" width="100" src={this.state.picSrc}/>
       );
     } else {
       return (
-        <p>
-          No Preview
-        </p>
+        <p></p>
       );
     }
   }
@@ -199,12 +199,17 @@ export default class AccountSettings extends React.Component {
       img.crossOrigin = 'Anonymous';
 
       img.onload = function() {
+
+        img.height = img.naturalHeight / 4;
+        img.width = img.naturalWidth / 4;
+        
         var canvas = document.createElement('canvas'),
           ctx = canvas.getContext('2d');
       
-        canvas.height = img.naturalHeight / 4;
-        canvas.width = img.naturalWidth / 4;
-        ctx.drawImage(img, 0, 0);
+        canvas.height = img.height;
+        canvas.width = img.width;
+
+        ctx.drawImage(img, 0, 0, parseInt(img.width), parseInt(img.height));
 
         var uri = canvas.toDataURL('image/png'),
           b64 = uri.replace(/^data:image.+;base64,/, '');
@@ -235,6 +240,7 @@ export default class AccountSettings extends React.Component {
 
             <div className="containerAccountSettingsRight">
                 <div>
+                    {this.picPreview()}
                     <Form className="edit-profile-form" onSubmit={this.onSubmit}>
                         <Form.Group controlId="profilePic">
                             <Form.Label>Update Profile Picture</Form.Label>
