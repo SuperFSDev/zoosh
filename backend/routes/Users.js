@@ -95,6 +95,7 @@ users.post('/login', (req, res) => {
                 }
             }
             else {
+                console.log(req.body.password, + " == " + user.password);
                 if(bcrypt.compareSync(req.body.password, user.password)){
                     const payload = {
                         _id: user.id,
@@ -151,34 +152,36 @@ users.get('/getUsers', (req, res) => {
 
 users.post('/edit-user-profile', (req, res) => {
 
-    UserModel.findByIdAndUpdate(
-        { _id: req.body.user_id, },
-        { 
-            fullname: req.body.fullname,
-            bio: req.body.bio,
-            college: req.body.college,
-            course: req.body.course,
-            dob: req.body.dob,
-            password: req.body.password},
-        { upsert: true, new: true, runValidators: true },
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+        UserModel.findByIdAndUpdate(
+            { _id: req.body.user_id, },
+            {
+                fullname: req.body.fullname,
+                bio: req.body.bio,
+                college: req.body.college,
+                course: req.body.course,
+                dob: req.body.dob,
+                password: hash},
+            { upsert: true, new: true, runValidators: true },
 
-        function (err, result) {
+            function (err, result) {
 
-            if (err) {  
-                console.log("error");
-                res.send(err)   
-            }
-            else {
-                if(result){
-                    console.log(result);
-                    res.send(result)
-                } else {
-                    res.send("Society already exists in user model.");
+                if (err) {  
+                    console.log("error");
+                    res.send(err)   
                 }
-            }
+                else {
+                    if(result){
+                        console.log(result);
+                        res.send(result)
+                    } else {
+                        res.send("error");
+                    }
+                }
 
-        }
-    )
+            }
+        )
+    })
 })
 
 

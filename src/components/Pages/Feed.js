@@ -24,7 +24,7 @@ render(){
       <div className="containerFeedMiddle">
         <QuickOptions/>
         <PostList/>
-        <InfiniteScroll/>
+        {/*<InfiniteScroll/>*/}
       </div>
 
       <div className="containerFeedRight">

@@ -100,9 +100,7 @@ export default class EditProfile extends React.Component {
   async onChangePicture(e) {
     var pic = e.target.files[0];
     var src = URL.createObjectURL(pic);
-
-    //alert(src);
-    //alert(pic);    
+  
     var b64 = await this.imageToB64(src);
     alert(b64);
 

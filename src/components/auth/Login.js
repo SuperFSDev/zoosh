@@ -22,7 +22,7 @@ const loginUser = async user => {
       societies: user.societies
     });
     if (response.data.error) {
-      console.log('Invalid email or password');
+      alert('Invalid email or password');
     } else if (response.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
       return response.data;
