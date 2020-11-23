@@ -7,7 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DarkMode from '../Common/Darkmode'
 import Avatar from '@material-ui/core/Avatar';
 import Img from '../../images/blogging.jpg'
-
+import {Modal} from 'react-bootstrap'
+import Invite from '../Common/Invite'
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -87,8 +88,8 @@ export default function CustomizedMenus() {
         <Nav.Link className="profile-dropdown-option" href="/settings"><StyledMenuItem>
           <ListItemText>Account Settings</ListItemText>
         </StyledMenuItem></Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
-          <ListItemText>Invite a Friend</ListItemText>
+        <Nav.Link className="profile-dropdown-option"><StyledMenuItem>
+        <ListItemText><InviteFriend/></ListItemText>
         </StyledMenuItem></Nav.Link>
         <StyledMenuItem>
           <ListItemText primary={<DarkMode/>}/>
@@ -101,3 +102,42 @@ export default function CustomizedMenus() {
     </div>
   );
 }
+
+function InviteFriend() {
+  const [modalShow, setModalShowText] = React.useState(false);
+
+
+  return (
+    <div>
+            <p onClick={() => setModalShowText(true)}>Invite Friend</p>
+
+            <InviteModal
+                show={modalShow}
+                onHide={() => setModalShowText(false)}
+            />
+    </div>
+  );
+}
+
+function InviteModal(props) {
+
+
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Invite A Friend
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Invite/>
+        </Modal.Body>
+      </Modal>
+    );
+  }

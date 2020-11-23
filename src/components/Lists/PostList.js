@@ -78,7 +78,7 @@ class PostList extends React.Component {
   return (
     <div>
     <div className="post-option-btns">
-        <button className="post-option-btn-item">Global</button>
+        <button className="post-option-btn-item-global">Global</button>
         <a href="/discussions"><button className="post-option-btn-item">Discussions</button></a>
         <button className="post-option-btn-item">Links</button>
     </div>
@@ -91,7 +91,6 @@ class PostList extends React.Component {
 
                   <Card.Body>
                     <div className="-u-prof-stats" id="social-user">
-                      {/* <span className="avatar-wrapper-left"><a href="/profile" className="post-user-profile" target="_blank"><PostAvatar/></a></span> */}
                       <span className="username-wrapper">
                         <div class="dropdown3">
                           <a href={"/u/?id=" + post.user_id} className="user-profile-shortlink">{post.user} <b className="user-score-post">1,200</b></a>
@@ -100,27 +99,26 @@ class PostList extends React.Component {
                             <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
                           </div>
                         </div>
+                        <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
+
                         {/* <a href={"/u/?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}
                       </span><br />
-                      <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
-
-                      {/* <ProfileURL/> */}
                     </div>
 
                     <Card.Text className="fontPost">
                       {post.post} <br />
 
-                      <div className="-user-tag">
+                      {/* <div className="-user-tag">
                         {post.tags.map(tag => (
                           <div key={tag.value} className="-user-tag">
                             <a href="/profile"><Image className="tag-img" src={Tag} />{tag.label}</a>
                           </div>
                         ))}
-                      </div>
+                      </div> */}
                     </Card.Text>
-                    <big className="text-muted-society">#{post.category}</big>
+                    {/* <big className="text-muted-society">#{post.category}</big> */}
                     <div className="post-interactions">
-                      <div><hr />
+                      <div>
                         <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20} /></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20} /></span>
                         <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
 

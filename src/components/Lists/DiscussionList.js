@@ -29,6 +29,12 @@ class DiscussionList extends React.Component {
     var { discussions } = this.state;
 
     return (
+      <div>
+          <div className="post-option-btns">
+            <a href="/"><button className="post-option-btn-item">Global</button></a>
+            <a href="/discussions"><button className="post-option-btn-item-discussion">Discussions</button></a>
+            <button className="post-option-btn-item">Links</button>
+        </div>
       <div className="global-feed">
         
         {/* DISCUSSION TAB */}
@@ -47,13 +53,14 @@ class DiscussionList extends React.Component {
                               </div>
                   </div>
                  
-                </span><hr />
+                </span><br/>
                 <big className="text-muted-society">#{discussion._id}</big>
                 <p>{moment(discussion.time).format("H:mma - MMM Do, YYYY.")}</p>
               </div>
             </div></a><br/>
           </div>
         ))}
+      </div>
       </div>
     );
   }
