@@ -462,6 +462,31 @@ hr {
   text-align: center;
 }
 
+.post-option-btns{
+  margin:auto;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.post-option-btn-item{
+  /* border-radius: 25px!important; */
+  width:100px;
+  height:40px;
+  margin-left: 10px;
+  border:1px black solid;
+  outline:none!important;
+}
+
+.post-option-btn-item:hover{
+  background:black;
+  color:white;
+}
+
+.create-event-btn{
+  width:100px;
+  height:40px;
+}
+
 #divRight{
   width: 800px;
   float: left;
@@ -793,6 +818,42 @@ td, th {
 }
 
 .python-card:hover {
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  transform: translateY(-0.25em);
+}
+
+.events-card{
+  padding-top:1rem;
+  width: 400px;
+  height:auto;
+  color: black;
+  border-radius: 10px;
+  background:whitesmoke;
+  margin-top:5rem;
+  padding-bottom:10px;
+  transition:0.2s;
+  margin:10px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.create-event-btn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width:200px;
+  height:50px;
+  border-radius: 25px;
+  background:white;
+  color:black;
+  border:1px solid black;
+  outline:none!important;
+}
+
+.create-event-btn:hover{
+  background:black;
+  color:white;
+}
+
+.events-card:hover {
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   transform: translateY(-0.25em);
 }
@@ -2345,6 +2406,13 @@ padding-left: 4rem;
 }
 
 .UsersSocietyLayout {
+  text-align: center;
+}
+
+.EventSocietyLayout{
+  width:50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
 }
 

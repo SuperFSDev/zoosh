@@ -73,6 +73,13 @@ render(){
   var{followedUsers} = this.state;
 
   return (
+    <div>
+      <div className="post-option-btns">
+        <button className="post-option-btn-item">Global</button>
+        <a href="/discussions"><button className="post-option-btn-item">Discussions</button></a>
+        <button className="post-option-btn-item">Links</button>
+      </div>
+      
      <div className="global-feed">
         {/* POST TAB */}
         {followedUsers.map(user=>  (
@@ -142,6 +149,7 @@ render(){
              </Card>
              </div>
       ))}
+  </div>
   </div>
 
    );

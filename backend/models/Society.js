@@ -9,7 +9,8 @@ const SocietySchema = new Schema({
     address: String,
     description: String,
     private: Boolean,
-    users: {type: Array, "default" : []}
+    users: {type: Array, "default" : []},
+    events: {type: Array, "default" : []}
 })
 
 // create a model

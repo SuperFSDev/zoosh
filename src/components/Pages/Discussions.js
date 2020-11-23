@@ -3,16 +3,15 @@ import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import PostList from '../Lists/PostList'
+import DiscussionList from '../Lists/DiscussionList'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import InfiniteScroll from '../Common/InfiniteScroll'
 
-class Feed extends React.Component {
+class Discussions extends React.Component {
 
   componentDidMount() {
-    // document.body.style.backgroundColor = "#FCFCFC"
-}
+  }
+
 
 render(){
   return (
@@ -23,17 +22,17 @@ render(){
 
       <div className="containerFeedMiddle">
         <QuickOptions/>
-        <PostList/>
-        {/* <InfiniteScroll/> */}
+        <DiscussionList/>
       </div>
 
       <div className="containerFeedRight">
-        <Recommended/>  
-        <Contributors/>  
+        <Recommended/>
+        <Contributors/> 
       </div>
   </div>
   );
- }
+}
 }
 
-export default Feed;
+
+export default Discussions;
