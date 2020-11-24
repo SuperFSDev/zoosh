@@ -8,6 +8,8 @@ import AddUserToForum from '../Profile/AddUserToForum'
 class Forum extends React.Component {
 
     componentDidMount() {
+      document.body.style.backgroundColor = "#F7F7F7"
+
 
         axios.get('http://localhost:4000/forums/getForums')
           .then((response) => {
@@ -87,42 +89,7 @@ render(){
             </div>
 
           ))}
-            {/* <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">NUIG</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a>
-            <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">GMIT</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a>
-            <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">GTI</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a> */}
         </div>
-            {/* <div className="ForumLayout">
-                {forums.map(forum => (
-                 <div key={forum.id}>
-                    <div>
-                        <div className="socs-list-items">
-                        <a href="/" className="-soc-l-navigation">
-                            <div >
-                            <span>
-                                {forum.name}
-                            </span>
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                ))}
-            </div> */}
         
       </div>
 

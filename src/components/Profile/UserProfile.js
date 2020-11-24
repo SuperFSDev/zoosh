@@ -5,7 +5,6 @@ import ProfilePic from '../../images/blogging.jpg'
 import { useParams } from 'react-router-dom'
 import { Tabs, Tab, Image } from 'react-bootstrap'
 import { SiAboutDotMe } from 'react-icons/si'
-import About from './ProfileME'
 import Achievements from './ProfileAchievements'
 import Communities from './ProfileCommunities'
 import History from './ProfilePostHistory'
@@ -30,6 +29,8 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
+    document.body.style.backgroundColor = "#F9F9F9"
+
 
     axios.get('http://localhost:4000/users/get-user-details', {
       params: {
@@ -92,13 +93,18 @@ export default class UserProfile extends React.Component {
             <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p>
           </div>
           <div className="user-profile-about">
+            <h4>Communities</h4>
+            <p><b>{this.state.user.societies}</b></p>
+
+          </div>
+          <div className="user-profile-about">
             <h4>Badges</h4>
           </div>
         </div>
 
         <div className="containerFeedRightProfile">
-          <ProfileTabs />
-
+          {/* <ProfileTabs /> */}
+          <History />
         </div>
       </>
     );
@@ -112,7 +118,7 @@ function ProfileTabs() {
     <div className="-profile-tabs">
       <Tabs defaultActiveKey="posts" id="uncontrolled-tab-example">
         <Tab className="profile-tab-items" eventKey="posts" title={<Image src={Book} />} >
-          <History />
+          {/* <History /> */}
         </Tab>
         <Tab className="profile-tab-items" eventKey="profile" title={<Image src={Team} />}>
           <Communities />

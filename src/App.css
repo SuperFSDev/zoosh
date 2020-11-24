@@ -250,7 +250,6 @@ a{
 .dark-mode .discussion-container{
   background-color: lightgray!important;
   padding:10px;
-  border-radius: 20px;
   color:black;
 }
 
@@ -295,9 +294,7 @@ a{
   text-align: left;
   margin: 0 auto;
   margin-top:20px;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   padding:10px;
-  border-radius: 10px;
   margin-left:20px;
   margin-bottom: 50px;
 }
@@ -492,7 +489,7 @@ hr {
 }
 
 .post-option-btn-item-event:hover{
-  background:#cce3f5;  ;
+  background:#cce3f5;
   color:black;
   transition: 0.2s;
 }
@@ -889,7 +886,7 @@ td, th {
   height:auto;
   color: black;
   border-radius: 10px;
-  background:whitesmoke;
+  background:white;
   margin-top:5rem;
   padding-bottom:10px;
   transition:0.2s;
@@ -988,12 +985,10 @@ td, th {
   text-align: left;
   height:auto;
   margin-top:50px;
-  padding:10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color:lightgray;
-  border-radius: 10px;
+  padding:20px;
+  border-color:none;
   padding-right:10px;
+  background:white;
 }
 
 .user-profile-about-bio{
@@ -1106,7 +1101,7 @@ td, th {
   outline:none!important;
   margin-left:20px;
   color:#1869E7!important;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .miniprofile {
@@ -1129,7 +1124,7 @@ td, th {
   outline:none!important;
   margin-left:20px;
   color:#6264A7  !important;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .quick-post-options-forum:hover{
@@ -1144,7 +1139,7 @@ td, th {
   outline:none!important;
   margin-left:20px;
   color:#4e9668 !important;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .quick-post-options-link{
@@ -1154,7 +1149,7 @@ td, th {
   outline:none!important;
   margin-left:20px;
   color:#964e4e !important;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .quick-post-options-image:hover{
@@ -1198,7 +1193,7 @@ td, th {
 
 .quick-options{
   width:auto;
-  background:whitesmoke;
+  background:white;
   padding:50px;
   margin:auto;
   text-align: center;
@@ -1252,11 +1247,11 @@ td, th {
 }
 
 .feedPost{
-  border-radius: 10px!important;
+  /* border-radius: 10px!important; */
   margin:auto;
   width:auto;
   height:auto;
-  border-style:solid!important;
+  border-style:none!important;
   margin:10px;
 }
 
@@ -1267,6 +1262,7 @@ td, th {
 .global-feed{
   margin-top: 50px;
 }
+
 
 .-user-tag{
   display: inline-block;
@@ -1306,6 +1302,8 @@ td, th {
   border-radius: 25px;
   text-align: center;
   margin-top:10rem;
+  background-color:#F9F9F9;
+
 }
 
 .containerFeedMiddleProfile{
@@ -1326,7 +1324,10 @@ td, th {
   float: left;
   border-radius: 25px;
   text-align: center;
-  margin-top:7.5rem;
+  margin-top:6rem;
+  margin-left: 10rem;
+  background-color:#F9F9F9;
+
 }
 
 .containerFeedLeftCommunity{
@@ -1433,9 +1434,7 @@ td, th {
   width: 60%;
   height: auto;
   outline: none !important;
-  background-color: rgb(255, 255, 255);
   float: left;
-  border-radius: 25px;
   text-align: center;
   margin-top:7rem;
 }
@@ -1444,8 +1443,7 @@ td, th {
   width: 35%;
   height: 1rem;
   outline: none !important;
-  float: left;
-  text-align: left;
+  background:#F9F9F9!important;
 }
 
 .containerFeedMiddleProfileCell{
@@ -1470,7 +1468,7 @@ td, th {
 
 
 .profile-card{
-  background:whitesmoke;
+  background:white;
   border-radius: 10px;
   height:auto;
   width:350px;
@@ -1486,8 +1484,7 @@ td, th {
 
 
 .profile-card-forum{
-  background:whitesmoke;
-  border-radius: 10px;
+  background:white;
   height:auto;
   width:350px;
   margin:auto ;
@@ -1513,7 +1510,7 @@ td, th {
   padding:10px;
   border-radius: 25px;
   outline:none!important;
-  background:white;
+  background:white!important;
   color:black;
   border:1px black solid;
   margin-right:10px;
@@ -1529,12 +1526,11 @@ td, th {
 
 
 .profile-card-society{
-  background:whitesmoke;
-  border-radius: 10px;
+  background:white;
   height:auto;
   width:350px;
   margin:auto ;
-  margin-top:320px;
+  margin-top:400px;
   position:fixed!important;
 }
 
@@ -1696,8 +1692,7 @@ td, th {
   padding:10px;
   width:300px;
   background-color:white;
-  border-radius: 10px;
-  border:solid 1px lightgray;
+  border:none!important;
 }
 
 .feed-options-container{
@@ -1723,7 +1718,7 @@ td, th {
 }
 
 .option-container:hover{
-  background: whitesmoke;
+  background:#cce3f5;
   padding:10px;
   border-radius: 10px;
 }
@@ -1853,18 +1848,17 @@ td, th {
 }
 
 .accordion-cs{
-  background:#FCFCFC!important;
+  background:#F9F9F9!important;
   border-style:none!important;
   box-shadow:none!important;
   text-align: left;
 }
 
 .recommended-container{
-  border: solid 1px lightgray;
+  border: none;
   background: white;
   padding:10px;
   width:250px;
-  border-radius: 10px;
 }
 
 .discussion-post{
@@ -1875,15 +1869,13 @@ td, th {
   padding:10px;
   border-color: lightgray;
   text-decoration: none!important;
-  border-style: solid;
+  border-style: none;
   border-width: 1px;
-  border-radius: 10px;
 }
 
 .discussion-post:hover{
-  background-color:whitesmoke;
-  transition:0.1s;
-  text-decoration: none!important;
+  border: 0.1px solid #d0d0d0;
+
 }
 
 .discussion-post-redirect{
@@ -2008,7 +2000,7 @@ padding-left: 4rem;
 }
 
 .navbar-prof-btn{
-  margin-right:10rem;
+  margin-right:13rem;
 }
 
 .compose-post-navbar{
@@ -2154,7 +2146,7 @@ padding-left: 4rem;
   padding-top:5rem!important;
 }
 .accordion-cs:hover{
-  background: whitesmoke!important;
+  background:#cce3f5!important;
   border-radius: 10px!important;
 }
 
@@ -2861,9 +2853,11 @@ padding-left: 4rem;
 }
 
 .userPosts{
-  float: left;
   width: 40rem;
   text-align: left;
+  margin:10px;
+  background-color:white;
+  border:none!important;
 }
 
 .edit-pic-btn{

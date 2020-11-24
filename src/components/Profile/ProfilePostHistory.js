@@ -62,9 +62,9 @@ export default class History extends React.Component {
                   <Card.Text className="fontPost">
                     {post.post} <br/>
                   </Card.Text>
-                  <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br>
+                  {/* <big  className="text-muted-society">#{post.category}</big> <Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge><br></br> */}
                   <div className="post-interactions">
-                  <div><hr/>
+                  <div>
                       <span className="voting-btn"><FiThumbsUp id="thumb-up" size={20}/></span><span className="voting-btn"><FiThumbsDown id="thumb-down" size={20}/></span>
                       <span className="voting-btn"><FaRegCommentDots size={20} onClick={()=>{this.setState({toggle:!this.state.toggle})}} className="feed-comment"/></span><PostLinks/>
 
