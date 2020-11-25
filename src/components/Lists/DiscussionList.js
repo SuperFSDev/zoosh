@@ -32,7 +32,7 @@ class DiscussionList extends React.Component {
       <div>
           <div className="post-option-btns">
             <a href="/"><button className="post-option-btn-item">Global</button></a>
-            <a href="/discussions"><button className="post-option-btn-item-discussion">Discussions</button></a>
+            <a href="/discussions"><button className="post-option-btn-item-discussion">Communities</button></a>
             <button className="post-option-btn-item">Links</button>
         </div>
       <div className="global-feed">

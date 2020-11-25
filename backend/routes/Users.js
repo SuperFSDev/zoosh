@@ -297,7 +297,7 @@ users.post('/updateFollowers', (req, res) => {
 })
 
 // FOLLOW A FORUM
-users.post('/addToForumList', (req, res) => {
+users.post('/addToForumFollowingList', (req, res) => {
     
     UserModel.findByIdAndUpdate(
         { _id: req.body.user_id, },
@@ -321,7 +321,6 @@ users.post('/addToForumList', (req, res) => {
         }
     )
 })
-
 
 
 // Gets one users societies

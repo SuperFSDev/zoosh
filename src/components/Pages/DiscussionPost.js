@@ -21,7 +21,7 @@ export default class ForumPost extends React.Component {
 
     componentDidMount() {
       var discussion_id = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#F7F7F7"
+      document.body.style.backgroundColor = "#f0f2f5";
 
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {

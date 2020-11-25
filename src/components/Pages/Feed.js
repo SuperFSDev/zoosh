@@ -12,7 +12,7 @@ class Feed extends React.Component {
 
   componentDidMount() {
     // document.body.style.backgroundColor = "#FCFCFC"
-    document.body.style.backgroundColor = "#F7F7F7"
+    document.body.style.backgroundColor = "#f0f2f5";
 
 }
 

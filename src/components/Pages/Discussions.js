@@ -10,7 +10,7 @@ import QuickOptions from '../Common/QuickOptions'
 class Discussions extends React.Component {
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7"
+    document.body.style.backgroundColor = "#f0f2f5";
   }
 
 

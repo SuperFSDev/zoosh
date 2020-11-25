@@ -79,7 +79,7 @@ class PostList extends React.Component {
     <div>
     <div className="post-option-btns">
         <button className="post-option-btn-item-global">Global</button>
-        <a href="/discussions"><button className="post-option-btn-item">Discussions</button></a>
+        <a href="/discussions"><button className="post-option-btn-item">Communities</button></a>
         <button className="post-option-btn-item">Links</button>
     </div>
 

@@ -16,11 +16,12 @@ import NewSocs from './components/Lists/NewSocsList'
 import JoinSocs from './components/Socs/JoinSocModal';
 import Profile from './components/Profile/MyProfile'
 import ViewProfile from './components/Profile/UserProfile'
-import ForumPost from './components/Pages/ForumPost'
+import DiscussionPost from './components/Pages/DiscussionPost'
 import Forums from './components/Pages/Forum'
 import Discussions from './components/Pages/Discussions'
 import Events from './components/Pages/Events'
 import InfoPage from './components/Pages/InfoPage'
+import ForumPage from './components/Pages/ForumPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
@@ -42,7 +43,7 @@ class App extends React.Component {
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>
               <Route path="/new" component={NewSocs}/>
-              <Route path="/d" component={ForumPost}/>
+              <Route path="/d" component={DiscussionPost}/>
               <Route path="/l" component={Leaderboard}/>
               {/* <Route path="/s" component={InfoPage}/> */}
               <Route path="/me" component={Profile}/>
@@ -50,6 +51,7 @@ class App extends React.Component {
               <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/forums" component={Forums}/>
+              <Route path="/f" component={ForumPage}/>
               <Route path="/" component={Feed}/>
 
             </Switch>

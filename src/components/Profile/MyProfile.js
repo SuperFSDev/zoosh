@@ -23,23 +23,28 @@ export default class MyProfile extends React.Component {
       super(props);
       this.state = {
           id: '',
-          user: ''
+          user: '',
+          followers: [],
+          followers: [],
       };
     }
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
-      document.body.style.backgroundColor = "#F7F7F7"
+      document.body.style.backgroundColor = "#f0f2f5";
 
       this.setState({ id: user._id });
 
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
-              id: user._id
+              id: user._id,
+             
           }
       })
           .then((response) => {
-              this.setState({ user: response.data.user })
+              this.setState({ user: response.data.user,
+              followers: response.data.user.followers,
+              following: response.data.user.following, })
           })
           .catch((error) => {
               console.log(error);
@@ -62,6 +67,9 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-btn-options">
               <span className="user-profile-btn-options">
                 <EditProfile/>
+                  {/* <p className="user-followers-following-stats">Following {this.state.following.length}</p>
+                  <p className="user-followers-following-stats">Followers {this.state.followers.length}</p> */}
+
               </span>
             </div>
           </div>

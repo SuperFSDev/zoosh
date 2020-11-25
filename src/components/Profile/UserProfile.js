@@ -23,13 +23,15 @@ export default class UserProfile extends React.Component {
     this.state = {
       user: '',
       isDisabled: false,
+      followers: [],
+      following: [],
     };
   }
 
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-    document.body.style.backgroundColor = "#F9F9F9"
+    document.body.style.backgroundColor = "#f0f2f5";
 
 
     axios.get('http://localhost:4000/users/get-user-details', {
@@ -39,7 +41,11 @@ export default class UserProfile extends React.Component {
     })
 
       .then((response) => {
-        this.setState({ user: response.data.user })
+        this.setState({ user: response.data.user,
+                        followers: response.data.user.followers,
+                        following: response.data.user.following,
+
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +79,8 @@ export default class UserProfile extends React.Component {
             </div>
             <div>
               <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-              <button className="follow-btn">Unfollow</button>
+              <button className="follow-btn">Unfollow</button><br/>
+              {/* <p className="user-followers-following-stats">Following {this.state.following.length}</p> */}
 
             </div>
           </div>
@@ -88,23 +95,29 @@ export default class UserProfile extends React.Component {
             <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
             {/* <p>Studying: <b className="user-details">{this.state.user.course}</b></p> */}
             {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-            <p><RiCake2Fill /> <b className="user-details">{moment(this.state.user.time).format("MMM D, YYYY")}</b></p>
+            <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM D, YYYY")}</b></p>
+            {/* <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p> */}
+            {/* <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p> */}
+          </div>
+          <div className="user-profile-about">
+            <h4>Stats</h4>
             <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
-            <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p>
+            <p className="user-followers-following-stats">Followers <b className="user-details-views">{this.state.followers.length}</b></p>
+
+          </div>
+          <div className="user-profile-about">
+            <h4>Awards</h4>
+            <p></p>
           </div>
           <div className="user-profile-about">
             <h4>Communities</h4>
             <p><b>{this.state.user.societies}</b></p>
-
-          </div>
-          <div className="user-profile-about">
-            <h4>Badges</h4>
           </div>
         </div>
 
         <div className="containerFeedRightProfile">
-          {/* <ProfileTabs /> */}
           <History />
+
         </div>
       </>
     );

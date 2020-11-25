@@ -7,7 +7,9 @@ const PostSchema = new Schema({
     post:String,
     time:Date,
     category:String,
-    tags:Array
+    tags:Array,
+    upvotes:Number,
+    downvotes:Number
 })
 
 
