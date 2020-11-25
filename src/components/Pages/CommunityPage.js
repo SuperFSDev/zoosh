@@ -14,14 +14,15 @@ export default class CommunityPage extends React.Component {
     this.state = {
       society: '',
       users:[],
+      UserList:[]
     };
   }
 
-    componentDidMount() {
+  async componentDidMount() {
       var society_id = new URLSearchParams(this.props.location.search).get("id");
 
 
-      axios.get('http://localhost:4000/societies/get-societies-page', {
+     await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
           id: society_id
         }
@@ -33,6 +34,10 @@ export default class CommunityPage extends React.Component {
         .catch((error) => {
           console.log(error);
         });
+        
+        for (var i = 0; i < this.state.users.length; i++) {
+          this.GetFollowedUser(this.state.users[i]._id)
+        } 
     }
 
     addUser(soc) {
@@ -41,8 +46,25 @@ export default class CommunityPage extends React.Component {
     }
 
 
-    render(){
+     async  GetFollowedUser(user_id){
+    await axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id:user_id
+        }
+      })
+        .then((response) => {
+          this.setState({
+            UserList: this.state.UserList.concat(response.data.user)
+          })
+  
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
 
+    render(){
+     
       var user = JSON.parse(localStorage.getItem('user'));
       if(this.state.society.admin == user._id){
 
@@ -88,7 +110,19 @@ export default class CommunityPage extends React.Component {
               <br/>
               <div className="community-card">
               <p className="member-count">Admins: {this.state.society.admin}</p>
-                <p className="member-count">Members:  {this.state.users.length}</p>
+              {console.log("aaaa"+this.state.UserList)}
+              <p>members</p>
+              {this.state.UserList.map(u => ( 
+               
+                
+                
+
+
+                 <div key={u._id} >
+                   {console.log(u)}
+                <p className="member-count">{ <Image src={`data:image/jpeg;base64,${u.pic}`} className="user-image" roundedCircle />} </p>
+                </div>
+                ))}
               </div>
             </div>
 
