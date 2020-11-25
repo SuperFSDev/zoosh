@@ -27,7 +27,9 @@ societies.post('/create', (req, res) => {
         category: req.body.category,
         address: req.body.address,
         description: req.body.description,
-        private: req.body.private
+        private: req.body.private,
+        admin:req.body.admin
+    
     }
 
     //Check if user is already registered

@@ -13,12 +13,12 @@ export default class CommunityPage extends React.Component {
     super(props);
     this.state = {
       society: '',
+      users:[],
     };
   }
 
     componentDidMount() {
       var society_id = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#f0f2f5";
 
 
       axios.get('http://localhost:4000/societies/get-societies-page', {
@@ -27,7 +27,8 @@ export default class CommunityPage extends React.Component {
         }
       })
         .then((response) => {
-          this.setState({ society: response.data.society })
+          this.setState({ society: response.data.society,
+           users:response.data.society.users})
         })
         .catch((error) => {
           console.log(error);
@@ -36,12 +37,46 @@ export default class CommunityPage extends React.Component {
 
     addUser(soc) {
       AddUserToSoc(soc);
+      var user = JSON.parse(localStorage.getItem('user'));
     }
 
 
     render(){
+
+      var user = JSON.parse(localStorage.getItem('user'));
+      if(this.state.society.admin == user._id){
+
+
+        return (
+          <div>
+     
+              <div className="containerFeedLeftCommunity">
+                <div className="community-card">
+                  <h1>Welcome admin</h1>
+                  <Image src={ProfilePic} className="user-image" roundedCircle />
+                  <h3>{this.state.society.name}</h3>
+                  <p className="community-copy-link">z/{this.state.society._id}</p>
+                  <p>{this.state.society.description}</p>
+                </div>
+                <br/>
+                <div className="community-card">
+                <p className="member-count">Admins: {this.state.society.admin}</p>
+                  <p className="member-count">Members:  {this.state.users.length}</p>
+                </div>
+              </div>
+  
+              <div className="containerFeedMiddleCommunity">
+                <CommunityTabs/>
+              </div>
+          </div>
+          );
+      }
+
+      else{
+
       return (
         <div>
+          
             <div className="containerFeedLeftCommunity">
               <div className="community-card">
                 <Image src={ProfilePic} className="user-image" roundedCircle />
@@ -52,8 +87,8 @@ export default class CommunityPage extends React.Component {
               </div>
               <br/>
               <div className="community-card">
-                <p className="member-count">Admins: 1</p>
-                <p className="member-count">Members: 1</p>
+              <p className="member-count">Admins: {this.state.society.admin}</p>
+                <p className="member-count">Members:  {this.state.users.length}</p>
               </div>
             </div>
 
@@ -63,4 +98,5 @@ export default class CommunityPage extends React.Component {
         </div>
         );
     } 
+}
 }
