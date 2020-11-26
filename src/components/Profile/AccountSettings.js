@@ -170,7 +170,7 @@ export default class AccountSettings extends React.Component {
     localStorage.setItem('user', JSON.stringify(this.user));
 
     console.log('Updated user details.');
-    window.location = '/profile';
+    window.location = '/me';
 
     // Reset state to undefined.
     this.setState({

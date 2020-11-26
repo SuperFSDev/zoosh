@@ -128,7 +128,7 @@ class LayoutTextFeilds extends React.Component {
       tags:[]
     });
     alert(JSON.stringify(newPost));
-    window.location = '/feed';
+    window.location = '/home';
     }
 
   render(){

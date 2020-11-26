@@ -12,7 +12,7 @@ export default function NavBar() {
     <div>
       <div id="top"></div>
       <Navbar className="navbar" fixed="top">
-        <Navbar.Brand className="header" href="/">Name</Navbar.Brand>
+        <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
         <Nav className="mr-auto">
         {/* <div className="search-div-navbar">
           <input className="searchbar-nav-navbar" type="text" id="mySearch" placeholder="Search for a User "/>

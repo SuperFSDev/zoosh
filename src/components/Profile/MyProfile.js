@@ -85,16 +85,22 @@ export default class MyProfile extends React.Component {
               <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
               <p>DOB: <b className="user-details">{this.state.user.dob}</b></p>
               <p><RiCake2Fill /> <b className="user-details"></b></p>
-              <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
-              <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p>
             </div>
+
+            <div className="user-profile-about">
+            <h4>Stats</h4>
+            <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
+            <p className="user-followers-following-stats">Followers <b className="user-details-views">{this.state.followers.length}</b></p>
+            </div>
+
+            <div className="user-profile-about">
+              <h4>Awards</h4>
+              <p></p>
+            </div>
+            
             <div className="user-profile-about">
               <h4>Communities</h4>
               <p><b>{this.state.user.societies}</b></p>
-
-            </div>
-            <div className="user-profile-about">
-              <h4>Badges</h4>
             </div>
         </div>
 

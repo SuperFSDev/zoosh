@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ForumSchema = new Schema({
     name: String,
     visibility: String,
-    followers:{type: Array, "default" : []},
+    users: {type: Array, "default" : []},
 })
 
 // create a model

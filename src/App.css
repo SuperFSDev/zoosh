@@ -769,6 +769,8 @@ hr {
 }
 
 /* LEADERBOARD */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
  
  h2 a {
    font-weight: 700;
@@ -786,8 +788,62 @@ hr {
 
 .c-s-header{
   text-align: center;
+  font-family: 'Poppins', sans-serif;
+
 }
- 
+
+.community-leaderboard{
+  width:50%;
+  padding:50px;
+  margin:auto;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  background:white;
+}
+
+.btn-leaderboard{
+  padding:10px;
+  margin-right:10px;
+  background:white;
+  outline:none!important;
+  border:2px solid black;
+}
+
+.btn-leaderboard:hover{
+  background:black;
+  color:white;
+
+}
+
+.contributors-container-leaderboard{
+  margin-top:50px;
+  padding:10px;
+  width:800px!important;
+  background-color:white;
+  border:none!important;
+}
+
+.leaderboard-options{
+  margin-top:10rem;
+  text-align: center;
+}
+
+.soc-leaderboard-name-item{
+  margin-left:10rem;
+}
+
+.soc-leaderboard-score-item{
+  float:right;
+}
+
+.leaderboard-item:hover{
+  background:whitesmoke;
+  padding:10px;
+}
+
+.leaderboard-item{
+  padding:10px;
+}
  
  .container th h1 {
      font-weight: bold;

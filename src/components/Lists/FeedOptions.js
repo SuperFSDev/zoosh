@@ -67,7 +67,7 @@ function FeedOptions() {
                     <a href="/profile" className="feed-option-redirects-username"><div className="user-profile-container">
                         <h3>{fullname} <b className="user-score">1,200</b></h3>
                     </div></a><br/>
-                    <a href="/" className="feed-option-redirects"><div className="option-container">
+                    <a href="/home" className="feed-option-redirects"><div className="option-container">
                         <Image src={Home}/> Home
                     </div></a>
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">

@@ -98,8 +98,7 @@ export default class Daily extends React.Component {
           {filteredSocietiesByName.map(society => (
             <div key={society.id}>
               <div className="socs-list-items">
-                <a href="/" className="-soc-l-navigation">
-                  <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
+                 <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
                   <p>{society.category}</p>                    
                   <p><b>{society.college}</b></p>     
                   <p maxLength={10}>{society.description}</p>     
@@ -110,7 +109,6 @@ export default class Daily extends React.Component {
                     </span>
                   </div>
                   {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
-                </a>
               </div>
             </div>
 

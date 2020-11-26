@@ -52,7 +52,7 @@ class App extends React.Component {
               <Route path="/events" component={Events}/>
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>
-              <Route path="/" component={Feed}/>
+              <Route path="/home" component={Feed}/>
 
             </Switch>
           </Router>

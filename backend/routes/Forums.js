@@ -52,11 +52,11 @@ forums.post('/addForumPost', (req, res) => {
 })
 
 
-forums.post('/updateForumFollowers', (req, res) => {
+forums.post('/update', (req, res) => {
     
     ForumModel.findOneAndUpdate(
         { name: req.body.forum, },
-        { $addToSet: { followers: req.body.follower } },
+        { $addToSet: { users: req.body.user } },
         { upsert: true, new: true, runValidators: true },
 
         function (err, result) {
@@ -74,6 +74,16 @@ forums.post('/updateForumFollowers', (req, res) => {
 
         }
     )
+})
+
+forums.post('/NewPost', (req, res) => {
+
+    ForumModel.create({
+        user: req.body.user,
+        title: req.body.title,
+        content: req.body.content,
+        time: req.body.time,
+    });
 })
 
 

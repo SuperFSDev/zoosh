@@ -54,8 +54,8 @@ class Forum extends React.Component {
         this.setState({ searchValue: event.target.value.substr(0, 20) });
       }
 
-      addForum(forum) {
-        AddUserToForum(forum);
+      addForum(frm) {
+        AddUserToForum(frm);
       }
 
 render(){

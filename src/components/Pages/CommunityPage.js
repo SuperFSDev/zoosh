@@ -5,7 +5,6 @@ import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import AddUserToSoc from '../Socs/AddUserToSoc'
-import CommunityTabs from '../Community/CommunityTabs'
 
 export default class CommunityPage extends React.Component {
 
@@ -88,7 +87,6 @@ export default class CommunityPage extends React.Component {
               </div>
   
               <div className="containerFeedMiddleCommunity">
-                <CommunityTabs/>
               </div>
           </div>
           );
@@ -127,7 +125,6 @@ export default class CommunityPage extends React.Component {
             </div>
 
             <div className="containerFeedMiddleCommunity">
-              <CommunityTabs/>
             </div>
         </div>
         );

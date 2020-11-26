@@ -65,7 +65,7 @@ class CreateForumPost extends React.Component {
           time: new Date().getTime(),
         }
     
-        axios.post('http://localhost:4000/links/NewLink', newLink)
+        axios.post('http://localhost:4000/forums/NewPost', newLink)
           .then()
           .catch();
     
@@ -75,7 +75,7 @@ class CreateForumPost extends React.Component {
           content: '',
           time: new Date().getTime(),
         });
-        window.location = '/feed';
+        window.location = '/forum';
       }
 
 

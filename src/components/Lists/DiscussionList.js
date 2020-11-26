@@ -31,7 +31,7 @@ class DiscussionList extends React.Component {
     return (
       <div>
           <div className="post-option-btns">
-            <a href="/"><button className="post-option-btn-item">Global</button></a>
+            <a href="/home"><button className="post-option-btn-item">Global</button></a>
             <a href="/discussions"><button className="post-option-btn-item-discussion">Communities</button></a>
             <button className="post-option-btn-item">Links</button>
         </div>

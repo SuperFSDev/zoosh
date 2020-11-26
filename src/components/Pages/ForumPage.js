@@ -11,7 +11,7 @@ export default class ForumPage extends React.Component {
     super(props);
     this.state = {
       forum: [],
-      followers:[]
+      users:[]
     };
   }
 
@@ -26,7 +26,7 @@ export default class ForumPage extends React.Component {
       })
         .then((response) => {
           this.setState({ forum: response.data.forum,
-            followers: response.data.forum.followers, })
+            users: response.data.forum.users, })
         })
         .catch((error) => {
           console.log(error);
@@ -45,7 +45,7 @@ export default class ForumPage extends React.Component {
                   <span  className="username-wrapper">
                       <h4>{this.state.forum.name}</h4>
                       <Badge  pill variant="info">{this.state.forum.visibility}</Badge>
-                      <p className="forum-followers-item"><b className="forum-followers">{this.state.followers.length} Followers</b></p>
+                      <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
 
                     
                       <button className="post-option-btn-item-forum">Create Post</button>
