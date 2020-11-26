@@ -3,13 +3,13 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import {Form} from 'react-bootstrap';
 import Select from 'react-select';
-
+import { ObjectID } from 'bson';
 
 class LayoutTextFeilds extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
+      _id: '',
       score:50,
       users: [],
       posts: [],
@@ -98,12 +98,12 @@ class LayoutTextFeilds extends React.Component {
   onSubmit(e) {
 
     e.preventDefault();
-
+    var id  = new ObjectID();
     const newPost = {
       user_id: this.state.id,
       score:this.state.UniqueUser.score+50,
       post:{ 
-        user_id:this.state.id,
+        Post_id: id,
         user: this.state.user,
         post: this.state.post,
         time: new Date().getTime(),

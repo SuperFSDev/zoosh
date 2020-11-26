@@ -11,9 +11,10 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { FaRegCommentDots, FaTintSlash } from 'react-icons/fa'
-import CommentReply from '../Posts/CommentReply'
+import TextField from '@material-ui/core/TextField';
 import PostLinks from '../Posts/PostLinks'
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
+
 
 class Feed extends React.Component {
 
@@ -23,10 +24,10 @@ class Feed extends React.Component {
       toggle: false,
       posts: [],
       FollowingID:'',
-      empty:[]
+      comment:''
     
     };
-    
+    this.onChangeComment = this.onChangeComment.bind(this);
   }
 
     async componentDidMount() {
@@ -75,7 +76,11 @@ class Feed extends React.Component {
         });
     }
 
-    
+    onChangeComment(e) {
+      this.setState({
+          comment: e.target.comment
+      });
+  }
 
 
 render(){
@@ -133,10 +138,24 @@ render(){
                             <div>
                               <span className="voting-btn"><MdThumbUp id="thumb-up" size={20} /></span><span className="voting-btn"><MdThumbDown id="thumb-down" size={20} /></span>
                               <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
+                              <TextField
+                               id="outlined-textarea"
+                                  label="Comment"
+                                  style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+                                  placeholder="Comment"         
+                                  fullWidth
+                                  required
+                                  multiline
+                                  variant="outlined"
+                                  margin="normal"
+                                  value={this.state.comment}
+                                  onChange={this.onChangeComment}
+                                  InputLabelProps={{
+                                  shrink: true,
+                                                   }}
+                                                  />
 
-                              {
-                                this.state.toggle ? <div className="-post-reply-comment-div"><CommentReply /></div> : null
-                              }
+                              
                             </div>
                           </div>
                         </Card.Body>
