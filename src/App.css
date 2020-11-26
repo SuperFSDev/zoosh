@@ -11,6 +11,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -465,67 +466,70 @@ hr {
 }
 
 .post-option-btn-item{
-  border-radius: 25px!important;
+  /* border-radius: 25px!important; */
+  background:white;
   width:120px;
   height:40px;
   margin-left: 10px;
-  border:none;
+  border:2px black solid;
   outline:none!important;
   font-weight: bold;
   color:gray;
 }
 
 .post-option-btn-item-forum{
-  border-radius: 25px!important;
   width:140px;
   height:40px;
-  border:none;
   outline:none!important;
   font-weight: bold;
   margin-right: 10px;
-  color:gray;
+  color:black;
+  background:white;
+  border:2px solid black;
 }
 
 .post-option-btn-item-forum:hover{
-  background:#cce3f5;
-  color:black;
+  background:black;
+  color:white;
   transition: 0.2s;
 }
 
 .post-option-btn-item-event{
-  border-radius: 25px!important;
+  /* border-radius: 25px!important; */
   margin-top: 20px;
   margin-bottom: 20px;
   width:150px;
   height:40px;
   margin-left: 10px;
-  border:none;
+  border:2px solid black;
   outline:none!important;
   font-weight: bold;
-  color:gray;
+  background:white;
+  color:black;
 }
 
 .post-option-btn-item-event:hover{
-  background:#cce3f5;
-  color:black;
+  background:black;
+  color:white;
   transition: 0.2s;
 }
 
 .post-option-btn-item-discussion , .post-option-btn-item-global{
-  border-radius: 25px!important;
+  /* border-radius: 25px!important; */
   width:120px;
   height:40px;
   margin-left: 10px;
-  border:none;
+  border:2px black solid;
   outline:none!important;
-  background:#cce3f5;
+  background:black;
+  color:white;
   font-weight: bold;
 
 }
 
 .post-option-btn-item:hover{
-  background:#cce3f5;  ;
-  color:black;
+  background:black;  ;
+  color:white;
   transition: 0.2s;
 }
 .invite-url{
@@ -770,8 +774,6 @@ hr {
 
 /* LEADERBOARD */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
- 
  h2 a {
    font-weight: 700;
    text-transform: uppercase;
@@ -958,7 +960,6 @@ td, th {
   width: 400px;
   height:auto;
   color: black;
-  border-radius: 10px;
   background:white;
   margin-top:5rem;
   padding-bottom:10px;
@@ -1002,17 +1003,16 @@ td, th {
 }
 
 .soc-item-list-join-btn{
-  background:whitesmoke;
-  border-radius: 25px;
+  background:white;
   border-width: 1px;
   outline: none!important;
-  border-style: solid;
+  border: 1px solid black;
   width:60px;
   margin: 0; /* remove all margins to fit two divs in the container */
 }
 
 .soc-item-list-join-btn:hover{
-  background:#1869E7;
+  background:black;
   color:white;
 }
 
@@ -1270,7 +1270,7 @@ td, th {
   padding:50px;
   margin:auto;
   text-align: center;
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 .quick-options-container{
@@ -1533,7 +1533,7 @@ td, th {
   background:white;
   width:100%;
   margin: auto;
-  margin-top:4.5rem;
+  margin-top:3rem;
   padding:20px;
 }
 
@@ -1578,15 +1578,13 @@ td, th {
 
 .profile-card{
   background:white;
-  border-radius: 10px;
   height:auto;
   width:350px;
 }
 
 .community-card{
   background:white;
-  border:1px lightgray solid;
-  border-radius: 10px;
+  border:none!important;
   height:auto;
   width:350px;
 }
@@ -1661,17 +1659,16 @@ td, th {
   width:10vh;
   margin:0 auto;
   height:5vh;
-  border-radius: 25px;
-  border-style: solid;
-  border:none;
+  font-weight:bold;
+  border: 2px black solid!important;
   outline: none !important;
-  background:#2b88d8;
-  color: white;
+  background:white;
+  color: black;
   margin-top: 10px;
 }
 .create-post-btn-submit:hover{
-  color:black;
-  background:#deecf9;
+  color:white;
+  background:black;
 }
 
 .dark-mode .feed-option-redirects{
@@ -1754,7 +1751,7 @@ td, th {
 }
 
 .containerForumMiddle{
-  margin-top: 20vh;
+  margin-top: 17.5vh;
   width: 40%;
   height: auto;
   outline: none !important;
@@ -1805,7 +1802,7 @@ td, th {
 }
 
 .feed-options-container{
-  margin-top:100px;
+  margin-top: 8vh;
   height:auto;
   width:400px;
   float: left;
@@ -1818,7 +1815,6 @@ td, th {
 .user-profile-container{
   background: white;
   padding:10px;
-  border-radius: 10px;
 }
 
 .option-container{
@@ -1874,7 +1870,7 @@ td, th {
 }
 
 .-contributor-user-score{
-  left:50px!important;
+  float:right;
 }
 
 .-top-cont-header{
@@ -1936,10 +1932,6 @@ td, th {
   margin:auto;
 }
 
-.recommended-item:hover{
-  background:whitesmoke;
-}
-
 .recommended-item-a{
   text-decoration: none!important;
 }
@@ -1957,7 +1949,7 @@ td, th {
 }
 
 .accordion-cs{
-  background:#F9F9F9!important;
+  background:none!important;
   border-style:none!important;
   box-shadow:none!important;
   text-align: left;
@@ -2268,16 +2260,15 @@ padding-left: 4rem;
 .trending-soc{
   width:15vh;
   height:5vh;
-  border-radius: 25px;
   border-style: solid;
-  border:none;
+  border:2px solid black;
   outline: none !important;
-  background:#1A2E35;
-  color: white;
-  margin:10px;
+  background:white;
+  color: black;
+  margin-top:5rem;
 }
 .trending-soc:hover{
-  background:#27444e;
+  background:black;
   color: white;
 }
 .textfield-create-a-soc{
@@ -2366,7 +2357,14 @@ padding-left: 4rem;
 }
 
 .forum-followers-item{
+  margin-top: 5px;
+  margin-left: 10px;
+  float:left;
+}
+
+.forum-badge-item{
   margin-top: 10px;
+  float:left;
 }
 
 .user-score-post{
@@ -2418,7 +2416,7 @@ padding-left: 4rem;
 .forum-follow-btn{
   background:none;
   font-size:15px;
-  border:1px solid;
+  border:2px black solid;
   padding:8px;
   margin-left: 10px;
   display: inline-block;
@@ -2430,7 +2428,7 @@ padding-left: 4rem;
 
 .forum-follow-btn:hover{
   color:white;
-  background:blue;
+  background:black;
 }
 
 .profile-btn-wrapper-left{
@@ -2607,12 +2605,15 @@ padding-left: 4rem;
 
 .featured-forums{
   margin-top:3rem;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .user-followers-following-stats{
   display:inline;
   word-wrap: break-word;
 }
+
 
 .forum-option{
   background:white;
@@ -2629,7 +2630,6 @@ padding-left: 4rem;
   width: 200px;
   height:auto;
   color: black;
-  border-radius: 10px;
   background:white;
   margin-top:3rem;
   padding-bottom:10px;
@@ -2689,7 +2689,7 @@ padding-left: 4rem;
   padding-left: 1rem;
   transition: all .2s;
   transition-delay: .1s;
-  box-shadow: 0px 1px 2px rgb(0,0,0,0.2);
+  /* box-shadow: 0px 1px 2px rgb(0,0,0,0.2); */
 }
 
 .searchbar-navbar {

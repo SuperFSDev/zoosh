@@ -8,6 +8,8 @@ import CreateASoc from './CreateASoc'
 export default class Daily extends React.Component {
 
   componentDidMount() {
+    document.body.style.backgroundColor = "#f0f2f5";
+
     axios.get('http://localhost:4000/societies/getSocieties')
       .then((response) => {
         this.setState({ societies: response.data.societies })

@@ -1,16 +1,10 @@
 import React from 'react'
 import '../../App.css';
 import axios from 'axios';
-import ProfilePic from '../../images/blogging.jpg'
 import { useParams } from 'react-router-dom'
 import { Tabs, Tab, Image } from 'react-bootstrap'
 import { SiAboutDotMe } from 'react-icons/si'
-import Achievements from './ProfileAchievements'
-import Communities from './ProfileCommunities'
 import History from './ProfilePostHistory'
-import Team from '../../images/group.png';
-import Book from '../../images/book.png';
-import Badge from '../../images/badge.png';
 import addUserToFollow from './AddUserToFollow'
 import moment from 'moment'
 import { RiCake2Fill, RiEyeFill } from 'react-icons/ri'
@@ -96,8 +90,6 @@ export default class UserProfile extends React.Component {
             {/* <p>Studying: <b className="user-details">{this.state.user.course}</b></p> */}
             {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
             <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM D, YYYY")}</b></p>
-            {/* <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p> */}
-            {/* <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p> */}
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
@@ -123,25 +115,6 @@ export default class UserProfile extends React.Component {
     );
   }
 
-}
-
-
-function ProfileTabs() {
-  return (
-    <div className="-profile-tabs">
-      <Tabs defaultActiveKey="posts" id="uncontrolled-tab-example">
-        <Tab className="profile-tab-items" eventKey="posts" title={<Image src={Book} />} >
-          {/* <History /> */}
-        </Tab>
-        <Tab className="profile-tab-items" eventKey="profile" title={<Image src={Team} />}>
-          <Communities />
-        </Tab>
-        <Tab className="profile-tab-items" eventKey="home" title={<Image src={Badge} />}>
-          <Achievements />
-        </Tab>
-      </Tabs>
-    </div>
-  );
 }
 
 function openCity(cityName) {

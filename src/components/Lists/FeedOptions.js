@@ -1,15 +1,12 @@
 import React from 'react';
 import {Image} from 'react-bootstrap'
 import Team from '../../images/group.png';
-import Home from '../../images/home.png';
 import Forum from '../../images/forum.png';
-import Leaderboard from '../../images/leaderboard.png';
-import Events from '../../images/events.png';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import {RiHeadphoneFill} from 'react-icons/ri'
+import {FcBullish,FcCalendar,FcHome} from 'react-icons/fc'
 import axios from 'axios';
 
 export default class Options extends React.Component {
@@ -64,17 +61,17 @@ function FeedOptions() {
     return (
         <div className="feed-options-container">
                 <div className="feed-options-item">
-                    <a href="/profile" className="feed-option-redirects-username"><div className="user-profile-container">
+                    <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
                         <h3>{fullname} <b className="user-score">1,200</b></h3>
                     </div></a><br/>
                     <a href="/home" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Home}/> Home
+                        <FcHome size={35}/> <b>Home</b>
                     </div></a>
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Forum}/> Forums
+                        <Image src={Forum}/> <b>Forums</b>
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Events}/> Events
+                        <FcCalendar size={35}/> <b>Events</b>
                     </div></a>
                      <div>
                         <FeedAccordion/>
@@ -83,7 +80,7 @@ function FeedOptions() {
                         <RiHeadphoneFill size={30}/> Podcasts
                     </div></a> */}
                     <a href="/l" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Leaderboard}/> Leaderboard
+                        <FcBullish size={35}/> <b>Leaderboard</b>
                     </div></a>
                 </div>
         </div>
@@ -99,9 +96,9 @@ function FeedAccordion() {
           <AccordionSummary
             aria-controls="panel1a-content"
           >
-          <Typography className="accordion-title"><Image src={Team}/> Clubs and Societies</Typography>
+          <Typography className="accordion-title"><Image src={Team}/> <b>Clubs and Societies</b></Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className="accordion-items">
             <Typography>
               <a href="/me">List Of Users Socs</a><br/>
               <hr/>

@@ -96,7 +96,7 @@ class StartDiscussion extends React.Component {
       time: new Date().getTime(),
       society: ''
     });
-    window.location = '/feed';
+    window.location = '/discussions';
   }
 
   render() {

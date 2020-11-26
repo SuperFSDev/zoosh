@@ -44,14 +44,16 @@ export default class ForumPage extends React.Component {
               <div className="forum-container">
                   <span  className="username-wrapper">
                       <h4>{this.state.forum.name}</h4>
-                      <Badge  pill variant="info">{this.state.forum.visibility}</Badge>
-                      <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
-
-                    
+                      <div id="wrapper">
+                        <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
+                        <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
+                      </div>
+                      </span>
+                       <br/>
                       <button className="post-option-btn-item-forum">Create Post</button>
                       <button className="post-option-btn-item-forum">Ask a Question</button>
 
-                  </span>
+                 
                   
               </div>
               <div className="forum-post-container">
@@ -87,4 +89,9 @@ export default class ForumPage extends React.Component {
       </div>
       );
      }
+}
+
+
+function CreateForumPost(){
+  
 }

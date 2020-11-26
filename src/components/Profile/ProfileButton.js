@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Img from '../../images/blogging.jpg'
 import {Modal} from 'react-bootstrap'
 import Invite from '../Common/Invite'
+
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',

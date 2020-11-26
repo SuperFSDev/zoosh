@@ -5,11 +5,7 @@ import ProfileURL from '../Profile/ProfileURL'
 import ProfilePicture from '../Profile/ProfilePicture'
 import axios from 'axios';
 
-export default class ForumPost extends React.Component {
-
-  componentDidMount() {
-  }
-
+class DiscussionPost extends React.Component {
 
   constructor(props) {
     super(props);
@@ -49,7 +45,7 @@ export default class ForumPost extends React.Component {
       return (
         <>
           <div className="containerFeedLeftForum">
-            <a href="/profile"><div className="profile-card-forum">
+            <a href="/me"><div className="profile-card-forum">
               <ProfilePicture />
               <ProfileUsername />
               <div className="user-profile-btn-options">
@@ -86,3 +82,5 @@ export default class ForumPost extends React.Component {
       );
     }
   }
+
+  export default DiscussionPost;

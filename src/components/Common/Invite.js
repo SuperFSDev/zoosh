@@ -25,6 +25,7 @@ export default class YourComponent extends Component {
             readonly="readonly"
             ref={(input) => this.input = input}
             value="localhost:3000/join"
+            readonly={true}
           />
           <button className="copy-btn-to-clipboard" onClick={() => this.copyCodeToClipboard()}>
             Copy
