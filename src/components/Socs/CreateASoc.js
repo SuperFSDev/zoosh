@@ -2,7 +2,8 @@ import React from 'react';
 import '../../App.css';
 import { Form, Col} from 'react-bootstrap'
 import axios from 'axios';
-import {TextField} from '@material-ui/core';
+import {TextField, useRadioGroup} from '@material-ui/core';
+var getUser = JSON.parse(localStorage.getItem('user'))
 
 class CreateASoc extends React.Component {
 
@@ -71,7 +72,8 @@ class CreateASoc extends React.Component {
             category: this.state.category,
             address: this.state.address,
             description: this.state.description,
-            private: this.state.private
+            private: this.state.private,
+            admin:getUser._id
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.category || !newSoc.address) {

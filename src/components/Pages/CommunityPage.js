@@ -111,14 +111,9 @@ export default class CommunityPage extends React.Component {
               {console.log("aaaa"+this.state.UserList)}
               <p>members</p>
               {this.state.UserList.map(u => ( 
-               
-                
-                
-
-
                  <div key={u._id} >
                    {console.log(u)}
-                <p className="member-count">{ <Image src={`data:image/jpeg;base64,${u.pic}`} className="user-image" roundedCircle />} </p>
+                   <Image src={u.pic} className="user-image" roundedCircle />
                 </div>
                 ))}
               </div>
