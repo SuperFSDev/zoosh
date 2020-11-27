@@ -5,12 +5,11 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import { Card, Badge } from 'react-bootstrap';
+import { Card, Badge, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { FaRegCommentDots } from 'react-icons/fa'
-import TextField from '@material-ui/core/TextField';
 import PostLinks from '../Posts/PostLinks'
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
 import { Helmet } from 'react-helmet'
@@ -125,7 +124,8 @@ render(){
                               <div class="dropdown3">
                                 <a href={"/u/?id=" + post.user_id} className="user-profile-shortlink">{post.user} <b className="user-score-post">1,200</b></a>
                                 <div class="dropdown-content3">
-                                  <a href="#">{post.user}</a>
+                                  <a href={"/u/?id=" + post.user_id}>{post.user}</a>
+                                  <button className="forum-follow-btn">Follow</button>
                                   <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
                                 </div>
                               </div>
@@ -151,7 +151,24 @@ render(){
                             <div>
                               <span className="voting-btn"><MdThumbUp id="thumb-up" size={20} /></span><span className="voting-btn"><MdThumbDown id="thumb-down" size={20} /></span>
                               <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
-                              <TextField
+                              <InputGroup>
+                                <FormControl as="textarea" aria-label="With textarea" 
+                                id="outlined-textarea"
+                                label="Comment"
+                                style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+                                placeholder="Reply to post..."         
+                                fullWidth
+                                required
+                                multiline
+                                variant="outlined"
+                                margin="normal"
+                                value={this.state.comment}
+                                onChange={this.onChangeComment}
+                                InputLabelProps={{
+                                shrink: true,
+                                }}/>
+                              </InputGroup>
+                              {/* <TextField
                                id="outlined-textarea"
                                   label="Comment"
                                   style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
@@ -168,7 +185,7 @@ render(){
                                                    }}
                                                   />
 
-                              
+                               */}
                             </div>
                           </div>
                         </Card.Body>

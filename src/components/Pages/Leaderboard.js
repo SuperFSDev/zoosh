@@ -74,8 +74,8 @@ import {Helmet} from 'react-helmet'
             <a href="#growth"><button className="btn-leaderboard" >Top Growing</button></a>
             <div id="users"></div>
           </div>
-          <div className="community-leaderboard">
-            <h1 className="c-s-header" id="users">ON FIRE USERS 🔥</h1><br/>
+          <div className="container-individual">
+            <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/>
               <div className="">
                 {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                   <div>
@@ -88,8 +88,8 @@ import {Helmet} from 'react-helmet'
           </div>
 
           
-          <div className="community-leaderboard">
-            <h1 className="c-s-header" id="top-comm">TOP COMMUNITIES 📈</h1><br/>
+          <div className="container-individual">
+            <h1 className="c-s-header" id="top-comm">TOP COMMUNITIES <span role="img" aria-label="trend">📈</span></h1><br/>
               <div className="">
                 {societies.sort((a,b)=> b.score - a.score).map(society=>  (
                   <div>
@@ -101,8 +101,8 @@ import {Helmet} from 'react-helmet'
               <div id="growth"></div>
           </div>
 
-          <div className="community-leaderboard">
-            <h1 className="c-s-header">TOP GROWING COMMUNITIES 🌱</h1><br/>
+          <div className="container-individual">
+            <h1 className="c-s-header">TOP GROWING COMMUNITIES <span role="img" aria-label="growth">🌱</span></h1><br/>
               <div className="">
                 {societies.sort((a,b)=> b.users.length - a.users.length).map(society=>  (
                   <div>

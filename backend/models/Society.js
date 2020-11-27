@@ -12,7 +12,9 @@ const SocietySchema = new Schema({
     admin:String,
     users: {type: Array, "default" : []},
     mods:{type: Array, "default" : []},
-    events: {type: Array, "default" : []}
+    events: {type: Array, "default" : []},
+    score:{type:Number , "default":0},
+
 })
 
 // create a model

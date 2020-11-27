@@ -91,7 +91,7 @@ class Register extends React.Component {
           <div className="split left">
               <div className="centered">
                 <Nav.Link href="/"><h1 className="header">Name</h1></Nav.Link>
-                <img className="intro" src={RegisterImg}/>
+                <img className="intro" src={RegisterImg} alt="register"/>
               </div>
           </div>
 

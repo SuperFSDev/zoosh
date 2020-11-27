@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav, Form, Button } from 'react-bootstrap';
 
 export default class Facebook extends Component {
 

@@ -12,8 +12,6 @@ import SocsList from './components/Socs/ListSocieties';
 import Leaderboard from './components/Pages/Leaderboard';
 import CreateSociety from './components/Socs/CreateASoc';
 import Trending from './components/Lists/TrendingList'
-import NewSocs from './components/Lists/NewSocsList'
-import JoinSocs from './components/Socs/JoinSocModal';
 import Profile from './components/Profile/MyProfile'
 import ViewProfile from './components/Profile/UserProfile'
 import DiscussionPost from './components/Pages/DiscussionPost'
@@ -25,6 +23,7 @@ import ForumPage from './components/Pages/ForumPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
+import UserConnections from './components/Pages/UserConnections'
 
 class App extends React.Component {
   render(){
@@ -34,17 +33,15 @@ class App extends React.Component {
           <Router> 
             <NavBar/>   
             <Switch>
-              {/* <Route exact path="/feed" component={Feed}/> */}
               <Route path="/list-of-clubs-and-societies" component={SocsList}/>
               <Route path="/create-a-society" component={CreateSociety}/>
-              <Route path="/join-a-club-or-society" component={JoinSocs}/>
               <Route path="/trending" component={Trending}/>
               <Route path="/discussions" component={Discussions}/>
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>
-              <Route path="/new" component={NewSocs}/>
               <Route path="/d" component={DiscussionPost}/>
-              <Route path="/l" component={Leaderboard}/>
+              <Route path="/connections" component={UserConnections}/>
+              <Route path="/leaderboard" component={Leaderboard}/>
               {/* <Route path="/s" component={InfoPage}/> */}
               <Route path="/me" component={Profile}/>
               <Route path="/u" component={ViewProfile}/>
@@ -65,7 +62,6 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/join" component={RegisterPage}/>
-          {/* <Route path="/" component={LoginPage}/> */}
           <Route path="/login" component={LoginPage}/>
           <Route component={DefaultRoutes} />
         </Switch>
@@ -75,4 +71,4 @@ class App extends React.Component {
 }
 
 export default App;
-const rootElement = document.getElementById("root");
+

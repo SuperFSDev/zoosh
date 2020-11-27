@@ -36,7 +36,7 @@ class Contributors extends React.Component {
                  
         </div>
            ))}    
-           <a href="/l">See More</a>
+           <a href="/leaderboard">See More</a>
            </div>
   );
   }

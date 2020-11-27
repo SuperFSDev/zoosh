@@ -4,8 +4,6 @@ import {Navbar, Nav} from 'react-bootstrap';
 import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QuickCreate from './Common/QuickCreate'
-import {HiPencilAlt} from 'react-icons/hi'
-import {IoMdNotificationsOutline} from 'react-icons/io'
 
 export default function NavBar() {
   return (

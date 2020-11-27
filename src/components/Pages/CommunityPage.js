@@ -4,7 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
-import AddUserToSoc from '../Socs/AddUserToSoc'
 import {Helmet} from 'react-helmet'
 
 export default class CommunityPage extends React.Component {
@@ -41,10 +40,10 @@ export default class CommunityPage extends React.Component {
         } 
     }
 
-    addUser(soc) {
-      AddUserToSoc(soc);
-      var user = JSON.parse(localStorage.getItem('user'));
-    }
+    // addUser(soc) {
+    //   AddUserToSoc(soc);
+    //   var user = JSON.parse(localStorage.getItem('user'));
+    // }
 
 
      async  GetFollowedUser(user_id){
@@ -67,7 +66,7 @@ export default class CommunityPage extends React.Component {
     render(){
      
       var user = JSON.parse(localStorage.getItem('user'));
-      if(this.state.society.admin == user._id){
+      if(this.state.society.admin === user._id){
 
 
         return (
@@ -126,12 +125,15 @@ export default class CommunityPage extends React.Component {
               <p className="member-count">Admins: {this.state.society.admin}</p>
               {console.log("aaaa"+this.state.UserList)}
               <p>members</p>
+              <div className="Connections">
               {this.state.UserList.map(u => ( 
                  <div key={u._id} >
                    {console.log(u)}
-                   <Image src={u.pic} className="user-image" roundedCircle />
+                     <Image src={u.pic} className="user-image-mini" roundedCircle />
+                   </div>
+               
+                ))} 
                 </div>
-                ))}
               </div>
             </div>
 

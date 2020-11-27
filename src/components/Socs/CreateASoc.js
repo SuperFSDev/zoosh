@@ -2,10 +2,10 @@ import React from 'react';
 import '../../App.css';
 import { Form, Col} from 'react-bootstrap'
 import axios from 'axios';
-import {TextField, useRadioGroup} from '@material-ui/core';
+import {TextField} from '@material-ui/core';
 var getUser = JSON.parse(localStorage.getItem('user'))
 
-class CreateASoc extends React.Component {
+export default class CreateASoc extends React.Component {
 
     collegeList = ['NUIG', 'GMIT', 'GTI'];
     categories = ['LGBTQ', 'Fitness', 'Music', 'Outdoors', 'Maths', 'Gaming', 'Debating', 'Religion', 'Volunteering'];
@@ -175,5 +175,3 @@ class CreateASoc extends React.Component {
         );
     }
 }
-
-export default CreateASoc;

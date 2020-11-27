@@ -21,7 +21,7 @@ export default class MyProfile extends React.Component {
           course:'',
           dob:'',
           time:'',
-          followers: [],
+          following: [],
           followers: [],
       };
     }

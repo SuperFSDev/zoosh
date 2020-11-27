@@ -3,7 +3,6 @@ import '../../App.css';
 import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginSVG from '../../images/team.jpg'
-import { Card, Image } from 'react-bootstrap';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import RegisterModal from './RegisterModal'

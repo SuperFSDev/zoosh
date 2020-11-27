@@ -43,10 +43,7 @@ render(){
 function Username(){
   var user = JSON.parse(localStorage.getItem('user'));
   if(user)
-    var fullname = user.fullname;
-    var id = user._id;
-    var societies = user.societies;
-  
+    var fullname = user.fullname; 
 
   return (
     <div id="social">

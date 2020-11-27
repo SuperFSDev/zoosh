@@ -2,7 +2,6 @@ import React from 'react';
 import '../../App.css';
 import {Modal } from 'react-bootstrap';
 import axios from 'axios';
-import AddUserToSoc from '../Socs/AddUserToSoc'
 import CreateASoc from './CreateASoc'
 
 export default class Daily extends React.Component {
@@ -39,7 +38,7 @@ export default class Daily extends React.Component {
   }
 
   addUser(soc) {
-    AddUserToSoc(soc);
+    addUserToSoc(soc);
   }
 
   render() {
@@ -48,14 +47,14 @@ export default class Daily extends React.Component {
 
       (society) => {
         let filter = this.state.filterBy;
-        if (filter == "Name") {
+        if (filter === "Name") {
           return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
 
-        } if (filter == "College") {
+        } if (filter === "College") {
           return society.college.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
 
         }
-        if (filter == "Category") {
+        if (filter === "Category") {
           return society.category.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
 
         } else {
@@ -159,3 +158,43 @@ function MyVerticallyCenteredModal(props) {
       </Modal>
     );
   }
+
+
+  // Adding a User to a society array and adding the society to the users array
+  async function addUserToSoc(soc) {
+
+    var getUser = JSON.parse(localStorage.getItem('user'))
+
+    const addUser = {
+        society: soc,
+        user: getUser,
+        user_id: getUser._id,
+    }
+
+    // Adds user to users array in society model.
+    await axios.post('http://localhost:4000/societies/update', addUser)
+        .then(function (resp) {
+            console.log(resp);
+            alert("Successfully joined " + soc);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
+
+    // Adds society to societies array in user model.
+    await axios.post('http://localhost:4000/users/addToSocList', addUser)
+        .then(function (resp) {
+            console.log(resp);
+
+            // Update societies array in localStorage
+            if(!getUser.societies.includes(soc)) {
+                getUser.societies.push(soc);
+            }
+            console.log(getUser);
+            localStorage.setItem('user', JSON.stringify(getUser))
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}

@@ -6,7 +6,7 @@ import {Modal} from 'react-bootstrap'
 import Post from './CreatePost'
 import Discussion from '../Common/StartDiscussion'
 import Link from '../Common/CreateLinkPost'
-import {BsCardImage,BsImage} from 'react-icons/bs'
+import {BsImage} from 'react-icons/bs'
 import {BiLink} from 'react-icons/bi'
 
 export default function QuickOptions() {

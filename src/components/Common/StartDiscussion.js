@@ -3,9 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
+import {Helmet} from 'react-helmet'
 
-
-class StartDiscussion extends React.Component {
+export default class StartDiscussion extends React.Component {
 
   constructor(props) {
     super(props);
@@ -19,7 +19,6 @@ class StartDiscussion extends React.Component {
       time: new Date().getTime(),
       society: '',
     };
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeContent = this.onChangeContent.bind(this);
@@ -107,9 +106,23 @@ class StartDiscussion extends React.Component {
 
     return (
       <div className="create-a-post">
+        {/* REACTJS HELMET */}
+        <Helmet>
+                  <meta charSet="utf-8" />
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                  <meta charset="utf-8" />
+                  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <title>{this.state.user.fullname}</title>
+
+                  {/* LINKS */}
+                  
+                  <link rel="canonical" href="http://mysite.com/example" />
+                  <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                  <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+          </Helmet>
         <div>
           <Form onSubmit={this.onSubmit} className="post-container">
-
             <TextField
               id="outlined-textarea"
               label="Title"
@@ -145,6 +158,8 @@ class StartDiscussion extends React.Component {
             />
             <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." />
 
+            
+
             <button className="create-post-btn-submit" variant="primary" type="submit">Post</button>
           </Form>
         </div>
@@ -153,4 +168,3 @@ class StartDiscussion extends React.Component {
     );
   }
 }
-export default StartDiscussion;

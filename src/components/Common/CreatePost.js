@@ -10,7 +10,7 @@ class LayoutTextFeilds extends React.Component {
     super(props);
     this.state = {
       _id: '',
-      score:50,
+      score:10,
       users: [],
       posts: [],
       user: '',
@@ -90,7 +90,7 @@ class LayoutTextFeilds extends React.Component {
     var id  = new ObjectID();
     const newPost = {
       user_id: this.state.id,
-      score:this.state.UniqueUser.score+50,
+      score:this.state.UniqueUser.score+1,
       post:{ 
         Post_id: id,
         user: this.state.user,

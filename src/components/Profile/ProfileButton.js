@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dropdown} from 'react-bootstrap'
-import DarkMode from '../Common/Darkmode'
 import Avatar from '@material-ui/core/Avatar';
 import {Modal} from 'react-bootstrap'
 import Invite from '../Common/Invite'
@@ -53,8 +52,7 @@ render() {
             <Dropdown.Item href="/me"  eventKey="1">Hello, {this.state.user.fullname} 😃</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item  eventKey="2">Notifications</Dropdown.Item>
-            <Dropdown.Item  eventKey="2">Followers <b className="user-details-views">{this.state.followers.length}</b></Dropdown.Item>
-            <Dropdown.Item  eventKey="2">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
+            <Dropdown.Item href="/connections"  eventKey="2">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item href="/settings"  eventKey="3">Account Settings</Dropdown.Item>
             <Dropdown.Item eventKey="4"><InviteFriend/></Dropdown.Item>

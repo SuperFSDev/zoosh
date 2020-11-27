@@ -1,7 +1,6 @@
 import React from 'react';
 import {BsThreeDots} from 'react-icons/bs'
 import {MdInsertLink,MdReport} from 'react-icons/md'
-import {FaFacebookF,FaTwitter} from 'react-icons/fa'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 

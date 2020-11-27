@@ -104,8 +104,3 @@ export default class ForumPage extends React.Component {
       );
      }
 }
-
-
-function CreateForumPost(){
-  
-}

@@ -46,9 +46,6 @@ render() {
     if(user) 
     {
         var fullname = user.fullname;
-        var id = user._id;
-        var score = user.score;
-        var societies = user.societies;
     }
 
     return (
@@ -70,7 +67,7 @@ render() {
                      <div>
                         <FeedAccordion/>
                     </div>
-                    <a href="/l" className="feed-option-redirects"><div className="option-container">
+                    <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
                         <FcBullish size={35}/> <b>Leaderboard</b>
                     </div></a>
                 </div>

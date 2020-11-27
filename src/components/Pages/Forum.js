@@ -65,7 +65,7 @@ render(){
 
     (forum) => {
       let filter = this.state.filterBy;
-      if (filter == "Name") {
+      if (filter === "Name") {
         return forum.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
 
       }  else {

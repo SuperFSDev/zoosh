@@ -3,11 +3,12 @@ import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
-import QuickEvent from '../Common/QuickEvent'
 import {Helmet} from 'react-helmet'
+import {Modal} from 'react-bootstrap'
+import Event from '../Common/StartEvent'
+import {RiAddFill} from 'react-icons/ri'
 
-
-class Events extends React.Component {
+export default class Events extends React.Component {
 
   constructor(props) {
     super(props);
@@ -48,38 +49,70 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-      <div className="global-feed">
-      <h1>Upcoming Events</h1>
-      <QuickEvent/>
-        <div>
-          <div className="EventSocietyLayout">
-          {events.reverse().map(event => (
-          <div key={event._id}>
-              <div>
-                <div className="events-card">
-                  <a href="/" className="-soc-l-navigation">
-                    <h4><b>{event.title}</b></h4> 
-                    <p>{event.society}</p> 
-                    <p>{event.time}</p>
-                    <div >
+          <div className="global-feed">
+          <h1>Upcoming Events</h1>
+          <QuickEvent/>
+            <div>
+              <div className="EventSocietyLayout">
+              {events.reverse().map(event => (
+              <div key={event._id}>
+                  <div>
+                    <div className="events-card">
+                      <a href="/" className="-soc-l-navigation">
+                        <h4><b>{event.title}</b></h4> 
+                        <p>{event.society}</p> 
+                        <p>{event.time}</p>
+                        <div >
+                        </div>
+                      </a>
                     </div>
-                  </a>
-                </div>
-                
+                    
+                  </div>
               </div>
-          </div>
-          ))}
+              ))}
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
-      </div>
-
-      <div className="containerFeedRight">
-        {/* <Recommended/>  
-        <Contributors/>   */}
       </div>
   </div>
   );
 }
 }
-export default Events;
+
+
+//  FUNCTIONS TO OPEN EVENT MODAL
+function QuickEvent() {
+  const [modalShow, setModalShowEvent] = React.useState(false);
+
+  return (
+    <div>
+            <button className="post-option-btn-item-event"  onClick={() => setModalShowEvent(true)}>Create Event <RiAddFill size={25}/></button>
+
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShowEvent(false)}
+            />
+    </div>
+  );
+}
+
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Create Event
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Event/>
+        </Modal.Body>
+      </Modal>
+    );
+  }

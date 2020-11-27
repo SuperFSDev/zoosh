@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import { Card, Badge} from 'react-bootstrap';
+import { Card} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'

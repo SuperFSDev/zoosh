@@ -3,10 +3,10 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Nav, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { BiEdit } from 'react-icons/bi'
 import axios from 'axios';
-import { HashPassword, ComparePassword } from '../auth/HashPassword';
+// import { HashPassword, ComparePassword } from '../auth/HashPassword';
 
 export default class EditProfile extends React.Component {
 

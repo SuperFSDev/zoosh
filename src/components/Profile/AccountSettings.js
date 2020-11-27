@@ -1,6 +1,6 @@
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
-import Dropzone from "react-dropzone";
+// import Dropzone from "react-dropzone";
 import '../../App.css';
 import { Form } from 'react-bootstrap';
 import axios from 'axios';
@@ -45,7 +45,6 @@ export default class AccountSettings extends React.Component {
 
   async componentDidMount() {
 
-    var user;
     this.user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: this.user._id });
 
