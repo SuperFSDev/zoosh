@@ -1,107 +1,73 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import {Nav, NavDropdown} from 'react-bootstrap'
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { Dropdown} from 'react-bootstrap'
 import DarkMode from '../Common/Darkmode'
 import Avatar from '@material-ui/core/Avatar';
-import Img from '../../images/blogging.jpg'
 import {Modal} from 'react-bootstrap'
 import Invite from '../Common/Invite'
+import axios from 'axios';
 
-const StyledMenu = withStyles({
-  paper: {
-    border: '1px solid #d3d4d5',
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
-    }}
-    {...props}
-  />
-));
+export default class CustomizedMenus extends React.Component {
 
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
+  constructor(props) {
+    super(props);
+    this.state = {
+        id: '',
+        user: '',
+        following:[],
+        followers:[]
+    };
+}
 
-export default function CustomizedMenus() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  var user = JSON.parse(localStorage.getItem('user'));
+componentDidMount() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: user._id });
 
-  if(user)
-    var fullname = user.fullname;
-    var profilePic = user.pic;
-    var score = user.score;
-  
+    axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+            id: user._id
+        }
+    })
+        .then((response) => {
+            this.setState({ user: response.data.user,
+              following: response.data.user.following,
+              followers: response.data.user.followers,
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+}
 
-  const handleLogout = () =>{
-    localStorage.removeItem('user');
-    localStorage.removeItem('usertoken');
-  };
-
-  return (
+render() {
+     return (
     <div>
       <div id="#battleBox">
-        <Nav.Link className="l-prof-btn-default" onClick={handleClick}>
-            <Avatar src={profilePic} className="profile-btn-wrapper-left"/>
-            <b className="user-score-prof-btn">1,200</b>
-        </Nav.Link>
+        <Dropdown className="l-prof-btn-default">
+          <Dropdown.Toggle variant="secondary" >
+            <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/>
+            <b className="user-score-prof-btn">{this.state.user.score}</b>
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/me"  eventKey="1">Hello, {this.state.user.fullname} 😃</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item  eventKey="2">Notifications</Dropdown.Item>
+            <Dropdown.Item  eventKey="2">Followers <b className="user-details-views">{this.state.followers.length}</b></Dropdown.Item>
+            <Dropdown.Item  eventKey="2">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item href="/settings"  eventKey="3">Account Settings</Dropdown.Item>
+            <Dropdown.Item eventKey="4"><InviteFriend/></Dropdown.Item>
+            {/* <Dropdown.Item eventKey="5"><DarkMode/></Dropdown.Item> */}
+            <Dropdown.Divider />
+            <Dropdown.Item href="/login"  eventKey="6">Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
-      
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
-          <ListItemText>Hello {fullname}!</ListItemText>
-        </StyledMenuItem></Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/me"><StyledMenuItem>
-          <ListItemText>Following 10</ListItemText>
-        </StyledMenuItem> </Nav.Link>
-        <Nav.Link className="profile-dropdown-option" href="/settings"><StyledMenuItem>
-          <ListItemText>Account Settings</ListItemText>
-        </StyledMenuItem></Nav.Link>
-        <Nav.Link className="profile-dropdown-option"><StyledMenuItem>
-        <ListItemText><InviteFriend/></ListItemText>
-        </StyledMenuItem></Nav.Link>
-        <StyledMenuItem>
-          <ListItemText primary={<DarkMode/>}/>
-        </StyledMenuItem>
-        <NavDropdown.Divider />   
-        <Nav.Link href="/login" onClick={handleLogout}><StyledMenuItem>
-          <ListItemText primary="Logout"/>
-        </StyledMenuItem></Nav.Link>
-      </StyledMenu> 
     </div>
   );
+  }
+ 
 }
 
 function InviteFriend() {

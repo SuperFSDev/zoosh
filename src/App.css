@@ -319,12 +319,8 @@ a{
   color:black;
 }
 
-.dark-mode .header{
-  background-color: #202124;
-  color : white!important;
-}
 
-.dark-mode .containerFeedLeft{
+.dark-mode .containerFeedLeft .header{
   background-color: #202124;
   color : white!important;
 }
@@ -586,39 +582,10 @@ hr {
   text-align: center;
 }
 
-.fb-login{
-  width: 80%;
-  height: 50px;
-  border-radius: 25px;
-  border-color: #43609C;
-  border-style: solid;
-  outline: none !important;
-  background: white;
-}
 
 .login-modal{
   margin: auto;
   width: 2000px !important;
-}
-
-.fb-login:hover{
-  background: #43609C;
-  color: white;
-}
-
-.google-login{
-  width: 80%;
-  height: 50px;
-  border-radius: 25px;
-  border-color: black;
-  border-style: solid;
-  outline: none !important;
-  background: white;
-}
-
-.google-login:hover{
-  background: black;
-  color: white;
 }
 
 .spacing{
@@ -696,73 +663,12 @@ hr {
   border-radius: 25px;
 }
 
-/* SUBSCRIBE BY EMAIL */
 
-.subscribe-card{
-  width: 30rem;
-  height: 20rem;
-  background-color: white;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-  margin: auto;
-  border-radius: 25px;
-  margin-right: 40rem;
-}
-
-#divRight-sub{
-  width: 800px;
-  float: left;
-  margin-top: 4rem;
-  margin-right: 10%;
-
-}
-
-#divLeft-sub{
-  width: 600px;
-  float: left;
-  margin-left: 100px;
-}
-
-.sub-btn{
-  background-color: yellow;
-}
-
-.greeting{
-  font-size:5vh;
-}
 
 #container{
   width: 100%;
 }
 
-#a{
-  width: 100%;
-  height:90px;
-  padding-right: 800px;
-  display: inline-block;
-}
-#b{
-  display: inline-block;
-  height: 90px;
-  width: 100%;
-  font-size: 60px;
-  padding-left: 60rem;
-  margin-bottom: 100px;
-}
-
-#ab{
-  width: 100%;
-  height:90px;
-  padding-right: 800px;
-  display: inline-block;
-}
-#ba{
-  display: inline-block;
-  height: 90px;
-  width: 60%;
-  padding-left: 60px;
-  margin-bottom: 100px;
-  display: table;
-}
 .column {
   float: left;
   width: 19.33%;
@@ -779,14 +685,6 @@ hr {
    text-transform: uppercase;
    text-decoration: none;
  }
-
- .leaderboard-tab-1{
-   width:200PX;
- }
-
- .leaderboard-tab-2{
-  width:200PX;
-}
 
 .c-s-header{
   text-align: center;
@@ -846,50 +744,6 @@ hr {
 .leaderboard-item{
   padding:10px;
 }
- 
- .container th h1 {
-     font-weight: bold;
-     font-size: 1em;
-     text-align: left;
-     color: white;
- }
-
- td{
-   color: white;
- }
-
- 
- .container {
-     text-align: left;
-     overflow: hidden;
-     width: 80%;
-     margin: 0 auto;
-   display: table;
-   padding: 0 0 8em 0;
- }
- 
- .container td, .container th {
-     padding-bottom: 2%;
-     padding-top: 2%;
-     padding-left:2%;  
- }
- 
- /* Background-color of the odd rows */
- .container tr:nth-child(odd) {
-     background-color: #323C50;
- }
- 
- /* Background-color of the even rows */
- .container tr:nth-child(even) {
-     background-color: #2C3446;
- }
- 
- .container th {
-     background-color: #1F2739;
- }
- 
- .container td:first-child { color: #FB667A; }
-
 
 .-l-board-t-setup{
   width: 100px;
@@ -898,25 +752,6 @@ hr {
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
   outline:none;
   border-style: none;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-/* tr:nth-child(even) {
-  background-color: #dddddd;
-} */
-
-.-g-col{
 }
 
 .-leaderboard-i-list{
@@ -1016,10 +851,9 @@ td, th {
   color:white;
 }
 
-.soc-item-list-visit-btn:hover{
-  background:  #512CB0;
-  color:white;
 
+.success-copy{
+  font-size:15px;
 }
 
 .soc-item-list-visit-btn{
@@ -1043,14 +877,6 @@ td, th {
 .default-profile-picture{
   width: 200px;
   border-radius: 50%;
-}
-.avatar-user-card{
-  font-size:1rem;
-}
-
-.profile-social-icons{
-  display: inline-block;
-  text-align: center!important;
 }
 
 .user-profile-about{
@@ -1078,18 +904,6 @@ td, th {
   margin-bottom: 50px;
 }
 
-.user-profile-about-social{
-  width:auto;
-  height:auto;
-  margin:left;
-  margin-top:50px;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-  padding:10px;
-  border-radius: 10px;
-  margin-left:20px;
-  margin-bottom: 50px;
-  text-align: center;
-}
 
 .user-profile-btn-options{
   display: inline-block;
@@ -1111,6 +925,7 @@ td, th {
   transition: 0.5s;
   background:lightblue;
 }
+
 /* DAILY PYTHON */
 
 .daily-card{
@@ -1125,32 +940,7 @@ td, th {
   margin-top: 3rem;
 }
 
-.copy-to-clipboard{
-  display:hidden!important;
-}
-
-.btn-copy:hover{
-  background:gray;
-  border-color: gray;
-  color:white;
-}
-
 /* EVENTS FEED */
-.card2 {
-  box-shadow: 2px 4px 8px 2px rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  border-radius: 10px;
-}
-
-.card2:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.container2 {
-  padding: 10px;
-  margin-top:50px;
-}
 
 .events-header{
   margin-top:50px;
@@ -1200,7 +990,7 @@ td, th {
   background-color: white;
 }
 
-.quick-post-options-forum:hover{
+.quick-post-options-forum:hover , .quick-post-options-image:hover , .quick-post-options-link:hover , .quick-post-options:hover{
   background:#cce3f5;
   color:gray!important;
 }
@@ -1223,21 +1013,6 @@ td, th {
   margin-left:20px;
   color:#964e4e !important;
   background-color: white;
-}
-
-.quick-post-options-image:hover{
-  background:#cce3f5;
-  color:gray!important;
-}
-
-.quick-post-options:hover{
-  background:#cce3f5;
-  color:gray!important;
-}
-
-.quick-post-options-link:hover{
-  background:#cce3f5;
-  color:gray!important;
 }
 
 
@@ -1277,16 +1052,6 @@ td, th {
   margin-top:3.5rem;
 }
 
-.post-reply{
-  width:500px;
-  margin:left;
-  height: auto;
-  outline:none;
-  cursor: text;
-  border-style:none;
-  background:whitesmoke;
-
-}
 
 .text-muted-society{
   background-color:#2488d8;
@@ -2027,24 +1792,9 @@ td, th {
   color: white;
 }
 
-
-.react-calendar__month-view__weekdays {
-  color: rgb(105, 105, 105);
-}
-
-.react-calendar__navigation button {
-  font-size: 1em;
-}
-.Calender{
-
-  margin: auto;
-}
-
 .App-mobile{
   display: none;
 }
-
-
 
 .userPicture{
   width: 3rem;
@@ -2068,30 +1818,6 @@ padding-left: 4rem;
   padding-left: 5rem;
 
 
-}
-
-/* DESKTOP RESPONSIVE */
-
-.container-mobile{
-  display: none;
-}
-
-
-/* MOBILE RESPONSIVE */
-
-@media only screen and (max-width: 600px) {
- 
-}
-
-#popover-basic{
-  background-color: white !important;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-}
-
-
-.popover-content{
-  font-size: large;
-  color:#2E2E2E !important;
 }
 
 /* HOVER ON NAVBAR DROPDOWN */
@@ -2153,12 +1879,6 @@ padding-left: 4rem;
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
-.Signed-in-as{
-  font-size: 1rem;
-  margin-right: 2vh;
-}
 
 
 /* SEARCH BAR */
@@ -2725,10 +2445,6 @@ padding-left: 4rem;
   box-shadow: 0px 1px 2px rgb(0,0,0,0.2);
 }
 
-
-/* SOCIAL LINKS */
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-
 #social {
   margin: 20px 10px;
   color:black;
@@ -2824,86 +2540,6 @@ padding-left: 4rem;
 }
 
 
-.smGlobalBtn{ /* global button class */
-    display: inline-block;
-    margin:5px;
-    position: relative;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    box-shadow: 1px 1px 1px #999;
-    padding: 0px;
-    text-decoration: none!important;
-    text-align: center;
-    color: #fff;
-    font-size: 25px;
-    font-weight: normal;
-    line-height: 2em;
-    border-radius: 25px;
-    -moz-border-radius:25px;
-    -webkit-border-radius:25px;
-}
-
-/* facebook button class*/
-.copyBtn{
-  background: white;
-  color: gray;
-}
-
-.copyBtn:before{ /* use :before to add the relevant icons */
-  font-family: "FontAwesome";
-  /* content: "\f01b"; add facebook icon */
-}
-
-.copyBtn:hover{
-  color: black;
-  background: #fff;
-}
-
-/* facebook button class*/
-.facebookBtn{
-    background: #4060A5;
-}
-
-.facebookBtn:before{ /* use :before to add the relevant icons */
-    font-family: "FontAwesome";
-    content: "\f09a"; /* add facebook icon */
-}
-
-.facebookBtn:hover{
-    color: #4060A5;
-    background: #fff;
-}
-
-/* twitter button class*/
-.twitterBtn{
-    background: #00ABE3;
-}
-
-.twitterBtn:before{
-      font-family: "FontAwesome";
-      content: "\f099"; /* add twitter icon */
-}
-
-.twitterBtn:hover{
-      color: #00ABE3;
-      background: #fff;
-}
-
-/* linkedin button class*/
-.linkedinBtn{
-    background: #0094BC;
-}
-
-.linkedinBtn:before{
-      font-family: "FontAwesome";
-      content: "\f0e1"; /* add linkedin icon */
-}
-
-.linkedinBtn:hover{
-      color: #0094BC;
-      background: #fff;
-}
 
 .mentionBox{
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import axios from 'axios';
+import {Helmet} from 'react-helmet'
 
   class LeaderboardList extends React.Component {
 
@@ -53,6 +54,20 @@ import axios from 'axios';
 
           return (
           <>
+            {/* REACTJS HELMET */}
+            <Helmet>
+                      <meta charSet="utf-8" />
+                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                      <title>Leaderboards</title>
+
+                      {/* LINKS */}
+                      <link rel="canonical" href="http://mysite.com/example" />
+                      <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                      <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+            </Helmet> 
+
           <div className="leaderboard-options">
             <a href="#users"><button className="btn-leaderboard" >Top Users</button></a>
             <a href="#top-comm"><button className="btn-leaderboard" >Top Communities</button></a>

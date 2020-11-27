@@ -2,14 +2,13 @@ import React from 'react';
 import '../../App.css';
 import ProfileUsername from './ProfileUsername'
 import EditProfile from './EditProfile'
-import {Tabs, Tab,Image} from 'react-bootstrap'
+import {Image} from 'react-bootstrap'
 import {SiAboutDotMe} from 'react-icons/si'
-import ProfilePic from '../../images/blogging.jpg'
-import { RiCake2Fill, RiEyeFill } from 'react-icons/ri'
+import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import axios from 'axios';
-import moment from 'moment'
-import PostHistory from './ProfilePostHistory'
+import History from './ProfilePostHistory'
+import {Helmet} from 'react-helmet'
 
 export default class MyProfile extends React.Component {
 
@@ -18,6 +17,10 @@ export default class MyProfile extends React.Component {
       this.state = {
           id: '',
           user: '',
+          college:'',
+          course:'',
+          dob:'',
+          time:'',
           followers: [],
           followers: [],
       };
@@ -49,6 +52,20 @@ export default class MyProfile extends React.Component {
   render(){
     return (
       <>
+      {/* REACTJS HELMET */}
+      <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>{this.state.user.fullname}</title>
+
+                {/* LINKS */}
+                
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
         <div className="containerFeedLeftProfile">
 
         </div>
@@ -74,11 +91,11 @@ export default class MyProfile extends React.Component {
               </div>
             </div>
             <div className="user-profile-about">
-              <p><SiAboutDotMe /> <b className="user-details"></b></p>
-              <p><MdSchool /> <b className="user-details"></b></p>
+              <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
+              <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
               <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
               <p>DOB: <b className="user-details">{this.state.user.dob}</b></p>
-              <p><RiCake2Fill /> <b className="user-details"></b></p>
+              <p><RiCake2Fill /> Joined on <b className="user-details">{this.state.user.time}</b></p>
             </div>
 
             <div className="user-profile-about">
@@ -99,7 +116,7 @@ export default class MyProfile extends React.Component {
         </div>
 
         <div className="containerFeedRightProfile">
-          {/* <PostHistory/> */}
+          <History/>
         </div>
       </>
     );

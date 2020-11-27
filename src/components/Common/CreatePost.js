@@ -34,11 +34,6 @@ class LayoutTextFeilds extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-
-
-
-        
-  
     axios.get('http://localhost:4000/users/getUsers')
     .then((response)=>{
         this.setState({users: response.data.users})
@@ -62,24 +57,18 @@ class LayoutTextFeilds extends React.Component {
       });
   }
 
-
-    
-
-
-
-  
-
-
   onChangeUser(e) {
     this.setState({
         user: e.target.value
     });
-}
+  }
+
   onChangePost(e) {
       this.setState({
           post: e.target.value
       });
   }
+
   onChangeTime(e) {
       this.setState({
         time: new Date().getTime(),
@@ -121,7 +110,7 @@ class LayoutTextFeilds extends React.Component {
         
     this.setState({
       user: '',
-      score:+50,
+      score:+1,
       post: '',
       time: new Date().getTime(),
       category: '',
@@ -165,17 +154,7 @@ class LayoutTextFeilds extends React.Component {
           />
           <Select options={options} isMulti onChange={this.onChangeTag} value={this.state.tags} placeholder="Tag a friend" />
 
-      
-            {/*<select required className="filterBox" name="category" id="category"  onChange={this.onChangeCategory}  >
-                            <option disabled selected value="choose">Club/Society</option>
-                            <option value="choose">Public</option>
-                            <option value="GMIT Comp Sci">GMIT Comp Sci</option>
-                            <option value="Music">Music</option>
-                            <option value="Politics">Politics</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Other">Other</option>
-        </select>*/}
-        <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
+          <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
         </Form>
       </div>
       

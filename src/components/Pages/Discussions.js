@@ -9,6 +9,7 @@ import {Badge} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
+import {Helmet} from 'react-helmet'
 
 class Discussions extends React.Component {
 
@@ -37,6 +38,20 @@ render(){
 
   return (
      <div>
+       {/* REACTJS HELMET */}
+       <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Discussions</title>
+
+                {/* LINKS */}
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
+
       <div className="containerFeedLeft">
         <FeedOptions/>
       </div>

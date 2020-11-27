@@ -71,11 +71,12 @@ class CreateLink extends React.Component {
     
         this.setState({
           user: '',
+          score:+1,
           title: '',
           content: '',
           time: new Date().getTime(),
         });
-        window.location = '/feed';
+        window.location = '/home';
       }
 
 

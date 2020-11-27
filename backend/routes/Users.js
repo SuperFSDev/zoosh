@@ -208,7 +208,7 @@ users.post('/addPost', (req, res) => {
             }
             else {
                 if(result){
-                    console.log("jkldsjflksjdflkjsl"+result);
+                    console.log("Post: "+result);
                     res.send(result)
                 } else {
                     res.send("Society already exists in user model.");

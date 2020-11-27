@@ -5,16 +5,15 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import InfiniteScroll from '../Common/InfiniteScroll'
 import { Card, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { FaRegCommentDots, FaTintSlash } from 'react-icons/fa'
+import { FaRegCommentDots } from 'react-icons/fa'
 import TextField from '@material-ui/core/TextField';
 import PostLinks from '../Posts/PostLinks'
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
-
+import { Helmet } from 'react-helmet'
 
 class Feed extends React.Component {
 
@@ -25,7 +24,6 @@ class Feed extends React.Component {
       posts: [],
       FollowingID:'',
       comment:''
-    
     };
     this.onChangeComment = this.onChangeComment.bind(this);
   }
@@ -86,7 +84,22 @@ class Feed extends React.Component {
 render(){
   return (
      <div>
-      <div className="containerFeedLeft">
+         {/* REACTJS HELMET */}
+         <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Home</title>
+
+                {/* LINKS */}
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
+
+
+        <div className="containerFeedLeft">
         <FeedOptions/>
       </div>
 

@@ -1,6 +1,4 @@
 import React from 'react';
-import Chip from '@material-ui/core/Chip'
-import addUserToSoc from '../Socs/AddUserToSoc'
 import axios from 'axios'
 
 class Contributors extends React.Component {
@@ -38,7 +36,7 @@ class Contributors extends React.Component {
                  
         </div>
            ))}    
-           <a href="#">See More</a>
+           <a href="/l">See More</a>
            </div>
   );
   }

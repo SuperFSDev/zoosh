@@ -5,6 +5,7 @@ import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import AddUserToSoc from '../Socs/AddUserToSoc'
+import {Helmet} from 'react-helmet'
 
 export default class CommunityPage extends React.Component {
 
@@ -71,6 +72,20 @@ export default class CommunityPage extends React.Component {
 
         return (
           <div>
+            {/* REACTJS HELMET */}
+            <Helmet>
+                      <meta charSet="utf-8" />
+                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                      <title>Community</title>
+
+                      {/* LINKS */}
+                      
+                      <link rel="canonical" href="http://mysite.com/example" />
+                      <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                      <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+              </Helmet>
      
               <div className="containerFeedLeftCommunity">
                 <div className="community-card">

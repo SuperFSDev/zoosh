@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import {Breadcrumb, Nav} from 'react-bootstrap'
+import {Breadcrumb} from 'react-bootstrap'
 import axios from 'axios';
 
   class NewSocsList extends React.Component {

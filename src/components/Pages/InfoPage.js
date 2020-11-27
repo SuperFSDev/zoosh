@@ -3,8 +3,8 @@ import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
 import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/team.jpg'
-import {BsPeopleFill} from 'react-icons/bs'
 import axios from 'axios';
+import {Helmet} from 'react-helmet'
 
 export default class InfoPage extends React.Component {
 
@@ -40,6 +40,19 @@ export default class InfoPage extends React.Component {
     render(){
       return (
      <div>
+       {/* REACTJS HELMET */}
+       <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Forums</title>
+
+                {/* LINKS */}
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
       <div className="containerInformationLeft">
    
       </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import Recommended from '../Lists/Recommended'
-import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import QuickEvent from '../Common/QuickEvent'
+import {Helmet} from 'react-helmet'
+
 
 class Events extends React.Component {
 
@@ -34,6 +34,15 @@ render(){
 
   return (
      <div>
+       {/* REACTJS HELMET */}
+       <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Events</title>
+        </Helmet> 
+
       <div className="containerFeedLeft">
         <FeedOptions/>
       </div>

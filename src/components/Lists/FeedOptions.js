@@ -14,7 +14,8 @@ export default class Options extends React.Component {
     super(props);
     this.state = {
         id: '',
-        user: ''
+        user: '',
+        following: [],
     };
 }
 
@@ -28,7 +29,10 @@ componentDidMount() {
         }
     })
         .then((response) => {
-            this.setState({ user: response.data.user })
+            this.setState({ user: response.data.user,
+                following: response.data.user.following,
+
+            })
         })
         .catch((error) => {
             console.log(error);
@@ -38,17 +42,6 @@ componentDidMount() {
 
 render() {
 
-    return (
-        <div>
-           <FeedOptions/>
-        </div>
-    );
-
-}
-}
-
-function FeedOptions() {
-    
     var user = JSON.parse(localStorage.getItem('user'));
     if(user) 
     {
@@ -59,10 +52,11 @@ function FeedOptions() {
     }
 
     return (
-        <div className="feed-options-container">
+        <div>
+             <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <h3>{fullname} <b className="user-score">1,200</b></h3>
+                        <h3>{fullname} <b className="user-score">{this.state.user.score}</b></h3>
                     </div></a><br/>
                     <a href="/home" className="feed-option-redirects"><div className="option-container">
                         <FcHome size={35}/> <b>Home</b>
@@ -76,17 +70,16 @@ function FeedOptions() {
                      <div>
                         <FeedAccordion/>
                     </div>
-                    {/* <a href="/events" className="feed-option-redirects"><div className="option-container">
-                        <RiHeadphoneFill size={30}/> Podcasts
-                    </div></a> */}
                     <a href="/l" className="feed-option-redirects"><div className="option-container">
                         <FcBullish size={35}/> <b>Leaderboard</b>
                     </div></a>
                 </div>
         </div>
-  );
-}
+        </div>
+    );
 
+}
+}
 
 function FeedAccordion() {
 

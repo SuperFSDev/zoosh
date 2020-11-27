@@ -1,14 +1,14 @@
 import React from 'react'
 import '../../App.css';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
-import { Tabs, Tab, Image } from 'react-bootstrap'
+import {Image } from 'react-bootstrap'
 import { SiAboutDotMe } from 'react-icons/si'
 import History from './ProfilePostHistory'
 import addUserToFollow from './AddUserToFollow'
 import moment from 'moment'
-import { RiCake2Fill, RiEyeFill } from 'react-icons/ri'
+import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
+import {Helmet} from 'react-helmet'
 
 export default class UserProfile extends React.Component {
 
@@ -19,6 +19,7 @@ export default class UserProfile extends React.Component {
       isDisabled: false,
       followers: [],
       following: [],
+      time:''
     };
   }
 
@@ -61,6 +62,20 @@ export default class UserProfile extends React.Component {
 
     return (
       <>
+      {/* REACTJS HELMET */}
+      <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>{this.state.user.fullname}</title>
+
+                {/* LINKS */}
+                
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
         <div className="containerFeedLeftProfile">
 
         </div>
@@ -87,9 +102,9 @@ export default class UserProfile extends React.Component {
           <div className="user-profile-about">
             <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
             <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
-            {/* <p>Studying: <b className="user-details">{this.state.user.course}</b></p> */}
+            <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
             {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-            <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM D, YYYY")}</b></p>
+            <p><RiCake2Fill /> Joined on <b >{this.state.user.time}</b></p>
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
@@ -109,19 +124,8 @@ export default class UserProfile extends React.Component {
 
         <div className="containerFeedRightProfile">
           <History />
-
         </div>
       </>
     );
   }
-
-}
-
-function openCity(cityName) {
-  var i;
-  var x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  document.getElementById(cityName).style.display = "block";
 }
