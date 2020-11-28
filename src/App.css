@@ -1894,3 +1894,13 @@ padding-left: 4rem;
   color: green;
   margin-left: 116px;
 }
+
+.commentSection{
+  width: 30vh;
+  height: 5rem;
+  float: left;
+  outline: none !important;
+  margin: auto;
+
+
+}

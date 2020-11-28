@@ -5,8 +5,9 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import { Card, Badge, InputGroup, FormControl } from 'react-bootstrap';
+import { Card, Badge, InputGroup, FormControl, Form } from 'react-bootstrap';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { FaRegCommentDots } from 'react-icons/fa'
@@ -21,10 +22,13 @@ class Feed extends React.Component {
     this.state = {
       toggle: false,
       posts: [],
+      comments:[],
       FollowingID:'',
-      comment:''
+      comment:'',
+      time: new Date().getTime(),
     };
     this.onChangeComment = this.onChangeComment.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
     async componentDidMount() {
@@ -48,6 +52,16 @@ class Feed extends React.Component {
         .catch((error) => {
           console.log(error);
         });
+
+        axios.get('http://localhost:4000/comments/getComments')
+        .then((response) => {
+          this.setState({ comments: response.data.comments })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    
+  
   
         for (var i = 0; i < this.state.FollowingID.length; i++) {
           this.GetFollowedUser(this.state.FollowingID[i])
@@ -65,7 +79,6 @@ class Feed extends React.Component {
           this.setState({
             posts: this.state.posts.concat(response.data.user.posts)
           })
-          console.log("Posts = " + this.state.posts);
   
         })
         .catch((error) => {
@@ -75,10 +88,40 @@ class Feed extends React.Component {
 
     onChangeComment(e) {
       this.setState({
-          comment: e.target.comment
+          comment: e.target.value
       });
   }
 
+
+  onSubmit(id) {
+ 
+  var user = JSON.parse(localStorage.getItem('user'));  
+    const newComment = {
+      user_id: user._id,
+      post_id:id,
+      user: user.fullname,
+      comment: this.state.comment,
+      time: new Date().getTime(),
+
+   
+
+  }
+ axios.post('http://localhost:4000/comments/addComment', newComment)
+    .then()
+        .catch();
+        
+    this.setState({
+      user: '',
+      post: '',
+      comment:'',
+      post_id:'',
+      time: new Date().getTime(),
+      category: '',
+      tags:[]
+    });
+    alert(JSON.stringify(newComment));
+    window.location = '/home';
+    }
 
 render(){
   return (
@@ -151,8 +194,9 @@ render(){
                             <div>
                               <span className="voting-btn"><MdThumbUp id="thumb-up" size={20} /></span><span className="voting-btn"><MdThumbDown id="thumb-down" size={20} /></span>
                               <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
-                              <InputGroup>
-                                <FormControl as="textarea" aria-label="With textarea" 
+                              <Form>
+                              <TextField
+                              
                                 id="outlined-textarea"
                                 label="Comment"
                                 style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
@@ -167,31 +211,31 @@ render(){
                                 InputLabelProps={{
                                 shrink: true,
                                 }}/>
-                              </InputGroup>
-                              {/* <TextField
-                               id="outlined-textarea"
-                                  label="Comment"
-                                  style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-                                  placeholder="Comment"         
-                                  fullWidth
-                                  required
-                                  multiline
-                                  variant="outlined"
-                                  margin="normal"
-                                  value={this.state.comment}
-                                  onChange={this.onChangeComment}
-                                  InputLabelProps={{
-                                  shrink: true,
-                                                   }}
-                                                  />
-
-                               */}
+                             
+                              
+                              <button className="create-post-btn-submit" onClick={() => {this.onSubmit(post.Post_id)}}  variant="primary" >Post</button>
+                             
+                              </Form>
+                              <div className='commentSection'>
+                                <h6>Comments</h6>
+                                  {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (
+                                    
+                                            <div>         
+                                  <p>{comment.comment}</p>
+                                
+                                  <big className="text-muted"></big>{moment(comment.time).format("H:mma - MMM Do, YYYY.")}
+                                              </div>       
+                                    ))}
+                             </div>
+                           
+                               
                             </div>
                           </div>
                         </Card.Body>
                       </Card>
                     </div>
                   ))}
+                
                 </div>
               </div>
         {/*<InfiniteScroll/>*/}

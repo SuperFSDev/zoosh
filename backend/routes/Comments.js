@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const posts = express.Router();
+const comments = express.Router();
 const app = express();
 
 //import model
-const PostModel = require('../models/Post');
+const CommentModel = require('../models/Comment');
 
 //Use headers to give browser access to resources
-posts.use(cors());
-posts.use(function (req, res, next) {
+comments.use(cors());
+comments.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers",
@@ -16,27 +16,27 @@ posts.use(function (req, res, next) {
     next();
 });
 
-posts.post('/NewPosts', (req, res) => {
+comments.post('/AddComment', (req, res) => {
 
-    PostModel.create({
+    CommentModel.create({
         user: req.body.user,
-        post: req.body.post,
+        user_id:req.body.user_id,
+        post_id:req.body.post_id,
+        comment: req.body.comment,
         time: req.body.time,
-        category: req.body.category,
-        tags:req.body.tags
       
     });
 })
 
 
 
-posts.get('/getPosts', (req, res) => {
+comments.get('/getComments', (req, res) => {
 
-    PostModel.find((error, data) =>{
-        res.json({posts:data});
+    CommentModel.find((error, data) =>{
+        res.json({comments:data});
         //console.log(data);
     })
 
 })
 
-module.exports = posts;
+module.exports = comments;
