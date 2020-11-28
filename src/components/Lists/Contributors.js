@@ -24,18 +24,23 @@ class Contributors extends React.Component {
 
     var{users} = this.state;
     let i = 0;
+    var indents = [];
+
+    for (var k = 0; k < 4; k++) {
+        indents.push(users[1]);
+      }
 
     return (
         <div className="contributors-container">
             <h4 className="-top-cont-header">Top Contributors</h4>
-            {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                <div className="contributor-item">
-               
-            <p><b>{i+=1}</b><a className="-contributor-user" href={"/u/?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
-                    
-                 
-        </div>
+            {users.sort((a,b)=> b.score- a.score).map(user  =>  ( 
+                <div key={k} className="contributor-item">
+                <p><b>{i+=1}</b><a className="-contributor-user" href={"/u/?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
+            </div>
            ))}    
+                                  {/* {indents.name}   */}
+
+
            <a href="/leaderboard">See More</a>
            </div>
   );

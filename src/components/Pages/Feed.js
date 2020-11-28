@@ -5,16 +5,16 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import { Card, Badge, InputGroup, FormControl, Form } from 'react-bootstrap';
+import { Card, Badge, Form } from 'react-bootstrap';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { FaRegCommentDots } from 'react-icons/fa'
 import PostLinks from '../Posts/PostLinks'
-import { MdThumbUp, MdThumbDown } from 'react-icons/md'
 import { Helmet } from 'react-helmet'
+import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'
 var comment;
+
 class Feed extends React.Component {
 
   constructor(props) {
@@ -109,9 +109,6 @@ class Feed extends React.Component {
       user: user.fullname,
       comment: comment,
       time: new Date().getTime(),
-
-   
-
   }
  axios.post('http://localhost:4000/comments/addComment', newComment)
     .then()
@@ -156,7 +153,7 @@ render(){
         <QuickOptions/>
         <div>
           <div className="post-option-btns">
-              <button className="post-option-btn-item-global">Global</button>
+              <button href="/home" className="post-option-btn-item-global">Global</button>
               <a href="/discussions"><button className="post-option-btn-item">Community</button></a>
               <button className="post-option-btn-item">Media</button>
               <button className="post-option-btn-item">Links</button>
@@ -180,8 +177,6 @@ render(){
                                 </div>
                               </div>
                               <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
-
-                              {/* <a href={"/u/?id="+post.user_id}>{post.user} <b className="user-score-post-tag">1,231</b> {/*{post._id}*/}
                             </span><br />
                           </div>
 
@@ -196,39 +191,33 @@ render(){
                               ))}
                             </div> */}
                           </Card.Text>
-                          {/* <big className="text-muted-society">#{post.category}</big> */}
-                          <div className="post-interactions">
+                          <div>
                             <div>
-                              <span className="voting-btn"><MdThumbUp id="thumb-up" size={20} /></span><span className="voting-btn"><MdThumbDown id="thumb-down" size={20} /></span>
-                              <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
-                              <Form>
-                              <TextField            
-                                id="outlined-textarea"
-                                label="Comment"
-                                style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-                                placeholder="Reply to post..."         
-                                fullWidth
-                                required
-                                multiline
-                                variant="outlined"
-                                margin="normal"
-                                value={this.state.comment}
-                                onChange={this.onChangeComment}
-                                InputLabelProps={{
-                                shrink: true,
-                                }}/>
-                                                    
-                              <button className="create-post-btn-submit" onClick={() => {this.onSubmit(post.Post_id)}}  variant="primary" >Post</button>                          
-                              </Form>
-                              <div className='commentSection'>
-                                <h6>Comments</h6>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote id="thumb-up" size={20} /></button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote id="thumb-down" size={20} /></button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></button></span><PostLinks />
+                          
+                              <div className='post-interactions'>
                                   {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (                                
-                              <div>         
+                              <div>      
+                                  <a href={"/u/?id=" + comment.user_id} className="user-profile-shortlink">{comment.user}<b className="user-score-post">{moment(comment.time).format("H:mma - MMM Do, YYYY.")}</b></a>
                                   <p>{comment.comment}</p>                               
-                                  <big className="text-muted"></big>{moment(comment.time).format("H:mma - MMM Do, YYYY.")}
                             </div>       
                             ))}
-                             </div>                               
+                             </div>
+                              <hr/>  
+                              <Form>
+                                <input            
+                                  className="commentBox"
+                                  label="Comment"
+                                  style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+                                  placeholder="Add a comment..."         
+                                  required
+                                  value={this.state.comment}
+                                  onChange={this.onChangeComment}
+                                  />
+                                  <button className="standard-option-btn" onClick={() => {this.onSubmit(post.Post_id)}} ><BiSend size={25}/></button>
+                              </Form>                          
                             </div>
                           </div>
                         </Card.Body>
@@ -238,7 +227,6 @@ render(){
                 
                 </div>
               </div>
-        {/*<InfiniteScroll/>*/}
       </div>
 
       <div className="containerFeedRight">

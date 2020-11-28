@@ -1,12 +1,16 @@
 import React from 'react';
 import '../../App.css';
 import ProfileUsername from '../Profile/ProfileUsername'
-import ProfileURL from '../Profile/ProfileURL'
 import ProfilePicture from '../Profile/ProfilePicture'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
+import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'
+import moment from 'moment'
+import { FaRegCommentDots } from 'react-icons/fa'
+import PostLinks from '../Posts/PostLinks'
+import { Form } from 'react-bootstrap';
 
-class DiscussionPost extends React.Component {
+export default class DiscussionPost extends React.Component {
 
   constructor(props) {
     super(props);
@@ -58,43 +62,42 @@ class DiscussionPost extends React.Component {
                   <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
-          <div className="containerFeedLeftForum">
-            <a href="/me"><div className="profile-card-forum">
+
+          <div className="containerFeedLeft">
+            <div className="profile-card">
               <ProfilePicture />
-              <ProfileUsername />
-              <div className="user-profile-btn-options">
-                <span className="user-profile-btn-options">
-                </span>
-              </div>
-            </div></a><br/>
-            <a href="/information"><div className="profile-card-society">
+              <a href="/me"><ProfileUsername /></a>
               {this.state.discussion.society}
-            <div className="user-profile-btn-options">
-                <span className="user-profile-btn-options">
-                  <ProfileURL />
-                </span>
-              </div>
-            </div></a>
-            <br />
-            {/* <div className="user-profile-about-social-forum">
-              <p className="profile-social-icons"><RiFacebookCircleFill size={25} /> <SiTwitter size={25} /> <SiInstagram size={25} /> <SiLinkedin size={25} /></p>
-            </div> */}
+            </div>
           </div>
 
-          <div className="containerFeedMiddleForum">
-            <div className="discussion-container">
+          <div className="containerFeedMiddle">
+            <div className="forum-container">
               <h1>{this.state.discussion.title}</h1>
               <p>{this.state.discussion.content}</p>
               <p><b>{this.state.discussion.time}</b></p>
             </div>
-          </div>
-
-          <div className="containerFeedRightProfile">
-
+            <div>
+                <div>
+                  <div>      
+                    <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
+                    <p>hello</p>                               
+                  </div>                 
+                </div><hr/>  
+                <Form>
+                  <input            
+                    className="commentBox"
+                    label="Comment"
+                    style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+                    placeholder="Add a comment..."         
+                    required
+                  />
+                    <button className="standard-option-btn" ><BiSend size={25}/></button>
+                  </Form>                          
+                </div>
           </div>
         </>
       );
     }
   }
 
-  export default DiscussionPost;

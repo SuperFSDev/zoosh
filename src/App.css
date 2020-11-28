@@ -61,18 +61,6 @@
 .user-profile-about-bio{
   background-color:white;
 }
-
-.discussion-container{
-  width:600px;
-  background-color:white;
-  height:auto;
-  text-align: left;
-  margin: 0 auto;
-  margin-top:20px;
-  padding:10px;
-  margin-left:20px;
-  margin-bottom: 50px;
-}
 /* LOGIN PAGE */
 
 .login-card{
@@ -1214,15 +1202,6 @@ padding-top: 10rem;
 padding-left: 4rem;
 }
 
-.CommentBox{
-
-  float: left;
-  width: 20rem;
-  padding-left: 5rem;
-
-
-}
-
 /* HOVER ON NAVBAR DROPDOWN */
 .nav-item.dropdown:hover .dropdown-menu {
   display: block !important;
@@ -1472,6 +1451,43 @@ padding-left: 4rem;
   height:90px;
   margin-right:10px;
   padding:10px;
+}
+
+.commentBox{
+  border:none!important;
+  width:90%;
+  outline:none!important;
+}
+.standard-option-btn{
+  border-radius: 25px;
+  border:none!important;
+  padding:10px;
+  outline:none!important;
+}
+.standard-option-btn:hover{
+  cursor:pointer;
+  background:#cce3f5;
+  transition: 0.2s;
+}
+
+.standard-option-btn-post{
+  border-radius: 25px;
+  border:none!important;
+  padding:5px;
+  background:white;
+  color:gray;
+  outline:none!important;
+}
+.standard-option-btn-post:hover{
+  cursor:pointer;
+  background:whitesmoke;
+  transition: 0.2s;
+}
+
+.post-interactions{
+  background:whitesmoke;
+  padding:10px;
+  border-radius: 10px;
 }
 
 .user-score{
