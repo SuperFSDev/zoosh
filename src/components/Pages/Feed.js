@@ -14,7 +14,7 @@ import { FaRegCommentDots } from 'react-icons/fa'
 import PostLinks from '../Posts/PostLinks'
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
 import { Helmet } from 'react-helmet'
-
+var comment;
 class Feed extends React.Component {
 
   constructor(props) {
@@ -86,12 +86,19 @@ class Feed extends React.Component {
         });
     }
 
-    onChangeComment(e) {
-      this.setState({
-          comment: e.target.value
-      });
-  }
+    onChangeComment=(e)=> {
 
+      comment = [this.state.comment]
+      comment = e.target.value
+    
+      this.setState({
+          comment: e.target.comment
+          
+      });
+      console.log(comment)
+     
+  }
+   
 
   onSubmit(id) {
  
@@ -100,7 +107,7 @@ class Feed extends React.Component {
       user_id: user._id,
       post_id:id,
       user: user.fullname,
-      comment: this.state.comment,
+      comment: comment,
       time: new Date().getTime(),
 
    
@@ -157,7 +164,7 @@ render(){
 
           <div className="global-feed">
             {/* POST TAB */}
-              {this.state.posts.sort((a, b) => b.time - a.time).map(post => (  // sorts the posts by the time posted
+              {this.state.posts.sort((a, b) => b.time - a.time).map((post,index) => (  // sorts the posts by the time posted
                     <div>
                       <Card className='feedPost'>
 
@@ -195,8 +202,7 @@ render(){
                               <span className="voting-btn"><MdThumbUp id="thumb-up" size={20} /></span><span className="voting-btn"><MdThumbDown id="thumb-down" size={20} /></span>
                               <span className="voting-btn"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></span><PostLinks />
                               <Form>
-                              <TextField
-                              
+                              <TextField            
                                 id="outlined-textarea"
                                 label="Comment"
                                 style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
@@ -211,24 +217,18 @@ render(){
                                 InputLabelProps={{
                                 shrink: true,
                                 }}/>
-                             
-                              
-                              <button className="create-post-btn-submit" onClick={() => {this.onSubmit(post.Post_id)}}  variant="primary" >Post</button>
-                             
+                                                    
+                              <button className="create-post-btn-submit" onClick={() => {this.onSubmit(post.Post_id)}}  variant="primary" >Post</button>                          
                               </Form>
                               <div className='commentSection'>
                                 <h6>Comments</h6>
-                                  {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (
-                                    
-                                            <div>         
-                                  <p>{comment.comment}</p>
-                                
+                                  {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (                                
+                              <div>         
+                                  <p>{comment.comment}</p>                               
                                   <big className="text-muted"></big>{moment(comment.time).format("H:mma - MMM Do, YYYY.")}
-                                              </div>       
-                                    ))}
-                             </div>
-                           
-                               
+                            </div>       
+                            ))}
+                             </div>                               
                             </div>
                           </div>
                         </Card.Body>
