@@ -3,6 +3,7 @@ import '../../App.css';
 import {Modal } from 'react-bootstrap';
 import axios from 'axios';
 import CreateASoc from './CreateASoc'
+import {FaUserFriends} from 'react-icons/fa'
 
 export default class Daily extends React.Component {
 
@@ -100,9 +101,9 @@ export default class Daily extends React.Component {
             <div key={society.id}>
               <div className="socs-list-items">
                  <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
-                  <p>{society.category}</p>                    
+                  {/* <p>{society.category}</p>                     */}
                   <p><b>{society.college}</b></p>     
-                  <p maxLength={10}>{society.description}</p>     
+                  <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
                   <div >
                     <span>
                       <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>

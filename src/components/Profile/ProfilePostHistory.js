@@ -4,10 +4,6 @@ import { Card} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import {FaRegCommentDots} from 'react-icons/fa'
-import CommentReply from '../Posts/CommentReply'
-import PostLinks from '../Posts/PostLinks'
-import {FiThumbsUp,FiThumbsDown} from 'react-icons/fi'
 
 
 export default class History extends React.Component {

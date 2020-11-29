@@ -10,6 +10,8 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
+import {BiUpvote,BiDownvote} from 'react-icons/bi'
+import { CgComment } from 'react-icons/cg'
 
 class Discussions extends React.Component {
 
@@ -70,7 +72,7 @@ render(){
           {/* DISCUSSION TAB */}
           {discussions.reverse().map(discussion => (
             <div key={discussion._id}>
-              <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'>
+              <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post'>
                 
                 <div>
                   <h1 className="forum-title">{discussion.title}</h1>
@@ -82,10 +84,14 @@ render(){
                                     <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
                                 </div>
                     </div>
+                    <br/>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /></button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /></button></span>
+                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> Comments</button></span></a>
                   
                   </span><br/>
-                  <big className="text-muted-society">#{discussion._id}</big>
-                  <p>{moment(discussion.time).format("H:mma - MMM Do, YYYY.")}</p>
+                  {/* <big className="text-muted-society">#{discussion._id}</big> */}
+                  {/* <p>{moment(discussion.time).format("H:mma - MMM Do, YYYY.")}</p> */}
                 </div>
               </div></a><br/>
             </div>

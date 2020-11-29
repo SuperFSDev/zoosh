@@ -18,12 +18,13 @@ import DiscussionPost from './components/Pages/DiscussionPost'
 import Forums from './components/Pages/Forum'
 import Discussions from './components/Pages/Discussions'
 import Events from './components/Pages/Events'
-// import InfoPage from './components/Pages/InfoPage'
 import ForumPage from './components/Pages/ForumPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
 import UserConnections from './components/Pages/UserConnections'
+import GlobalPost from './components/Pages/GlobalPost'
+import EventPage from './components/Pages/EventsPage'
 
 class App extends React.Component {
   render(){
@@ -40,9 +41,10 @@ class App extends React.Component {
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>
               <Route path="/d" component={DiscussionPost}/>
+              <Route path="/p" component={GlobalPost}/>
+              <Route path="/e" component={EventPage}/>
               <Route path="/connections" component={UserConnections}/>
               <Route path="/leaderboard" component={Leaderboard}/>
-              {/* <Route path="/s" component={InfoPage}/> */}
               <Route path="/me" component={Profile}/>
               <Route path="/u" component={ViewProfile}/>
               <Route path="/s" component={CommunityPage}/>

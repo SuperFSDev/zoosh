@@ -57,16 +57,15 @@ render(){
               {events.reverse().map(event => (
               <div key={event._id}>
                   <div>
+                  <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
                     <div className="events-card">
-                      <a href="/" className="-soc-l-navigation">
                         <h4><b>{event.title}</b></h4> 
                         <p>{event.society}</p> 
                         <p>{event.time}</p>
                         <div >
                         </div>
-                      </a>
                     </div>
-                    
+                    </a>
                   </div>
               </div>
               ))}

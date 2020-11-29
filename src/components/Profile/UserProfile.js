@@ -8,6 +8,10 @@ import addUserToFollow from './AddUserToFollow'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import {Helmet} from 'react-helmet'
+import {FaBook,FaUserFriends} from 'react-icons/fa'
+import {AiOutlineEye} from 'react-icons/ai'
+import {CgCommunity} from 'react-icons/cg'
+import moment from 'moment'
 
 export default class UserProfile extends React.Component {
 
@@ -18,6 +22,7 @@ export default class UserProfile extends React.Component {
       isDisabled: false,
       followers: [],
       following: [],
+      societies:[],
       time:''
     };
   }
@@ -38,6 +43,8 @@ export default class UserProfile extends React.Component {
         this.setState({ user: response.data.user,
                         followers: response.data.user.followers,
                         following: response.data.user.following,
+                        societies: response.data.user.societies,
+
 
         })
       })
@@ -88,7 +95,6 @@ export default class UserProfile extends React.Component {
             <div>
               <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
               <button className="follow-btn">Unfollow</button><br/>
-              {/* <p className="user-followers-following-stats">Following {this.state.following.length}</p> */}
 
             </div>
           </div>
@@ -101,14 +107,19 @@ export default class UserProfile extends React.Component {
           <div className="user-profile-about">
             <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
             <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
-            <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
+            <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
             {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-            <p><RiCake2Fill /> Joined on <b >{this.state.user.time}</b></p>
+            <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
+            
+
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
-            <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
-            <p className="user-followers-following-stats">Followers <b className="user-details-views">{this.state.followers.length}</b></p>
+            <p className="user-followers-following-stats"> 🔶  <b className="user-details-views">{this.state.user.score}</b></p><br/>
+            <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
+            <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
+            <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
+
 
           </div>
           <div className="user-profile-about">

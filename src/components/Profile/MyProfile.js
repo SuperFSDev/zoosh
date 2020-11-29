@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import ProfileUsername from './ProfileUsername'
 import EditProfile from './EditProfile'
 import {Image} from 'react-bootstrap'
 import {SiAboutDotMe} from 'react-icons/si'
@@ -9,6 +8,10 @@ import { MdSchool } from 'react-icons/md'
 import axios from 'axios';
 import History from './ProfilePostHistory'
 import {Helmet} from 'react-helmet'
+import {FaBook,FaUserFriends} from 'react-icons/fa'
+import {AiOutlineEye} from 'react-icons/ai'
+import {CgCommunity} from 'react-icons/cg'
+import moment from 'moment'
 
 export default class MyProfile extends React.Component {
 
@@ -23,6 +26,7 @@ export default class MyProfile extends React.Component {
           time:'',
           following: [],
           followers: [],
+          societies:[]
       };
     }
 
@@ -41,7 +45,8 @@ export default class MyProfile extends React.Component {
           .then((response) => {
               this.setState({ user: response.data.user,
               followers: response.data.user.followers,
-              following: response.data.user.following, })
+              following: response.data.user.following,
+              societies: response.data.user.societies, })
           })
           .catch((error) => {
               console.log(error);
@@ -73,7 +78,7 @@ export default class MyProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
             <ProfilePicture/>
-            <ProfileUsername/>
+            <Username/>
           
             <div className="user-profile-btn-options">
               <span className="user-profile-btn-options">
@@ -86,22 +91,22 @@ export default class MyProfile extends React.Component {
           </div>
 
           <div className="profile-card">
-              <div id="social">
-                <p className="user-bio"></p>
-              </div>
             </div>
             <div className="user-profile-about">
               <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
               <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
-              <p>Studying: <b className="user-details">{this.state.user.course}</b></p>
-              <p>DOB: <b className="user-details">{this.state.user.dob}</b></p>
-              <p><RiCake2Fill /> Joined on <b className="user-details">{this.state.user.time}</b></p>
+              <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
+              {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
+              <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
             </div>
 
             <div className="user-profile-about">
             <h4>Stats</h4>
-            <p>Profile Score: <b className="user-details-views">{this.state.user.score}</b></p>
-            <p className="user-followers-following-stats">Followers <b className="user-details-views">{this.state.followers.length}</b></p>
+            <p className="user-followers-following-stats"> 🔶 <b className="user-details-views">{this.state.user.score}</b></p><br/>
+            <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
+            <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
+            <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
+
             </div>
 
             <div className="user-profile-about">
@@ -133,4 +138,20 @@ function ProfilePicture() {
       <Image src={pp} className="user-image" roundedCircle />
     </div>
   );
+}
+
+
+// Get profile username
+function Username(){
+  var user = JSON.parse(localStorage.getItem('user'));
+  if(user)
+    var fullname = user.fullname; 
+
+  return (
+    <div id="social">
+      <h3>{fullname}</h3>
+      {/* {id} */}
+    </div>
+  );
+
 }

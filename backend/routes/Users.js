@@ -220,6 +220,24 @@ users.post('/addPost', (req, res) => {
 })
 
 
+users.get('/get-post-page', (req, res) => {
+
+    UserModel.findById({
+            _id: req.query.id
+        }).then(post => {
+            if (post) {
+                res.json({
+                    post: post
+                });
+            } else {
+                res.send("post does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+})
+
 users.post('/addComment', (req, res) => {
 
     UserModel.findByIdAndUpdate(

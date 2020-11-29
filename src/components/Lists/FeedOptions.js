@@ -65,7 +65,23 @@ render() {
                         <FcCalendar size={35}/> <b>Events</b>
                     </div></a>
                      <div>
-                        <FeedAccordion/>
+                        {/* <FeedAccordion/> */}
+                        <Accordion className="accordion-cs">
+                            <AccordionSummary
+                                aria-controls="panel1a-content"
+                            >
+                            <Typography className="accordion-title"><Image src={Team}/> <b>Clubs and Societies</b></Typography>
+                            </AccordionSummary>
+                            <AccordionDetails className="accordion-items">
+                                <Typography>
+                                <a href="/me">{this.state.user.societies}</a><br/>
+                                <hr/>
+                                <a href="/list-of-clubs-and-societies">Create</a><br/>
+                                <a href="/list-of-clubs-and-societies">Join</a><br/>
+                                <a href="/list-of-clubs-and-societies">See All</a><br/>
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
                     </div>
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
                         <FcBullish size={35}/> <b>Leaderboard</b>
@@ -77,27 +93,3 @@ render() {
 
 }
 }
-
-function FeedAccordion() {
-
-    return (
-      <div>
-        <Accordion className="accordion-cs">
-          <AccordionSummary
-            aria-controls="panel1a-content"
-          >
-          <Typography className="accordion-title"><Image src={Team}/> <b>Clubs and Societies</b></Typography>
-          </AccordionSummary>
-          <AccordionDetails className="accordion-items">
-            <Typography>
-              <a href="/me">List Of Users Socs</a><br/>
-              <hr/>
-              <a href="/list-of-clubs-and-societies">Create</a><br/>
-              <a href="/list-of-clubs-and-societies">Join</a><br/>
-              <a href="/list-of-clubs-and-societies">See All</a><br/>
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-    );
-  }

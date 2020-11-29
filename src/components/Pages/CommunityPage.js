@@ -88,21 +88,38 @@ export default class CommunityPage extends React.Component {
      
               <div className="containerFeedLeftCommunity">
                 <div className="community-card">
-                  <h1>Welcome admin</h1>
+                  <h1><b className="user-score">Welcome, Admin!</b></h1>
                   <Image src={ProfilePic} className="user-image" roundedCircle />
                   <h3>{this.state.society.name}</h3>
-                  <p className="community-copy-link">z/{this.state.society._id}</p>
-                  <p>{this.state.society.description}</p>
+                  {/* <p className="community-copy-link">z/{this.state.society._id}</p> */}
+                  <p>{this.state.society.description}</p>   
+                  <hr/>
+                  {/* Community Feed Display Options */}
+                  <div>
+                      <button className="community-btn">Feed</button>
+                      <button className="community-btn">Questions</button>
+                      <button className="community-btn">People</button>
+                      <button className="community-btn">Stats</button>
+                  </div>               
                 </div>
                 <br/>
-                <div className="community-card">
-                <p className="member-count">Admins: {this.state.society.admin}</p>
-                  <p className="member-count">Members:  {this.state.users.length}</p>
-                </div>
               </div>
   
               <div className="containerFeedMiddleCommunity">
+
+              <div className="community-users-card">
+                <p className="member-count">Admins: {this.state.society.admin}</p>
+                <p className="member-count">Moderators:  </p>
+                <p className="member-count">Members:  {this.state.users.length}</p>
               </div>
+
+              <br/>
+              
+              <div className="community-users-card">
+                <p className="member-count">Upcoming Events</p>  
+              </div>
+
+            </div>
           </div>
           );
       }
@@ -119,25 +136,46 @@ export default class CommunityPage extends React.Component {
                 <p className="community-copy-link">z/{this.state.society._id}</p>
                 <p>{this.state.society.description}</p>
                 <button className="community-button-join" onClick={() => this.addUser(this.state.society.name)}>Join</button>
+                <hr/>
+                  <div>
+                      <a href={"/s/?id=" +this.state.society._id +"/feed"}><button className="community-btn">Feed</button></a>
+                      <a href={"/s/?id=" +this.state.society._id +"/questions"}><button className="community-btn">Questions</button></a>
+                      <a href={"/s/?id=" +this.state.society._id +"/people"}><button className="community-btn">People</button></a>
+                      <a href={"/s/?id=" +this.state.society._id +"/stats"}><button className="community-btn">Stats</button></a>
+                  </div>
+                
               </div>
               <br/>
               <div className="community-card">
-              <p className="member-count">Admins: {this.state.society.admin}</p>
-              {console.log("aaaa"+this.state.UserList)}
-              <p>members</p>
-              <div className="Connections">
-              {this.state.UserList.map(u => ( 
-                 <div key={u._id} >
-                   {console.log(u)}
-                     <Image src={u.pic} className="user-image-mini" roundedCircle />
-                   </div>
-               
-                ))} 
-                </div>
+                Community Stats
+              </div><br/>
+              <div className="community-card">
+                Community Posts
               </div>
             </div>
 
             <div className="containerFeedMiddleCommunity">
+              <div className="community-users-card">
+                <p className="member-count">Admins: {this.state.society.admin}</p>
+                <p className="member-count">Moderators:  </p>
+                <p className="member-count">Members: {this.state.users.length}</p>
+                  <div className="Connections">
+                  {this.state.UserList.map(u => ( 
+                    <div key={u._id} >
+                      {console.log(u)}
+                        <Image src={u.pic} className="user-image-mini" roundedCircle />
+                      </div>
+                  
+                    ))} 
+                    </div>
+                  </div>
+                
+                <br/>
+
+                <div className="community-users-card">
+                  <p className="member-count">Upcoming Events {this.state.society.admin}</p>
+                    
+                </div>
             </div>
         </div>
         );

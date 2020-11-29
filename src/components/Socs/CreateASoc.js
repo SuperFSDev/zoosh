@@ -3,7 +3,10 @@ import '../../App.css';
 import { Form, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {TextField} from '@material-ui/core';
+import cogoToast from 'cogo-toast'
+
 var getUser = JSON.parse(localStorage.getItem('user'))
+
 
 export default class CreateASoc extends React.Component {
 
@@ -91,7 +94,7 @@ export default class CreateASoc extends React.Component {
                 .catch(function(error){
                     console.log(error);
                 })
-
+            cogoToast.success("Community was created!");
             window.location = '/list-of-clubs-and-societies';
         }
 

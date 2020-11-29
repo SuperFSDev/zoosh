@@ -5,14 +5,19 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import { Card, Badge, Form } from 'react-bootstrap';
+import { Card, Form, Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { FaRegCommentDots } from 'react-icons/fa'
-import PostLinks from '../Posts/PostLinks'
+import { CgComment } from 'react-icons/cg'
 import { Helmet } from 'react-helmet'
 import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'
+import cogoToast from 'cogo-toast'
+import {BsThreeDots} from 'react-icons/bs'
+import {MdInsertLink,MdReport} from 'react-icons/md'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+
 var comment;
 
 class Feed extends React.Component {
@@ -22,6 +27,7 @@ class Feed extends React.Component {
     this.state = {
       toggle: false,
       posts: [],
+      score: [],
       comments:[],
       FollowingID:'',
       comment:'',
@@ -44,8 +50,8 @@ class Feed extends React.Component {
       })
         .then((response) => {
           this.setState({
-            FollowingID: response.data.user.following
-            
+            FollowingID: response.data.user.following,
+            score: response.data.user.score,  
           })
   
         })
@@ -111,10 +117,8 @@ class Feed extends React.Component {
       time: new Date().getTime(),
   }
  axios.post('http://localhost:4000/comments/addComment', newComment)
-    .then()
-        .catch();
-        
-    this.setState({
+    .then(response =>{
+      this.setState({
       user: '',
       post: '',
       comment:'',
@@ -123,8 +127,22 @@ class Feed extends React.Component {
       category: '',
       tags:[]
     });
-    alert(JSON.stringify(newComment));
-    window.location = '/home';
+    cogoToast.success("Reply was sent!");
+    // alert(JSON.stringify(newComment));
+    })
+    .catch(err => cogoToast.error("Reply failed.")); 
+
+    }
+
+
+    // Render hide/show comment section
+    hideShow() {
+      var x = document.getElementById("post-interactions");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
     }
 
 render(){
@@ -169,11 +187,11 @@ render(){
                           <div className="-u-prof-stats" id="social-user">
                             <span className="username-wrapper">
                               <div class="dropdown3">
-                                <a href={"/u/?id=" + post.user_id} className="user-profile-shortlink">{post.user} <b className="user-score-post">1,200</b></a>
+                                <a href={"/u/?id=" + post.user_id}>{post.user} <b className="user-score-post">{post.score}</b></a>
                                 <div class="dropdown-content3">
                                   <a href={"/u/?id=" + post.user_id}>{post.user}</a>
                                   <button className="forum-follow-btn">Follow</button>
-                                  <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
+                                  {/* <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a> */}
                                 </div>
                               </div>
                               <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
@@ -193,17 +211,17 @@ render(){
                           </Card.Text>
                           <div>
                             <div>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote id="thumb-up" size={20} /></button></span>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote id="thumb-down" size={20} /></button></span>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><FaRegCommentDots size={20} onClick={() => { this.setState({ toggle: !this.state.toggle }) }} className="feed-comment" /></button></span><PostLinks />
-                          
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /></button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /></button></span>
+                              <a href={"/p/?id=" + post._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} /> Comments</button></span></a>
+                              <PostLinks />
                               <div className='post-interactions'>
                                   {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (                                
-                              <div>      
-                                  <a href={"/u/?id=" + comment.user_id} className="user-profile-shortlink">{comment.user}<b className="user-score-post">{moment(comment.time).format("H:mma - MMM Do, YYYY.")}</b></a>
-                                  <p>{comment.comment}</p>                               
-                            </div>       
-                            ))}
+                                <div>      
+                                    <a href={"/u/?id=" + comment.user_id} className="user-profile-shortlink">{comment.user} <big className="text-muted"> {moment(comment.time).format("H:mma - MMM Do, YYYY.")}</big></a>
+                                    <p>{comment.comment}</p>                               
+                                </div>       
+                                  ))}
                              </div>
                               <hr/>  
                               <Form>
@@ -239,3 +257,97 @@ render(){
 }
 
 export default Feed;
+
+
+// Post link dropdowns for copy and report functions
+function PostLinks() {
+
+  const [open, setOpen] = React.useState(false);
+  const [openReport, setOpenReport] = React.useState(false);
+
+
+  const handleClickCopy = () => {
+    setOpen(true);
+  };
+
+  const handleCloseCopy = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClickReport = () => {
+      setOpenReport(true);
+    };
+  
+    const handleCloseReport = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenReport(false);
+    };
+
+
+
+return (
+  <>
+  {/* Dropdown URL links */}
+   {/* <div class="dropdown2">
+      <a className="dropdown2" href="#"><BsThreeDots  size={20}/></a>
+      <div class="dropdown-content2">
+          <a href="#" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy Post</a>
+          <a href="#" onClick={handleClickReport}><MdReport className="report-icon" size={20}/> Report Post</a>
+      </div>
+  </div>  */}
+
+  <Dropdown className="dropdown2">
+    <Dropdown.Toggle variant="secondary">
+      <BsThreeDots  size={20}/>
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu>
+      <Dropdown.Item href="#/action-1" onClick={handleClickCopy}><MdInsertLink size={20} /> Copy Post</Dropdown.Item>
+      <Dropdown.Item href="#/action-2" onClick={handleClickReport}><MdReport className="report-icon" size={20}/> Report Post</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+
+  <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      open={open}
+      autoHideDuration={6000}
+      onClose={handleCloseCopy}
+      message="Copied Post to clipboard!"
+      action={
+        <React.Fragment>
+          <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseCopy}>
+          </IconButton>
+        </React.Fragment>
+      }
+    />
+
+  <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      open={openReport}
+      autoHideDuration={6000}
+      onClose={handleCloseReport}
+      message="Post has been Reported"
+      action={
+        <React.Fragment>
+          <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseReport}>
+          </IconButton>
+        </React.Fragment>
+      }
+    />
+      
+  </>
+);
+}
