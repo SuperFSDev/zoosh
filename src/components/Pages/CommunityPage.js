@@ -15,6 +15,7 @@ export default class CommunityPage extends React.Component {
       users:[],
       UserList:[]
     };
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -63,6 +64,19 @@ export default class CommunityPage extends React.Component {
         });
       }
 
+
+      onSubmit(Soc_id,user_id) {
+      
+        const deletedUser = {
+          id: Soc_id,
+          _id:user_id       
+      }
+      alert("Removed user "+user_id)
+        axios.post('http://localhost:4000/societies/deleteUser',deletedUser)
+        .then().catch();
+        }
+       
+         
     render(){
      
       var user = JSON.parse(localStorage.getItem('user'));
@@ -110,7 +124,11 @@ export default class CommunityPage extends React.Component {
               <div className="community-users-card">
                 <p className="member-count">Admins: {this.state.society.admin}</p>
                 <p className="member-count">Moderators:  </p>
-                <p className="member-count">Meet the community:  {this.state.users.length}</p>
+                <p className="member-count">Meet the community:  {this.state.users.map(user=>(
+                  user.fullname  
+                ))}
+                <button onClick={() => {this.onSubmit(this.state.society._id,user._id)}}>Delete User</button></p>
+                
               </div>
 
               <br/>

@@ -93,7 +93,7 @@ societies.get('/get-societies-page', (req, res) => {
 societies.post('/update', (req, res) => {
     
     SocietyModel.findOneAndUpdate(
-        { name: req.body.society, },
+        { _id: req.query.id},
         { $addToSet: { users: req.body.user } },
         { upsert: true, new: true, runValidators: true },
 
@@ -113,5 +113,34 @@ societies.post('/update', (req, res) => {
         }
     )
 })
+
+
+societies.post('/deleteUser', (req, res) => {  //delete user
+   
+
+    SocietyModel.findByIdAndUpdate(
+        {_id: req.body.id},
+        { $pull:{ users:req.body._id} },
+        { new: true},
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
 
 module.exports = societies;
