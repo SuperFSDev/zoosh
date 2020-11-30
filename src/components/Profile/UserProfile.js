@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Image } from 'react-bootstrap'
 import { SiAboutDotMe } from 'react-icons/si'
 import History from './ProfilePostHistory'
-import addUserToFollow from './AddUserToFollow'
+// import addUserToFollow from './AddUserToFollow'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import {Helmet} from 'react-helmet'
@@ -110,8 +110,6 @@ export default class UserProfile extends React.Component {
             <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
             {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
             <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
-            
-
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
@@ -138,4 +136,46 @@ export default class UserProfile extends React.Component {
       </>
     );
   }
+}
+
+
+// Follow the user profile and add to array
+function addUserToFollow(user) {
+
+  var getUser = JSON.parse(localStorage.getItem('user'))
+
+  const myUser = {
+      user_id: getUser._id,
+      user: user._id,
+  }
+
+  const followUser = {
+      user_id: user._id,
+      user:{
+      followingUser: getUser._id
+      }
+  }
+
+  // Adds user to following array in user model.
+ axios.post('http://localhost:4000/users/addToFollowingList',myUser)
+      //add to following array
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+
+  // Adds user to followers array in users model.
+ axios.post('http://localhost:4000/users/updateFollowers',followUser)
+      .then(function (resp) {
+          console.log(resp);
+          console.log(followUser);
+          alert(JSON.stringify(followUser));
+      })
+      .catch(function (error) {
+          console.log(error);
+  })
+
 }

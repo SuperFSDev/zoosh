@@ -50,9 +50,8 @@ export default class EventsPage extends React.Component {
           </Helmet> 
           <div className="events-container">
             <div>
-              <h1 className="event-header">Hackathon 2020 - GMIT</h1>
-              <b>{this.state.event.title}</b>
-                <Image src={Hackathon} className="events-header-image"/>              
+              <h1 className="event-header">{this.state.event.title}</h1>
+                {/* <Image src={Hackathon} className="events-header-image"/>               */}
             </div>
           </div>
            

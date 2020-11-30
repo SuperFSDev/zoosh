@@ -596,6 +596,11 @@
   font-size:14px;
 }
 
+.text-muted-profile{
+  float:right;
+  font-size:14px;
+}
+
 
 .-post-footer-card{
   background:white!important;
@@ -622,7 +627,6 @@
 }
 
 .fontPost{
-
  font-size: 20px;
 }
 
@@ -630,6 +634,9 @@
   border-radius: 10px!important;
 }
 
+.post-link{
+  text-decoration: none!important;
+}
 
 .containerFeedLeft{
   width: 20%;
@@ -656,16 +663,12 @@
 }
 
 .containerFeedRightProfile{
-  width: 50%;
+  width: 60%;
   height: auto;
   outline: none !important;
   float: left;
-  border-radius: 25px;
-  text-align: center;
   margin-top:6rem;
-  margin-left: 10rem;
-  /* background-color:#F9F9F9; */
-
+  margin-left: 5rem;
 }
 
 .containerFeedLeftCommunity{
@@ -1871,9 +1874,8 @@ padding-left: 4rem;
 }
 
 .userPosts{
-  width: 40rem;
+  width: 60rem;
   text-align: left;
-  margin:10px;
   background-color:white;
   border:none!important;
 }

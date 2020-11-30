@@ -1,12 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import EditProfile from './EditProfile'
-import {Image} from 'react-bootstrap'
+import {Image,Card} from 'react-bootstrap'
 import {SiAboutDotMe} from 'react-icons/si'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import axios from 'axios';
-import History from './ProfilePostHistory'
 import {Helmet} from 'react-helmet'
 import {FaBook,FaUserFriends} from 'react-icons/fa'
 import {AiOutlineEye} from 'react-icons/ai'
@@ -24,6 +23,7 @@ export default class MyProfile extends React.Component {
           course:'',
           dob:'',
           time:'',
+          posts:[],
           following: [],
           followers: [],
           societies:[]
@@ -46,7 +46,9 @@ export default class MyProfile extends React.Component {
               this.setState({ user: response.data.user,
               followers: response.data.user.followers,
               following: response.data.user.following,
-              societies: response.data.user.societies, })
+              societies: response.data.user.societies,
+              posts:response.data.user.posts
+            })
           })
           .catch((error) => {
               console.log(error);
@@ -121,7 +123,23 @@ export default class MyProfile extends React.Component {
         </div>
 
         <div className="containerFeedRightProfile">
-          <History/>
+        <div>
+          <div>
+            <h3>Top Posts</h3>
+            </div>
+                  {this.state.posts.reverse().map(post=>  (
+                <div key={this.state.user._id}>  
+                  <a href="/" className="post-link"><Card className='userPosts'>
+                    <Card.Body>          
+                      <Card.Text className="fontPost">
+                        <b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/>
+                      </Card.Text>        
+                    </Card.Body>  
+                    <h1></h1>                
+                  </Card></a>
+                </div>
+              ))} 
+        </div>
         </div>
       </>
     );

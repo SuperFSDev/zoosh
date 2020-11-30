@@ -5,13 +5,12 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import LoginPage from './components/Pages/LoginPage';
-import RegisterPage from './components/Pages/RegisterPage';
+import LoginPage from './components/auth/Login';
+import RegisterPage from './components/auth/Register';
 import Feed from './components/Pages/Feed';
 import SocsList from './components/Socs/ListSocieties';
 import Leaderboard from './components/Pages/Leaderboard';
 import CreateSociety from './components/Socs/CreateASoc';
-import Trending from './components/Lists/TrendingList'
 import Profile from './components/Profile/MyProfile'
 import ViewProfile from './components/Profile/UserProfile'
 import DiscussionPost from './components/Pages/DiscussionPost'
@@ -36,7 +35,6 @@ class App extends React.Component {
             <Switch>
               <Route path="/list-of-clubs-and-societies" component={SocsList}/>
               <Route path="/create-a-society" component={CreateSociety}/>
-              <Route path="/trending" component={Trending}/>
               <Route path="/discussions" component={Discussions}/>
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>
