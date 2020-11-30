@@ -12,6 +12,8 @@ import moment from 'moment'
 import {Helmet} from 'react-helmet'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import { CgComment } from 'react-icons/cg'
+import Fab from '@material-ui/core/Fab';
+import QuickCreate from '../Common/QuickCreate'
 
 class Discussions extends React.Component {
 
@@ -59,6 +61,10 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
+        {/* Mobile Quick Create */}
+        <Fab color="secondary" aria-label="add" className="fab">
+          <QuickCreate/>
+        </Fab>
         <QuickOptions/>
           <div>
             <div className="post-option-btns">

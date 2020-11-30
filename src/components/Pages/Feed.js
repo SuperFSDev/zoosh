@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../App.css';
+import '../../Media.css';
+
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
@@ -17,7 +19,8 @@ import {BsThreeDots} from 'react-icons/bs'
 import {MdInsertLink,MdReport} from 'react-icons/md'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-
+import Fab from '@material-ui/core/Fab';
+import QuickCreate from '../Common/QuickCreate'
 var comment;
 
 class Feed extends React.Component {
@@ -168,13 +171,19 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
+        {/* Mobile Quick Create */}
+        <Fab color="secondary" aria-label="add" className="fab">
+          <QuickCreate/>
+        </Fab>
         <QuickOptions/>
         <div>
           <div className="post-option-btns">
+            <div className="filter-feeds">
               <button href="/home" className="post-option-btn-item-global">Global</button>
               <a href="/discussions"><button className="post-option-btn-item">Community</button></a>
               <button className="post-option-btn-item">Media</button>
               <button className="post-option-btn-item">Links</button>
+            </div>
           </div>
 
           <div className="global-feed">

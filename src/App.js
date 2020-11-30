@@ -33,7 +33,7 @@ class App extends React.Component {
           <Router> 
             <NavBar/>   
             <Switch>
-              <Route path="/list-of-clubs-and-societies" component={SocsList}/>
+              <Route path="/communities" component={SocsList}/>
               <Route path="/create-a-society" component={CreateSociety}/>
               <Route path="/discussions" component={Discussions}/>
               <Route path="/settings" component={AccountSettings}/>

@@ -53,7 +53,7 @@ render(){
           </div>  ))}
     <div className="explore-more-link">
 
-        <a href="/list-of-clubs-and-societies">Explore More</a>
+        <a href="/communities">Explore More</a>
     </div>
     </div>
 

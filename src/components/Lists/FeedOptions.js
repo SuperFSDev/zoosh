@@ -76,9 +76,9 @@ render() {
                                 <Typography>
                                 <a href="/me">{this.state.user.societies}</a><br/>
                                 <hr/>
-                                <a href="/list-of-clubs-and-societies">Create</a><br/>
-                                <a href="/list-of-clubs-and-societies">Join</a><br/>
-                                <a href="/list-of-clubs-and-societies">See All</a><br/>
+                                <a href="/communities">Create</a><br/>
+                                <a href="/communities">Join</a><br/>
+                                <a href="/communities">See All</a><br/>
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>

@@ -7,16 +7,6 @@
   background:#212832 !important;
 }
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .header{
   text-decoration: none;
   font-size: 2.5rem !important;
@@ -485,6 +475,10 @@
   border-color:lightgray;
   margin-left:20px;
   margin-bottom: 50px;
+}
+
+.quick-options-mobile{
+  display:none;
 }
 
 
@@ -1220,8 +1214,13 @@ padding-left: 4rem;
   display: block !important;
 }
 
+
 .navbar-prof-btn{
   margin-right:10rem;
+}
+
+.navbar-prof-btn-mobile, .mobileDrawer{
+  display:none!important;
 }
 
 .compose-post-navbar{
@@ -1909,4 +1908,8 @@ padding-left: 4rem;
   float: left;
   outline: none !important;
   margin: auto;
+}
+
+.fab{
+  display:none!important;
 }
