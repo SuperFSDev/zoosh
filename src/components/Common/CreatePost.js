@@ -18,7 +18,8 @@ class LayoutTextFeilds extends React.Component {
       post: '',
       time: new Date().getTime(),
       category: '',
-      tags:[]
+      tags:[],
+      FollowingID:''
       
     };
 
@@ -34,13 +35,16 @@ class LayoutTextFeilds extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    axios.get('http://localhost:4000/users/getUsers')
-    .then((response)=>{
-        this.setState({users: response.data.users})
-    })
-    .catch((error)=>{
-        console.log(error);
-    });
+    // axios.get('http://localhost:4000/users/getUsers')
+    // .then((response)=>{
+    //     this.setState({users: response.data.users})
+    // })
+    // .catch((error)=>{
+    //     console.log(error);
+    // });
+
+
+    
 
 
     
@@ -50,7 +54,32 @@ class LayoutTextFeilds extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({ UniqueUser: response.data.user });
+        this.setState({ UniqueUser: response.data.user,
+          FollowingID: response.data.user.following, });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+      for (var i = 0; i < this.state.FollowingID.length; i++) {
+        this.GetFollowedUser(this.state.FollowingID[i])
+      } 
+  }
+
+
+
+  async GetFollowedUser(FollowingID){
+    await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id:FollowingID
+      }
+    })
+      .then((response) => {
+        this.setState({
+          users: this.state.users.concat(response.data.user)
+        })
+
       })
       .catch((error) => {
         console.log(error);
