@@ -66,7 +66,7 @@ export default class CommunityPage extends React.Component {
 
 
       onSubmit(Soc_id,user_id) {
-      
+
         const deletedUser = {
           id: Soc_id,
           _id:user_id       
@@ -76,7 +76,8 @@ export default class CommunityPage extends React.Component {
         .then().catch();
         }
        
-         
+          
+      
     render(){
      
       var user = JSON.parse(localStorage.getItem('user'));

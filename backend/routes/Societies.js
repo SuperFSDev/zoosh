@@ -93,7 +93,7 @@ societies.get('/get-societies-page', (req, res) => {
 societies.post('/update', (req, res) => {
     
     SocietyModel.findOneAndUpdate(
-        { _id: req.query.id},
+        { name: req.body.society, },
         { $addToSet: { users: req.body.user } },
         { upsert: true, new: true, runValidators: true },
 
@@ -116,11 +116,11 @@ societies.post('/update', (req, res) => {
 
 
 societies.post('/deleteUser', (req, res) => {  //delete user
-   
 
-    SocietyModel.findByIdAndUpdate(
+
+    SocietyModel.updateOne(
         {_id: req.body.id},
-        { $pull:{ users:req.body._id} },
+        { $pull:{ users:{_id:req.body._id}} },
         { new: true},
 
         function (err, result) {
@@ -141,6 +141,7 @@ societies.post('/deleteUser', (req, res) => {  //delete user
         }
     )
 })
+
 
 
 module.exports = societies;
