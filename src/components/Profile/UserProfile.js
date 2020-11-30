@@ -89,7 +89,7 @@ export default class UserProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
             <div id="social">
-              <Image src={`data:image/jpeg;base64,${pp}`} className="user-image" roundedCircle />
+              <Image src={this.state.user.pic} className="user-image" roundedCircle />
               <h3> {this.state.user.fullname}</h3>
             </div>
             <div>
