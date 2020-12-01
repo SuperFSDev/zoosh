@@ -405,4 +405,26 @@ users.get('/get-user-details', (req, res) => {
 
 })
 
+
+//  GET UNQIUE POST PAGE
+users.get('/get-post-page', (req, res) => {
+
+    UserModel.findById({
+            _id: req.query.id
+        }).then(posts => {
+            if (posts) {
+                res.json({
+                    posts: posts
+                });
+            } else {
+                res.send("post does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+})
+
+
 module.exports = users;

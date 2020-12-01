@@ -6,7 +6,6 @@ import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'
 import moment from 'moment'
-import { FaRegCommentDots } from 'react-icons/fa'
 import { Form } from 'react-bootstrap';
 
 export default class GlobalPost extends React.Component {
@@ -14,26 +13,35 @@ export default class GlobalPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        post: '',
+      discussion: '',
+      societies: [],
     };
   }
 
     componentDidMount() {
-      var post_id = new URLSearchParams(this.props.location.search).get("id");
+      var discussion_id = new URLSearchParams(this.props.location.search).get("id");
       document.body.style.backgroundColor = "#f0f2f5";
 
 
-      axios.get('http://localhost:4000/users/get-post-page', {
+      axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
-          id: post_id
+          id: discussion_id
         }
       })
         .then((response) => {
-          this.setState({ post: response.data.post })
+          this.setState({ discussion: response.data.discussion })
         })
         .catch((error) => {
           console.log(error);
         });
+
+      axios.get('http://localhost:4000/societies/getSocieties')
+        .then((response) => {
+          this.setState({ societies: response.data.societies })
+      })
+      .catch((error) => {
+          console.log(error);
+      });
     }
 
     render() {
@@ -53,25 +61,25 @@ export default class GlobalPost extends React.Component {
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
 
-          <div className="containerFeedLeft">
-            <div className="profile-card">
-              <ProfilePicture />
-              <a href="/me"><ProfileUsername /></a>
-            </div>
+          <div className="containerPostLeft">
+              <ProfilePicture/>
+              <ProfileUsername/>
           </div>
 
-          <div className="containerFeedMiddle">
+          <div className="containerPostMiddle">
             <div className="forum-container">
-              <h1>{this.state.post.post}</h1>
-              <p><b>{this.state.post.time}</b></p>
-            </div>
-            <div>
-                <div>
-                  <div>      
-                    <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
-                    <p>hello</p>                               
-                  </div>                 
-                </div><hr/>  
+              {/* <h1>{this.state.discussion.title}</h1> */}
+              {/* <p>{this.state.discussion.content}</p> */}
+              {/* <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/> */}
+
+                {/* Discussion Post interaction options */}
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /></button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /></button></span>
+          </div>
+
+          {/* Comment Section of Discussion Post */}
+          <div className="comment-container">
+              <hr/>  
                 <Form>
                   <input            
                     className="commentBox"
@@ -80,10 +88,18 @@ export default class GlobalPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button className="standard-option-btn" ><BiSend size={25}/></button>
-                  </Form>                          
-                </div>
+                    <button>Post Comment</button>
+                </Form>   
+          </div>    
+          <div className="comment-container">
+            <div className="users-comment">
+              <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
+                 <p>hello</p>  
+            </div>
+                                           
           </div>
+          
+        </div>   
         </>
       );
     }

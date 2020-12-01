@@ -17,18 +17,22 @@
 }
 
 .comment-container{
-  background:#393D46;
+  /* background:#393D46; */
+  background:white;
   padding:30px;
 }
 
 .users-comment{
   background-color: white;
   padding:10px;
+  border:1px lightgray solid;
 }
 
 .user-profile-about-bio{
   background-color:white;
 }
+
+
 /* LOGIN PAGE */
 
 .login-card{
@@ -379,10 +383,11 @@
   height:auto;
   color: black;
   background:white;
-  margin-top:5rem;
+  margin-top:1rem;
   padding-bottom:10px;
   transition:0.2s;
-  margin:10px;
+  margin-right:15px;
+  border:1px lightgray solid;
 }
 
 .create-event-btn{
@@ -611,7 +616,7 @@
   margin:auto;
   width:auto;
   height:auto;
-  border-style:none!important;
+  border: 1px lightgray solid!important;
   margin:10px;
 }
 
@@ -646,14 +651,39 @@
 }
 
 .containerFeedMiddleProfile{
-  margin-top: 8vh;
+  margin-top: 12vh;
   width: 20%;
   height: auto;
   outline: none !important;
   float: left;
   border-radius: 25px;
-  text-align: center;
-  margin-left: 10rem;
+  margin-left:15rem;
+}
+
+
+.containerPostMiddle{
+  margin-top: 12vh!important;
+  margin-left: 20rem;
+  width: 50%;
+  height: auto;
+  outline: none !important;
+  float: center;
+  border-radius: 25px;
+}
+
+.containerPostMobileUser{
+  display:none!important;
+}
+
+.containerPostLeft{
+  /* margin: auto; */
+  width: 20%;
+  height: auto;
+  outline: none !important;
+  background-color: white;
+  margin-right: 15rem;
+  float: right;
+  padding:10px;
 }
 
 .containerFeedRightProfile{
@@ -661,7 +691,7 @@
   height: auto;
   outline: none !important;
   float: left;
-  margin-top:6rem;
+  margin-top:35.5rem;
   margin-left: 5rem;
 }
 
@@ -783,7 +813,8 @@
 .profile-card{
   background:white;
   height:auto;
-  width:350px;
+  width:1400px;
+  padding:10px;
 }
 
 .community-card{
@@ -802,13 +833,17 @@
   outline:none!important;
   font-weight: bold;
   color:gray;
+  /* border-bottom: 3px solid!important; */
+
 }
 
 .community-btn:hover{
   color:blue;
   background:whitesmoke!important;
-}
+  /* transition: 0.5s!important; */
+  /* border-bottom: 3px black solid!important; */
 
+}
 
 .community-users-card{
   width:400px;
@@ -862,7 +897,6 @@
 .feed-option-redirects-username{
   color:#2b88d8;
   text-decoration: none!important;
-
 }
 
 .create-post-discussion-btn-submit{
@@ -1131,10 +1165,8 @@
   background-color:white;
   color:black;
   padding:10px;
-  border-color: lightgray;
   text-decoration: none!important;
-  border-style: none;
-  border-width: 1px;
+  border: 1px lightgray solid!important;
 }
 
 .discussion-post:hover{
@@ -1443,7 +1475,7 @@ padding-left: 4rem;
   margin-bottom:1rem;
 }
 
-.edit-profile-btn:hover , .forum-follow-btn:hover, .edit-pic-btn:hover, .create-event-btn:hover, 
+.forum-follow-btn:hover, .edit-pic-btn:hover, .create-event-btn:hover, 
 .soc-item-list-join-btn:hover, .forum-options-btn:hover , 
 .settings-btn-save:hover, .settings-btn-cancel:hover,.follow-btn:hover , .post-option-btn-item-forum:hover{
   background:black;
@@ -1604,18 +1636,6 @@ padding-left: 4rem;
   margin-top:2rem;
 }
 
-.edit-profile-btn{
-  width:50px;
-  padding:5px;
-  margin-bottom:15px;
-  height:auto;
-  border-style:none;
-  border-radius:25px;
-  background-color:none;
-  outline: none!important;
-  color:#2488d8;
-}
-
 
 .u-prof-stats{
   width:200px;
@@ -1738,7 +1758,8 @@ padding-left: 4rem;
   margin-top:3rem;
   padding-bottom:10px;
   transition:0.2s;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  border:1px lightgray solid;
+  /* box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2); */
 }
 
 .socs-list-items:hover {
@@ -1786,7 +1807,7 @@ padding-left: 4rem;
 }
 
 #social {
-  margin: 20px 10px;
+  /* margin: 20px 10px; */
   color:black;
   /* text-align: center; */
 }

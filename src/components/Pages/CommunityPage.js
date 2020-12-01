@@ -126,9 +126,12 @@ export default class CommunityPage extends React.Component {
                 <p className="member-count">Admins: {this.state.society.admin}</p>
                 <p className="member-count">Moderators:  </p>
                 <p className="member-count">Meet the community:  {this.state.users.map(user=>(
-                  user.fullname  
+                  <div>
+                      <p>{user.fullname}</p>
+                      <button onClick={() => {this.onSubmit(this.state.society._id,user._id)}}>Delete User</button>
+                  </div>
                 ))}
-                <button onClick={() => {this.onSubmit(this.state.society._id,user._id)}}>Delete User</button></p>
+                </p>
                 
               </div>
 

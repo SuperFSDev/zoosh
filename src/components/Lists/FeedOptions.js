@@ -53,7 +53,7 @@ render() {
              <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <h3>{fullname} <b className="user-score">{this.state.user.score}</b></h3>
+                        <h4>{fullname} <b className="user-score">{this.state.user.score}</b></h4>
                     </div></a><br/>
                     <a href="/home" className="feed-option-redirects"><div className="option-container">
                         <FcHome size={35}/> <b>Home</b>

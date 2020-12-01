@@ -1,7 +1,7 @@
 /* NAVBAR + MOBILE */
 
 @media only screen and (max-width: 700px) {
-    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option{
+    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option, .containerPostLeft{
       display: none!important;
     }
   
@@ -58,5 +58,20 @@
 
     .compose-post-navbar:hover{
         background:gray!important;
+    }
+
+    /* .containerPostLeft{
+        width:100%;
+        margin:auto;
+        height:100px;
+    } */
+    .containerPostMiddle{
+        width:100%;
+        margin:auto;
+        padding:15px;
+    }
+
+    .containerPostMobileUser{
+        display:block!important;
     }
   }

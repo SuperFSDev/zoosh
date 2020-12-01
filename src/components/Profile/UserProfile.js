@@ -84,9 +84,7 @@ export default class UserProfile extends React.Component {
                 <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
-        <div className="containerFeedLeftProfile">
 
-        </div>
 
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
@@ -96,7 +94,6 @@ export default class UserProfile extends React.Component {
             </div>
             <div>
               <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-              <button className="follow-btn">Unfollow</button><br/>
 
             </div>
           </div>
@@ -123,7 +120,7 @@ export default class UserProfile extends React.Component {
 
           </div>
           <div className="user-profile-about">
-            <h4>Awards</h4>
+            <h4>Badges</h4>
             <p></p>
           </div>
           <div className="user-profile-about">

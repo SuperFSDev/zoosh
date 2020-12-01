@@ -35,6 +35,7 @@ class Feed extends React.Component {
       comments:[],
       FollowingID:'',
       comment:'',
+      comments:[],
       time: new Date().getTime(),
     };
     this.onChangeComment = this.onChangeComment.bind(this);
@@ -167,7 +168,7 @@ render(){
         </Helmet> 
 
 
-        <div className="containerFeedLeft">
+      <div className="containerFeedLeft">
         <FeedOptions/>
       </div>
 
@@ -179,13 +180,21 @@ render(){
         <QuickOptions/>
         <div>
           <div className="post-option-btns">
-            <div className="filter-feeds">
+            {/* <div className="filter-feeds">
               <button href="/home" className="post-option-btn-item-global">Global</button>
               <a href="/discussions"><button className="post-option-btn-item">Community</button></a>
               <button className="post-option-btn-item">Media</button>
               <button className="post-option-btn-item">Links</button>
-            </div>
+            </div> */}
+            <div>
+                      <button className="community-btn" href="/home">Feed</button>
+                      <a href="/discussions"><button className="community-btn">Community</button></a>
+                      <button className="community-btn">Media</button>
+                      <button className="community-btn">Links</button>
+                      <hr/>
+            </div>               
           </div>
+  
 
           <div className="global-feed">
             {/* POST TAB */}
@@ -221,20 +230,19 @@ render(){
                           </Card.Text>
                           <div>
                             <div>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /></button></span>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /></button></span>
-                              <a href={"/p/?id=" + post._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} /> Comments</button></span></a>
-                              <PostLinks />
-                              <div className='post-interactions'>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
+                              <a href={"/p/?id=" + post.Post_id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button></span></a>
+                              {/* <PostLinks /> */}
+                              {/* <div className='post-interactions'>
                                   {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (                                
                                 <div>      
                                     <a href={"/u/?id=" + comment.user_id} className="user-profile-shortlink">{comment.user} <big className="text-muted"> {moment(comment.time).format("H:mma - MMM Do, YYYY.")}</big></a>
                                     <p>{comment.comment}</p>                               
                                 </div>       
                                   ))}
-                             </div>
-                              <hr/>  
-                              <Form>
+                             </div> */}
+                              {/* <Form>
                                 <input            
                                   className="commentBox"
                                   label="Comment"
@@ -245,7 +253,7 @@ render(){
                                   onChange={this.onChangeComment}
                                   />
                                   <button className="standard-option-btn" onClick={() => {this.onSubmit(post.Post_id)}} ><BiSend size={25}/></button>
-                              </Form>                          
+                              </Form>                           */}
                             </div>
                           </div>
                         </Card.Body>

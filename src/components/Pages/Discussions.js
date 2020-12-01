@@ -68,10 +68,18 @@ render(){
         <QuickOptions/>
           <div>
             <div className="post-option-btns">
-              <a href="/home"><button className="post-option-btn-item">Global</button></a>
+              {/*<a href="/home"><button className="post-option-btn-item">Global</button></a>
               <a href="/discussions"><button className="post-option-btn-item-discussion">Community</button></a>
               <button className="post-option-btn-item">Media</button>
               <button className="post-option-btn-item">Links</button>
+          </div> */}
+            <div>
+                <a href="/home"><button className="community-btn">Feed</button></a>
+                <a href="/discussions"><button className="community-btn">Community</button></a>
+                <button className="community-btn">Media</button>
+                <button className="community-btn">Links</button>
+                <hr/>
+              </div> 
           </div>
         <div className="global-feed">
           
@@ -91,8 +99,8 @@ render(){
                                 </div>
                     </div>
                     <br/>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /></button></span>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /></button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
                   <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> Comments</button></span></a>
                   
                   </span><br/>

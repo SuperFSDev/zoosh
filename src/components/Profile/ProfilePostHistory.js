@@ -39,7 +39,6 @@ export default class History extends React.Component {
     
 
      return (
-
       <div>
         <div>
           <h3>Top Posts</h3>

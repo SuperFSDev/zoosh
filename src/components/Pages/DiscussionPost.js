@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../App.css';
+import axios from 'axios';
 import ProfileUsername from '../Profile/ProfileUsername'
 import ProfilePicture from '../Profile/ProfilePicture'
-import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'
+import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import moment from 'moment'
 import { Form } from 'react-bootstrap';
+import Avatar from '@material-ui/core/Avatar';
+
 
 export default class DiscussionPost extends React.Component {
 
@@ -61,15 +63,16 @@ export default class DiscussionPost extends React.Component {
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
 
-          <div className="containerFeedMiddleProfile">
-            <div className="profile-card">
-              <ProfilePicture />
-              <a href="/me"><ProfileUsername /></a><br/>
-            </div>
+          <div className="containerPostLeft">
+              <ProfilePicture className="prof-pic-discussion"/>
+              <ProfileUsername/>
           </div>
-
-          <div className="containerFeedMiddle">
+          <div className="containerPostMiddle">
             <div className="forum-container">
+              <div className="containerPostMobileUser">
+                <ProfilePic/>
+                <Username/>
+              </div>
               <h1>{this.state.discussion.title}</h1>
               <p>{this.state.discussion.content}</p>
               <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/>
@@ -81,13 +84,6 @@ export default class DiscussionPost extends React.Component {
 
           {/* Comment Section of Discussion Post */}
           <div className="comment-container">
-            <div className="users-comment">
-              <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
-                 <p>hello</p>  
-            </div>
-                                           
-          </div>
-          <div className="comment-container">
               <hr/>  
                 <Form>
                   <input            
@@ -97,12 +93,46 @@ export default class DiscussionPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button className="standard-option-btn" ><BiSend size={25}/></button>
+                    <button>Post Comment</button>
                 </Form>   
           </div>    
+          <div className="comment-container">
+            <div className="users-comment">
+              <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
+                 <p>hello</p>  
+            </div>
+                                           
+          </div>
         </div>   
+
+       
         </>
       );
     }
   }
 
+  function ProfilePic() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var pp = user.pic;
+  
+    return (
+      <div>
+        <Avatar src={pp} className="profile-btn-wrapper-left"/>
+      </div>
+    );
+  }
+
+
+  function Username(){
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user)
+      var fullname = user.fullname; 
+  
+    return (
+      <div>
+        <p>{fullname}</p>
+      </div>
+    );
+  
+  }
+  

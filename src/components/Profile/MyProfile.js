@@ -112,7 +112,7 @@ export default class MyProfile extends React.Component {
             </div>
 
             <div className="user-profile-about">
-              <h4>Awards</h4>
+              <h4>Badges</h4>
               <p></p>
             </div>
             
@@ -123,7 +123,6 @@ export default class MyProfile extends React.Component {
         </div>
 
         <div className="containerFeedRightProfile">
-        <div>
           <div>
             <h3>Top Posts</h3>
             </div>
@@ -139,7 +138,6 @@ export default class MyProfile extends React.Component {
                   </Card></a>
                 </div>
               ))} 
-        </div>
         </div>
       </>
     );

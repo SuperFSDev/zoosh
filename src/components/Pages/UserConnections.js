@@ -68,13 +68,6 @@ export default class UserConnections extends React.Component {
                         <Image className="user-image-mini" src={this.state.user.pic} roundedCircle/>
                     </div>
 
-                                {/* <a href={"/u/?id=" + post.user_id} className="user-profile-shortlink">{post.user} <b className="user-score-post">1,200</b></a>
-                                <div class="dropdown-content3">
-                                  <a href={"/u/?id=" + post.user_id}>{post.user}</a>
-                                  <button className="forum-follow-btn">Follow</button>
-                                  <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
-                                </div>
-                              </div> */}
 
                     <div className="spacing"></div>
 
