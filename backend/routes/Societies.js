@@ -143,5 +143,34 @@ societies.post('/deleteUser', (req, res) => {  //delete user
 })
 
 
+societies.post('/addMod', (req, res) => {  //delete user
+
+
+    SocietyModel.updateOne(
+        {_id: req.body.id},
+        { $addToSet:{ mods:req.body._id}},
+        { new: true},
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+
 
 module.exports = societies;

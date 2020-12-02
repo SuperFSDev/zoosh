@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image} from 'react-bootstrap'
+import {Image,Button} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
-import {Helmet} from 'react-helmet'
-
+import {Helmet} from 'react-helmet';
+import AdminPage from './AdminPage';
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -13,13 +13,14 @@ export default class CommunityPage extends React.Component {
     this.state = {
       society: '',
       users:[],
-      UserList:[]
+      UserList:[],
+ 
     };
-    this.onSubmit = this.onSubmit.bind(this);
+   
   }
-
+ 
   async componentDidMount() {
-      var society_id = new URLSearchParams(this.props.location.search).get("id");
+      var society_id  = new URLSearchParams(this.props.location.search).get("id");
       document.body.style.backgroundColor = "#f0f2f5";
 
 
@@ -30,7 +31,8 @@ export default class CommunityPage extends React.Component {
       })
         .then((response) => {
           this.setState({ society: response.data.society,
-           users:response.data.society.users})
+           users:response.data.society.users,
+           mods:response.data.society.mods})
         })
         .catch((error) => {
           console.log(error);
@@ -65,16 +67,7 @@ export default class CommunityPage extends React.Component {
       }
 
 
-      onSubmit(Soc_id,user_id) {
-
-        const deletedUser = {
-          id: Soc_id,
-          _id:user_id       
-      }
-      alert("Removed user "+user_id)
-        axios.post('http://localhost:4000/societies/deleteUser',deletedUser)
-        .then().catch();
-        }
+    
        
           
       
@@ -86,63 +79,10 @@ export default class CommunityPage extends React.Component {
 
         return (
           <div>
-            {/* REACTJS HELMET */}
-            <Helmet>
-                      <meta charSet="utf-8" />
-                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                      <title>Community</title>
 
-                      {/* LINKS */}
-                      
-                      <link rel="canonical" href="http://mysite.com/example" />
-                      <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
-                      <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
-              </Helmet>
-     
-              <div className="containerFeedLeftCommunity">
-                <div className="community-card">
-                  <h1><b className="user-score">Welcome, Admin!</b></h1>
-                  <Image src={ProfilePic} className="user-image" roundedCircle />
-                  <h3>{this.state.society.name}</h3>
-                  {/* <p className="community-copy-link">z/{this.state.society._id}</p> */}
-                  <p>{this.state.society.description}</p>   
-                  <hr/>
-                  {/* Community Feed Display Options */}
-                  <div>
-                      <button className="community-btn">Feed</button>
-                      <button className="community-btn">Questions</button>
-                      <button className="community-btn">People</button>
-                      <button className="community-btn">Stats</button>
-                  </div>               
-                </div>
-                <br/>
-              </div>
-  
-              <div className="containerFeedMiddleCommunity">
-
-              <div className="community-users-card">
-                <p className="member-count">Admins: {this.state.society.admin}</p>
-                <p className="member-count">Moderators:  </p>
-                <p className="member-count">Meet the community:  {this.state.users.map(user=>(
-                  <div>
-                      <p>{user.fullname}</p>
-                      <button onClick={() => {this.onSubmit(this.state.society._id,user._id)}}>Delete User</button>
-                  </div>
-                ))}
-                </p>
-                
-              </div>
-
-              <br/>
-              
-              <div className="community-users-card">
-                <p className="member-count">Upcoming Events</p>  
-              </div>
-
-            </div>
+              <AdminPage/>
           </div>
+         
           );
       }
 
