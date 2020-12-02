@@ -151,7 +151,7 @@ function ProfilePicture() {
 
   return (
     <div id="social">
-      <Image src={pp} className="user-image" roundedCircle />
+      <Image src={pp} className="user-image" />
     </div>
   );
 }

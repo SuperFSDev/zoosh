@@ -187,7 +187,7 @@ render(){
               <button className="post-option-btn-item">Links</button>
             </div> */}
             <div>
-                      <button className="community-btn" href="/home">Feed</button>
+                      <button className="community-btn-active" href="/home">Feed</button>
                       <a href="/discussions"><button className="community-btn">Community</button></a>
                       <button className="community-btn">Media</button>
                       <button className="community-btn">Links</button>

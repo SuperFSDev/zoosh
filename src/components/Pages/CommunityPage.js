@@ -1,11 +1,14 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image,Button} from 'react-bootstrap'
+import {Image} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
+import moment from 'moment'
+import { RiCake2Fill } from 'react-icons/ri'
+
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -97,6 +100,8 @@ export default class CommunityPage extends React.Component {
                 <h3>{this.state.society.name}</h3>
                 <p className="community-copy-link">z/{this.state.society._id}</p>
                 <p>{this.state.society.description}</p>
+                <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
+
                 <button className="community-button-join" onClick={() => this.addUser(this.state.society.name)}>Join</button>
                 <hr/>
                   <div>

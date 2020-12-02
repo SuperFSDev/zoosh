@@ -14,6 +14,7 @@ const SocietySchema = new Schema({
     mods:{type: Array, "default" : []},
     events: {type: Array, "default" : []},
     score:{type:Number , "default":0},
+    time:Date,
 
 })
 

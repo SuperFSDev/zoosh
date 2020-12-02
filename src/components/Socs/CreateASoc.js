@@ -21,7 +21,9 @@ export default class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
-            private: false
+            private: false,
+            time: new Date().getTime(),
+
         };
 
         this.onChangeName = this.onChangeName.bind(this);
@@ -31,6 +33,8 @@ export default class CreateASoc extends React.Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeTime = this.onChangeTime.bind(this);
+
     }
 
     onChangeName(e) {
@@ -65,6 +69,12 @@ export default class CreateASoc extends React.Component {
         });
     }
 
+    onChangeTime(e) {
+        this.setState({
+          time: new Date().getTime(),
+        });
+    }
+
     onSubmit(e) {
 
         e.preventDefault();
@@ -76,7 +86,9 @@ export default class CreateASoc extends React.Component {
             address: this.state.address,
             description: this.state.description,
             private: this.state.private,
-            admin:getUser._id
+            admin:getUser._id,
+            time: new Date().getTime(),
+
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.category || !newSoc.address) {
@@ -104,7 +116,9 @@ export default class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
-            private: false
+            private: false,
+            time: new Date().getTime(),
+
         });
     }
 

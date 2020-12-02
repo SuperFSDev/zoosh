@@ -5,6 +5,8 @@ import {Image,Button} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
+import moment from 'moment'
+import { RiCake2Fill } from 'react-icons/ri'
 
 export default class AdminPage extends React.Component {
 
@@ -12,6 +14,7 @@ export default class AdminPage extends React.Component {
     super(props);
     this.state = {
       society: '',
+      score: [],
       users:[],
       UserList:[],
       mods:[],
@@ -38,6 +41,8 @@ export default class AdminPage extends React.Component {
         .then((response) => {
           this.setState({ society: response.data.society,
            users:response.data.society.users,
+           score: response.data.society.score,  
+
            mods:response.data.society.mods})
         })
         .catch((error) => {
@@ -63,7 +68,9 @@ export default class AdminPage extends React.Component {
       })
         .then((response) => {
           this.setState({
-            UserList: this.state.UserList.concat(response.data.user)
+            UserList: this.state.UserList.concat(response.data.user),
+            score: response.data.user.score,  
+
           })
   
         })
@@ -142,6 +149,8 @@ export default class AdminPage extends React.Component {
           }
              
     render(){
+      var{users} = this.state;
+      let i = 0;
         return (
           <div>
             {/* REACTJS HELMET */}
@@ -166,6 +175,8 @@ export default class AdminPage extends React.Component {
                   <h3>{this.state.society.name}</h3>
                   {/* <p className="community-copy-link">z/{this.state.society._id}</p> */}
                   <p>{this.state.society.description}</p>   
+                  <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
+
                   <hr/>
                   {/* Community Feed Display Options */}
                   <div>
@@ -178,11 +189,12 @@ export default class AdminPage extends React.Component {
                   <div className="peopleTab">     {/* SHOW PEOPLE*/}
                   {this.state.showPeople &&  
                   this.state.users.map(user=>(
-                  <div>                
-                 <Image src={user.pic} roundedCircle /> 
-                  <h3>{user.fullname}  </h3>
-                  <Button onClick={() => {this.onDeleteUser(this.state.society._id,user._id)}}>Delete User</Button><br></br>
-                  <Button onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Make a Moderator</Button>                          
+                  <div className="community-members-item">                
+                      <Image src={user.pic} className="community-member-item-pic"  /> 
+                      <p>{user.fullname} <b className="user-score-post">{user.score}</b> </p>
+
+                      <button className="standard-button-remove" onClick={() => {this.onDeleteUser(this.state.society._id,user._id)}}>Remove</button><br/>
+                      <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                          
                   </div>
                    ))}
                   </div>
@@ -191,9 +203,18 @@ export default class AdminPage extends React.Component {
                 <div className="peopleTab">   {/* SHOW STATS*/}
                 {this.state.showStats &&           
                 <div>                            
-                <h3>Score:{this.state.society.score}</h3>
-                <h3>Users:{this.state.users.length}</h3>
-                <h3>Mods:{this.state.mods.length}</h3>                           
+                <div className="container-individual-community">
+                  {/* <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/> */}
+                    <div className="">
+                      {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
+                        <div>
+                          <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
+                        </div>
+                      ))}    
+                      <a href="#">See More</a>
+                    </div>
+                    <div id="top-comm"></div>
+                </div>                         
                 </div>
                 }
 

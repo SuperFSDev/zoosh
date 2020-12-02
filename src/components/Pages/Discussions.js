@@ -75,7 +75,7 @@ render(){
           </div> */}
             <div>
                 <a href="/home"><button className="community-btn">Feed</button></a>
-                <a href="/discussions"><button className="community-btn">Community</button></a>
+                <a href="/discussions"><button className="community-btn-active">Community</button></a>
                 <button className="community-btn">Media</button>
                 <button className="community-btn">Links</button>
                 <hr/>

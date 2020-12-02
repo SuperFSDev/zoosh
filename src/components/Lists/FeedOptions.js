@@ -72,12 +72,12 @@ render() {
                             <AccordionSummary
                                 aria-controls="panel1a-content"
                             >
-                            <Typography className="accordion-title"><Image src={Team}/> <b>Clubs and Societies</b></Typography>
+                            <Typography className="accordion-title"><Image src={Team}/> <b>Communities</b></Typography>
                             </AccordionSummary>
                             <AccordionDetails className="accordion-items">
                                 <Typography>
                                 {this.state.socs.map(soc=>
-                                  <a href="/me">  <li>{soc}</li></a>)}<br/>
+                                  <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
                                 <hr/>
                                 <a href="/communities">Create</a><br/>
                                 <a href="/communities">Join</a><br/>
