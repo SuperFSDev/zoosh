@@ -16,6 +16,7 @@ export default class Options extends React.Component {
         id: '',
         user: '',
         following: [],
+        socs:[]
     };
 }
 
@@ -31,6 +32,7 @@ componentDidMount() {
         .then((response) => {
             this.setState({ user: response.data.user,
                 following: response.data.user.following,
+                socs:response.data.user.societies
 
             })
         })
@@ -74,7 +76,8 @@ render() {
                             </AccordionSummary>
                             <AccordionDetails className="accordion-items">
                                 <Typography>
-                                <a href="/me">{this.state.user.societies}</a><br/>
+                                {this.state.socs.map(soc=>
+                                  <a href="/me">  <li>{soc}</li></a>)}<br/>
                                 <hr/>
                                 <a href="/communities">Create</a><br/>
                                 <a href="/communities">Join</a><br/>
