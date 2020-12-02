@@ -80,16 +80,31 @@ export default class AdminPage extends React.Component {
       }
 
 
-    onDeleteUser(Soc_id,user_id) {
+    onDeleteUser(Soc_id,user_id,SocName) {
 
         const deletedUser = {
           id: Soc_id,
           _id:user_id       
       }
+
+
+      const deletedSoc = {
+        _id:user_id,
+        socName:SocName    
+    }
     alert("Removed user "+user_id)
+   
         axios.post('http://localhost:4000/societies/deleteUser',deletedUser)
         .then().catch();
+        axios.post('http://localhost:4000/users/deleteSoc',deletedSoc)
+        .then().catch();
+
+
+
         window.location = '/s/?id='+Soc_id;
+
+
+
         }
 
 
@@ -193,7 +208,7 @@ export default class AdminPage extends React.Component {
                       <Image src={user.pic} className="community-member-item-pic"  /> 
                       <p>{user.fullname} <b className="user-score-post">{user.score}</b> </p>
 
-                      <button className="standard-button-remove" onClick={() => {this.onDeleteUser(this.state.society._id,user._id)}}>Remove</button><br/>
+                      <button className="standard-button-remove" onClick={() => {this.onDeleteUser(this.state.society._id,user._id,this.state.society.name)}}>Remove</button><br/>
                       <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                          
                   </div>
                    ))}

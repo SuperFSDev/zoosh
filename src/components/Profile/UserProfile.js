@@ -25,8 +25,11 @@ export default class UserProfile extends React.Component {
       followers: [],
       following: [],
       societies:[],
-      time:''
+      time:'',
+      showFollow:false,
+      showUnfollow:false
     };
+    this.unfollow = this.unfollow.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +66,45 @@ export default class UserProfile extends React.Component {
     console.info("Followed User")
   }
 
+  unfollow(user) {
+
+    var getUser = JSON.parse(localStorage.getItem('user'))
+  
+    const myUser = {
+        user_id: getUser._id,
+        user: user._id,
+    }
+    const followUser = {
+      user_id: user._id,
+      user: getUser._id
+      
+  }
+    
+  
+    // Adds user to following array in user model.
+   axios.post('http://localhost:4000/users/unfollow',myUser)
+        //add to following array
+        .then(function (resp) {
+            console.log(resp);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
+   axios.post('http://localhost:4000/users/DeleteFollower',followUser)
+        //add to following array
+        .then(function (resp) {
+            console.log(resp);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+  
+  
+  alert("you just unfollowed"+user.fullname);
+  
+  }
+
   render() {
     
     var user = JSON.parse(localStorage.getItem('user'));
@@ -94,6 +136,7 @@ export default class UserProfile extends React.Component {
             </div>
             <div>
               <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+              <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
 
             </div>
           </div>
@@ -150,9 +193,8 @@ function addUserToFollow(user) {
 
   const followUser = {
       user_id: user._id,
-      user:{
-      followingUser: getUser._id
-      }
+      user: getUser._id
+      
   }
 
   // Adds user to following array in user model.
@@ -178,3 +220,6 @@ function addUserToFollow(user) {
   })
 
 }
+
+
+ 

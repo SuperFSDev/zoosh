@@ -427,4 +427,86 @@ users.get('/get-post-page', (req, res) => {
 })
 
 
+users.post('/deleteSoc', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        {_id: req.body._id},
+        { $pull:{ societies:req.body.socName}},
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+
+users.post('/unfollow', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        { _id: req.body.user_id, },
+        { $pull:{ following: req.body.user} },
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.post('/DeleteFollower', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        { _id: req.body.user_id, },
+        { $pull:{ followers: req.body.user} },
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
 module.exports = users;
