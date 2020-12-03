@@ -68,17 +68,11 @@ render(){
         <QuickOptions/>
           <div>
             <div className="post-option-btns">
-              {/*<a href="/home"><button className="post-option-btn-item">Global</button></a>
-              <a href="/discussions"><button className="post-option-btn-item-discussion">Community</button></a>
-              <button className="post-option-btn-item">Media</button>
-              <button className="post-option-btn-item">Links</button>
-          </div> */}
-            <div>
+            <div  className="options-container">
                 <a href="/home"><button className="community-btn">Feed</button></a>
                 <a href="/discussions"><button className="community-btn-active">Community</button></a>
                 <button className="community-btn">Media</button>
                 <button className="community-btn">Links</button>
-                <hr/>
               </div> 
           </div>
         <div className="global-feed">

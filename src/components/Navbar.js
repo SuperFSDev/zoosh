@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {Modal} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
+import {IoIosNotificationsOutline} from 'react-icons/io'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -55,7 +56,8 @@ render(){
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">
-              <QuickCreate/>
+              {/* <QuickCreate/> */}
+              <IoIosNotificationsOutline size={35} className="notify"/>
             </div>           
             <div className="navbar-prof-btn">
               <div id="#battleBox">

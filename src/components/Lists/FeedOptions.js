@@ -8,6 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import {FcBullish,FcCalendar,FcHome} from 'react-icons/fc'
 import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class Options extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class Options extends React.Component {
         id: '',
         user: '',
         following: [],
-        socs:[]
+        socs:[],
+
     };
 }
 
@@ -55,9 +57,9 @@ render() {
              <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <h4>{fullname} <b className="user-score">{this.state.user.score}</b></h4>
-                    </div></a><br/>
-                    <a href="/home" className="feed-option-redirects"><div className="option-container">
+                        <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <h5> {fullname} <b className="user-score">{this.state.user.score}</b></h5>
+                    </div></a>
+                    <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
                         <FcHome size={35}/> <b>Home</b>
                     </div></a>
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">

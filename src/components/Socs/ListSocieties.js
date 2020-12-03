@@ -69,10 +69,7 @@ export default class Daily extends React.Component {
 
       <>
          <div>
-          <div className="socs-options-btns">
-            <QuickOptions/>
-            {/* <button className="trending-soc"><Nav.Link href="/trending"><MdShowChart/> Discover</Nav.Link></button> */}
-          </div>
+         
         </div>
         <div className="search-div">
           <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
@@ -83,7 +80,8 @@ export default class Daily extends React.Component {
             <option value="College">College</option>
             <option value="Category">Category</option>
 
-          </select>
+          </select> 
+            <QuickOptions/>
         </div>
 
         {/* <div>
@@ -130,7 +128,7 @@ function QuickOptions() {
   return (
     <div>
         <div>
-            <button className="trending-soc" onClick={() => setModalShow(true)}>Create</button>
+            <button className="trending-soc" onClick={() => setModalShow(true)}>Create Community</button>
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
@@ -151,7 +149,7 @@ function MyVerticallyCenteredModal(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <h3>Create</h3>
+          <h3>Create Community</h3>
         </Modal.Header>
         <Modal.Body>
             <CreateASoc/>

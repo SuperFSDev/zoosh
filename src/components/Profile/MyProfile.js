@@ -104,7 +104,7 @@ export default class MyProfile extends React.Component {
 
             <div className="user-profile-about">
             <h4>Stats</h4>
-            <p className="user-followers-following-stats"> 🔶 <b className="user-details-views">{this.state.user.score}</b></p><br/>
+            {/* <p className="user-followers-following-stats"> 🔶 <b className="user-details-views">{this.state.user.score}</b></p><br/> */}
             <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
             <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
             <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
@@ -117,8 +117,9 @@ export default class MyProfile extends React.Component {
             </div>
             
             <div className="user-profile-about">
-              <h4>Communities</h4>
-              <p><b>{this.state.user.societies}</b></p>
+            <h4>Communities</h4>
+            {this.state.societies.map(society=>
+                  <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
             </div>
         </div>
 
@@ -126,12 +127,12 @@ export default class MyProfile extends React.Component {
           <div>
             <h3>Top Posts</h3>
             </div>
-                  {this.state.posts.reverse().map(post=>  (
+                {this.state.posts.reverse().map(post=>  (
                 <div key={this.state.user._id}>  
                   <a href="/" className="post-link"><Card className='userPosts'>
                     <Card.Body>          
                       <Card.Text className="fontPost">
-                        <b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/>
+                        <a href={"/p/?id=" + post.Post_id}><b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/></a>
                       </Card.Text>        
                     </Card.Body>  
                     <h1></h1>                

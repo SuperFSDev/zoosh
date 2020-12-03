@@ -135,8 +135,8 @@ export default class UserProfile extends React.Component {
               <h3> {this.state.user.fullname}</h3>
             </div>
             <div>
-              <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-              <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+              <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+              <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
 
             </div>
           </div>
@@ -155,7 +155,7 @@ export default class UserProfile extends React.Component {
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
-            <p className="user-followers-following-stats"> 🔶  <b className="user-details-views">{this.state.user.score}</b></p><br/>
+            <p className="user-followers-following-stats"> Score <b className="user-details-views">{this.state.user.score}</b></p><br/>
             <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
             <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
             <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
@@ -168,11 +168,12 @@ export default class UserProfile extends React.Component {
           </div>
           <div className="user-profile-about">
             <h4>Communities</h4>
-            <p><b>{this.state.user.societies}</b></p>
+            {this.state.societies.map(society=>
+                  <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
           </div>
         </div>
 
-        <div className="containerFeedRightProfile">
+        <div className="containerFeedRightUser">
           <History />
         </div>
       </>

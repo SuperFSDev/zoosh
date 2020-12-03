@@ -6,7 +6,7 @@ import ProfilePicture from '../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import moment from 'moment'
-import { Form } from 'react-bootstrap';
+import { Form, Badge } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 
 
@@ -74,12 +74,14 @@ export default class DiscussionPost extends React.Component {
                 <Username/>
               </div>
               <h1>{this.state.discussion.title}</h1>
+              <Badge variant="secondary">{this.state.discussion.society}</Badge>
+
               <p>{this.state.discussion.content}</p>
               <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/>
 
                 {/* Discussion Post interaction options */}
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /></button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /></button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={25} /> Upvote</button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={25} /> Downvote</button></span>
           </div>
 
           {/* Comment Section of Discussion Post */}
@@ -93,7 +95,7 @@ export default class DiscussionPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button>Post Comment</button>
+                    <button className="trending-soc">Post Comment</button>
                 </Form>   
           </div>    
           <div className="comment-container">

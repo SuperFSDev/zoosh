@@ -48,7 +48,7 @@ export default class History extends React.Component {
                 <a href="/" className="post-link"><Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                      <b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/>
+                    <a href={"/p/?id=" + post.Post_id}><b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/></a>
                     </Card.Text>        
                   </Card.Body>  
                   <h1></h1>                
