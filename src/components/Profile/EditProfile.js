@@ -3,10 +3,10 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Nav, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { BiEdit } from 'react-icons/bi'
 import axios from 'axios';
-import { HashPassword, ComparePassword } from '../auth/HashPassword';
+// import { HashPassword, ComparePassword } from '../auth/HashPassword';
 
 export default class EditProfile extends React.Component {
 
@@ -220,7 +220,7 @@ export default class EditProfile extends React.Component {
   render() {
     return (
       <div>
-        <a href="/settings"><button className="edit-profile-btn"><BiEdit size={25} /></button></a>
+        <a href="/settings"><button className="standard-button">Edit Profile</button></a>
 
         {/* <button className="edit-profile-btn" onClick={this.handleClickOpen}><BiEdit size={25} /></button> */}
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">

@@ -3,8 +3,12 @@ import '../../App.css';
 import { Form, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {TextField} from '@material-ui/core';
+import cogoToast from 'cogo-toast'
 
-class CreateASoc extends React.Component {
+var getUser = JSON.parse(localStorage.getItem('user'))
+
+
+export default class CreateASoc extends React.Component {
 
     collegeList = ['NUIG', 'GMIT', 'GTI'];
     categories = ['LGBTQ', 'Fitness', 'Music', 'Outdoors', 'Maths', 'Gaming', 'Debating', 'Religion', 'Volunteering'];
@@ -17,7 +21,9 @@ class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
-            private: false
+            private: false,
+            time: new Date().getTime(),
+
         };
 
         this.onChangeName = this.onChangeName.bind(this);
@@ -27,6 +33,8 @@ class CreateASoc extends React.Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeTime = this.onChangeTime.bind(this);
+
     }
 
     onChangeName(e) {
@@ -61,6 +69,12 @@ class CreateASoc extends React.Component {
         });
     }
 
+    onChangeTime(e) {
+        this.setState({
+          time: new Date().getTime(),
+        });
+    }
+
     onSubmit(e) {
 
         e.preventDefault();
@@ -71,7 +85,10 @@ class CreateASoc extends React.Component {
             category: this.state.category,
             address: this.state.address,
             description: this.state.description,
-            private: this.state.private
+            private: this.state.private,
+            admin:getUser._id,
+            time: new Date().getTime(),
+
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.category || !newSoc.address) {
@@ -89,7 +106,7 @@ class CreateASoc extends React.Component {
                 .catch(function(error){
                     console.log(error);
                 })
-
+            cogoToast.success("Community was created!");
             window.location = '/list-of-clubs-and-societies';
         }
 
@@ -99,7 +116,9 @@ class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
-            private: false
+            private: false,
+            time: new Date().getTime(),
+
         });
     }
 
@@ -173,5 +192,3 @@ class CreateASoc extends React.Component {
         );
     }
 }
-
-export default CreateASoc;

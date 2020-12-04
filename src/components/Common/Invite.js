@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-export default class YourComponent extends Component {
+export default class InviteAFriend extends Component {
   constructor(props) {
     super(props)
 
@@ -32,7 +32,8 @@ export default class YourComponent extends Component {
           {
             this.state.copySuccess ?
             <div style={{"color": "green"}}>
-              Success!
+              <br/>
+              <p className="success-copy">Copied to Clipboard</p>
             </div> : null
           }
         </div>

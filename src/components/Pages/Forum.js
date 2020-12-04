@@ -3,11 +3,44 @@ import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
-import AddUserToForum from '../Profile/AddUserToForum'
+// import AddUserToForum from '../Profile/AddUserToForum'
+import { Helmet } from 'react-helmet'
 
-class Forum extends React.Component {
+export default class Forum extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      forums: [],
+      searchValue: '',
+      filterBy: '',
+      user: '',
+      forums: [],
+    };
+  }
 
     componentDidMount() {
+      document.body.style.backgroundColor = "#f0f2f5";
+      var user_id = new URLSearchParams(this.props.location.search).get("id");
+  
+  
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user_id
+        }
+      })
+  
+        .then((response) => {
+          this.setState({ user: response.data.user,
+                          forums: response.data.user.forums,
+  
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  
+
 
         axios.get('http://localhost:4000/forums/getForums')
           .then((response) => {
@@ -17,23 +50,13 @@ class Forum extends React.Component {
             console.log(error);
           });
       }
-    
-    
-      constructor(props) {
-        super(props);
-        this.state = {
-          forums: [],
-          searchValue: '',
-          filterBy: ''
-        };
-      }
 
       updateSearch(event) {
         this.setState({ searchValue: event.target.value.substr(0, 20) });
       }
 
-      addForum(user) {
-        AddUserToForum(user);
+      addForum(frm) {
+        addUserToForum(frm);
       }
 
 render(){
@@ -42,7 +65,7 @@ render(){
 
     (forum) => {
       let filter = this.state.filterBy;
-      if (filter == "Name") {
+      if (filter === "Name") {
         return forum.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
 
       }  else {
@@ -55,6 +78,19 @@ render(){
 
   return (
      <div>
+        {/* REACTJS HELMET */}
+        <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Forums</title>
+
+                {/* LINKS */}
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
       <div className="containerFeedLeft">
         <FeedOptions/>
       </div>
@@ -68,15 +104,18 @@ render(){
         <div className="featured-forums">
             <h3>Following</h3>
             <a href="#"><div className="forum-option">
-                <h5></h5>
+                <h5>{this.state.user.forums}</h5>
             </div></a>
         </div>
+
+        {/* <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'> */}
+
 
         <div className="featured-forums">
             <h3>Featured</h3>
             {filteredForumsByName.map(forum => (
             <div key={forum.id}>
-              <a href="#"><div className="forum-option">
+              <a href={"/f/?id="+forum._id}><div className="forum-option">
                 <div className="forum-item-title">
                     <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
                 </div>
@@ -87,42 +126,7 @@ render(){
             </div>
 
           ))}
-            {/* <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">NUIG</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a>
-            <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">GMIT</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a>
-            <a href="#"><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">GTI</h5>
-                </div>
-                <button className="forum-follow-btn">Follow</button>
-            </div></a> */}
         </div>
-            {/* <div className="ForumLayout">
-                {forums.map(forum => (
-                 <div key={forum.id}>
-                    <div>
-                        <div className="socs-list-items">
-                        <a href="/" className="-soc-l-navigation">
-                            <div >
-                            <span>
-                                {forum.name}
-                            </span>
-                            </div>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                ))}
-            </div> */}
         
       </div>
 
@@ -133,4 +137,37 @@ render(){
   );
 }
 }
-export default Forum;
+
+// Adding a User to forum to follow
+async function addUserToForum(frm) {
+
+  var getUser = JSON.parse(localStorage.getItem('user'))
+
+  const addForum = {
+      forum: frm,
+      user: getUser,
+      user_id: getUser._id,
+  }
+
+   // Adds users to forums followers array in user model.
+   await axios.post('http://localhost:4000/forums/update', addForum)
+      .then(function (resp) {
+          console.log(resp);
+          alert("Successfully followed forum " + frm);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+  // Adds forum to following array in user model.
+  await axios.post('http://localhost:4000/users/addToForumFollowingList',addForum)
+      //add to following array
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+}
+

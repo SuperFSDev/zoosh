@@ -27,7 +27,10 @@ societies.post('/create', (req, res) => {
         category: req.body.category,
         address: req.body.address,
         description: req.body.description,
-        private: req.body.private
+        private: req.body.private,
+        admin:req.body.admin,
+        time: req.body.time,
+
     }
 
     //Check if user is already registered
@@ -111,5 +114,64 @@ societies.post('/update', (req, res) => {
         }
     )
 })
+
+
+societies.post('/deleteUser', (req, res) => {  //delete user
+
+
+    SocietyModel.updateOne(
+        {_id: req.body.id},
+        { $pull:{ users:{object:{_id:req.body._id}}}},
+        { new: true},
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+societies.post('/addMod', (req, res) => {  //delete user
+
+
+    SocietyModel.updateOne(
+        {_id: req.body.id},
+        { $addToSet:{ mods:req.body._id}},
+        { new: true},
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+
 
 module.exports = societies;

@@ -1,87 +1,149 @@
 import React from 'react';
 import '../../App.css';
-import ProfileUsername from './ProfileUsername'
 import EditProfile from './EditProfile'
-import {Tabs, Tab,Image} from 'react-bootstrap'
+import {Image,Card} from 'react-bootstrap'
 import {SiAboutDotMe} from 'react-icons/si'
-import About from './ProfileME'
-import Achievements from './ProfileAchievements'
-import Communities from './ProfileCommunities'
-import History from './ProfilePostHistory'
-import Team from '../../images/group.png';
-import Book from '../../images/book.png';
-import Badge from '../../images/badge.png';
-import ProfilePic from '../../images/blogging.jpg'
-import { RiCake2Fill, RiEyeFill } from 'react-icons/ri'
+import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
+import axios from 'axios';
+import {Helmet} from 'react-helmet'
+import {FaBook,FaUserFriends} from 'react-icons/fa'
+import {AiOutlineEye} from 'react-icons/ai'
+import {CgCommunity} from 'react-icons/cg'
 import moment from 'moment'
 
-export default function MyProfile() {
-  return (
-    <>
-      <div className="containerFeedLeftProfile">
+export default class MyProfile extends React.Component {
 
-      </div>
+  constructor(props) {
+      super(props);
+      this.state = {
+          id: '',
+          user: '',
+          college:'',
+          course:'',
+          dob:'',
+          time:'',
+          posts:[],
+          following: [],
+          followers: [],
+          societies:[]
+      };
+    }
 
-      <div className="containerFeedMiddleProfile">
-        <div className="profile-card">
-          <ProfilePicture/>
-          <ProfileUsername/>
-         
-          <div className="user-profile-btn-options">
-            <span className="user-profile-btn-options">
-              <EditProfile/>
-            </span>
-          </div>
+  componentDidMount() {
+      var user = JSON.parse(localStorage.getItem('user'));
+      document.body.style.backgroundColor = "#f0f2f5";
+
+      this.setState({ id: user._id });
+
+      axios.get('http://localhost:4000/users/get-user-details', {
+          params: {
+              id: user._id,
+             
+          }
+      })
+          .then((response) => {
+              this.setState({ user: response.data.user,
+              followers: response.data.user.followers,
+              following: response.data.user.following,
+              societies: response.data.user.societies,
+              posts:response.data.user.posts
+            })
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+
+  }
+
+  render(){
+    return (
+      <>
+      {/* REACTJS HELMET */}
+      <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>{this.state.user.fullname}</title>
+
+                {/* LINKS */}
+                
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet> 
+        <div className="containerFeedLeftProfile">
+
         </div>
 
-        <div className="profile-card">
-            <div id="social">
-              <p className="user-bio"></p>
+        <div className="containerFeedMiddleProfile">
+          <div className="profile-card">
+            <ProfilePicture/>
+            <Username/>
+          
+            <div className="user-profile-btn-options">
+              <span className="user-profile-btn-options">
+                <EditProfile/>
+                  {/* <p className="user-followers-following-stats">Following {this.state.following.length}</p>
+                  <p className="user-followers-following-stats">Followers {this.state.followers.length}</p> */}
+
+              </span>
             </div>
           </div>
-          <div className="user-profile-about">
-            <p><SiAboutDotMe /> <b className="user-details"></b></p>
-            <p><MdSchool /> <b className="user-details"></b></p>
-            {/* <p>Studying: <b className="user-details">{this.state.user.course}</b></p> */}
-            {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-            <p><RiCake2Fill /> <b className="user-details"></b></p>
-            <p>Profile Score: <b className="user-details-views"></b></p>
-            <p><RiEyeFill /> Views: <b className="user-details-views">1,900,200</b></p>
-          </div>
-          <div className="user-profile-about">
-            <h4>Badges</h4>
-          </div>
-      </div>
 
-      <div className="containerFeedRightProfile">
-      <ProfileTabs/>
+          <div className="profile-card">
+            </div>
+            <div className="user-profile-about">
+              <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
+              <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
+              <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
+              {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
+              <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
+            </div>
 
-      </div>
-    </>
-  );
-}
+            <div className="user-profile-about">
+            <h4>Stats</h4>
+            {/* <p className="user-followers-following-stats"> 🔶 <b className="user-details-views">{this.state.user.score}</b></p><br/> */}
+            <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
+            <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
+            <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
 
+            </div>
 
-function ProfileTabs() {
-  return (
-    <div className="-profile-tabs">
-    <Tabs  defaultActiveKey="me" id="uncontrolled-tab-example">
-        {/* <Tab className="profile-tab-items" eventKey="me" title={<SiAboutDotMe size={30}/>}>
-            <About/>
-        </Tab> */}
-        <Tab className="profile-tab-items" eventKey="profile" title={<Image src={Team}/>}>
-            <Communities/>
-        </Tab>
-        <Tab className="profile-tab-items" eventKey="contact" title={<Image src={Book}/>} >
-            <History/>
-        </Tab> 
-        <Tab className="profile-tab-items" eventKey="home" title={<Image src={Badge}/>}>
-            <Achievements/>
-        </Tab>
-    </Tabs>
-    </div>
-  );
+            <div className="user-profile-about">
+              <h4>Badges</h4>
+              <p></p>
+            </div>
+            
+            <div className="user-profile-about">
+            <h4>Communities</h4>
+            {this.state.societies.map(society=>
+                  <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
+            </div>
+        </div>
+
+        <div className="containerFeedRightProfile">
+          <div>
+            <h3>Top Posts</h3>
+            </div>
+                {this.state.posts.reverse().map(post=>  (
+                <div key={this.state.user._id}>  
+                  <a href="/" className="post-link"><Card className='userPosts'>
+                    <Card.Body>          
+                      <Card.Text className="fontPost">
+                        <a href={"/p/?id=" + post.Post_id}><b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/></a>
+                      </Card.Text>        
+                    </Card.Body>  
+                    <h1></h1>                
+                  </Card></a>
+                </div>
+              ))} 
+        </div>
+      </>
+    );
+  }
+  
 }
 
 function ProfilePicture() {
@@ -90,7 +152,23 @@ function ProfilePicture() {
 
   return (
     <div id="social">
-      <Image src={pp} className="user-image" roundedCircle />
+      <Image src={pp} className="user-image" />
     </div>
   );
+}
+
+
+// Get profile username
+function Username(){
+  var user = JSON.parse(localStorage.getItem('user'));
+  if(user)
+    var fullname = user.fullname; 
+
+  return (
+    <div id="social">
+      <h3>{fullname}</h3>
+      {/* {id} */}
+    </div>
+  );
+
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import addUserToSoc from '../Socs/AddUserToSoc';
 import axios from 'axios';
 
 export default class Recommended extends React.Component {
@@ -54,11 +53,51 @@ render(){
           </div>  ))}
     <div className="explore-more-link">
 
-        <a href="/list-of-clubs-and-societies">Explore More</a>
+        <a href="/communities">Explore More</a>
     </div>
     </div>
 
   );
 }
  
+}
+
+
+  // Adding a User to a society array and adding the society to the users array
+  async function addUserToSoc(soc) {
+
+    var getUser = JSON.parse(localStorage.getItem('user'))
+
+    const addUser = {
+        society: soc,
+        user: getUser,
+        user_id: getUser._id,
+    }
+
+    // Adds user to users array in society model.
+    await axios.post('http://localhost:4000/societies/update', addUser)
+        .then(function (resp) {
+            console.log(resp);
+            alert("Successfully joined " + soc);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
+
+    // Adds society to societies array in user model.
+    await axios.post('http://localhost:4000/users/addToSocList', addUser)
+        .then(function (resp) {
+            console.log(resp);
+
+            // Update societies array in localStorage
+            if(!getUser.societies.includes(soc)) {
+                getUser.societies.push(soc);
+            }
+            console.log(getUser);
+            localStorage.setItem('user', JSON.stringify(getUser))
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }

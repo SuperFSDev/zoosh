@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Form } from 'react-bootstrap';
 
 
-class CreateLink extends React.Component {
+class CreateForumPost extends React.Component {
 
     constructor(props) {
         super(props);
@@ -65,27 +65,21 @@ class CreateLink extends React.Component {
           time: new Date().getTime(),
         }
     
-        axios.post('http://localhost:4000/links/NewLink', newLink)
+        axios.post('http://localhost:4000/forums/NewPost', newLink)
           .then()
           .catch();
     
         this.setState({
           user: '',
-          score:+1,
           title: '',
           content: '',
           time: new Date().getTime(),
         });
-        window.location = '/home';
+        window.location = '/forum';
       }
 
 
   render() {
-
-    // let options = this.state.links.map(function (link) {
-    //     return { value: link, label: link };
-    //   })
-
     return (
       <div className="create-a-post">
         <div>
@@ -132,4 +126,4 @@ class CreateLink extends React.Component {
     );
   }
 }
-export default CreateLink;
+export default CreateForumPost;

@@ -195,7 +195,53 @@ users.post('/addPost', (req, res) => {
         
   { _id: req.body.user_id},
   { score : req.body.score,
-         $addToSet: { posts: req.body.post } },
+         $addToSet: { posts: req.body.post} },
+        { upsert: true, new: true, runValidators: true },
+        //console.log('here now.' + req.body.post),
+        function (err, result) {
+
+            if (err) {  
+                console.log("error" + err);
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log("Post: "+result);
+                    res.send(result)
+                } else {
+                    res.send("Society already exists in user model.");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.get('/get-post-page', (req, res) => {
+
+    UserModel.findById({
+            _id: req.query.id
+        }).then(post => {
+            if (post) {
+                res.json({
+                    post: post
+                });
+            } else {
+                res.send("post does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+})
+
+users.post('/addComment', (req, res) => {
+
+    UserModel.findByIdAndUpdate(
+        
+  { _id: req.body.post_id},
+  { $addToSet: { comments: req.body.comment } },
         { upsert: true, new: true, runValidators: true },
         //console.log('here now.' + req.body.post),
         function (err, result) {
@@ -295,7 +341,7 @@ users.post('/updateFollowers', (req, res) => {
 })
 
 // FOLLOW A FORUM
-users.post('/addToForumList', (req, res) => {
+users.post('/addToForumFollowingList', (req, res) => {
     
     UserModel.findByIdAndUpdate(
         { _id: req.body.user_id, },
@@ -319,7 +365,6 @@ users.post('/addToForumList', (req, res) => {
         }
     )
 })
-
 
 
 // Gets one users societies
@@ -357,5 +402,136 @@ users.get('/get-user-details', (req, res) => {
     })
 
 })
+
+
+//  GET UNQIUE POST PAGE
+users.get('/get-post-page', (req, res) => {
+
+    UserModel.findById({
+            _id: req.query.id
+        }).then(posts => {
+            if (posts) {
+                res.json({
+                    posts: posts
+                });
+            } else {
+                res.send("post does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+})
+
+
+users.post('/deleteSoc', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        {_id: req.body._id},
+        { $pull:{ societies:req.body.socName}},
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.post('/deletePost', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        {_id: req.body.id},
+        { $pull:{posts:{Post_id:req.body.Post_id}}},
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+
+users.post('/unfollow', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        { _id: req.body.user_id, },
+        { $pull:{ following: req.body.user} },
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.post('/DeleteFollower', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        { _id: req.body.user_id, },
+        { $pull:{ followers: req.body.user} },
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
 
 module.exports = users;

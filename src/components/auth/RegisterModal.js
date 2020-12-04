@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Nav, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 
 class RegisterModal extends React.Component {

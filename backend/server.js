@@ -34,9 +34,9 @@ app.use('/users', Users)
 var Problems = require('./routes/Problems');
 app.use('/problems', Problems)
 
-// Adds the "Posts" route to the server.
-var Posts = require('./routes/Posts');
-app.use('/posts', Posts)
+// Adds the "Comments" route to the server.
+var Comments = require('./routes/Comments');
+app.use('/comments', Comments)
 
 // Adds the "Discussions" route to the server.
 var Discussions = require('./routes/Discussions');
