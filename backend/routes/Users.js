@@ -154,8 +154,6 @@ users.get('/getUsers', (req, res) => {
 
 users.post('/edit-user-profile', (req, res) => {
 
-    console.log("REQUEST PIC = " + req.body.pic);
-
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         UserModel.findByIdAndUpdate(
             { _id: req.body.user_id, },

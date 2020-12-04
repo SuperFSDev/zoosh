@@ -23,7 +23,8 @@ posts.post('/NewPosts', (req, res) => {
         post: req.body.post,
         time: req.body.time,
         category: req.body.category,
-        tags:req.body.tags
+        tags: req.body.tags,
+        pics: req.body.pictures
       
     });
 })

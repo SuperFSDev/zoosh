@@ -246,33 +246,6 @@ export default class AccountSettings extends React.Component {
     }
   }
 
-  /*imageToB64(imgUrl) {
-    return new Promise(resolve => {
-      var img = new Image();
-      img.crossOrigin = 'Anonymous';
-
-      img.onload = function () {
-
-        img.height = img.naturalHeight / 4;
-        img.width = img.naturalWidth / 4;
-
-        var canvas = document.createElement('canvas'),
-          ctx = canvas.getContext('2d');
-
-        canvas.height = img.height;
-        canvas.width = img.width;
-
-        ctx.drawImage(img, 0, 0, parseInt(img.width), parseInt(img.height));
-
-        var uri = canvas.toDataURL('image/png'),
-          b64 = uri.replace(/^data:image.+;base64,/, '');
-        resolve(b64);
-      };
-      img.src = imgUrl;
-    })
-  }*/
-
-
   render() {
     return (
       <div>
