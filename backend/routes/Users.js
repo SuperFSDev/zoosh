@@ -197,7 +197,7 @@ users.post('/addPost', (req, res) => {
         
   { _id: req.body.user_id},
   { score : req.body.score,
-         $addToSet: { posts: req.body.post } },
+         $addToSet: { posts: req.body.post} },
         { upsert: true, new: true, runValidators: true },
         //console.log('here now.' + req.body.post),
         function (err, result) {
@@ -433,6 +433,33 @@ users.post('/deleteSoc', (req, res) => {  //delete user
     UserModel.updateOne(
         {_id: req.body._id},
         { $pull:{ societies:req.body.socName}},
+        { new: true},
+        function (err, result) {
+
+            if (err) {
+                res.send(err)   
+                console.log(err)
+            }
+            else {
+                if(result){
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.post('/deletePost', (req, res) => {  //delete user
+
+
+    UserModel.updateOne(
+        {_id: req.body.id},
+        { $pull:{posts:{Post_id:req.body.Post_id}}},
         { new: true},
         function (err, result) {
 

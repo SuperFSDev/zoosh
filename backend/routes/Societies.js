@@ -121,7 +121,7 @@ societies.post('/deleteUser', (req, res) => {  //delete user
 
     SocietyModel.updateOne(
         {_id: req.body.id},
-        { $pull:{ users:{_id:req.body._id}} },
+        { $pull:{ users:{object:{_id:req.body._id}}}},
         { new: true},
 
         function (err, result) {

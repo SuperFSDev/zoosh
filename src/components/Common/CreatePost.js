@@ -123,6 +123,7 @@ class LayoutTextFeilds extends React.Component {
       post:{ 
         Post_id: id,
         user: this.state.user,
+        user_id:this.state.id,
         post: this.state.post,
         time: new Date().getTime(),
         category: this.state.category,

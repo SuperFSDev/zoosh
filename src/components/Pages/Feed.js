@@ -150,6 +150,29 @@ class Feed extends React.Component {
       }
     }
 
+      // Render hide/show comment section
+      CheckPost(id,post_id) {
+        var user = JSON.parse(localStorage.getItem('user'));
+      if(id == user._id){
+        return(<div>
+          <button onClick={() => {this.onDeletePost(id,post_id)}}>Delete comment</button>
+        </div>)
+      }
+      }
+
+
+      onDeletePost(id,post_id) {
+
+        const deletedPost = {
+          id: id,
+          Post_id:post_id      
+      }
+        alert(post_id);
+        axios.post('http://localhost:4000/users/deletePost',deletedPost)
+         .then().catch();
+       }
+
+
 render(){
   return (
      <div>
@@ -193,6 +216,7 @@ render(){
             {/* POST TAB */}
               {this.state.posts.sort((a, b) => b.time - a.time).map((post,index) => (  // sorts the posts by the time posted
                     <div>
+                   
                       <Card className='feedPost'>
 
                         <Card.Body>
@@ -249,7 +273,9 @@ render(){
                               </Form>                           */}
                             </div>
                           </div>
+                         
                         </Card.Body>
+                        {this.CheckPost(post.user_id,post.Post_id)}
                       </Card>
                     </div>
                   ))}
