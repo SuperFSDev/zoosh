@@ -220,6 +220,63 @@ users.post('/addPost', (req, res) => {
 })
 
 
+users.post('/addForumPost', (req, res) => {
+
+    UserModel.findByIdAndUpdate(
+        
+  { _id: req.body.user_id},
+  { score : req.body.score,
+         $addToSet: { forumPosts: req.body.post} },
+        { upsert: true, new: true, runValidators: true },
+        //console.log('here now.' + req.body.post),
+        function (err, result) {
+
+            if (err) {  
+                console.log("error" + err);
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log("Post: "+result);
+                    res.send(result)
+                } else {
+                    res.send("");
+                }
+            }
+
+        }
+    )
+})
+
+users.post('/addQuestion', (req, res) => {
+
+    UserModel.findByIdAndUpdate(
+        
+  { _id: req.body.user_id},
+  { score : req.body.score,
+         $addToSet: { questions: req.body.post} },
+        { upsert: true, new: true, runValidators: true },
+        //console.log('here now.' + req.body.post),
+        function (err, result) {
+
+            if (err) {  
+                console.log("error" + err);
+                res.send(err)   
+            }
+            else {
+                if(result){
+                    console.log("Question: "+result);
+                    res.send(result)
+                } else {
+                    res.send("");
+                }
+            }
+
+        }
+    )
+})
+
+
 users.get('/get-post-page', (req, res) => {
 
     UserModel.findById({
