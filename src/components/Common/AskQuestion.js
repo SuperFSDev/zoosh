@@ -4,14 +4,14 @@ import axios from 'axios';
 import {Form} from 'react-bootstrap';
 import { ObjectID } from 'bson';
 
-class CreateForumPost extends React.Component {
+class AskQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       _id: '',
       score:10,
       users: [],
-      forumPosts: [],
+      questions: [],
       user: '',
       UniqueUser:'',
       post: '',
@@ -133,7 +133,7 @@ class CreateForumPost extends React.Component {
 
 
 
- axios.post('http://localhost:4000/users/addForumPost', newPost)
+ axios.post('http://localhost:4000/users/addQuestion', newPost)
     .then()
         .catch();
         
@@ -164,9 +164,9 @@ class CreateForumPost extends React.Component {
 
         <TextField
           id="outlined-textarea"
-          label="Create a Post"
+          label="Ask a Question"
           style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-          placeholder="Whats on your mind"         
+          placeholder="Whats on your mind?"         
           fullWidth
           required
           multiline
@@ -187,4 +187,4 @@ class CreateForumPost extends React.Component {
   );
 }
 }
-export default CreateForumPost;
+export default AskQuestion;
