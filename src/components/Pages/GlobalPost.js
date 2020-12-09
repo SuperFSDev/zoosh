@@ -73,8 +73,8 @@ export default class GlobalPost extends React.Component {
               {/* <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/> */}
 
                 {/* Discussion Post interaction options */}
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /></button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /></button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /> Upvote</button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> Downvote</button></span>
           </div>
 
           {/* Comment Section of Discussion Post */}
@@ -88,7 +88,7 @@ export default class GlobalPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button>Post Comment</button>
+                    <button className="trending-soc">Post Comment</button>
                 </Form>   
           </div>    
           <div className="comment-container">

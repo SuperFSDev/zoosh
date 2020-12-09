@@ -248,80 +248,107 @@ export default class AccountSettings extends React.Component {
   render() {
     return (
       <div>
-        <div className="containerAccountSettingsMiddle">
-          <h1><p><ProfileUsername /></p></h1>
-          <div className="settings-options-item">
+        <div className="settings-options-container">
+          <ProfileUsername />
+          <div className="">
             <a href="/settings/profile" className="feed-option-redirects"><div className="option-container">
               Profile
                     </div></a>
-            <a href="/settings/account" className="feed-option-redirects"><div className="option-container">
-              Account
-                    </div></a>
-            <a href="/settings/notifications" className="feed-option-redirects"><div className="option-container">
-              Notifications
+            <a href="/login" className="feed-option-redirects"><div className="option-container">
+              Logout
                     </div></a>
           </div>
         </div>
 
-        <div className="containerAccountSettingsRight">
+        <div className="containerFeedMiddle">
           <div>
             {this.picPreview()}
             <image src={`data:image/png;base64,${this.scaledImg}`} />
             <Form className="edit-profile-form" onSubmit={this.onSubmit}>
-              <Form.Group controlId="profilePic">
-                <Form.Label>Update Profile Picture</Form.Label>
-                <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formName">
-                <Form.Label>Change Name</Form.Label>
-                <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formBio">
-                <Form.Label>Change Bio</Form.Label>
-                <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formCollege">
-                <Form.Label>Change College</Form.Label>
-                <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formCourse">
-                <Form.Label>Change College Course</Form.Label>
-                <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formDob">
-                <Form.Label>Change Date of Birth</Form.Label>
-                <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formNewPassword">
-                <Form.Label>Change Password</Form.Label>
-                <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formConformPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype} />
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <button className="settings-btn-save" variant="secondary" type="submit" >
-                Save changes
-                        </button>
-              <button className="settings-btn-cancel" variant="primary" type="submit" >
-                Cancel
-                        </button>
+              <div className="settings-container">    
+                <h3>User Display</h3><br/>    
+                <Form.Group controlId="formName">
+                  <Form.Label>Change Name</Form.Label>
+                  <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="profilePic">
+                  <Form.Label>Update Profile Picture</Form.Label>
+                  <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+              </div><br/>
+              <div className="settings-container">
+                <h3>User Details</h3><br/>
+                <Form.Group controlId="formBio">
+                  <Form.Label>Change Bio</Form.Label>
+                  <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formCollege">
+                  <Form.Label>Change College</Form.Label>
+                  <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formCourse">
+                  <Form.Label>Change College Course</Form.Label>
+                  <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formDob">
+                  <Form.Label>Change Date of Birth</Form.Label>
+                  <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+              </div><br/>
+              <div className="settings-container">
+                <h3>Social Media Links</h3><br/>          
+                <Form.Group controlId="formNewPassword">
+                  <Form.Label>Instagram</Form.Label>
+                  <Form.Control type="text" placeholder="URL" />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formConformPassword">
+                  <Form.Label>Twitter</Form.Label>
+                  <Form.Control type="text" placeholder="URL"/>
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formConformPassword">
+                  <Form.Label>LinkedIn</Form.Label>
+                  <Form.Control type="text" placeholder="URL"/>
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+              </div><br/>
+              <div className="settings-container">
+                <h3>Account Security</h3><br/>          
+                <Form.Group controlId="formNewPassword">
+                  <Form.Label>Change Password</Form.Label>
+                  <Form.Control type="password" placeholder="New Password" value={this.state.password} onChange={this.onChangePassword} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formConformPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control type="password" placeholder="Confirm Password" value={this.state.retype} onChange={this.onChangeRetype} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+              </div><br/>
+              
+              <div>
+                <button className="trending-soc" variant="secondary" type="submit" >Save changes</button>
+                <button className="trending-soc" variant="primary" type="submit" >Cancel</button>
+              </div>
+              
             </Form>
           </div>
 

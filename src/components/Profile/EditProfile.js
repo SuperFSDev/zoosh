@@ -227,18 +227,21 @@ export default class EditProfile extends React.Component {
           <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
           <DialogContent>
             <Form className="edit-profile-form" onSubmit={this.onSubmit}>
-              <Form.Group controlId="profilePic">
-                <Form.Label>Update Profile Picture</Form.Label>
-                <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formName">
-                <Form.Label>Change Name</Form.Label>
-                <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
-                <Form.Text className="text-muted">
-                </Form.Text>
-              </Form.Group>
+
+              <div className="container">
+                <Form.Group controlId="formName">
+                  <Form.Label>Change Name</Form.Label>
+                  <Form.Control type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.onChangeFullname}/>
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="profilePic">
+                  <Form.Label>Update Profile Picture</Form.Label>
+                  <Form.Control type="file" placeholder="Profile Pic" onChange={this.onChangePicture}/>
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+              </div>
               <Form.Group controlId="formBio">
                 <Form.Label>Change Bio</Form.Label>
                 <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio}/>

@@ -1,7 +1,7 @@
 /* NAVBAR + MOBILE */
 
 @media only screen and (max-width: 700px) {
-    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option, .containerPostLeft{
+    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option, .containerPostLeft, .split, .right{
       display: none!important;
     }
   
@@ -60,11 +60,6 @@
         background:gray!important;
     }
 
-    /* .containerPostLeft{
-        width:100%;
-        margin:auto;
-        height:100px;
-    } */
     .containerPostMiddle{
         width:100%;
         margin:auto;
@@ -73,5 +68,19 @@
 
     .containerPostMobileUser{
         display:block!important;
+    }
+
+    .mobile-login{
+        display:block!important;
+        text-align: center;
+
+    }
+
+    .header-mobile, .login-intro-mobile,.mobile-login{
+        text-align: center;
+    }
+
+    .login-card{
+        box-shadow:none!important;
     }
   }

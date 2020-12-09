@@ -47,7 +47,7 @@ function Username(){
 
   return (
     <div id="social">
-      <h3>{fullname}</h3>
+      <h5>{fullname}</h5>
       {/* {id} */}
     </div>
   );

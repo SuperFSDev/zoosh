@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import axios from 'axios';
-import {Image, Container, Row, Col} from 'react-bootstrap'
+import {Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 
 export default class UserConnections extends React.Component {
@@ -76,6 +76,8 @@ export default class UserConnections extends React.Component {
                         <div class="dropdown3">
                             <Image className="user-image-mini" src={this.state.user.pic} roundedCircle/>
                             <div class="dropdown-content3">
+                            {/* {this.state.followers.map(follower=>
+                                  <li>{follower}</li>)} */}
                                   <a href="/me">{this.state.user.fullname}</a>
                             </div>
                         </div>

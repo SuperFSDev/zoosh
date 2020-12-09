@@ -95,7 +95,7 @@ class Login extends React.Component {
           <h1 className="header">Name</h1>
 
               <div className="centered">
-              <h1 className="welcome-intro">Join Clubs and Societies today</h1>
+              <h1 className="welcome-intro">Join Student Communities today</h1>
               <div class="login-card">
               <Form onSubmit={this.onLogin}>
                 <Form.Group controlId="formBasicEmail">
@@ -130,6 +130,40 @@ class Login extends React.Component {
               <div className="centered">
               <img className="welcome" src={LoginSVG} />
               </div>
+          </div>
+
+          <div className="mobile-login">
+            <h1 className="header-mobile">Name</h1>
+              <div className="centered">
+              <h4 className="login-intro-mobile">Join Student Communities today</h4>
+              <div class="login-card">
+              <Form onSubmit={this.onLogin}>
+                <Form.Group controlId="formBasicEmail">
+                  {/* <Form.Label>Email address</Form.Label> */}
+                  <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
+                  {/* <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail} /> */}
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  {/* <Form.Label>Password</Form.Label> */}
+                  <TextField type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
+                  {/* <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} /> */}
+                </Form.Group>
+                {/* <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="Keep me signed in" />
+                </Form.Group> */}
+                <button className="login-btn" variant="primary" type="submit">
+                  Log In
+                </button>
+                <hr />
+                <div className="auth-options">
+                  <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
+                  <RegisterModal/>
+                </div>
+              </Form>
+              </div>
+            </div>
           </div>
 
           <footer className="footer">

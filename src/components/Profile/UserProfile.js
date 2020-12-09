@@ -132,7 +132,7 @@ export default class UserProfile extends React.Component {
           <div className="profile-card">
             <div id="social">
               <Image src={this.state.user.pic} className="user-image"/>
-              <h3> {this.state.user.fullname}</h3>
+              <h3> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
             </div>
             <div>
               <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
@@ -155,7 +155,6 @@ export default class UserProfile extends React.Component {
           </div>
           <div className="user-profile-about">
             <h4>Stats</h4>
-            <p className="user-followers-following-stats"> Score <b className="user-details-views">{this.state.user.score}</b></p><br/>
             <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
             <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
             <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>

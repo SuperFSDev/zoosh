@@ -24,6 +24,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.10.9",
     "multiselect-react-dropdown": "^1.6.1",
+    "rc-drawer": "^4.1.0",
     "react": "^16.14.0",
     "react-avatar-editor": "^11.0.13",
     "react-bootstrap": "^1.3.0",

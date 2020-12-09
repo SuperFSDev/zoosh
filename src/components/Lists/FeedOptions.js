@@ -1,12 +1,9 @@
 import React from 'react';
-import {Image} from 'react-bootstrap'
-import Team from '../../images/group.png';
-import Forum from '../../images/forum.png';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import {FcBullish,FcCalendar,FcHome} from 'react-icons/fc'
+import {FcCalendar,FcHome,FcHeadset,FcAreaChart,FcCollaboration,FcComments} from 'react-icons/fc'
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -63,10 +60,13 @@ render() {
                         <FcHome size={35}/> <b>Home</b>
                     </div></a>
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Forum}/> <b>Forums</b>
+                        <FcComments size={35}/> <b>Forums</b>
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
                         <FcCalendar size={35}/> <b>Events</b>
+                    </div></a>
+                    <a href="/events" className="feed-option-redirects"><div className="option-container">
+                        <FcHeadset size={35}/> <b>Podcasts</b>
                     </div></a>
                      <div>
                         {/* <FeedAccordion/> */}
@@ -74,7 +74,7 @@ render() {
                             <AccordionSummary
                                 aria-controls="panel1a-content"
                             >
-                            <Typography className="accordion-title"><Image src={Team}/> <b>Communities</b></Typography>
+                            <Typography className="accordion-title"><FcCollaboration size={35}/> <b>Communities</b></Typography>
                             </AccordionSummary>
                             <AccordionDetails className="accordion-items">
                                 <Typography>
@@ -89,7 +89,7 @@ render() {
                         </Accordion>
                     </div>
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <FcBullish size={35}/> <b>Leaderboard</b>
+                        <FcAreaChart size={35}/> <b>Leaderboard</b>
                     </div></a>
                 </div>
         </div>

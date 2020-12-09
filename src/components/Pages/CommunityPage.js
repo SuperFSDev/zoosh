@@ -195,7 +195,7 @@ export default class CommunityPage extends React.Component {
                     {this.state.showPeople &&  
                     <div>
                       <h3>Meet the Community</h3>
-                      <div className="EventSocietyLayout">
+                      <div className="CommunityMembers">
                       {this.state.users.map(user=>(
                         <a href={"/u/?id="+user._id}><div className="community-members-item">                
                           <Image src={user.pic} className="community-member-item-pic"  /> 

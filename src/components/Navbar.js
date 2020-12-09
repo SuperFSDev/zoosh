@@ -9,7 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import {Modal} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {IoIosNotificationsOutline} from 'react-icons/io'
+import {RiNotificationLine} from 'react-icons/ri'
+
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ render(){
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">
               {/* <QuickCreate/> */}
-              <IoIosNotificationsOutline size={35} className="notify"/>
+              <RiNotificationLine size={35} className="notify"/>
             </div>           
             <div className="navbar-prof-btn">
               <div id="#battleBox">
@@ -69,7 +70,6 @@ render(){
                   <Dropdown.Menu>
                     <Dropdown.Item href="/me"  eventKey="1">Hello, {this.state.user.fullname} 😃</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item  eventKey="2">Notifications</Dropdown.Item>
                     <Dropdown.Item href="/connections"  eventKey="2">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item href="/settings"  eventKey="3">Account Settings</Dropdown.Item>
@@ -81,6 +81,7 @@ render(){
                 </Dropdown>
               </div>
             </div>
+
 
             {/* Mobile Profile Btn */}
             <div className="navbar-prof-btn-mobile">

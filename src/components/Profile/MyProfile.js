@@ -80,7 +80,7 @@ export default class MyProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
             <ProfilePicture/>
-            <Username/>
+            <h3>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
           
             <div className="user-profile-btn-options">
               <span className="user-profile-btn-options">

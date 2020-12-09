@@ -208,7 +208,7 @@ render(){
                       <a href="/discussions"><button className="community-btn">Community</button></a>
                       <button className="community-btn">Media</button>
                       <button className="community-btn">Links</button>
-            </div>               
+            </div>        
           </div>
   
 
