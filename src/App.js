@@ -24,6 +24,7 @@ import AccountSettings from './components/Profile/AccountSettings'
 import UserConnections from './components/Pages/UserConnections'
 import GlobalPost from './components/Pages/GlobalPost'
 import EventPage from './components/Pages/EventsPage'
+import Podcasts from './components/Pages/Podcasts';
 
 class App extends React.Component {
   render(){
@@ -47,6 +48,8 @@ class App extends React.Component {
               <Route path="/u" component={ViewProfile}/>
               <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
+              <Route path="/podcasts" component={Podcasts}/>
+
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>
               <Route path="/home" component={Feed}/>

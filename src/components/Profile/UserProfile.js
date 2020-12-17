@@ -143,7 +143,7 @@ export default class UserProfile extends React.Component {
 
           <div className="profile-card">
             <div id="social">
-              <p className="user-bio"> {this.state.user.bio}</p>
+              {/* <p className="user-bio"> {this.state.user.bio}</p> */}
             </div>
           </div>
           <div className="user-profile-about">
@@ -162,9 +162,23 @@ export default class UserProfile extends React.Component {
 
           </div>
           <div className="user-profile-about">
-            <h4>Badges</h4>
-            <p></p>
-          </div>
+              <h4>Badges</h4>
+              <section className="badge-container">
+                <div className="badge-item-1">
+                    <span>🥇 <h2>1</h2></span>
+                </div>
+                <div className="badge-item-2">
+                  <span>🥈 <h2>10</h2></span>
+                </div>
+                <div className="badge-item-3">
+                  <span>🥉 <h2>300</h2></span>
+                </div>
+                <br></br><a href="#"><p>View All</p></a>
+              </section>
+              <p></p>
+            </div>
+
+
           <div className="user-profile-about">
             <h4>Communities</h4>
             {this.state.societies.map(society=>

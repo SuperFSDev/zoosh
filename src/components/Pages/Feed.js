@@ -50,7 +50,7 @@ class Feed extends React.Component {
   
       await axios.get('http://localhost:4000/users/get-user-details', {
         params: {
-          id: user._id
+          id: user._id,
         }
       })
         .then((response) => {
@@ -83,12 +83,12 @@ class Feed extends React.Component {
       async GetFollowedUser(FollowingID){
       await axios.get('http://localhost:4000/users/get-user-details', {
         params: {
-          id:FollowingID
+          id:FollowingID,
         }
       })
         .then((response) => {
           this.setState({
-            posts: this.state.posts.concat(response.data.user.posts)
+            posts: this.state.posts.concat(response.data.user.posts),
           })
   
         })
@@ -223,13 +223,13 @@ render(){
                           <div className="-u-prof-stats" id="social-user">
                             <span className="username-wrapper">
                               <div class="dropdown3">
-                                <a href={"/u/?id=" + post.user_id}>{post.user} <b className="user-score-post">{post.score}</b></a>
+                                <a href={"/u/?id=" + post.user_id}>{post.user}</a>
                                 <div class="dropdown-content3">
                                   <a href={"/u/?id=" + post.user_id}>{post.user}</a>
                                   <button className="forum-follow-btn">Follow</button>
                                   {/* <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a> */}
                                 </div>
-                              </div>
+                              </div><br/>
                               <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                             </span><br />
                           </div>

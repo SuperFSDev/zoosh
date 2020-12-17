@@ -113,7 +113,18 @@ export default class MyProfile extends React.Component {
 
             <div className="user-profile-about">
               <h4>Badges</h4>
-              <p></p>
+              <section className="badge-container">
+                <div className="badge-item-1">
+                    <span>🥇 <h2>1</h2></span>
+                </div>
+                <div className="badge-item-2">
+                  <span>🥈 <h2>10</h2></span>
+                </div>
+                <div className="badge-item-3">
+                  <span>🥉 <h2>300</h2></span>
+                </div>
+                <br></br><a href="#"><p>View All</p></a>
+              </section>
             </div>
             
             <div className="user-profile-about">

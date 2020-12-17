@@ -65,7 +65,7 @@ render() {
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
                         <FcCalendar size={35}/> <b>Events</b>
                     </div></a>
-                    <a href="/events" className="feed-option-redirects"><div className="option-container">
+                    <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
                         <FcHeadset size={35}/> <b>Podcasts</b>
                     </div></a>
                      <div>

@@ -180,7 +180,7 @@ export default class CommunityPage extends React.Component {
                 <p>{this.state.society.description}</p>
                 <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
 
-                <button className="community-button-join" onClick={() => this.addUser(this.state.society.name)}>Join</button>
+                <button className="standard-button" onClick={() => this.addUser(this.state.society.name)}>Join</button>
                 <hr/>
                   <div>
                       <button  onClick={() => {this.ShowFeed()}} className="community-btn">Feed</button>
@@ -198,8 +198,9 @@ export default class CommunityPage extends React.Component {
                       <div className="CommunityMembers">
                       {this.state.users.map(user=>(
                         <a href={"/u/?id="+user._id}><div className="community-members-item">                
-                          <Image src={user.pic} className="community-member-item-pic"  /> 
-                          <p>{user.fullname} <b className="user-score-post">{user.score}</b> </p>
+                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
+                          <p>{user.fullname} </p>
+                          {/* <b className="user-score-post">{user.score}</b> */}
                           <button className="standard-button">Follow</button><br/>
                           {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
                         </div></a>
@@ -306,7 +307,6 @@ export default class CommunityPage extends React.Component {
 
                 <div className="community-users-card">
                   <p className="member-count">Upcoming Events</p>
-                  
                 </div>
             </div>
         </div>

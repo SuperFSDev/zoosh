@@ -344,7 +344,7 @@ export default class AdminPage extends React.Component {
                 <br/>
 
                 <div className="community-users-card">
-                  <p className="member-count">Upcoming Events {this.state.society.admin}</p>
+                  <p className="member-count">Upcoming Events</p>
                     
                 </div>
             </div>

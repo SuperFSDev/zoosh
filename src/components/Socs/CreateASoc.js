@@ -107,7 +107,7 @@ export default class CreateASoc extends React.Component {
                     console.log(error);
                 })
             cogoToast.success("Community was created!");
-            window.location = '/list-of-clubs-and-societies';
+            window.location = '/communities';
         }
 
         this.setState({
