@@ -7,7 +7,7 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import { Card, Form, Dropdown } from 'react-bootstrap';
+import { Card, Form, Dropdown , Image} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -20,6 +20,7 @@ import {MdInsertLink,MdReport} from 'react-icons/md'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
+import {FaShare} from 'react-icons/fa'
 import QuickCreate from '../Common/QuickCreate'
 
 var comment;
@@ -223,7 +224,7 @@ render(){
                           <div className="-u-prof-stats" id="social-user">
                             <span className="username-wrapper">
                               <div class="dropdown3">
-                                <a href={"/u/?id=" + post.user_id}>{post.user}</a>
+                                <a href={"/u/?id=" + post.user_id}><Image src={post.pic} className="user-image-mini" roundedCircle />{post.user}</a>
                                 <div class="dropdown-content3">
                                   <a href={"/u/?id=" + post.user_id}>{post.user}</a>
                                   <button className="forum-follow-btn">Follow</button>
@@ -249,7 +250,20 @@ render(){
                             <div>
                               <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
                               <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
-                              <a href={"/p/?id=" + post.Post_id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button></span></a>
+                              <a href={"/p/?id=" + post.Post_id} >
+                                <span className="voting-btn">
+                                  <button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button> 
+                                </span></a>
+                                  <Dropdown >
+                                    <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
+                                      <FaShare/> Share
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                
                               {/* <PostLinks /> */}
                               {/* <div className='post-interactions'>
                                   {this.state.comments.filter(comment => comment.post_id === post.Post_id).map(comment => (                                

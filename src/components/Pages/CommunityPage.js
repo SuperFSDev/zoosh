@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Card, Badge,Modal} from 'react-bootstrap'
+import {Image, Card, OverlayTrigger,Tooltip,Modal} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
@@ -197,7 +197,7 @@ export default class CommunityPage extends React.Component {
                       <h3>Meet the Community</h3>
                       <div className="CommunityMembers">
                       {this.state.users.map(user=>(
-                        <a href={"/u/?id="+user._id}><div className="community-members-item">                
+                        <a href={"/u/?id="+user._id}><div className="community-members-item">
                           <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
                           <p>{user.fullname} </p>
                           {/* <b className="user-score-post">{user.score}</b> */}
@@ -296,7 +296,12 @@ export default class CommunityPage extends React.Component {
                   {this.state.UserList.map(u => ( 
                     <div key={u._id} >
                       {console.log(u)}
-                        <Image src={u.pic} className="user-image-mini" roundedCircle />
+                      <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{u.fullname}</Tooltip>}>
+                            <span className="d-inline-block">
+                            <Image src={u.pic} className="user-image-mini" roundedCircle />
+                            </span>
+                      </OverlayTrigger> 
+
                       </div>
                   
                     ))} 

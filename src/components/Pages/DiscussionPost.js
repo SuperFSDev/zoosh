@@ -5,9 +5,11 @@ import ProfileUsername from '../Profile/ProfileUsername'
 import ProfilePicture from '../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
+import {  Dropdown } from 'react-bootstrap';
 import moment from 'moment'
-import { Form, Badge } from 'react-bootstrap';
+import { Form, Badge , Image} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
+import {FaShare} from 'react-icons/fa'
 
 
 export default class DiscussionPost extends React.Component {
@@ -82,6 +84,14 @@ export default class DiscussionPost extends React.Component {
                 {/* Discussion Post interaction options */}
                 <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={25} /> Upvote</button></span>
                 <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={25} /> Downvote</button></span>
+                <Dropdown >
+                  <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
+                    <FaShare/> Share
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
           </div>
 
           {/* Comment Section of Discussion Post */}

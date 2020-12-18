@@ -28,7 +28,6 @@ users.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         time: req.body.time,
-
     }
 
     //Check if user is already registered

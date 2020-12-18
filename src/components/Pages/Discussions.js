@@ -5,7 +5,7 @@ import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import {Badge} from 'react-bootstrap'
+import {Badge, Dropdown} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -14,6 +14,7 @@ import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import { CgComment } from 'react-icons/cg'
 import Fab from '@material-ui/core/Fab';
 import QuickCreate from '../Common/QuickCreate'
+import {FaShare} from 'react-icons/fa'
 
 class Discussions extends React.Component {
 
@@ -96,6 +97,14 @@ render(){
                   <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
                   <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
                   <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> Comments</button></span></a>
+                  <Dropdown >
+                    <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
+                      <FaShare/> Share
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   
                   </span><br/>
                   {/* <big className="text-muted-society">#{discussion._id}</big> */}

@@ -25,6 +25,7 @@ import UserConnections from './components/Pages/UserConnections'
 import GlobalPost from './components/Pages/GlobalPost'
 import EventPage from './components/Pages/EventsPage'
 import Podcasts from './components/Pages/Podcasts';
+import TheSquare from './components/Pages/TheSquare';
 
 class App extends React.Component {
   render(){
@@ -49,6 +50,8 @@ class App extends React.Component {
               <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/podcasts" component={Podcasts}/>
+              <Route path="/thesquare" component={TheSquare}/>
+
 
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>

@@ -15,7 +15,6 @@ export default class Forum extends React.Component {
       searchValue: '',
       filterBy: '',
       user: '',
-      forums: [],
     };
   }
 
@@ -103,6 +102,8 @@ render(){
 
         <div className="featured-forums">
             <h3>Following</h3>
+            {this.state.forums.map(forum=>
+                <li>{this.state.forums.forum}</li>)}<br/>
             <a href="#"><div className="forum-option">
                 <h5>{this.state.user.forums}</h5>
             </div></a>

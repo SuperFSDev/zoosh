@@ -1,15 +1,13 @@
 import React from 'react';
 import '../../App.css';
 import EditProfile from './EditProfile'
-import {Image,Card} from 'react-bootstrap'
+import {Image,Card, OverlayTrigger, Tooltip} from 'react-bootstrap'
 import {SiAboutDotMe} from 'react-icons/si'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {FaBook,FaUserFriends} from 'react-icons/fa'
-import {AiOutlineEye} from 'react-icons/ai'
-import {CgCommunity} from 'react-icons/cg'
+import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle} from 'react-icons/fa'
 import moment from 'moment'
 
 export default class MyProfile extends React.Component {
@@ -26,7 +24,8 @@ export default class MyProfile extends React.Component {
           posts:[],
           following: [],
           followers: [],
-          societies:[]
+          societies:[],
+          badges:[]
       };
     }
 
@@ -47,7 +46,9 @@ export default class MyProfile extends React.Component {
               followers: response.data.user.followers,
               following: response.data.user.following,
               societies: response.data.user.societies,
-              posts:response.data.user.posts
+              posts:response.data.user.posts,
+              badges:response.data.user.badges
+
             })
           })
           .catch((error) => {
@@ -103,25 +104,54 @@ export default class MyProfile extends React.Component {
             </div>
 
             <div className="user-profile-about">
-            <h4>Stats</h4>
-            {/* <p className="user-followers-following-stats"> 🔶 <b className="user-details-views">{this.state.user.score}</b></p><br/> */}
-            <p className="user-followers-following-stats"><FaUserFriends size={20}/> <b className="user-details-views">{this.state.followers.length} followers.</b></p><br/>
-            <p className="user-followers-following-stats"><AiOutlineEye size={20}/> <b className="user-details-views">{this.state.followers.length} content views.</b></p><br/>
-            <p className="user-followers-following-stats"><CgCommunity size={20}/> <b className="user-details-views">member of {this.state.societies.length} communities.</b></p><br/>
-
+              <h4>Stats</h4><br/>
+              <section className="badge-container">
+                <div className="stats-item-1">
+                  <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegGem size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
+                </div>
+                <br/>
+                <div className="stats-item-1">
+                  <span><FaRegCommentAlt size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
+                </div>
+                <div className="stats-item-1">
+                  <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegHeart size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
+                </div>
+              </section>
+          
             </div>
 
             <div className="user-profile-about">
               <h4>Badges</h4>
               <section className="badge-container">
                 <div className="badge-item-1">
-                    <span>🥇 <h2>1</h2></span>
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥇 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>   
                 </div>
                 <div className="badge-item-2">
-                  <span>🥈 <h2>10</h2></span>
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥈 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>  
                 </div>
                 <div className="badge-item-3">
-                  <span>🥉 <h2>300</h2></span>
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥉 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>  
                 </div>
                 <br></br><a href="#"><p>View All</p></a>
               </section>
@@ -135,7 +165,7 @@ export default class MyProfile extends React.Component {
         </div>
 
         <div className="containerFeedRightProfile">
-          <div>
+          <div  className="top-posts-profile-container">
             <h3>Top Posts</h3>
             </div>
                 {this.state.posts.reverse().map(post=>  (

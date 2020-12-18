@@ -7,6 +7,7 @@ import {Helmet} from 'react-helmet'
 import {Modal} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
+import {BsSearch} from 'react-icons/bs'
 
 export default class Events extends React.Component {
 
@@ -51,6 +52,12 @@ render(){
       <div className="containerFeedMiddle">
           <div className="global-feed">
           <h1>Upcoming Events</h1>
+
+          <div className="search-div-forum">
+            {/* <BsSearch/>  */}
+            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for an Event " title="Type in a category"/>
+          </div>
+
           <QuickEvent/>
             <div>
               <div className="EventSocietyLayout">

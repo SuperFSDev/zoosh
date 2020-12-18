@@ -3,13 +3,12 @@ import '../App.css';
 import {Navbar, Nav} from 'react-bootstrap';
 // import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QuickCreate from '../components/Common/QuickCreate'
 import { Dropdown} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
 import {Modal} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {RiNotificationLine} from 'react-icons/ri'
+import {IoIosSquareOutline,IoIosNotificationsOutline} from 'react-icons/io'
 
 
 export default class NavBar extends React.Component {
@@ -57,13 +56,13 @@ render(){
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">
-              {/* <QuickCreate/> */}
-              <RiNotificationLine size={35} className="notify"/>
+              <a href="/thesquare" ><IoIosSquareOutline size={55} className="square" id="dropdown-basic"/></a>
+              <IoIosNotificationsOutline size={55} className="notify" id="dropdown-basic"/>
             </div>           
             <div className="navbar-prof-btn">
               <div id="#battleBox">
                 <Dropdown className="l-prof-btn-default">
-                  <Dropdown.Toggle variant="secondary" >
+                  <Dropdown.Toggle id="dropdown-basic" >
                     <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/>
                     <b className="user-score-prof-btn">{this.state.user.score}</b>
                   </Dropdown.Toggle>
@@ -87,7 +86,7 @@ render(){
             <div className="navbar-prof-btn-mobile">
               <div id="#battleBox">
                 <Dropdown className="l-prof-btn-default-mobile">
-                  <Dropdown.Toggle variant="none" >
+                  <Dropdown.Toggle id="dropdown-basic">
                     <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/>
                     <b className="user-score-prof-btn">{this.state.user.score}</b>
                   </Dropdown.Toggle>

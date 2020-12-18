@@ -2,6 +2,7 @@ import React from 'react';
 import '../../App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
+import {Image} from 'react-bootstrap'
 
   class LeaderboardList extends React.Component {
 
@@ -79,7 +80,7 @@ import {Helmet} from 'react-helmet'
               <div className="">
                 {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                   <div>
-                    <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
+                    <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
                   </div>
                 ))}    
                 <a href="#">See More</a>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios'
+import {Image} from 'react-bootstrap'
 
 class Contributors extends React.Component {
 
@@ -35,13 +36,13 @@ class Contributors extends React.Component {
             <h4 className="-top-cont-header">Top Contributors</h4>
             {users.sort((a,b)=> b.score- a.score).map(user  =>  ( 
                 <div key={k} className="contributor-item">
-                <p><b>{i+=1}</b><a className="-contributor-user" href={"/u/?id="+user._id}>{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
+                <p><b>{i+=1}</b><a className="-contributor-user" href={"/u/?id="+user._id}><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</a> <b  className="-contributor-user-score">{ user.score}</b></p><hr/>
             </div>
            ))}    
                                   {/* {indents.name}   */}
 
 
-           <a href="/leaderboard">See More</a>
+           <a href="/thesquare">See More</a>
            </div>
   );
   }

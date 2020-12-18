@@ -56,10 +56,11 @@ export default class UserConnections extends React.Component {
                         <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
                 </Helmet> 
 
-                <div className="container-individual">
+                <div className="container-square">
                     <div className="search-div-forum">
                         <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a User... " title="Type in a category"/>
                     </div><div className="spacing"></div>
+
                     <h1>Following <b className="user-score">{this.state.following.length}</b></h1><hr/>
                     <div className="Connections">
                         <Image className="user-image-mini" src={this.state.user.pic} roundedCircle/>

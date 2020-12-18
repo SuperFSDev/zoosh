@@ -21,6 +21,8 @@ const UserSchema = new Schema({
     followers:{type: Array, "default" : []},
     following:{type: Array, "default" : []},
     forums:{type: Array, "default" : []},
+    badges:{type: Array, "default" : []},
+
 })
 
 

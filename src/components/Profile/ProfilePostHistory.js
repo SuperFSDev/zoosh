@@ -40,9 +40,6 @@ export default class History extends React.Component {
 
      return (
       <div>
-        <div>
-          <h3>Top Posts</h3>
-          </div>
                 {this.state.posts.reverse().map(post=>  (
               <div key={this.state.user._id}>  
                 <a href="/" className="post-link"><Card className='userPosts'>

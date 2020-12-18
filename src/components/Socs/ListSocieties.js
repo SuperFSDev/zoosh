@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import {Modal } from 'react-bootstrap';
+import {Modal ,OverlayTrigger, Tooltip} from 'react-bootstrap';
 import axios from 'axios';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
@@ -100,8 +100,12 @@ export default class Daily extends React.Component {
               <div className="socs-list-items">
                  <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
                   {/* <p>{society.category}</p>                     */}
-                  <p><b>{society.college}</b></p>     
-                  <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
+                  <p><b>{society.college}</b></p>  
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
+                            <span className="d-inline-block">
+                            <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
+                          </span>
+                  </OverlayTrigger>    
                   <div >
                     <span>
                       <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
