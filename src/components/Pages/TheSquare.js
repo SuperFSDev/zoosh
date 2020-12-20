@@ -80,7 +80,7 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
               <div className="">
                 {users.map(user=>  ( 
                   <div key={user.id}>
-                    <p className="leaderboard-item">
+                    <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><p className="leaderboard-item">
                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.fullname}</Tooltip>}>
                         <span className="d-inline-block">
                             <Image src={user.pic} className="user-image-square"/>
@@ -88,7 +88,7 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
                         </OverlayTrigger>
                         <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> 
                         <b className="user-score">{ user.score}</b>
-                    </p><hr/>      
+                    </p></a><hr/>      
                   </div>
                 ))}    
               </div>

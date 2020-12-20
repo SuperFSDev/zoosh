@@ -96,17 +96,18 @@ render(){
                       <Dropdown.Item href="/home"  eventKey="2">Home</Dropdown.Item>
                       <Dropdown.Item href="/forums" eventKey="3">Forums</Dropdown.Item>
                       <Dropdown.Item href="/events" eventKey="4">Events</Dropdown.Item>
-                      <Dropdown.Item href="/communities" eventKey="5">Communities</Dropdown.Item>
-                      <Dropdown.Item href="/leaderboard" eventKey="6">Leaderboards</Dropdown.Item>
+                      <Dropdown.Item href="/podcasts" eventKey="5">Podcasts</Dropdown.Item>
+                      <Dropdown.Item href="/communities" eventKey="6">Communities</Dropdown.Item>
+                      <Dropdown.Item href="/leaderboard" eventKey="7">Leaderboards</Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item  eventKey="7">Notifications</Dropdown.Item>
-                      <Dropdown.Item href="/connections"  eventKey="8">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
+                      <Dropdown.Item  eventKey="8">Notifications</Dropdown.Item>
+                      <Dropdown.Item href="/connections"  eventKey="9">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item href="/settings"  eventKey="9">Account Settings</Dropdown.Item>
-                      <Dropdown.Item eventKey="10"><InviteFriend/></Dropdown.Item>
+                      <Dropdown.Item href="/settings"  eventKey="10">Account Settings</Dropdown.Item>
+                      <Dropdown.Item eventKey="11"><InviteFriend/></Dropdown.Item>
                       {/* <Dropdown.Item eventKey="5"><DarkMode/></Dropdown.Item> */}
                       <Dropdown.Divider />
-                      <Dropdown.Item href="/login"  eventKey="6">Logout</Dropdown.Item>
+                      <Dropdown.Item href="/login"  eventKey="12">Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
               </div>

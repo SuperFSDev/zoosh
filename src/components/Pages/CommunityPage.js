@@ -291,7 +291,7 @@ export default class CommunityPage extends React.Component {
               <div className="community-users-card">
                 <p className="member-count">Admins: {this.state.society.admin}</p>
                 <p className="member-count">Moderators:  </p>
-                <p className="member-count">Meet the community: {this.state.users.length}</p>
+                <p className="member-count">Members: {this.state.users.length}</p>
                   <div className="Connections">
                   {this.state.UserList.map(u => ( 
                     <div key={u._id} >

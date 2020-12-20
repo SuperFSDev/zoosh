@@ -81,9 +81,7 @@ render() {
                                 {this.state.socs.map(soc=>
                                   <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
                                 <hr/>
-                                <a href="/communities">Create</a><br/>
-                                <a href="/communities">Join</a><br/>
-                                <a href="/communities">See All</a><br/>
+                                <a href="/communities"  className="community-btn">See All Communities</a><br/>
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>

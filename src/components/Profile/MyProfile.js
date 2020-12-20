@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../App.css';
 import EditProfile from './EditProfile'
-import {Image,Card, OverlayTrigger, Tooltip} from 'react-bootstrap'
+import {Image,Card, OverlayTrigger, Tooltip, Modal} from 'react-bootstrap'
+import CreateASoc from '../Socs/CreateASoc'
 import {SiAboutDotMe} from 'react-icons/si'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
@@ -9,6 +10,7 @@ import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle} from 'react-icons/fa'
 import moment from 'moment'
+import {VscDiffAdded} from 'react-icons/vsc'
 
 export default class MyProfile extends React.Component {
 
@@ -158,7 +160,7 @@ export default class MyProfile extends React.Component {
             </div>
             
             <div className="user-profile-about">
-            <h4>Communities</h4>
+            <h4>Communities <QuickOptions /></h4>
             {this.state.societies.map(society=>
                   <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
             </div>
@@ -213,3 +215,42 @@ function Username(){
   );
 
 }
+
+
+// MODAL TO CREATE SOCIETY/CLUB
+function QuickOptions() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <div>
+        <div>
+           <VscDiffAdded size={55}  className="square" id="dropdown-basic" onClick={() => setModalShow(true)}/>
+            {/* <button ></button> */}
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+        </div>
+    </div>
+  );
+}
+
+// MODEL HANDLE
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <h3>Create Community</h3>
+        </Modal.Header>
+        <Modal.Body>
+            <CreateASoc/>
+        </Modal.Body>
+      </Modal>
+    );
+  }

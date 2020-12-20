@@ -1,11 +1,11 @@
 /* NAVBAR + MOBILE */
 
 @media only screen and (max-width: 700px) {
-    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option, .containerPostLeft, .split, .right{
+    .containerFeedLeft, .containerFeedRight, .navbar-prof-btn, .quick-options, .quick-options-container, .quick-create-option, .containerPostLeft, .split, .right, .containerFeedMiddleCommunity{
       display: none!important;
     }
   
-    .containerFeedMiddle, .container-individual{
+    .containerFeedMiddle, .container-individual, .containerFeedMiddleProfile, .profile-card, .containerFeedLeftCommunity{
       width:auto;
       margin-left:0;
       padding:10px;
@@ -38,6 +38,7 @@
         text-align:center; 
     }
 
+
     .fab{
         display:block!important;
         position:fixed!important;
@@ -48,6 +49,69 @@
         margin-bottom: 20px!important;
         background:#212832 !important;
         border:none!important;
+    }
+
+    .container-square {
+        width:100%;
+        margin-top: 5rem;
+        padding:10px;
+    }
+
+    .SocietyLayout, .CommunityMembers {
+        grid-template-columns: repeat(2, 1fr);
+        width:100%;
+    }
+
+    .EventSocietyLayout, .UsersSocietyLayout , .ForumLayout{
+        width:50%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+      }
+
+    .events-card , .user-profile-about, .top-posts-profile-container, .userPosts{
+        padding-top:1rem;
+        width: 450px;        
+    }
+
+    .community-card{
+        padding-top:1rem;
+        width: 450px;
+        margin-top: 5rem;
+    }
+    
+
+    .containerFeedRightProfile, .containerFeedRightUser{
+        margin-top:1rem;
+        margin-left: 10px;
+      }
+
+    .socs-list-items{
+        padding-top:1rem;
+        margin:auto;
+        width: 200px;
+        height:auto;
+        color: black;
+        background:white;
+        margin-top:2rem;
+        margin-right: 10px;
+        padding-bottom:10px;
+        transition:0.2s;
+        border:1px lightgray solid;
+    }
+
+
+    .searchbar-nav-square{
+        width:100%;
+    }
+
+    .soc-leaderboard-name-item{
+        margin-left:5rem;
+    }
+
+    .leaderboard-item{
+        width:100%;
+        border-radius: 25px;
     }
 
     .compose-post-navbar{

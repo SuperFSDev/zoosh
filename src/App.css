@@ -864,7 +864,7 @@ li{
   outline: none !important;
   float: left;
   border-radius: 25px;
-  margin-left: 18rem;
+  margin-left: 16rem;
 }
 
 .containerFeedMiddleCommunity{
@@ -1651,6 +1651,11 @@ padding-left: 4rem;
 }
 .create-soc-div{
   text-align:center;
+}
+
+.create-soc:hover{
+  color: lightgray;
+
 }
 
 /* LOGIN TEXTBOXES */

@@ -94,7 +94,8 @@ render(){
         <FeedOptions/>
       </div>
 
-      <div className="containerForumMiddle">
+      <div className="containerFeedMiddle">
+        <div className="global-feed">
         <h1>All Forums</h1>
         <div className="search-div-forum">
           <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
@@ -128,7 +129,7 @@ render(){
 
           ))}
         </div>
-        
+        </div>
       </div>
 
       <div className="containerFeedRight">
