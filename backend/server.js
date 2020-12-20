@@ -58,6 +58,10 @@ app.use('/forums', Forums);
 var Events = require('./routes/Events');
 app.use('/events', Events);
 
+// Adds the "Events" route to the server.
+var Podcasts = require('./routes/Podcasts');
+app.use('/podcasts', Podcasts);
+
 
 //log connection to server
 app.listen(port, () => console.log("Server is up on port " + port));

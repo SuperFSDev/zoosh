@@ -25,6 +25,7 @@ import UserConnections from './components/Pages/UserConnections'
 import GlobalPost from './components/Pages/GlobalPost'
 import EventPage from './components/Pages/EventsPage'
 import Podcasts from './components/Pages/Podcasts';
+import PodcastPage from './components/Pages/PodcastPage';
 import TheSquare from './components/Pages/TheSquare';
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
               <Route path="/settings/profile" component={AccountSettings}/>
               <Route path="/d" component={DiscussionPost}/>
               <Route path="/p" component={GlobalPost}/>
+              <Route path="/pod" component={PodcastPage}/>
               <Route path="/e" component={EventPage}/>
               <Route path="/connections" component={UserConnections}/>
               <Route path="/leaderboard" component={Leaderboard}/>

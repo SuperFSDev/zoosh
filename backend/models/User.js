@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     following:{type: Array, "default" : []},
     forums:{type: Array, "default" : []},
     badges:{type: Array, "default" : []},
-
+    podcasts:{type: Array, "default" : []},
 })
 
 
