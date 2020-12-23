@@ -56,7 +56,7 @@ render(){
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">
-              <a href="/thesquare" ><IoIosSquareOutline size={55} className="square" id="dropdown-basic"/></a>
+              <a href="/users" ><IoIosSquareOutline size={55} className="square" id="dropdown-basic"/></a>
               <IoIosNotificationsOutline size={55} className="notify" id="dropdown-basic"/>
             </div>           
             <div className="navbar-prof-btn">

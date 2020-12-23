@@ -7,7 +7,7 @@ import {Helmet} from 'react-helmet'
 import {Modal} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
-import {BsSearch} from 'react-icons/bs'
+import moment from 'moment'
 
 export default class Events extends React.Component {
 
@@ -68,7 +68,9 @@ render(){
                     <div className="events-card">
                         <h4><b>{event.title}</b></h4> 
                         <p>{event.society}</p> 
-                        <p>{event.time}</p>
+                        {/* <p>{event.time}</p> */}
+                        <big className="text-muted"><b></b>{moment(event.time).format("H:mma - MMM Do, YYYY.")}</big>
+
                         <div >
                         </div>
                     </div>

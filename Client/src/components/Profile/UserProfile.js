@@ -135,7 +135,7 @@ export default class UserProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
             <div id="social">
-              <Image src={this.state.user.pic} className="user-image"/>
+              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
               <h3> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
             </div>
             <div>
@@ -146,17 +146,42 @@ export default class UserProfile extends React.Component {
           </div>
 
           <div className="profile-card">
-            <div id="social">
-              {/* <p className="user-bio"> {this.state.user.bio}</p> */}
-            </div>
           </div>
           <div className="user-profile-about">
-            <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
-            <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
-            <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
-            {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-            <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
-          </div>
+
+              {/* Users Name */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
+                <span className="d-inline-block">
+                <p><SiAboutDotMe /> </p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.fullname}</b><br/>
+              
+              {/* Users College */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
+                <span className="d-inline-block">
+                  <p><MdSchool /></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.college}</b><br/>
+
+              {/* Users Course Details */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
+                <span className="d-inline-block">
+                <p><FaBook/></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.course}</b><br/>
+
+              {/* User Joined Date */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
+                <span className="d-inline-block">
+                <p><RiCake2Fill />  </p>
+                </span>
+              </OverlayTrigger>
+              Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b>
+                          
+            </div>
 
           <div className="user-profile-about">
               <h4>Stats</h4><br/>
@@ -216,16 +241,18 @@ export default class UserProfile extends React.Component {
 
           <div className="user-profile-about">
             <h4>Communities</h4>
+       
             {this.state.societies.map(society=>
-                  <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
+                  <li className="community-members-item-profile"><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
           </div>
         </div>
 
         <div className="containerFeedRightUser">
           <div  className="top-posts-profile-container">
             <h3>Top Posts</h3>
+            <History />
           </div>
-          <History />
+          
         </div>
       </>
     );

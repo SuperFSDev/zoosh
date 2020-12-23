@@ -1,9 +1,12 @@
 import React from 'react';
 import '../../App.css';
 import axios from 'axios';
-import {Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
-import Hackathon from '../../images/hackathon.png'
+import moment from 'moment'
+import {FcCheckmark} from 'react-icons/fc'
+import {Dropdown} from 'react-bootstrap'
+import {FaShare} from 'react-icons/fa'
+import {AiOutlineLink} from 'react-icons/ai'
 
 export default class EventsPage extends React.Component {
 
@@ -51,8 +54,25 @@ export default class EventsPage extends React.Component {
           <div className="events-container">
             <div>
               <h1 className="event-header">{this.state.event.title}</h1>
-                {/* <Image src={Hackathon} className="events-header-image"/>               */}
+              <big className="text-muted"><b>Hosted By: </b> Computer Science GMIT</big><br/>
+              <big className="text-muted"><b>Event Starts: </b>{moment(this.state.event.time).format("H:mma - MMM Do, YYYY.")}</big><br/>
+
+              <button className="trending-soc"> <FcCheckmark size={25}/></button><button className="trending-soc"> <FcCheckmark size={25}/></button>
             </div>
+          </div>
+
+          <div className="podcast-desc">
+              <p>{this.state.event.description}</p><br/>
+              <Dropdown >
+                <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
+                  <FaShare/> Share
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1"><AiOutlineLink/> Copy URL</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown><br/><br/>
+              <h5>See whos Attending:</h5>
           </div>
            
      

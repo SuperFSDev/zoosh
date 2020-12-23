@@ -52,7 +52,7 @@ class App extends React.Component {
               <Route path="/s" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/podcasts" component={Podcasts}/>
-              <Route path="/thesquare" component={TheSquare}/>
+              <Route path="/users" component={TheSquare}/>
 
 
               <Route path="/forums" component={Forums}/>

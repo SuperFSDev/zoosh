@@ -1,11 +1,14 @@
 import React from 'react';
 import '../../App.css';
 import axios from 'axios';
-import {Image} from 'react-bootstrap'
+import {Dropdown} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
 import Avatar from '@material-ui/core/Avatar';
-import {BsFillMicFill} from 'react-icons/bs'
+import {CgLoadbarSound} from 'react-icons/cg'
+import {FaShare} from 'react-icons/fa'
+import {BiUpvote,BiDownvote} from 'react-icons/bi'
+import {AiOutlineLink} from 'react-icons/ai'
 
 export default class PodcastPage extends React.Component {
 
@@ -80,8 +83,23 @@ export default class PodcastPage extends React.Component {
               <div className="podcast-desc">
                   <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
                   <p>{this.state.podcast.description}</p>
-                  <a href={this.state.podcast.link} target="_blank"><button className="trending-soc"><BsFillMicFill/> Listen to Podcast</button></a>
+                  <div>
+                      <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
+                      <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
+                      <Dropdown >
+                        <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
+                          <FaShare/> Share
+                        </Dropdown.Toggle>
 
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#/action-1"><AiOutlineLink/> Copy URL</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                  </div>
+                  <div className="create-soc-div"><br/>
+                    <a href={this.state.podcast.link} target="_blank"><button className="podcast-button"><CgLoadbarSound size={30}/> Listen to Podcast</button></a>
+
+                  </div>
               </div>
               
 

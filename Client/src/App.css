@@ -63,6 +63,7 @@
 .events-container{
   margin-top: 15vh;
   text-align: center;
+
 }
 
 .post-option-btns{
@@ -281,6 +282,7 @@
   padding:10px;
   height:auto;
   width:960px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
@@ -348,6 +350,8 @@
   margin-top: 5rem;
   margin-bottom: 10rem;
   background:white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
 }
 
 .container-square{
@@ -491,9 +495,7 @@
   transition:0.2s;
   margin-right:15px;
   border-radius: 10px;
-  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
-
-  /* border:1px lightgray solid; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .podcast-card{
@@ -586,6 +588,8 @@
   padding-right:10px;
   background:white;
   border:1px solid whitesmoke!important;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .user-profile-about-bio{
@@ -688,7 +692,7 @@
   background:white;
   padding:50px;
   text-align: center;
-  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px!important;
 }
 
@@ -731,8 +735,8 @@
   margin:auto;
   width:auto;
   height:auto;
-  margin-top:5px;
-  border: 1px lightgray solid!important;
+  margin-top:15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
@@ -980,19 +984,21 @@ li{
   width:1400px;
   padding:10px;
   padding-left: 30px;
+  
 }
 
 .options-container{
   width:auto;
   background:white;
   padding:10px;
-  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px!important;
 }
 
 .community-card{
   background:white;
-  border:none!important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
   height:auto;
   width:900px;
   padding:10px;
@@ -1032,6 +1038,8 @@ li{
   width:400px;
   padding:5px;
   background:white!important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
 }
 
 .forum-options-btn{
@@ -1178,9 +1186,9 @@ li{
   padding:10px;
   width:300px;
   background-color:white;
-  border:1px solid lightgray;
   margin-left:1rem;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .feed-options-container{
@@ -1194,7 +1202,7 @@ li{
   background-color:none!important;
   border-radius: 5px;
   background-color:white;
-  border:1px solid rgb(223, 222, 222);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .settings-options-container{
@@ -1207,14 +1215,15 @@ li{
   padding:25px;
   border-radius: 5px;
   background-color:white;
-  border:1px solid whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .settings-container{
   width:700px;
-  border:1px whitesmoke solid;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding:25px;
   border-radius: 5px;
+  background-color:white;
 }
 
 .user-profile-container{
@@ -1367,7 +1376,7 @@ li{
   width:300px;
   margin-left: 1rem;
   border-radius: 5px;
-  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .discussion-post{
@@ -1377,7 +1386,7 @@ li{
   color:black;
   padding:10px;
   text-decoration: none!important;
-  border: 1px lightgray solid!important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
 }
 
@@ -1554,8 +1563,7 @@ padding-left: 4rem;
 }
 
 .searchbar-nav-square{
-  border-radius: 25px;
-  width:500px;
+  width:800px;
   height:50px;
   padding:10px;
   outline:none!important;
@@ -1636,15 +1644,17 @@ padding-left: 4rem;
   width:20vh;
   height:5vh;
   border-style: solid;
-  border:2px solid black;
   outline: none !important;
   background:white;
+  border:2px solid black;
   color: black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-top:1rem;
 }
 .trending-soc:hover{
   background:black;
   color: white;
+  transition: 0.3s;
 }
 .textfield-create-a-soc{
   width:40vh;
@@ -1722,7 +1732,6 @@ padding-left: 4rem;
   width:250px;
   height:250px;
   text-align: center;
-  border-radius: 25px;
   border:2px solid white;
 }
 
@@ -1734,12 +1743,29 @@ padding-left: 4rem;
   margin:auto;
   text-align: left;
   font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.podcast-button{
+  width: auto;
+  padding:15px;
+  border-radius: 35px;
+  border:none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background:#0e15fc;
+  color:white;
+  outline:none!important;
+}
+
+.podcast-button:hover{
+  background-color:black;
+  transition:0.3s;
 }
 
 .user-image-square{
   margin-top:1rem;
-  width:100px;
-  height:100px;
+  width:120px;
+  height:120px;
   text-align: center;
 }
 
@@ -2005,7 +2031,8 @@ padding-left: 4rem;
   padding:20px;
   height:auto;
   margin-top: 10px;
-  border:1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .socs-list-items{
@@ -2018,11 +2045,12 @@ padding-left: 4rem;
   margin-top:3rem;
   padding-bottom:10px;
   transition:0.2s;
-  border:1px lightgray solid;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        /* border:1px lightgray solid; */
 }
 
 .community-members-item{
-  border:1px lightgray solid;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
   width:200px;
   padding:10px;
   border-radius: 10px;
@@ -2030,7 +2058,18 @@ padding-left: 4rem;
   margin-right: 10px;
 }
 
-.community-members-item:hover{
+.community-members-item-profile{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
+  width:150px;
+  height:100px;
+  padding:10px;
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.community-members-item:hover, .community-members-item-profile:hover{
   background:whitesmoke;
   cursor:pointer;
 }
@@ -2171,10 +2210,11 @@ padding-left: 4rem;
 }
 
 .userPosts{
-  width: 60rem;
+  width: 55rem;
   text-align: left;
   background-color:white;
   border:none!important;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
 .edit-pic-btn{

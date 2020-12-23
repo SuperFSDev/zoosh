@@ -72,7 +72,7 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
             </Helmet> 
 
           <div className="container-square">
-            <h1 className="c-s-header" id="users">The Square</h1><br/>
+            <h1 className="c-s-header" id="users">The Community</h1><br/>
 
             <div className="search-div-square">
                 <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category"/>
@@ -83,12 +83,12 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
                     <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><p className="leaderboard-item">
                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.fullname}</Tooltip>}>
                         <span className="d-inline-block">
-                            <Image src={user.pic} className="user-image-square"/>
+                            <Image src={user.pic} className="user-image-square" roundedCircle/>
                         </span>
                         </OverlayTrigger>
                         <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> 
                         <b className="user-score">{ user.score}</b>
-                    </p></a><hr/>      
+                    </p></a>   
                   </div>
                 ))}    
               </div>

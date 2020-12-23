@@ -88,32 +88,35 @@ export default class ForumPage extends React.Component {
                       </span>
                        <br/>
                       <PostOptions/>
+
+
+                <div className="forum-post-container">
+                        <h4>Forum Post 1</h4>
+                        <p className="forum-post-content">Posted by Aaron</p>
+                        <hr/>
+                        <p  className="forum-post-content">Small amount of text content</p>
+                </div>
+                <div className="forum-post-container">
+                        <h4>Forum Post 2</h4>
+                        <p className="forum-post-content">Posted by Aaron</p>
+                        <hr/>
+                        <p  className="forum-post-content">Small amount of text content</p>
+                </div>
+                <div className="forum-post-container">
+                        <h4>Forum Post 3</h4>
+                        <p className="forum-post-content">Posted by Aaron</p>
+                        <hr/>
+                        <p  className="forum-post-content">Small amount of text content</p>
+                </div>
+                <div className="forum-post-container">
+                        <h4>Forum Post 4</h4>
+                        <p className="forum-post-content">Posted by Aaron</p>
+                        <hr/>
+                        <p  className="forum-post-content">Small amount of text content</p>
+                </div>
               </div>
        
-              <div className="forum-post-container">
-                      <h4>Forum Post 1</h4>
-                      <p className="forum-post-content">Posted by Aaron</p>
-                      <hr/>
-                      <p  className="forum-post-content">Small amount of text content</p>
-              </div>
-              <div className="forum-post-container">
-                      <h4>Forum Post 2</h4>
-                      <p className="forum-post-content">Posted by Aaron</p>
-                      <hr/>
-                      <p  className="forum-post-content">Small amount of text content</p>
-              </div>
-              <div className="forum-post-container">
-                      <h4>Forum Post 3</h4>
-                      <p className="forum-post-content">Posted by Aaron</p>
-                      <hr/>
-                      <p  className="forum-post-content">Small amount of text content</p>
-              </div>
-              <div className="forum-post-container">
-                      <h4>Forum Post 4</h4>
-                      <p className="forum-post-content">Posted by Aaron</p>
-                      <hr/>
-                      <p  className="forum-post-content">Small amount of text content</p>
-              </div>
+              
 
           </div>
     

@@ -95,14 +95,40 @@ export default class MyProfile extends React.Component {
             </div>
           </div>
 
-          <div className="profile-card">
-            </div>
+          <div className="profile-card"></div>
             <div className="user-profile-about">
-              <p><SiAboutDotMe /> <b className="user-details">{this.state.user.fullname}</b></p>
-              <p><MdSchool /> <b className="user-details">{this.state.user.college}</b></p>
-              <p><FaBook/> <b className="user-details">{this.state.user.course}</b></p>
-              {/* <p>DOB: <b className="user-details">{this.state.user.dob}</b></p> */}
-              <p><RiCake2Fill /> Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b></p>
+              {/* Users Name */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
+                <span className="d-inline-block">
+                <p><SiAboutDotMe /> </p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.fullname}</b><br/>
+              
+              {/* Users College */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
+                <span className="d-inline-block">
+                  <p><MdSchool /></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.college}</b><br/>
+
+              {/* Users Course Details */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
+                <span className="d-inline-block">
+                <p><FaBook/></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.course}</b><br/>
+
+              {/* User Joined Date */}
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
+                <span className="d-inline-block">
+                <p><RiCake2Fill />  </p>
+                </span>
+              </OverlayTrigger>
+              Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b>
+                          
             </div>
 
             <div className="user-profile-about">

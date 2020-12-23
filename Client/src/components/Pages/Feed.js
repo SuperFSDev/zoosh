@@ -22,6 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import {FaShare} from 'react-icons/fa'
 import QuickCreate from '../Common/QuickCreate'
+import {AiOutlineLink} from 'react-icons/ai'
 
 var comment;
 
@@ -260,7 +261,7 @@ render(){
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                      <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
+                                      <Dropdown.Item href="#/action-1"><AiOutlineLink/> Copy URL</Dropdown.Item>
                                     </Dropdown.Menu>
                                   </Dropdown>
                                 

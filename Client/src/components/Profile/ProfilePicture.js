@@ -6,8 +6,6 @@ export default function ProfilePicture() {
   var pp = user.pic;
 
   return (
-    <div id="social">
-      <Image src={`data:image/jpeg;base64,${pp}`} className="user-image" roundedCircle />
-    </div>
+      <Image src={`data:image/jpeg;base64,${pp}`} className="user-image"  roundedCircle/>
   );
 }

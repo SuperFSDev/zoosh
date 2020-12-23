@@ -17,11 +17,15 @@ class StartEvent extends React.Component {
       title: '',
       time: new Date().getTime(),
       society: '',
+      description: '',
+
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeSociety = this.onChangeSociety.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+
   }
 
   componentDidMount() {
@@ -64,6 +68,12 @@ class StartEvent extends React.Component {
     this.setState({ society: e });
   }
 
+  onChangeDescription(e) {
+    this.setState({  
+      description: e.target.value
+    });
+  }
+
 
   onSubmit(e) {
 
@@ -74,6 +84,8 @@ class StartEvent extends React.Component {
       title: this.state.title,
       time: new Date().getTime(),
       society: this.state.society,
+      description: this.state.description,
+
     }
 
     axios.post('http://localhost:4000/events/NewEvents', newEvent)
@@ -84,7 +96,9 @@ class StartEvent extends React.Component {
       user: '',
       title: '',
       time: new Date().getTime(),
-      society: ''
+      society: '',
+      description: ''
+
     });
     window.location = '/events';
   }
@@ -104,7 +118,7 @@ class StartEvent extends React.Component {
               id="outlined-textarea"
               label="Title"
               style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
-              placeholder="Whats on your mind"
+              placeholder="Event Title"
               fullWidth
               required
               multiline
@@ -112,12 +126,38 @@ class StartEvent extends React.Component {
               margin="normal"
               value={this.state.title}
               onChange={this.onChangeTitle}
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
 
-            <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." />
+            <TextField
+              id="outlined-textarea"
+              label="Description"
+              style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
+              placeholder="Event Description"
+              fullWidth
+              required
+              multiline
+              variant="outlined"
+              margin="normal"
+              value={this.state.description}
+              onChange={this.onChangeDescription}
+            />
+
+            <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." /><br/>
+
+            <TextField 
+                type="url" 
+                id="outlined-textarea"
+                label="URL's"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                multiline
+                placeholder="External URL's - Zoom, Facebook, Twitter, Change.org etc"
+                style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
+                pattern="https://open.spotify.com.*" size="30"
+                value={this.state.link}
+                onChange={this.onChangeLink}
+                /><br/>
 
             <button className="create-post-btn-submit" variant="primary" type="submit">Post</button>
           </Form>

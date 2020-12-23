@@ -23,6 +23,7 @@ events.post('/NewEvents', (req, res) => {
         title: req.body.title,
         time: req.body.time,
         society: req.body.society.value,
+        description: req.body.description,
     });
 })
 

@@ -84,11 +84,11 @@ render(){
       <div className="containerFeedMiddle">
           <div className="global-feed">
           <h1>Podcasts</h1>
-          <QuickEvent/>
           <div className="search-div-forum">
             {/* <BsSearch/>  */}
             <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/>
           </div>
+          <QuickEvent/>
             <div>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
