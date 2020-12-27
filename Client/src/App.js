@@ -27,6 +27,7 @@ import EventPage from './components/Pages/EventsPage'
 import Podcasts from './components/Pages/Podcasts';
 import PodcastPage from './components/Pages/PodcastPage';
 import TheSquare from './components/Pages/TheSquare';
+import Landing from './components/Pages/Landing'
 
 class App extends React.Component {
   render(){
@@ -71,6 +72,8 @@ class App extends React.Component {
         <Switch>
           <Route path="/join" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
+          <Route path="/landing" component={Landing}/>
+
           <Route component={DefaultRoutes} />
         </Switch>
       </Router>

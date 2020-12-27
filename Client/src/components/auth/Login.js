@@ -90,12 +90,14 @@ class Login extends React.Component {
   render() {
     return (
       <>
-       <div>
-          <div className="split left">
-          <h1 className="header">Name</h1>
+       <div className="login-bg">
+          {/* <div className="split left"> */}
+          {/* <h1 className="header">Name</h1> */}
 
               <div className="centered">
-              <h1 className="welcome-intro">Join Student Communities today</h1>
+              {/* <h1 className="welcome-intro">Join Student Communities today</h1> */}
+              <a className="header-login" href="/landing"><h1 className="header-login">Website Name</h1></a>
+              <big className="motto">A place for students to express and innovate</big>
               <div class="login-card">
               <Form onSubmit={this.onLogin}>
                 <Form.Group controlId="formBasicEmail">
@@ -119,35 +121,35 @@ class Login extends React.Component {
                 <hr />
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  <RegisterModal/>
+                  <p class="forgot-pw">New to our site? <a className="links2" href="/join">Join Now.</a></p>
+
+                  {/* <RegisterModal/> */}
                 </div>
               </Form>
             </div>
-              </div>
+              {/* </div> */}
           </div>
 
-          <div className="split right">
+          {/* <div className="split right">
               <div className="centered">
               <img className="welcome" src={LoginSVG} />
               </div>
-          </div>
+          </div> */}
 
           <div className="mobile-login">
-            <h1 className="header-mobile">Name</h1>
               <div className="centered">
-              <h4 className="login-intro-mobile">Join Student Communities today</h4>
               <div class="login-card">
               <Form onSubmit={this.onLogin}>
                 <Form.Group controlId="formBasicEmail">
                   {/* <Form.Label>Email address</Form.Label> */}
-                  <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
+                  <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email}  onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
                   {/* <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                   {/* <Form.Label>Password</Form.Label> */}
-                  <TextField type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
+                  <TextField type="password" placeholder="Enter Password" value={this.state.password}  onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
                   {/* <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} /> */}
                 </Form.Group>
                 {/* <Form.Group controlId="formBasicCheckbox">
@@ -168,11 +170,20 @@ class Login extends React.Component {
 
           <footer className="footer">
             <div className="footer-items">
-              <div class="footer-column">
+                <div class="footer-column">
+                  <a className="footer-links" href="#"><p>Our Website 2020</p></a>
+                </div>
+                <div class="footer-column">
+                  <a className="footer-links" href="#"><p>Privacy</p></a>
+                </div>
+                <div class="footer-column">
+                  <a className="footer-links" href="#"><p>Community Guidlines</p></a>
+                </div>
+                <div class="footer-column">
                   <a className="footer-links" href="#"><p>About</p></a>
                 </div>
                 <div class="footer-column">
-                <a className="footer-links" href="#"><p>Report a Problem</p></a>
+                <a className="footer-links" href="#"><p>Contact</p></a>
                 </div>
             </div>
           </footer>

@@ -88,15 +88,9 @@ class Register extends React.Component {
     return (
       <>
         <div>
-          <div className="split left">
               <div className="centered">
-                <Nav.Link href="/"><h1 className="header">Name</h1></Nav.Link>
-                <img className="intro" src={RegisterImg} alt="register"/>
-              </div>
-          </div>
-
-          <div className="split right2">
-              <div className="centered">
+              <a className="header-login" href="/landing"><h1 className="header-login">Website Name</h1></a>
+              <big className="motto">A place for students to express and innovate</big>
               <div class="register-card">
               <br/>
               <Form onSubmit={this.onSubmit}>
@@ -124,14 +118,33 @@ class Register extends React.Component {
                   Create Account
                 </button>
                 <span>
-                  <hr />
-                  <Nav.Link className="links2" href="/login">Already have an account?</Nav.Link>
+                  <hr /><br/>
+                  <p>Already have an account?<a className="links2" href="/login"> Sign In.</a></p>
                 </span>
               </Form>
             </div>
               </div>
+
+              <footer className="footer">
+                <div className="footer-items">
+                    <div class="footer-column">
+                      <a className="footer-links" href="#"><p>Our Website 2020</p></a>
+                    </div>
+                    <div class="footer-column">
+                      <a className="footer-links" href="#"><p>Privacy</p></a>
+                    </div>
+                    <div class="footer-column">
+                      <a className="footer-links" href="#"><p>Community Guidlines</p></a>
+                    </div>
+                    <div class="footer-column">
+                      <a className="footer-links" href="#"><p>About</p></a>
+                    </div>
+                    <div class="footer-column">
+                    <a className="footer-links" href="#"><p>Contact</p></a>
+                    </div>
+                </div>
+              </footer>
           </div>
-        </div>
       </>
     );
   }

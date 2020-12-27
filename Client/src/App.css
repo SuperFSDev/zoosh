@@ -2,18 +2,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 .navbar{
   /* background:#212832 !important; */
   background:white;
 }
 
+.motto{
+  color:gray;
+  font-weight: bolder;
+}
+
+.landing-desc-1{
+  font-size: 3rem;
+  margin-left: 15rem;
+  color:black;
+  margin-top: 8rem;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.landing-desc-2{
+  font-size: 3rem;
+  margin-left: 20rem;
+  color:black;
+  margin-top: 10rem;
+  text-align: left;
+}
+
+.landing-img{
+  margin-right: 5rem!important;
+}
+
+.landing-btn-signup{
+  margin-right: 5rem;
+  width:200px;
+  height:50px;
+  border-radius: 25px;
+  background:orange;
+  color:white;
+  font-weight: bolder;
+  border:none!important;
+}
+
+.landing-btn-signup:hover{
+  background:black;
+  color:white;
+}
 .header{
   text-decoration: none;
   font-size: 2.5rem !important;
   font-weight: bolder;
   margin-left: 15rem;
   /* color:white!important; */
+  color:black;
+  font-family: 'Righteous', cursive;
+}
+
+.header-login{
+  text-decoration: none!important;
+  font-size: 3.5rem !important;
+  font-weight: bolder;
   color:black;
   font-family: 'Righteous', cursive;
 }
@@ -39,13 +88,14 @@
 
 .login-card{
   width: 30rem;
-  height: 22rem;
+  height: 24rem;
   background-color: white;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: auto;
-  margin-top: 3rem;
+  margin-top:1rem;
   padding-top: 1rem;
-  border-radius: 25px;
+  padding:20px;
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -195,15 +245,17 @@
   padding-top:5px;
   color:black;
   text-align:center;
+  margin:auto 0;
 }
 
 .footer-column {
   float: left;
-  padding-left:100px;
+  padding-left:50px;
 }
 
 .footer-items{
-  display:inline-block;
+  display:inline-flex;
+  
 }
 
 .footer-links{
@@ -307,11 +359,13 @@
 .register-card{
   text-align: center;
   width: 30rem;
-  height: 24rem;
+  height: 28rem;
+  padding:20px;
   background-color: white;
   box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   margin: auto;
-  border-radius: 25px;
+  border-radius: 10px;
+  margin-top:1rem;
 }
 
 
@@ -788,6 +842,32 @@
 
 }
 
+.landing-2{
+  background:black!important;
+}
+
+.landing-nav-items{
+  margin-right: 15rem;
+}
+
+.landing-page{
+  background-image: url("images/group.jpg");
+}
+
+
+.containerLandingLeft{
+  width: 40%;
+  margin-top: 1vh;
+  height: 5rem;
+  outline: none !important;
+  background-color: none!important;
+  margin-left: 1rem;
+  float: left;
+  border-radius: 25px;
+  text-align: center;
+  /* margin-left: 10rem; */
+}
+
 .containerFeedMiddleProfile{
   margin-top: 12vh;
   width: 20%;
@@ -1013,7 +1093,24 @@ li{
   font-weight: bold;
   color:gray;
   border-radius: 10px;
+}
 
+.landing-btn-signin{
+  border:none!important;
+  padding:10px;
+  margin-right:10px;
+  outline:none!important;
+  font-weight: bold;
+  color:white;
+  background:black;
+  border-radius: 10px;
+}
+
+.landing-btn-signin:hover{
+  background:orange;
+  color:white;
+  font-weight: bold;
+  transition: 0.15s;
 }
 
 .community-btn-active{
@@ -1136,6 +1233,13 @@ li{
   border-style: none; 
   border-width: 0.1px;
 
+}
+
+.containerLandingMiddle{
+  margin-top: 8vh;
+  width: 40%;
+  height: auto;
+  float: left;
 }
 
 .containerForumMiddle{
@@ -1670,47 +1774,28 @@ padding-left: 4rem;
 
 /* LOGIN TEXTBOXES */
 
-.textfield-pw{
+.textfield-pw, .textfield-email, .textfield-name{
   width: 40vh;
-}
-.textfield-name{
-  width: 40vh;
-}
-.textfield-email{
-  width: 40vh;
-}
-.login-btn{
-  width:30vh;
-  height:5vh;
-  border-radius: 25px;
-  border-style: solid;
-  border:none;
-  outline: none !important;
-  background:#1A2E35;
-  color: white;
-}
-.login-btn:hover{
-  background:#27444e;
-  color: white;
 }
 
 /* REGISTER BUTTON */
-.register-btn{
+.register-btn , .login-btn{
   width:30vh;
   height:5vh;
   border-radius: 25px;
   border-style: solid;
+  margin-top: 2rem;
   border:none;
   outline: none !important;
-  background:#1A2E35;
+  background:orange;
+  font-weight: bolder;
   color: white;
 }
-.register-btn:hover{
-  background:#27444e;
+.register-btn:hover, .login-btn:hover{
+  background:black;
   color: white;
 }
 
-/* USER PROFILE */
 /* USER PROFILE */
 
 .follow-btn , .community-button-join{
@@ -1967,7 +2052,6 @@ padding-left: 4rem;
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
 .intro{
   width:auto;
   height:auto;
