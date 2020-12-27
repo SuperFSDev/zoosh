@@ -2,10 +2,10 @@ import React  from 'react';
 import '../../App.css';
 import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginSVG from '../../images/team.jpg'
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import RegisterModal from './RegisterModal'
+import {Helmet} from 'react-helmet'
 
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
@@ -90,6 +90,15 @@ class Login extends React.Component {
   render() {
     return (
       <>
+      {/* REACTJS HELMET */}
+      <Helmet>
+                <meta charSet="utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Website Name / Sign In</title>
+        </Helmet> 
+
        <div className="login-bg">
           {/* <div className="split left"> */}
           {/* <h1 className="header">Name</h1> */}
@@ -161,7 +170,6 @@ class Login extends React.Component {
                 <hr />
                 <div className="auth-options">
                   <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  <RegisterModal/>
                 </div>
               </Form>
               </div>
@@ -171,7 +179,7 @@ class Login extends React.Component {
           <footer className="footer">
             <div className="footer-items">
                 <div class="footer-column">
-                  <a className="footer-links" href="#"><p>Our Website 2020</p></a>
+                  <a className="footer-links" href="/landing"><p>Our Website 2020</p></a>
                 </div>
                 <div class="footer-column">
                   <a className="footer-links" href="#"><p>Privacy</p></a>
@@ -180,10 +188,10 @@ class Login extends React.Component {
                   <a className="footer-links" href="#"><p>Community Guidlines</p></a>
                 </div>
                 <div class="footer-column">
-                  <a className="footer-links" href="#"><p>About</p></a>
+                  <a className="footer-links" href="/manifesto"><p>Manifesto</p></a>
                 </div>
                 <div class="footer-column">
-                <a className="footer-links" href="#"><p>Contact</p></a>
+                <a className="footer-links" href="/contact"><p>Contact</p></a>
                 </div>
             </div>
           </footer>

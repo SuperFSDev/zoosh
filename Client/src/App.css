@@ -3,6 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .navbar{
   /* background:#212832 !important; */
   background:white;
@@ -14,12 +16,10 @@
 }
 
 .landing-desc-1{
-  font-size: 3rem;
-  margin-left: 15rem;
+  font-size: 2rem;
   color:black;
-  margin-top: 8rem;
-  text-align: left;
-  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .landing-desc-2{
@@ -32,22 +32,27 @@
 
 .landing-img{
   margin-right: 5rem!important;
+  margin: 0;
+  text-align: center;
 }
 
 .landing-btn-signup{
-  margin-right: 5rem;
   width:200px;
   height:50px;
   border-radius: 25px;
+  outline: none!important;
   background:orange;
+  margin-bottom:10px;
   color:white;
   font-weight: bolder;
   border:none!important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .landing-btn-signup:hover{
   background:black;
   color:white;
+  transition: 0.15s;
 }
 .header{
   text-decoration: none;
@@ -1104,6 +1109,7 @@ li{
   color:white;
   background:black;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .landing-btn-signin:hover{
@@ -1235,11 +1241,10 @@ li{
 
 }
 
-.containerLandingMiddle{
-  margin-top: 8vh;
-  width: 40%;
+.containerLanding{
+  margin-top: 1.5vh;
   height: auto;
-  float: left;
+  text-align: center;
 }
 
 .containerForumMiddle{

@@ -27,7 +27,9 @@ import EventPage from './components/Pages/EventsPage'
 import Podcasts from './components/Pages/Podcasts';
 import PodcastPage from './components/Pages/PodcastPage';
 import TheSquare from './components/Pages/TheSquare';
-import Landing from './components/Pages/Landing'
+import Landing from './components/Pages/Landing/Landing'
+import Manifesto from './components/Pages/Landing/Manifesto'
+import Contact from './components/Pages/Landing/Contact'
 
 class App extends React.Component {
   render(){
@@ -73,6 +75,8 @@ class App extends React.Component {
           <Route path="/join" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/landing" component={Landing}/>
+          <Route path="/manifesto" component={Manifesto}/>
+          <Route path="/contact" component={Contact}/>
 
           <Route component={DefaultRoutes} />
         </Switch>
