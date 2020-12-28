@@ -85,7 +85,7 @@ export default class PodcastPage extends React.Component {
                   <p>{this.state.podcast.description}</p>
                   <div>
                       <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                      <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
+                      <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /></button></span>
                       <Dropdown >
                         <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                           <FaShare/> Share

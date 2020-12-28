@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Card} from 'react-bootstrap'
+import {Image, Card, Form} from 'react-bootstrap'
 import ProfilePic from '../../images/blogging.jpg'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
@@ -11,6 +11,8 @@ import {Modal} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
+import {FaFingerprint,FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
+import { TextField } from '@material-ui/core';
 
 export default class AdminPage extends React.Component {
 
@@ -27,7 +29,8 @@ export default class AdminPage extends React.Component {
       showStats:false,
       showEvents:false,
       showQuestions:false,
-      showFeed:false
+      showFeed:true,
+      showSocials: false,
     };
     this.onDeleteUser = this.onDeleteUser.bind(this);
     this.onMakeMod = this.onMakeMod.bind(this);
@@ -142,8 +145,8 @@ export default class AdminPage extends React.Component {
             showFeed: false,
             showEvents: false,
             showQuestions: false,
-            showStats: false
-            
+            showStats: false,
+            showSocials: false,
           });   
           }
 
@@ -155,6 +158,7 @@ export default class AdminPage extends React.Component {
             showEvents: false,
             showQuestions: false,
             showStats: false,
+            showSocials: false,
           });   
           }
 
@@ -165,6 +169,7 @@ export default class AdminPage extends React.Component {
             showEvents: true,
             showQuestions: false,
             showStats: false,
+            showSocials: false,
           });   
         }
 
@@ -177,6 +182,7 @@ export default class AdminPage extends React.Component {
             showEvents: false,
             showQuestions: false,
             showStats: true,
+            showSocials: false,
           });   
           }
 
@@ -188,8 +194,20 @@ export default class AdminPage extends React.Component {
             showEvents: false,
             showQuestions: true,
             showStats: false,
+            showSocials: false,
           });   
           }
+
+        ShowSocials() {  
+          this.setState({
+              showPeople: false,
+              showFeed: false,
+              showEvents: false,
+              showQuestions: false,
+              showStats: false,
+              showSocials: true,
+          });   
+        }
              
     render(){
       var{users} = this.state;
@@ -230,25 +248,81 @@ export default class AdminPage extends React.Component {
                       <button  onClick={() => {this.ShowEvents()}} className="community-btn">Events</button>
                       <button  onClick={() => {this.ShowStats()}}className="community-btn">Stats</button>
                       <button  onClick={() => {this.ShowUsers()}}className="community-btn">People</button>
+                      <button  onClick={() => {this.ShowSocials()}}className="community-btn">Socials</button>
+
+
+                <div className="peopleTab">   {/* SHOW FEED*/}
+                  {this.state.showFeed &&           
+                    <div> 
+                        <hr/>  
+                          <Form>
+                            <input            
+                              className="commentBox"
+                              label="Comment"
+                              style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
+                              placeholder="Compose new post..."         
+                              required
+                            /><br/><br/>
+
+                            <span> 
+                              <FaRegCommentAlt className="community-post-options"size={20}/>
+                              <FaRegImage className="community-post-options" size={20}/>   
+                              <FaLink className="community-post-options" size={20}/>                             
+                            </span><br/><br/>
+                          </Form> 
+                        <hr/> 
+                          <button className="standard-button">Post Comment</button>  
+                    </div>
+                    }
+                  </div>
 
 
                   <div className="peopleTab">     {/* SHOW PEOPLE*/}
                     {this.state.showPeople &&  
                     <div>
-                      <h3>Meet the Community</h3>
-                      <div className="EventSocietyLayout">
+                      <h4>Admins {this.state.users.length}</h4><br/>
+                      <div className="CommunityMembers">
                       {this.state.users.map(user=>(
-                        <a href={"/u/?id="+user._id}><div className="community-members-item">                
-                          <Image src={user.pic} className="community-member-item-pic"  /> 
-                          <p>{user.fullname} <b className="user-score-post">{user.score}</b> </p>
+                        <a href={"/u/?id="+user._id}><div className="community-members-item">
+                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
+                          <p>{user.fullname} <FaFingerprint/> </p>
+                          {/* <b className="user-score-post">{user.score}</b> */}
                           <button className="standard-button">Follow</button><br/>
+                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
+                        </div></a>
+                      ))}
+                    </div><br/>
+
+                    {/* MODERATORS TAB */}
+                    <h4>Moderators {this.state.users.length}</h4><br/>
+                    <div className="CommunityMembers">
+                      {this.state.users.map(user=>(
+                        <a href={"/u/?id="+user._id}><div className="community-members-item">
+                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
+                          <p>{user.fullname} </p>
+                          {/* <b className="user-score-post">{user.score}</b> */}
+                          <button className="standard-button">Follow</button><br/>
+                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
+                        </div></a>
+                      ))}
+                    </div><br/>
+
+                    {/* MEMBERS TAB */}
+                    <h4>Members {this.state.users.length} </h4><br/>
+                    <div className="CommunityMembers">
+                      {this.state.users.map(user=>(
+                        <a href={"/u/?id="+user._id}><div className="community-members-item">
+                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
+                          <p>{user.fullname} </p>
+                          {/* <b className="user-score-post">{user.score}</b> */}
+                          <button className="standard-button">Follow</button><br/>
+                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
                         </div></a>
                       ))}
                     </div>
                     </div>
                     }
                   </div>
-    
                 
                 <div className="peopleTab">     {/* SHOW EVENTS*/}
                   {this.state.showEvents &&
@@ -276,13 +350,24 @@ export default class AdminPage extends React.Component {
                   }
                 </div>
 
+                <div className="peopleTab">   {/* SHOW SOCIALS*/}
+                  {this.state.showSocials &&           
+                  <div> 
+                        <big><FaFacebook size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.facebook} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                        <big><FaTwitter size={30}/> <a href={this.state.society.twitter} target="_blank"><TextField defaultValue={this.state.society.twitter} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                        <big><FaInstagram size={30}/> <a href={this.state.society.instagram} target="_blank"><TextField defaultValue={this.state.society.instagram} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                        <big><FaLink size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.other} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                    </div>
+                    }
+                  </div>    
+
 
                 <div className="peopleTab">     {/* SHOW QUESTIONS*/}
                   {this.state.showQuestions &&
                   <div>
                     <h3>Questions</h3>
                     <Question/>
-                    <Card className='feedPost'>
+                    <Card >
                       <Card.Body>
                         <Card.Text className="fontPost">
                           <p>Random hard coded question???? :-ppp</p>
@@ -329,8 +414,9 @@ export default class AdminPage extends React.Component {
               
               <div className="containerFeedMiddleCommunity">
                 <div className="community-users-card">
-                  <p className="member-count">Admins: {this.state.society.admin}</p>
-                  <p className="member-count">Moderators: {this.state.mods.length}  </p>
+                  <p className="member-count">{this.state.society.description}</p>
+                </div><br/>
+                <div className="community-users-card">
                   <p className="member-count">Meet the community: {this.state.users.length}</p>
                     <div className="Connections">
                     {this.state.UserList.map(u => ( 
@@ -342,11 +428,6 @@ export default class AdminPage extends React.Component {
                 </div>
               </div>
                 <br/>
-
-                <div className="community-users-card">
-                  <p className="member-count">Upcoming Events</p>
-                    
-                </div>
             </div>
         </div>
         );

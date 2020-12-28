@@ -136,7 +136,7 @@ export default class UserProfile extends React.Component {
           <div className="profile-card">
             <div id="social">
               <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-              <h3> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
+              <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
             </div>
             <div>
               <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
@@ -147,6 +147,9 @@ export default class UserProfile extends React.Component {
 
           <div className="profile-card">
           </div>
+          <div className="user-profile-about">
+              {this.state.user.bio}
+            </div>
           <div className="user-profile-about">
 
               {/* Users Name */}
@@ -233,9 +236,8 @@ export default class UserProfile extends React.Component {
                           </span>
                   </OverlayTrigger>  
                 </div>
-                <br></br><a href="#"><p>View All</p></a>
+                <br></br><a href="#" id="dropdown-basic"><p>View All</p></a>
               </section>
-              <p></p>
             </div>
 
 

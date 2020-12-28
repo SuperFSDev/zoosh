@@ -347,8 +347,8 @@ export default class AccountSettings extends React.Component {
               </div><br/>
               
               <div>
-                <button className="trending-soc" variant="secondary" type="submit" >Save changes</button>
-                <button className="trending-soc" variant="primary" type="submit" >Cancel</button>
+                <button className="standard-button" variant="secondary" type="submit" >Save changes</button>
+                <button className="standard-button" variant="primary" type="submit" >Cancel</button>
               </div>
               
             </Form>

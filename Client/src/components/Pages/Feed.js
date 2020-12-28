@@ -250,7 +250,7 @@ render(){
                           <div>
                             <div>
                               <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span>
                               <a href={"/p/?id=" + post.Post_id} >
                                 <span className="voting-btn">
                                   <button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button> 

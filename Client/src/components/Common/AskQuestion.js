@@ -179,7 +179,7 @@ class AskQuestion extends React.Component {
           }}
           />
 
-          <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
+          <button className="standard-button"  variant="primary" type="submit">Post Question</button>
         </Form>
       </div>
       

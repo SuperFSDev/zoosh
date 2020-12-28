@@ -46,13 +46,12 @@ render(){
           <a href={"/s/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
             <p><b>{society.name}</b></p>
             <p className="description">{society.description}</p>
-             <button className="soc-item-list-join-btn" onClick={() => this.addUser('Computer Science')}>Join</button>
               {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a> */}
           </div></a><hr/>
           </div>  ))}
     <div className="explore-more-link">
 
-        <a href="/communities">Explore More</a>
+        <a href="/communities" id="dropdown-basic">Explore More</a>
     </div>
     </div>
 

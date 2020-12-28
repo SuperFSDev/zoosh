@@ -95,7 +95,7 @@ render(){
                     </div>
                     <br/>
                   <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span>
                   <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> Comments</button></span></a>
                   <Dropdown >
                     <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">

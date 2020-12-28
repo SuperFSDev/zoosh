@@ -42,7 +42,7 @@ class Contributors extends React.Component {
                                   {/* {indents.name}   */}
 
 
-           <a href="/thesquare">See More</a>
+           <a href="/users/" id="dropdown-basic">See More</a>
            </div>
   );
   }

@@ -83,7 +83,7 @@ export default class MyProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
             <ProfilePicture/>
-            <h3>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
+            <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
           
             <div className="user-profile-btn-options">
               <span className="user-profile-btn-options">
@@ -96,6 +96,9 @@ export default class MyProfile extends React.Component {
           </div>
 
           <div className="profile-card"></div>
+          <div className="user-profile-about">
+              {this.state.user.bio}
+            </div>
             <div className="user-profile-about">
               {/* Users Name */}
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
@@ -181,7 +184,7 @@ export default class MyProfile extends React.Component {
                           </span>
                   </OverlayTrigger>  
                 </div>
-                <br></br><a href="#"><p>View All</p></a>
+                <br></br><a href="#" id="dropdown-basic"><p >View All</p></a>
               </section>
             </div>
             

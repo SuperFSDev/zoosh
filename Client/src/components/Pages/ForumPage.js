@@ -80,7 +80,7 @@ export default class ForumPage extends React.Component {
           <div className="containerFeedMiddle">
               <div className="forum-container">
                   <span  className="username-wrapper">
-                      <h4>{this.state.forum.name}</h4>
+                      <h4>{this.state.forum.name} </h4>
                       <div id="wrapper">
                         <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
                         <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>

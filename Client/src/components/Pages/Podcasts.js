@@ -86,7 +86,7 @@ render(){
           <h1>Podcasts</h1>
           <div className="search-div-forum">
             {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/>
+            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/><br/><br/>
           </div>
           <QuickEvent/>
             <div>
@@ -122,7 +122,7 @@ function QuickEvent() {
 
   return (
     <div>
-            <button className="post-option-btn-item-event"  onClick={() => setModalShowEvent(true)}>Link Podcast <RiAddFill size={25}/></button>
+            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Link Podcast <RiAddFill size={25}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}

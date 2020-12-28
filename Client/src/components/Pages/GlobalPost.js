@@ -88,7 +88,7 @@ export default class GlobalPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button className="trending-soc">Post Comment</button>
+                    <button className="standard-button">Post Comment</button>
                 </Form>   
           </div>    
           <div className="comment-container">

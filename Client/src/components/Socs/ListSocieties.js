@@ -80,7 +80,7 @@ export default class Daily extends React.Component {
             <option value="College">College</option>
             <option value="Category">Category</option>
 
-          </select> 
+          </select><br/><br/>
             <QuickOptions/>
         </div>
 
@@ -98,7 +98,7 @@ export default class Daily extends React.Component {
           {filteredSocietiesByName.map(society => (
             <div key={society.id}>
               <div className="socs-list-items">
-                 <a href={"/s/?id=" +society._id}><h5>{society.name}</h5></a>
+                 <a href={"/s/?id=" +society._id} className="comm-link"><h5>{society.name}</h5></a>
                   {/* <p>{society.category}</p>                     */}
                   <p><b>{society.college}</b></p>  
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
@@ -132,7 +132,7 @@ function QuickOptions() {
   return (
     <div>
         <div>
-            <button className="trending-soc" onClick={() => setModalShow(true)}>Create Community</button>
+            <button className="standard-button" onClick={() => setModalShow(true)}>Create Community</button>
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}

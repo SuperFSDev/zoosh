@@ -121,7 +121,7 @@ render(){
                 <div className="forum-item-title">
                     <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
                 </div>
-                <button className="forum-follow-btn" onClick={() => this.addForum(forum.name)}>Follow</button>
+                <button className="standard-button" onClick={() => this.addForum(forum.name)}>Follow</button>
             </div></a>
                   <div >
               </div>

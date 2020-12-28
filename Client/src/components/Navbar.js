@@ -3,12 +3,14 @@ import '../App.css';
 import {Navbar, Nav} from 'react-bootstrap';
 // import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Dropdown} from 'react-bootstrap'
+import { Dropdown, DropdownButton} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
 import {Modal} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
 import {IoIosSquareOutline,IoIosNotificationsOutline} from 'react-icons/io'
+import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegHandPeace, FaUserFriends} from 'react-icons/fa'
+import {FiSettings} from 'react-icons/fi'
 
 
 export default class NavBar extends React.Component {
@@ -51,7 +53,7 @@ render(){
         <div id="top"></div>
         <Navbar className="navbar" fixed="top">
           <Nav className="mr-auto">
-            <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
+            <Navbar.Brand className="header" href="/home">Website Name</Navbar.Brand>
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
@@ -61,17 +63,19 @@ render(){
             </div>           
             <div className="navbar-prof-btn">
               <div id="#battleBox">
-                <Dropdown className="l-prof-btn-default">
+                <Dropdown className="l-prof-btn-default" >
                   <Dropdown.Toggle id="dropdown-basic" >
                     <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/>
-                    <b className="user-score-prof-btn">{this.state.user.score}</b>
+                    {/* <b className="user-score-prof-btn">{this.state.user.score}</b> */}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="/me"  eventKey="1">Hello, {this.state.user.fullname} 😃</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item href="/connections"  eventKey="2">Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
+                    <Dropdown.Item  eventKey="13"><FaRegLemon/> Score <b className="user-details-views">{this.state.user.score}</b></Dropdown.Item>
+                    <Dropdown.Item href="/connections"  eventKey="2"><FaUserFriends/> Following <b className="user-details-views">{this.state.following.length}</b></Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item href="/settings"  eventKey="3">Account Settings</Dropdown.Item>
+                    
+                    <Dropdown.Item href="/settings"  eventKey="3"><FiSettings/> Account Settings</Dropdown.Item>
                     <Dropdown.Item eventKey="4"><InviteFriend/></Dropdown.Item>
                     {/* <Dropdown.Item eventKey="5"><DarkMode/></Dropdown.Item> */}
                     <Dropdown.Divider />
@@ -128,7 +132,7 @@ function InviteFriend() {
 
   return (
     <div>
-            <p onClick={() => setModalShowText(true)}>Invite Friend</p>
+            <Dropdown.Item onClick={() => setModalShowText(true)}><FaRegHandPeace/> Invite a Friend</Dropdown.Item>
 
             <InviteModal
                 show={modalShow}

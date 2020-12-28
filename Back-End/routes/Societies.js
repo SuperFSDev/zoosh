@@ -30,7 +30,10 @@ societies.post('/create', (req, res) => {
         private: req.body.private,
         admin:req.body.admin,
         time: req.body.time,
-
+        facebook: req.body.facebook,
+        twitter: req.body.twitter,
+        instagram: req.body.instagram,
+        other: req.body.other,
     }
 
     //Check if user is already registered

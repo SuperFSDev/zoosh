@@ -83,7 +83,7 @@ export default class DiscussionPost extends React.Component {
 
                 {/* Discussion Post interaction options */}
                 <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={25} /> Upvote</button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={25} /> Downvote</button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={25} /> </button></span>
                 <Dropdown >
                   <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                     <FaShare/> Share
@@ -105,7 +105,7 @@ export default class DiscussionPost extends React.Component {
                     placeholder="Add a comment..."         
                     required
                   />
-                    <button className="trending-soc">Post Comment</button>
+                    <button className="standard-button">Post Comment</button>
                 </Form>   
           </div>    
           <div className="comment-container">

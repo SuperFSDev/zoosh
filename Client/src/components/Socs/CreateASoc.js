@@ -21,6 +21,10 @@ export default class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
+            facebook: '',
+            twitter: '',
+            instagram: '',
+            other: '',
             private: false,
             time: new Date().getTime(),
 
@@ -32,6 +36,10 @@ export default class CreateASoc extends React.Component {
         this.onChangeAddress = this.onChangeAddress.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
+        this.onChangeFacebook = this.onChangeFacebook.bind(this);
+        this.onChangeTwitter = this.onChangeTwitter.bind(this);
+        this.onChangeInstagram = this.onChangeInstagram.bind(this);
+        this.onChangeOther = this.onChangeOther.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
 
@@ -69,6 +77,30 @@ export default class CreateASoc extends React.Component {
         });
     }
 
+    onChangeFacebook(e) {
+        this.setState({
+            facebook: e.target.value
+        });
+    }
+
+    onChangeTwitter(e) {
+        this.setState({
+            twitter: e.target.value
+        });
+    }
+
+    onChangeInstagram(e) {
+        this.setState({
+            instagram: e.target.value
+        });
+    }
+
+    onChangeOther(e) {
+        this.setState({
+            other: e.target.value
+        });
+    }
+
     onChangeTime(e) {
         this.setState({
           time: new Date().getTime(),
@@ -85,6 +117,10 @@ export default class CreateASoc extends React.Component {
             category: this.state.category,
             address: this.state.address,
             description: this.state.description,
+            facebook: this.state.facebook,
+            twitter: this.state.twitter,
+            instagram: this.state.instagram,
+            other: this.state.other,
             private: this.state.private,
             admin:getUser._id,
             time: new Date().getTime(),
@@ -116,6 +152,10 @@ export default class CreateASoc extends React.Component {
             category: '',
             address: '',
             description: '',
+            facebook: '',
+            twitter: '',
+            instagram: '',
+            other: '',
             private: false,
             time: new Date().getTime(),
 
@@ -144,6 +184,20 @@ export default class CreateASoc extends React.Component {
 
                     <Form.Group controlId="formGridDescription">
                         <input type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} name="desc" placeholder="Description" maxLength={60}/>
+                    </Form.Group>
+
+                    {/* Social Media Links */}
+                    <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Facebook URL"  value={this.state.facebook} onChange={this.onChangeFacebook} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                    </Form.Group>
+                    <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Twitter URL"  value={this.state.twitter} onChange={this.onChangeTwitter} className="textfield-create-a-soc" id="outlined-basic"  variant="outlined" />
+                    </Form.Group>
+                    <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Instagram URL"  value={this.state.instagram} onChange={this.onChangeInstagram} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                    </Form.Group>
+                    <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Other URLS"  value={this.state.other} onChange={this.onChangeOther} className="textfield-create-a-soc" id="outlined-basic"  variant="outlined" />
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
@@ -184,7 +238,7 @@ export default class CreateASoc extends React.Component {
                         <Form.Check type="checkbox" label="Make Private" value={this.state.private} onChange={this.onChangePrivate}/>
                     </Form.Group>
                     <div className="create-soc-div">
-                        <button className="submit-soc" variant="primary" type="submit">Create Society</button>
+                        <button className="standard-button" variant="primary" type="submit">Create Community</button>
                     </div>
                 </Form>
             </div>
