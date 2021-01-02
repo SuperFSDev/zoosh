@@ -70,8 +70,31 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
                       <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
-
           <div className="container-square">
+            <div className="search-div-square">
+                <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category"/>
+            </div>
+          <div className="UsersLayout">
+            {users.map(user => (
+              <div key={user.id}>
+                <div className="users-list-items">
+                  <a href={"/u/?id=" +user._id} className="comm-link"><h5>{user.fullname}</h5></a>
+                    <Image src={user.pic} className="user-image-square" roundedCircle/><br/><br/>
+                    <b className="user-score">{user.score}</b>
+                    {/* <p>{society.category}</p>                     */}
+                    <div >
+                      <span>
+                        {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a> */}
+                      </span>
+                    </div>
+                    {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
+                </div>
+              </div>
+            ))}
+          </div>
+          </div>
+
+          {/* <div className="container-square">
             <h1 className="c-s-header" id="users">The Community</h1><br/>
 
             <div className="search-div-square">
@@ -92,7 +115,7 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
                   </div>
                 ))}    
               </div>
-          </div>
+          </div> */}
       </>
         );
       }

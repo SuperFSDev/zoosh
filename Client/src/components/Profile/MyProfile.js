@@ -81,23 +81,13 @@ export default class MyProfile extends React.Component {
         </div>
 
         <div className="containerFeedMiddleProfile">
-          <div className="profile-card">
-            <ProfilePicture/>
-            <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
-          
-            <div className="user-profile-btn-options">
-              <span className="user-profile-btn-options">
-                <EditProfile/>
-                  {/* <p className="user-followers-following-stats">Following {this.state.following.length}</p>
-                  <p className="user-followers-following-stats">Followers {this.state.followers.length}</p> */}
-
-              </span>
-            </div>
-          </div>
-
           <div className="profile-card"></div>
-          <div className="user-profile-about">
-              {this.state.user.bio}
+            <div className="user-profile-about">
+              <div className="profile-card-align">
+                <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+                <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
+                <EditProfile/><br/>
+              </div>
             </div>
             <div className="user-profile-about">
               {/* Users Name */}
@@ -194,6 +184,7 @@ export default class MyProfile extends React.Component {
                   <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
             </div>
         </div>
+        
 
         <div className="containerFeedRightProfile">
           <div  className="top-posts-profile-container">
@@ -254,7 +245,6 @@ function QuickOptions() {
     <div>
         <div>
            <VscDiffAdded size={55}  className="square" id="dropdown-basic" onClick={() => setModalShow(true)}/>
-            {/* <button ></button> */}
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}

@@ -133,7 +133,7 @@ export default class UserProfile extends React.Component {
 
 
         <div className="containerFeedMiddleProfile">
-          <div className="profile-card">
+          {/* <div className="profile-card">
             <div id="social">
               <Image src={this.state.user.pic} className="user-image" roundedCircle/>
               <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
@@ -143,12 +143,20 @@ export default class UserProfile extends React.Component {
               <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
 
             </div>
-          </div>
+          </div> */}
 
           <div className="profile-card">
           </div>
           <div className="user-profile-about">
-              {this.state.user.bio}
+            <div id="social">
+              <div className="profile-card-align">
+                <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+                <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
+                <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+              </div>
+              </div>
+              {/* {this.state.user.bio} */}
             </div>
           <div className="user-profile-about">
 
@@ -250,7 +258,7 @@ export default class UserProfile extends React.Component {
         </div>
 
         <div className="containerFeedRightUser">
-          <div  className="top-posts-profile-container">
+          <div  className="top-posts-profile-container-2">
             <h3>Top Posts</h3>
             <History />
           </div>

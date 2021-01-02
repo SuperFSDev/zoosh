@@ -5,10 +5,11 @@ import FeedOptions from '../Lists/FeedOptions'
 import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
-import {Modal} from 'react-bootstrap'
+import {Modal,Image} from 'react-bootstrap'
 import Podcast from '../Common/CreatePodcast'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
+import {pod} from '../../images/podcasts.jpg'
 
 export default class Podcasts extends React.Component {
 
@@ -82,14 +83,60 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-          <div className="global-feed">
-          <h1>Podcasts</h1>
-          <div className="search-div-forum">
-            {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/><br/><br/>
-          </div>
+          <div className="global-feed"><br/>
+          <Image src={pod} />
           <QuickEvent/>
+          {/* <div className="search-div-forum">
+            <BsSearch/> 
+            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/><br/><br/>
+          </div> */}
+            <div className="spacing"></div>
             <div>
+            <h1>Featured Podcasts</h1>
+            <div className="EventSocietyLayout">
+              {podcasts.reverse().map(podcast => (
+              <div key={podcast._id}>
+                  <div>
+                  {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
+                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="events-card">
+                        <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
+                        <h4><b>{podcast.title}</b></h4> 
+                        <h6><b>{podcast.name}</b></h6> 
+                        <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
+                        <div >
+                        </div>
+                    </div>
+                    </a>
+                  </div>
+              </div>
+              ))}
+            </div>
+
+            <div className="spacing"></div>
+
+            <h1>Top Podcasts</h1>
+            <div className="EventSocietyLayout">
+              {podcasts.reverse().map(podcast => (
+              <div key={podcast._id}>
+                  <div>
+                  {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
+                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="events-card">
+                        <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
+                        <h4><b>{podcast.title}</b></h4> 
+                        <h6><b>{podcast.name}</b></h6> 
+                        <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
+                        <div >
+                        </div>
+                    </div>
+                    </a>
+                  </div>
+              </div>
+              ))}
+            </div>
+
+            <div className="spacing"></div>
+
+            <h1>All Podcasts</h1>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
               <div key={podcast._id}>
@@ -122,7 +169,7 @@ function QuickEvent() {
 
   return (
     <div>
-            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Link Podcast <RiAddFill size={25}/></button>
+            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Share your Podcast <RiAddFill size={25}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}
@@ -142,13 +189,10 @@ function MyVerticallyCenteredModal(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Share your Podcast
-          </Modal.Title>
+          <Modal.Body>
+              <Podcast/>
+          </Modal.Body>
         </Modal.Header>
-        <Modal.Body>
-            <Podcast/>
-        </Modal.Body>
       </Modal>
     );
   }

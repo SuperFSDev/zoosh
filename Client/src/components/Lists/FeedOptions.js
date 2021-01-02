@@ -3,9 +3,10 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import {FcCalendar,FcHome,FcHeadset,FcAreaChart,FcCollaboration,FcComments} from 'react-icons/fc'
+import {FcCalendar,FcHome,FcHeadset,FcAreaChart,FcCollaboration,FcComments,FcVoicePresentation} from 'react-icons/fc'
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
+import {Badge} from 'react-bootstrap'
 
 export default class Options extends React.Component {
   constructor(props) {
@@ -54,21 +55,12 @@ render() {
              <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <h5> {fullname} <b className="user-score">{this.state.user.score}</b></h5>
+                        <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed"> {fullname} <b className="user-score">{this.state.user.score}</b></p>
                     </div></a>
                     <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
                         <FcHome size={35}/> <b>Home</b>
                     </div></a>
-                    <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                        <FcComments size={35}/> <b>Forums</b>
-                    </div></a>
-                    <a href="/events" className="feed-option-redirects"><div className="option-container">
-                        <FcCalendar size={35}/> <b>Events</b>
-                    </div></a>
-                    <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                        <FcHeadset size={35}/> <b>Podcasts</b>
-                    </div></a>
-                     <div>
+                    <div>
                         {/* <FeedAccordion/> */}
                         <Accordion className="accordion-cs">
                             <AccordionSummary
@@ -86,6 +78,19 @@ render() {
                             </AccordionDetails>
                         </Accordion>
                     </div>
+                    <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                        <FcComments size={35}/> <b>Forums</b>
+                    </div></a>
+                    <a href="/events" className="feed-option-redirects"><div className="option-container">
+                        <FcCalendar size={35}/> <b>Events</b>
+                    </div></a>
+                    <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                        <FcHeadset size={35}/> <b>Podcasts</b>
+                    </div></a>
+                    {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                        <FcVoicePresentation size={35}/> <b>Elections</b> <Badge variant="success">New</Badge>
+                    </div></a> */}
+                    
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
                         <FcAreaChart size={35}/> <b>Leaderboard</b>
                     </div></a>

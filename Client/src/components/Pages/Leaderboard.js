@@ -83,7 +83,7 @@ import {Image} from 'react-bootstrap'
                     <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
                   </div>
                 ))}    
-                <a href="#">See More</a>
+                <a href="#" id="dropdown-basic">See More</a>
               </div>
               <div id="top-comm"></div>
           </div>
@@ -97,7 +97,7 @@ import {Image} from 'react-bootstrap'
                     <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
                   </div>
                 ))}    
-                <a href="#">See More</a>
+                <a href="#" id="dropdown-basic">See More</a>
               </div>
               <div id="growth"></div>
           </div>
@@ -110,7 +110,7 @@ import {Image} from 'react-bootstrap'
                     <p className="leaderboard-item"><b>{j+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
                   </div>
                 ))}    
-                <a href="#">See More</a>
+                <a href="#" id="dropdown-basic">See More</a>
               </div>
           </div>
       </>

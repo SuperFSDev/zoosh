@@ -92,6 +92,8 @@ class CreatePodcast extends React.Component {
     return (
       <div className="create-a-post">
         <div>
+
+          <h1>Share your Podcast</h1><br/><br/>
           <Form onSubmit={this.onSubmit} className="post-container">
 
             <TextField

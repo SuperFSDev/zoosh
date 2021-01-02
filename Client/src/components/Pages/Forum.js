@@ -117,7 +117,7 @@ render(){
             <h3>Featured</h3>
             {filteredForumsByName.map(forum => (
             <div key={forum.id}>
-              <a href={"/f/?id="+forum._id}><div className="forum-option">
+              <a href={"/f/?id="+forum._id}><br/><div className="forum-option">
                 <div className="forum-item-title">
                     <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
                 </div>

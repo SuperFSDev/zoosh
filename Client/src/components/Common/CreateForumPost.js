@@ -159,12 +159,13 @@ class CreateForumPost extends React.Component {
   return ( 
     <div className="create-a-post">
       <div>
+        
+      <h1>Create a Post</h1><br/><br/>
   
       <Form onSubmit={this.onSubmit} className="post-container">
 
         <TextField
           id="outlined-textarea"
-          label="Create a Post"
           style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
           placeholder="Whats on your mind"         
           fullWidth

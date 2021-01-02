@@ -114,13 +114,10 @@ function MyVerticallyCenteredModal(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Create Event
-          </Modal.Title>
+          <Modal.Body>
+              <Event/>
+          </Modal.Body>
         </Modal.Header>
-        <Modal.Body>
-            <Event/>
-        </Modal.Body>
       </Modal>
     );
   }

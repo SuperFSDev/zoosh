@@ -22,6 +22,8 @@ class Discussions extends React.Component {
     super(props);
     this.state = {
       discussions: [],
+      comments:[],
+      time:'',
       toggle: false
     };
   }
@@ -71,12 +73,12 @@ render(){
             <div className="post-option-btns">
             <div  className="options-container">
                 <a href="/home"><button className="community-btn">Feed</button></a>
-                <a href="/discussions"><button className="community-btn-active">Community</button></a>
+                <a href="/discussions"><button className="community-btn-active">Discussions</button></a>
                 <button className="community-btn">Media</button>
                 <button className="community-btn">Links</button>
               </div> 
           </div>
-        <div className="global-feed">
+        <div className="discussion-feed">
           
           {/* DISCUSSION TAB */}
           {discussions.reverse().map(discussion => (
@@ -84,19 +86,23 @@ render(){
               <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post'>
                 
                 <div>
-                  <h1 className="forum-title">{discussion.title}</h1>
+                  <Badge variant="secondary">{discussion.society}</Badge>
+                  <br/><br/>
+                  <h2 className="forum-title">{discussion.title}</h2>
+                  {/* <p>{moment(discussion.time).format("MMM Do")}</p> */}
+
                   <span className="username-wrapper">
                     <div class="dropdown3">
-                                <a href="/me">{discussion.user} <b className="user-score-post-tag">1,231</b></a>
                                 <div class="dropdown-content3">
                                     <a href="#">{discussion.user}</a>
                                     <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
                                 </div>
                     </div>
                     <br/>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span>
-                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> Comments</button></span></a>
+                  {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span> */}
+                  <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b></button></span></a>
+                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> {this.state.comments.length} Comments</button></span></a>
                   <Dropdown >
                     <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                       <FaShare/> Share

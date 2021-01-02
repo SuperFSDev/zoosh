@@ -7,7 +7,7 @@ import {Badge, Modal} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
 import AskQuestion from '../Common/AskQuestion'
-
+import Avatar from '@material-ui/core/Avatar';
 
 export default class ForumPage extends React.Component {
 
@@ -23,6 +23,8 @@ export default class ForumPage extends React.Component {
     componentDidMount() {
       var forum_id = new URLSearchParams(this.props.location.search).get("id");
       document.body.style.backgroundColor = "#f0f2f5";
+      var user = JSON.parse(localStorage.getItem('user'));
+      this.setState({ id: user._id });
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
 
@@ -78,9 +80,9 @@ export default class ForumPage extends React.Component {
           </div>
     
           <div className="containerFeedMiddle">
-              <div className="forum-container">
+              <div className="global-feed">
                   <span  className="username-wrapper">
-                      <h4>{this.state.forum.name} </h4>
+                      <h2>{this.state.forum.name} </h2>
                       <div id="wrapper">
                         <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
                         <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
@@ -92,25 +94,25 @@ export default class ForumPage extends React.Component {
 
                 <div className="forum-post-container">
                         <h4>Forum Post 1</h4>
-                        <p className="forum-post-content">Posted by Aaron</p>
+                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
                         <hr/>
                         <p  className="forum-post-content">Small amount of text content</p>
                 </div>
                 <div className="forum-post-container">
                         <h4>Forum Post 2</h4>
-                        <p className="forum-post-content">Posted by Aaron</p>
+                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
                         <hr/>
                         <p  className="forum-post-content">Small amount of text content</p>
                 </div>
                 <div className="forum-post-container">
                         <h4>Forum Post 3</h4>
-                        <p className="forum-post-content">Posted by Aaron</p>
+                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
                         <hr/>
                         <p  className="forum-post-content">Small amount of text content</p>
                 </div>
                 <div className="forum-post-container">
                         <h4>Forum Post 4</h4>
-                        <p className="forum-post-content">Posted by Aaron</p>
+                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
                         <hr/>
                         <p  className="forum-post-content">Small amount of text content</p>
                 </div>
@@ -161,13 +163,10 @@ function ForumPost(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Create a Post
-          </Modal.Title>
+          <Modal.Body>
+              <CreateForumPost/>
+          </Modal.Body>
         </Modal.Header>
-        <Modal.Body>
-            <CreateForumPost/>
-        </Modal.Body>
       </Modal>
     );
   }
@@ -182,13 +181,10 @@ function Question(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Ask a Question
-          </Modal.Title>
-        </Modal.Header>
         <Modal.Body>
             <AskQuestion/>
         </Modal.Body>
+        </Modal.Header>
       </Modal>
     );
   }

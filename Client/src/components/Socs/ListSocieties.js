@@ -68,9 +68,6 @@ export default class Daily extends React.Component {
     return (
 
       <>
-         <div>
-         
-        </div>
         <div className="search-div">
           <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
           />
@@ -153,7 +150,7 @@ function MyVerticallyCenteredModal(props) {
         textAlign="left"
       >
         <Modal.Header closeButton>
-          <h3>Create Community</h3>
+          <h3>Create a Community</h3>
         </Modal.Header>
         <Modal.Body>
             <CreateASoc/>

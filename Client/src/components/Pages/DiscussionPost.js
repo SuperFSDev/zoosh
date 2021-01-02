@@ -18,6 +18,7 @@ export default class DiscussionPost extends React.Component {
     super(props);
     this.state = {
       discussion: '',
+      comments:[],
       societies: [],
     };
   }
@@ -79,11 +80,12 @@ export default class DiscussionPost extends React.Component {
               <Badge variant="secondary">{this.state.discussion.society}</Badge>
 
               <p>{this.state.discussion.content}</p>
-              <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/>
+              <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/><br/>
 
                 {/* Discussion Post interaction options */}
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={25} /> Upvote</button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={25} /> </button></span>
+                <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{this.state.discussion.user}</button></span></a>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /> Upvote</button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> </button></span>
                 <Dropdown >
                   <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                     <FaShare/> Share
@@ -107,8 +109,11 @@ export default class DiscussionPost extends React.Component {
                   />
                     <button className="standard-button">Post Comment</button>
                 </Form>   
-          </div>    
+          </div>
           <div className="comment-container">
+          <hr/>
+          <h4>{this.state.comments.length} Comments</h4>
+
             <div className="users-comment">
               <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
                  <p>hello</p>  

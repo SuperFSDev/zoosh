@@ -59,6 +59,7 @@ class Feed extends React.Component {
           this.setState({
             FollowingID: response.data.user.following,
             score: response.data.user.score,  
+            pic: response.data.user.pic,  
           })
   
         })
@@ -207,37 +208,26 @@ render(){
           <div className="post-option-btns">
             <div className="options-container">
                       <button className="community-btn-active" href="/home">Feed</button>
-                      <a href="/discussions"><button className="community-btn">Community</button></a>
+                      <a href="/discussions"><button className="community-btn">Discussions</button></a>
                       <button className="community-btn">Media</button>
                       <button className="community-btn">Links</button>
             </div>        
           </div>
   
 
-          <div className="global-feed">
+          <div className="discussion-feed">
             {/* POST TAB */}
               {this.state.posts.sort((a, b) => b.time - a.time).map((post,index) => (  // sorts the posts by the time posted
                     <div>
                    
-                      <Card className='feedPost'>
+                      <div className='feedPost'>
 
-                        <Card.Body>
-                          <div className="-u-prof-stats" id="social-user">
+                        <div>
+                          <div className="fontPost">
+                            {post.post} <br /><br/>
                             <span className="username-wrapper">
-                              <div class="dropdown3">
-                                <a href={"/u/?id=" + post.user_id}><Image src={post.pic} className="user-image-mini" roundedCircle />{post.user}</a>
-                                <div class="dropdown-content3">
-                                  <a href={"/u/?id=" + post.user_id}>{post.user}</a>
-                                  <button className="forum-follow-btn">Follow</button>
-                                  {/* <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a> */}
-                                </div>
-                              </div><br/>
                               <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                             </span><br />
-                          </div>
-
-                          <Card.Text className="fontPost">
-                            {post.post} <br />
 
                             {/* <div className="-user-tag">
                               {post.tags.map(tag => (
@@ -246,9 +236,11 @@ render(){
                                 </div>
                               ))}
                             </div> */}
-                          </Card.Text>
+                          </div>
                           <div>
                             <div>
+
+                              <a href={"/u/?id="+post.user_id}><span className="voting-btn"><button className="standard-option-btn-post" ><Image src={post.user.pic} className="user-image-mini" roundedCircle />{post.user} <b className="user-score-post-tag">1,231</b></button></span></a>
                               <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
                               <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span>
                               <a href={"/p/?id=" + post.Post_id} >
@@ -263,7 +255,7 @@ render(){
                                     <Dropdown.Menu>
                                       <Dropdown.Item href="#/action-1"><AiOutlineLink/> Copy URL</Dropdown.Item>
                                     </Dropdown.Menu>
-                                  </Dropdown>
+                                  </Dropdown><br/><br/>
                                 
                               {/* <PostLinks /> */}
                               {/* <div className='post-interactions'>
@@ -289,11 +281,12 @@ render(){
                             </div>
                           </div>
                          
-                        </Card.Body>
+                        </div>
                         {this.CheckPost(post.user_id,post.Post_id)}
-                      </Card>
+                      </div>
                     </div>
                   ))}
+
                 
                 </div>
               </div>
