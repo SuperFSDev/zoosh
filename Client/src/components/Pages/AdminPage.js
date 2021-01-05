@@ -212,7 +212,7 @@ export default class AdminPage extends React.Component {
     render(){
       var{users} = this.state;
       var { events } = this.state;
-
+      var title = this.state.society.name + " - Website"
       let i = 0;
         return (
           <div>
@@ -222,7 +222,7 @@ export default class AdminPage extends React.Component {
                       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                      <title>Community</title>
+                      <title>{title}</title>
 
                       {/* LINKS */}
                       

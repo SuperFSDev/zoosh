@@ -8,8 +8,10 @@ import History from './ProfilePostHistory'
 import { RiCake2Fill } from 'react-icons/ri'
 import { MdSchool } from 'react-icons/md'
 import {Helmet} from 'react-helmet'
-import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle} from 'react-icons/fa'
+import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle,FaUserFriends} from 'react-icons/fa'
+import {BiCommentDetail} from 'react-icons/bi'
 import moment from 'moment'
+import {TiLocation} from 'react-icons/ti'
 
 export default class UserProfile extends React.Component {
 
@@ -110,7 +112,7 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
-    
+    var title = this.state.user.fullname + " - Website"
     var user = JSON.parse(localStorage.getItem('user'));
     var pp = user.pic;
 
@@ -122,7 +124,7 @@ export default class UserProfile extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>{this.state.user.fullname}</title>
+                <title>{title}</title>
 
                 {/* LINKS */}
                 
@@ -133,82 +135,34 @@ export default class UserProfile extends React.Component {
 
 
         <div className="containerFeedMiddleProfile">
-          {/* <div className="profile-card">
-            <div id="social">
-              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-              <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
-            </div>
-            <div>
-              <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-              <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
-
-            </div>
-          </div> */}
-
           <div className="profile-card">
           </div>
           <div className="user-profile-about">
             <div id="social">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
-                <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                <button className="standard-button" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2><br/>
+                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
               </div>
               </div>
               {/* {this.state.user.bio} */}
             </div>
-          <div className="user-profile-about">
-
-              {/* Users Name */}
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
-                <span className="d-inline-block">
-                <p><SiAboutDotMe /> </p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.fullname}</b><br/>
-              
-              {/* Users College */}
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
-                <span className="d-inline-block">
-                  <p><MdSchool /></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.college}</b><br/>
-
-              {/* Users Course Details */}
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
-                <span className="d-inline-block">
-                <p><FaBook/></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.course}</b><br/>
-
-              {/* User Joined Date */}
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
-                <span className="d-inline-block">
-                <p><RiCake2Fill />  </p>
-                </span>
-              </OverlayTrigger>
-              Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b>
-                          
-            </div>
 
           <div className="user-profile-about">
-              <h4>Stats</h4><br/>
               <section className="badge-container">
                 <div className="stats-item-1">
                   <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegGem size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
+                  <span><FaUserFriends size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
                 </div>
                 <div className="stats-item-1">
                   <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
                 </div>
                 <br/>
                 <div className="stats-item-1">
-                  <span><FaRegCommentAlt size={30}/> <b> {this.state.posts.length}</b><br/>Posts</span>
+                  <span><BiCommentDetail size={30}/> <b> {this.state.posts.length}</b><br/>Posts</span>
                 </div>
                 <div className="stats-item-1">
                   <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
@@ -218,6 +172,30 @@ export default class UserProfile extends React.Component {
                 </div>
               </section>
             </div>
+{/* 
+            <div className="user-profile-about">
+
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
+                <span className="d-inline-block">
+                <p><SiAboutDotMe /> </p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.fullname}</b><br/>
+              
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
+                <span className="d-inline-block">
+                  <p><MdSchool /></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.college}</b><br/>
+
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
+                <span className="d-inline-block">
+                <p><FaBook/></p>
+                </span>
+              </OverlayTrigger>
+              <b className="user-details">{this.state.user.course}</b><br/>
+            </div> */}
 
 
           <div className="user-profile-about">
@@ -244,7 +222,6 @@ export default class UserProfile extends React.Component {
                           </span>
                   </OverlayTrigger>  
                 </div>
-                <br></br><a href="#" id="dropdown-basic"><p>View All</p></a>
               </section>
             </div>
 
@@ -253,11 +230,33 @@ export default class UserProfile extends React.Component {
             <h4>Communities</h4>
        
             {this.state.societies.map(society=>
-                  <li className="community-members-item-profile"><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
+                  <li className="community-members-item-profile">
+                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
+                    <b>Admin</b>
+                  </li>)}
           </div>
         </div>
 
         <div className="containerFeedRightUser">
+        <div  className="top-posts-profile-container-2">
+          <div className="user-profile-overview">
+          <span><p>{this.state.user.bio}</p></span>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
+                <span className="d-inline-block">
+                <p id="icons"><RiCake2Fill size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
+
+              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
+                <span className="d-inline-block" >
+                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                 Galway, Ireland.
+          </div>
+              
+        </div><br/>
           <div  className="top-posts-profile-container-2">
             <h3>Top Posts</h3>
             <History />

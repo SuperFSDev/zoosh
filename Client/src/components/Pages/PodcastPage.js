@@ -97,7 +97,7 @@ export default class PodcastPage extends React.Component {
                       </Dropdown>
                   </div>
                   <div className="create-soc-div"><br/>
-                    <a href={this.state.podcast.link} target="_blank"><button className="podcast-button"><CgLoadbarSound size={30}/> Listen to Podcast</button></a>
+                    <a href={this.state.podcast.link} target="_blank"><button className="btn-leaderboard"><CgLoadbarSound size={30}/> Listen to Podcast</button></a>
 
                   </div>
               </div>

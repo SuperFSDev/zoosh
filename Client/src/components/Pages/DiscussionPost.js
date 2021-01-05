@@ -94,10 +94,8 @@ export default class DiscussionPost extends React.Component {
                     <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-          </div>
-
-          {/* Comment Section of Discussion Post */}
-          <div className="comment-container">
+                
+            <div className="comment-container">
               <hr/>  
                 <Form>
                   <input            
@@ -121,6 +119,10 @@ export default class DiscussionPost extends React.Component {
                                            
           </div>
         </div>   
+          </div>
+
+          {/* Comment Section of Discussion Post */}
+          
 
        
         </>

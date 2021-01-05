@@ -63,7 +63,7 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
                       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                      <title>The Square</title>
+                      <title>Search - Users</title>
 
                       {/* LINKS */}
                       <link rel="canonical" href="http://mysite.com/example" />
@@ -77,45 +77,15 @@ import {Image,OverlayTrigger,Tooltip} from 'react-bootstrap'
           <div className="UsersLayout">
             {users.map(user => (
               <div key={user.id}>
-                <div className="users-list-items">
-                  <a href={"/u/?id=" +user._id} className="comm-link"><h5>{user.fullname}</h5></a>
+                <a href={"/u/?id=" +user._id} className="comm-link"><div className="users-list-items">
+                  <h5>{user.fullname}</h5>
                     <Image src={user.pic} className="user-image-square" roundedCircle/><br/><br/>
                     <b className="user-score">{user.score}</b>
-                    {/* <p>{society.category}</p>                     */}
-                    <div >
-                      <span>
-                        {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a> */}
-                      </span>
-                    </div>
-                    {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
-                </div>
+                </div></a>
               </div>
             ))}
           </div>
           </div>
-
-          {/* <div className="container-square">
-            <h1 className="c-s-header" id="users">The Community</h1><br/>
-
-            <div className="search-div-square">
-                <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category"/>
-            </div>
-              <div className="">
-                {users.map(user=>  ( 
-                  <div key={user.id}>
-                    <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><p className="leaderboard-item">
-                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.fullname}</Tooltip>}>
-                        <span className="d-inline-block">
-                            <Image src={user.pic} className="user-image-square" roundedCircle/>
-                        </span>
-                        </OverlayTrigger>
-                        <a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> 
-                        <b className="user-score">{ user.score}</b>
-                    </p></a>   
-                  </div>
-                ))}    
-              </div>
-          </div> */}
       </>
         );
       }

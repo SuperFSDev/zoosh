@@ -169,6 +169,7 @@ export default class CommunityPage extends React.Component {
           
       
     render(){
+      var title = this.state.society.name + " - Website"
       var{users} = this.state;
       var { events } = this.state;
 
@@ -191,6 +192,19 @@ export default class CommunityPage extends React.Component {
 
       return (
         <div>
+          {/* REACTJS HELMET */}
+          <Helmet>
+                  <meta charSet="utf-8" />
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <title>{title}</title>
+
+                  {/* LINKS */}
+                  <link rel="canonical" href="http://mysite.com/example" />
+                  <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                  <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+          </Helmet> 
           
             <div className="containerFeedLeftCommunity">
               <div className="community-card">
@@ -249,7 +263,7 @@ export default class CommunityPage extends React.Component {
                           <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
                           <p>{user.fullname} <FaFingerprint/> </p>
                           {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
+                          <button className="btn-leaderboard">Follow</button><br/>
                           {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
                         </div></a>
                       ))}
@@ -263,7 +277,7 @@ export default class CommunityPage extends React.Component {
                           <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
                           <p>{user.fullname} </p>
                           {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
+                          <button className="btn-leaderboard">Follow</button><br/>
                           {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
                         </div></a>
                       ))}
@@ -277,7 +291,7 @@ export default class CommunityPage extends React.Component {
                           <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
                           <p>{user.fullname} </p>
                           {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
+                          <button className="btn-leaderboard">Follow</button><br/>
                           {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
                         </div></a>
                       ))}

@@ -74,11 +74,9 @@ export default class GlobalPost extends React.Component {
 
                 {/* Discussion Post interaction options */}
                 <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /> Upvote</button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> Downvote</button></span>
-          </div>
-
-          {/* Comment Section of Discussion Post */}
-          <div className="comment-container">
+                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> Downvote</button></span> 
+              
+              <div className="comment-container">
               <hr/>  
                 <Form>
                   <input            
@@ -100,6 +98,10 @@ export default class GlobalPost extends React.Component {
           </div>
           
         </div>   
+          </div>
+
+          {/* Comment Section of Discussion Post */}
+         
         </>
       );
     }

@@ -220,7 +220,7 @@ export default class EditProfile extends React.Component {
   render() {
     return (
       <div>
-        <a href="/settings"><button className="standard-button">Edit Profile</button></a>
+        <a href="/settings"><button className="btn-leaderboard">Edit Profile</button></a>
 
         {/* <button className="edit-profile-btn" onClick={this.handleClickOpen}><BiEdit size={25} /></button> */}
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">

@@ -30,7 +30,7 @@ import TheSquare from './components/Pages/TheSquare';
 import Landing from './components/Pages/Landing/Landing'
 import Manifesto from './components/Pages/Landing/Manifesto'
 import Contact from './components/Pages/Landing/Contact'
-
+import Two from './components/Pages/Two'
 class App extends React.Component {
   render(){
     const DefaultRoutes = () => {
@@ -56,7 +56,7 @@ class App extends React.Component {
               <Route path="/events" component={Events}/>
               <Route path="/podcasts" component={Podcasts}/>
               <Route path="/users/" component={TheSquare}/>
-
+              <Route path="/twooo" component={Two}/>
 
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>

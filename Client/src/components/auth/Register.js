@@ -13,11 +13,13 @@ class Register extends React.Component {
     this.state = {
       fullname: '',
       email: '',
+      // username: '',
       password: '',
       retype: ''
     };
 
     this.onChangeFullname = this.onChangeFullname.bind(this);
+    // this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRetype = this.onChangeRetype.bind(this);
@@ -29,6 +31,12 @@ class Register extends React.Component {
       fullname: e.target.value
     });
   }
+
+  // onChangeUsername(e) {
+  //   this.setState({
+  //     username: e.target.value
+  //   });
+  // }
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
@@ -51,6 +59,7 @@ class Register extends React.Component {
 
     const newUser = {
       fullname: this.state.fullname,
+      // username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
@@ -77,6 +86,7 @@ class Register extends React.Component {
 
     this.setState({
       fullname: '',
+      username: '',
       email: '',
       password: '',
       retype: ''
@@ -102,6 +112,11 @@ class Register extends React.Component {
               <div class="register-card">
               <br/>
               <Form onSubmit={this.onSubmit}>
+                {/* <Form.Group controlId="formBasicUsername">
+                  <TextField className="textfield-name" type="text" placeholder="Enter your Username" required value={this.state.username} onChange={this.onChangeUsername} id="outlined-basic" label="Username" variant="outlined" />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group> */}
                 <Form.Group controlId="formBasicUsername">
                   <TextField className="textfield-name" type="text" placeholder="Enter your Full Name" required value={this.state.fullname} onChange={this.onChangeFullname} id="outlined-basic" label="Full Name" variant="outlined" />
                   {/* <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} /> */}

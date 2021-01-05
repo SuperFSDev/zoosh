@@ -7,6 +7,7 @@ import {FcCalendar,FcHome,FcHeadset,FcAreaChart,FcCollaboration,FcComments,FcVoi
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import {Badge} from 'react-bootstrap'
+import {RiDashboardLine,RiCalendarLine,RiNumbersLine,RiTeamLine,RiMicLine,RiDiscussLine} from 'react-icons/ri'
 
 export default class Options extends React.Component {
   constructor(props) {
@@ -58,43 +59,36 @@ render() {
                         <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed"> {fullname} <b className="user-score">{this.state.user.score}</b></p>
                     </div></a>
                     <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                        <FcHome size={35}/> <b>Home</b>
+                        <RiDashboardLine size={30}/> <b className="feed-option-item">Feed</b>
                     </div></a>
-                    <div>
-                        {/* <FeedAccordion/> */}
-                        <Accordion className="accordion-cs">
-                            <AccordionSummary
-                                aria-controls="panel1a-content"
-                            >
-                            <Typography className="accordion-title"><FcCollaboration size={35}/> <b>Communities</b></Typography>
-                            </AccordionSummary>
-                            <AccordionDetails className="accordion-items">
-                                <Typography>
-                                {this.state.socs.map(soc=>
-                                  <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
-                                <hr/>
-                                <a href="/communities"  className="community-btn" id="dropdown-basic">See All Communities</a><br/>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                    </div>
+                    <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                        <RiTeamLine size={30}/> <b className="feed-option-item">Communities</b>
+                    </div></a>
+              
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                        <FcComments size={35}/> <b>Forums</b>
+                        <RiDiscussLine size={30}/> <b className="feed-option-item">Forums</b>
                     </div></a>
                     <a href="/events" className="feed-option-redirects"><div className="option-container">
-                        <FcCalendar size={35}/> <b>Events</b>
+                        <RiCalendarLine size={30}/> <b className="feed-option-item">Events</b>
                     </div></a>
                     <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                        <FcHeadset size={35}/> <b>Podcasts</b>
+                        <RiMicLine size={30}/> <b className="feed-option-item">Podcasts</b>
                     </div></a>
                     {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
                         <FcVoicePresentation size={35}/> <b>Elections</b> <Badge variant="success">New</Badge>
                     </div></a> */}
                     
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <FcAreaChart size={35}/> <b>Leaderboard</b>
-                    </div></a>
+                        <RiNumbersLine size={30}/> <b className="feed-option-item">Leaderboard</b>
+                    </div></a><hr/>
+                    
+                    <div className="option-container">
+                        <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                        {this.state.socs.map(soc=>
+                                  <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                    </div>
                 </div>
+                
         </div>
         </div>
     );

@@ -11,6 +11,7 @@ import {Helmet} from 'react-helmet'
 import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle} from 'react-icons/fa'
 import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
+import {TiLocation} from 'react-icons/ti'
 
 export default class MyProfile extends React.Component {
 
@@ -60,6 +61,9 @@ export default class MyProfile extends React.Component {
   }
 
   render(){
+
+    var title = this.state.user.fullname + " - Website"
+
     return (
       <>
       {/* REACTJS HELMET */}
@@ -68,7 +72,7 @@ export default class MyProfile extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>{this.state.user.fullname}</title>
+                <title>{title}</title>
 
                 {/* LINKS */}
                 
@@ -85,10 +89,37 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-about">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2>
+                <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2><br/>
                 <EditProfile/><br/>
               </div>
+              
             </div>
+
+            <div className="user-profile-about">
+              <section className="badge-container">
+                <div className="stats-item-1">
+                  <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegGem size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
+                </div>
+                <br/>
+                <div className="stats-item-1">
+                  <span><FaRegCommentAlt size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
+                </div>
+                <div className="stats-item-1">
+                  <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
+                </div>
+                <div className="stats-item-1">
+                  <span><FaRegHeart size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
+                </div>
+              </section>
+          
+            </div>
+
             <div className="user-profile-about">
               {/* Users Name */}
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
@@ -112,42 +143,7 @@ export default class MyProfile extends React.Component {
                 <p><FaBook/></p>
                 </span>
               </OverlayTrigger>
-              <b className="user-details">{this.state.user.course}</b><br/>
-
-              {/* User Joined Date */}
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
-                <span className="d-inline-block">
-                <p><RiCake2Fill />  </p>
-                </span>
-              </OverlayTrigger>
-              Joined on <b >{moment(this.state.user.time).format("MMM Do, YYYY.")}</b>
-                          
-            </div>
-
-            <div className="user-profile-about">
-              <h4>Stats</h4><br/>
-              <section className="badge-container">
-                <div className="stats-item-1">
-                  <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
-                </div>
-                <div className="stats-item-1">
-                  <span><FaRegGem size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
-                </div>
-                <div className="stats-item-1">
-                  <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
-                </div>
-                <br/>
-                <div className="stats-item-1">
-                  <span><FaRegCommentAlt size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
-                </div>
-                <div className="stats-item-1">
-                  <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
-                </div>
-                <div className="stats-item-1">
-                  <span><FaRegHeart size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
-                </div>
-              </section>
-          
+              <b className="user-details">{this.state.user.course}</b><br/>        
             </div>
 
             <div className="user-profile-about">
@@ -174,19 +170,40 @@ export default class MyProfile extends React.Component {
                           </span>
                   </OverlayTrigger>  
                 </div>
-                <br></br><a href="#" id="dropdown-basic"><p >View All</p></a>
               </section>
             </div>
             
             <div className="user-profile-about">
             <h4>Communities <QuickOptions /></h4>
             {this.state.societies.map(society=>
-                  <li><b><a href={"/s/?id="+society}>{society}</a></b></li>)}<br/>
+                  <li className="community-members-item-profile">
+                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
+                    <b>Admin</b>
+                  </li>)}<br/>
             </div>
         </div>
         
 
         <div className="containerFeedRightProfile">
+        <div  className="top-posts-profile-container">
+          <div className="user-profile-overview">
+          <span><p>{this.state.user.bio}</p></span>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
+                <span className="d-inline-block">
+                <p id="icons"><RiCake2Fill size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
+
+              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
+                <span className="d-inline-block" >
+                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                 Galway, Ireland.
+          </div>
+              
+        </div>
           <div  className="top-posts-profile-container">
             <h3>Top Posts</h3>
             </div>
