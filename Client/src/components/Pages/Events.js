@@ -8,6 +8,7 @@ import {Modal} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
+import SkeletonEvent from '../Common/SkeletonUI/SkeletonEvent';
 
 export default class Events extends React.Component {
 
@@ -15,6 +16,7 @@ export default class Events extends React.Component {
     super(props);
     this.state = {
       events: [],
+      isLoading:true,
     };
   }
 
@@ -23,7 +25,10 @@ componentDidMount() {
 
     axios.get('http://localhost:4000/events/getEvents')
       .then((response) => {
-        this.setState({ events: response.data.events })
+        this.setState({ 
+          events: response.data.events,
+          isLoading:false, 
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +38,13 @@ componentDidMount() {
 
 render(){
   var { events } = this.state;
-
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonEvent/>
+      </div>
+    )
+  } else{
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -51,11 +62,11 @@ render(){
 
       <div className="containerFeedMiddle">
           <div className="global-feed">
-          <h1>Upcoming Events</h1>
+          <h3>Upcoming Events</h3>
 
           <div className="search-div-forum">
             {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for an Event " title="Type in a category"/><br/><br/>
+            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
           </div>
 
           <QuickEvent/>
@@ -84,6 +95,7 @@ render(){
       </div>
   </div>
   );
+}
 }
 }
 

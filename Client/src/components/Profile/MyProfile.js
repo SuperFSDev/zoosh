@@ -12,12 +12,15 @@ import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaR
 import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
 import {TiLocation} from 'react-icons/ti'
+import {BsGem,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
+import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 
 export default class MyProfile extends React.Component {
 
   constructor(props) {
       super(props);
       this.state = {
+          isLoading: false,
           id: '',
           user: '',
           college:'',
@@ -50,7 +53,8 @@ export default class MyProfile extends React.Component {
               following: response.data.user.following,
               societies: response.data.user.societies,
               posts:response.data.user.posts,
-              badges:response.data.user.badges
+              badges:response.data.user.badges,
+              
 
             })
           })
@@ -63,6 +67,14 @@ export default class MyProfile extends React.Component {
   render(){
 
     var title = this.state.user.fullname + " - Website"
+
+    if(this.state.isLoading){
+      return (
+        <div>
+          <SkeletonProfile/>
+        </div>
+      )
+    } else{
 
     return (
       <>
@@ -98,23 +110,23 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
+                  <BsGem size={30}/> <b>{this.state.user.score}</b><br/>Score
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegGem size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
+                  <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
+                  <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
                 </div>
                 <br/>
                 <div className="stats-item-1">
-                  <span><FaRegCommentAlt size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
+                  <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
                 </div>
                 <div className="stats-item-1">
-                  <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
+                  <BsQuestionSquare size={30}/> <b>{this.state.followers.length}</b><br/>Questions
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegHeart size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
+                  <span><BsShieldShaded size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
                 </div>
               </section>
           
@@ -147,7 +159,7 @@ export default class MyProfile extends React.Component {
             </div>
 
             <div className="user-profile-about">
-              <h4>Badges</h4>
+              <h5>Badges</h5>
               <section className="badge-container">
                 <div className="badge-item-1">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
@@ -174,7 +186,7 @@ export default class MyProfile extends React.Component {
             </div>
             
             <div className="user-profile-about">
-            <h4>Communities <QuickOptions /></h4>
+            <h5>Communities <QuickOptions /></h5>
             {this.state.societies.map(society=>
                   <li className="community-members-item-profile">
                     <b><a href={"/s/?id="+society}>{society}</a></b><br/>
@@ -205,7 +217,7 @@ export default class MyProfile extends React.Component {
               
         </div>
           <div  className="top-posts-profile-container">
-            <h3>Top Posts</h3>
+            <h5>Top Posts</h5>
             </div>
                 {this.state.posts.reverse().map(post=>  (
                 <div key={this.state.user._id}>  
@@ -224,6 +236,7 @@ export default class MyProfile extends React.Component {
     );
   }
   
+ }
 }
 
 function ProfilePicture() {

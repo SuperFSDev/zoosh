@@ -8,7 +8,7 @@ import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
 import AskQuestion from '../Common/AskQuestion'
 import Avatar from '@material-ui/core/Avatar';
-
+import SkeletonForumPage from '../Common/SkeletonUI/SkeletonForumPage'
 export default class ForumPage extends React.Component {
 
   constructor(props) {
@@ -16,7 +16,8 @@ export default class ForumPage extends React.Component {
     this.state = {
       forum: [],
       users:[],
-      user:''
+      user:'',
+      isLoading:true,
     };
   }
 
@@ -36,6 +37,7 @@ export default class ForumPage extends React.Component {
         .then((response) => {
           this.setState({ forum: response.data.forum,
             users: response.data.forum.users, 
+            isLoading:false
           })
         })
         .catch((error) => {
@@ -60,6 +62,14 @@ export default class ForumPage extends React.Component {
 
     }
     render(){
+
+      if(this.state.isLoading){
+        return (
+          <div>
+            <SkeletonForumPage/>
+          </div>
+          )
+      } else{
       return (
          <div>
             {/* REACTJS HELMET */}
@@ -128,6 +138,7 @@ export default class ForumPage extends React.Component {
       </div>
       );
      }
+}
 }
 
 //  FUNCTIONS TO OPEN EVENT MODAL

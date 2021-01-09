@@ -12,14 +12,15 @@ import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaR
 import {BiCommentDetail} from 'react-icons/bi'
 import moment from 'moment'
 import {TiLocation} from 'react-icons/ti'
+import {BsGem,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
+import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 
 export default class UserProfile extends React.Component {
-
-  
 
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       user: '',
       isDisabled: false,
       followers: [],
@@ -29,9 +30,33 @@ export default class UserProfile extends React.Component {
       badges:[],
       time:'',
       showFollow:false,
-      showUnfollow:false
+      showUnfollow:false,
+      followBtn:false,
+      unfollowBtn:false,
     };
+
     this.unfollow = this.unfollow.bind(this);
+
+    this.followBtn = this.followBtn.bind(this);
+    this.unfollowBtn = this.unfollowBtn.bind(this);
+
+
+  }
+
+  followBtn(event) {
+    event.preventDefault();
+    
+    this.setState({ followBtn: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
+  }
+
+  unfollowBtn(event) {
+    event.preventDefault();
+    
+    this.setState({ unfollowBtn: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
   }
 
   componentDidMount() {
@@ -53,10 +78,7 @@ export default class UserProfile extends React.Component {
                         societies: response.data.user.societies,
                         posts: response.data.user.posts,
                         badges: response.data.user.badges,
-
-
-
-
+                        isLoading: false,
         })
       })
       .catch((error) => {
@@ -116,6 +138,14 @@ export default class UserProfile extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     var pp = user.pic;
 
+    if(this.state.isLoading){
+      return (
+        <div>
+          <SkeletonProfile/>
+        </div>
+      )
+    } else{
+
     return (
       <>
       {/* REACTJS HELMET */}
@@ -149,28 +179,29 @@ export default class UserProfile extends React.Component {
               {/* {this.state.user.bio} */}
             </div>
 
-          <div className="user-profile-about">
+            <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <FaRegLemon size={30}/> <b>{this.state.user.score}</b><br/>Score
+                  <BsGem size={30}/> <b>{this.state.user.score}</b><br/>Score
                 </div>
                 <div className="stats-item-1">
-                  <span><FaUserFriends size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
+                  <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
+                  <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
                 </div>
                 <br/>
                 <div className="stats-item-1">
-                  <span><BiCommentDetail size={30}/> <b> {this.state.posts.length}</b><br/>Posts</span>
+                  <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
                 </div>
                 <div className="stats-item-1">
-                  <FaRegLightbulb size={30}/> <b>{this.state.followers.length}</b><br/>Questions
+                  <BsQuestionSquare size={30}/> <b>{this.state.followers.length}</b><br/>Questions
                 </div>
                 <div className="stats-item-1">
-                  <span><FaRegHeart size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
+                  <span><BsShieldShaded size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
                 </div>
               </section>
+          
             </div>
 {/* 
             <div className="user-profile-about">
@@ -199,7 +230,7 @@ export default class UserProfile extends React.Component {
 
 
           <div className="user-profile-about">
-              <h4>Badges</h4>
+              <h5>Badges</h5>
               <section className="badge-container">
                 <div className="badge-item-1">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
@@ -227,7 +258,7 @@ export default class UserProfile extends React.Component {
 
 
           <div className="user-profile-about">
-            <h4>Communities</h4>
+            <h5>Communities</h5>
        
             {this.state.societies.map(society=>
                   <li className="community-members-item-profile">
@@ -258,7 +289,7 @@ export default class UserProfile extends React.Component {
               
         </div><br/>
           <div  className="top-posts-profile-container-2">
-            <h3>Top Posts</h3>
+            <h5>Top Posts</h5>
             <History />
           </div>
           
@@ -266,6 +297,7 @@ export default class UserProfile extends React.Component {
       </>
     );
   }
+ }
 }
 
 

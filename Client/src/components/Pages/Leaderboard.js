@@ -5,8 +5,19 @@ import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image} from 'react-bootstrap'
+import SkeletonLeaderboard from '../Common/SkeletonUI/SkeletonLeaderboard';
 
 export default class Two extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      societies:[],
+      users:[],
+      searchValue:'',
+      isLoading:true,
+    };
+  }
 
     componentDidMount() {
         document.body.style.backgroundColor = "#f0f2f5";
@@ -21,7 +32,7 @@ export default class Two extends React.Component {
   
         axios.get('http://localhost:4000/users/getUsers')
         .then((response)=>{
-            this.setState({users: response.data.users})
+            this.setState({users: response.data.users,isLoading:false,})
         })
         .catch((error)=>{
             console.log(error);
@@ -29,14 +40,7 @@ export default class Two extends React.Component {
       
       
       }
-      constructor(props) {
-        super(props);
-        this.state = {
-          societies:[],
-          users:[],
-          searchValue:''
-        };
-      }
+  
       updateSearch(event){
         this.setState({searchValue: event.target.value.substr(0,20)});
       }
@@ -57,7 +61,13 @@ render(){
       
         );
 
-
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonLeaderboard/>
+      </div>
+      )
+  } else{
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -124,5 +134,6 @@ render(){
       </div>
   </div>
   );
+}
 }
 }

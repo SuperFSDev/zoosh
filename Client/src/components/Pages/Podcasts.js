@@ -10,6 +10,7 @@ import Podcast from '../Common/CreatePodcast'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import {pod} from '../../images/podcasts.jpg'
+import SkeletonPodcast from '../Common/SkeletonUI/SkeletonPodcast'
 
 export default class Podcasts extends React.Component {
 
@@ -21,6 +22,7 @@ constructor(props) {
       following: [],
       socs:[],
       podcasts: [],
+      isLoading:true,
   };
 }
 
@@ -48,7 +50,10 @@ componentDidMount() {
 
       axios.get('http://localhost:4000/podcasts/GetPodcasts')
       .then((response) => {
-        this.setState({ podcasts: response.data.podcasts })
+        this.setState({ 
+          podcasts: response.data.podcasts,
+          isLoading:false, 
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -66,7 +71,13 @@ render(){
   {
       var fullname = user.fullname;
   }
-
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonPodcast/>
+      </div>
+    )
+  } else{
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -84,7 +95,7 @@ render(){
 
       <div className="containerFeedMiddle">
           <div className="global-feed">
-          <h1>Podcasts</h1>
+          <h3>Podcasts</h3>
           <Image src={pod} />
           <QuickEvent/>
           {/* <div className="search-div-forum">
@@ -93,7 +104,7 @@ render(){
           </div> */}
             <div className="spacing"></div>
             <div>
-            <h1>Featured Podcasts</h1>
+            <h3>Featured Podcasts</h3>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
               <div key={podcast._id}>
@@ -115,7 +126,7 @@ render(){
 
             <div className="spacing"></div>
 
-            <h1>Top Podcasts</h1>
+            <h3>Top Podcasts</h3>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
               <div key={podcast._id}>
@@ -137,7 +148,7 @@ render(){
 
             <div className="spacing"></div>
 
-            <h1>All Podcasts</h1>
+            <h3>All Podcasts</h3>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
               <div key={podcast._id}>
@@ -161,6 +172,7 @@ render(){
       </div>
   </div>
   );
+}
 }
 }
 

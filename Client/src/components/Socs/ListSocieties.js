@@ -10,32 +10,37 @@ import moment from 'moment'
 import {Modal ,OverlayTrigger, Tooltip} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
+import SkeletonCommunities from '../Common/SkeletonUI/SkeletonCommunities';
 
 export default class ListSocieties extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      societies: [],
+      searchValue: '',
+      filterBy: '',
+      isLoading: true,
+    };
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
+  }
+
 
     componentDidMount() {
         document.body.style.backgroundColor = "#f0f2f5";
     
         axios.get('http://localhost:4000/societies/getSocieties')
           .then((response) => {
-            this.setState({ societies: response.data.societies })
+            this.setState({ 
+              societies: response.data.societies,
+              isLoading: false,
+             })
           })
           .catch((error) => {
             console.log(error);
           });
       }
-    
-    
-      constructor(props) {
-        super(props);
-        this.state = {
-          societies: [],
-          searchValue: '',
-          filterBy: ''
-        };
-        this.handleDropdownChange = this.handleDropdownChange.bind(this);
-      }
-    
+  
       updateSearch(event) {
         this.setState({ searchValue: event.target.value.substr(0, 20) });
       }
@@ -71,6 +76,13 @@ render(){
   
       );
 
+  if(this.state.isLoading){
+        return (
+          <div>
+            <SkeletonCommunities/>
+          </div>
+        )
+  } else{
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -88,7 +100,7 @@ render(){
 
       <div className="containerFeedMiddle">
           <div className="global-feed">
-              <h1>Communities</h1>
+              <h3>Communities</h3>
           <div className="search-div">
           <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
           />
@@ -133,6 +145,7 @@ render(){
       </div>
   </div>
   );
+}
 }
 }
 

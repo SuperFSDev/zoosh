@@ -13,7 +13,7 @@ import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import {FaFingerprint,FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
 import { TextField } from '@material-ui/core';
-
+import SkeletonCommunity from '../Common/SkeletonUI/SkeletonCommunity'
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -30,6 +30,7 @@ export default class CommunityPage extends React.Component {
       showQuestions:false,
       showFeed:true,
       showSocials: false,
+      isLoading:true,
 
     };
    
@@ -48,7 +49,8 @@ export default class CommunityPage extends React.Component {
         .then((response) => {
           this.setState({ society: response.data.society,
            users:response.data.society.users,
-           mods:response.data.society.mods})
+           mods:response.data.society.mods,
+           isLoading:true})
         })
         .catch((error) => {
           console.log(error);
@@ -187,7 +189,13 @@ export default class CommunityPage extends React.Component {
          
           );
       }
-
+      if(this.state.isLoading){
+        return (
+          <div>
+            <SkeletonCommunity/>
+          </div>
+        )
+      } 
       else{
 
       return (

@@ -5,6 +5,7 @@ import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 // import AddUserToForum from '../Profile/AddUserToForum'
 import { Helmet } from 'react-helmet'
+import SkeletonForum from '../Common/SkeletonUI/SkeletonForum';
 
 export default class Forum extends React.Component {
 
@@ -15,6 +16,7 @@ export default class Forum extends React.Component {
       searchValue: '',
       filterBy: '',
       user: '',
+      isLoading: true,
     };
   }
 
@@ -43,7 +45,10 @@ export default class Forum extends React.Component {
 
         axios.get('http://localhost:4000/forums/getForums')
           .then((response) => {
-            this.setState({ forums: response.data.forums })
+            this.setState({ 
+              forums: response.data.forums,
+              isLoading:false,
+             })
           })
           .catch((error) => {
             console.log(error);
@@ -74,7 +79,13 @@ render(){
     }
 
   );
-
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonForum/>
+      </div>
+    )
+  } else{
   return (
      <div>
         {/* REACTJS HELMET */}
@@ -96,7 +107,7 @@ render(){
 
       <div className="containerFeedMiddle">
         <div className="global-feed">
-        <h1>All Forums</h1>
+        <h3>All Forums</h3>
         <div className="search-div-forum">
           <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
         </div>
@@ -137,7 +148,8 @@ render(){
       </div>
   </div>
   );
-}
+  }
+ }
 }
 
 // Adding a User to forum to follow

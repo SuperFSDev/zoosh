@@ -4,13 +4,14 @@ import axios from 'axios';
 import ProfileUsername from '../Profile/ProfileUsername'
 import ProfilePicture from '../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
-import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import {  Dropdown } from 'react-bootstrap';
 import moment from 'moment'
 import { Form, Badge , Image} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 import {FaShare} from 'react-icons/fa'
-
+import {BsHeart,BsGem} from 'react-icons/bs'
+import { RiFlaskLine } from 'react-icons/ri';
+import SkeletonDiscussionPost from '../Common/SkeletonUI/SkeletonDiscussionPage'
 
 export default class DiscussionPost extends React.Component {
 
@@ -20,6 +21,7 @@ export default class DiscussionPost extends React.Component {
       discussion: '',
       comments:[],
       societies: [],
+      isLoading:true,
     };
   }
 
@@ -30,11 +32,13 @@ export default class DiscussionPost extends React.Component {
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
-          id: discussion_id
+          id: discussion_id,
+
         }
       })
         .then((response) => {
-          this.setState({ discussion: response.data.discussion })
+          this.setState({ discussion: response.data.discussion,
+            isLoading:false, })
         })
         .catch((error) => {
           console.log(error);
@@ -50,6 +54,14 @@ export default class DiscussionPost extends React.Component {
     }
 
     render() {
+
+      if(this.state.isLoading){
+        return (
+          <div>
+            <SkeletonDiscussionPost/>
+          </div>
+        )
+      } else{
       return (
         <>
           {/* REACTJS HELMET */}
@@ -84,8 +96,8 @@ export default class DiscussionPost extends React.Component {
 
                 {/* Discussion Post interaction options */}
                 <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{this.state.discussion.user}</button></span></a>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={20} /> Upvote</button></span>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> </button></span>
+                <span className="voting-btn"><button className="standard-option-btn-post"><BsGem size={20} /> Gem</button></span>
+                {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> </button></span> */}
                 <Dropdown >
                   <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                     <FaShare/> Share
@@ -129,6 +141,7 @@ export default class DiscussionPost extends React.Component {
       );
     }
   }
+}
 
   function ProfilePic() {
     var user = JSON.parse(localStorage.getItem('user'));

@@ -15,6 +15,7 @@ import { CgComment } from 'react-icons/cg'
 import Fab from '@material-ui/core/Fab';
 import QuickCreate from '../Common/QuickCreate'
 import {FaShare} from 'react-icons/fa'
+import SkeletonDiscussions from '../Common/SkeletonUI/SkeletonDiscussions'
 
 class Discussions extends React.Component {
 
@@ -22,6 +23,7 @@ class Discussions extends React.Component {
     super(props);
     this.state = {
       discussions: [],
+      isLoading: true,
       comments:[],
       time:'',
       toggle: false
@@ -33,7 +35,8 @@ class Discussions extends React.Component {
 
     axios.get('http://localhost:4000/discussions/getDiscussions')
       .then((response) => {
-        this.setState({ discussions: response.data.discussions })
+        this.setState({ discussions: response.data.discussions,
+          isLoading: false, })
       })
       .catch((error) => {
         console.log(error);
@@ -43,6 +46,13 @@ class Discussions extends React.Component {
 render(){
   var { discussions } = this.state;
 
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonDiscussions/>
+      </div>
+    )
+  } else{
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -129,6 +139,7 @@ render(){
       </div>
   </div>
   );
+}
 }
 }
 

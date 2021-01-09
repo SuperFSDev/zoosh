@@ -13,6 +13,7 @@ import {RiAddFill} from 'react-icons/ri'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import {FaFingerprint,FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
 import { TextField } from '@material-ui/core';
+import SkeletonAdminCommunity from '../Common/SkeletonUI/SkeletonAdminCommunity';
 
 export default class AdminPage extends React.Component {
 
@@ -31,6 +32,7 @@ export default class AdminPage extends React.Component {
       showQuestions:false,
       showFeed:true,
       showSocials: false,
+      isLoading:true,
     };
     this.onDeleteUser = this.onDeleteUser.bind(this);
     this.onMakeMod = this.onMakeMod.bind(this);
@@ -51,7 +53,7 @@ export default class AdminPage extends React.Component {
           this.setState({ society: response.data.society,
            users:response.data.society.users,
            score: response.data.society.score,  
-
+           isLoading:false,
            mods:response.data.society.mods})
         })
         .catch((error) => {
@@ -214,6 +216,13 @@ export default class AdminPage extends React.Component {
       var { events } = this.state;
       var title = this.state.society.name + " - Website"
       let i = 0;
+      if(this.state.isLoading){
+        return (
+          <div>
+            <SkeletonAdminCommunity/>
+          </div>
+        )
+      } else{
         return (
           <div>
             {/* REACTJS HELMET */}
@@ -432,6 +441,7 @@ export default class AdminPage extends React.Component {
         </div>
         );
     } 
+}
 }
 
 

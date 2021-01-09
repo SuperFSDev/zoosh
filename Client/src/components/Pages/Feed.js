@@ -23,6 +23,8 @@ import Fab from '@material-ui/core/Fab';
 import {FaShare} from 'react-icons/fa'
 import QuickCreate from '../Common/QuickCreate'
 import {AiOutlineLink} from 'react-icons/ai'
+import {BsLightning,BsHeart,BsGem} from 'react-icons/bs'
+import SkeletonFeed from '../Common/SkeletonUI/SkeletonFeed'
 
 var comment;
 
@@ -32,6 +34,7 @@ class Feed extends React.Component {
     super(props);
     this.state = {
       toggle: false,
+      isLoading: true,
       posts: [],
       score: [],
       comments:[],
@@ -92,6 +95,7 @@ class Feed extends React.Component {
         .then((response) => {
           this.setState({
             posts: this.state.posts.concat(response.data.user.posts),
+            isLoading: false,
           })
   
         })
@@ -177,6 +181,14 @@ class Feed extends React.Component {
 
 
 render(){
+
+  if(this.state.isLoading){
+    return (
+      <div>
+        <SkeletonFeed/>
+      </div>
+    )
+  } else{
   return (
      <div>
          {/* REACTJS HELMET */}
@@ -225,6 +237,7 @@ render(){
                         <div>
                           <div className="fontPost">
                             {post.post} <br /><br/>
+                            
                             <span className="username-wrapper">
                               <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
                             </span><br />
@@ -241,8 +254,8 @@ render(){
                             <div>
 
                               <a href={"/u/?id="+post.user_id}><span className="voting-btn"><button className="standard-option-btn-post" ><Image src={post.user.pic} className="user-image-mini" roundedCircle />{post.user} <b className="user-score-post-tag">1,231</b></button></span></a>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span>
+                              <span className="voting-btn"><button className="standard-option-btn-post"><BsGem size={22} /> Gem</button></span>
+                              {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span> */}
                               <a href={"/p/?id=" + post.Post_id} >
                                 <span className="voting-btn">
                                   <button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button> 
@@ -299,6 +312,7 @@ render(){
   </div>
   );
  }
+}
 }
 
 export default Feed;
