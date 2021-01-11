@@ -44,17 +44,15 @@ render(){
   return (
     <div>
       <div className="quick-options-container">
-        <div className="quick-options">
+      <a href="/new" className="quick-options-a"><div className="quick-options">
           <p><b>Post Something</b></p>
           <hr/>
-          <a href="/communities">
             <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/>
             <input
              className="quick-options-input"
              placeholder="What's on your mind?"
             />
-          </a>
-        </div>
+        </div> </a>
       </div>
     </div>
     

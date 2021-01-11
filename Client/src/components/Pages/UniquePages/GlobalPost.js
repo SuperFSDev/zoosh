@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../App.css';
-import ProfileUsername from '../Profile/ProfileUsername'
-import ProfilePicture from '../Profile/ProfilePicture'
+import '../../../App.css';
+import ProfileUsername from '../../Profile/ProfileUsername'
+import ProfilePicture from '../../Profile/ProfilePicture'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {BiSend,BiUpvote,BiDownvote} from 'react-icons/bi'

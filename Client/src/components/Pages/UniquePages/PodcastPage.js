@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../../App.css';
 import axios from 'axios';
 import {Dropdown} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
@@ -10,7 +10,7 @@ import {FaShare} from 'react-icons/fa'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import {AiOutlineLink} from 'react-icons/ai'
 import { RiFlaskLine } from 'react-icons/ri';
-import SkeletonPodcastPage from '../Common/SkeletonUI/SkeletonPodcastPage'
+import SkeletonPodcastPage from '../../Common/SkeletonUI/SkeletonPodcastPage'
 
 export default class PodcastPage extends React.Component {
 

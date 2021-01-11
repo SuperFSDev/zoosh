@@ -11,6 +11,7 @@ import axios from 'axios';
 import {IoIosSquareOutline,IoIosNotificationsOutline} from 'react-icons/io'
 import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegHandPeace, FaUserFriends} from 'react-icons/fa'
 import {FiSettings} from 'react-icons/fi'
+import {BsGear} from 'react-icons/bs'
 
 
 export default class NavBar extends React.Component {
@@ -151,6 +152,7 @@ render(){
               <div>
                 <a href="/users"><IoIosSquareOutline size={55} className="square" id="dropdown-basic" /></a>
                 <IoIosNotificationsOutline size={55} className="notify" id="dropdown-basic" onClick={this.showMenu}/>
+                <a href="/new"><button className="write-button">Write</button></a>
               </div>
             </div>           
               
@@ -237,7 +239,7 @@ render(){
                       <hr/>
                       <p className="contributor-item-profile">Score <b className="user-details-views">{this.state.user.score}</b><br/></p>
                       <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><FaUserFriends/> Following <b className="user-details-views">{this.state.following.length}</b></p></a>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><FiSettings/> Account Settings</p></a>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
                       <InviteFriend/>
                       <hr/>
                       <a href="/login" className="profile-navs">Logout</a>

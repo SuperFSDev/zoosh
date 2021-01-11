@@ -175,6 +175,7 @@ societies.post('/addMod', (req, res) => {  //delete user
 })
 
 
+// Function to Slugify
 
 
 module.exports = societies;

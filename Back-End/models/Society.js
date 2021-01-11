@@ -18,6 +18,7 @@ const SocietySchema = new Schema({
     mods:{type: Array, "default" : []},
     events: {type: Array, "default" : []},
     score:{type:Number , "default":0},
+    slugify:{type:String, unique: true},
     time:Date,
 
 })

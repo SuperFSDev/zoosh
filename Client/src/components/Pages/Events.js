@@ -68,8 +68,9 @@ render(){
             {/* <BsSearch/>  */}
             <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
           </div>
-
+          <br/>
           <QuickEvent/>
+          <br/>
             <div>
               <div className="EventSocietyLayout">
               {events.reverse().map(event => (

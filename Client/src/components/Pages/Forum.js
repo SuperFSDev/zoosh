@@ -13,6 +13,7 @@ export default class Forum extends React.Component {
     super(props);
     this.state = {
       forums: [],
+      users:[],
       searchValue: '',
       filterBy: '',
       user: '',
@@ -48,11 +49,24 @@ export default class Forum extends React.Component {
             this.setState({ 
               forums: response.data.forums,
               isLoading:false,
+
              })
           })
           .catch((error) => {
             console.log(error);
           });
+
+        axios.get('http://localhost:4000/forums/get-forum-page', {
+         
+          })
+            .then((response) => {
+              this.setState({ forum: response.data.forum,
+                users: response.data.forum.users, 
+              })
+            })
+            .catch((error) => {
+              console.log(error);
+            });
       }
 
       updateSearch(event) {
@@ -132,7 +146,6 @@ render(){
                 <div className="forum-item-title">
                     <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
                 </div>
-                <button className="standard-button" onClick={() => this.addForum(forum.name)}>Follow</button>
             </div></a>
                   <div >
               </div>

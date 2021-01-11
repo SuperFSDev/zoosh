@@ -12,7 +12,7 @@ import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaR
 import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
 import {TiLocation} from 'react-icons/ti'
-import {BsGem,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
+import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
 import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 
 export default class MyProfile extends React.Component {
@@ -110,7 +110,7 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <BsGem size={30}/> <b>{this.state.user.score}</b><br/>Score
+                  <BsHeart size={30}/> <b>{this.state.user.score}</b><br/>Score
                 </div>
                 <div className="stats-item-1">
                   <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>

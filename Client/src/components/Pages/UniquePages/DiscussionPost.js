@@ -1,8 +1,8 @@
-import React from 'react';
-import '../../App.css';
+import React, { useRef } from 'react';
+import '../../../App.css';
 import axios from 'axios';
-import ProfileUsername from '../Profile/ProfileUsername'
-import ProfilePicture from '../Profile/ProfilePicture'
+import ProfileUsername from '../../Profile/ProfileUsername'
+import ProfilePicture from '../../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
 import {  Dropdown } from 'react-bootstrap';
 import moment from 'moment'
@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {FaShare} from 'react-icons/fa'
 import {BsHeart,BsGem} from 'react-icons/bs'
 import { RiFlaskLine } from 'react-icons/ri';
-import SkeletonDiscussionPost from '../Common/SkeletonUI/SkeletonDiscussionPage'
+import SkeletonDiscussionPost from '../../Common/SkeletonUI/SkeletonDiscussionPage'
 
 export default class DiscussionPost extends React.Component {
 
@@ -95,8 +95,8 @@ export default class DiscussionPost extends React.Component {
               <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/><br/>
 
                 {/* Discussion Post interaction options */}
-                <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{this.state.discussion.user}</button></span></a>
-                <span className="voting-btn"><button className="standard-option-btn-post"><BsGem size={20} /> Gem</button></span>
+                <a href={"/u/?id=" + this.state.discussion.user._id}><span className="voting-btn"><button className="standard-option-btn-post" >{this.state.discussion.user}</button></span></a>
+                <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
                 {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> </button></span> */}
                 <Dropdown >
                   <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
@@ -106,9 +106,10 @@ export default class DiscussionPost extends React.Component {
                     <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
+                <hr/>
                 
             <div className="comment-container">
-              <hr/>  
+              {/* <hr/>  
                 <Form>
                   <input            
                     className="commentBox"
@@ -118,16 +119,16 @@ export default class DiscussionPost extends React.Component {
                     required
                   />
                     <button className="standard-button">Post Comment</button>
-                </Form>   
+                </Form>    */}
           </div>
           <div className="comment-container">
-          <hr/>
-          <h4>{this.state.comments.length} Comments</h4>
+          
+          <h4>Responses ({this.state.comments.length})</h4>
 
             <div className="users-comment">
               <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
                  <p>hello</p>  
-            </div>
+            </div><hr/>
                                            
           </div>
         </div>   

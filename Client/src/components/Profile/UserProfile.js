@@ -2,17 +2,13 @@ import React from 'react'
 import '../../App.css';
 import axios from 'axios';
 import {Image , OverlayTrigger, Tooltip} from 'react-bootstrap'
-import { SiAboutDotMe } from 'react-icons/si'
 import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
 import { RiCake2Fill } from 'react-icons/ri'
-import { MdSchool } from 'react-icons/md'
 import {Helmet} from 'react-helmet'
-import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle,FaUserFriends} from 'react-icons/fa'
-import {BiCommentDetail} from 'react-icons/bi'
 import moment from 'moment'
 import {TiLocation} from 'react-icons/ti'
-import {BsGem,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
+import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
 import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 
 export default class UserProfile extends React.Component {
@@ -22,7 +18,6 @@ export default class UserProfile extends React.Component {
     this.state = {
       isLoading: true,
       user: '',
-      isDisabled: false,
       followers: [],
       following: [],
       societies:[],
@@ -33,6 +28,7 @@ export default class UserProfile extends React.Component {
       showUnfollow:false,
       followBtn:false,
       unfollowBtn:false,
+      isUnfollowing:true,
     };
 
     this.unfollow = this.unfollow.bind(this);
@@ -47,7 +43,7 @@ export default class UserProfile extends React.Component {
     event.preventDefault();
     
     this.setState({ followBtn: true }, () => {
-      document.addEventListener('click', this.closeMenu);
+      document.addEventListener('click', this.closeMenu);      
     });
   }
 
@@ -65,7 +61,7 @@ export default class UserProfile extends React.Component {
     document.body.style.backgroundColor = "#f0f2f5";
 
 
-    axios.get('http://localhost:4000/users/get-user-details', {
+    axios.get(`http://localhost:4000/users/get-user-details`, {
       params: {
         id: user_id
       }
@@ -88,7 +84,7 @@ export default class UserProfile extends React.Component {
 
   followUser(user) {
     this.setState({
-      isDisabled: true
+      isUnfollowing:false,
     });
     addUserToFollow(user);
     console.info("Followed User")
@@ -97,6 +93,10 @@ export default class UserProfile extends React.Component {
   unfollow(user) {
 
     var getUser = JSON.parse(localStorage.getItem('user'))
+
+    this.setState({
+      isUnfollowing:true,
+    })
   
     const myUser = {
         user_id: getUser._id,
@@ -134,6 +134,7 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
+    var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
     var user = JSON.parse(localStorage.getItem('user'));
     var pp = user.pic;
@@ -144,8 +145,9 @@ export default class UserProfile extends React.Component {
           <SkeletonProfile/>
         </div>
       )
-    } else{
-
+    }
+    
+    else{
     return (
       <>
       {/* REACTJS HELMET */}
@@ -171,9 +173,16 @@ export default class UserProfile extends React.Component {
             <div id="social">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h2> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2><br/>
-                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                <h4> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b> </h4><br/>
+                {/* <b className="is-tutor"> Tutor</b> */}
+                {/* <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button> */}
+
+                {isUnfollowing ? (
+                  <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                ) : (
+                  <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                )}
               </div>
               </div>
               {/* {this.state.user.bio} */}
@@ -182,7 +191,7 @@ export default class UserProfile extends React.Component {
             <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <BsGem size={30}/> <b>{this.state.user.score}</b><br/>Score
+                  <BsHeart size={30}/> <b>{this.state.user.score}</b><br/>Score
                 </div>
                 <div className="stats-item-1">
                   <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>

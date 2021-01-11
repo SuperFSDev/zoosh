@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../../App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
@@ -7,7 +7,7 @@ import {FcCheckmark} from 'react-icons/fc'
 import {Dropdown} from 'react-bootstrap'
 import {FaShare} from 'react-icons/fa'
 import {AiOutlineLink} from 'react-icons/ai'
-import SkeletonEventsPage from '../Common/SkeletonUI/SkeletonEventsPage'
+import SkeletonEventsPage from '../../Common/SkeletonUI/SkeletonEventsPage'
 export default class EventsPage extends React.Component {
 
   constructor(props) {

@@ -73,7 +73,7 @@
 .comment-container{
   /* background:#393D46; */
   background:white;
-  padding:30px;
+  padding:10px;
 }
 
 .users-comment{
@@ -416,6 +416,28 @@
   transition: 0.15s;
 }
 
+.write-button{
+  width:auto;
+  font-size: 15px;
+  height:50px;
+  padding:10px;
+  margin-right:10px;
+  outline:none!important;
+  border:2px solid whitesmoke;
+  background:whitesmoke;
+  color:#8a6bf5;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.write-button:hover{
+  border:2px solid lightgray;
+  background:lightgray;
+  color:black;
+  transition: 0.2s;
+}
+
 .standard-button-remove{
   width:100px;
   height:40px;
@@ -517,19 +539,18 @@
 }
 
 .events-card{
-  padding-top:1rem;
-  width: 400px;
-  height:auto;
-  color: black;
   background:white;
-  margin-top:1rem;
-  padding-bottom:10px;
-  transition:0.2s;
-  margin-right:15px;
+  width:400px;
+  margin-right: 15px;
+  padding:20px;
+  height:auto;
+  margin-top: 10px;
   border-radius: 15px;
-  border:1px solid lightgray;
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+  border:1px solid white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
+
+.events-card:hover{border:1px solid lightgray!important;}
 
 .podcast-card{
   padding-top:1rem;
@@ -701,8 +722,8 @@
 .quick-options{
   background:white;
   padding:30px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   border-radius: 15px!important;
+  border:1px solid white;
 }
 
 .quick-options-input{
@@ -710,7 +731,14 @@
   outline:none!important;
 }
 
-.quick-options-container{margin-top:3.5rem;}
+.quick-options-container{
+  margin-top:3.5rem;
+}
+
+.quick-options:hover{
+  border:1px solid lightgray!important;
+  cursor: pointer;
+}
 
 .text-muted-society{
   background-color:#2488d8;
@@ -756,7 +784,7 @@
 .global-feed{
   margin-top: 60px;
   padding:50px;
-  width:1100px;
+  width:1100px!important;
   background-color: white;
   border-radius: 15px;
 }
@@ -796,9 +824,31 @@
   position: absolute;
   z-index: 1000;
   border-radius: 5px;
+
+  top: 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
+.Title-input{
+  border:none!important;
+  width:1000px;
+  height:100px;
+  font-size: 50px;
+  outline:none!important;
+}
+
+.quick-options-a, .quick-options-a:hover{
+  text-decoration: none!important;
+  color:black;
+}
+
+.Content-input{
+  border:none!important;
+  width:1000px;
+  height:500px;
+  font-size: 20px;
+  outline:none!important;
+}
 .searchFilter{
   width:500px!important;
   height:auto;
@@ -1070,20 +1120,24 @@ li{
   width:auto;
   background:white;
   padding:10px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   border-radius: 15px!important;
 }
 
 .community-card{
   background:white;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-  /* border:1px solid lightgray; */
-  /* border-radius: 5px; */
   height:auto;
   width:900px;
   padding:10px;
   border-radius: 15px;
 
+}
+
+.empty-feed-container{
+  margin-top: 10px;
+  width:auto;
+  background:white;
+  padding:10px;
+  border-radius: 15px!important;
 }
 
 .community-btn{
@@ -1927,7 +1981,7 @@ padding-left: 4rem;
   transition: 0.2s;
 }
 
-.standard-option-btn-post{
+.standard-option-btn-post, .standard-option-btn-post-hearts{
   border:none!important;
   padding:10px;
   background:white;
@@ -1940,7 +1994,17 @@ padding-left: 4rem;
   cursor:pointer;
   background:whitesmoke;
   transition: 0.2s;
-  color:#8a6bf5;
+  /* color:#8a6bf5; */
+  color:blue;
+  border-radius: 15px;
+}
+
+.standard-option-btn-post-hearts:hover{
+  cursor:pointer;
+  background:whitesmoke;
+  transition: 0.2s;
+  /* color:#8a6bf5; */
+  color:#e22339;
   border-radius: 15px;
 }
 
@@ -1952,6 +2016,13 @@ padding-left: 4rem;
 
 .user-score{
   background:#cce3f5!important;
+  color:rgb(78, 78, 78)!important;
+  font-size:15px;
+  padding:5px;
+}
+
+.is-tutor{
+  background:#ffb555!important;
   color:rgb(78, 78, 78)!important;
   font-size:15px;
   padding:5px;
@@ -2040,7 +2111,7 @@ padding-left: 4rem;
   font-size:15px;
   border:2px black solid;
   padding:8px;
-  margin-right: 10px;
+  margin-left: 10px!important;
   display: inline-block;
 }
 
@@ -2185,7 +2256,7 @@ padding-left: 4rem;
   background:white;
   width:750px;
   padding:20px;
-  height:auto;
+  height:70px;
   margin-top: 10px;
   border-radius: 15px;
   border:1px solid white;
@@ -2207,8 +2278,9 @@ padding-left: 4rem;
   margin-top:3rem;
   padding-bottom:10px;
   transition:0.2s;
-  border:1px solid lightgray;
+  border:1px solid white;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
 .community-members-item{

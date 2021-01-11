@@ -16,6 +16,7 @@ import Fab from '@material-ui/core/Fab';
 import QuickCreate from '../Common/QuickCreate'
 import {FaShare} from 'react-icons/fa'
 import SkeletonDiscussions from '../Common/SkeletonUI/SkeletonDiscussions'
+import {BsLightning,BsHeart,BsGem,BsChatQuote} from 'react-icons/bs'
 
 class Discussions extends React.Component {
 
@@ -112,7 +113,8 @@ render(){
                   {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
                   <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span> */}
                   <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b></button></span></a>
-                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><CgComment size={20} className="feed-comment" /> {this.state.comments.length} Comments</button></span></a>
+                  <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
+                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><BsChatQuote size={20} className="feed-comment" /> {this.state.comments.length} Responses</button></span></a>
                   <Dropdown >
                     <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
                       <FaShare/> Share

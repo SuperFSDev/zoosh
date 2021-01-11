@@ -23,7 +23,7 @@ import Fab from '@material-ui/core/Fab';
 import {FaShare} from 'react-icons/fa'
 import QuickCreate from '../Common/QuickCreate'
 import {AiOutlineLink} from 'react-icons/ai'
-import {BsLightning,BsHeart,BsGem} from 'react-icons/bs'
+import {BsLightning,BsHeart,BsGem,BsChatQuote} from 'react-icons/bs'
 import SkeletonFeed from '../Common/SkeletonUI/SkeletonFeed'
 
 var comment;
@@ -38,6 +38,7 @@ class Feed extends React.Component {
       posts: [],
       score: [],
       comments:[],
+      following:[],
       FollowingID:'',
       comment:'',
       comments:[],
@@ -63,6 +64,8 @@ class Feed extends React.Component {
             FollowingID: response.data.user.following,
             score: response.data.user.score,  
             pic: response.data.user.pic,  
+            following: response.data.user.following,
+
           })
   
         })
@@ -181,14 +184,48 @@ class Feed extends React.Component {
 
 
 render(){
+  
+  /** 
+   * If statement that return the container asking the user to follow someone to display content on their feed,
+   * This also does not display the SkeletonUI loading screen.
+   *  */ 
+  if(this.state.following.length<=0){
+    return(
+      <>
+      <div className="containerFeedLeft"><FeedOptions/></div>
 
-  if(this.state.isLoading){
+      <div className="containerFeedMiddle">
+      <QuickOptions/>
+      <div className="post-option-btns">
+        <div className="options-container">
+          <button className="community-btn-active" href="/home">Feed</button>
+          <a href="/discussions"><button className="community-btn">Discussions</button></a>
+          <button className="community-btn">Media</button>
+          <button className="community-btn">Links</button>
+        </div>        
+      </div>
+      <div className="empty-feed-container">
+        <p>It's pretty quiet in here ...</p> 
+
+        <p>Start following someone! <a href="/users" id="dropdown-basic">Find Friends</a></p>
+      </div>
+        
+      </div>
+      <div className="containerFeedRight"><Recommended/><Contributors/></div>
+      </>
+    )
+  }
+  /**
+   * If the following length is greater than 0, trigger the isLoading SkeletonUI as the server is 
+   * sending back the feed posts.
+   */
+  else if(this.state.isLoading && this.state.following.length>=1){
     return (
       <div>
-        <SkeletonFeed/>
+        <SkeletonFeed/>  
       </div>
     )
-  } else{
+  }else{
   return (
      <div>
          {/* REACTJS HELMET */}
@@ -225,7 +262,6 @@ render(){
                       <button className="community-btn">Links</button>
             </div>        
           </div>
-  
 
           <div className="discussion-feed">
             {/* POST TAB */}
@@ -253,12 +289,12 @@ render(){
                           <div>
                             <div>
 
-                              <a href={"/u/?id="+post.user_id}><span className="voting-btn"><button className="standard-option-btn-post" ><Image src={post.user.pic} className="user-image-mini" roundedCircle />{post.user} <b className="user-score-post-tag">1,231</b></button></span></a>
-                              <span className="voting-btn"><button className="standard-option-btn-post"><BsGem size={22} /> Gem</button></span>
+                              <a href={"/u/?id=" + post.user_id}><span className="voting-btn"><button className="standard-option-btn-post" ><Image src={post.user.pic} className="user-image-mini" roundedCircle />{post.user} <b className="user-score-post-tag">1,231</b></button></span></a>
+                              <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
                               {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span> */}
                               <a href={"/p/?id=" + post.Post_id} >
                                 <span className="voting-btn">
-                                  <button className="standard-option-btn-post" ><CgComment size={20} /> {this.state.comments.length} Comments</button> 
+                                  <button className="standard-option-btn-post" ><BsChatQuote size={20} /> {this.state.comments.length} Responses</button> 
                                 </span></a>
                                   <Dropdown >
                                     <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">

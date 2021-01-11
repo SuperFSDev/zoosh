@@ -102,7 +102,7 @@ render(){
           <div className="global-feed">
               <h3>Communities</h3>
           <div className="search-div">
-          <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search a Club/Society " title="Type in a category"
+          <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
           />
           <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
             <option value="n/a">All</option>

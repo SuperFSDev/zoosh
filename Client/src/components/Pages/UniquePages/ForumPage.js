@@ -1,14 +1,14 @@
 import React from 'react';
-import '../../App.css';
+import '../../../App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import FeedOptions from '../Lists/FeedOptions'
+import FeedOptions from '../../Lists/FeedOptions'
 import {Badge, Modal} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
-import CreateForumPost from '../Common/CreateForumPost'
-import AskQuestion from '../Common/AskQuestion'
+import CreateForumPost from '../../Common/CreateForumPost'
+import AskQuestion from '../../Common/AskQuestion'
 import Avatar from '@material-ui/core/Avatar';
-import SkeletonForumPage from '../Common/SkeletonUI/SkeletonForumPage'
+import SkeletonForumPage from '../../Common/SkeletonUI/SkeletonForumPage'
 export default class ForumPage extends React.Component {
 
   constructor(props) {
@@ -18,6 +18,7 @@ export default class ForumPage extends React.Component {
       users:[],
       user:'',
       isLoading:true,
+      isUnfollowing:true,
     };
   }
 
@@ -58,10 +59,18 @@ export default class ForumPage extends React.Component {
           .catch((error) => {
             console.log(error);
           });
-          
 
     }
+
+    addForum(frm) {
+      addUserToForum(frm);
+      this.setState({
+        isUnfollowing:false,
+      })
+    }
+
     render(){
+      var isUnfollowing = this.state.isUnfollowing;
 
       if(this.state.isLoading){
         return (
@@ -92,10 +101,22 @@ export default class ForumPage extends React.Component {
           <div className="containerFeedMiddle">
               <div className="global-feed">
                   <span  className="username-wrapper">
-                      <h2>{this.state.forum.name} </h2>
+
+                      <h2 className="forum-title">
+                        {this.state.forum.name} 
+
+                        {isUnfollowing ? (
+                          <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+                        ) : (
+                          <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+                          )}
+                      </h2>
+
                       <div id="wrapper">
                         <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
                         <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
+                        
+
                       </div>
                       </span>
                        <br/>
@@ -199,3 +220,38 @@ function Question(props) {
       </Modal>
     );
   }
+
+  
+// Adding a User to forum to follow
+async function addUserToForum(frm) {
+
+  var getUser = JSON.parse(localStorage.getItem('user'))
+
+  const addForum = {
+      forum: frm,
+      user: getUser,
+      user_id: getUser._id,
+  }
+
+   // Adds users to forums followers array in user model.
+   await axios.post('http://localhost:4000/forums/update', addForum)
+      .then(function (resp) {
+          console.log(resp);
+          alert("Successfully followed forum " + frm);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+  // Adds forum to following array in user model.
+  await axios.post('http://localhost:4000/users/addToForumFollowingList',addForum)
+      //add to following array
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+}
+

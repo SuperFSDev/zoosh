@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart} from 'react-icons/bs'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText} from 'react-icons/bs'
 
 export default class Options extends React.Component {
   constructor(props) {
@@ -67,6 +67,9 @@ render() {
                     </div></a>
                     <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
                         <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                    </div></a>
+                    <a href="/listings" className="feed-option-redirects"><div className="option-container">
+                        <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
                     </div></a>
                     
                     <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
