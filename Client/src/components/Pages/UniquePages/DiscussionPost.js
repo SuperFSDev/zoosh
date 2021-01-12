@@ -6,12 +6,18 @@ import ProfilePicture from '../../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
 import {  Dropdown } from 'react-bootstrap';
 import moment from 'moment'
-import { Form, Badge , Image} from 'react-bootstrap';
+import { Form, Badge , Image, Card, Button} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 import {FaShare} from 'react-icons/fa'
 import {BsHeart,BsGem} from 'react-icons/bs'
 import { RiFlaskLine } from 'react-icons/ri';
 import SkeletonDiscussionPost from '../../Common/SkeletonUI/SkeletonDiscussionPage'
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 export default class DiscussionPost extends React.Component {
 
@@ -125,6 +131,33 @@ export default class DiscussionPost extends React.Component {
           
           <h4>Responses ({this.state.comments.length})</h4>
 
+          <br/><Accordion className="comment-box-acc">
+            <AccordionSummary
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className="motto">What are your thoughts?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <textarea placeholder="Write your response ..." className="Comment-input" rows = "5" cols = "60"/>
+            
+            </AccordionDetails>
+            <button className="standard-button">Respond</button>
+          </Accordion><br/>
+          
+          {/* <br/><Accordion defaultActiveKey="0">
+            <Card className="comment-box-acc">
+              <Card.Header className="comment-box-acc">
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  What are your thoughts?
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <input>Comment your response!</input>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion><br/> */}
+
             <div className="users-comment">
               <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
                  <p>hello</p>  
@@ -143,6 +176,8 @@ export default class DiscussionPost extends React.Component {
     }
   }
 }
+
+
 
   function ProfilePic() {
     var user = JSON.parse(localStorage.getItem('user'));

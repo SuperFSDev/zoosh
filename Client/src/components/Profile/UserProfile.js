@@ -10,6 +10,9 @@ import moment from 'moment'
 import {TiLocation} from 'react-icons/ti'
 import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
 import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
+import { MdSchool } from 'react-icons/md'
+import {SiAboutDotMe} from 'react-icons/si'
+import {FaBook} from 'react-icons/fa'
 
 export default class UserProfile extends React.Component {
 
@@ -212,7 +215,7 @@ export default class UserProfile extends React.Component {
               </section>
           
             </div>
-{/* 
+
             <div className="user-profile-about">
 
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
@@ -235,7 +238,7 @@ export default class UserProfile extends React.Component {
                 </span>
               </OverlayTrigger>
               <b className="user-details">{this.state.user.course}</b><br/>
-            </div> */}
+            </div>
 
 
           <div className="user-profile-about">

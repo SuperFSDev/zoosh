@@ -35,10 +35,8 @@ render(){
         <div>
           <div className="post-option-btns">
             <div className="options-container">
-                      <button className="community-btn-active" href="/home">Feed</button>
+                      <button className="community-btn-active" href="/home">Following</button>
                       <a href="/discussions"><button className="community-btn">Discussions</button></a>
-                      <button className="community-btn">Media</button>
-                      <button className="community-btn">Links</button>
             </div>        
           </div>
   

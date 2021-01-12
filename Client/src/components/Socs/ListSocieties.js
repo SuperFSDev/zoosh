@@ -119,7 +119,7 @@ render(){
             <div className="SocietyLayout">
                 {filteredSocietiesByName.map(society => (
                 <div key={society.id}>
-                    <a href={"/s/?id=" +society._id} className="comm-link"><div className="socs-list-items">
+                    <a href={"/c/?id=" +society._id} className="comm-link"><div className="socs-list-items">
                     <h5>{society.name}</h5>
                         {/* <p>{society.category}</p>                     */}
                         <p><b>{society.college}</b></p>  

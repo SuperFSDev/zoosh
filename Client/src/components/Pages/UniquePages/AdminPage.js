@@ -32,6 +32,7 @@ export default class AdminPage extends React.Component {
       showQuestions:false,
       showFeed:true,
       showSocials: false,
+      showSettings:false,
       isLoading:true,
     };
     this.onDeleteUser = this.onDeleteUser.bind(this);
@@ -149,6 +150,8 @@ export default class AdminPage extends React.Component {
             showQuestions: false,
             showStats: false,
             showSocials: false,
+            showSettings:false,
+
           });   
           }
 
@@ -161,6 +164,8 @@ export default class AdminPage extends React.Component {
             showQuestions: false,
             showStats: false,
             showSocials: false,
+            showSettings:false,
+
           });   
           }
 
@@ -172,6 +177,8 @@ export default class AdminPage extends React.Component {
             showQuestions: false,
             showStats: false,
             showSocials: false,
+            showSettings:false,
+
           });   
         }
 
@@ -185,6 +192,8 @@ export default class AdminPage extends React.Component {
             showQuestions: false,
             showStats: true,
             showSocials: false,
+            showSettings:false,
+
           });   
           }
 
@@ -197,6 +206,8 @@ export default class AdminPage extends React.Component {
             showQuestions: true,
             showStats: false,
             showSocials: false,
+            showSettings:false,
+
           });   
           }
 
@@ -208,14 +219,28 @@ export default class AdminPage extends React.Component {
               showQuestions: false,
               showStats: false,
               showSocials: true,
+              showSettings:false,
           });   
         }
+
+        ShowSettings() {
+          this.setState({
+            showPeople: false,
+            showFeed: false,
+            showEvents: false,
+            showQuestions: false,
+            showStats: false,
+            showSocials: false,
+            showSettings:true,
+
+          });   
+          }
              
     render(){
       var{users} = this.state;
       var { events } = this.state;
       var title = this.state.society.name + " - Website"
-      let i = 0;
+      let i, k = 0;
       if(this.state.isLoading){
         return (
           <div>
@@ -239,193 +264,233 @@ export default class AdminPage extends React.Component {
                       <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
               </Helmet>
+
+              <header>
+                <section>
+                  <nav className="nav">
+                    <Image src={ProfilePic} className="user-image" roundedCircle />
+                  </nav>
+                  
+                  <article>
+                    <h1>{this.state.society.name}</h1>
+                    <p className="member-count">{this.state.society.description}</p>
+                    <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
+                    <button className="admin-comm-button"  onClick={() => {this.ShowSettings()}}>Settings</button>
+                  </article>
+                </section>
+              </header>
+          
      
               <div className="containerFeedLeftCommunity">
-                <div className="community-card">
-                  <h1><b className="user-score">Welcome, Admin!</b></h1>
-                  <Image src={ProfilePic} className="user-image" roundedCircle />
-                  <h3>{this.state.society.name}</h3>
-                  {/* <p className="community-copy-link">z/{this.state.society._id}</p> */}
-                  <p>{this.state.society.description}</p>   
-                  <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
-
-                  <hr/>
-                  {/* Community Feed Display Options */}
-                  <div>
+                <div className="communityFilter">
                       <button  onClick={() => {this.ShowFeed()}} className="community-btn">Feed</button>
                       <button  onClick={() => {this.ShowQuestions()}} className="community-btn">Questions</button>
                       <button  onClick={() => {this.ShowEvents()}} className="community-btn">Events</button>
                       <button  onClick={() => {this.ShowStats()}}className="community-btn">Stats</button>
                       <button  onClick={() => {this.ShowUsers()}}className="community-btn">People</button>
                       <button  onClick={() => {this.ShowSocials()}}className="community-btn">Socials</button>
+                      <button  onClick={() => {this.ShowSettings()}}className="community-btn">Settings</button>
+
+                </div>
 
 
-                <div className="peopleTab">   {/* SHOW FEED*/}
-                  {this.state.showFeed &&           
-                    <div> 
-                        <hr/>  
-                          <Form>
-                            <input            
-                              className="commentBox"
-                              label="Comment"
-                              style={{ margin: 1, fontSize: 20, maxLength:150, paddingBottom:10}}         
-                              placeholder="Compose new post..."         
-                              required
-                            /><br/><br/>
+                {this.state.showFeed &&
 
-                            <span> 
-                              <FaRegCommentAlt className="community-post-options"size={20}/>
-                              <FaRegImage className="community-post-options" size={20}/>   
-                              <FaLink className="community-post-options" size={20}/>                             
-                            </span><br/><br/>
-                          </Form> 
-                        <hr/> 
-                          <button className="standard-button">Post Comment</button>  
+                <div>
+                  <div className="community-card">
+                    <div className="peopleTab">   {/* SHOW FEED*/}          
+                          <a href="/new" className="quick-options-a"><div>
+                            <p><b>Post Something</b></p>
+                            <hr/>
+                              <input
+                              className="quick-options-input"
+                              placeholder="What's on your mind?"
+                              />
+                          </div> </a>
+                        </div>         
                     </div>
-                    }
-                  </div>
+                    <br/>
+                    <div className="community-card">
+                      <h1>Hello</h1>
+                    </div>
+                </div>
+                }
 
 
+                {this.state.showSettings &&
+
+                <div>
+                  <div className="community-card">
+                      <h5>Community Details</h5>
+                      <label>Name</label><br/>
+                      <input className="comm-settings-i" /><br/>
+                      <label>Description</label><br/>
+                      <input className="comm-settings-i"/><br/><br/>
+                      <input className="standard-button" type="submit" value="Save Changes"/><br/>
+                    </div>
+                    <br/>
+                    <div className="community-card">
+                      <h5>Roles</h5>
+
+                      <label><b>Moderators</b></label>
+                      <Form>
+                        <input type="checkbox" value="remove"/>
+                        <label for="vehicle1">  Can remove members.</label><br/>
+                        <input type="checkbox" value="promote"/>
+                        <label for="vehicle2"> Can promote to moderator. </label><br/>
+                        <input type="checkbox" value="delete" />
+                        <label for="vehicle3"> Can delete posts, questions or events.</label><br/><br/>
+                        <input className="standard-button" type="submit" value="Save Changes"/>
+                      </Form>
+                      <br/><br/>
+                      <label><b>Members</b></label>
+                      <Form>
+                        <input type="checkbox" value="events"/>
+                        <label for="vehicle1">  Can Create Events</label><br/>
+                        <input className="standard-button" type="submit" value="Save Changes"/>
+                      </Form>
+                    </div>
+                    <br/>
+                    <div className="community-card">
+                      <h5>Delete Community</h5>
+                      <br/>
+                      <button className="delete-community-button">Delete Community</button>
+                    </div>
+                </div>
+                }
+
+
+                {this.state.showPeople && <div className="community-card">
                   <div className="peopleTab">     {/* SHOW PEOPLE*/}
-                    {this.state.showPeople &&  
-                    <div>
-                      <h4>Admins {this.state.users.length}</h4><br/>
+                       
+                      <div>
+                      <h1><b className="user-admin">Admins {this.state.users.length}</b></h1>
+                        <div className="CommunityMembers">
+                        {this.state.users.map(user=>(
+                          <div className="community-members-item">
+                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                          </div>
+                        ))}
+                      </div><br/>
+
+                      {/* MODERATORS TAB */}
+                      <h1><b className="user-score">Moderators {this.state.users.length}</b></h1>
                       <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
-                        <a href={"/u/?id="+user._id}><div className="community-members-item">
-                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
-                          <p>{user.fullname} <FaFingerprint/> </p>
-                          {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
-                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
-                        </div></a>
-                      ))}
-                    </div><br/>
-
-                    {/* MODERATORS TAB */}
-                    <h4>Moderators {this.state.users.length}</h4><br/>
-                    <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
-                        <a href={"/u/?id="+user._id}><div className="community-members-item">
-                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
-                          <p>{user.fullname} </p>
-                          {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
-                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
-                        </div></a>
-                      ))}
-                    </div><br/>
-
-                    {/* MEMBERS TAB */}
-                    <h4>Members {this.state.users.length} </h4><br/>
-                    <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
-                        <a href={"/u/?id="+user._id}><div className="community-members-item">
-                          <Image src={user.pic} className="community-member-item-pic" roundedCircle /> 
-                          <p>{user.fullname} </p>
-                          {/* <b className="user-score-post">{user.score}</b> */}
-                          <button className="standard-button">Follow</button><br/>
-                          {/* <button className="standard-button" onClick={() => {this.onMakeMod(this.state.society._id,user._id)}}>Promote</button>                           */}
-                        </div></a>
-                      ))}
-                    </div>
-                    </div>
-                    }
-                  </div>
-                
-                <div className="peopleTab">     {/* SHOW EVENTS*/}
-                  {this.state.showEvents &&
-                  <div>
-                    <h3>Upcoming Events</h3>
-                    <QuickEvent/>
-                    <div className="EventSocietyLayout">
-                    {events.reverse().map(event => (
-                    <div key={event._id}>
-                        <div>
-                        <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                          <div className="events-card">
-                              <h4><b>{event.title}</b></h4> 
-                              <p>{event.society}</p> 
-                              <p>{event.time}</p>
-                              <div >
-                              </div>
+                        {this.state.users.map(user=>(
+                          <div className="community-members-item">
+                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
                           </div>
-                          </a>
-                        </div>
-                      </div>
-                      ))}
-                    </div>
-                  </div>
-                  }
-                </div>
+                        ))}
+                      </div><br/>
 
-                <div className="peopleTab">   {/* SHOW SOCIALS*/}
-                  {this.state.showSocials &&           
+                      {/* MEMBERS TAB */}
+                      <h1><b className="user-member">Members {this.state.users.length}</b></h1>
+                      <div className="CommunityMembers">
+                        {this.state.users.map(user=>(
+                          <div className="community-members-item">
+                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                          </div>
+                        ))}
+                      </div>
+                      </div>
+                      
+                    </div>
+                </div>}
+
+
+                {this.state.showEvents &&<div className="community-card">
+                  <div className="peopleTab">     {/* SHOW EVENTS*/}
+                   
+                    <div>
+                      <h3>Upcoming Events</h3>
+                      <QuickEvent/>
+                      <div className="EventSocietyLayout">
+                      {events.reverse().map(event => (
+                      <div key={event._id}>
+                          <div>
+                          <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
+                            <div className="events-card">
+                                <h4><b>{event.title}</b></h4> 
+                                <p>{event.society}</p> 
+                                <p>{event.time}</p>
+                                <div >
+                                </div>
+                            </div>
+                            </a>
+                          </div>
+                        </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>}
+
+
+                {this.state.showSocials && <div className="community-card">
+                  <div className="peopleTab">   {/* SHOW SOCIALS*/}
+                              
+                    <div> 
+                          <big><FaFacebook size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.facebook} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                          <big><FaTwitter size={30}/> <a href={this.state.society.twitter} target="_blank"><TextField defaultValue={this.state.society.twitter} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                          <big><FaInstagram size={30}/> <a href={this.state.society.instagram} target="_blank"><TextField defaultValue={this.state.society.instagram} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                          <big><FaLink size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.other} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
+                      </div>
+                      
+                    </div>    
+                </div>}
+
+
+
+                {this.state.showQuestions &&
+                  <div>
+                  <div className="community-card">
+                    <div className="peopleTab">   {/* SHOW FEED*/}          
+                          <a href="/new" className="quick-options-a"><div>
+                            <p><b>Ask a Question</b></p>
+                            <hr/>
+                              <input
+                              className="quick-options-input"
+                              placeholder="Need Help?"
+                              />
+                          </div> </a>
+                        </div>         
+                    </div>
+                    <br/>
+                    <div className="community-card">
+                      <h1>Question</h1>
+                    </div>
+                </div>
+                }
+
+                {this.state.showStats &&<div className="community-card">
+                  <div className="peopleTab">   {/* SHOW STATS*/}
+                            
                   <div> 
-                        <big><FaFacebook size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.facebook} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaTwitter size={30}/> <a href={this.state.society.twitter} target="_blank"><TextField defaultValue={this.state.society.twitter} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaInstagram size={30}/> <a href={this.state.society.instagram} target="_blank"><TextField defaultValue={this.state.society.instagram} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaLink size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.other} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                    </div>
-                    }
-                  </div>    
-
-
-                <div className="peopleTab">     {/* SHOW QUESTIONS*/}
-                  {this.state.showQuestions &&
-                  <div>
-                    <h3>Questions</h3>
-                    <Question/>
-                    <Card >
-                      <Card.Body>
-                        <Card.Text className="fontPost">
-                          <p>Random hard coded question???? :-ppp</p>
-                          {/* <Badge className="forum-badge-item"  pill variant="secondary">Question</Badge> */}
-                        </Card.Text>
-                        <div>
-                          <div>
-                            <span className="voting-btn"><button className="standard-option-btn-post"> Answer Question</button></span>
-                            <span className="voting-btn"><button className="standard-option-btn-post"> Report Abuse</button></span>
-
-                            <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                            <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> Downvote</button></span>
-                          </div>
+                    <h3>Community Leaderboard</h3>                          
+                    <div className="container-individual-community">
+                      {/* <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/> */}
+                        <div className="">
+                          {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
+                            <div>
+                              <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
+                            </div>
+                          ))}    
+                          <a href="#">See More</a>
                         </div>
-                      </Card.Body>
-                      </Card>
-                  </div>
-                  }
-                </div>      
+                      </div>                         
+                    </div>
+                    
+                      </div>    
+                  </div>}
 
+                
+            </div>
 
-                <div className="peopleTab">   {/* SHOW STATS*/}
-                {this.state.showStats &&           
-                <div> 
-                  <h3>Community Leaderboard</h3>                          
-                  <div className="container-individual-community">
-                    {/* <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/> */}
-                      <div className="">
-                        {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                          <div>
-                            <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                          </div>
-                        ))}    
-                        <a href="#">See More</a>
-                      </div>
-                    </div>                         
-                  </div>
-                  }
-                    </div>            
-                  </div>               
-                </div>
-                <br/>
-              </div>
-              
-              <div className="containerFeedMiddleCommunity">
+             
+            <div className="containerFeedMiddleCommunity">
                 <div className="community-users-card">
-                  <p className="member-count">{this.state.society.description}</p>
-                </div><br/>
-                <div className="community-users-card">
+                <h1><b className="user-admin">You're an Admin.</b></h1>
                   <p className="member-count">Meet the community: {this.state.users.length}</p>
                     <div className="Connections">
                     {this.state.UserList.map(u => ( 
@@ -437,6 +502,18 @@ export default class AdminPage extends React.Component {
                 </div>
               </div>
                 <br/>
+              <div className="community-users-card">
+                  <p className="member-count">Leaderboard</p>
+                  <div className="container-individual-community">
+                      {/* <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/> */}
+                          {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
+                            <div>
+                              <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
+                            </div>
+                          ))}    
+                          <a href="#">See More</a>
+                    </div>         
+              </div>
             </div>
         </div>
         );

@@ -83,10 +83,8 @@ render(){
           <div>
             <div className="post-option-btns">
             <div  className="options-container">
-                <a href="/home"><button className="community-btn">Feed</button></a>
+                <a href="/home"><button className="community-btn">Following</button></a>
                 <a href="/discussions"><button className="community-btn-active">Discussions</button></a>
-                <button className="community-btn">Media</button>
-                <button className="community-btn">Links</button>
               </div> 
           </div>
         <div className="discussion-feed">
@@ -110,23 +108,14 @@ render(){
                                 </div>
                     </div>
                     <br/>
-                  {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiUpvote size={22} /> Upvote</button></span>
-                  <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote size={22} /> </button></span> */}
-                  <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b></button></span></a>
+                  <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b> - <small>{moment(discussion.time).format("MMM Do (H:mma)")}</small></button></span></a>
                   <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
                   <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><BsChatQuote size={20} className="feed-comment" /> {this.state.comments.length} Responses</button></span></a>
-                  <Dropdown >
-                    <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
-                      <FaShare/> Share
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+  
                   
                   </span><br/>
                   {/* <big className="text-muted-society">#{discussion._id}</big> */}
-                  {/* <p>{moment(discussion.time).format("H:mma - MMM Do, YYYY.")}</p> */}
+                  
                 </div>
               </div></a><br/>
             </div>

@@ -55,7 +55,7 @@ class App extends React.Component {
               <Route path="/leaderboard" component={Leaderboard}/>
               <Route path="/me" component={Profile}/>
               <Route path="/u" component={ViewProfile}/>
-              <Route path="/s" component={CommunityPage}/>
+              <Route path="/c" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/podcasts" component={Podcasts}/>
               <Route path="/twooo" component={Two}/>

@@ -43,7 +43,7 @@ render(){
       <h5 className="-recommended-header">Communities</h5><hr/>
         {societies.reverse().map(society => (
           <div key={society._id}>
-          <a href={"/s/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
+          <a href={"/c/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
             <p><b>{society.name}</b></p>
             <p className="description">{society.description}</p>
               {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a> */}

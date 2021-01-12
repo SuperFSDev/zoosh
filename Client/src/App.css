@@ -7,7 +7,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
-.navbar{background:white;}
+.navbar{background:white;  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+}
 
 .motto{
   color:gray;
@@ -19,6 +20,11 @@
   color:black;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+}
+
+.comm-post-selection{
+  border:0px solid white!important;
+  width:500px;
 }
 
 .landing-desc-2{
@@ -313,7 +319,8 @@
   width:960px;
   margin-top:17px;
   border-radius: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border:1px solid lightgray!important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .top-posts-profile-container-2{
@@ -322,7 +329,7 @@
   height:auto;
   width:960px;
   border-radius: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border:1px solid lightgray!important;
 }
 
 #container-mobile, .mobile-login{display:none;}
@@ -632,9 +639,9 @@
   padding:20px;
   padding-right:10px;
   background:white;
-  border:1px solid whitesmoke!important;
+  border:1px solid lightgray;
   border-radius: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .user-profile-about-bio{
@@ -723,7 +730,8 @@
   background:white;
   padding:30px;
   border-radius: 15px!important;
-  border:1px solid white;
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .quick-options-input{
@@ -736,7 +744,7 @@
 }
 
 .quick-options:hover{
-  border:1px solid lightgray!important;
+  border:1px solid rgb(160, 160, 160)!important;
   cursor: pointer;
 }
 
@@ -775,18 +783,21 @@
   margin-top:15px;
   background:white;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 8px;
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .discussion-feed{ margin-top: 50px;}
 
 
 .global-feed{
-  margin-top: 60px;
+  margin-top: 55px;
   padding:50px;
   width:1100px!important;
   background-color: white;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+  border:1px solid lightgray;
 }
 
 .fontPost{
@@ -794,6 +805,14 @@
  padding:10px;
 }
 
+.comment-box-acc{
+  background:white!important;
+  border:1px white solid!important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+  border-radius: 5px!important;
+  cursor: auto!important;
+  padding:10px;
+}
 #dropdown-basic{
   background:none!important;
   color:black;
@@ -849,6 +868,14 @@
   font-size: 20px;
   outline:none!important;
 }
+
+.Comment-input{
+  border:none!important;
+  width:1000px;
+  height:100px;
+  font-size: 20px;
+  outline:none!important;
+}
 .searchFilter{
   width:500px!important;
   height:auto;
@@ -898,7 +925,7 @@
 .containerFeedLeft{
   width: 25%;
   margin-top: 4vh;
-  height: 100rem;
+  height: auto;
   outline: none !important;
   background-color: none!important;
   float: left;
@@ -926,7 +953,7 @@
 }
 
 .containerFeedMiddleProfile{
-  margin-top: 12vh;
+  margin-top: 8vh;
   width: 20%;
   height: auto;
   outline: none !important;
@@ -971,7 +998,6 @@ li{
 }
 
 .containerPostLeft{
-  /* margin: auto; */
   width: 20%;
   height: auto;
   outline: none !important;
@@ -980,6 +1006,8 @@ li{
   float: right;
   padding:10px;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+
 }
 
 .containerFeedRightProfile{
@@ -987,7 +1015,7 @@ li{
   height: auto;
   outline: none !important;
   float: left;
-  margin-top:9rem;
+  margin-top:6.8rem;
   margin-left: 0rem;
 }
 
@@ -996,25 +1024,70 @@ li{
   height: auto;
   outline: none !important;
   float: left;
-  margin-top:10.1rem;
+  margin-top:7.9rem;
   margin-left: 0rem;
 }
 
 .containerFeedLeftCommunity{
   width: 20%;
-  height: 10rem;
   outline: none !important;
   float: left;
   border-radius: 25px;
   margin-left: 16rem;
 }
 
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: left;
+  font-size: 35px;
+  height: auto;
+  color: black;
+  margin-left: 16rem;
+  margin-right: 16rem;
+  border-radius: 5px;
+  background: white;
+  border:1px solid lightgray;
+  margin-top: 7rem;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+}
+
+/* Create two columns/boxes that floats next to each other */
+.nav {
+  float: left;
+  height: 300px; /* only for demonstration, should be removed */
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  font-size: 15px;
+  height: auto!important;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .containerFeedMiddleCommunity{
   width: 20%;
-  height: 10rem;
+  height: auto;
   outline: none !important;
   border-radius: 25px;
-  margin-top:10rem;
+  margin-top:1rem;
   margin-left: 77rem;
 }
 
@@ -1080,6 +1153,8 @@ li{
   margin-top:3.5rem;
   padding:20px;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+
 }
 
 .forum-post-container{
@@ -1120,7 +1195,20 @@ li{
   width:auto;
   background:white;
   padding:10px;
+  border:1px solid lightgray;
   border-radius: 15px!important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+}
+
+
+.communityFilter{
+  width:900px;
+  background:white;
+  padding:10px;
+  border:1px solid lightgray;
+  border-radius: 5px!important;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .community-card{
@@ -1128,9 +1216,11 @@ li{
   height:auto;
   width:900px;
   padding:10px;
-  border-radius: 15px;
-
+  border-radius: 5px;
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
+
 
 .empty-feed-container{
   margin-top: 10px;
@@ -1187,11 +1277,60 @@ li{
 }
 
 .community-users-card{
-  width:400px;
+  width:415px;
   padding:15px;
   background:white!important;
-  /* border:1px solid lightgray; */
-  border-radius: 15px;
+  border:1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
+}
+
+.join-comm-button{
+  width:100px;
+  padding:10px;
+  font-weight: bold;
+  background:#2196f3;
+  color:white;
+  border:none!important;
+  border-radius: 25px;
+}
+
+.delete-community-button{
+  width:auto;
+  padding:10px;
+  font-weight: bold;
+  background:red;
+  color:white;
+  border:none!important;
+  border-radius: 25px;
+}
+
+.delete-community-button:hover{
+  background:rgb(151, 0, 0);
+}
+
+.admin-comm-button{
+  width:100px;
+  padding:10px;
+  font-weight: bold;
+  background:whitesmoke;
+  color:black;
+  border:none!important;
+  border-radius: 25px;
+  outline:none!important
+}
+
+.comm-settings-i{
+  width:600px;
+  height:50px!important;
+}
+
+.admin-comm-button:hover{
+  background:lightgray;
+}
+
+.join-comm-button:hover{
+  background:#0065b5  ;
 }
 
 .forum-options-btn{
@@ -1289,7 +1428,7 @@ li{
 }
 
 .containerFeedMiddle{
-  margin-top: 8vh;
+  margin-top: 6.5vh;
   width: 40%;
   height: auto;
   outline: none !important;
@@ -1322,7 +1461,7 @@ li{
 }
 
 .containerFeedRight{
-  margin-top: 14vh;
+  margin-top: 12.4vh;
   width: 30%;
   height: 50vh;
   outline: none !important;
@@ -1356,13 +1495,14 @@ li{
   padding:10px;
   width:300px;
   background-color:white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
   margin-left:1rem;
   border-radius: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border:1px solid lightgray;
 }
 
 .feed-options-container{
-  margin-top: 10vh;
+  margin-top: 8vh;
   height:auto;
   width:auto;
   float: left;
@@ -1372,7 +1512,8 @@ li{
   background-color:none!important;
   border-radius: 15px;
   background-color:white;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
 .settings-options-container{
@@ -1580,12 +1721,13 @@ li{
 
 .recommended-container{
   border: none;
-  background: white;
+  background:white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
   padding:10px;
   width:300px;
   margin-left: 1rem;
   border-radius: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border:1px solid lightgray;
 }
 
 .discussion-post{
@@ -1596,12 +1738,13 @@ li{
   padding:10px;
   text-decoration: none!important;
   border:1px solid white;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
   border-radius: 15px;
+  border:1px solid lightgray;
 }
 
 .discussion-post:hover{
-  border:1px solid lightgray;
+  border:1px solid rgb(155, 155, 155);
 }
 
 .miniprofile-post-redirect{
@@ -2021,6 +2164,20 @@ padding-left: 4rem;
   padding:5px;
 }
 
+.user-member{
+  background:whitesmoke!important;
+  color:rgb(78, 78, 78)!important;
+  font-size:15px;
+  padding:5px;
+}
+
+.user-admin{
+  background:#ff9800!important;
+  color:white!important;
+  font-size:15px;
+  padding:5px;
+}
+
 .is-tutor{
   background:#ffb555!important;
   color:rgb(78, 78, 78)!important;
@@ -2098,6 +2255,7 @@ padding-left: 4rem;
   margin:auto 0;
   text-align: center;
 }
+
 
 .forum-btn-wrapper-left{
   width:600px;
@@ -2284,8 +2442,7 @@ padding-left: 4rem;
 }
 
 .community-members-item{
-  border:1px solid lightgray!important;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;   */
+  border:none!important;
   width:200px;
   padding:10px;
   text-align: center;
@@ -2301,15 +2458,25 @@ padding-left: 4rem;
   margin-top: 5px;
 }
 
-.community-members-item:hover, .community-members-item-profile:hover{
+.community-members-item-profile:hover{
   background:whitesmoke;
   cursor:pointer;
+  
 }
 
 .community-member-item-pic{
   width:100px;
   height:100px;
   margin:0 auto;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  position: relative;
+  top: 0;
+  transition: top ease 0.2s;
+}
+
+.community-member-item-pic:hover{
+  top: -5px;
+
 }
 
 .socs-list-items:hover,.users-list-items:hover {
