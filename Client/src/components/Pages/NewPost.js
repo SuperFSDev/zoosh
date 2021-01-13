@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import {Helmet} from 'react-helmet'
@@ -20,7 +20,9 @@ export default class NewPost extends React.Component {
       content: '',
       time: new Date().getTime(),
       society: '',
+      
     };
+
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeContent = this.onChangeContent.bind(this);
@@ -142,9 +144,13 @@ render(){
             onChange={this.onChangeContent}
             required
             />
+
             
-          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community" /><br/>
+            
+          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
           <button className="standard-button" type="submit">Publish</button>
+          <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+
         </Form>
         </div>
       </div>

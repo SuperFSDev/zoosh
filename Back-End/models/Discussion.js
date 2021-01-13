@@ -8,8 +8,7 @@ const DiscussionSchema = new Schema({
     content:String,
     time:Date,
     society:String,
-    upvotes:Number,
-    downvotes:Number
+    hearts:Number,
 })
 
 

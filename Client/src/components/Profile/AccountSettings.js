@@ -1,7 +1,7 @@
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
 // import Dropzone from "react-dropzone";
-import '../../App.css';
+import '../../assets/App.css';
 import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import { FcCheckmark } from "react-icons/fc";
@@ -348,7 +348,7 @@ export default class AccountSettings extends React.Component {
               
               <div>
                 <button className="standard-button" variant="secondary" type="submit" >Save changes</button>
-                <button className="standard-button" variant="primary" type="submit" >Cancel</button>
+                <a href="/home"><button className="standard-button-cancel" variant="primary" type="button" >Cancel</button></a>
               </div>
               
             </Form>

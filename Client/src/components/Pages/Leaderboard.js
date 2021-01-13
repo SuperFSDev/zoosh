@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
@@ -93,14 +93,23 @@ render(){
           </div>
           <div className="container-individual">
             <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/>
-              <div className="">
                 {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                  <div>
-                    <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                  </div>
+                  <a href={"/u/?id="+user._id}><div>
+                    <p className="leaderboard-item"><b>{i+=1}</b><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
+                      {user.score >= 1 && user.score <=999 ? (
+                        <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
+                      ) : user.score >=1000 ?(
+                          <span  className="-contributor-user-score"><b  className="user-mod">{ user.score}</b><br/></span>
+                      ) : user.score >= 5000 ? (
+                          <span  className="-contributor-user-score"><b  className="user-admin">{ user.score}</b><br/></span>
+                      ) : (
+                          <span className="-contributor-user-score"><b  className="user-member">{ user.score}</b><br/></span>
+                      )} 
+                      {/* <b className="soc-leaderboard-score-item">{ user.score}</b> */}
+                    </p><hr/>      
+                  </div></a> 
                 ))}    
                 <a href="#" id="dropdown-basic">See More</a>
-              </div>
               <div id="top-comm"></div>
           </div>
 

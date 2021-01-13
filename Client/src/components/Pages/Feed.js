@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import '../../Media.css';
 
 import 'react-calendar/dist/Calendar.css';
@@ -273,7 +273,7 @@ render(){
                             {post.post} <br /><br/>
                             
                             <span className="username-wrapper">
-                              <big className="text-muted">{moment(post.time).format("H:mma - MMM Do, YYYY.")}</big>
+                              <span className="voting-btn"><small className="text-muted">{moment(post.time).format("MMM Do")} ({moment(post.time).startOf('hour').fromNow()})</small></span><br/>
                             </span><br />
 
                             {/* <div className="-user-tag">

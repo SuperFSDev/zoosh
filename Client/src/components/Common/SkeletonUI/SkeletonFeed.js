@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import '../../../Media.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../../Lists/FeedOptions'

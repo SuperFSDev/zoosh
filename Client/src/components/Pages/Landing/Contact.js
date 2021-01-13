@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import {Navbar, Nav, Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 

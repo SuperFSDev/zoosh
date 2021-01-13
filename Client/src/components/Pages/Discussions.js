@@ -1,11 +1,11 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import FeedOptions from '../Lists/FeedOptions'
 import QuickOptions from '../Common/QuickOptions'
-import {Badge, Dropdown} from 'react-bootstrap'
+import {Badge, Dropdown, Tooltip,OverlayTrigger} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -16,7 +16,7 @@ import Fab from '@material-ui/core/Fab';
 import QuickCreate from '../Common/QuickCreate'
 import {FaShare} from 'react-icons/fa'
 import SkeletonDiscussions from '../Common/SkeletonUI/SkeletonDiscussions'
-import {BsLightning,BsHeart,BsGem,BsChatQuote} from 'react-icons/bs'
+import {BsLightning,BsHeart,BsGem,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 
 class Discussions extends React.Component {
 
@@ -27,7 +27,9 @@ class Discussions extends React.Component {
       isLoading: true,
       comments:[],
       time:'',
-      toggle: false
+      toggle: false,
+      isSaved: false,
+
     };
   }
 
@@ -43,6 +45,19 @@ class Discussions extends React.Component {
         console.log(error);
       });
   }
+
+  addToSaved = () =>{
+    this.setState({ 
+      isSaved: true,
+    })
+  }
+
+  removeSaved = () =>{
+    this.setState({ 
+      isSaved: false,
+    })
+  }
+
 
 render(){
   var { discussions } = this.state;
@@ -92,32 +107,35 @@ render(){
           {/* DISCUSSION TAB */}
           {discussions.reverse().map(discussion => (
             <div key={discussion._id}>
-              <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post'>
+              <div className='discussion-post'>
                 
+                <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
                 <div>
-                  <Badge variant="secondary">{discussion.society}</Badge>
-                  <br/><br/>
-                  <h2 className="forum-title">{discussion.title}</h2>
-                  {/* <p>{moment(discussion.time).format("MMM Do")}</p> */}
+                  <a href={"/me"}><span className="voting-btn">
+                    <button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b> posted in <Badge variant="secondary">{discussion.society}</Badge></button>
+                  </span></a><br/>
+                  <span className="voting-btn"><small  className="text-muted">{moment(discussion.time).format("MMM Do")} ({moment(discussion.time).startOf('hour').fromNow()})</small></span><br/>
+                  <span className="voting-btn"><p className="forum-title">{discussion.title}</p></span>
 
-                  <span className="username-wrapper">
-                    <div class="dropdown3">
-                                <div class="dropdown-content3">
-                                    <a href="#">{discussion.user}</a>
-                                    <a href="#"><Badge variant="primary">Admin</Badge> <Badge variant="secondary">Member</Badge></a>
-                                </div>
-                    </div>
-                    <br/>
-                  <a href="/me"><span className="voting-btn"><button className="standard-option-btn-post" >{discussion.user} <b className="user-score-post-tag">1,231</b> - <small>{moment(discussion.time).format("MMM Do (H:mma)")}</small></button></span></a>
-                  <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
+                </div></a>
+
+                <span className="username-wrapper"> 
+                  <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span></a>
                   <a href={"/d/?id=" + discussion._id} ><span className="voting-btn"><button className="standard-option-btn-post" ><BsChatQuote size={20} className="feed-comment" /> {this.state.comments.length} Responses</button></span></a>
-  
-                  
-                  </span><br/>
-                  {/* <big className="text-muted-society">#{discussion._id}</big> */}
-                  
-                </div>
-              </div></a><br/>
+                
+                  {!this.state.isSaved ? (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToSaved}><BsBookmark size={22} /></button></span>
+                  </OverlayTrigger> 
+                  ) : (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
+                  </OverlayTrigger>
+                  )}
+
+                </span><br/>
+
+              </div><br/>
             </div>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import axios from 'axios';
 import {Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'

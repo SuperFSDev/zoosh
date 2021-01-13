@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import { Card} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';

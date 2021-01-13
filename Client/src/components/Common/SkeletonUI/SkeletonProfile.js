@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../App.css';
+import '../../../assets/App.css';
 import Skeleton from 'react-loading-skeleton';
 
 export default class SkeletonProfile extends React.Component {

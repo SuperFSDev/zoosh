@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './assets/App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -62,6 +62,7 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
+              <Route path="/saved" component={NewPost}/>
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
@@ -7,10 +7,12 @@ import {Helmet} from 'react-helmet'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
-import {Modal ,OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Modal ,OverlayTrigger, Tooltip, Image} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
 import SkeletonCommunities from '../Common/SkeletonUI/SkeletonCommunities';
+import background from "../../images/group.jpg";
+
 
 export default class ListSocieties extends React.Component {
 
@@ -99,7 +101,7 @@ render(){
       </div>
 
       <div className="containerFeedMiddle">
-          <div className="global-feed">
+          <div className="global-feed"  style={{ backgroundImage: `url(${background})`}}>
               <h3>Communities</h3>
           <div className="search-div">
           <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
@@ -115,13 +117,39 @@ render(){
         </div>
 
           {/* <QuickEvent/> */}
-            <div>
+        </div>
+        <div>
+            <div className="SocietyLayout">
+                {filteredSocietiesByName.map(society => (
+                <div key={society.id}>
+                    <a href={"/c/?id=" +society._id} className="comm-link"><div className="socs-list-items">
+                      <Image src={background} className="soc-item-image"/>
+                      <h5><b>{society.name}</b> - {society.college} </h5>
+                      <p>{society.description}</p>  
+
+                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
+                                <span className="d-inline-block">
+                                <p maxLength={10}><FaUserFriends size={20}/> {society.users.length} members</p>     
+                                </span>
+                        </OverlayTrigger>    
+                        <div >
+                        <span>
+                            <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
+                        </span>
+                        </div>
+                    </div></a>
+                </div>
+
+                ))}
+                </div>
+            </div>
+      </div>
+      {/* <div className="global-feed">
             <div className="SocietyLayout">
                 {filteredSocietiesByName.map(society => (
                 <div key={society.id}>
                     <a href={"/c/?id=" +society._id} className="comm-link"><div className="socs-list-items">
                     <h5>{society.name}</h5>
-                        {/* <p>{society.category}</p>                     */}
                         <p><b>{society.college}</b></p>  
                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
                                 <span className="d-inline-block">
@@ -131,18 +159,14 @@ render(){
                         <div >
                         <span>
                             <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
-                            {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-visit-btn">Visit</button></a> */}
                         </span>
                         </div>
-                        {/* <span><button className="soc-item-list-join-btn">Join</button><button className="soc-item-list-visit-btn">Visit</button></span>         */}
                     </div></a>
                 </div>
 
                 ))}
                 </div>
-            </div>
-        </div>
-      </div>
+            </div> */}
   </div>
   );
 }
@@ -157,7 +181,7 @@ function QuickOptions() {
     return (
       <div>
           <div>
-              <button className="standard-button" onClick={() => setModalShow(true)}>Create Community</button>
+              <button className="standard-button" onClick={() => setModalShow(true)}>Create a Community</button>
               <MyVerticallyCenteredModal
                   show={modalShow}
                   onHide={() => setModalShow(false)}

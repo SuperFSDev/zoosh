@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import EditProfile from './EditProfile'
 import {Image,Card, OverlayTrigger, Tooltip, Modal} from 'react-bootstrap'
 import CreateASoc from '../Socs/CreateASoc'
@@ -31,7 +31,8 @@ export default class MyProfile extends React.Component {
           following: [],
           followers: [],
           societies:[],
-          badges:[]
+          badges:[],
+          isYellowTag:false,
       };
     }
 
@@ -101,7 +102,21 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-about">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h2>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h2><br/>
+                <h3>
+                  <b>{this.state.user.fullname} </b> 
+
+                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
+                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
+
+                  ) : this.state.user.score >=1000 ?(
+                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
+                  ) : this.state.user.score >= 5000 ? (
+                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
+                  ) : (
+                    <span><b>{this.state.user.score}</b><br/></span>
+                  )} 
+                
+                </h3><br/>
                 <EditProfile/><br/>
               </div>
               
@@ -110,7 +125,16 @@ export default class MyProfile extends React.Component {
             <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <BsHeart size={30}/> <b>{this.state.user.score}</b><br/>Score
+                {this.state.user.score >= 1 && this.state.user.score <=999 ? (
+                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
+
+                  ) : this.state.user.score >=1000 ?(
+                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
+                  ) : this.state.user.score >= 5000 ? (
+                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
+                  ) : (
+                    <span><b>{this.state.user.score}</b><br/></span>
+                  )} Score
                 </div>
                 <div className="stats-item-1">
                   <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import ProfileUsername from '../../Profile/ProfileUsername'
 import ProfilePicture from '../../Profile/ProfilePicture'
 import axios from 'axios';

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Skeleton from 'react-loading-skeleton';
 

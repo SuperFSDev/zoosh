@@ -1,16 +1,16 @@
 import React from 'react';
-import '../App.css';
+import '../assets/App.css';
 import {Navbar, Nav} from 'react-bootstrap';
 // import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Dropdown, DropdownButton} from 'react-bootstrap'
+import { Dropdown} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {IoIosSquareOutline,IoIosNotificationsOutline} from 'react-icons/io'
-import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegHandPeace, FaUserFriends} from 'react-icons/fa'
-import {BsGear,BsBell,BsSquare} from 'react-icons/bs'
+import {IoIosSquareOutline} from 'react-icons/io'
+import {FaRegHandPeace} from 'react-icons/fa'
+import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll} from 'react-icons/bs'
 
 
 export default class NavBar extends React.Component {
@@ -157,7 +157,7 @@ render(){
               
             <div className="navbar-prof-btn">
               <div id="#battleBox">
-                <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left" id="dropdown-basic"  onClick={this.showProfile}/>
+                <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/>
                 {/* <Dropdown className="l-prof-btn-default" >
                   <Dropdown.Toggle id="dropdown-basic" >
                     <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left" onClick={this.showMenu}/>
@@ -189,7 +189,7 @@ render(){
                       }}
                     >
                       <h5>Notifications</h5>
-                      <div>Suck my ass</div>
+                      <div>Test 1</div>
                       <div>Aaron Moran</div>
                       <div>Aaron Moran</div>
                     </div>
@@ -234,13 +234,15 @@ render(){
                         this.dropdownMenu3 = element3;
                       }}
                     >
-                      <a href="/me" className="profile-navs" ><h6 className="contributor-item-profile">Hello, {this.state.user.fullname} 😃</h6></a>
+                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>Hello, {this.state.user.fullname} 😃</b></p></a>
                       <hr/>
-                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><FaUserFriends/> Following <b className="user-details-views">{this.state.following.length}</b></p></a>
+                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Following <b>{this.state.following.length}</b></p></a>
+                      <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
+                      <hr/>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
                       <InviteFriend/>
                       <hr/>
-                      <a href="/login" className="profile-navs">Logout</a>
+                      <a href="/login" className="profile-navs">Sign Out</a>
                      
                     </div>
                   )
@@ -261,7 +263,7 @@ function InviteFriend() {
 
   return (
     <div>
-            <Dropdown.Item onClick={() => setModalShowText(true)}><FaRegHandPeace/> Invite a Friend</Dropdown.Item>
+            <Dropdown.Item onClick={() => setModalShowText(true)}><BsReplyAll/> Invite a Friend</Dropdown.Item>
 
             <InviteModal
                 show={modalShow}

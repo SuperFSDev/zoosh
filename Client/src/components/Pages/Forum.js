@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
@@ -125,34 +125,37 @@ render(){
         <div className="search-div-forum">
           <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
         </div>
-
-        <div className="featured-forums">
-            <h3>Following</h3>
-            {this.state.forums.map(forum=>
-                <li>{this.state.forums.forum}</li>)}<br/>
-            <a href="#"><div className="forum-option">
-                <h5>{this.state.user.forums}</h5>
-            </div></a>
-        </div>
-
-        {/* <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'> */}
+      </div>
 
 
-        <div className="featured-forums">
-            <h3>Featured</h3>
-            {filteredForumsByName.map(forum => (
-            <div key={forum.id}>
-              <a href={"/f/?id="+forum._id}><br/><div className="forum-option">
-                <div className="forum-item-title">
-                    <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
+        <div className="global-feed">
+          <div className="featured-forums">
+              <h3>Following</h3>
+              {this.state.forums.map(forum=>
+                  <li>{this.state.forums.forum}</li>)}<br/>
+              <a href="#"><div className="forum-option">
+                  <h5>{this.state.user.forums}</h5>
+              </div></a>
+          </div>
+
+          {/* <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'> */}
+
+
+          <div className="featured-forums">
+              <h3>Featured</h3>
+              {filteredForumsByName.map(forum => (
+              <div key={forum.id}>
+                <a href={"/f/?id="+forum._id}><br/><div className="forum-option">
+                  <div className="forum-item-title">
+                      <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
+                  </div>
+              </div></a>
+                    <div >
                 </div>
-            </div></a>
-                  <div >
               </div>
-            </div>
 
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </div>
 

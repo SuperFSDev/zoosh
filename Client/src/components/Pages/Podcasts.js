@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import {Helmet} from 'react-helmet'
@@ -98,19 +98,25 @@ render(){
           <h3>Podcasts</h3>
           <Image src={pod} />
           <QuickEvent/>
-          {/* <div className="search-div-forum">
-            <BsSearch/> 
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Podcast " title="Type in a category"/><br/><br/>
-          </div> */}
-            <div className="spacing"></div>
-            <div>
+            
+        </div>
+
+        <div className="post-option-btns">
+            <div className="options-container-listings">
+                <button className="community-btn">All Podcasts</button>
+                <button className="community-btn">Top Podcasts</button>
+                <button className="community-btn" >Featured Podcasts</button>
+            </div>        
+        </div>
+
+        <div className="global-feed">
             <h3>Featured Podcasts</h3>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (
               <div key={podcast._id}>
                   <div>
                   {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="events-card">
+                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
                         <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
                         <h4><b>{podcast.title}</b></h4> 
                         <h6><b>{podcast.name}</b></h6> 
@@ -132,7 +138,7 @@ render(){
               <div key={podcast._id}>
                   <div>
                   {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="events-card">
+                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
                         <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
                         <h4><b>{podcast.title}</b></h4> 
                         <h6><b>{podcast.name}</b></h6> 
@@ -154,7 +160,7 @@ render(){
               <div key={podcast._id}>
                   <div>
                   {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="events-card">
+                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
                         <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
                         <h4><b>{podcast.title}</b></h4> 
                         <h6><b>{podcast.name}</b></h6> 
@@ -168,7 +174,6 @@ render(){
               ))}
             </div>
             </div>
-        </div>
       </div>
   </div>
   );

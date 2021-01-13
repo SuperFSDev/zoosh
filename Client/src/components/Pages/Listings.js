@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
@@ -67,22 +67,24 @@ if(this.state.isLoading){
       <div className="containerFeedMiddle">
           <div className="global-feed">
           <h3>Listings</h3>
+          <br/>
+          <QuickEvent/>
+          {/* <div className="search-div-forum">
+            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Subject " title="Type in a category" autofocus/><br/><br/>
+          </div> */}
+            
+
+          </div>
+
           <div className="post-option-btns">
-            <div className="options-container">
-                      <button className="community-btn-active" >Find a Tutor</button>
+            <div className="options-container-listings">
+                      <button className="community-btn" >Find a Tutor</button>
                       <button className="community-btn">Collaboration</button>
-                      <button className="community-btn">Workshops</button>
+                      <button className="community-btn">Seeking Mentorship</button>
+                      <button className="community-btn">Offering Mentorship</button>
             </div>        
           </div>
 
-          
-          <br/>
-          <QuickEvent/>
-          <br/>
-          <div className="search-div-forum">
-            {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Subject " title="Type in a category" autofocus/><br/><br/>
-          </div>
             <div>
               <div className="EventSocietyLayout">
               {users.reverse().map(user => (
@@ -102,7 +104,6 @@ if(this.state.isLoading){
               </div>
               ))}
             </div>
-            </div>
         </div>
       </div>
   </div>
@@ -118,7 +119,7 @@ function QuickEvent() {
 
   return (
     <div>
-            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Become a Tutor <RiAddFill size={25}/></button>
+            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Create a Listing <RiAddFill size={25}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}

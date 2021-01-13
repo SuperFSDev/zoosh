@@ -1,14 +1,15 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal} from 'react-bootstrap'
+import {Modal, Image} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import SkeletonEvent from '../Common/SkeletonUI/SkeletonEvent';
+import background from "../../images/friends.jpg";
 
 export default class Events extends React.Component {
 
@@ -71,13 +72,16 @@ render(){
           <br/>
           <QuickEvent/>
           <br/>
-            <div>
+            
+        </div>
+        <div>
               <div className="EventSocietyLayout">
               {events.reverse().map(event => (
               <div key={event._id}>
                   <div>
                   <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
                     <div className="events-card">
+                        <Image src={background} className="soc-item-image"/>
                         <h4><b>{event.title}</b></h4> 
                         <p>{event.society}</p> 
                         {/* <p>{event.time}</p> */}
@@ -92,7 +96,6 @@ render(){
               ))}
             </div>
             </div>
-        </div>
       </div>
   </div>
   );
@@ -107,7 +110,7 @@ function QuickEvent() {
 
   return (
     <div>
-            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Create Event <RiAddFill size={25}/></button>
+            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Create an Event <RiAddFill size={25}/></button>
 
             <MyVerticallyCenteredModal
                 show={modalShow}

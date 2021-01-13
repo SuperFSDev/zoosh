@@ -50,7 +50,18 @@ render() {
              <div className="feed-options-container">
                 <div className="feed-options-item">
                     <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                        <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed"> {fullname} <b className="user-score">{this.state.user.score}</b></p>
+                        <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{fullname}  
+                            {this.state.user.score >= 1 && this.state.user.score <=999 ? (
+                                <span> <b className="user-member">{this.state.user.score}</b><br/></span>
+
+                            ) : this.state.user.score >=1000 ?(
+                                <span> <b  className="user-mod">{this.state.user.score}</b><br/></span>
+                            ) : this.state.user.score >= 5000 ? (
+                                <span> <b  className="user-admin">{this.state.user.score}</b><br/></span>
+                            ) : (
+                                <span> <b>{this.state.user.score}</b><br/></span>
+                            )}
+                        </p>
                     </div></a>
                     <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
                         <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>

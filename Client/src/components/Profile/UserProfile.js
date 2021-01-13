@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../App.css';
+import '../../assets/App.css';
 import axios from 'axios';
 import {Image , OverlayTrigger, Tooltip} from 'react-bootstrap'
 import History from './ProfilePostHistory'
@@ -176,7 +176,22 @@ export default class UserProfile extends React.Component {
             <div id="social">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h4> {this.state.user.fullname} <b className="user-score">{this.state.user.score}</b> </h4><br/>
+                <h3>
+                  <b>{this.state.user.fullname} </b>  
+
+                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
+                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
+
+                  ) : this.state.user.score >=1000 ?(
+                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
+                  ) : this.state.user.score >= 5000 ? (
+                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
+                  ) : (
+                    <span><b>{this.state.user.score}</b><br/></span>
+                  )} 
+
+                </h3><br/>
+
                 {/* <b className="is-tutor"> Tutor</b> */}
                 {/* <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                 <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button> */}
@@ -194,7 +209,17 @@ export default class UserProfile extends React.Component {
             <div className="user-profile-about">
               <section className="badge-container">
                 <div className="stats-item-1">
-                  <BsHeart size={30}/> <b>{this.state.user.score}</b><br/>Score
+                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
+                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
+
+                  ) : this.state.user.score >=1000 ?(
+                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
+                  ) : this.state.user.score >= 5000 ? (
+                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
+                  ) : (
+                    <span><b>{this.state.user.score}</b><br/></span>
+                  )} 
+                  Score
                 </div>
                 <div className="stats-item-1">
                   <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>

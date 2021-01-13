@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import {Image, Card, OverlayTrigger,Tooltip,Modal, Form} from 'react-bootstrap'
 import ProfilePic from '../../../images/blogging.jpg'
@@ -32,7 +32,6 @@ export default class CommunityPage extends React.Component {
       showFeed:true,
       showSocials: false,
       isLoading:true,
-
     };
    
   }
@@ -51,6 +50,7 @@ export default class CommunityPage extends React.Component {
           this.setState({ society: response.data.society,
            users:response.data.society.users,
            mods:response.data.society.mods,
+           admin:response.data.society.admin,
            isLoading:false})
         })
         .catch((error) => {
@@ -225,7 +225,7 @@ export default class CommunityPage extends React.Component {
               <h1>{this.state.society.name}</h1>
               <p className="member-count">{this.state.society.description}</p>
               <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
-              <button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small>- {this.state.users.length}</small></button>
+              <button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small> {this.state.users.length}</small></button>
             </article>
           </section>
           </header>
@@ -329,21 +329,25 @@ export default class CommunityPage extends React.Component {
             <div className="peopleTab">     {/* SHOW PEOPLE*/}
                       
                     <div>
-                      <h1><b className="user-admin">Admins - {this.state.users.length}</b></h1>
+                      <h1><b className="user-admin">Admins - {this.state.society.admin}</b></h1>
                       <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
+                      {/* {this.state.admin.map(admin=>( */}
                         <div className="community-members-item">
-                          <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                          {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{admin._id}</Tooltip>}> */}
+                            {/* <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a>  */}
+                          {/* </OverlayTrigger> */}
                         </div>
-                      ))}
+                      {/* ))} */}
                     </div><br/>
 
                     {/* MODERATORS TAB */}
-                    <h1><b className="user-score">Moderators - {this.state.users.length}</b></h1>
+                    <h1><b className="user-mod">Moderators - {this.state.mods.length}</b></h1>
                     <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
+                      {this.state.mods.map(mod=>(
                         <div className="community-members-item">
-                          <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{mod.fullname}</Tooltip>}>
+                            <a href={"/u/?id="+mod._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                          </OverlayTrigger>
                         </div>
                       ))}
                     </div><br/>
@@ -353,7 +357,9 @@ export default class CommunityPage extends React.Component {
                     <div className="CommunityMembers">
                       {this.state.users.map(user=>(
                         <div className="community-members-item">
-                         <a href={"/u/?id="+user._id}> <Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.fullname}</Tooltip>}>
+                            <a href={"/u/?id="+user._id}> <Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                          </OverlayTrigger>
                         </div>
                       ))}
                     </div>

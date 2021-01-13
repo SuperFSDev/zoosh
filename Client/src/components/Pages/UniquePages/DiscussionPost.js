@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import axios from 'axios';
 import ProfileUsername from '../../Profile/ProfileUsername'
 import ProfilePicture from '../../Profile/ProfilePicture'
 import {Helmet} from 'react-helmet'
-import {  Dropdown } from 'react-bootstrap';
+import {  Dropdown,OverlayTrigger,Tooltip } from 'react-bootstrap';
 import moment from 'moment'
 import { Form, Badge , Image, Card, Button} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 import {FaShare} from 'react-icons/fa'
-import {BsHeart,BsGem} from 'react-icons/bs'
+import {BsHeart,BsGem,BsHeartFill,BsBookmark,BsBookmarkFill,BsThreeDots} from 'react-icons/bs'
 import { RiFlaskLine } from 'react-icons/ri';
 import SkeletonDiscussionPost from '../../Common/SkeletonUI/SkeletonDiscussionPage'
 import Accordion from '@material-ui/core/Accordion';
@@ -28,6 +28,8 @@ export default class DiscussionPost extends React.Component {
       comments:[],
       societies: [],
       isLoading:true,
+      hearts: 0,
+      isSaved: false,
     };
   }
 
@@ -43,7 +45,8 @@ export default class DiscussionPost extends React.Component {
         }
       })
         .then((response) => {
-          this.setState({ discussion: response.data.discussion,
+          this.setState({ 
+            discussion: response.data.discussion,
             isLoading:false, })
         })
         .catch((error) => {
@@ -57,6 +60,26 @@ export default class DiscussionPost extends React.Component {
       .catch((error) => {
           console.log(error);
       });
+    }
+
+    addLikes = () =>{
+      const {hearts} = this.state;
+
+      this.setState({ 
+        hearts: hearts + 1
+      })
+    }
+
+    addToSaved = () =>{
+      this.setState({ 
+        isSaved: true,
+      })
+    }
+
+    removeSaved = () =>{
+      this.setState({ 
+        isSaved: false,
+      })
     }
 
     render() {
@@ -85,8 +108,18 @@ export default class DiscussionPost extends React.Component {
           </Helmet> 
 
           <div className="containerPostLeft">
-              <ProfilePicture className="prof-pic-discussion"/>
-              <ProfileUsername/>
+              <span>{this.state.discussion.pic}</span>
+              <p>
+                <small className="text-muted">Written By</small><br/>
+                {this.state.discussion.user}
+              </p>
+              <button className="discussion-button">View Profile</button>
+              <div className="spacing"></div>
+              <p >
+                <b>{this.state.discussion.society}</b>
+                <br/>Description about this community
+              </p>
+              <button className="discussion-button">Visit Community</button>
           </div>
           <div className="containerPostMiddle">
             <div className="forum-container">
@@ -94,19 +127,44 @@ export default class DiscussionPost extends React.Component {
                 <ProfilePic/>
                 <Username/>
               </div>
-              <h1>{this.state.discussion.title}</h1>
-              <Badge variant="secondary">{this.state.discussion.society}</Badge>
+              {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
+              <p className="post-header">
+                {this.state.discussion.title}<br/>
+                <p className="text-muted"><b>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}</p>
+              </p>
+              
+                {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Written by</Tooltip>}>
+                  <span className="d-inline-block">
+                  </span>
+                </OverlayTrigger> */}
 
-              <p>{this.state.discussion.content}</p>
-              <big className="text-muted">{moment(this.state.discussion.time).format("H:mma - MMM Do, YYYY.")}</big><br/><br/>
+              <p className="post-content">{this.state.discussion.content}</p>
 
                 {/* Discussion Post interaction options */}
-                <a href={"/u/?id=" + this.state.discussion.user._id}><span className="voting-btn"><button className="standard-option-btn-post" >{this.state.discussion.user}</button></span></a>
-                <span className="voting-btn"><button className="standard-option-btn-post-hearts"><BsHeart size={22} /> {this.state.comments.length} Hearts</button></span>
-                {/* <span className="voting-btn"><button className="standard-option-btn-post"><BiDownvote  size={20} /> </button></span> */}
+                <div className="spacing"></div>
+                
+                {this.state.hearts > 0 ? ( 
+                  <span className="voting-btn"><button className="standard-option-btn-post-hearts-liked" onClick={this.addLikes}><BsHeartFill size={22} /> {this.state.hearts} Hearts</button></span>
+                  ) : ( 
+                  <span className="voting-btn"><button className="standard-option-btn-post-hearts" onClick={this.addLikes}><BsHeart size={22} /> {this.state.hearts} Hearts</button></span>
+                  )} 
+
+                <span className="d-inline-block">
+                
+                  {!this.state.isSaved ? (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToSaved}><BsBookmark size={22} /></button></span>
+                  </OverlayTrigger> 
+                  ) : (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
+                  </OverlayTrigger>
+                  )}
+                
+                </span>
                 <Dropdown >
                   <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
-                    <FaShare/> Share
+                    <BsThreeDots/>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
@@ -139,7 +197,7 @@ export default class DiscussionPost extends React.Component {
               <Typography className="motto">What are your thoughts?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-            <textarea placeholder="Write your response ..." className="Comment-input" rows = "5" cols = "60"/>
+            <textarea className="Comment-input" rows = "5" cols = "60"/>
             
             </AccordionDetails>
             <button className="standard-button">Respond</button>
@@ -165,10 +223,7 @@ export default class DiscussionPost extends React.Component {
                                            
           </div>
         </div>   
-          </div>
-
-          {/* Comment Section of Discussion Post */}
-          
+          </div>          
 
        
         </>

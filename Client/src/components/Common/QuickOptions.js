@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import '../../assets/App.css';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 

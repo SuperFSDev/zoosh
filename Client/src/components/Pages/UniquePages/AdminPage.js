@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../../App.css';
+import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Card, Form} from 'react-bootstrap'
+import {Image, Card, Form, Tooltip, OverlayTrigger} from 'react-bootstrap'
 import ProfilePic from '../../../images/blogging.jpg'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
@@ -10,9 +10,9 @@ import { RiCake2Fill } from 'react-icons/ri'
 import {Modal} from 'react-bootstrap'
 import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
-import {BiUpvote,BiDownvote} from 'react-icons/bi'
-import {FaFingerprint,FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
+import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa'
 import { TextField } from '@material-ui/core';
+import {BsReply} from 'react-icons/bs'
 import SkeletonAdminCommunity from '../../Common/SkeletonUI/SkeletonAdminCommunity';
 
 export default class AdminPage extends React.Component {
@@ -53,6 +53,8 @@ export default class AdminPage extends React.Component {
         .then((response) => {
           this.setState({ society: response.data.society,
            users:response.data.society.users,
+           admin:response.data.society.admin,
+           mods:response.data.society.mods,
            score: response.data.society.score,  
            isLoading:false,
            mods:response.data.society.mods})
@@ -276,6 +278,8 @@ export default class AdminPage extends React.Component {
                     <p className="member-count">{this.state.society.description}</p>
                     <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
                     <button className="admin-comm-button"  onClick={() => {this.ShowSettings()}}>Settings</button>
+                    <button className="admin-comm-button"  onClick={() => {this.ShowSettings()}}><BsReply size={20}/>   Invite</button>
+
                   </article>
                 </section>
               </header>
@@ -364,21 +368,25 @@ export default class AdminPage extends React.Component {
                   <div className="peopleTab">     {/* SHOW PEOPLE*/}
                        
                       <div>
-                      <h1><b className="user-admin">Admins {this.state.users.length}</b></h1>
+                      <h1><b className="user-admin">Admins {this.state.society.admin}</b></h1>
                         <div className="CommunityMembers">
-                        {this.state.users.map(user=>(
+                        {/* {this.state.users.map(user=>( */}
                           <div className="community-members-item">
-                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.society.admin}</Tooltip>}> */}
+                              {/* <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a>  */}
+                            {/* </OverlayTrigger> */}
                           </div>
-                        ))}
+                        {/* ))} */}
                       </div><br/>
 
                       {/* MODERATORS TAB */}
-                      <h1><b className="user-score">Moderators {this.state.users.length}</b></h1>
+                      <h1><b className="user-mod">Moderators {this.state.mods.length}</b></h1>
                       <div className="CommunityMembers">
-                        {this.state.users.map(user=>(
+                        {this.state.mods.map(mod=>(
                           <div className="community-members-item">
-                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
+                              <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            </OverlayTrigger>
                           </div>
                         ))}
                       </div><br/>
@@ -388,7 +396,9 @@ export default class AdminPage extends React.Component {
                       <div className="CommunityMembers">
                         {this.state.users.map(user=>(
                           <div className="community-members-item">
-                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.fullname}</Tooltip>}>
+                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                            </OverlayTrigger>
                           </div>
                         ))}
                       </div>
