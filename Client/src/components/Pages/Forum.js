@@ -128,7 +128,7 @@ render(){
       </div>
 
 
-        <div className="global-feed">
+        <div className="global-feed-container">
           <div className="featured-forums">
               <h3>Following</h3>
               {this.state.forums.map(forum=>

@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image} from 'react-bootstrap'
+import {Image, Badge} from 'react-bootstrap'
 import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
 
 export default class ListSocieties extends React.Component {
@@ -15,9 +15,9 @@ export default class ListSocieties extends React.Component {
           societies:[],
           isLoading: true,
           users:[],
-          user: '',
           searchValue: '',
           filterBy: '',
+          user: '',
         };
       }
 
@@ -35,22 +35,14 @@ export default class ListSocieties extends React.Component {
     
     
     }
-
-    updateSearch(user) {
-      this.setState({ searchValue: user.target.value.substr(0, 20) });
+ 
+    updateSearch(event){
+      this.setState({searchValue: event.target.value.substr(0,20)});
     }
 
 render(){
-  var{users} = this.state;
 
-  let filteredUsers = this.state.users.filter(
-
-    (user) => {
-        return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-    }
-
-  );
-
+    var{users} = this.state;
   if(this.state.isLoading){
       return (
         <div>
@@ -80,25 +72,30 @@ render(){
 
         <div className="containerFeedMiddle">
               <div className="global-feed">
-                <h3>Meet the Community</h3>
-                  <div className="container-square">
-                    <div className="search-div-square">
-                        <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category"/>
-                    </div>
-                  </div>  
-              </div>
+              <h3>Reading List ({this.state.users.length})</h3>
+              <div className="spacing"></div>
 
-              <div className="UsersLayout">
-              {filteredUsers.map(user => (
-                <div key={user.id}>
-                  <a href={"/u/?id=" +user._id} className="comm-link"><div className="users-list-items">
-                    <h5>{user.fullname}</h5>
-                      <Image src={user.pic} className="user-image-square" roundedCircle/><br/><br/>
-                      <b className="user-score">{user.score}</b>
-                  </div></a>
-                </div>
-              ))}
+              <div className="reading-list">
+                  <a href=""><h4>Title of Post</h4></a>
+                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>
+                  <button >Remove</button>
+                  <hr/>
               </div>
+              <div className="reading-list">
+                  <a href=""><h4>Title of Post</h4></a>
+                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>                  
+                  <button>Remove</button>
+                  <hr/>
+              </div>
+              <div className="reading-list">
+                  <a href=""><h4>Title of Post</h4></a>
+                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>                  
+                  <button>Remove</button>
+                  <hr/>
+              </div>
+        </div>
+
+
         </div>         
   </div>
     );

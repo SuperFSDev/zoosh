@@ -18,6 +18,9 @@ export default class Events extends React.Component {
     this.state = {
       events: [],
       isLoading:true,
+      searchValue: '',
+      filterBy: '',
+      event: '',
     };
   }
 
@@ -36,9 +39,20 @@ componentDidMount() {
       });
   }
 
+  updateSearch(event) {
+    this.setState({ searchValue: event.target.value.substr(0, 20) });
+  }
+
 
 render(){
   var { events } = this.state;
+
+  let filteredEvents = this.state.events.filter(
+    (event) => {
+        return event.title.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+    }
+  );
+
   if(this.state.isLoading){
     return (
       <div>
@@ -67,7 +81,7 @@ render(){
 
           <div className="search-div-forum">
             {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
+            <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)}  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
           </div>
           <br/>
           <QuickEvent/>
@@ -76,7 +90,7 @@ render(){
         </div>
         <div>
               <div className="EventSocietyLayout">
-              {events.reverse().map(event => (
+              {filteredEvents.reverse().map(event => (
               <div key={event._id}>
                   <div>
                   <a href={"/e/?id=" + event._id} className="-soc-l-navigation">

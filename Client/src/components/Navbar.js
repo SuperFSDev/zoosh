@@ -25,7 +25,9 @@ export default class NavBar extends React.Component {
         showMenu: false,
         showFilter: false,
         showProfile: false,
-
+        user: '',
+        searchValue: '',
+        filterBy: '',
         users: [],
     };
 
@@ -127,11 +129,21 @@ export default class NavBar extends React.Component {
           });
   }
 
+  updateSearch(user) {
+    this.setState({ searchValue: user.target.value.substr(0, 20) });
+  }
+
 render(){
 
   var{users} = this.state;
   let i = 0;
   var indents = [];
+
+  let filteredUsers = this.state.users.filter(
+    (user) => {
+        return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+    }
+  );
 
   for (var k = 0; k < 4; k++) {
     indents.push(users[1]);
@@ -143,7 +155,7 @@ render(){
         <Navbar className="navbar" fixed="top">
           <Nav className="mr-auto">
             <Navbar.Brand className="header" href="/home">Website Name</Navbar.Brand>
-            <input className="searchbar-navbar" type="text" id="mySearch" placeholder="Search users and communities " title="Type in a category" onClick={this.showFilter}/>
+            <input className="searchbar-navbar" type="text" id="mySearch" placeholder="Search users and communities " title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}/>
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
@@ -212,7 +224,7 @@ render(){
                       <h5>Search Results</h5>
                       <hr/>
                       <p className="searchbar-header">USERS</p>
-                      {users.sort((a,b)=> b.score- a.score).map(user  =>  ( 
+                      {filteredUsers.sort((a,b)=> b.score- a.score).map(user  =>  ( 
                       <a  href={"/u/?id="+user._id}><div key={k} className="contributor-item-search">
                             <p className="-contributor-user-search"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname} <b  className="-contributor-user-score">{ user.score}</b></p>
                         </div></a>
@@ -236,7 +248,7 @@ render(){
                     >
                       <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>Hello, {this.state.user.fullname} 😃</b></p></a>
                       <hr/>
-                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Following <b>{this.state.following.length}</b></p></a>
+                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Classmates <b>{this.state.following.length}</b></p></a>
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>

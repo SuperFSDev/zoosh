@@ -109,7 +109,7 @@ render(){
             </div>        
         </div>
 
-        <div className="global-feed">
+        <div className="global-feed-container">
             <h3>Featured Podcasts</h3>
             <div className="EventSocietyLayout">
               {podcasts.reverse().map(podcast => (

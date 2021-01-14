@@ -33,6 +33,7 @@ import Two from './components/Pages/Two'
 import Users from './components/Pages/Users'
 import Listings from './components/Pages/Listings'
 import NewPost from './components/Pages/NewPost'
+import ReadingList from './components/Pages/ReadingList'
 
 class App extends React.Component {
   render(){
@@ -62,7 +63,7 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
-              <Route path="/saved" component={NewPost}/>
+              <Route path="/saved" component={ReadingList}/>
 
 
 
