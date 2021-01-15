@@ -4,9 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import Event from '../Common/StartEvent'
-import {RiAddFill} from 'react-icons/ri'
-import moment from 'moment'
 import {Modal ,OverlayTrigger, Tooltip, Image} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'

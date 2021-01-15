@@ -25,14 +25,12 @@ class Contributors extends React.Component {
 
     var{users} = this.state;
     let i = 0;
-    var indents = [];
-    var size = 5;
-    var items = [];
+    var size = 3;
 
     return (
         <div className="contributors-container">
             <h5 className="-top-cont-header">Top Contributors</h5>
-            {users.sort((a,b)=> b.score- a.score).map(user  =>  ( 
+            {users.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                 <div className="contributor-item">
                 <p>
                     <b>{i+=1}</b>

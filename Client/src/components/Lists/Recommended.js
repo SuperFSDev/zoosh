@@ -3,6 +3,13 @@ import axios from 'axios';
 
 export default class Recommended extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      societies: [],
+    };
+  }
+
   componentDidMount() {
     axios.get('http://localhost:4000/societies/getSocieties')
       .then((response) => {
@@ -11,13 +18,6 @@ export default class Recommended extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      societies: [],
-    };
   }
 
   handleDelete(){
@@ -36,12 +36,14 @@ export default class Recommended extends React.Component {
 
 render(){
   var { societies } = this.state;
+  var size = 4;
+  const shuffledPosts = shuffleArray(societies);
 
    return (
     
     <div className="recommended-container">
-      <h5 className="-recommended-header">Communities</h5><hr/>
-        {societies.reverse().map(society => (
+      <h5 className="-recommended-header">Communities</h5>
+        {shuffledPosts.slice(0, size).map(society =>(
           <div key={society._id}>
           <a href={"/c/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
             <p><b>{society.name}</b></p>
@@ -98,4 +100,17 @@ render(){
         .catch(function (error) {
             console.log(error);
         })
+}
+
+
+// Return a random society from the array - Shuffles them
+function shuffleArray(array) {
+  let i = array.length - 1;
+  for (; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
 }

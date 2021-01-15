@@ -24,6 +24,8 @@ const UserSchema = new Schema({
     forums:{type: Array, "default" : []},
     badges:{type: Array, "default" : []},
     podcasts:{type: Array, "default" : []},
+    readingList:{type: Array, "default" : []},
+
 })
 
 

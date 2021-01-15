@@ -58,9 +58,14 @@ app.use('/forums', Forums);
 var Events = require('./routes/Events');
 app.use('/events', Events);
 
-// Adds the "Events" route to the server.
+// Adds the "Podcasts" route to the server.
 var Podcasts = require('./routes/Podcasts');
 app.use('/podcasts', Podcasts);
+
+// Adds the "Tutors" route to the server.
+var Tutors = require('./routes/Tutors');
+app.use('/tutors', Tutors);
+
 
 
 //log connection to server

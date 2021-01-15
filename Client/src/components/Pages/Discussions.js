@@ -18,7 +18,7 @@ import {FaShare} from 'react-icons/fa'
 import SkeletonDiscussions from '../Common/SkeletonUI/SkeletonDiscussions'
 import {BsLightning,BsHeart,BsGem,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 
-class Discussions extends React.Component {
+export default class Discussions extends React.Component {
 
   constructor(props) {
     super(props);
@@ -46,10 +46,11 @@ class Discussions extends React.Component {
       });
   }
 
-  addToSaved = () =>{
-    this.setState({ 
-      isSaved: true,
-    })
+  addtoSaved = (discussion) =>{
+    // this.setState({ 
+    //   isSaved: true,
+      addToReadingList(discussion);
+    // })
   }
 
   removeSaved = () =>{
@@ -125,7 +126,7 @@ render(){
                 
                   {!this.state.isSaved ? (
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToSaved}><BsBookmark size={22} /></button></span>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
                   </OverlayTrigger> 
                   ) : (
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
@@ -152,5 +153,19 @@ render(){
 }
 }
 
+ // Adding a User to a society array and adding the society to the users array
+ async function addToReadingList(discussion) {
+  
+  const addDiscussion = {
+      discussion: discussion._id,
+  }
 
-export default Discussions;
+  // Adds society to societies array in user model.
+  await axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+}

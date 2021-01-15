@@ -93,7 +93,7 @@ render(){
           </div>
           <div className="container-individual">
             <h1 className="c-s-header" id="users">ON FIRE USERS <span role="img" aria-label="fire">🔥</span></h1><br/>
-                {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
+                {users.slice(0,10).sort((a,b)=> b.score- a.score).map(user=>  ( 
                   <a href={"/u/?id="+user._id}><div>
                     <p className="leaderboard-item"><b>{i+=1}</b><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
                       {user.score >= 1 && user.score <=999 ? (
@@ -117,7 +117,7 @@ render(){
           <div className="container-individual">
             <h1 className="c-s-header" id="top-comm">TOP COMMUNITIES <span role="img" aria-label="trend">📈</span></h1><br/>
               <div className="">
-                {societies.sort((a,b)=> b.score - a.score).map(society=>  (
+                {societies.slice(0,10).sort((a,b)=> b.score - a.score).map(society=>  (
                   <div>
                     <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
                   </div>
@@ -130,7 +130,7 @@ render(){
           <div className="container-individual">
             <h1 className="c-s-header">TOP GROWING COMMUNITIES <span role="img" aria-label="growth">🌱</span></h1><br/>
               <div className="">
-                {societies.sort((a,b)=> b.users.length - a.users.length).map(society=>  (
+                {societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=>  (
                   <div>
                     <p className="leaderboard-item"><b>{j+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
                   </div>

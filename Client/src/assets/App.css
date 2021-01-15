@@ -1446,7 +1446,8 @@ section::after {
 
 .feed-option-redirects:hover{
   /* color: #0c94ff!important; */
-  color:#8a6bf5!important;
+  /* color:#8a6bf5!important; */
+  color:blue;
 }
 
 .feed-option-redirects-username{

@@ -7,7 +7,7 @@ import {Helmet} from 'react-helmet'
 import {Image, Badge} from 'react-bootstrap'
 import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
 
-export default class ListSocieties extends React.Component {
+export default class ReadingList extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,21 +17,39 @@ export default class ListSocieties extends React.Component {
           users:[],
           searchValue: '',
           filterBy: '',
+          readingList: [],
           user: '',
         };
       }
 
     componentDidMount() {
       document.body.style.backgroundColor = "#f0f2f5";
+      var user = JSON.parse(localStorage.getItem('user'));
 
       axios.get('http://localhost:4000/users/getUsers')
       .then((response)=>{
-          this.setState({users: response.data.users,
+          this.setState({
+            users: response.data.users,
             isLoading: false})
       })
       .catch((error)=>{
           console.log(error);
       });
+
+      axios.get('http://localhost:4000/users/get-user-details', {
+          params: {
+              id: user._id,
+             
+          }
+      })
+          .then((response) => {
+              this.setState({ user: response.data.user,
+                readingList: response.data.user.readingList,
+              })
+          })
+          .catch((error) => {
+              console.log(error);
+          });
     
     
     }
@@ -72,7 +90,7 @@ render(){
 
         <div className="containerFeedMiddle">
               <div className="global-feed">
-              <h3>Reading List ({this.state.users.length})</h3>
+              <h3>Reading List ({this.state.readingList.length})</h3>
               <div className="spacing"></div>
 
               <div className="reading-list">

@@ -423,6 +423,37 @@ users.post('/addToFollowingList', (req, res) => {
     )
 })
 
+// Add to reading list
+users.post('/addToReadingList', (req, res) => {
+    UserModel.findByIdAndUpdate({
+            _id: req.body.user_id,
+        }, {
+            $addToSet: {
+                readingList: req.body.user
+            }
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
+
+        function (err, result) {
+            console.log(result);
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already in reading list.");
+                }
+            }
+
+        }
+    )
+})
+
 
 
 users.post('/updateFollowers', (req, res) => {

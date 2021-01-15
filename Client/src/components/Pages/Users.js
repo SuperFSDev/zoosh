@@ -42,6 +42,9 @@ export default class ListSocieties extends React.Component {
 
 render(){
   var{users} = this.state;
+  var size = 10;
+  const shuffledUsers = shuffleArray(users);
+
 
   let filteredUsers = this.state.users.filter(
 
@@ -89,7 +92,7 @@ render(){
               </div>
 
               <div className="UsersLayout">
-              {filteredUsers.map(user => (
+              {filteredUsers.slice(0,size).map(user => (
                 <div key={user.id}>
                   <a href={"/u/?id=" +user._id} className="comm-link"><div className="users-list-items">
                     <h5>{user.fullname}</h5>
@@ -104,4 +107,17 @@ render(){
     );
    }
   }
+}
+
+
+// Return a random society from the array - Shuffles them
+function shuffleArray(array) {
+  let i = array.length - 1;
+  for (; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
 }

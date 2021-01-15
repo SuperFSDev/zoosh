@@ -9,6 +9,7 @@ import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
+import CreateTutorListing from '../Common/CreateTutorListing'
 
 export default class Tutor extends React.Component {
 
@@ -17,7 +18,7 @@ export default class Tutor extends React.Component {
         this.state = {
           societies:[],
           isLoading: true,
-          users:[],
+          tutors:[],
           searchValue: '',
           filterBy: '',
           user: '',
@@ -27,9 +28,9 @@ export default class Tutor extends React.Component {
     componentDidMount() {
       document.body.style.backgroundColor = "#f0f2f5";
 
-      axios.get('http://localhost:4000/users/getUsers')
+      axios.get('http://localhost:4000/tutors/getTutors')
       .then((response)=>{
-          this.setState({users: response.data.users,
+          this.setState({tutors: response.data.tutors,
             isLoading: false})
       })
       .catch((error)=>{
@@ -39,9 +40,11 @@ export default class Tutor extends React.Component {
     
     }
 
-render()
+render(){
+  
+var{tutors} = this.state;
+const shuffledPosts = shuffleArray(tutors);
 
-{var{users} = this.state;
 if(this.state.isLoading){
     return (
       <div>
@@ -86,16 +89,16 @@ if(this.state.isLoading){
           </div>
 
             <div>
-              <div className="EventSocietyLayout">
-              {users.reverse().map(user => (
-              <div key={user._id}>
-                  <a href={"/u/?id=" +user._id}><div>
-                    <div className="events-card">
-                        <Image className="user-image-square" roundedCircle src={user.pic}/>
-                        <h3>{user.fullname}</h3>
-                        <p><b>Subject:</b> Maths</p>
-                        <p><b>Rate:</b> €10/hr</p>
-                        <p>This is a description of the tutor.</p>
+              <div className="UsersLayout">
+              {shuffledPosts.reverse().map(tutor => (
+              <div key={tutor._id}>
+                  <a href={"/u/?id=" +tutor._id}><div>
+                    <div className="users-list-items">
+                        {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
+                        {/* <h5>{user.fullname}</h5> */}
+                        <p><b>Subject:</b> {tutor.subject}</p>
+                        <p><b>Rate:</b> €{tutor.rate}/hr</p>
+                        <p>{tutor.description}</p>
 
                         <div >
                         </div>
@@ -140,9 +143,22 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Body>
-              <Event/>
+          <CreateTutorListing/>
           </Modal.Body>
         </Modal.Header>
       </Modal>
     );
   }
+
+  
+// Return a random society from the array - Shuffles them
+function shuffleArray(array) {
+  let i = array.length - 1;
+  for (; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
