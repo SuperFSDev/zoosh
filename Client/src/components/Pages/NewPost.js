@@ -6,33 +6,43 @@ import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
+import { ObjectID } from 'bson';
 
 export default class NewPost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      _id: '',
+      score: 10,
       users: [],
-      societies: [],
       posts: [],
-      user: '',
       title: '',
-      content: '',
+      user: '',
+      UniqueUser: '',
+      post: '',
       time: new Date().getTime(),
-      society: '',
+      category: '',
+      tags: [],
+      pictures: [],
+      FollowingID: ''
       
     };
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
+    this.onChangePost = this.onChangePost.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeContent = this.onChangeContent.bind(this);
-    this.onChangeSociety = this.onChangeSociety.bind(this);
+    this.onChangeTime = this.onChangeTime.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+    this.onChangeTag = this.onChangeTag.bind(this);
   }
 
   componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.style.backgroundColor = "#FDFEFE";
+    this.setState({ id: user._id });
 
     if (user)
       var fullname = user.fullname;
@@ -67,48 +77,78 @@ export default class NewPost extends React.Component {
     });
   }
 
-  onChangeContent(e) {
+  onChangeSociety(e) {
+    this.setState({ society: e });
+  }
+
+  onChangeUser(e) {
     this.setState({
-      content: e.target.value
+      user: e.target.value
+    });
+  }
+  onChangePost(e) {
+    this.setState({
+      post: e.target.value
     });
   }
 
-  onChangeSociety(e) {
-    this.setState({ society: e });
+  onChangeTime(e) {
+    this.setState({
+      time: new Date().getTime(),
+    });
+  }
+
+  onChangeCategory(e) {
+    this.setState({ category: e.target.value });
+  }
+
+  onChangeTag(e) {
+    this.setState({ tags: e })
   }
 
 
   onSubmit(e) {
 
     e.preventDefault();
+    var id = new ObjectID();
 
-    const newDiscussion = {
-      user: this.state.user,
-      title: this.state.title,
-      content: this.state.content,
-      time: new Date().getTime(),
-      society: this.state.society,
+    const newPost = {
+      user_id: this.state.id,
+      score: this.state.UniqueUser.score + 1,
+      post: {
+        Post_id: id,
+        user: this.state.user,
+        user_id: this.state.id,
+        title: this.state.title,
+        post: this.state.post,
+        time: new Date().getTime(),
+        category: this.state.category,
+        tags: this.state.tags,
+        pictures: this.state.pictures
+      }
     }
 
-    axios.post('http://localhost:4000/discussions/NewDiscussions', newDiscussion)
+    axios.post('http://localhost:4000/users/addPost', newPost)
       .then()
       .catch();
 
     this.setState({
       user: '',
       title: '',
-      content: '',
+      score: +1,
+      post: '',
       time: new Date().getTime(),
-      society: ''
+      category: '',
+      tags: []
     });
     window.location = '/discussions';
   }
 
 render(){
 
-  let options = this.state.societies.map(function (society) {
-    return { value: society, label: society };
-  })
+  // let options = this.state.societies.map(function (society) {
+  //   return { value: society, label: society };
+  // })
 
   return (
      <div>
@@ -140,14 +180,14 @@ render(){
             placeholder="Write your post content here ..." 
             className="Content-input" 
             rows = "5" cols = "60"
-            value={this.state.content}
-            onChange={this.onChangeContent}
+            value={this.state.post}
+            onChange={this.onChangePost}
             required
             />
 
             
             
-          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
+          {/* <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/> */}
           <button className="standard-button" type="submit">Publish</button>
           <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
 

@@ -9,7 +9,6 @@ import {Helmet} from 'react-helmet'
 import moment from 'moment'
 import {TiLocation} from 'react-icons/ti'
 import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
-import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 import { MdSchool } from 'react-icons/md'
 import {SiAboutDotMe} from 'react-icons/si'
 import {FaBook} from 'react-icons/fa'
@@ -61,7 +60,7 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.style.backgroundColor = "#FCFCFC";
 
 
     axios.get(`http://localhost:4000/users/get-user-details`, {
@@ -92,6 +91,7 @@ export default class UserProfile extends React.Component {
     addUserToFollow(user);
     console.info("Followed User")
   }
+  
 
   unfollow(user) {
 
@@ -136,21 +136,21 @@ export default class UserProfile extends React.Component {
   
   }
 
+  CheckDetails() {
+    if(this.state.user.college === null){
+      return(<div>
+        <p>Delete comment</p>
+      </div>)
+  }
+}
+
   render() {
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
     var user = JSON.parse(localStorage.getItem('user'));
     var pp = user.pic;
+    var size = 5;
 
-    if(this.state.isLoading){
-      return (
-        <div>
-          <SkeletonProfile/>
-        </div>
-      )
-    }
-    
-    else{
     return (
       <>
       {/* REACTJS HELMET */}
@@ -172,7 +172,6 @@ export default class UserProfile extends React.Component {
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
           </div>
-          <div className="user-profile-about">
             <div id="social">
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
@@ -197,18 +196,42 @@ export default class UserProfile extends React.Component {
                 <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button> */}
 
                 {isUnfollowing ? (
-                  <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                  <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                 ) : (
-                  <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                  <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                 )}
+                <br/><br/>
+                
+                {/* If the user has not edited their profile to display college/course then dont display */}
+                {this.state.user.college == null ? (
+                  <div></div>
+                  // <b>{this.state.user.fullname} is hiding from you</b>
+                ) : (
+                  <b>{this.state.user.college} &#x2022; {this.state.user.course}</b>
+                )}
+               </div>    <br/>
+               
               </div>
-              </div>
-              {/* {this.state.user.bio} */}
-            </div>
 
-            <div className="user-profile-about">
-              <section className="badge-container">
-                <div className="stats-item-1">
+              <div className="user-profile-about-bio">
+                {this.state.user.bio}
+
+                <br/><br/>
+
+                {this.state.societies.map(society=>
+                  <li className="community-members-item-profile">
+                    <p>
+                      <b><a href={"/s/?id="+society}>{society}</a></b><br/>
+                      <b className="user-admin">Admin</b>
+                    </p>
+                   
+                  </li>)}
+              </div>
+          
+
+            {/* <div className="user-profile-about"> */}
+              {/* <section className="badge-container"> */}
+                {/* <div className="stats-item-1">
                   {this.state.user.score >= 1 && this.state.user.score <=999 ? (
                       <span><b className="user-member">{this.state.user.score}</b><br/></span>
 
@@ -219,7 +242,7 @@ export default class UserProfile extends React.Component {
                   ) : (
                     <span><b>{this.state.user.score}</b><br/></span>
                   )} 
-                  Score
+                   <br/>Score
                 </div>
                 <div className="stats-item-1">
                   <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
@@ -227,8 +250,8 @@ export default class UserProfile extends React.Component {
                 <div className="stats-item-1">
                   <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
                 </div>
-                <br/>
-                <div className="stats-item-1">
+                <br/> */}
+                {/* <div className="stats-item-1">
                   <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
                 </div>
                 <div className="stats-item-1">
@@ -236,12 +259,12 @@ export default class UserProfile extends React.Component {
                 </div>
                 <div className="stats-item-1">
                   <span><BsShieldShaded size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
-                </div>
-              </section>
+                </div> */}
+              {/* </section> */}
           
-            </div>
+            {/* </div> */}
 
-            <div className="user-profile-about">
+            {/* <div className="user-profile-about">
 
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
                 <span className="d-inline-block">
@@ -263,12 +286,48 @@ export default class UserProfile extends React.Component {
                 </span>
               </OverlayTrigger>
               <b className="user-details">{this.state.user.course}</b><br/>
-            </div>
+            </div> */}
 
-
+{/* 
           <div className="user-profile-about">
-              <h5>Badges</h5>
-              <section className="badge-container">
+            <h5>Communities</h5>
+       
+            {this.state.societies.map(society=>
+                  <li className="community-members-item-profile">
+                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
+                    <b>Admin</b>
+                  </li>)}
+          </div> */}
+        </div>
+
+        <div className="containerFeedRightUser">
+        {/* <div  className="top-posts-profile-container-2">
+          <div className="user-profile-overview">
+          <span><p>{this.state.user.bio}</p></span>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
+                <span className="d-inline-block">
+                <p id="icons"><RiCake2Fill size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
+
+              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
+                <span className="d-inline-block" >
+                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
+                </span>
+              </OverlayTrigger>
+                 Galway, Ireland.
+          </div>
+              
+        </div><br/> */}
+          <div  className="top-posts-profile-container-2">
+            <h5>Top Posts</h5>
+            <History />
+          </div>
+          <br/>
+          <div  className="top-posts-profile-container-2">
+            <h5>Badges</h5>
+            <section className="badge-container">
                 <div className="badge-item-1">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
                             <span className="d-inline-block">
@@ -290,51 +349,14 @@ export default class UserProfile extends React.Component {
                           </span>
                   </OverlayTrigger>  
                 </div>
+                
               </section>
-            </div>
-
-
-          <div className="user-profile-about">
-            <h5>Communities</h5>
-       
-            {this.state.societies.map(society=>
-                  <li className="community-members-item-profile">
-                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
-                    <b>Admin</b>
-                  </li>)}
-          </div>
-        </div>
-
-        <div className="containerFeedRightUser">
-        <div  className="top-posts-profile-container-2">
-          <div className="user-profile-overview">
-          <span><p>{this.state.user.bio}</p></span>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
-                <span className="d-inline-block">
-                <p id="icons"><RiCake2Fill size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
-
-              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
-                <span className="d-inline-block" >
-                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                 Galway, Ireland.
-          </div>
-              
-        </div><br/>
-          <div  className="top-posts-profile-container-2">
-            <h5>Top Posts</h5>
-            <History />
           </div>
           
         </div>
       </>
     );
   }
- }
 }
 
 

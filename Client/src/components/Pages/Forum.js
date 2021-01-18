@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 // import AddUserToForum from '../Profile/AddUserToForum'
 import { Helmet } from 'react-helmet'
-import SkeletonForum from '../Common/SkeletonUI/SkeletonForum';
+import Avatar from '@material-ui/core/Avatar';
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
 
 export default class Forum extends React.Component {
 
@@ -18,11 +18,13 @@ export default class Forum extends React.Component {
       filterBy: '',
       user: '',
       isLoading: true,
+      user: '',
+      socs:[],
     };
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
   
@@ -35,6 +37,8 @@ export default class Forum extends React.Component {
         .then((response) => {
           this.setState({ user: response.data.user,
                           forums: response.data.user.forums,
+                          socs:response.data.user.societies
+
   
           })
         })
@@ -79,6 +83,12 @@ export default class Forum extends React.Component {
 
 render(){
 
+  var user = JSON.parse(localStorage.getItem('user'));
+  if(user) 
+  {
+      var fullname = user.fullname;
+  }
+
   let filteredForumsByName = this.state.forums.filter(
 
     (forum) => {
@@ -93,13 +103,21 @@ render(){
     }
 
   );
-  if(this.state.isLoading){
-    return (
-      <div>
-        <SkeletonForum/>
+
+  const forumList = filteredForumsByName.map(forum => {
+    return(
+    <div key={forum.id}>
+      <a href={"/f/?id="+forum._id}><br/><div className="forum-option">
+        <div className="forum-item-title">
+            <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
+        </div>
+    </div></a>
+          <div >
       </div>
-    )
-  } else{
+    </div>
+
+  )})
+
   return (
      <div>
         {/* REACTJS HELMET */}
@@ -116,7 +134,59 @@ render(){
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
       <div className="containerFeedLeft">
-        <FeedOptions/>
+        <div className="feed-options-container">
+                  <div className="feed-options-item">
+                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
+                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
+                              {user.score >= 1 && user.score <=999 ? (
+                                  <span> <b className="user-member">{user.score}</b><br/></span>
+
+                              ) : user.score >=1000 ?(
+                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
+                              ) : user.score >= 5000 ? (
+                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
+                              ) : (
+                                  <span> <b>{user.score}</b><br/></span>
+                              )}
+                          </p>
+                      </div></a>
+                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
+                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                      </div></a>
+                      <a href="/users" className="feed-option-redirects"><div className="option-container">
+                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                      </div></a>
+                      <hr/>
+                      <a href="/forums" className="feed-option-redirects-active"><div className="option-container-active">
+                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
+                      </div></a>
+                      <a href="/events" className="feed-option-redirects"><div className="option-container">
+                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                      </div></a>
+                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a>
+                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
+                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                      </div></a>
+                      
+                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
+                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                      </div></a><hr/>
+                      
+                      <div className="option-container">
+                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                          {this.state.socs.map(soc=>
+                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                      </div>
+                  </div>
+            </div>
       </div>
 
       <div className="containerFeedMiddle">
@@ -132,9 +202,9 @@ render(){
           <div className="featured-forums">
               <h3>Following</h3>
               {this.state.forums.map(forum=>
-                  <li>{this.state.forums.forum}</li>)}<br/>
+                  <li key={forum.id}>{forum.forum}</li>)}<br/>
               <a href="#"><div className="forum-option">
-                  <h5>{this.state.user.forums}</h5>
+                  <h5>{user.forums}</h5>
               </div></a>
           </div>
 
@@ -143,18 +213,7 @@ render(){
 
           <div className="featured-forums">
               <h3>Featured</h3>
-              {filteredForumsByName.map(forum => (
-              <div key={forum.id}>
-                <a href={"/f/?id="+forum._id}><br/><div className="forum-option">
-                  <div className="forum-item-title">
-                      <h5 className="forum-btn-wrapper-left">{forum.name}</h5>
-                  </div>
-              </div></a>
-                    <div >
-                </div>
-              </div>
-
-            ))}
+              {forumList}
           </div>
         </div>
       </div>
@@ -166,7 +225,6 @@ render(){
   );
   }
  }
-}
 
 // Adding a User to forum to follow
 async function addUserToForum(frm) {

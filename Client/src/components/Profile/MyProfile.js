@@ -13,7 +13,6 @@ import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
 import {TiLocation} from 'react-icons/ti'
 import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
-import SkeletonProfile from '../Common/SkeletonUI/SkeletonProfile';
 
 export default class MyProfile extends React.Component {
 
@@ -31,6 +30,7 @@ export default class MyProfile extends React.Component {
           following: [],
           followers: [],
           societies:[],
+          admin:[],
           badges:[],
           isYellowTag:false,
       };
@@ -38,7 +38,7 @@ export default class MyProfile extends React.Component {
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FCFCFC";
 
       this.setState({ id: user._id });
 
@@ -52,6 +52,7 @@ export default class MyProfile extends React.Component {
               this.setState({ user: response.data.user,
               followers: response.data.user.followers,
               following: response.data.user.following,
+              admin: response.data.user.admin,
               societies: response.data.user.societies,
               posts:response.data.user.posts,
               badges:response.data.user.badges,
@@ -68,14 +69,6 @@ export default class MyProfile extends React.Component {
   render(){
 
     var title = this.state.user.fullname + " - Website"
-
-    if(this.state.isLoading){
-      return (
-        <div>
-          <SkeletonProfile/>
-        </div>
-      )
-    } else{
 
     return (
       <>
@@ -99,7 +92,7 @@ export default class MyProfile extends React.Component {
 
         <div className="containerFeedMiddleProfile">
           <div className="profile-card"></div>
-            <div className="user-profile-about">
+            {/* <div className="user-profile-about"> */}
               <div className="profile-card-align">
                 <Image src={this.state.user.pic} className="user-image" roundedCircle/>
                 <h3>
@@ -118,13 +111,30 @@ export default class MyProfile extends React.Component {
                 
                 </h3><br/>
                 <EditProfile/><br/>
+
+                <b>{this.state.user.college} &#x2022; {this.state.user.course}</b>
+              </div>
+              <br/>
+              <div className="user-profile-about-bio">
+                {this.state.user.bio}
+
+                <br/><br/>
+
+                {this.state.societies.map(society=>
+                  <li className="community-members-item-profile">
+                    <p>
+                      <b><a href={"/s/?id="+society}>{society}</a></b><br/>
+                      <b className="user-admin">Admin</b>
+                    </p>
+                   
+                  </li>)}
               </div>
               
-            </div>
+            {/* </div> */}
 
-            <div className="user-profile-about">
-              <section className="badge-container">
-                <div className="stats-item-1">
+            {/* <div className="user-profile-about">
+              <section className="badge-container"> */}
+                {/* <div className="stats-item-1">
                 {this.state.user.score >= 1 && this.state.user.score <=999 ? (
                       <span><b className="user-member">{this.state.user.score}</b><br/></span>
 
@@ -142,8 +152,8 @@ export default class MyProfile extends React.Component {
                 <div className="stats-item-1">
                   <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
                 </div>
-                <br/>
-                <div className="stats-item-1">
+                <br/> */}
+                {/* <div className="stats-item-1">
                   <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
                 </div>
                 <div className="stats-item-1">
@@ -154,10 +164,9 @@ export default class MyProfile extends React.Component {
                 </div>
               </section>
           
-            </div>
+            </div> */}
 
-            <div className="user-profile-about">
-              {/* Users Name */}
+            {/* <div className="user-profile-about">
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
                 <span className="d-inline-block">
                 <p><SiAboutDotMe /> </p>
@@ -165,7 +174,6 @@ export default class MyProfile extends React.Component {
               </OverlayTrigger>
               <b className="user-details">{this.state.user.fullname}</b><br/>
               
-              {/* Users College */}
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
                 <span className="d-inline-block">
                   <p><MdSchool /></p>
@@ -173,16 +181,15 @@ export default class MyProfile extends React.Component {
               </OverlayTrigger>
               <b className="user-details">{this.state.user.college}</b><br/>
 
-              {/* Users Course Details */}
               <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
                 <span className="d-inline-block">
                 <p><FaBook/></p>
                 </span>
               </OverlayTrigger>
               <b className="user-details">{this.state.user.course}</b><br/>        
-            </div>
+            </div> */}
 
-            <div className="user-profile-about">
+            {/* <div className="user-profile-about">
               <h5>Badges</h5>
               <section className="badge-container">
                 <div className="badge-item-1">
@@ -207,21 +214,21 @@ export default class MyProfile extends React.Component {
                   </OverlayTrigger>  
                 </div>
               </section>
-            </div>
+            </div> */}
             
-            <div className="user-profile-about">
+            {/* <div className="user-profile-about">
             <h5>Communities <QuickOptions /></h5>
             {this.state.societies.map(society=>
                   <li className="community-members-item-profile">
                     <b><a href={"/s/?id="+society}>{society}</a></b><br/>
                     <b>Admin</b>
                   </li>)}<br/>
-            </div>
+            </div> */}
         </div>
         
 
         <div className="containerFeedRightProfile">
-        <div  className="top-posts-profile-container">
+        {/* <div  className="top-posts-profile-container">
           <div className="user-profile-overview">
           <span><p>{this.state.user.bio}</p></span>
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
@@ -239,57 +246,67 @@ export default class MyProfile extends React.Component {
                  Galway, Ireland.
           </div>
               
-        </div>
+        </div> */}
           <div  className="top-posts-profile-container">
             <h5>Top Posts</h5>
-            </div>
-                {this.state.posts.reverse().map(post=>  (
-                <div key={this.state.user._id}>  
-                  <a href="/" className="post-link"><Card className='userPosts'>
-                    <Card.Body>          
-                      <Card.Text className="fontPost">
-                        <a href={"/p/?id=" + post.Post_id}><b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/></a>
-                      </Card.Text>        
-                    </Card.Body>  
-                    <h1></h1>                
-                  </Card></a>
+            {this.state.posts.slice(0,10).reverse().map(post=>  (
+              <div key={this.state.user._id}>  
+               <Card className='userPosts'>
+                  <Card.Body>          
+                    <Card.Text className="fontPost">
+                    <a href={"/p/?id=" + post.Post_id}>
+                      <p>
+                        <span className="forum-title">{post.title}</span><br/>
+                        <span className="content-muted">{post.post.slice(0,100)}...</span><br/>
+                        {post.society == null ? (
+                            <span  className="content-muted">Posted in<b> General</b><br/></span>
+                        ) : (
+                          <span  className="content-muted"><b>{post.society}</b><br/></span>
+                        )}
+                        <small className="text-muted">{moment(post.time).format(" MMM Do 'YY.")}</small><hr/>
+                      </p>
+                    </a>
+                    </Card.Text>        
+                  </Card.Body>  
+                  <h1></h1>                
+                </Card>
+              </div>
+            ))} 
+          </div>
+
+          <div  className="top-posts-profile-container">
+            <h5>Badges</h5>
+            <section className="badge-container">
+                <div className="badge-item-1">
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥇 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>   
                 </div>
-              ))} 
+                <div className="badge-item-2">
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥈 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>  
+                </div>
+                <div className="badge-item-3">
+                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
+                            <span className="d-inline-block">
+                            <span>🥉 <h2>{this.state.badges.length}</h2></span>
+                          </span>
+                  </OverlayTrigger>  
+                </div>
+                
+              </section>
+          </div>
+               
         </div>
       </>
     );
   }
-  
- }
 }
-
-function ProfilePicture() {
-  var user = JSON.parse(localStorage.getItem('user'));
-  var pp = user.pic;
-
-  return (
-    <div id="social">
-      <Image src={pp} className="user-image" />
-    </div>
-  );
-}
-
-
-// Get profile username
-function Username(){
-  var user = JSON.parse(localStorage.getItem('user'));
-  if(user)
-    var fullname = user.fullname; 
-
-  return (
-    <div id="social">
-      <h3>{fullname}</h3>
-      {/* {id} */}
-    </div>
-  );
-
-}
-
 
 // MODAL TO CREATE SOCIETY/CLUB
 function QuickOptions() {

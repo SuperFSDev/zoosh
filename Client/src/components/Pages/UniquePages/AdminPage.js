@@ -13,7 +13,6 @@ import {RiAddFill} from 'react-icons/ri'
 import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa'
 import { TextField } from '@material-ui/core';
 import {BsReply} from 'react-icons/bs'
-import SkeletonAdminCommunity from '../../Common/SkeletonUI/SkeletonAdminCommunity';
 
 export default class AdminPage extends React.Component {
 
@@ -42,7 +41,7 @@ export default class AdminPage extends React.Component {
   async componentDidMount() {
     
       var society_id = new URLSearchParams(document.location.search).get("id");
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
 
       
      await axios.get('http://localhost:4000/societies/get-societies-page', {
@@ -243,13 +242,7 @@ export default class AdminPage extends React.Component {
       var { events } = this.state;
       var title = this.state.society.name + " - Website"
       let i, k = 0;
-      if(this.state.isLoading){
-        return (
-          <div>
-            <SkeletonAdminCommunity/>
-          </div>
-        )
-      } else{
+      
         return (
           <div>
             {/* REACTJS HELMET */}
@@ -419,7 +412,7 @@ export default class AdminPage extends React.Component {
                       <div key={event._id}>
                           <div>
                           <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                            <div className="events-card">
+                            <div className="events-card-community">
                                 <h4><b>{event.title}</b></h4> 
                                 <p>{event.society}</p> 
                                 <p>{event.time}</p>
@@ -528,7 +521,6 @@ export default class AdminPage extends React.Component {
         </div>
         );
     } 
-}
 }
 
 

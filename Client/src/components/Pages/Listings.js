@@ -8,8 +8,9 @@ import {Modal, Image} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
-import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
 import CreateTutorListing from '../Common/CreateTutorListing'
+import Avatar from '@material-ui/core/Avatar';
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
 
 export default class Tutor extends React.Component {
 
@@ -22,11 +23,31 @@ export default class Tutor extends React.Component {
           searchValue: '',
           filterBy: '',
           user: '',
+          socs: [],
         };
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
+
+      var user_id = new URLSearchParams(this.props.location.search).get("id");
+  
+  
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user_id
+        }
+      })
+  
+        .then((response) => {
+          this.setState({ user: response.data.user,
+                          forums: response.data.user.forums,
+                          socs:response.data.user.societies
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       axios.get('http://localhost:4000/tutors/getTutors')
       .then((response)=>{
@@ -41,17 +62,34 @@ export default class Tutor extends React.Component {
     }
 
 render(){
-  
-var{tutors} = this.state;
-const shuffledPosts = shuffleArray(tutors);
 
-if(this.state.isLoading){
-    return (
-      <div>
-        <SkeletonUsers/>
-      </div>
-    )
-} else{
+  var user = JSON.parse(localStorage.getItem('user'));
+  if(user) 
+  {
+      var fullname = user.fullname;
+  }
+  
+  var{tutors} = this.state;
+  const shuffledPosts = shuffleArray(tutors);
+
+  const listingsList = shuffledPosts.reverse().map(tutor =>{ 
+    return(
+    <div key={tutor._id}>
+        <a href={"/u/?id=" +tutor._id}><div>
+          <div className="users-list-items">
+              {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
+              {/* <h5>{user.fullname}</h5> */}
+              <p><b>Subject:</b> {tutor.subject}</p>
+              <p><b>Rate:</b> €{tutor.rate}/hr</p>
+              <p>{tutor.description}</p>
+
+              <div >
+              </div>
+          </div>
+        </div></a>
+    </div>
+    )})
+
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -64,7 +102,60 @@ if(this.state.isLoading){
         </Helmet> 
 
       <div className="containerFeedLeft">
-        <FeedOptions/>
+        <div className="feed-options-container">
+                  <div className="feed-options-item">
+                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
+                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
+                              {user.score >= 1 && user.score <=999 ? (
+                                  <span> <b className="user-member">{user.score}</b><br/></span>
+
+                              ) : user.score >=1000 ?(
+                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
+                              ) : user.score >= 5000 ? (
+                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
+                              ) : (
+                                  <span> <b>{user.score}</b><br/></span>
+                              )}
+                          </p>
+                      </div></a>
+                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
+                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                      </div></a>
+                      <a href="/users" className="feed-option-redirects"><div className="option-container">
+                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                      </div></a>
+                      <hr/>
+                
+                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
+                      </div></a>
+                      <a href="/events" className="feed-option-redirects"><div className="option-container">
+                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                      </div></a>
+                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a>
+                      <a href="/listings" className="feed-option-redirects-active"><div className="option-container-active">
+                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                      </div></a>
+                      
+                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
+                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                      </div></a><hr/>
+                      
+                      <div className="option-container">
+                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                          {this.state.socs.map(soc=>
+                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                      </div>
+                  </div>
+            </div>
       </div>
 
       <div className="containerFeedMiddle">
@@ -88,30 +179,12 @@ if(this.state.isLoading){
             </div>        
           </div>
 
-            <div>
-              <div className="UsersLayout">
-              {shuffledPosts.reverse().map(tutor => (
-              <div key={tutor._id}>
-                  <a href={"/u/?id=" +tutor._id}><div>
-                    <div className="users-list-items">
-                        {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
-                        {/* <h5>{user.fullname}</h5> */}
-                        <p><b>Subject:</b> {tutor.subject}</p>
-                        <p><b>Rate:</b> €{tutor.rate}/hr</p>
-                        <p>{tutor.description}</p>
-
-                        <div >
-                        </div>
-                    </div>
-                  </div></a>
-              </div>
-              ))}
-            </div>
-        </div>
+          <div className="UsersLayout">
+            {listingsList}
+          </div>
       </div>
   </div>
   );
-}
 }
 }
 

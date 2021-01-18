@@ -1,11 +1,12 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image} from 'react-bootstrap'
-import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
+import Skeleton from 'react-loading-skeleton';
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class ListSocieties extends React.Component {
 
@@ -18,11 +19,33 @@ export default class ListSocieties extends React.Component {
           user: '',
           searchValue: '',
           filterBy: '',
+          socs:[],
+
         };
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
+      var user_id = new URLSearchParams(this.props.location.search).get("id");
+  
+  
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user_id
+        }
+      })
+  
+        .then((response) => {
+          this.setState({ user: response.data.user,
+                          forums: response.data.user.forums,
+                          socs:response.data.user.societies
+
+  
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       axios.get('http://localhost:4000/users/getUsers')
       .then((response)=>{
@@ -44,6 +67,7 @@ render(){
   var{users} = this.state;
   var size = 10;
   const shuffledUsers = shuffleArray(users);
+  var user = JSON.parse(localStorage.getItem('user'));
 
 
   let filteredUsers = this.state.users.filter(
@@ -53,14 +77,25 @@ render(){
     }
 
   );
+  
+  // Display the users from Database
+  const usersList = filteredUsers.slice(0,size).map(user => {
+    return(
+    <div key={user.id}>
+      <a href={"/u/?id=" +user._id} className="comm-link"><div className="users-list-items">
+        <p>
+          <Image src={user.pic} className="user-image-square" roundedCircle/> <br/>
+          <span>{user.fullname} <b className="user-score">{user.score}</b></span>
+          
+        </p>
+        <h5></h5>
+          
+          
+      </div></a>
+    </div>
+  )})
 
-  if(this.state.isLoading){
-      return (
-        <div>
-          <SkeletonUsers/>
-        </div>
-      )
-  } else{
+
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -78,7 +113,59 @@ render(){
             </Helmet> 
 
         <div className="containerFeedLeft">
-            <FeedOptions/>
+        <div className="feed-options-container">
+                  <div className="feed-options-item">
+                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
+                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
+                              {user.score >= 1 && user.score <=999 ? (
+                                  <span> <b className="user-member">{user.score}</b><br/></span>
+
+                              ) : user.score >=1000 ?(
+                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
+                              ) : user.score >= 5000 ? (
+                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
+                              ) : (
+                                  <span> <b>{user.score}</b><br/></span>
+                              )}
+                          </p>
+                      </div></a>
+                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
+                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                      </div></a>
+                      <a href="/users" className="feed-option-redirects-active"><div className="option-container-active">
+                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                      </div></a>
+                      <hr/>
+                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
+                      </div></a>
+                      <a href="/events" className="feed-option-redirects"><div className="option-container">
+                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                      </div></a>
+                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a>
+                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
+                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                      </div></a>
+                      
+                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
+                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                      </div></a><hr/>
+                      
+                      <div className="option-container">
+                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                          {this.state.socs.map(soc=>
+                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                      </div>
+                  </div>
+            </div>
         </div>
 
         <div className="containerFeedMiddle">
@@ -92,22 +179,38 @@ render(){
               </div>
 
               <div className="UsersLayout">
-              {filteredUsers.slice(0,size).map(user => (
-                <div key={user.id}>
-                  <a href={"/u/?id=" +user._id} className="comm-link"><div className="users-list-items">
-                    <h5>{user.fullname}</h5>
-                      <Image src={user.pic} className="user-image-square" roundedCircle/><br/><br/>
-                      <b className="user-score">{user.score}</b>
-                  </div></a>
+              {this.state.isLoading ? ( 
+                <div>
+                  <br/>
+                  <div className="UsersLayout">
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                  </div>
+                  
                 </div>
-              ))}
+
+                ) : (
+                  usersList
+                )}
               </div>
         </div>         
   </div>
     );
    }
   }
-}
 
 
 // Return a random society from the array - Shuffles them

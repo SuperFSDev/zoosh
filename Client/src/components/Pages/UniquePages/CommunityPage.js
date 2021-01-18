@@ -13,7 +13,6 @@ import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import {FaFingerprint,FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
 import { TextField } from '@material-ui/core';
-import SkeletonCommunity from '../../Common/SkeletonUI/SkeletonCommunity'
 
 export default class CommunityPage extends React.Component {
 
@@ -38,7 +37,7 @@ export default class CommunityPage extends React.Component {
  
   async componentDidMount() {
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
 
 
      await axios.get('http://localhost:4000/societies/get-societies-page', {
@@ -190,14 +189,6 @@ export default class CommunityPage extends React.Component {
          
           );
       }
-      if(this.state.isLoading){
-        return (
-          <div>
-            <SkeletonCommunity/>
-          </div>
-        )
-      } 
-      else{
 
       return (
         <div>
@@ -305,7 +296,7 @@ export default class CommunityPage extends React.Component {
                         <div key={event._id}>
                             <div>
                             <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                              <div className="events-card">
+                              <div className="events-card-community">
                                   <h4><b>{event.title}</b></h4> 
                                   <p>{event.society}</p> 
                                   {/* <p>{event.time}</p> */}
@@ -429,7 +420,6 @@ export default class CommunityPage extends React.Component {
         </div>
         );
     } 
-}
 }
 
 //  FUNCTIONS TO OPEN EVENT MODAL

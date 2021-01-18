@@ -47,7 +47,7 @@ export default class AccountSettings extends React.Component {
 
     this.user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: this.user._id });
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.style.backgroundColor = "#FDFEFE";
 
 
     await axios.get('http://localhost:4000/users/get-user-details', {

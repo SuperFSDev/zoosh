@@ -65,12 +65,12 @@ class App extends React.Component {
               <Route path="/new" component={NewPost}/>
               <Route path="/saved" component={ReadingList}/>
 
-
-
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>
-              <Route path="/home" component={Feed}/>
-              <Route exact path="/" component={Feed}/>
+              <Route path="/home" component={Discussions}/>
+              <Route exact path="/" component={Discussions}/>
+              <Route path="/following" component={Feed}/>
+
 
 
             </Switch>

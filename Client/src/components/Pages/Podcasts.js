@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
@@ -10,7 +9,8 @@ import Podcast from '../Common/CreatePodcast'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import {pod} from '../../images/podcasts.jpg'
-import SkeletonPodcast from '../Common/SkeletonUI/SkeletonPodcast'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import Skeleton from 'react-loading-skeleton';
 
 export default class Podcasts extends React.Component {
 
@@ -29,7 +29,7 @@ constructor(props) {
 componentDidMount() {
   var user = JSON.parse(localStorage.getItem('user'));
   this.setState({ id: user._id });
-  document.body.style.backgroundColor = "#f0f2f5";
+  document.body.style.backgroundColor = "#FDFEFE";
 
 
   axios.get('http://localhost:4000/users/get-user-details', {
@@ -71,13 +71,61 @@ render(){
   {
       var fullname = user.fullname;
   }
-  if(this.state.isLoading){
-    return (
-      <div>
-        <SkeletonPodcast/>
+
+  const featuredList = podcasts.reverse().map(podcast =>{
+    return(
+    <div key={podcast._id}>
+        <div>
+        {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
+          <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
+              <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
+              <h4><b>{podcast.title}</b></h4> 
+              <h6><b>{podcast.name}</b></h6> 
+              <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
+              <div >
+              </div>
+          </div>
+          </a>
+        </div>
+    </div>
+    )})
+
+    const topList = podcasts.reverse().map(podcast =>{
+      return (
+      <div key={podcast._id}>
+          <div>
+          {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
+            <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
+                <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
+                <h4><b>{podcast.title}</b></h4> 
+                <h6><b>{podcast.name}</b></h6> 
+                <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
+                <div >
+                </div>
+            </div>
+            </a>
+          </div>
       </div>
-    )
-  } else{
+      )})
+    
+    const allList = podcasts.reverse().map(podcast =>{
+      return (
+      <div key={podcast._id}>
+          <div>
+          {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
+            <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
+                <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
+                <h4><b>{podcast.title}</b></h4> 
+                <h6><b>{podcast.name}</b></h6> 
+                <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
+                <div >
+                </div>
+            </div>
+            </a>
+          </div>
+      </div>
+      )})
+
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -90,7 +138,60 @@ render(){
         </Helmet> 
 
       <div className="containerFeedLeft">
-        <FeedOptions/>
+        <div className="feed-options-container">
+                  <div className="feed-options-item">
+                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
+                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
+                              {user.score >= 1 && user.score <=999 ? (
+                                  <span> <b className="user-member">{user.score}</b><br/></span>
+
+                              ) : user.score >=1000 ?(
+                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
+                              ) : user.score >= 5000 ? (
+                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
+                              ) : (
+                                  <span> <b>{user.score}</b><br/></span>
+                              )}
+                          </p>
+                      </div></a>
+                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
+                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsPeople size={30}/> <b className="feed-option-item">Communities</b>
+                      </div></a>
+                      <a href="/users" className="feed-option-redirects"><div className="option-container">
+                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                      </div></a>
+                      <hr/>
+                
+                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
+                      </div></a>
+                      <a href="/events" className="feed-option-redirects"><div className="option-container">
+                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                      </div></a>
+                      <a href="/podcasts" className="feed-option-redirects-active"><div className="option-container-active">
+                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a>
+                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
+                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                      </div></a>
+                      
+                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
+                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                      </div></a><hr/>
+                      
+                      <div className="option-container">
+                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                          {this.state.socs.map(soc=>
+                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                      </div>
+                  </div>
+            </div>
       </div>
 
       <div className="containerFeedMiddle">
@@ -112,72 +213,54 @@ render(){
         <div className="global-feed-container">
             <h3>Featured Podcasts</h3>
             <div className="EventSocietyLayout">
-              {podcasts.reverse().map(podcast => (
-              <div key={podcast._id}>
-                  <div>
-                  {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
-                        <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
-                        <h4><b>{podcast.title}</b></h4> 
-                        <h6><b>{podcast.name}</b></h6> 
-                        <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
-                        <div >
-                        </div>
-                    </div>
-                    </a>
-                  </div>
+              
+              {this.state.isLoading ? ( 
+                  <div className="SocietyLayout">
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>
+                </div>
+
+                ) : (
+                  featuredList
+                )}
               </div>
-              ))}
-            </div>
 
             <div className="spacing"></div>
 
             <h3>Top Podcasts</h3>
             <div className="EventSocietyLayout">
-              {podcasts.reverse().map(podcast => (
-              <div key={podcast._id}>
-                  <div>
-                  {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
-                        <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
-                        <h4><b>{podcast.title}</b></h4> 
-                        <h6><b>{podcast.name}</b></h6> 
-                        <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
-                        <div >
-                        </div>
-                    </div>
-                    </a>
-                  </div>
-              </div>
-              ))}
+            {this.state.isLoading ? ( 
+                  <div className="SocietyLayout">
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>
+                </div>
+
+                ) : (
+                  topList
+                )}
             </div>
 
             <div className="spacing"></div>
 
             <h3>All Podcasts</h3>
             <div className="EventSocietyLayout">
-              {podcasts.reverse().map(podcast => (
-              <div key={podcast._id}>
-                  <div>
-                  {/* <a href={"/e/?id=" + podcast._id} className="-soc-l-navigation"> */}
-                    <a href={"/pod/?id=" + podcast._id} className="-soc-l-navigation"><div className="podcasts-card">
-                        <p className="host-icon"><Avatar className="host-icon" src={this.state.user.pic}/></p>
-                        <h4><b>{podcast.title}</b></h4> 
-                        <h6><b>{podcast.name}</b></h6> 
-                        <big className="text-muted">{moment(podcast.time).format("H:mma - MMM Do, YYYY.")}</big>
-                        <div >
-                        </div>
-                    </div>
-                    </a>
-                  </div>
-              </div>
-              ))}
+            {this.state.isLoading ? ( 
+                  <div className="SocietyLayout">
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={150} width={250} duration={1} className="skeleton-comms"/>
+                </div>
+
+                ) : (
+                  allList
+                )}
             </div>
             </div>
       </div>
   </div>
   );
-}
 }
 }
 

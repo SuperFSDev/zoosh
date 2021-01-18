@@ -5,7 +5,6 @@ import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image, Badge} from 'react-bootstrap'
-import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
 
 export default class UserConnections extends React.Component {
 
@@ -21,7 +20,7 @@ export default class UserConnections extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#F7F7F7";
 
       // axios.get('http://localhost:4000/users/getUsers')
       // .then((response)=>{
@@ -73,13 +72,7 @@ render(){
   var{followers} = this.state;
 
   
-  if(this.state.isLoading){
-      return (
-        <div>
-          <SkeletonUsers/>
-        </div>
-      )
-  } else{
+ 
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -138,4 +131,3 @@ render(){
     );
    }
   }
-}

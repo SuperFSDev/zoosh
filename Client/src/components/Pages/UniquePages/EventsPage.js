@@ -7,7 +7,6 @@ import {FcCheckmark} from 'react-icons/fc'
 import {Dropdown} from 'react-bootstrap'
 import {FaShare} from 'react-icons/fa'
 import {AiOutlineLink} from 'react-icons/ai'
-import SkeletonEventsPage from '../../Common/SkeletonUI/SkeletonEventsPage'
 export default class EventsPage extends React.Component {
 
   constructor(props) {
@@ -39,13 +38,7 @@ export default class EventsPage extends React.Component {
     }
 
     render() {
-      if(this.state.isLoading){
-        return (
-          <div>
-            <SkeletonEventsPage/>
-          </div>
-        )
-      } else{
+     
       return (
         <>
           {/* REACTJS HELMET */}
@@ -90,4 +83,3 @@ export default class EventsPage extends React.Component {
       );
     }
   }
-}

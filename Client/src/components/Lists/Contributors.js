@@ -29,11 +29,10 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <h5 className="-top-cont-header">Top Contributors</h5>
+            <h5 className="-top-cont-header">Top Contributors</h5><hr/>
             {users.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                 <div className="contributor-item">
-                <p>
-                    <b>{i+=1}</b>
+                <p>                    
                     <a className="-contributor-user" href={"/u/?id="+user._id}>
                         <Image src={user.pic} className="user-image-mini" roundedCircle />
                         {user.fullname}
@@ -47,9 +46,11 @@ class Contributors extends React.Component {
                     ) : (
                         <span className="-contributor-user-score"><b  className="user-member">{ user.score}</b><br/></span>
                     )} 
-                </p><hr/>
+                </p>
             </div>
            ))}    
+           <br/>
+            <a href="/leaderboard"  className="explore-more">See More</a><br/>
         </div>
   );
   }

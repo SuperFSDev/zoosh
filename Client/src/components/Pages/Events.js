@@ -1,15 +1,16 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Modal, Image} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
-import SkeletonEvent from '../Common/SkeletonUI/SkeletonEvent';
 import background from "../../images/friends.jpg";
+import Avatar from '@material-ui/core/Avatar';
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import Skeleton from 'react-loading-skeleton';
 
 export default class Events extends React.Component {
 
@@ -21,11 +22,37 @@ export default class Events extends React.Component {
       searchValue: '',
       filterBy: '',
       event: '',
+      user: '',
+      socs:[],
     };
   }
 
 componentDidMount() {
-  document.body.style.backgroundColor = "#f0f2f5";
+  document.body.style.backgroundColor = "#FDFEFE";
+
+  var user = JSON.parse(localStorage.getItem('user'));
+  this.setState({ id: user._id });
+  
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user._id,
+        }
+      })
+        .then((response) => {
+          this.setState({
+            FollowingID: response.data.user.following,
+            score: response.data.user.score,  
+            pic: response.data.user.pic,  
+            following: response.data.user.following,
+            socs:response.data.user.societies
+
+
+          })
+  
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
     axios.get('http://localhost:4000/events/getEvents')
       .then((response) => {
@@ -45,6 +72,13 @@ componentDidMount() {
 
 
 render(){
+
+  var user = JSON.parse(localStorage.getItem('user'));
+  if(user) 
+  {
+      var fullname = user.fullname;
+  }
+
   var { events } = this.state;
 
   let filteredEvents = this.state.events.filter(
@@ -53,13 +87,27 @@ render(){
     }
   );
 
-  if(this.state.isLoading){
-    return (
-      <div>
-        <SkeletonEvent/>
-      </div>
-    )
-  } else{
+  const eventList = filteredEvents.reverse().map(event => {
+    return(
+    <div key={event._id}>
+        <div>
+        <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
+          <div className="events-card">
+              <Image src={background} className="soc-item-image"/>
+              <h4><b>{event.title}</b></h4> 
+              <p>{event.society}</p> 
+              {/* <p>{event.time}</p> */}
+              <big className="text-muted"><b></b>{moment(event.time).format("H:mma - MMM Do, YYYY.")}</big>
+
+              <div >
+              </div>
+          </div>
+          </a>
+        </div>
+    </div>
+    )})
+
+  
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -72,48 +120,94 @@ render(){
         </Helmet> 
 
       <div className="containerFeedLeft">
-        <FeedOptions/>
+        <div className="feed-options-container">
+                  <div className="feed-options-item">
+                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
+                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
+                              {user.score >= 1 && user.score <=999 ? (
+                                  <span> <b className="user-member">{user.score}</b><br/></span>
+
+                              ) : user.score >=1000 ?(
+                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
+                              ) : user.score >= 5000 ? (
+                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
+                              ) : (
+                                  <span> <b>{user.score}</b><br/></span>
+                              )}
+                          </p>
+                      </div></a>
+                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
+                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                      </div></a>
+                      <a href="/users" className="feed-option-redirects"><div className="option-container">
+                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
+                      </div></a>
+                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
+                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                      </div></a>
+                      <hr/>
+                
+                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
+                      </div></a>
+                      <a href="/events" className="feed-option-redirects-active"><div className="option-container-active">
+                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                      </div></a>
+                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a>
+                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
+                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                      </div></a>
+                      
+                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
+                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                      </div></a><hr/>
+                      
+                      <div className="option-container">
+                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
+                          {this.state.socs.map(soc=>
+                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
+                      </div>
+                  </div>
+            </div>
       </div>
 
       <div className="containerFeedMiddle">
           <div className="global-feed">
-          <h3>Upcoming Events</h3>
+            <h3>Upcoming Events</h3>
 
-          <div className="search-div-forum">
-            {/* <BsSearch/>  */}
-            <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)}  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
-          </div>
-          <br/>
-          <QuickEvent/>
-          <br/>
-            
-        </div>
-        <div>
-              <div className="EventSocietyLayout">
-              {filteredEvents.reverse().map(event => (
-              <div key={event._id}>
-                  <div>
-                  <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                    <div className="events-card">
-                        <Image src={background} className="soc-item-image"/>
-                        <h4><b>{event.title}</b></h4> 
-                        <p>{event.society}</p> 
-                        {/* <p>{event.time}</p> */}
-                        <big className="text-muted"><b></b>{moment(event.time).format("H:mma - MMM Do, YYYY.")}</big>
+            <div className="search-div-forum">
+              <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)}  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
+            </div>
+              <QuickEvent/>
+          </div><br/>
 
-                        <div >
-                        </div>
-                    </div>
-                    </a>
-                  </div>
+          <div className="EventSocietyLayout">
+          
+          {this.state.isLoading ? ( 
+                <div className="SocietyLayout">
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
               </div>
-              ))}
-            </div>
-            </div>
+
+              ) : (
+                  eventList
+              )}
+
+          </div>
       </div>
   </div>
   );
-}
 }
 }
 

@@ -161,7 +161,7 @@ render(){
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">
               <div>
-                <a href="/users"><IoIosSquareOutline size={55} className="square" id="dropdown-basic" /></a>
+                {/* <a href="/users"><IoIosSquareOutline size={55} className="square" id="dropdown-basic" /></a> */}
                 <BsBell size={45} className="notify" id="dropdown-basic" onClick={this.showMenu}/>
                 <a href="/new"><button className="write-button">Write</button></a>
               </div>
@@ -248,7 +248,7 @@ render(){
                     >
                       <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>Hello, {this.state.user.fullname} 😃</b></p></a>
                       <hr/>
-                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Classmates <b>{this.state.following.length}</b></p></a>
+                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a>
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>

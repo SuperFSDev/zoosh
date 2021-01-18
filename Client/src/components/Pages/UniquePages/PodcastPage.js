@@ -10,7 +10,6 @@ import {FaShare} from 'react-icons/fa'
 import {BiUpvote,BiDownvote} from 'react-icons/bi'
 import {AiOutlineLink} from 'react-icons/ai'
 import { RiFlaskLine } from 'react-icons/ri';
-import SkeletonPodcastPage from '../../Common/SkeletonUI/SkeletonPodcastPage'
 
 export default class PodcastPage extends React.Component {
 
@@ -62,13 +61,7 @@ export default class PodcastPage extends React.Component {
 
     render() {
         var pod = "Pod / "
-      if(this.state.isLoading){
-        return (
-            <div>
-              <SkeletonPodcastPage/>
-            </div>
-        )
-      } else{
+     
       return (
         <>
           {/* REACTJS HELMET */}
@@ -121,4 +114,3 @@ export default class PodcastPage extends React.Component {
       );
     }
   }
-}

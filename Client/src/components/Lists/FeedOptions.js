@@ -69,7 +69,7 @@ render() {
                     <a href="/communities" className="feed-option-redirects"><div className="option-container">
                         <BsPeople size={30}/> <b className="feed-option-item">Communities</b>
                     </div></a>
-              
+                    
                     <a href="/forums" className="feed-option-redirects"><div className="option-container">
                         <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
                     </div></a>

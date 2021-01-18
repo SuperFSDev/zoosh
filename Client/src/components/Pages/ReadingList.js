@@ -5,7 +5,6 @@ import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image, Badge} from 'react-bootstrap'
-import SkeletonUsers from '../Common/SkeletonUI/SkeletonUsers';
 
 export default class ReadingList extends React.Component {
 
@@ -23,7 +22,7 @@ export default class ReadingList extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
+      document.body.style.backgroundColor = "#FDFEFE";
       var user = JSON.parse(localStorage.getItem('user'));
 
       axios.get('http://localhost:4000/users/getUsers')
@@ -61,13 +60,7 @@ export default class ReadingList extends React.Component {
 render(){
 
     var{users} = this.state;
-  if(this.state.isLoading){
-      return (
-        <div>
-          <SkeletonUsers/>
-        </div>
-      )
-  } else{
+ 
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -119,4 +112,3 @@ render(){
     );
    }
   }
-}

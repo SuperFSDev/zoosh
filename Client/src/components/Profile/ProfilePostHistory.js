@@ -36,16 +36,29 @@ export default class History extends React.Component {
     }
 
   render(){
+
+    var size = 10;
     
 
      return (
       <div>
-                {this.state.posts.reverse().map(post=>  (
+          {this.state.posts.slice(0,10).reverse().map(post=>  (
               <div key={this.state.user._id}>  
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/p/?id=" + post.Post_id}><b className="user-score-post-tag">1234</b>  {post.post} <big  className="text-muted-profile">{moment(post.time).format(" MMM Do 'YY.")}</big><hr/></a>
+                    <a href={"/p/?id=" + post.Post_id}>
+                      <p>
+                        <span className="forum-title">{post.title}</span><br/>
+                        <span className="content-muted">{post.post.slice(0,100)}...</span><br/>
+                        {post.society == null ? (
+                            <span  className="content-muted">Posted in<b> General</b><br/></span>
+                        ) : (
+                          <span  className="content-muted"><b>{post.society}</b><br/></span>
+                        )}
+                        <small className="text-muted">{moment(post.time).format(" MMM Do 'YY.")}</small><hr/>
+                      </p>
+                    </a>
                     </Card.Text>        
                   </Card.Body>  
                   <h1></h1>                

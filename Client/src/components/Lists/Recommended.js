@@ -36,25 +36,26 @@ export default class Recommended extends React.Component {
 
 render(){
   var { societies } = this.state;
-  var size = 4;
+  var size = 3;
   const shuffledPosts = shuffleArray(societies);
 
    return (
     
     <div className="recommended-container">
-      <h5 className="-recommended-header">Communities</h5>
+      <h5 className="-recommended-header">Communities</h5><hr/>
         {shuffledPosts.slice(0, size).map(society =>(
           <div key={society._id}>
           <a href={"/c/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
-            <p><b>{society.name}</b></p>
-            <p className="description">{society.description}</p>
+            <div className="recommended-content">
+              <p>{society.name} <span className="recommended-btn"><button className="community-btn-active">Join</button></span></p>
+              {/* <p className="description">{society.description}</p> */}
+            </div>
+            
               {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a> */}
-          </div></a><hr/>
+          </div></a>
           </div>  ))}
-    <div className="explore-more-link">
-
-        <a href="/communities" id="dropdown-basic">Explore More</a>
-    </div>
+          <br/>
+          <a href="/communities"  className="explore-more">Explore More</a><br/>
     </div>
 
   );
