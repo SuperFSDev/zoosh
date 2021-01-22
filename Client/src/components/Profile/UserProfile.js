@@ -1,17 +1,11 @@
 import React from 'react'
 import '../../assets/App.css';
 import axios from 'axios';
-import {Image , OverlayTrigger, Tooltip} from 'react-bootstrap'
+import {Image , OverlayTrigger, Tooltip, Badge, Navbar, Nav} from 'react-bootstrap'
 import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
-import { RiCake2Fill } from 'react-icons/ri'
 import {Helmet} from 'react-helmet'
-import moment from 'moment'
-import {TiLocation} from 'react-icons/ti'
-import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
-import { MdSchool } from 'react-icons/md'
-import {SiAboutDotMe} from 'react-icons/si'
-import {FaBook} from 'react-icons/fa'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class UserProfile extends React.Component {
 
@@ -168,38 +162,60 @@ export default class UserProfile extends React.Component {
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
 
+        <Navbar  className="navbar-profile" >
+                  <Nav className="mr-auto">
+                      <Navbar.Brand className="header-profile">
+                        <span  className="navbar-title">
+                          <b>{this.state.user.fullname}</b>
+                          {/* <b className="user-member-profile">{this.state.user.score}</b> */}
+                        </span> 
+                        <span>
+                        </span>
+                        <span>
+                          {isUnfollowing ? (
+                            <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                          ) : (
+                            <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                          )}<br/>
+                        </span>
+                        
+                        
+                          
+                        
+                        
+                        </Navbar.Brand>
+                  </Nav>
+
+                  <Navbar.Collapse className="justify-content-end">
+                    <div className="quick-create-option">
+                      <div>
+                        <a href="/home"><button className="write-button">Home</button></a>
+                      </div>
+                    </div>           
+                      
+                    <div className="navbar-prof-btn">
+                      <div id="#battleBox">
+                        <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+                      </div>
+                    </div>               
+                  </Navbar.Collapse>
+        </Navbar>
+
 
         <div className="containerFeedMiddleProfile">
           <div className="profile-card">
           </div>
             <div id="social">
               <div className="profile-card-align">
-                <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h3>
-                  <b>{this.state.user.fullname} </b>  
+                <Image src={this.state.user.pic} className="user-image"/>
 
-                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
-                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
-
-                  ) : this.state.user.score >=1000 ?(
-                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
-                  ) : this.state.user.score >= 5000 ? (
-                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
-                  ) : (
-                    <span><b>{this.state.user.score}</b><br/></span>
-                  )} 
-
-                </h3><br/>
-
-                {/* <b className="is-tutor"> Tutor</b> */}
-                {/* <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                <button  className="btn-leaderboard" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button> */}
-
+                {/* <br/>
                 {isUnfollowing ? (
                   <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                 ) : (
                   <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                 )}
+                <br/><br/> */}
                 <br/><br/>
                 
                 {/* If the user has not edited their profile to display college/course then dont display */}
@@ -207,119 +223,39 @@ export default class UserProfile extends React.Component {
                   <div></div>
                   // <b>{this.state.user.fullname} is hiding from you</b>
                 ) : (
-                  <b>{this.state.user.college} &#x2022; {this.state.user.course}</b>
+                  <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
                 )}
-               </div>    <br/>
+               </div>
                
               </div>
 
               <div className="user-profile-about-bio">
-                {this.state.user.bio}
+                  {/* {this.state.user.bio} */}
 
                 <br/><br/>
+                <span className="text-muted">COMMUNTIES</span>
+                {this.state.societies.length == 0 ? (
+                        <div>                        
+                          <p className="text-muted">Nothing to see here yet...</p>
+                        </div>
+                      ) : (
+                        <div>
+                          {this.state.societies.map(society=>
+                          <li className="community-members-item-profile">
+                            <p>
 
-                {this.state.societies.map(society=>
-                  <li className="community-members-item-profile">
-                    <p>
-                      <b><a href={"/s/?id="+society}>{society}</a></b><br/>
-                      <b className="user-admin">Admin</b>
-                    </p>
-                   
-                  </li>)}
+                            <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
+
+                              
+                            </p>
+                          </li>)}
+                        </div>
+                      )}
+                
               </div>
-          
-
-            {/* <div className="user-profile-about"> */}
-              {/* <section className="badge-container"> */}
-                {/* <div className="stats-item-1">
-                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
-                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
-
-                  ) : this.state.user.score >=1000 ?(
-                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
-                  ) : this.state.user.score >= 5000 ? (
-                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
-                  ) : (
-                    <span><b>{this.state.user.score}</b><br/></span>
-                  )} 
-                   <br/>Score
-                </div>
-                <div className="stats-item-1">
-                  <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
-                </div>
-                <div className="stats-item-1">
-                  <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
-                </div>
-                <br/> */}
-                {/* <div className="stats-item-1">
-                  <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
-                </div>
-                <div className="stats-item-1">
-                  <BsQuestionSquare size={30}/> <b>{this.state.followers.length}</b><br/>Questions
-                </div>
-                <div className="stats-item-1">
-                  <span><BsShieldShaded size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
-                </div> */}
-              {/* </section> */}
-          
-            {/* </div> */}
-
-            {/* <div className="user-profile-about">
-
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
-                <span className="d-inline-block">
-                <p><SiAboutDotMe /> </p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.fullname}</b><br/>
-              
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
-                <span className="d-inline-block">
-                  <p><MdSchool /></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.college}</b><br/>
-
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
-                <span className="d-inline-block">
-                <p><FaBook/></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.course}</b><br/>
-            </div> */}
-
-{/* 
-          <div className="user-profile-about">
-            <h5>Communities</h5>
-       
-            {this.state.societies.map(society=>
-                  <li className="community-members-item-profile">
-                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
-                    <b>Admin</b>
-                  </li>)}
-          </div> */}
         </div>
 
         <div className="containerFeedRightUser">
-        {/* <div  className="top-posts-profile-container-2">
-          <div className="user-profile-overview">
-          <span><p>{this.state.user.bio}</p></span>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
-                <span className="d-inline-block">
-                <p id="icons"><RiCake2Fill size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
-
-              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
-                <span className="d-inline-block" >
-                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                 Galway, Ireland.
-          </div>
-              
-        </div><br/> */}
           <div  className="top-posts-profile-container-2">
             <h5>Top Posts</h5>
             <History />

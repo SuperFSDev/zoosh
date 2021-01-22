@@ -23,7 +23,6 @@ export default class ForumPage extends React.Component {
 
     componentDidMount() {
       var forum_id = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#F7F7F7";
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
       var user = JSON.parse(localStorage.getItem('user'));
@@ -86,12 +85,12 @@ export default class ForumPage extends React.Component {
                       <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
               </Helmet> 
-          <div className="containerFeedLeft">
+          {/* <div className="containerFeedLeft">
             <FeedOptions/>
-          </div>
+          </div> */}
     
-          <div className="containerFeedMiddle">
-              <div className="global-feed">
+          <div className="containerMiddleForum">
+              <div className="global-forum-container">
                   <span  className="username-wrapper">
 
                       <h2 className="forum-title">

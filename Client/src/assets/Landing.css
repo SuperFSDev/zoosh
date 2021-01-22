@@ -19,7 +19,14 @@
     font-size: 30px;
     font-weight: 1000;
     /* font-family: 'Bodoni Moda', serif; */
-    font-family: 'Righteous', cursive;
+    /* font-family: 'Righteous', cursive; */
+    display:flex;
+    margin-left: 20rem!important;
+}
+
+.header-profile{
+    color:black!important;
+    font-weight: 1000;
     display:flex;
     margin-left: 20rem!important;
 }

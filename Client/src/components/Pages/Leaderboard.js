@@ -4,10 +4,12 @@ import 'react-calendar/dist/Calendar.css';
 import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image} from 'react-bootstrap'
+import {Image, Badge} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChartFill,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
+// import { Badge } from "@chakra-ui/react"
+import Clapping from '../../images/clap-hands.png'
 
 export default class Two extends React.Component {
 
@@ -99,7 +101,7 @@ render(){
           {user.score >= 1 && user.score <=999 ? (
             <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
           ) : user.score >=1000 ?(
-              <span  className="-contributor-user-score"><b  className="user-mod">{ user.score}</b><br/></span>
+              <span  className="-contributor-user-score"><b  className="user-mod"><Badge>{ user.score}</Badge></b><br/></span>
           ) : user.score >= 5000 ? (
               <span  className="-contributor-user-score"><b  className="user-admin">{ user.score}</b><br/></span>
           ) : (
@@ -154,34 +156,31 @@ render(){
                           </p>
                       </div></a>
                       <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
                       </div></a>
                       <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
                       </div></a>
                       <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
                 
-                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
-                      </div></a>
+                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
+                      </div></a> */}
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
-                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a>
+                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a> */}
                       <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
                       </div></a>
                       
                       <a href="/leaderboard" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                        <Image src={Clapping} size={25} className="active-icon"/> <b className="feed-option-item">Contributors</b>
                       </div></a><hr/>
                       
                       <div className="option-container">
@@ -196,7 +195,7 @@ render(){
       <div className="containerFeedMiddle">
           <div className="global-feed">
           <div className="leaderboard-options">
-            <a href="#users"><button className="btn-leaderboard" >Top Users</button></a>
+            <a href="#users"><button className="btn-leaderboard" >Top Contributors</button></a>
             <a href="#top-comm"><button className="btn-leaderboard" >Top Communities</button></a>
             <a href="#growth"><button className="btn-leaderboard" >Top Growing</button></a>
             <div id="users"></div>

@@ -9,7 +9,7 @@ import Podcast from '../Common/CreatePodcast'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import {pod} from '../../images/podcasts.jpg'
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import {BsMicFill,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 
 export default class Podcasts extends React.Component {
@@ -155,34 +155,31 @@ render(){
                           </p>
                       </div></a>
                       <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
                       </div></a>
                       <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsPeople size={30}/> <b className="feed-option-item">Communities</b>
+                          <BsPeople size={25}/> <b className="feed-option-item">Communities</b>
                       </div></a>
                       <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
-                
+{/*                 
                       <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
-                      </div></a>
+                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
+                      </div></a> */}
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
-                      <a href="/podcasts" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a>
+                      {/* <a href="/podcasts" className="feed-option-redirects-active"><div className="option-container-active">
+                          <BsMicFill size={25} className="active-icon"/> <b className="feed-option-item">Podcasts</b>
+                      </div></a> */}
                       <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
                       </div></a>
                       
                       <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                          <BsBarChart size={25}/> <b className="feed-option-item">Contributors</b>
                       </div></a><hr/>
                       
                       <div className="option-container">

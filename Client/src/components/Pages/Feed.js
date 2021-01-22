@@ -23,7 +23,7 @@ import QuickCreate from '../Common/QuickCreate'
 import {AiOutlineLink} from 'react-icons/ai'
 import {BsHeart,BsGem,BsChatQuote} from 'react-icons/bs'
 import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat} from 'react-icons/bs'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs'
 import Test from '../../images/friends.jpg'
 import Skeleton from 'react-loading-skeleton';
 import Clapping from '../../images/clap-hands.png'
@@ -47,6 +47,7 @@ class Feed extends React.Component {
       comments:[],
       user: '',
       pic:'',
+      claps:0,
       socs:[],
       time: new Date().getTime(),
     };
@@ -70,9 +71,8 @@ class Feed extends React.Component {
             FollowingID: response.data.user.following,
             score: response.data.user.score,  
             following: response.data.user.following,
-            socs:response.data.user.societies
-
-
+            socs:response.data.user.societies,
+            claps: response.data.user.claps,
           })
   
         })
@@ -105,6 +105,7 @@ class Feed extends React.Component {
         .then((response) => {
           this.setState({
             user: response.data.user,
+            claps: response.data.claps,
             posts: this.state.posts.concat(response.data.user.posts),
             isLoading: false,
           })
@@ -178,6 +179,16 @@ class Feed extends React.Component {
         }
       }
 
+      addClaps = () =>{
+        const {claps} = this.state;
+  
+        this.setState({ 
+          claps: claps + 1
+          
+        })
+        console.log(claps);
+      }
+
 
       onDeletePost(id,post_id) {
 
@@ -221,7 +232,7 @@ render(){
             </p>
           </div>
           <span className="username-wrapper">
-            <span className="voting-btn"><button className="standard-option-btn-post"><Image src={Clap} size={20} className="feed-comment"/> {this.state.comments.length} claps</button></span>
+            <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addClaps}><Image src={Clap} size={20} className="feed-comment"/> {post.claps} claps</button></span>
               <a href={"/p/?id=" + post.Post_id}>
                 <span className="voting-btn">
                   <button className="standard-option-btn-post" ><BsChat size={20} /> {this.state.comments.length} responses</button> 
@@ -333,33 +344,30 @@ render(){
                           </p>
                       </div></a>
                       <hr/><a href="/home" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                          <BsHouseFill size={25} className="active-icon"/> <b className="feed-option-item">Home</b>
                       </div></a>
                       <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
                       </div></a>
                       <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
-                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
-                      </div></a>
+                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
+                      </div></a> */}
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
-                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a>
+                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a> */}
                       <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
                       </div></a>
                       
                       <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                        <Image src={Clap} size={25}/> <b className="feed-option-item">Contributors</b>
                       </div></a><hr/>
                       
                       <div className="option-container">
@@ -382,21 +390,26 @@ render(){
                       <a href="/home"><button className="community-btn">All</button></a>
                       <a href="/following"><button className="community-btn-active">Following</button></a>
                       <a href="/home"><button className="community-btn">Questions</button></a>
-                      <a href="/home"><button className="community-btn-filter">Filter by</button></a>
+                      {/* <a href="/home"><button className="community-btn-filter">Filter by</button></a> */}
                       
             </div>        
           </div>
 
           <div className="discussion-feed">
             {this.state.isLoading ? ( 
-                <div>
-                  <Skeleton height={200} duration={2}/>
-                  <Skeleton height={200} duration={2}/>
-                  <Skeleton height={200} duration={2}/>
-                  <Skeleton height={200} duration={2}/>
-                </div>
-
-              ) : (
+                  <div>
+                    {!this.state.following.length ==0 ? (
+                        <div><Skeleton height={200} duration={2}/>
+                        <Skeleton height={200} duration={2}/>
+                        <Skeleton height={200} duration={2}/>
+                        <Skeleton height={200} duration={2}/></div>
+                  
+                      ) : (
+                        <div>Empty</div>
+                      )}
+                  </div>
+            
+              ) :  (
                 postList
               )}
 

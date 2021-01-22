@@ -54,9 +54,7 @@ class App extends React.Component {
               <Route path="/e" component={EventPage}/>
               <Route path="/connections" component={UserConnections}/>
               <Route path="/leaderboard" component={Leaderboard}/>
-              <Route path="/me" component={Profile}/>
               <Route path="/u" component={ViewProfile}/>
-              <Route path="/c" component={CommunityPage}/>
               <Route path="/events" component={Events}/>
               <Route path="/podcasts" component={Podcasts}/>
               <Route path="/twooo" component={Two}/>
@@ -81,6 +79,9 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route path="/me" component={Profile}/>
+          <Route path="/u" component={ViewProfile}/>
+          <Route path="/c" component={CommunityPage}/>
           <Route path="/join" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/landing" component={Landing}/>

@@ -10,7 +10,8 @@ import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import CreateTutorListing from '../Common/CreateTutorListing'
 import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
+import Clap from '../../images/clap.png'
 
 export default class Tutor extends React.Component {
 
@@ -119,34 +120,31 @@ render(){
                           </p>
                       </div></a>
                       <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
                       </div></a>
                       <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
                       </div></a>
                       <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
                 
-                      <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
-                      </div></a>
+                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
+                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
+                      </div></a> */}
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
+                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
-                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a>
+                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
+                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
+                      </div></a> */}
                       <a href="/listings" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                          <BsCardText size={25} className="active-icon"/> <b className="feed-option-item">Listings</b>
                       </div></a>
                       
                       <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                        <Image src={Clap} size={25}/> <b className="feed-option-item">Contributors</b>
                       </div></a><hr/>
                       
                       <div className="option-container">
@@ -170,7 +168,7 @@ render(){
 
           </div>
 
-          <div className="post-option-btns">
+          <div className="post-option-listings">
             <div className="options-container-listings">
                       <button className="community-btn" >Find a Tutor</button>
                       <button className="community-btn">Collaboration</button>

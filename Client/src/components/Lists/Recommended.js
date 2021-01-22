@@ -55,7 +55,7 @@ render(){
           </div></a>
           </div>  ))}
           <br/>
-          <a href="/communities"  className="explore-more">Explore More</a><br/>
+          <a href="/communities"  className="explore-more">Explore More</a><br/><br/>
     </div>
 
   );

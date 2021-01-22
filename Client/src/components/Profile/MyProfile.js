@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/App.css';
 import EditProfile from './EditProfile'
-import {Image,Card, OverlayTrigger, Tooltip, Modal} from 'react-bootstrap'
+import {Image,Card, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge} from 'react-bootstrap'
 import CreateASoc from '../Socs/CreateASoc'
 import {SiAboutDotMe} from 'react-icons/si'
 import { RiCake2Fill } from 'react-icons/ri'
@@ -12,7 +12,7 @@ import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaR
 import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
 import {TiLocation} from 'react-icons/ti'
-import {BsHeart,BsCircle,BsPerson,BsChatSquareDots,BsQuestionSquare,BsShieldShaded} from 'react-icons/bs'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class MyProfile extends React.Component {
 
@@ -86,18 +86,41 @@ export default class MyProfile extends React.Component {
                 <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
-        <div className="containerFeedLeftProfile">
 
-        </div>
+        <Navbar  className="navbar-profile" >
+                  <Nav className="mr-auto">
+                      <Navbar.Brand className="header-profile">
+                        <span  className="navbar-title">
+                          <b>{this.state.user.fullname} </b>
+                          {/* <b className="user-member-profile">{this.state.user.score}</b> */}
+                        </span> 
+                        <span>
+                          <EditProfile/>
+                        </span>       
+                        </Navbar.Brand>
+                  </Nav>
+
+                  <Navbar.Collapse className="justify-content-end">
+                    <div className="quick-create-option">
+                      <div>
+                        <a href="/home"><button className="write-button">Home</button></a>
+                      </div>
+                    </div>   
+
+                    <div className="navbar-prof-btn">
+                      <div id="#battleBox">
+                        <a href="/me"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+                      </div>
+                    </div>                   
+                  </Navbar.Collapse>
+        </Navbar>
 
         <div className="containerFeedMiddleProfile">
           <div className="profile-card"></div>
             {/* <div className="user-profile-about"> */}
               <div className="profile-card-align">
-                <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h3>
-                  <b>{this.state.user.fullname} </b> 
-
+                <Image src={this.state.user.pic} className="user-image"/>
+                {/* <h3>
                   {this.state.user.score >= 1 && this.state.user.score <=999 ? (
                       <span><b className="user-member">{this.state.user.score}</b><br/></span>
 
@@ -109,22 +132,19 @@ export default class MyProfile extends React.Component {
                     <span><b>{this.state.user.score}</b><br/></span>
                   )} 
                 
-                </h3><br/>
-                <EditProfile/><br/>
-
-                <b>{this.state.user.college} &#x2022; {this.state.user.course}</b>
+                </h3> */}
+                <br/><br/>
+                <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
               </div>
               <br/>
               <div className="user-profile-about-bio">
-                {this.state.user.bio}
 
                 <br/><br/>
-
+                <span className="text-muted">COMMUNTIES</span>
                 {this.state.societies.map(society=>
                   <li className="community-members-item-profile">
                     <p>
-                      <b><a href={"/s/?id="+society}>{society}</a></b><br/>
-                      <b className="user-admin">Admin</b>
+                      <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/>
                     </p>
                    
                   </li>)}

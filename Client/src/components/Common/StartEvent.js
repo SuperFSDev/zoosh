@@ -3,7 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
-
+// import {
+//   FormControl,
+//   FormLabel,
+//   FormErrorMessage,
+//   FormHelperText,
+//   Input,
+//   Button
+// } from "@chakra-ui/react"
 
 class StartEvent extends React.Component {
 
@@ -114,6 +121,7 @@ class StartEvent extends React.Component {
         <div>
 
           <h1>Create an Event</h1><br/><br/>
+          
           <Form onSubmit={this.onSubmit} className="post-container">
 
             <TextField

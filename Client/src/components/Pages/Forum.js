@@ -5,7 +5,9 @@ import axios from 'axios';
 // import AddUserToForum from '../Profile/AddUserToForum'
 import { Helmet } from 'react-helmet'
 import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond} from 'react-icons/bs'
+import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDotsFill,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
+import Clap from '../../images/clap.png'
+import {Image} from 'react-bootstrap'
 
 export default class Forum extends React.Component {
 
@@ -24,7 +26,7 @@ export default class Forum extends React.Component {
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      // document.body.style.backgroundColor = "#FDFEFE";
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
   
@@ -133,7 +135,7 @@ render(){
                 <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
-      <div className="containerFeedLeft">
+      {/* <div className="containerFeedLeft">
         <div className="feed-options-container">
                   <div className="feed-options-item">
                       <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
@@ -151,33 +153,24 @@ render(){
                           </p>
                       </div></a>
                       <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsColumnsGap size={30}/> <b className="feed-option-item">Feed</b>
+                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
                       </div></a>
                       <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={30}/> <b className="feed-option-item">Communities</b>
+                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
                       </div></a>
                       <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={30}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsTag size={30}/> <b className="feed-option-item">Tags</b>
+                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
-                      <a href="/forums" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsChatSquareDots size={30}/> <b className="feed-option-item">Forums</b>
-                      </div></a>
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={30}/> <b className="feed-option-item">Events</b>
-                      </div></a>
-                      <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={30}/> <b className="feed-option-item">Podcasts</b>
+                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
                       <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={30}/> <b className="feed-option-item">Listings</b>
+                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
                       </div></a>
                       
                       <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                          <BsBarChart size={30}/> <b className="feed-option-item">Leaderboard</b>
+                        <Image src={Clap} size={25}/> <b className="feed-option-item">Contributors</b>
                       </div></a><hr/>
                       
                       <div className="option-container">
@@ -187,28 +180,27 @@ render(){
                       </div>
                   </div>
             </div>
-      </div>
+      </div> */}
 
-      <div className="containerFeedMiddle">
-        <div className="global-feed">
+      <div className="containerMiddleForum">
+        <div className="global-forum">
+        <div className="spacing"></div>
         <h3>All Forums</h3>
         <div className="search-div-forum">
           <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
         </div>
       </div>
 
-
-        <div className="global-feed-container">
-          <div className="featured-forums">
+        <div className="global-forum">
+          {/* <div className="featured-forums">
               <h3>Following</h3>
               {this.state.forums.map(forum=>
                   <li key={forum.id}>{forum.forum}</li>)}<br/>
               <a href="#"><div className="forum-option">
-                  <h5>{user.forums}</h5>
+                  <h6>{user.forums}</h6>
               </div></a>
-          </div>
+          </div> */}
 
-          {/* <a href={"/d/?id=" + discussion._id} className="discussion-post-redirect"><div className='discussion-post'> */}
 
 
           <div className="featured-forums">
@@ -258,4 +250,3 @@ async function addUserToForum(frm) {
       })
 
 }
-

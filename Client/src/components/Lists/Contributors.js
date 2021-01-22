@@ -29,7 +29,7 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <h5 className="-top-cont-header">Top Contributors</h5><hr/>
+            <h5 className="-recommended-header">Top Contributors</h5><hr/>
             {users.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                 <div className="contributor-item">
                 <p>                    
@@ -50,7 +50,7 @@ class Contributors extends React.Component {
             </div>
            ))}    
            <br/>
-            <a href="/leaderboard"  className="explore-more">See More</a><br/>
+            <a href="/leaderboard"  className="explore-more">See More</a><br/><br/>
         </div>
   );
   }
