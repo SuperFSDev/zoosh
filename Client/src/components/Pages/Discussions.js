@@ -36,7 +36,7 @@ export default class Discussions extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
+    // document.body.style.backgroundColor = "#FDFEFE";
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
   
@@ -101,9 +101,9 @@ render(){
                   <b>{discussion.user}</b>  
 
                   {discussion.society == null ? (
-                      <span> posted in <b>General</b></span>
+                      <span> posted in <b style={{color:'green'}}>General</b></span>
                   ) : (
-                    <span> posted in <b>{discussion.society}</b></span>
+                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}
                 </span></a><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
@@ -124,7 +124,7 @@ render(){
               </OverlayTrigger>
               )}
             </span><br/>
-          </div>
+          </div><hr/>
         </div>
       )})
 

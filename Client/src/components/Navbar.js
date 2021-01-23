@@ -169,7 +169,7 @@ render(){
               inputProps={{ 'aria-label': 'search' }}
               id="mySearch" title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}
             /> 
-                <a href="/forums"><span className="square" ><BsLightning size={20}/> FORUMS</span></a>
+                <a href="/forums" className="notify"><span className="square" ><BsLightning size={20}/> FORUMS</span></a>
                 <span className="notify"onClick={this.showMenu}><BsBell size={20} /> ME</span>
             </div>      
             <a href="/new"className="notify"><button className="write-button">Write</button></a>

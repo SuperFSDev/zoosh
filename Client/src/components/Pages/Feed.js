@@ -56,7 +56,7 @@ class Feed extends React.Component {
   }
 
     async componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      // document.body.style.backgroundColor = "#FDFEFE";
 
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
@@ -221,7 +221,7 @@ render(){
                   <Image src={post.pic} className="user-image-mini" roundedCircle/> <b>{post.user}</b> posted in 
                   
                   {post.society == null ? (
-                      <span><b> General</b></span>
+                      <span style={{color:'green'}}><b> General</b></span>
                   ) : (
                     <span><b> {post.society}</b></span>
                   )}
@@ -263,7 +263,7 @@ render(){
                     <br/><br/>
           </span>
               
-        </div>
+        </div><hr/>
       </div>
   )})
   
@@ -353,15 +353,9 @@ render(){
                         <BsPeople size={25}/> <b className="feed-option-item">Users</b>
                       </div></a>
                       <hr/>
-                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
-                      </div></a> */}
                       <a href="/events" className="feed-option-redirects"><div className="option-container">
                           <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
                       </div></a>
-                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a> */}
                       <a href="/listings" className="feed-option-redirects"><div className="option-container">
                           <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
                       </div></a>
