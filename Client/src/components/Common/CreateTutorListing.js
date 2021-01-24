@@ -77,14 +77,13 @@ export default class CreateTutorListing extends React.Component {
       <div className="create-a-post">
         <div>
 
-          <h1>Create a Listing</h1><br/><br/>
+          <h1>Become a Tutor</h1><br/><br/>
           <Form onSubmit={this.onSubmit} className="post-container">
 
             <TextField
-              label="Subject"
               id="outlined-textarea"
               style={{ margin: 1, fontSize: 20, maxLength: 20, paddingBottom: 10 }}
-              placeholder="eg. Maths, English"
+              placeholder="Subject"
               required
               fullWidth
               multiline
@@ -96,10 +95,9 @@ export default class CreateTutorListing extends React.Component {
             />
 
             <TextField
-              label="Description"
               id="outlined-textarea"
               style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
-              placeholder="..."
+              placeholder="Description of listing"
               required
               fullWidth
               multiline
@@ -112,9 +110,8 @@ export default class CreateTutorListing extends React.Component {
 
             <TextField
               id="outlined-number"
-              label="Rate/hr"
               type="number"
-              placeholder="€/hr"
+              placeholder="Rate/hr"
               InputLabelProps={{
               shrink: true,
               }}

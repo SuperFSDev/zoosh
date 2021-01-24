@@ -163,10 +163,6 @@ render(){
                 <title>New Post - Website</title>
         </Helmet> 
 
-      <div className="containerFeedLeft">
-        <FeedOptions/>
-      </div>
-
       <div className="containerFeedMiddle">
           <div className="global-feed">
         <Form onSubmit={this.onSubmit}>
@@ -176,7 +172,15 @@ render(){
             value={this.state.title}
             onChange={this.onChangeTitle}
             required
-            /><br/>
+            />
+
+          <input 
+            placeholder="Post Caption" 
+            className="Content-input"
+            value={this.state.title}
+            onChange={this.onChangeTitle}
+            required
+          />
 
           <textarea 
             placeholder="Write your post content here ..." 
@@ -186,10 +190,9 @@ render(){
             onChange={this.onChangePost}
             required
             />
-
-            
             
           {/* <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/> */}
+          <br/>
           <button className="standard-button" type="submit">Publish</button>
           <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
 

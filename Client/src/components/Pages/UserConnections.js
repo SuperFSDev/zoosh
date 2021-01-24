@@ -20,16 +20,6 @@ export default class UserConnections extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
-
-      // axios.get('http://localhost:4000/users/getUsers')
-      // .then((response)=>{
-      //     this.setState({users: response.data.users,
-      //       isLoading: false})
-      // })
-      // .catch((error)=>{
-      //     console.log(error);
-      // });
 
       var user = JSON.parse(localStorage.getItem('user'));
 
@@ -89,13 +79,9 @@ render(){
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-        <div className="containerFeedLeft">
-            <FeedOptions/>
-        </div>
-
         <div className="containerFeedMiddle">
               <div className="global-feed">
-              <h3>Classmates ({this.state.following.length})</h3>
+              <h3>Connections ({this.state.following.length})</h3>
 
               <div className="spacing"></div>
 

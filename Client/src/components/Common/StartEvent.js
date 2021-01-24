@@ -126,7 +126,6 @@ class StartEvent extends React.Component {
 
             <TextField
               id="outlined-textarea"
-              label="Title"
               style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
               placeholder="Event Title"
               fullWidth
@@ -140,7 +139,6 @@ class StartEvent extends React.Component {
 
             <TextField
               id="outlined-textarea"
-              label="Description"
               style={{ margin: 1, fontSize: 20, maxLength: 150, paddingBottom: 10 }}
               placeholder="Event Description"
               fullWidth
@@ -152,12 +150,9 @@ class StartEvent extends React.Component {
               onChange={this.onChangeDescription}
             />
 
-            <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." /><br/>
-
             <TextField 
                 type="url" 
                 id="outlined-textarea"
-                label="URL's"
                 variant="outlined"
                 fullWidth
                 margin="normal"
@@ -169,7 +164,9 @@ class StartEvent extends React.Component {
                 onChange={this.onChangeLink}
                 /><br/>
 
-            <button className="create-post-btn-submit" variant="primary" type="submit">Post</button>
+            <Select options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a society to post to..." /><br/>
+
+            <button className="create-post-btn-submit" variant="primary" type="submit">Post Event</button>
           </Form>
         </div>
 

@@ -26,6 +26,7 @@ export default class CreateASoc extends React.Component {
             instagram: '',
             other: '',
             private: false,
+            public:true,
             time: new Date().getTime(),
 
         };
@@ -36,6 +37,7 @@ export default class CreateASoc extends React.Component {
         this.onChangeAddress = this.onChangeAddress.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
+        this.onChangePublic = this.onChangePublic.bind(this);
         this.onChangeFacebook = this.onChangeFacebook.bind(this);
         this.onChangeTwitter = this.onChangeTwitter.bind(this);
         this.onChangeInstagram = this.onChangeInstagram.bind(this);
@@ -74,6 +76,12 @@ export default class CreateASoc extends React.Component {
     onChangePrivate(e) {
         this.setState({
             private: e.target.value
+        });
+    }
+
+    onChangePublic(e) {
+        this.setState({
+            public: e.target.value
         });
     }
 
@@ -122,6 +130,7 @@ export default class CreateASoc extends React.Component {
             instagram: this.state.instagram,
             other: this.state.other,
             private: this.state.private,
+            public: this.state.public,
             admin:getUser._id,
             time: new Date().getTime(),
 
@@ -157,6 +166,7 @@ export default class CreateASoc extends React.Component {
             instagram: '',
             other: '',
             private: false,
+            public: true,
             time: new Date().getTime(),
 
         });
@@ -168,24 +178,33 @@ export default class CreateASoc extends React.Component {
             
             <div className="create-a-soc">
                 <Form onSubmit={this.onSubmit}>
+                    <Form.Label>
+                        <b>Community Details</b>
+                    </Form.Label>
+                    <div className="spacing"></div>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridSocName">
-                        <TextField type="text" placeholder="Enter Society Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" label="Society Name" variant="outlined" />
+                        <TextField type="text" placeholder="Community Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Group controlId="formGridCollege">
-                        <TextField placeholder="GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege} className="textfield-create-a-soc" id="outlined-basic" label="University/College" variant="outlined" />
+                        <TextField placeholder="University/College - GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                     </Form.Group>
 
                     <Form.Group controlId="formGridAddress">
-                        <TextField placeholder="Enter Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" label="Address" variant="outlined" />
+                        <TextField placeholder="Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                     </Form.Group>
 
                     <Form.Group controlId="formGridDescription">
-                        <input type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} name="desc" placeholder="Description" maxLength={60}/>
+                        <TextField type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} id="outlined-basic" variant="outlined" name="desc" placeholder="Community Description" maxLength={60}/>
                     </Form.Group>
-
+                    <div className="spacing"></div>
+                    <hr/>
+                    <div className="spacing"></div>
+                    <Form.Label>
+                        <b>Social Media URL's</b>
+                    </Form.Label>
                     {/* Social Media Links */}
                     <Form.Group controlId="formGridDescription">
                         <TextField placeholder="Facebook URL"  value={this.state.facebook} onChange={this.onChangeFacebook} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
@@ -200,7 +219,7 @@ export default class CreateASoc extends React.Component {
                         <TextField placeholder="Other URLS"  value={this.state.other} onChange={this.onChangeOther} className="textfield-create-a-soc" id="outlined-basic"  variant="outlined" />
                     </Form.Group>
 
-                    <Form.Group controlId="formGridAddress">
+                    {/* <Form.Group controlId="formGridAddress">
                         <select className="-c-list-options" name="category" id="category" placeholder="Choose a Category" value={this.state.category} onChange={this.onChangeCategory}>
                             <option disabled selected="Choose a Category" value="choose">Choose a Category</option>
                             <option value="Sports">Sports</option>
@@ -212,31 +231,37 @@ export default class CreateASoc extends React.Component {
                             <option value="Technology">Technology</option>
                             <option value="Other">Other</option>
                         </select>
-                    </Form.Group>
-
-
-                    {/* <FormControl variant="outlined">
-                            <InputLabel required value={this.state.category} onChange={this.onChangeCategory} className="textfield-create-a-soc" id="outlined-basic" label="Category" variant="outlined" >Category</InputLabel>
-                            <Select native label="Category"
-                                inputProps={{
-                                    name: 'category',
-                                    id: 'outlined-age-native-simple',
-                                }}>
-                            <option aria-label="None" value=""/>
-                            <option value={10}>Sport</option>
-                            <option value={20}>Music</option>
-                            <option value={30}>Politics</option>
-                            </Select>
-                        </FormControl> */}
-
-                    <Form.Row>
-                    
-                    </Form.Row>
-
-                    <Form.Group id="formGridCheckbox">
-                        {/* <FormControlLabel type="checkbox" label="Make Private" value={this.state.private} onChange={this.onChangePrivate} control={<Switch />} label="Make Private"/> */}
-                        <Form.Check type="checkbox" label="Make Private" value={this.state.private} onChange={this.onChangePrivate}/>
-                    </Form.Group>
+                    </Form.Group> */}
+                    <div className="spacing"></div>
+                    <hr/>
+                    <div className="spacing"></div>
+                    {/* <Form.Row>
+                        <Form.Group>
+                            <Form.Label>
+                                <b>Community Visibility</b>
+                            </Form.Label>
+                            <Col>
+                                <Form.Check
+                                type="radio"
+                                label="Public"
+                                name="formHorizontalRadios"
+                                id="formHorizontalRadios1"
+                                value={this.state.public}
+                                onChange={this.onChangePublic}
+                                defaultChecked 
+                                />
+                                <Form.Check
+                                type="radio"
+                                label="Private"
+                                name="formHorizontalRadios"
+                                id="formHorizontalRadios2"
+                                value={this.state.private} 
+                                onChange={this.onChangePrivate}
+                                />
+                            </Col>
+                        </Form.Group>
+                    </Form.Row> */}
+                    <div className="spacing"></div>
                     <div className="create-soc-div">
                         <button className="standard-button" variant="primary" type="submit">Create Community</button>
                     </div>

@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    display:flex;
+    text-align: left;
+    color:black;
+  }
+
+  .column2 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height:100%!important;
+    border-left:1px solid whitesmoke;
+    position: fixed!important;
+    margin-left: 72.5rem;
+
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    height:100%!important;
+
+  }
+
+/* Create two equal columns that floats next to each other */
+.columnPost {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row2:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

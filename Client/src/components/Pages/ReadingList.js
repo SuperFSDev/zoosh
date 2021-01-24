@@ -22,7 +22,6 @@ export default class ReadingList extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
       var user = JSON.parse(localStorage.getItem('user'));
 
       axios.get('http://localhost:4000/users/getUsers')
@@ -77,9 +76,6 @@ render(){
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-        <div className="containerFeedLeft">
-            <FeedOptions/>
-        </div>
 
         <div className="containerFeedMiddle">
               <div className="global-feed">

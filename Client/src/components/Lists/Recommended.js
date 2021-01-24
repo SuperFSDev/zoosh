@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { StickyContainer, Sticky } from 'react-sticky';
+import {BiCompass} from 'react-icons/bi'
 
 export default class Recommended extends React.Component {
 
@@ -36,27 +38,49 @@ export default class Recommended extends React.Component {
 
 render(){
   var { societies } = this.state;
-  var size = 3;
+  var size = 1;
   const shuffledPosts = shuffleArray(societies);
 
    return (
-    
-    <div className="recommended-container">
-      <h5 className="-recommended-header">Communities</h5><hr/>
-        {shuffledPosts.slice(0, size).map(society =>(
-          <div key={society._id}>
-          <a href={"/c/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
-            <div className="recommended-content">
-              <p>{society.name} <span className="recommended-btn"><button className="community-btn-active">Join</button></span></p>
-              {/* <p className="description">{society.description}</p> */}
+    <StickyContainer>
+        <div>
+            <div className="recommended-container">
+            <h5 className="-feed-item-header"><BiCompass size={20}/> EXPLORE</h5><hr/>
+            {shuffledPosts.slice(0, size).map(society =>(
+              
+              <div class="miniprofile">
+                <figure class="headshot">
+                    <img src="http://dummyimage.com/90x90/000/fff.png" />
+                </figure>
+                <a href={"/c/?id="+society._id} className="recommended-item-a"><section class="bio-box">
+                    <dl class="details"> 
+                        <h1 class="profile-name">{society.name}</h1>
+                        <dd class="location">{society.college}</dd>
+                    </dl>
+                </section></a>
+                <button class="close" onClick={shuffledPosts}>x</button>
             </div>
-            
-              {/* <a href={"/s/?id=" +society._id}><button className="soc-item-list-join-btn">Info</button></a> */}
-          </div></a>
-          </div>  ))}
-          <br/>
+            ))}
+          </div>
           <a href="/communities"  className="explore-more">Explore More</a><br/><br/>
-    </div>
+        </div>
+     </StickyContainer>
+ 
+    
+    // <div className="recommended-container">
+    //   <h5 className="-recommended-header">Communities</h5><hr/>
+    //     {shuffledPosts.slice(0, size).map(society =>(
+    //       <div key={society._id}>
+    //       <a href={"/c/?id="+society._id} className="recommended-item-a"><div className="recommended-item">
+    //         <div className="recommended-content">
+    //           <p>{society.name} <span className="recommended-btn"><button className="community-btn-active">Join</button></span></p>
+    //         </div>
+            
+    //       </div></a>
+    //       </div>  ))}
+    //       <br/>
+    //       <a href="/communities"  className="explore-more">Explore More</a><br/><br/>
+    // </div>
 
   );
 }

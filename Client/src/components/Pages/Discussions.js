@@ -242,6 +242,7 @@ render(){
                   <div>
                     <Recommended/>  
                     <Contributors/> 
+   
                   </div>
                 )}
       </div>

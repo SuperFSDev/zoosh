@@ -38,7 +38,7 @@ export default class MyProfile extends React.Component {
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
-      document.body.style.backgroundColor = "#FCFCFC";
+      // document.body.style.backgroundColor = "#FCFCFC";
 
       this.setState({ id: user._id });
 
@@ -268,7 +268,7 @@ export default class MyProfile extends React.Component {
               
         </div> */}
           <div  className="top-posts-profile-container">
-            <h5>Top Posts</h5>
+            <h5  className="-feed-item-header">TOP POSTS</h5>
             {this.state.posts.slice(0,10).reverse().map(post=>  (
               <div key={this.state.user._id}>  
                <Card className='userPosts'>

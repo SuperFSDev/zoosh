@@ -11,10 +11,10 @@ import { RiCake2Fill } from 'react-icons/ri'
 import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import {FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
-import { TextField } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import {Navbar, Nav} from 'react-bootstrap'
 import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll} from 'react-icons/bs'
+import PrivateView from './Visibility/PrivateView'
 
 export default class CommunityPage extends React.Component {
 
@@ -152,311 +152,145 @@ export default class CommunityPage extends React.Component {
       var title = this.state.society.name + " - Website"
       var{users} = this.state;
       var { events } = this.state;
-
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
+
+
+
       if(this.state.society.admin === user._id){
-
-
         return (
           <div>
-
               <AdminPage/>
           </div>
          
           );
       }
 
-      return (
-        <div>
-          {/* REACTJS HELMET */}
-          <Helmet>
-                  <meta charSet="utf-8" />
-                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                  <title>{title}</title>
+      else if(this.state.society.private === true){
+        return(
+          <div>
+            <PrivateView/>
+          </div>
+        )
+      }
 
-                  {/* LINKS */}
-                  <link rel="canonical" href="http://mysite.com/example" />
-                  <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
-                  <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
-          </Helmet> 
 
-          <Navbar  className="navbar-comm" >
-                  <Nav className="mr-auto">
-                      <Navbar.Brand className="header-landing">
-                        <span><Image src={ProfilePic} className="user-image" roundedCircle /></span>
-                        <span  className="navbar-title">{this.state.society.name}<br/>
-                        <p className="content-muted">z/{this.state.society.name}</p></span>
-                      </Navbar.Brand>
-                  </Nav>
+      else if(this.state.society.private === false){
+        return (
+          <div>
+            {/* REACTJS HELMET */}
+            <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <title>{title}</title>
 
-                  <Navbar.Collapse className="justify-content-end">
-                    <div className="quick-create-option">
-                      <div>
-                        <a href="/home"><button className="write-button">Home</button></a>
-                      </div>
-                    </div>           
-                      
-                    <div className="navbar-prof-btn">
-                      <div id="#battleBox">
-                        <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
-                      </div>
-                    </div>               
-                  </Navbar.Collapse>
-              </Navbar>
+                    {/* LINKS */}
+                    <link rel="canonical" href="http://mysite.com/example" />
+                    <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+                    <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+            </Helmet> 
 
-          <div className="community-nav">
-                <span><button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small></small></button></span>
-                <span className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
-                <span className="comm-nav-item" onClick={() => {this.ShowFeed()}}>Feed</span>
-                <span className="comm-nav-item" onClick={() => {this.ShowQuestions()}}>Questions</span>
-                <span className="comm-nav-item" onClick={() => {this.ShowEvents()}}>Events</span>
-                <span className="comm-nav-item" onClick={() => {this.ShowStats()}}>Stats</span>
-              </div>
+            <Navbar  className="navbar-comm" >
+                    <Nav className="mr-auto">
+                        <Navbar.Brand className="header-landing">
+                          <span><Image src={ProfilePic} className="user-image" roundedCircle /></span>
+                          <span  className="navbar-title">{this.state.society.name}<br/>
+                          <p className="content-muted">z/{this.state.society.name}</p></span>
+                        </Navbar.Brand>
+                    </Nav>
 
-              <div className="containerPostLeft">
-                <div className="community-sticky">
-                  <span className="text-muted">ABOUT US</span>
-                  <p  className="community-title">{this.state.society.name}</p>
-                  <p className="text-muted">{this.state.society.description}</p>
-                  <p className="text-muted"><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
-                  <div className="social-icons">
-                    <big><a href={this.state.society.facebook} target="_blank"><FaFacebook size={20}/> </a></big>
-                    <big><a href={this.state.society.twitter} target="_blank"><FaTwitter size={20}/> </a></big>
-                    <big><a href={this.state.society.instagram} target="_blank"><FaInstagram size={20}/> </a></big>
-                    <big><a href={this.state.society.facebook} target="_blank"><FaLink size={20}/> </a></big>
-                  </div>
-                  
-
-                </div>
-              </div>
-
-              <div className="containerPostMiddleCommunity">
-              {this.state.showFeed &&
-                <div>
-                    <br/>
-                    <div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div>
-                    <div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div>
-                    <div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div>
-                    <div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div>
-                    <div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div><div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div><div className="community-container">
-                      <h1>Hello World</h1>
-                      <p>Hello test content</p>
-                      <hr/>
-                    </div>
-                </div>
-                }
-
-                {this.state.showEvents &&
-                <div>
-                    <br/>
-                    <div className="community-container">
-                    <div>
-                      <h3>Upcoming Events</h3>
-                      <QuickEvent/>
-                      <div className="EventSocietyLayout">
-                      {events.reverse().map(event => (
-                      <div key={event._id}>
-                          <div>
-                          <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                            <div className="events-card-community">
-                                <h4><b>{event.title}</b></h4> 
-                                <p>{event.society}</p> 
-                                <p>{event.time}</p>
-                                <div >
-                                </div>
-                            </div>
-                            </a>
-                          </div>
+                    <Navbar.Collapse className="justify-content-end">
+                      <div className="quick-create-option">
+                        <div>
+                          <a href="/home"><button className="write-button">Home</button></a>
                         </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                }
-
-
-                {this.state.showStats &&
-                <div>
-                    <br/>
-                    <div className="community-container">
-                    <div> 
-                    <h3>Community Leaderboard</h3>                          
-                    <div className="container-individual-community">
-                        <div className="">
-                          {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                            <div>
-                              <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                            </div>
-                          ))}    
-                          <a href="#">See More</a>
+                      </div>           
+                        
+                      <div className="navbar-prof-btn">
+                        <div id="#battleBox">
+                          <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
                         </div>
-                      </div>                         
+                      </div>               
+                    </Navbar.Collapse>
+                </Navbar>
+
+            <div className="community-nav">
+                  <span><button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small></small></button></span>
+                  <span className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
+                  <span className="comm-nav-item" onClick={() => {this.ShowFeed()}}>Feed</span>
+                  <span className="comm-nav-item" onClick={() => {this.ShowQuestions()}}>Questions</span>
+                  <span className="comm-nav-item" onClick={() => {this.ShowEvents()}}>Events</span>
+                  <span className="comm-nav-item" onClick={() => {this.ShowStats()}}>Stats</span>
+                </div>
+
+                <div className="containerPostLeft">
+                  <div className="community-sticky">
+                    <span className="text-muted">ABOUT US</span>
+                    <p  className="community-title">{this.state.society.name}</p>
+                    <p className="text-muted">{this.state.society.description}</p>
+                    <p className="text-muted"><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
+                    <div className="social-icons">
+                      <big><a href={this.state.society.facebook} target="_blank" className="social-link"><FaFacebook size={20}/> </a></big>
+                      <big><a href={this.state.society.twitter} target="_blank" className="social-link"><FaTwitter size={20}/> </a></big>
+                      <big><a href={this.state.society.instagram} target="_blank" className="social-link"><FaInstagram size={20}/> </a></big>
+                      <big><a href={this.state.society.facebook} target="_blank" className="social-link"><FaLink size={20}/> </a></big>
                     </div>
                     
-                    </div>
 
-                </div>
-                }
-
-              {this.state.showPeople &&
-                <div>
-                    <br/>
-                    <div className="community-container">
-                      <h1>Meet the Community ({this.state.users.length})</h1>
-                      <hr/>
-                      <div>
-                      <h1><b className="user-admin">Admins {this.state.society.admin}</b></h1>
-                        <div className="CommunityMembers">
-                          <div className="community-members-item">
-                          </div>
-                      </div><br/>
-
-                      <div className="CommunityMembers">
-                        {this.state.mods.map(mod=>(
-                          <div className="community-members-item">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
-                              {/* <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a>  */}
-                            </OverlayTrigger>
-                          </div>
-                        ))}
-                      </div><br/>
-
-                      <div>
-                        {this.state.users.map(user=>(
-                          <div>
-                            <p>
-                              <span>
-                                {/* <Avatar src={user.pic} roundedCircle /><h3>{user.fullname}</h3> */}
-                              </span>
-                              {user.bio}
-                              <br/><hr/><br/>
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                      </div>
-                    </div>
-
-                </div>
-              }
-
-              </div>
-
-          {/* <header>
-          <section>
-            <nav className="nav">
-              <Image src={ProfilePic} className="user-image" roundedCircle />
-            </nav>
-            
-            <article>
-              <h1>{this.state.society.name}</h1>
-              <p className="member-count">{this.state.society.description}</p>
-              <p><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
-              <button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small> {this.state.users.length}</small></button>
-            </article>
-          </section>
-          </header> */}
-          
-            {/* <div className="containerFeedLeftCommunity">
-            <div className="communityFilter">
-                      <button  onClick={() => {this.ShowFeed()}} className="community-btn">Feed</button>
-                      <button  onClick={() => {this.ShowQuestions()}} className="community-btn">Questions</button>
-                      <button  onClick={() => {this.ShowEvents()}} className="community-btn">Events</button>
-                      <button  onClick={() => {this.ShowStats()}}className="community-btn">Stats</button>
-                      <button  onClick={() => {this.ShowUsers()}}className="community-btn">People</button>
-                      <button  onClick={() => {this.ShowSocials()}}className="community-btn">Socials</button>
                   </div>
+                </div>
 
-              {this.state.showFeed &&
-
-              <div>
-                <div className="community-card">  
-                <div className="peopleTab">          
-                      <a href="/new" className="quick-options-a"><div>
-                        <p><b>Post Something</b></p>
+                <div className="containerPostMiddleCommunity">
+                {this.state.showFeed &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
                         <hr/>
-                          <input
-                          className="quick-options-input"
-                          placeholder="What's on your mind?"
-                          />
-                      </div> </a>
-                    </div>         
-                </div>
-                <br/>
-                <div className="community-card">  
-                  <h1>Posts here</h1>    
-                </div>
-              </div>
-              
-              
-              }
-
-              {this.state.showStats &&<div  className="community-card">
-                <div className="peopleTab"> 
-                               
-                    <div> 
-                            {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                              <div>
-                                <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                              </div>
-                            ))}    
-                            <a href="#">See More</a>
                       </div>
-                      
-                    </div>
-              </div>}
+                      <div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div>
+                      <div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div>
+                      <div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div>
+                      <div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div><div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div><div className="community-container">
+                        <h1>Hello World</h1>
+                        <p>Hello test content</p>
+                        <hr/>
+                      </div>
+                  </div>
+                  }
 
-            
-            {this.state.showSocials && <div className="community-card">
-            <div className="peopleTab">  
-                            
-                  <div> 
-                        <big><FaFacebook size={30}/> <a href={this.state.society.facebook} target="_blank"><TextField defaultValue={this.state.society.facebook} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaTwitter size={30}/> <a href={this.state.society.twitter} target="_blank"><TextField defaultValue={this.state.society.twitter} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaInstagram size={30}/> <a href={this.state.society.instagram} target="_blank"><TextField defaultValue={this.state.society.instagram} InputProps={{readOnly: true,}} variant="outlined"/></a></big><br/><br/>
-                        <big><FaLink size={30}/></big> <a href={this.state.society.other} target="_blank"><TextField defaultValue={this.state.society.other} InputProps={{readOnly: true,}} variant="outlined"/></a><br/><br/>
-                    </div>
-                    
-                  </div>    
-            </div>}
-
-          
-            {this.state.showEvents &&<div className="community-card">
-            <div className="peopleTab">    
-                    
-                    <div>
-                      <h3>Upcoming Events</h3>
-                      <QuickEvent/>
-                      <div className="EventSocietyLayout">
+                  {this.state.showEvents &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                      <div>
+                        <h3>Upcoming Events</h3>
+                        <QuickEvent/>
+                        <div className="EventSocietyLayout">
                         {events.reverse().map(event => (
                         <div key={event._id}>
                             <div>
@@ -464,120 +298,97 @@ export default class CommunityPage extends React.Component {
                               <div className="events-card-community">
                                   <h4><b>{event.title}</b></h4> 
                                   <p>{event.society}</p> 
-                                  <big className="text-muted"><b></b>{moment(event.time).format("H:mma - MMM Do, YYYY.")}</big>
-
+                                  <p>{event.time}</p>
                                   <div >
                                   </div>
                               </div>
                               </a>
                             </div>
+                          </div>
+                          ))}
                         </div>
-                        ))}
                       </div>
                     </div>
-                    
-                  </div>                
-            </div>}
-
-
-            {this.state.showPeople &&<div className="community-card">
-            <div className="peopleTab">  
-                      
-                    <div>
-                      <h1><b className="user-admin">Admins - {this.state.society.admin}</b></h1>
-                      <div className="CommunityMembers">
-                        <div className="community-members-item">
-          
-                        </div>
-                    </div><br/>
-
-                    <h1><b className="user-mod">Moderators - {this.state.mods.length}</b></h1>
-                    <div className="CommunityMembers">
-                      {this.state.mods.map(mod=>(
-                        <div className="community-members-item">
-                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{mod.fullname}</Tooltip>}>
-                            <a href={"/u/?id="+mod._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
-                          </OverlayTrigger>
-                        </div>
-                      ))}
-                    </div><br/>
-
-                    <h1><b className="user-member">Members - {this.state.users.length}</b></h1>
-                    <div className="CommunityMembers">
-                      {this.state.users.map(user=>(
-                        <div className="community-members-item">
-                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.fullname}</Tooltip>}>
-                            <a href={"/u/?id="+user._id}> <Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
-                          </OverlayTrigger>
-                        </div>
-                      ))}
-                    </div>
-                    </div>
-                    
                   </div>
-            </div>}
-
-            {this.state.showQuestions &&
-            <div>
-              <div className="community-card">  
-              <div className="peopleTab">         
-                    <a href="/new" className="quick-options-a"><div>
-                      <p><b>Ask a Question</b></p>
-                      <hr/>
-                        <input
-                        className="quick-options-input"
-                        placeholder="Need Help?"
-                        />
-                    </div> </a>
-                  </div>         
-              </div>
-              <br/>
-              <div className="community-card">  
-                <h1>Hello</h1> 
-                <p>Question context goes here</p>   
-              </div>
-            </div>
-            }
+                  }
 
 
-            
-
-
-          </div> */}
-
-            {/* <div className="containerFeedMiddleCommunity">
-                <div className="community-users-card">
-                  <h1><b className="user-member">You're a member.</b></h1>
-                  <p className="member-count">Members: {this.state.users.length}</p>
-                    <div className="Connections">
-                    {this.state.UserList.map(u => ( 
-                      <div key={u._id} >
-                        {console.log(u)}
-                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{u.fullname}</Tooltip>}>
-                              <span className="d-inline-block">
-                              <Image src={u.pic} className="user-image-mini" roundedCircle />
-                              </span>
-                        </OverlayTrigger> 
-                        </div>                
-                      ))} 
-                      </div>
-                    </div>
-                <br/>
-                <div className="community-users-card">
-                  <p className="member-count">Leaderboard</p>
-                    <div> 
+                  {this.state.showStats &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                      <div> 
+                      <h3>Community Leaderboard</h3>                          
+                      <div className="container-individual-community">
+                          <div className="">
                             {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
                               <div>
-                                <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{user.score}</b></p><hr/>      
+                                <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
                               </div>
                             ))}    
                             <a href="#">See More</a>
+                          </div>
+                        </div>                         
                       </div>
-                    </div>
-            </div> */}
-        </div>
+                      
+                      </div>
+
+                  </div>
+                  }
+
+                {this.state.showPeople &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                        <h1>Meet the Community ({this.state.users.length})</h1>
+                        <hr/>
+                        <div>
+                        <h1><b className="user-admin">Admins {this.state.society.admin}</b></h1>
+                          <div className="CommunityMembers">
+                            <div className="community-members-item">
+                            </div>
+                        </div><br/>
+
+                        <div className="CommunityMembers">
+                          {this.state.mods.map(mod=>(
+                            <div className="community-members-item">
+                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
+                                {/* <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a>  */}
+                              </OverlayTrigger>
+                            </div>
+                          ))}
+                        </div><br/>
+
+                        <div>
+                          {this.state.users.map(user=>(
+                            <div>
+                              <p>
+                                <span>
+                                  {/* <Avatar src={user.pic} roundedCircle /><h3>{user.fullname}</h3> */}
+                                </span>
+                                {user.bio}
+                                <br/><hr/><br/>
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                        </div>
+                      </div>
+
+                  </div>
+                }
+
+                </div>
+          </div>
         );
     } 
+
+    else{
+      return(
+        <div></div>
+      )
+    }
+}
 }
 
 //  FUNCTIONS TO OPEN EVENT MODAL

@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import LoginPage from './components/auth/Login';
 import RegisterPage from './components/auth/Register';
-import Feed from './components/Pages/Feed';
 import SocsList from './components/Socs/ListSocieties';
 import Leaderboard from './components/Pages/Leaderboard';
 import CreateSociety from './components/Socs/CreateASoc';
@@ -34,6 +33,8 @@ import Users from './components/Pages/Users'
 import Listings from './components/Pages/Listings'
 import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
+import FollowingLayout from './components/Pages/FollowingLayout';
+import AllPosts from './components/Pages/AllPosts';
 
 class App extends React.Component {
   render(){
@@ -61,13 +62,15 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
+              <Route path="/posts" component={AllPosts}/>
+
               <Route path="/saved" component={ReadingList}/>
 
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>
-              <Route path="/home" component={Discussions}/>
-              <Route exact path="/" component={Discussions}/>
-              <Route path="/following" component={Feed}/>
+              <Route path="/home" component={AllPosts}/>
+              <Route exact path="/" component={AllPosts}/>
+              <Route path="/following" component={FollowingLayout}/>
 
 
 

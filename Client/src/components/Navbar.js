@@ -1,17 +1,17 @@
 import React from 'react';
 import '../assets/App.css';
 import {Navbar, Nav} from 'react-bootstrap';
-// import ProfileButton from '../components/Profile/ProfileButton'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {IoIosSquareOutline} from 'react-icons/io'
-import {FaRegHandPeace} from 'react-icons/fa'
-import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning,BsSearch} from 'react-icons/bs'
+import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning,BsSearch,BsCalendar} from 'react-icons/bs'
 import InputBase from '@material-ui/core/InputBase';
+import Clap from '../images/clap.png'
+import {BiPlanet} from 'react-icons/bi'
+
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -29,6 +29,8 @@ export default class NavBar extends React.Component {
         searchValue: '',
         filterBy: '',
         users: [],
+        discussions: [],
+
     };
 
       this.showMenu = this.showMenu.bind(this);
@@ -127,6 +129,15 @@ export default class NavBar extends React.Component {
           .catch((error) => {
               console.log(error);
           });
+
+      axios.get('http://localhost:4000/discussions/getDiscussions')
+        .then((response) => {
+          this.setState({ discussions: response.data.discussions,
+          isLoading: false, })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   updateSearch(user) {
@@ -136,8 +147,10 @@ export default class NavBar extends React.Component {
 render(){
 
   var{users} = this.state;
+  var { discussions } = this.state;
   let i = 0;
   var size=3;
+  var postSize = 2;
   var indents = [];
 
   let filteredUsers = this.state.users.filter(
@@ -164,13 +177,15 @@ render(){
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">             
-                <span className="square" ><BsSearch size={20}/></span><InputBase
+                <span className="square" ><BsSearch size={20}/></span>
+            <InputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               id="mySearch" title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}
             /> 
-                <a href="/forums" className="notify"><span className="square" ><BsLightning size={20}/> FORUMS</span></a>
-                <span className="notify"onClick={this.showMenu}><BsBell size={20} /> ME</span>
+                <a href="/leaderboard" className="notify"><span><Image src={Clap} size={20}/></span></a>
+                <a href="/forums" className="notify"><span><BsLightning size={20}/></span></a>
+                <span className="notify"onClick={this.showMenu}><BsBell size={20} /></span>
             </div>      
             <a href="/new"className="notify"><button className="write-button">Write</button></a>
      
@@ -214,7 +229,15 @@ render(){
                     >
                       <h5>Search Results</h5>
                       <hr/>
-                      <p className="searchbar-header">TAGS</p>
+                      <p className="searchbar-header">POSTS</p>
+                      {discussions.slice(0,postSize).sort((a,b)=> b.score- a.score).map(discussion  =>  ( 
+                      <a  href={"/d/?id="+discussion._id}><div key={k} className="contributor-item-search">
+                            <p className="-contributor-user-search">
+                              <p>{discussion.user}</p>
+                              <h6>{discussion.title}</h6>
+                            </p>
+                        </div></a>
+                      ))}  
                       <p className="searchbar-header">COMMUNITIES</p>
                       <p className="searchbar-header">USERS</p>
                       {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 

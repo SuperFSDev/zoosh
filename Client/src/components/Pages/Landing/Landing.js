@@ -107,7 +107,6 @@ render(){
             </Nav>
 
             <Navbar.Collapse className="justify-content-end">
-                    <Nav.Link className="landing-link">Manifesto</Nav.Link>
                     <Nav.Link className="landing-link" href="/login">Sign in</Nav.Link> 
                     <Nav.Link className="landing-link" href="/join"><button className="standard-button">Get Started</button></Nav.Link>        
             </Navbar.Collapse>
@@ -116,11 +115,11 @@ render(){
         <div>
             <div className="containerLanding">
                 <div class="row">
-                    <div class="column">
+                    <div class="columnX">
                         <p className="landing-message">Make the most out of student life.</p><br/>
                     </div>
 
-                    <div class="column">
+                    <div class="columnX">
                         <Image src={Space} className="landing-image"/>
                     </div>
                 </div>     

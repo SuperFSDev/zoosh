@@ -54,7 +54,7 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-    document.body.style.backgroundColor = "#FCFCFC";
+    // document.body.style.backgroundColor = "#FCFCFC";
 
 
     axios.get(`http://localhost:4000/users/get-user-details`, {
@@ -173,9 +173,9 @@ export default class UserProfile extends React.Component {
                         </span>
                         <span>
                           {isUnfollowing ? (
-                            <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                            <button className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                           ) : (
-                            <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                            <button  className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                           )}<br/>
                         </span>
                         
@@ -241,7 +241,7 @@ export default class UserProfile extends React.Component {
                       ) : (
                         <div>
                           {this.state.societies.map(society=>
-                          <li className="community-members-item-profile">
+                          <li className="community-members-item-user-profile">
                             <p>
 
                             <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
@@ -257,7 +257,7 @@ export default class UserProfile extends React.Component {
 
         <div className="containerFeedRightUser">
           <div  className="top-posts-profile-container-2">
-            <h5>Top Posts</h5>
+            <h5  className="-feed-item-header">TOP POSTS</h5>
             <History />
           </div>
           <br/>

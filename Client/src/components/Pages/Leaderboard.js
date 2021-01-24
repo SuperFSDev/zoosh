@@ -26,7 +26,7 @@ export default class Two extends React.Component {
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      // document.body.style.backgroundColor = "#FDFEFE";
 
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
@@ -115,14 +115,14 @@ render(){
     const topCommunities = societies.slice(0,10).sort((a,b)=> b.score - a.score).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
+        <p className="leaderboard-item"><b>{k+=1}</b><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
       </div>
     )})
 
     const topGrowingCommunities = societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><b>{j+=1}</b><a className="soc-leaderboard-name-item" href={"/s?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
+        <p className="leaderboard-item"><b>{j+=1}</b><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
       </div>
     )})
 
@@ -138,62 +138,8 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-      <div className="containerFeedLeft">
-      <div className="feed-options-container">
-                  <div className="feed-options-item">
-                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
-                              {user.score >= 1 && user.score <=999 ? (
-                                  <span> <b className="user-member">{user.score}</b><br/></span>
-
-                              ) : user.score >=1000 ?(
-                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
-                              ) : user.score >= 5000 ? (
-                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
-                              ) : (
-                                  <span> <b>{user.score}</b><br/></span>
-                              )}
-                          </p>
-                      </div></a>
-                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
-                      </div></a>
-                      <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <hr/>
-                
-                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
-                      </div></a> */}
-                      <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
-                      </div></a>
-                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a> */}
-                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
-                      </div></a>
-                      
-                      <a href="/leaderboard" className="feed-option-redirects-active"><div className="option-container-active">
-                        <Image src={Clapping} size={25} className="active-icon"/> <b className="feed-option-item">Contributors</b>
-                      </div></a><hr/>
-                      
-                      <div className="option-container">
-                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
-                          {this.state.socs.map(soc=>
-                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
-                      </div>
-                  </div>
-            </div>
-      </div>
-
       <div className="containerFeedMiddle">
-          <div className="global-feed">
+          <div className="global-feed-leaderboard">
           <div className="leaderboard-options">
             <a href="#users"><button className="btn-leaderboard" >Top Contributors</button></a>
             <a href="#top-comm"><button className="btn-leaderboard" >Top Communities</button></a>
@@ -201,10 +147,10 @@ render(){
             <div id="users"></div>
           </div>
           <div className="container-individual">
-            <h1 className="c-s-header" id="users">TOP CONTRIBUTORS</h1><br/>
+            <h1 className="leaderboard-title" id="users">TOP CONTRIBUTORS</h1><br/>
               {this.state.isLoading ? ( 
                     <div className="SocietyLayout">
-                      <Skeleton height={50} width={900} count={5} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={50} width={1000} count={5} duration={1} className="skeleton-comms"/>  
                   </div>
 
                   ) : (
@@ -216,11 +162,11 @@ render(){
 
           
           <div className="container-individual">
-            <h1 className="c-s-header" id="top-comm">TOP COMMUNITIES <span role="img" aria-label="trend">📈</span></h1><br/>
+            <h1 className="leaderboard-title"id="top-comm">TOP COMMUNITIES <span role="img" aria-label="trend">📈</span></h1><br/>
               <div className="">
               {this.state.isLoading ? ( 
                     <div className="SocietyLayout">
-                      <Skeleton height={50} width={900} count={10} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={50} width={1000} count={10} duration={1} className="skeleton-comms"/>  
                   </div>
 
                   ) : (
@@ -233,11 +179,11 @@ render(){
           </div>
 
           <div className="container-individual">
-            <h1 className="c-s-header">TOP GROWING COMMUNITIES <span role="img" aria-label="growth">🌱</span></h1><br/>
+            <h1 className="leaderboard-title">TOP GROWING COMMUNITIES <span role="img" aria-label="growth">🌱</span></h1><br/>
               <div className="">
                 {this.state.isLoading ? ( 
                       <div className="SocietyLayout">
-                        <Skeleton height={50} width={900} count={10} duration={1} className="skeleton-comms"/>  
+                        <Skeleton height={50} width={1000} count={10} duration={1} className="skeleton-comms"/>  
                     </div>
 
                     ) : (

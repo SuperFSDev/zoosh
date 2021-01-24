@@ -29,7 +29,6 @@ export default class Tutor extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
 
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
@@ -101,60 +100,6 @@ render(){
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Events - Website</title>
         </Helmet> 
-
-      <div className="containerFeedLeft">
-        <div className="feed-options-container">
-                  <div className="feed-options-item">
-                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
-                              {user.score >= 1 && user.score <=999 ? (
-                                  <span> <b className="user-member">{user.score}</b><br/></span>
-
-                              ) : user.score >=1000 ?(
-                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
-                              ) : user.score >= 5000 ? (
-                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
-                              ) : (
-                                  <span> <b>{user.score}</b><br/></span>
-                              )}
-                          </p>
-                      </div></a>
-                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects"><div className="option-container">
-                          <BsXDiamond size={25}/> <b className="feed-option-item">Communities</b>
-                      </div></a>
-                      <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <hr/>
-                
-                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
-                      </div></a> */}
-                      <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
-                      </div></a>
-                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a> */}
-                      <a href="/listings" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsCardText size={25} className="active-icon"/> <b className="feed-option-item">Listings</b>
-                      </div></a>
-                      
-                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Clap} size={25}/> <b className="feed-option-item">Contributors</b>
-                      </div></a><hr/>
-                      
-                      <div className="option-container">
-                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
-                          {this.state.socs.map(soc=>
-                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
-                      </div>
-                  </div>
-            </div>
-      </div>
 
       <div className="containerFeedMiddle">
           <div className="global-feed">

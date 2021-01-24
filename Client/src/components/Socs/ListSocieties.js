@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Modal ,OverlayTrigger, Tooltip, Image} from 'react-bootstrap';
@@ -30,7 +29,7 @@ export default class ListSocieties extends React.Component {
 
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      // document.body.style.backgroundColor = "#FDFEFE";
 
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
@@ -116,59 +115,6 @@ render(){
                 <title>Communities - Website</title>
         </Helmet> 
 
-      <div className="containerFeedLeft">
-        <div className="feed-options-container">
-                  <div className="feed-options-item">
-                      <a href="/me" className="feed-option-redirects-username"><div className="user-profile-container">
-                          <Avatar src={user.pic} className="profile-btn-wrapper-left"/> <p className="uname-feed">{user.fullname}  
-                              {user.score >= 1 && user.score <=999 ? (
-                                  <span> <b className="user-member">{user.score}</b><br/></span>
-
-                              ) : user.score >=1000 ?(
-                                  <span> <b  className="user-mod">{user.score}</b><br/></span>
-                              ) : user.score >= 5000 ? (
-                                  <span> <b  className="user-admin">{user.score}</b><br/></span>
-                              ) : (
-                                  <span> <b>{user.score}</b><br/></span>
-                              )}
-                          </p>
-                      </div></a>
-                      <hr/><a href="/home" className="feed-option-redirects"><div className="option-container">
-                          <BsHouse size={25}/> <b className="feed-option-item">Home</b>
-                      </div></a>
-                      <a href="/communities" className="feed-option-redirects-active"><div className="option-container-active">
-                          <BsFillDiamondFill size={25} className="active-icon"/> <b className="feed-option-item">Communities</b>
-                      </div></a>
-                      <a href="/users" className="feed-option-redirects"><div className="option-container">
-                        <BsPeople size={25}/> <b className="feed-option-item">Users</b>
-                      </div></a>
-                      <hr/>
-                
-                      {/* <a href="/forums" className="feed-option-redirects"><div className="option-container">
-                          <BsChatSquareDots size={25}/> <b className="feed-option-item">Forums</b>
-                      </div></a> */}
-                      <a href="/events" className="feed-option-redirects"><div className="option-container">
-                          <BsCalendar size={25}/> <b className="feed-option-item">Events</b>
-                      </div></a>
-                      {/* <a href="/podcasts" className="feed-option-redirects"><div className="option-container">
-                          <BsMic size={25}/> <b className="feed-option-item">Podcasts</b>
-                      </div></a> */}
-                      <a href="/listings" className="feed-option-redirects"><div className="option-container">
-                          <BsCardText size={25}/> <b className="feed-option-item">Listings</b>
-                      </div></a>
-                      
-                      <a href="/leaderboard" className="feed-option-redirects"><div className="option-container">
-                        <Image src={Clap} size={25}/> <b className="feed-option-item">Contributors</b>
-                      </div></a><hr/>
-                      
-                      <div className="option-container">
-                          <b  className="-top-cont-header">Your Communities - {this.state.socs.length}</b>
-                          {this.state.socs.map(soc=>
-                                    <li><a href={"/s/?id="+soc._id}>{soc}</a></li>)}<br/>
-                      </div>
-                  </div>
-            </div>
-      </div>
 
       <div className="containerFeedMiddle">
           <div className="global-feed"  style={{ backgroundImage: `url(${background})`}}>
@@ -193,14 +139,16 @@ render(){
                 <div>
                   <br/>
                   <div className="SocietyLayout">
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
                   </div>
                   
                 </div>
@@ -231,29 +179,6 @@ render(){
               )}
         
       </div>
-      {/* <div className="global-feed">
-            <div className="SocietyLayout">
-                {filteredSocietiesByName.map(society => (
-                <div key={society.id}>
-                    <a href={"/c/?id=" +society._id} className="comm-link"><div className="socs-list-items">
-                    <h5>{society.name}</h5>
-                        <p><b>{society.college}</b></p>  
-                        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
-                                <span className="d-inline-block">
-                                <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
-                                </span>
-                        </OverlayTrigger>    
-                        <div >
-                        <span>
-                            <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join</button>
-                        </span>
-                        </div>
-                    </div></a>
-                </div>
-
-                ))}
-                </div>
-            </div> */}
   </div>
   );
 }
