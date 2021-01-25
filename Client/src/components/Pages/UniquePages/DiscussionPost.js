@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
+import ShowMoreText from 'react-show-more-text';
 
 export default class DiscussionPost extends React.Component {
 
@@ -182,7 +183,7 @@ export default class DiscussionPost extends React.Component {
                   <span className="d-inline-block">
                   </span>
                 </OverlayTrigger> */}
-
+            
               <p className="post-content">{this.state.discussion.content}</p>
 
                 {/* Discussion Post interaction options */}
@@ -239,7 +240,7 @@ export default class DiscussionPost extends React.Component {
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
               <div>
-              <div  class="miniprofile">
+              <div  class="miniprofile2">
                 <p>
                   <span className="voting-btn">
                   <a href={"/u/?id=" + comment.user_id} className="post-link-a"><figure class="headshot">
@@ -249,7 +250,8 @@ export default class DiscussionPost extends React.Component {
                             <dl class="details"> 
                                 <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user} </b></a>
                                 <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
-                                <p className="post-content">{comment.comment}</p>
+                                
+                                
                             </dl>
                   </section>
                 </span>                  
@@ -260,6 +262,19 @@ export default class DiscussionPost extends React.Component {
                 </p>
                 
               </div>
+              <ShowMoreText
+                /* Default options */
+                lines={1}
+                more='Read more'
+                less='Read less'
+                onClick={this.executeOnClick}
+                expanded={false}
+                font={20}
+                width={1000}
+                height={100}
+              >
+              <p className="post-content">{comment.comment}</p>
+              </ShowMoreText>
             <hr/>
               </div>
             ))}

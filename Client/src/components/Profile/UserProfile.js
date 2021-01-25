@@ -6,6 +6,7 @@ import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
 import {Helmet} from 'react-helmet'
 import Avatar from '@material-ui/core/Avatar';
+import cogoToast from 'cogo-toast'
 
 export default class UserProfile extends React.Component {
 

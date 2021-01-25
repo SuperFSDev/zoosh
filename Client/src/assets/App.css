@@ -1154,7 +1154,6 @@ li{
 }
 
 .community-sticky{
-  margin-left: 4.5rem;
   margin-top: 2rem;
   padding-right: 50px;
   width:250px;
@@ -1468,6 +1467,13 @@ section::after {
   float: left;
   margin: 10px;
 }
+.miniprofile2 {
+  width: auto;
+  height: auto;
+  position: relative; /* all other elements styled relative to this section's position */
+  font-family: Arial;
+}
+
 .miniprofile {
   width: auto;
   height: 100px;
@@ -1771,6 +1777,19 @@ section::after {
   height: auto;
   outline: none !important;
   float: left;
+  margin-left: 5rem;
+  padding-bottom: 10rem;
+  border-style: none; 
+  border-width: 0.1px;
+  padding:10px;
+
+}
+.containerChartMiddle{
+  margin-top: 6.5vh;
+  width: 40%;
+  height: auto;
+  outline: none !important;
+  float: left;
   margin-left: 20rem;
   padding-bottom: 10rem;
   border-style: none; 
@@ -1909,7 +1928,7 @@ section::after {
   width:300px;
   float: left;
   text-align: left;
-  margin-left: 16rem;
+  margin-left: 20rem;
   padding:25px;
   border-radius: 5px;
   background-color:white;
@@ -1917,7 +1936,7 @@ section::after {
 }
 
 .settings-container{
-  width:700px;
+  width:850px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding:25px;
   border-radius: 5px;

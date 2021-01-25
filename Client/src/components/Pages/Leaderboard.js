@@ -138,7 +138,7 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-      <div className="containerFeedMiddle">
+      <div className="containerChartMiddle">
           <div className="global-feed-leaderboard">
           <div className="leaderboard-options">
             <a href="#users"><button className="btn-leaderboard" >Top Contributors</button></a>

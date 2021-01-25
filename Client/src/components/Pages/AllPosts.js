@@ -18,6 +18,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
+import {BiPlanet} from 'react-icons/bi'
 
 export default class AllPosts extends React.Component {
 
@@ -108,10 +109,12 @@ render(){
                   )}
                 </span></a><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
+                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
                 <small  className="text-muted">
-                    {moment(discussion.time).format("MMM Do")} ({moment(discussion.time).startOf('hour').fromNow()})
+                  <br/>
+                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-                  <button className="standard-option-btn-post"><BsChat size={22} /> {discussion.comments.length}</button>
+                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
                   {!this.state.isSaved ? (
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
                     <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
@@ -140,7 +143,19 @@ render(){
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
             </div>
-            <UsersCommunities/>
+
+            {this.state.isLoading ? ( 
+                <div><br/>
+                  <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES</h5>
+                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={7}/><br/><br/><br/>
+                </div>
+
+              ) : (
+                <div>
+                  <UsersCommunities/>
+                </div>
+              )}
+            
             <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
 
             {this.state.isLoading ? ( 
@@ -158,8 +173,23 @@ render(){
     <div className="column2" style={{background:'white'}}>
         <div  style={{marginTop:100, width:430, marginLeft:10}}>
             <div>
-                <Recommended/>  
+            {this.state.isLoading ? ( 
+                <div>
+                  <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
+                </div>
+
+              ) : (
+                <Recommended/>
+              )}
+
+            {this.state.isLoading ? ( 
+                <div>
+                  <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
+                </div>
+
+              ) : (
                 <Contributors/> 
+              )}
             </div>
         </div>
         

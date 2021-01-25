@@ -328,7 +328,7 @@ render(){
                       ))}  
                       <p className="searchbar-header">COMMUNITIES</p>
                       <p className="searchbar-header">USERS</p>
-                      {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
+                      {shuffledUsers.slice(0,3).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                       <a  href={"/u/?id="+user._id}><div key={k} className="contributor-item-search">
                             <p className="-contributor-user-search"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname} <b  className="-contributor-user-score">{ user.score}</b></p>
                         </div></a>

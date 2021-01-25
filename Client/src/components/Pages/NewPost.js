@@ -142,7 +142,7 @@ export default class NewPost extends React.Component {
       society:'',
       tags: []
     });
-    window.location = '/discussions';
+    window.location = '/';
   }
 
 render(){

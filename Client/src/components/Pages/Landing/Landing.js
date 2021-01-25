@@ -157,9 +157,9 @@ render(){
                 <a href="/login" className="miniprofile-post-redirect">
                 <div>
                     <p>
-                        <small>{discussion.user} <b className="user-score-post-tag">1,231</b> <span className="landing-name">posted in</span> <Badge variant="secondary">{discussion.society}</Badge></small>
+                        <small>{discussion.user} <b className="user-score-post-tag">1,231</b> <span className="landing-name">posted in</span><b style={{color:'green'}}> {discussion.society}</b></small>
                         <br/>
-                        <b className="landing-post-title">{discussion.title}</b><br/><small className="muted-landing" >{moment(discussion.time).format("MMM Do")} ({moment(discussion.time).startOf('hour').fromNow()})</small>
+                        <b className="landing-post-title">{discussion.title}</b><br/><small className="muted-landing" >({moment(discussion.time).startOf('seconds').fromNow()})</small>
                     </p>
                 </div></a>
               <hr/></div><br/> 

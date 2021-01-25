@@ -120,7 +120,7 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-      <div className="containerFeedMiddle">
+      <div className="containerChartMiddle">
           <div className="global-feed">
             <h3>Upcoming Events</h3>
 
