@@ -863,7 +863,7 @@
 
 
 .global-forum{
-  margin-left: 12rem;
+  margin-left: 16.5rem;
   padding:50px;
   width:1100px!important;
   background-color: white;
@@ -950,6 +950,21 @@
   z-index: 1000;
   border-radius: 5px;
 
+  top: 0;
+  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+}
+
+.forum{
+  width:303px!important;
+  height:400px;
+  padding:10px;
+  margin-top:5rem;
+  margin-left: 75rem;
+  background-color: white;
+  border:1px solid black;
+  position: fixed;
+  z-index: 1000;
+  border-radius: 5px;
   top: 0;
   box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
 }
@@ -1773,8 +1788,6 @@ section::after {
   border-style: none; 
   border-width: 0.1px;
   padding:10px;
-  margin-left: 5.5rem;
-
 }
 
 .containerLanding{
@@ -2109,13 +2122,19 @@ section::after {
   color:black;
 }
 
+#mySearch{
+  border:1px solid lightgray;
+  border-radius: 5px;
+  margin-right: 40PX;
+}
+
 .discussion-post{
   width:830px;
   height:auto;
   color:black;
   padding:20px;
   text-decoration: none!important;
-  border-bottom:1px solid lightgray;
+  border-bottom:1px solid whitesmoke;
 }
 
 .miniprofile-post-redirect{

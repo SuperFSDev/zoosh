@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import {Image} from 'react-bootstrap'
 import {BiPlanet} from 'react-icons/bi'
+import Skeleton from 'react-loading-skeleton';
 
 class UsersCommunities extends React.Component {
 
@@ -64,20 +65,30 @@ class UsersCommunities extends React.Component {
     return (
         <div className="communities-container">
             <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES</h5>
+
+            {this.state.isLoading ? ( 
+                <div>
+                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={7}/><br/>
+    
+                </div>
+
+              ) : (
+                <li className="community-members-item-profile">
+                <p className="community-items-feed">
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                  {/* <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/> */}
+                </p>
+               
+              </li>
+              )}
             {/* {this.state.societies.map(society=> */}
-                  <li className="community-members-item-profile">
-                    <p className="community-items-feed">
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                        <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                      {/* <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/> */}
-                    </p>
-                   
-                  </li>
+                 
                   {/* )}                */}
                 <hr/>
         </div>

@@ -110,7 +110,7 @@ render(){
     return(
     <div key={forum._id}>
         <div>
-        <a href={"/e/?id=" + forum._id} className="-soc-l-navigation">
+        <a href={"/f/?id=" + forum._id} className="-soc-l-navigation">
           <div className="forum-card">
               <h5>{forum.name}</h5> 
           </div>
@@ -196,3 +196,4 @@ async function addUserToForum(frm) {
       })
 
 }
+

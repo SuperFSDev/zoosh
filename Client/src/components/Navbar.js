@@ -25,6 +25,8 @@ export default class NavBar extends React.Component {
         showMenu: false,
         showFilter: false,
         showProfile: false,
+        showForum: false,
+        showContributions: false,
         user: '',
         searchValue: '',
         filterBy: '',
@@ -36,10 +38,15 @@ export default class NavBar extends React.Component {
       this.showMenu = this.showMenu.bind(this);
       this.showFilter = this.showFilter.bind(this);
       this.showProfile = this.showProfile.bind(this);
+      this.showForum = this.showForum.bind(this);
+      this.showContributions = this.showContributions.bind(this);
 
+      this.closeContributions = this.closeContributions.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
       this.closeFilter = this.closeFilter.bind(this);
       this.closeProfile = this.closeProfile.bind(this);
+      this.closeForum = this.closeForum.bind(this);
+
   }
 
   // NOTIFICATIONS MENU DROPDOWNS
@@ -61,6 +68,46 @@ export default class NavBar extends React.Component {
       
     }
   }
+
+  // NOTIFICATIONS MENU DROPDOWNS
+  showContributions(event) {
+    event.preventDefault();
+      
+    this.setState({ showContributions: true }, () => {
+      document.addEventListener('click', this.closeContributions);
+    });
+  }
+  
+  closeContributions(event) {
+      
+      if (!this.dropdownMenu5.contains(event.target)) {
+        
+        this.setState({ showContributions: false }, () => {
+          document.removeEventListener('click', this.closeContributions);
+        });  
+        
+      }
+    }
+
+    // FORUMS MENU DROPDOWNS
+    showForum(event) {
+      event.preventDefault();
+      
+      this.setState({ showForum: true }, () => {
+        document.addEventListener('click', this.closeForum);
+      });
+    }
+  
+    closeForum(event) {
+      
+      if (!this.dropdownMenu4.contains(event.target)) {
+        
+        this.setState({ showForum: false }, () => {
+          document.removeEventListener('click', this.closeForum);
+        });  
+        
+      }
+    }
 
   // SEARCH BAR DROPDOWN
   showFilter(event) {
@@ -183,9 +230,9 @@ render(){
               inputProps={{ 'aria-label': 'search' }}
               id="mySearch" title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}
             /> 
-                <a href="/leaderboard" className="notify"><span><Image src={Clap} size={20}/></span></a>
-                <a href="/forums" className="notify"><span><BsLightning size={20}/></span></a>
-                <span className="notify"onClick={this.showMenu}><BsBell size={20} /></span>
+                <span style={{marginRight:10, cursor:'pointer'}}><Image src={Clap} size={20} onClick={this.showContributions}/> {this.state.user.score}</span>
+                <span className="notify" onClick={this.showForum}><BsLightning size={20}/></span>
+                <span className="notify" onClick={this.showMenu}><BsBell size={20} /></span>
             </div>      
             <a href="/new"className="notify"><button className="write-button">Write</button></a>
      
@@ -207,9 +254,49 @@ render(){
                       }}
                     >
                       <h5>Notifications</h5>
+                      <hr/>
                       <div>Test 1</div>
                       <div>Aaron Moran</div>
                       <div>Aaron Moran</div>
+                    </div>
+                  )
+                  : (
+                    null
+                  )
+              }
+
+              {
+                this.state.showForum
+                  ? (
+                    <div className="forum"
+                      ref={(element) => {
+                        this.dropdownMenu4 = element;
+                      }}
+                    >
+                      <h5>Forums</h5>
+                      <hr/>
+                      <div>Test 1</div>
+                      <div>Aaron Moran</div>
+                      <div>Aaron Moran</div>
+                      <a href="/forums">See All</a>
+                    </div>
+                  )
+                  : (
+                    null
+                  )
+              }
+
+              {
+                this.state.showContributions
+                  ? (
+                    <div className="forum"
+                      ref={(element) => {
+                        this.dropdownMenu5 = element;
+                      }}
+                    >
+                      <h5>Contributions</h5>
+                      <hr/>
+                      <a href="/leaderboard">See Charts</a>
                     </div>
                   )
                   : (

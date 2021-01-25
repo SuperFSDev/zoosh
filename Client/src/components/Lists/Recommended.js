@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { StickyContainer, Sticky } from 'react-sticky';
 import {BiCompass} from 'react-icons/bi'
+import Skeleton from 'react-loading-skeleton';
 
 export default class Recommended extends React.Component {
 
@@ -46,21 +47,31 @@ render(){
         <div>
             <div className="recommended-container">
             <h5 className="-feed-item-header"><BiCompass size={20}/> EXPLORE</h5><hr/>
-            {shuffledPosts.slice(0, size).map(society =>(
-              
-              <div class="miniprofile">
-                <figure class="headshot">
-                    <img src="http://dummyimage.com/90x90/000/fff.png" />
-                </figure>
-                <a href={"/c/?id="+society._id} className="recommended-item-a"><section class="bio-box">
-                    <dl class="details"> 
-                        <h1 class="profile-name">{society.name}</h1>
-                        <dd class="location">{society.college}</dd>
-                    </dl>
-                </section></a>
-                <button class="close" onClick={shuffledPosts}>x</button>
-            </div>
-            ))}
+            {this.state.isLoading ? ( 
+                <div>
+                  <Skeleton height={140} style={{marginBottom:10}} count={1}/><br/>
+    
+                </div>
+
+              ) : (
+                <div>
+                  {shuffledPosts.slice(0, size).map(society =>(
+                    <div class="miniprofile">
+                      <figure class="headshot">
+                          <img src="http://dummyimage.com/90x90/000/fff.png" />
+                      </figure>
+                      <a href={"/c/?id="+society._id} className="recommended-item-a"><section class="bio-box">
+                          <dl class="details"> 
+                              <h1 class="profile-name">{society.name}</h1>
+                              <dd class="location">{society.college}</dd>
+                          </dl>
+                      </section></a>
+                      <button class="close" onClick={shuffledPosts}>x</button>
+                  </div>
+                  ))}
+                </div>
+              )}
+            
           </div>
           <a href="/communities"  className="explore-more">Explore More</a><br/><br/>
         </div>

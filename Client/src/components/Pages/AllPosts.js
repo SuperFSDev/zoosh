@@ -130,17 +130,26 @@ render(){
     <div class="row">
     <div className="column" style={{background:'white'}}>
         <div style={{marginTop:100, marginLeft:330 }}>
-            <div className="options-container">
+            {/* <div className="options-container">
                 <a href="/home"><button className="community-btn-active">All</button></a>
                 <a href="/following"><button className="community-btn">Following</button></a>
                 <a href="/home"><button className="community-btn">Questions</button></a>
                 <a href="/events"><button className="community-btn">Events</button></a>
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
-            </div>
+            </div> */}
             <UsersCommunities/>
             <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
-            <p>{discussionList}</p>
+
+            {this.state.isLoading ? ( 
+                <div>
+                  <Skeleton height={200} style={{marginBottom:10}} count={5}/><br/>
+    
+                </div>
+
+              ) : (
+                <p>{discussionList}</p>
+              )}
         </div>
     </div>
 
@@ -149,7 +158,6 @@ render(){
             <div>
                 <Recommended/>  
                 <Contributors/> 
-                {/* <Radar/> */}
             </div>
         </div>
         
