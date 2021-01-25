@@ -14,6 +14,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
+import {RiShieldStarLine} from 'react-icons/ri'
 
 export default class DiscussionPost extends React.Component {
 
@@ -93,12 +94,14 @@ export default class DiscussionPost extends React.Component {
     onSubmit(e) {
       var user = JSON.parse(localStorage.getItem('user'));  
       const newComment = {
-      _id:this.state.discussion_id,
-      comment:{
-      user_id: user._id,
-      user: user.fullname,
-      comment: this.state.comment,
-      time: new Date().getTime(),
+        _id:this.state.discussion_id,
+        comment:{
+        user_id: user._id,
+        user: user.fullname,
+        comment: this.state.comment,
+        time: new Date().getTime(),
+        user_img: user.pic,
+        user_score: user.score,
       }
       
    }
@@ -206,16 +209,14 @@ export default class DiscussionPost extends React.Component {
                     <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
                   </OverlayTrigger>
                   )}
-                
+
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Community Guidelines</Tooltip>}>
+                    <span><button className="standard-option-btn-post" ><RiShieldStarLine size={20}/></button></span>
+                  </OverlayTrigger>
+                  <span><button className="standard-option-btn-post" >Report</button></span>
+                  
+                  
                 </span>
-                <Dropdown >
-                  <Dropdown.Toggle  id="dropdown-basic" className="standard-option-btn-post">
-                    <BsThreeDots/>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Copy Link</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
                 <hr/>
 
           <div className="comment-container" id="responses">
@@ -238,13 +239,31 @@ export default class DiscussionPost extends React.Component {
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
               <div>
-              <p>
-              <a className="user-profile-shortlink">{comment.user}<b className="user-score-post">123</b></a>
-              <p>{comment.comment}</p>
-              <br/><hr/><br/>
-              </p>
+              <div  class="miniprofile">
+                <p>
+                  <span className="voting-btn">
+                  <a href={"/u/?id=" + comment.user_id} className="post-link-a"><figure class="headshot">
+                        <Avatar src={comment.user_img}/>
+                  </figure></a>
+                  <section class="bio-box">
+                            <dl class="details"> 
+                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user} </b></a>
+                                <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
+                                <p className="post-content">{comment.comment}</p>
+                            </dl>
+                  </section>
+                </span>                  
+                </p>
+                <br/>
+                <p>
+                  
+                </p>
+                
+              </div>
+            <hr/>
               </div>
             ))}
+            
          </div>                                   
           </div>
         </div>   

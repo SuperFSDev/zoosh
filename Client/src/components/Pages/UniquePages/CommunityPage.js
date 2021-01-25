@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {Navbar, Nav} from 'react-bootstrap'
 import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll} from 'react-icons/bs'
 import PrivateView from './Visibility/PrivateView'
+import cogoToast from 'cogo-toast'
 
 export default class CommunityPage extends React.Component {
 
@@ -70,10 +71,10 @@ export default class CommunityPage extends React.Component {
 
     
 
-    // addUser(soc) {
-    //   AddUserToSoc(soc);
-    //   var user = JSON.parse(localStorage.getItem('user'));
-    // }
+    addUser(soc) {
+      addUserToSoc(soc);
+      var user = JSON.parse(localStorage.getItem('user'));
+    }
 
 
      async  GetFollowedUser(user_id){
@@ -456,4 +457,48 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Header>
       </Modal>
     );
+}
+
+// Adding a User to a society array and adding the society to the users array
+async function addUserToSoc(soc) {
+  
+  var getUser = JSON.parse(localStorage.getItem('user'))
+
+  const addUser = {
+      society: soc,
+      user: getUser,
+      user_id: getUser._id,
+  }
+
+  // Adds user to users array in society model.
+  await axios.post('http://localhost:4000/societies/update', addUser)
+      .then(function (resp) {
+          console.log(resp);
+          cogoToast.success(
+            <div>
+              <h4>Welcome!</h4>
+              <div>You successfully joined {soc}</div>
+            </div>
+          );
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+
+
+  // Adds society to societies array in user model.
+  await axios.post('http://localhost:4000/users/addToSocList', addUser)
+      .then(function (resp) {
+          console.log(resp);
+
+          // Update societies array in localStorage
+          if(!getUser.societies.includes(soc)) {
+              getUser.societies.push(soc);
+          }
+          console.log(getUser);
+          localStorage.setItem('user', JSON.stringify(getUser))
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
 }

@@ -4,7 +4,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
+import NotFoundPage from './components/404/NotFoundPage';
 import LoginPage from './components/auth/Login';
 import RegisterPage from './components/auth/Register';
 import SocsList from './components/Socs/ListSocieties';
@@ -62,8 +64,7 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
-              <Route path="/posts" component={AllPosts}/>
-
+              <Route path="/posts" component={AllPosts}/> 
               <Route path="/saved" component={ReadingList}/>
 
               <Route path="/forums" component={Forums}/>
@@ -71,6 +72,15 @@ class App extends React.Component {
               <Route path="/home" component={AllPosts}/>
               <Route exact path="/" component={AllPosts}/>
               <Route path="/following" component={FollowingLayout}/>
+
+
+              {/* 404 Not Found Exception */}
+              <Router>
+                <Switch>
+                    <Route exact path='/' component={AllPosts} />
+                    <Route path="*" component={NotFoundPage} />
+                </Switch>
+              </Router>    
 
 
 

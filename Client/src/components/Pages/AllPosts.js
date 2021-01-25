@@ -110,15 +110,17 @@ render(){
                 <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
                 <small  className="text-muted">
                     {moment(discussion.time).format("MMM Do")} ({moment(discussion.time).startOf('hour').fromNow()})
-                    {!this.state.isSaved ? (
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
-              </OverlayTrigger> 
-              ) : (
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
-              </OverlayTrigger>
-              )}
+
+                  <button className="standard-option-btn-post"><BsChat size={22} /> {discussion.comments.length}</button>
+                  {!this.state.isSaved ? (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
+                  </OverlayTrigger> 
+                  ) : (
+                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
+                  </OverlayTrigger>
+                  )}
                 </small>
               </p>
             </div></a>
@@ -130,14 +132,14 @@ render(){
     <div class="row">
     <div className="column" style={{background:'white'}}>
         <div style={{marginTop:100, marginLeft:330 }}>
-            {/* <div className="options-container">
+            <div className="options-container">
                 <a href="/home"><button className="community-btn-active">All</button></a>
                 <a href="/following"><button className="community-btn">Following</button></a>
                 <a href="/home"><button className="community-btn">Questions</button></a>
                 <a href="/events"><button className="community-btn">Events</button></a>
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
-            </div> */}
+            </div>
             <UsersCommunities/>
             <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
 

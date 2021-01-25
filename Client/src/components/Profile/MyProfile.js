@@ -140,14 +140,11 @@ export default class MyProfile extends React.Component {
               <div className="user-profile-about-bio">
 
                 <br/><br/>
-                <span className="text-muted">COMMUNTIES</span>
+                <span className="text-muted">COMMUNTIES</span><br/>
                 {this.state.societies.map(society=>
-                  <li className="community-members-item-profile">
-                    <p>
+                  <span className="community-members-item-profile">
                       <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/>
-                    </p>
-                   
-                  </li>)}
+                  </span>)}
               </div>
               
             {/* </div> */}

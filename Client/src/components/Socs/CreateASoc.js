@@ -136,7 +136,7 @@ export default class CreateASoc extends React.Component {
 
         };
 
-        if (!newSoc.name || !newSoc.college || !newSoc.category || !newSoc.address) {
+        if (!newSoc.name || !newSoc.college || !newSoc.address) {
             alert('Invalid or Empty input(s)');
         }
         var validCollege = this.collegeList.some(college => college === this.state.college.toUpperCase());
@@ -151,7 +151,12 @@ export default class CreateASoc extends React.Component {
                 .catch(function(error){
                     console.log(error);
                 })
-            cogoToast.success("Community was created!");
+            cogoToast.success(
+                <div>
+                  <h4>Success!</h4>
+                  <div>Your new Community was created.</div>
+                </div>
+              );
             window.location = '/communities';
         }
 

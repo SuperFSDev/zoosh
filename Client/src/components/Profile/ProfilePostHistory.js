@@ -47,7 +47,7 @@ export default class History extends React.Component {
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/p/?id=" + post.Post_id}>
+                    <a href={"/d/?id=" + post.Post_id}>
                       <p>
                         <span className="forum-title">{post.title}</span><br/>
                         <span className="content-muted">{post.post.slice(0,100)}...</span><br/>

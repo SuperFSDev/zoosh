@@ -11,6 +11,7 @@ import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning,BsSearch,BsCal
 import InputBase from '@material-ui/core/InputBase';
 import Clap from '../images/clap.png'
 import {BiPlanet} from 'react-icons/bi'
+import {RiShieldStarLine} from 'react-icons/ri'
 
 
 export default class NavBar extends React.Component {
@@ -354,6 +355,7 @@ render(){
                       <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a>
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community</p></a>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
                       <InviteFriend/>
                       <hr/>
