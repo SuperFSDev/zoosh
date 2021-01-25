@@ -20,7 +20,9 @@ discussions.post('/NewDiscussions', (req, res) => {
 
     DiscussionModel.create({
         user: req.body.user,
+        user_id: req.body.user_id,
         title: req.body.title,
+        caption:req.body.caption,
         content: req.body.content,
         time: req.body.time,
         society: req.body.society.value,

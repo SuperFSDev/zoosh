@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 // create schema for the database
 const DiscussionSchema = new Schema({
     user:String,
+    user_id:String,
     title:String,
+    caption:String,
     content:String,
     time:Date,
     society:String,
-    hearts:Number,
+    claps:Number,
     comments:Array,
 })
 

@@ -16,14 +16,16 @@ export default class NewPost extends React.Component {
       _id: '',
       score: 10,
       users: [],
+      societies: [],
       posts: [],
       title: '',
       user: '',
       claps: 0,
       UniqueUser: '',
-      post: '',
+      content: '',
+      caption:'',
       time: new Date().getTime(),
-      category: '',
+      society: '',
       tags: [],
       pictures: [],
       FollowingID: ''
@@ -32,11 +34,11 @@ export default class NewPost extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
-    this.onChangePost = this.onChangePost.bind(this);
+    this.onChangeContent = this.onChangeContent.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeTime = this.onChangeTime.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeTag = this.onChangeTag.bind(this);
+    this.onChangeCaption = this.onChangeCaption.bind(this);
+    this.onChangeSociety = this.onChangeSociety.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +48,7 @@ export default class NewPost extends React.Component {
     this.setState({ id: user._id });
 
     if (user)
-      var fullname = user.fullname;
+    var fullname = user.fullname;
     this.state.user = fullname;
 
     // Get all users from database.
@@ -87,9 +89,9 @@ export default class NewPost extends React.Component {
       user: e.target.value
     });
   }
-  onChangePost(e) {
+  onChangeContent(e) {
     this.setState({
-      post: e.target.value
+      content: e.target.value
     });
   }
 
@@ -99,48 +101,45 @@ export default class NewPost extends React.Component {
     });
   }
 
-  onChangeCategory(e) {
-    this.setState({ category: e.target.value });
+  onChangeCaption(e) {
+    this.setState({
+      caption: e.target.value
+    });
   }
 
-  onChangeTag(e) {
-    this.setState({ tags: e })
-  }
+
+  
 
 
   onSubmit(e) {
 
     e.preventDefault();
-    var id = new ObjectID();
+ 
 
     const newPost = {
-      user_id: this.state.id,
-      score: this.state.UniqueUser.score + 1,
-      post: {
-        Post_id: id,
         user: this.state.user,
         user_id: this.state.id,
-        claps: this.state.claps,
         title: this.state.title,
-        post: this.state.post,
+        caption:this.state.caption,
+        content: this.state.content,
         time: new Date().getTime(),
-        category: this.state.category,
-        tags: this.state.tags,
-        pictures: this.state.pictures
-      }
+        society: this.state.society
+      
     }
 
-    axios.post('http://localhost:4000/users/addPost', newPost)
+    axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
       .then()
       .catch();
-
+    
     this.setState({
       user: '',
       title: '',
       claps: 0,
-      post: '',
+      content: '',
+      caption:'',
       time: new Date().getTime(),
       category: '',
+      society:'',
       tags: []
     });
     window.location = '/discussions';
@@ -148,9 +147,9 @@ export default class NewPost extends React.Component {
 
 render(){
 
-  // let options = this.state.societies.map(function (society) {
-  //   return { value: society, label: society };
-  // })
+   let options = this.state.societies.map(function (society) {
+     return { value: society, label: society };
+   })
 
   return (
      <div>
@@ -177,8 +176,8 @@ render(){
           <input 
             placeholder="Post Caption" 
             className="Content-input"
-            value={this.state.title}
-            onChange={this.onChangeTitle}
+            value={this.state.caption}
+            onChange={this.onChangeCaption}
             required
           />
 
@@ -186,12 +185,12 @@ render(){
             placeholder="Write your post content here ..." 
             className="Content-input" 
             rows = "5" cols = "60"
-            value={this.state.post}
-            onChange={this.onChangePost}
+            value={this.state.content}
+            onChange={this.onChangeContent}
             required
             />
             
-          {/* <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/> */}
+          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
           <br/>
           <button className="standard-button" type="submit">Publish</button>
           <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
