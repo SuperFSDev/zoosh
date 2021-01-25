@@ -9,6 +9,7 @@ const DiscussionSchema = new Schema({
     time:Date,
     society:String,
     hearts:Number,
+    comments:Array,
 })
 
 

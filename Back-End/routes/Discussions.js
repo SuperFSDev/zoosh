@@ -54,5 +54,38 @@ discussions.get('/get-discussion-page', (req, res) => {
         })
 
 })
+discussions.post('/addComment', (req, res) => {
+
+    DiscussionModel.findByIdAndUpdate(
+
+        {
+            _id: req.body._id
+        }, {
+            $addToSet: {
+                comments: req.body.comment
+            }
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
+        //console.log('here now.' + req.body.post),
+        function (err, result) {
+
+            if (err) {
+                console.log("error" + err);
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log("Post: " + result);
+                    res.send(result)
+                } else {
+                    res.send("Society already exists in user model.");
+                }
+            }
+
+        }
+    )
+})
 
 module.exports = discussions;

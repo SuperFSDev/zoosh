@@ -21,28 +21,33 @@ export default class DiscussionPost extends React.Component {
     super(props);
     this.state = {
       discussion: '',
+      discussion_id:'',
       comments:[],
       societies: [],
       isLoading:true,
       hearts: 0,
       isSaved: false,
+      comment:''
     };
+    this.onChangeComment = this.onChangeComment.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
     componentDidMount() {
-      var discussion_id = new URLSearchParams(this.props.location.search).get("id");
+      this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
       // document.body.style.backgroundColor = "#FDFEFE";
 
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
-          id: discussion_id,
+          id: this.state.discussion_id,
 
         }
       })
         .then((response) => {
           this.setState({ 
             discussion: response.data.discussion,
+            comments:response.data.discussion.comments,
             isLoading:false, })
         })
         .catch((error) => {
@@ -78,7 +83,34 @@ export default class DiscussionPost extends React.Component {
       })
     }
 
+
+    onChangeComment(e) {
+      this.setState({
+        comment: e.target.value
+      });
+    }
+
+    onSubmit(e) {
+      var user = JSON.parse(localStorage.getItem('user'));  
+      const newComment = {
+      _id:this.state.discussion_id,
+      comment:{
+      user_id: user._id,
+      user: user.fullname,
+      comment: this.state.comment,
+      time: new Date().getTime(),
+      }
+      
+   }
+   
+   axios.post('http://localhost:4000/discussions/addComment', newComment)
+   .then()
+   .catch();
+   window.location.reload();
+    }
+
     render() {
+      console.log(this.state.comments);
 
       return (
         <>
@@ -189,32 +221,34 @@ export default class DiscussionPost extends React.Component {
           <div className="comment-container" id="responses">
           
           <h4>Responses ({this.state.comments.length})</h4>
-
+          
           <br/><Accordion className="comment-box-acc">
             <AccordionSummary
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className="motto">What are your thoughts?</Typography>
+            <Typography className="motto">What are your thoughts?</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-            <textarea className="Comment-input" rows = "5" cols = "60"/>
-            
+           <AccordionDetails>
+            <textarea value={this.state.comment} onChange={this.onChangeComment} className="Comment-input" rows = "5" cols = "60"/>
             </AccordionDetails>
-            <button className="standard-button">Respond</button>
+            <button className="standard-button" onClick={this.onSubmit}>Publish</button>
           </Accordion><br/>
           
-
-            <div className="users-comment">
-              <a className="user-profile-shortlink">Test<b className="user-score-post">123</b></a>
-                 <p>hello</p>  
-            </div><hr/>
-                                           
+          <div className="users-comment">
+            {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
+              <div>
+              <p>
+              <a className="user-profile-shortlink">{comment.user}<b className="user-score-post">123</b></a>
+              <p>{comment.comment}</p>
+              <br/><hr/><br/>
+              </p>
+              </div>
+            ))}
+         </div>                                   
           </div>
         </div>   
           </div>          
-
-       
         </>
       );
     }
