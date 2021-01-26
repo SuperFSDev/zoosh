@@ -30,6 +30,7 @@ export default class CommunityPage extends React.Component {
       score:'',
       UserList:[],
       posts:[],
+      events:[],
       showPeople:false,
       showStats:false,
       showEvents:false,
@@ -60,15 +61,7 @@ export default class CommunityPage extends React.Component {
         .catch((error) => {
           console.log(error);
         });
-        
-      
-        axios.get('http://localhost:4000/events/getEvents')
-        .then((response) => {
-          this.setState({ events: response.data.events })
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
 
         axios.get('http://localhost:4000/discussions/get-society-discussions',{
           params: {
@@ -77,6 +70,19 @@ export default class CommunityPage extends React.Component {
         })
         .then((response) => {
           this.setState({posts: this.state.posts.concat(response.data.discussion),})
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+
+        axios.get('http://localhost:4000/events/get-society-events',{
+          params: {
+            society: this.state.society.name
+          }
+        })
+        .then((response) => {
+          this.setState({events: this.state.events.concat(response.data.event),})
         })
         .catch((error) => {
           console.log(error);
