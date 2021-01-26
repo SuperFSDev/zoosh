@@ -48,7 +48,7 @@ console.log(this.state.posts);
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/d/?id=" + post.Post_id}>
+                    <a href={"/d/?id=" + post._id}>
                       <p>
                         <span className="forum-title">{post.title}</span><br/>
                         <span className="content-muted">{post.content.slice(0,100)}...</span><br/>
