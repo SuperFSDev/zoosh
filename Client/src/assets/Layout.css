@@ -21,6 +21,23 @@
     margin-left: 72.5rem;
 
   }
+
+  .columnForum2{
+    float: left;
+    width: 650px;
+    display:flex;
+    text-align: left;
+    color:black;
+    position:fixed;
+  }
+
+  .columnForum{
+    float: left;
+    width: 50%;
+    height:100%!important;
+    border-left:1px solid whitesmoke;
+    margin-left: 42.5rem;
+  }
   
   /* Clear floats after the columns */
   .row:after {

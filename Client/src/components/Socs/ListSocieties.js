@@ -116,7 +116,7 @@ render(){
         </Helmet> 
 
 
-      <div className="containerFeedMiddle">
+      <div className="containerChartMiddle">
           <div className="global-feed"  style={{ backgroundImage: `url(${background})`}}>
               <h3>Communities</h3>
           <div className="search-div">

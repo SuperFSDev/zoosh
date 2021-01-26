@@ -18,6 +18,8 @@ export default class ForumPage extends React.Component {
       user:'',
       isLoading:true,
       isUnfollowing:true,
+      showPosts:true,
+      showQuestions:false,
     };
   }
 
@@ -67,87 +69,144 @@ export default class ForumPage extends React.Component {
       })
     }
 
+    ShowPosts() {
+      this.setState({
+        showQuestions: false,
+        showPosts: true,
+      });   
+    }
+
+      
+    ShowQuestions() {
+      this.setState({
+        showQuestions: true,
+        showPosts: false,
+      });   
+    }  
+
     render(){
       var isUnfollowing = this.state.isUnfollowing;
 
       return (
-         <div>
-            {/* REACTJS HELMET */}
-            <Helmet>
-                      <meta charSet="utf-8" />
-                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                      <title>Forum</title>
 
-                      {/* LINKS */}
-                      <link rel="canonical" href="http://mysite.com/example" />
-                      <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
-                      <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
-              </Helmet> 
-          {/* <div className="containerFeedLeft">
-            <FeedOptions/>
-          </div> */}
-    
-          <div className="containerMiddleForum">
-              <div className="global-forum-container">
-                  <span  className="username-wrapper">
-
-                      <h2 className="forum-title">
-                        {this.state.forum.name} 
-
-                        {isUnfollowing ? (
-                          <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
-                        ) : (
-                          <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
-                          )}
-                      </h2>
-
-                      <div id="wrapper">
-                        <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
-                        <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
-                        
-
-                      </div>
-                      </span>
-                       <br/>
-                      <PostOptions/>
+        <div class="row">
+          <div className="columnForum2" style={{background:'white'}}>
+            <div className="forumContainer">
+              <div>
+                <h4>{this.state.forum.name} </h4>
+                {isUnfollowing ? (
+                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+                ) : (
+                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+                )}
+                <br/>
+                <p className="forum-followers-item"><b className="forum-followers">This forum is {this.state.forum.visibility}</b></p>
+                <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
+                <PostOptions/>
+              </div>
+          </div>
+        </div>
 
 
-                <div className="forum-post-container">
+        <div className="columnForum" style={{background:'white',marginTop:100,}}>
+          <button className="community-btn" style={{marginLeft:10}} onClick={() => {this.ShowPosts()}}>Forum Posts</button>
+          <button className="community-btn" onClick={() => {this.ShowQuestions()}}>Questions</button>
+          <hr/>
+          <div className="spacing"></div>
+        
+        {this.state.showPosts &&
+        <div>
+        <div className="forum-post-container">
                         <h4>Forum Post 1</h4>
-                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
-                        <hr/>
-                        <p  className="forum-post-content">Small amount of text content</p>
-                </div>
+                        <p className="forum-post-content"><b>Posted by Aaron</b></p>
+                </div><hr/>
                 <div className="forum-post-container">
                         <h4>Forum Post 2</h4>
-                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
-                        <hr/>
-                        <p  className="forum-post-content">Small amount of text content</p>
-                </div>
+                        <p className="forum-post-content"> <b>Posted by Aaron</b></p>
+                        
+                </div><hr/>
                 <div className="forum-post-container">
                         <h4>Forum Post 3</h4>
-                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
-                        <hr/>
-                        <p  className="forum-post-content">Small amount of text content</p>
-                </div>
+                        <p className="forum-post-content"> <b>Posted by Aaron</b></p>
+                </div><hr/>
                 <div className="forum-post-container">
                         <h4>Forum Post 4</h4>
-                        <p className="forum-post-content"><Avatar className="profile-btn-wrapper-left" src={this.state.user.pic}/> <b>Posted by Aaron</b></p>
-                        <hr/>
-                        <p  className="forum-post-content">Small amount of text content</p>
-                </div>
-              </div>
+                        <p className="forum-post-content"><b>Posted by Aaron</b></p>
+                </div><hr/>
+                <div className="forum-post-container">
+                        <h4>Forum Post 1</h4>
+                        <p className="forum-post-content"> <b>Posted by Aaron</b></p>
+                </div><hr/>
+                <div className="forum-post-container">
+                        <h4>Forum Post 2</h4>
+                        <p className="forum-post-content"><b>Posted by Aaron</b></p>
+                </div><hr/>
+                <div className="forum-post-container">
+                        <h4>Forum Post 3</h4>
+                        <p className="forum-post-content"><b>Posted by Aaron</b></p>
+                </div><hr/>
+                <div className="forum-post-container">
+                        <h4>Forum Post 4</h4>
+                        <p className="forum-post-content"><b>Posted by Aaron</b></p>
+                </div><hr/>
+            </div>
+          }
+
+        {this.state.showQuestions &&
+          <div>
+            <h1>Questions</h1>
+          </div>
+        }
+          
+        </div>
+
+</div>
+      //    <div>
+      //       <Helmet>
+      //                 <meta charSet="utf-8" />
+      //                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      //                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+      //                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      //                 <title>Forum</title>
+
+      //                 {/* LINKS */}
+      //                 <link rel="canonical" href="http://mysite.com/example" />
+      //                 <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+      //                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+      //         </Helmet> 
+    
+      //     <div className="containerForum">
+      //         <div className="global-forum-container">
+      //             <span  className="username-wrapper">
+
+      //                 <h2 className="forum-title">
+      //                   {this.state.forum.name} 
+
+      //                   {isUnfollowing ? (
+      //                     <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+      //                   ) : (
+      //                     <button className="forum-follow-btn" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+      //                     )}
+      //                 </h2>
+
+      //                 <div id="wrapper">
+      //                   <Badge className="forum-badge-item"  pill variant="secondary">{this.state.forum.visibility}</Badge>
+      //                   <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Followers</b></p>
+                        
+
+      //                 </div>
+      //                 </span>
+      //                  <br/>
+      //                 <PostOptions/>
+
+
+
+      //         </div>
        
               
 
-          </div>
-    
-          <div className="containerFeedRight">
-        
-          </div>
-      </div>
+      //     </div>
+      // </div>
       );
      }
 }

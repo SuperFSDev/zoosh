@@ -138,7 +138,7 @@ export default class DiscussionPost extends React.Component {
               <span>{this.state.discussion.pic}</span>
                 <p>
                   <small>Written By</small><br/>
-                  <span>{this.state.discussion.user} <span className="user-score-post-tag">1,231</span></span>
+                  <span>{this.state.discussion.user} <span className="user-score-post-tag">{this.state.discussion.user_score}</span></span>
                   
                 </p>
                 <button className="community-btn-a">Follow</button>
@@ -169,10 +169,6 @@ export default class DiscussionPost extends React.Component {
           </div>
           <div className="containerPostMiddle">
             <div className="forum-container">
-              <div className="containerPostMobileUser">
-                <ProfilePic/>
-                <Username/>
-              </div>
               {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
               <p className="post-header">
                 {this.state.discussion.title}<br/>

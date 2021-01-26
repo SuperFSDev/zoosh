@@ -185,10 +185,9 @@ render(){
                         <a href="/home"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
-                        <p>{discussionList}</p>
-
                     </div>
                     <UsersCommunities/>
+                    <p>{discussionList}</p>
                     
                 </div>
             </div>

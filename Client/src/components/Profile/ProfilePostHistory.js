@@ -48,17 +48,16 @@ console.log(this.state.posts);
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/d/?id=" + post._id}>
+                    <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
                       <p>
-                        <span className="forum-title">{post.title}</span><br/>
-                        <span className="content-muted">{post.content.slice(0,100)}...</span><br/>
+                        <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
+                        <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
                         {post.society == null ? (
-                            <span  className="content-muted">Posted in<b> General</b><br/></span>
+                            <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
                         ) : (
-                          <span  className="content-muted"><b>{post.society}</b><br/></span>
+                          <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
                         )}
-                        <small className="text-muted">{moment(post.time).format(" MMM Do 'YY.")}</small><hr/>
-                      </p>
+                      </p><hr/>
                     </a>
                     </Card.Text>        
                   </Card.Body>  
