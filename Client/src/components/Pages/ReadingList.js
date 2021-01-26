@@ -77,7 +77,7 @@ render(){
             </Helmet> 
 
 
-        <div className="containerFeedMiddle">
+        <div className="containerChartMiddle">
               <div className="global-feed">
               <h3>Reading List ({this.state.readingList.length})</h3>
               <div className="spacing"></div>

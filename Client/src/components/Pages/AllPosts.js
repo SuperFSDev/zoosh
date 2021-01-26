@@ -19,6 +19,7 @@ import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
 import {BiPlanet} from 'react-icons/bi'
+import SearchbarFilter from '../Common/SearchbarFilter'
 
 export default class AllPosts extends React.Component {
 
@@ -32,6 +33,7 @@ export default class AllPosts extends React.Component {
       toggle: false,
       isSaved: false,
       socs:[],
+      posts:[],
       user:'',
     };
   }
@@ -51,9 +53,7 @@ export default class AllPosts extends React.Component {
         .then((response) => {
           this.setState({ user: response.data.user,
                           forums: response.data.user.forums,
-                          socs:response.data.user.societies
-
-  
+                          socs:response.data.user.societies,
           })
         })
         .catch((error) => {
@@ -146,8 +146,8 @@ render(){
 
             {this.state.isLoading ? ( 
                 <div><br/>
-                  <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES</h5>
-                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={7}/><br/><br/><br/>
+                  <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
+                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
                 </div>
 
               ) : (
@@ -160,7 +160,7 @@ render(){
 
             {this.state.isLoading ? ( 
                 <div>
-                  <Skeleton height={200} style={{marginBottom:10}} count={5}/><br/>
+                  <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
     
                 </div>
 
@@ -173,6 +173,9 @@ render(){
     <div className="column2" style={{background:'white'}}>
         <div  style={{marginTop:100, width:430, marginLeft:10}}>
             <div>
+
+            <SearchbarFilter/>
+
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>

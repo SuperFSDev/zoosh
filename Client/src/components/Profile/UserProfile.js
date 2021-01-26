@@ -258,11 +258,11 @@ export default class UserProfile extends React.Component {
 
         <div className="containerFeedRightUser">
           <div  className="top-posts-profile-container-2">
-            <h5  className="-feed-item-header">TOP POSTS</h5>
+            <h5  className="-feed-item-header" style={{marginLeft:35}}>TOP POSTS</h5>
             <History />
           </div>
           <br/>
-          <div  className="top-posts-profile-container-2">
+          {/* <div  className="top-posts-profile-container-2">
             <h5>Badges</h5>
             <section className="badge-container">
                 <div className="badge-item-1">
@@ -288,7 +288,7 @@ export default class UserProfile extends React.Component {
                 </div>
                 
               </section>
-          </div>
+          </div> */}
           
         </div>
       </>

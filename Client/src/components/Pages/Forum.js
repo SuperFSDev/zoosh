@@ -149,7 +149,6 @@ render(){
               <h5>Give Feedback</h5>
               <div className="forum-option">
                 <li>Feature Requests</li><br/>
-                
               </div>
           </div>
 

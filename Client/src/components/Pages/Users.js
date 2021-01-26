@@ -114,7 +114,7 @@ render(){
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-        <div className="containerFeedMiddle">
+        <div className="containerChartMiddle">
               <div className="global-feed">
                 <h3>Meet the Community</h3>
                   <div className="container-square">

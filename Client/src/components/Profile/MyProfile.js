@@ -146,124 +146,10 @@ export default class MyProfile extends React.Component {
                       <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/>
                   </span>)}
               </div>
-              
-            {/* </div> */}
-
-            {/* <div className="user-profile-about">
-              <section className="badge-container"> */}
-                {/* <div className="stats-item-1">
-                {this.state.user.score >= 1 && this.state.user.score <=999 ? (
-                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
-
-                  ) : this.state.user.score >=1000 ?(
-                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
-                  ) : this.state.user.score >= 5000 ? (
-                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
-                  ) : (
-                    <span><b>{this.state.user.score}</b><br/></span>
-                  )} Score
-                </div>
-                <div className="stats-item-1">
-                  <span><BsPerson size={30}/> <b> {this.state.followers.length}</b><br/>Followers</span>
-                </div>
-                <div className="stats-item-1">
-                  <span><BsCircle size={30}/> <b> {this.state.societies.length}</b><br/>Communties</span>
-                </div>
-                <br/> */}
-                {/* <div className="stats-item-1">
-                  <span><BsChatSquareDots size={30}/> <b> {this.state.societies.length}</b><br/>Posts</span>
-                </div>
-                <div className="stats-item-1">
-                  <BsQuestionSquare size={30}/> <b>{this.state.followers.length}</b><br/>Questions
-                </div>
-                <div className="stats-item-1">
-                  <span><BsShieldShaded size={30}/> <b> {this.state.societies.length}</b><br/>Answers</span>
-                </div>
-              </section>
-          
-            </div> */}
-
-            {/* <div className="user-profile-about">
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Name</Tooltip>}>
-                <span className="d-inline-block">
-                <p><SiAboutDotMe /> </p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.fullname}</b><br/>
-              
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Education</Tooltip>}>
-                <span className="d-inline-block">
-                  <p><MdSchool /></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.college}</b><br/>
-
-              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Studying</Tooltip>}>
-                <span className="d-inline-block">
-                <p><FaBook/></p>
-                </span>
-              </OverlayTrigger>
-              <b className="user-details">{this.state.user.course}</b><br/>        
-            </div> */}
-
-            {/* <div className="user-profile-about">
-              <h5>Badges</h5>
-              <section className="badge-container">
-                <div className="badge-item-1">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥇 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>   
-                </div>
-                <div className="badge-item-2">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥈 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>  
-                </div>
-                <div className="badge-item-3">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥉 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>  
-                </div>
-              </section>
-            </div> */}
-            
-            {/* <div className="user-profile-about">
-            <h5>Communities <QuickOptions /></h5>
-            {this.state.societies.map(society=>
-                  <li className="community-members-item-profile">
-                    <b><a href={"/s/?id="+society}>{society}</a></b><br/>
-                    <b>Admin</b>
-                  </li>)}<br/>
-            </div> */}
         </div>
         
 
         <div className="containerFeedRightProfile">
-        {/* <div  className="top-posts-profile-container">
-          <div className="user-profile-overview">
-          <span><p>{this.state.user.bio}</p></span>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Cake Day</Tooltip>}>
-                <span className="d-inline-block">
-                <p id="icons"><RiCake2Fill size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                Joined on {moment(this.state.user.time).format("MMM Do, YYYY.")}
-
-              <OverlayTrigger  overlay={<Tooltip id="tooltip-disabled">Location</Tooltip>}>
-                <span className="d-inline-block" >
-                <p  id="icons" className="spacing-right"><TiLocation  size={25}/>  </p>
-                </span>
-              </OverlayTrigger>
-                 Galway, Ireland.
-          </div>
-              
-        </div> */}
           <div  className="top-posts-profile-container">
             <h5  className="-feed-item-header">TOP POSTS</h5>
             {this.state.posts.slice(0,10).reverse().map(post=>  (
@@ -271,7 +157,7 @@ export default class MyProfile extends React.Component {
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/p/?id=" + post.Post_id}>
+                    <a href={"/d/?id=" + post.Post_id}>
                       <p>
                         <span className="forum-title">{post.title}</span><br/>
                         <span className="content-muted">{post.post.slice(0,100)}...</span><br/>

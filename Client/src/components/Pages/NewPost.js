@@ -162,7 +162,7 @@ render(){
                 <title>New Post - Website</title>
         </Helmet> 
 
-      <div className="containerFeedMiddle">
+      <div className="containerChartMiddle">
           <div className="global-feed">
         <Form onSubmit={this.onSubmit}>
           <input 

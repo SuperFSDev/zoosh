@@ -24,7 +24,6 @@ export default class NavBar extends React.Component {
         following:[],
         followers:[],
         showMenu: false,
-        showFilter: false,
         showProfile: false,
         showForum: false,
         showContributions: false,
@@ -37,14 +36,12 @@ export default class NavBar extends React.Component {
     };
 
       this.showMenu = this.showMenu.bind(this);
-      this.showFilter = this.showFilter.bind(this);
       this.showProfile = this.showProfile.bind(this);
       this.showForum = this.showForum.bind(this);
       this.showContributions = this.showContributions.bind(this);
 
       this.closeContributions = this.closeContributions.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
-      this.closeFilter = this.closeFilter.bind(this);
       this.closeProfile = this.closeProfile.bind(this);
       this.closeForum = this.closeForum.bind(this);
 
@@ -110,25 +107,6 @@ export default class NavBar extends React.Component {
       }
     }
 
-  // SEARCH BAR DROPDOWN
-  showFilter(event) {
-    event.preventDefault();
-    
-    this.setState({ showFilter: true }, () => {
-      document.addEventListener('click', this.closeFilter);
-    });
-  }
-
-  closeFilter(event) {
-    
-    if (!this.dropdownMenu2.contains(event.target)) {
-      
-      this.setState({ showFilter: false }, () => {
-        document.removeEventListener('click', this.closeFilter);
-      });  
-      
-    }
-  }
 
   // USER PROFILE DROPDOWN
   showProfile(event) {
@@ -188,10 +166,6 @@ export default class NavBar extends React.Component {
       });
   }
 
-  updateSearch(user) {
-    this.setState({ searchValue: user.target.value.substr(0, 20) });
-  }
-
 render(){
 
   var{users} = this.state;
@@ -200,14 +174,6 @@ render(){
   var size=3;
   var postSize = 2;
   var indents = [];
-
-  let filteredUsers = this.state.users.filter(
-    (user) => {
-        return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-    }
-  );
-
-  const shuffledUsers = shuffleArray(filteredUsers);
 
 
   for (var k = 0; k < 4; k++) {
@@ -225,12 +191,7 @@ render(){
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">             
-                <span className="square" ><BsSearch size={20}/></span>
-            <InputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              id="mySearch" title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}
-            /> 
+                {/* <span className="square" ><BsSearch size={20}/></span> */}
                 <span style={{marginRight:10, cursor:'pointer'}}><Image src={Clap} size={20} onClick={this.showContributions}/> {this.state.user.score}</span>
                 <span className="notify" onClick={this.showForum}><BsLightning size={20}/></span>
                 <span className="notify" onClick={this.showMenu}><BsBell size={20} /></span>
@@ -306,42 +267,7 @@ render(){
               }
 
 
-              {/* SEARCH BAR FILTER */}
-              {
-                this.state.showFilter
-                  ? (
-                    <div className="searchFilter"
-                      ref={(element2) => {
-                        this.dropdownMenu2 = element2;
-                      }}
-                    >
-                      <h5>Search Results</h5>
-                      <hr/>
-                      <p className="searchbar-header">POSTS</p>
-                      {discussions.slice(0,postSize).sort((a,b)=> b.score- a.score).map(discussion  =>  ( 
-                      <a  href={"/d/?id="+discussion._id}><div key={k} className="contributor-item-search">
-                            <p className="-contributor-user-search">
-                              <p>{discussion.user}</p>
-                              <h6>{discussion.title}</h6>
-                            </p>
-                        </div></a>
-                      ))}  
-                      <p className="searchbar-header">COMMUNITIES</p>
-                      <p className="searchbar-header">USERS</p>
-                      {shuffledUsers.slice(0,3).sort((a,b)=> b.score- a.score).map(user  =>  ( 
-                      <a  href={"/u/?id="+user._id}><div key={k} className="contributor-item-search">
-                            <p className="-contributor-user-search"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname} <b  className="-contributor-user-score">{ user.score}</b></p>
-                        </div></a>
-                      ))}    
-                    </div>
-                  )
-                  : (
-                    null
-                  )
-              }
-
-
-             {/* SEARCH BAR FILTER */}
+             {/* PROFILE FILTER */}
               {
                 this.state.showProfile
                   ? (
