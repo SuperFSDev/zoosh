@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Image} from 'react-bootstrap'
 import {BiPlanet} from 'react-icons/bi'
 import Skeleton from 'react-loading-skeleton';
+import background from "../../images/group.jpg";
 
 class UsersCommunities extends React.Component {
 
@@ -75,13 +76,17 @@ class UsersCommunities extends React.Component {
               ) : (
                 <li className="community-members-item-profile">
                 <p className="community-items-feed">
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
-                    <img src="http://dummyimage.com/90x90/000/fff.png"  className="community-item"/>
+                {this.state.societies.map(society => (
+                    <div key={society.id}>
+                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect"><div className="community-items-feed">
+                          {society.picture == null ? (
+                            <Image src={background} className="community-item" height="90px" width="90px"/>
+                          ) : (
+                            <Image src={society.picture} className="community-item"/>
+                          )}
+                        </div></a>
+                    </div>
+                    ))}
                   {/* <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/> */}
                 </p>
                

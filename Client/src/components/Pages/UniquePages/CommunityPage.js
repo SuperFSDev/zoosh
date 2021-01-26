@@ -214,7 +214,7 @@ export default class CommunityPage extends React.Component {
                         
                       <div className="navbar-prof-btn">
                         <div id="#battleBox">
-                          <a href="/me"><Avatar src={this.state.society.picture} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+                          <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
                         </div>
                       </div>               
                     </Navbar.Collapse>
