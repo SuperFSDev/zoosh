@@ -4,8 +4,10 @@ import { Form, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {TextField} from '@material-ui/core';
 import cogoToast from 'cogo-toast'
+import ImageUploader from 'react-images-upload';
 
 var getUser = JSON.parse(localStorage.getItem('user'))
+const Compress = require('compress.js')
 
 
 export default class CreateASoc extends React.Component {
@@ -28,7 +30,7 @@ export default class CreateASoc extends React.Component {
             private: false,
             public:true,
             time: new Date().getTime(),
-
+            picture: ''
         };
 
         this.onChangeName = this.onChangeName.bind(this);
@@ -44,6 +46,7 @@ export default class CreateASoc extends React.Component {
         this.onChangeOther = this.onChangeOther.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
+        this.onDropPicture = this.onDropPicture.bind(this);
 
     }
 
@@ -115,6 +118,33 @@ export default class CreateASoc extends React.Component {
         });
     }
 
+    async onDropPicture(pictureFiles, pictureDataURLs) {
+
+        alert("Picture dropped");
+    
+        const compress = new Compress();
+    
+        compress.compress(pictureFiles, {
+          size: 4, // the max size in MB, defaults to 2MB
+          quality: .90, // the quality of the image, max is 1,
+          maxWidth: 100, // the max width of the output image, defaults to 1920px
+          maxHeight: 100, // the max height of the output image, defaults to 1920px
+          resize: true, // defaults to true, set false if you do not want to resize the image width and height
+        }).then((data) => {
+          if(data[0])
+          {
+            var data = data[0];
+            var b64 = data.prefix + data.data;
+      
+            this.setState({
+              //picture: this.state.picture.concat(b64)
+              picture: b64
+            });
+            console.log(this.state.picture);
+          }
+        })
+      }
+
     onSubmit(e) {
 
         e.preventDefault();
@@ -133,7 +163,7 @@ export default class CreateASoc extends React.Component {
             public: this.state.public,
             admin:getUser._id,
             time: new Date().getTime(),
-
+            picture: this.state.picture
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.address) {
@@ -173,7 +203,7 @@ export default class CreateASoc extends React.Component {
             private: false,
             public: true,
             time: new Date().getTime(),
-
+            picture: '',
         });
     }
 
@@ -203,6 +233,25 @@ export default class CreateASoc extends React.Component {
 
                     <Form.Group controlId="formGridDescription">
                         <TextField type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} id="outlined-basic" variant="outlined" name="desc" placeholder="Community Description" maxLength={60}/>
+                    </Form.Group>
+
+                    <div className="spacing"></div>
+                    <hr/>
+                    <div className="spacing"></div>
+
+                    <Form.Label>
+                        <b>Community Picture</b>
+                    </Form.Label>
+
+                    <Form.Group controlId="formGridDescription">
+                        <ImageUploader
+                            withIcon={true}
+                            withPreview={true}
+                            buttonText='Choose images'
+                            onChange={this.onDropPicture}
+                            imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                            maxFileSize={5242880}
+                        />
                     </Form.Group>
                     <div className="spacing"></div>
                     <hr/>

@@ -50,7 +50,9 @@ export default class CommunityPage extends React.Component {
            users:response.data.society.users,
            mods:response.data.society.mods,
            admin:response.data.society.admin,
-           isLoading:false})
+           isLoading:false,
+           society: response.data.society})
+           console.log(this.state.society.picture);
         })
         .catch((error) => {
           console.log(error);
@@ -197,7 +199,7 @@ export default class CommunityPage extends React.Component {
             <Navbar  className="navbar-comm" >
                     <Nav className="mr-auto">
                         <Navbar.Brand className="header-landing">
-                          <span><Image src={ProfilePic} className="user-image" roundedCircle /></span>
+                          <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
                           <span  className="navbar-title">{this.state.society.name}<br/>
                           <p className="content-muted">z/{this.state.society.name}</p></span>
                         </Navbar.Brand>
@@ -212,7 +214,7 @@ export default class CommunityPage extends React.Component {
                         
                       <div className="navbar-prof-btn">
                         <div id="#battleBox">
-                          <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+                          <a href="/me"><Avatar src={this.state.society.picture} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
                         </div>
                       </div>               
                     </Navbar.Collapse>

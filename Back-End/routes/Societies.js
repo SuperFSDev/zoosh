@@ -18,9 +18,6 @@ societies.use(function (req, res, next) {
 
 // Register a society to the db
 societies.post('/create', (req, res) => {
-
-    console.log("In create society function");
-
     const socData = {
         name: req.body.name,
         college: req.body.college,
@@ -35,6 +32,7 @@ societies.post('/create', (req, res) => {
         twitter: req.body.twitter,
         instagram: req.body.instagram,
         other: req.body.other,
+        picture: req.body.picture
         // pic: req.body.pic,
     }
 
