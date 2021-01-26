@@ -10,12 +10,14 @@ import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
 import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
-import {FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa'
+import {FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa';
+import {BsMic,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs';
 import Avatar from '@material-ui/core/Avatar';
 import {Navbar, Nav} from 'react-bootstrap'
 import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll} from 'react-icons/bs'
 import PrivateView from './Visibility/PrivateView'
 import cogoToast from 'cogo-toast'
+import Test from '../../../images/friends.jpg'
 
 export default class CommunityPage extends React.Component {
 
@@ -27,6 +29,7 @@ export default class CommunityPage extends React.Component {
       time:'',
       score:'',
       UserList:[],
+      posts:[],
       showPeople:false,
       showStats:false,
       showEvents:false,
@@ -58,13 +61,22 @@ export default class CommunityPage extends React.Component {
           console.log(error);
         });
         
-        for (var i = 0; i < this.state.users.length; i++) {
-          this.GetFollowedUser(this.state.users[i]._id)
-        } 
-
+      
         axios.get('http://localhost:4000/events/getEvents')
         .then((response) => {
           this.setState({ events: response.data.events })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+        axios.get('http://localhost:4000/discussions/get-society-discussions',{
+          params: {
+            society: this.state.society.name
+          }
+        })
+        .then((response) => {
+          this.setState({posts: this.state.posts.concat(response.data.discussion),})
         })
         .catch((error) => {
           console.log(error);
@@ -79,22 +91,8 @@ export default class CommunityPage extends React.Component {
     }
 
 
-     async  GetFollowedUser(user_id){
-    await axios.get('http://localhost:4000/users/get-user-details', {
-        params: {
-          id:user_id
-        }
-      })
-        .then((response) => {
-          this.setState({
-            UserList: this.state.UserList.concat(response.data.user),
-          })
-  
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
+ 
+     
 
       ShowUsers() {
         this.setState({
@@ -159,7 +157,37 @@ export default class CommunityPage extends React.Component {
      
       var user = JSON.parse(localStorage.getItem('user'));
 
-
+      const discussionList = this.state.posts.sort((a, b) => b.time - a.time).map(discussion => {
+        return(
+    
+            <div key={discussion._id}>
+              <div className='discussion-post'>
+                <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+                <div>
+                  <p>
+                    <a href={"/me"} className="post-link-a"><span className="voting-btn">
+                      <b>{discussion.user}</b>  
+    
+                      {discussion.society == null ? (
+                          <span> posted in <b style={{color:'green'}}>General</b></span>
+                      ) : (
+                        <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
+                      )}
+                    </span></a><br/>
+                    <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
+                    <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
+                    <small  className="text-muted">
+                      <br/>
+                      <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+    
+                      <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
+                    
+                    </small>
+                  </p>
+                </div></a>
+              </div>
+            </div>
+          )})
 
       if(this.state.society.admin === user._id){
         return (
@@ -249,40 +277,8 @@ export default class CommunityPage extends React.Component {
                 <div className="containerPostMiddleCommunity">
                 {this.state.showFeed &&
                   <div>
-                      <br/>
-                      <div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div>
-                      <div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div>
-                      <div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div>
-                      <div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div>
-                      <div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div><div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div><div className="community-container">
-                        <h1>Hello World</h1>
-                        <p>Hello test content</p>
-                        <hr/>
-                      </div>
+                    {discussionList}
+                  
                   </div>
                   }
 

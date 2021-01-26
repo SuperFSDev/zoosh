@@ -80,6 +80,27 @@ discussions.get('/get-following-discussions', (req, res) => {
         })
 
 })
+
+
+discussions.get('/get-society-discussions', (req, res) => {
+
+    DiscussionModel.find({
+            society: req.query.society
+        }).then(discussion => {
+            if (discussion) {
+                res.json({
+                    discussion: discussion
+                });
+            } else {
+                res.send("Discussion does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+            console.log(err);
+        })
+
+})
 discussions.post('/addComment', (req, res) => {
 
     DiscussionModel.findByIdAndUpdate(
