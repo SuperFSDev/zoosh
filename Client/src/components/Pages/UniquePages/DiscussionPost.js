@@ -172,6 +172,7 @@ export default class DiscussionPost extends React.Component {
               {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
               <p className="post-header">
                 {this.state.discussion.title}<br/>
+                <Image src={this.state.discussion.picture} className="thumbnail"/>
                 <p className="text-muted"><b>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}</p>
               </p>
               

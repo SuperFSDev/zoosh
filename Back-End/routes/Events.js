@@ -62,6 +62,27 @@ events.post('/addEventToSociety', (req, res) => {
     )
 })
 
+
+events.get('/get-society-events', (req, res) => {
+
+    EventModel.find({
+            society: req.query.society
+        }).then(event => {
+            if (event) {
+                res.json({
+                    event: event
+                });
+            } else {
+                res.send("event does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+            console.log(err);
+        })
+
+})
+
 events.get('/get-events-page', (req, res) => {
 
     EventModel.findById({
