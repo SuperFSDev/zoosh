@@ -58,7 +58,7 @@ render(){
                   {shuffledPosts.slice(0, size).map(society =>(
                     <div class="miniprofileCommunity">
                       <figure class="headshot">
-                          <img src="http://dummyimage.com/90x90/000/fff.png" />
+                          <img src={society.picture} />
                       </figure>
                       <a href={"/c/?id="+society._id} className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 

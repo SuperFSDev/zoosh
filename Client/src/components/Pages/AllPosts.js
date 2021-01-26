@@ -11,7 +11,6 @@ import {Helmet} from 'react-helmet'
 import Fab from '@material-ui/core/Fab';
 import QuickCreate from '../Common/QuickCreate'
 import {BsHeart,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
-import Test from '../../images/friends.jpg'
 import Skeleton from 'react-loading-skeleton';
 import {BsMic,BsBrightnessLow,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs'
 import Avatar from '@material-ui/core/Avatar';
@@ -110,9 +109,9 @@ render(){
                 </span></a><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span>
                 {discussion.picture == null ? (
-                  <Image className="post-image" src={Test} width={150}/>
+                  <div></div>
                 ) : (
-                  <Image className="post-image" src={discussion.picture} width={150}/>
+                  <Image className="post-image" src={discussion.picture} width={125} height={125}/>
                 )}
                 <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>

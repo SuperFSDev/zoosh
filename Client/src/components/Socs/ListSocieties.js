@@ -158,7 +158,7 @@ render(){
                     {filteredSocietiesByName.map(society => (
                     <div key={society.id}>
                         <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect"><div className="socs-list-items">
-                          <Image src={background} className="soc-item-image"/>
+                          <Image src={society.picture} className="soc-item-image"/>
                           <h5><b>{society.name}</b> - {society.college} </h5>
                           <p>{society.description}</p>  
 

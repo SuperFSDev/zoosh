@@ -281,7 +281,7 @@ export default class AdminPage extends React.Component {
               <Navbar  className="navbar-comm" >
                   <Nav className="mr-auto">
                       <Navbar.Brand className="header-landing">
-                        <span><Image src={this.state.society.pic} className="user-image" roundedCircle /></span>
+                        <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
                         <span  className="navbar-title">
                           {this.state.society.name}<br/>
                           <p className="content-muted">z/{this.state.society.name}</p>
