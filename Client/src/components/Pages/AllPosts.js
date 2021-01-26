@@ -108,7 +108,13 @@ render(){
                     <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}
                 </span></a><br/>
-                <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
+                <span className="forum-title">{discussion.title.slice(0,35)}</span>
+                {discussion.picture == null ? (
+                  <Image className="post-image" src={Test} width={150}/>
+                ) : (
+                  <Image className="post-image" src={discussion.picture} width={150}/>
+                )}
+                <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
                 <small  className="text-muted">
                   <br/>
