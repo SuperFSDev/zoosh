@@ -59,6 +59,27 @@ discussions.get('/get-discussion-page', (req, res) => {
         })
 
 })
+
+
+discussions.get('/get-following-discussions', (req, res) => {
+
+    DiscussionModel.find({
+            user_id: req.query.id
+        }).then(discussion => {
+            if (discussion) {
+                res.json({
+                    discussion: discussion
+                });
+            } else {
+                res.send("Discussion does not exist")
+            }
+        })
+        .catch(err => {
+            res.send(err)
+            console.log(err);
+        })
+
+})
 discussions.post('/addComment', (req, res) => {
 
     DiscussionModel.findByIdAndUpdate(

@@ -18,14 +18,14 @@ export default class History extends React.Component {
 
     componentDidMount() {
       var user_id = new URLSearchParams(document.location.search).get("id");
-      axios.get('http://localhost:4000/users/get-user-details', {
+      axios.get('http://localhost:4000/discussions/get-following-discussions', {
         params: {
           id: user_id
         }
       })
         .then((response) => {
-          this.setState({ user: response.data.user,
-             posts:response.data.user.posts
+          this.setState({
+             posts:this.state.posts.concat(response.data.discussion)
           })
           
         })
@@ -39,18 +39,19 @@ export default class History extends React.Component {
 
     var size = 10;
     
-
+console.log(this.state.posts);
      return (
       <div>
+        
           {this.state.posts.slice(0,10).reverse().map(post=>  (
               <div key={this.state.user._id}>  
                <Card className='userPosts'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
-                    <a href={"/d/?id=" + post.Post_id}>
+                    <a href={"/d/?id=" + post._id}>
                       <p>
                         <span className="forum-title">{post.title}</span><br/>
-                        <span className="content-muted">{post.post.slice(0,100)}...</span><br/>
+                        <span className="content-muted">{post.content.slice(0,100)}...</span><br/>
                         {post.society == null ? (
                             <span  className="content-muted">Posted in<b> General</b><br/></span>
                         ) : (

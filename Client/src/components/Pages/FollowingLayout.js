@@ -31,7 +31,7 @@ import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
 
-var comment;
+
 
 export default class Feed extends React.Component {
 
@@ -40,7 +40,7 @@ export default class Feed extends React.Component {
         this.state = {
           toggle: false,
           isLoading: true,
-          posts: [],
+          discussions:[],
           score: [],
           comments:[],
           following:[],
@@ -51,10 +51,9 @@ export default class Feed extends React.Component {
           pic:'',
           claps:0,
           socs:[],
+          posts:[],
           time: new Date().getTime(),
         };
-        this.onChangeComment = this.onChangeComment.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
       }
     
         async componentDidMount() {
@@ -82,14 +81,6 @@ export default class Feed extends React.Component {
               console.log(error);
             });
     
-            axios.get('http://localhost:4000/comments/getComments')
-            .then((response) => {
-              this.setState({ comments: response.data.comments })
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        
       
       
             for (var i = 0; i < this.state.FollowingID.length; i++) {
@@ -99,16 +90,14 @@ export default class Feed extends React.Component {
           }
       
           async GetFollowedUser(FollowingID){
-          await axios.get('http://localhost:4000/users/get-user-details', {
+          await axios.get('http://localhost:4000/discussions/get-following-discussions', {
             params: {
               id:FollowingID,
             }
           })
             .then((response) => {
               this.setState({
-                user: response.data.user,
-                claps: response.data.claps,
-                posts: this.state.posts.concat(response.data.user.posts),
+                posts: this.state.posts.concat(response.data.discussion),
                 isLoading: false,
               })
       
@@ -118,58 +107,7 @@ export default class Feed extends React.Component {
             });
         }
     
-        onChangeComment=(e)=> {
-    
-          comment = [this.state.comment]
-          comment = e.target.value
-        
-          this.setState({
-              comment: e.target.comment
-              
-          });
-          console.log(comment)
-         
-      }
-       
-    
-      onSubmit(id) {
-     
-      var user = JSON.parse(localStorage.getItem('user'));  
-        const newComment = {
-          user_id: user._id,
-          post_id:id,
-          user: user.fullname,
-          comment: comment,
-          time: new Date().getTime(),
-      }
-     axios.post('http://localhost:4000/comments/addComment', newComment)
-        .then(response =>{
-          this.setState({
-          user: '',
-          post: '',
-          comment:'',
-          post_id:'',
-          time: new Date().getTime(),
-          category: '',
-          tags:[]
-        });
-        cogoToast.success("Reply was sent!");
-        // alert(JSON.stringify(newComment));
-        })
-        .catch(err => cogoToast.error("Reply failed.")); 
-    
-        }
-    
-    
-        // Render hide/show comment section
-        hideShow() {
-          var x = document.getElementById("post-interactions");
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
+  
     
           // Render hide/show comment section
           CheckPost(id,post_id) {
@@ -205,68 +143,38 @@ export default class Feed extends React.Component {
 
 
 render(){
+  console.log(this.state.posts);
+  const discussionList = this.state.posts.sort((a, b) => b.time - a.time).map(discussion => {
+    return(
 
-    var user = JSON.parse(localStorage.getItem('user'));
-
-    if(user) 
-    {
-        var fullname = user.fullname;
-    }
-  
-    const postList = this.state.posts.sort((a, b) => b.time - a.time).map((post,index) => {
-    return(  // sorts the posts by the time posted
-        <div className='feedPost'>
-          <div>
-            <div className="fontPost">
+        <div key={discussion._id}>
+          <div className='discussion-post'>
+            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+            <div>
               <p>
                 <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                    <Image src={post.pic} className="user-image-mini" roundedCircle/> <b>{post.user}</b> posted in 
-                    
-                    {post.society == null ? (
-                        <span style={{color:'green'}}><b> General</b></span>
-                    ) : (
-                      <span><b> {post.society}</b></span>
-                    )}
-                    
+                  <b>{discussion.user}</b>  
+
+                  {discussion.society == null ? (
+                      <span> posted in <b style={{color:'green'}}>General</b></span>
+                  ) : (
+                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
+                  )}
                 </span></a><br/>
-                <span className="forum-title">{post.title}</span><Image className="post-image" src={Test} width={150}/><br/>
-                <small  className="text-muted">{moment(post.time).format("MMM Do")} ({moment(post.time).startOf('hour').fromNow()})</small>
-              </p>
-            </div>
-            <span className="username-wrapper">
-              <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addClaps}><Image src={Clap} size={20} className="feed-comment"/> {post.claps} claps</button></span>
-                <a href={"/p/?id=" + post.Post_id}>
-                  <span className="voting-btn">
-                    <button className="standard-option-btn-post" ><BsChat size={20} /> {this.state.comments.length} responses</button> 
-                  </span></a>
-                    
-                      {this.CheckPost(post.user_id,post.Post_id) ?  (
-                      <Dropdown  className="standard-option-btn-post">
-                        <Dropdown.Toggle  id="dropdown-basic">
-                         Edit
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          
-                          <Dropdown.Item href="/home">{this.CheckPost(post.user_id,post.Post_id)}</Dropdown.Item>
-                          <Dropdown.Item>Copy URL</Dropdown.Item>
-  
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      ): (
-                        <Dropdown className="standard-option-btn-post">
-                        <Dropdown.Toggle  id="dropdown-basic">
-                          <FaShare/> Share
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Copy URL</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      )}
-            </span>
+                <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
+                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
+                <small  className="text-muted">
+                  <br/>
+                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+
+                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
                 
-          </div><hr/>
+                </small>
+              </p>
+            </div></a>
+          </div>
         </div>
-    )})
+      )})
   return (
         <div class="row">
             <div className="column" style={{background:'white'}}>
@@ -277,11 +185,11 @@ render(){
                         <a href="/home"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
-
+                        <p>{discussionList}</p>
 
                     </div>
                     <UsersCommunities/>
-                    <p>{postList}</p>
+                    
                 </div>
             </div>
 
