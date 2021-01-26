@@ -251,6 +251,7 @@ export default class CreateASoc extends React.Component {
                             onChange={this.onDropPicture}
                             imgExtension={['.jpg', '.gif', '.png', '.gif']}
                             maxFileSize={5242880}
+                            required
                         />
                     </Form.Group>
                     <div className="spacing"></div>

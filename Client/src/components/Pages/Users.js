@@ -5,9 +5,6 @@ import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
-import {BsMic,BsPeopleFill,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
-import Avatar from '@material-ui/core/Avatar';
-import Clap from '../../images/clap.png'
 
 export default class ListSocieties extends React.Component {
 

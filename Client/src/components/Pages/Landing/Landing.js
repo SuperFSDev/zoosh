@@ -1,12 +1,10 @@
 import React from 'react';
 import '../../../assets/Landing.css';
-import {Navbar, Nav, Image, Form, Tooltip, OverlayTrigger, Badge} from 'react-bootstrap'
+import {Navbar, Nav, Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import Space from '../../../images/space.png'
-import {FcApproval,FcCollaboration,FcAdvertising} from 'react-icons/fc'
 import axios from 'axios';
 import {FaUserFriends} from 'react-icons/fa'
-import {BsLightning,BsHeart,BsGem,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 import moment from 'moment'
 
 export default class Landing extends React.Component {

@@ -2,12 +2,11 @@ import React, { useRef } from 'react';
 import '../../../assets/App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {  Dropdown,OverlayTrigger,Tooltip } from 'react-bootstrap';
+import {  OverlayTrigger,Tooltip } from 'react-bootstrap';
 import moment from 'moment'
-import { Form, Badge , Image, Card, Button} from 'react-bootstrap';
+import { Image, Card, Button} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
-import {FaShare} from 'react-icons/fa'
-import {BsHeart,BsChat,BsHeartFill,BsBookmark,BsBookmarkFill,BsThreeDots} from 'react-icons/bs'
+import {BsChat,BsBookmark,BsBookmarkFill,BsThreeDots} from 'react-icons/bs'
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -16,13 +15,14 @@ import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
-
+import ReadMore from '../../Common/ReadMore'
 export default class DiscussionPost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       discussion: '',
+      discussions: [],
       discussion_id:'',
       comments:[],
       societies: [],
@@ -62,6 +62,17 @@ export default class DiscussionPost extends React.Component {
       })
       .catch((error) => {
           console.log(error);
+      });
+      
+      axios.get('http://localhost:4000/discussions/getDiscussions')
+      .then((response) => {
+        this.setState({ 
+          discussions: response.data.discussions,
+          users:response.data.discussions,
+          isLoading: false, })
+      })
+      .catch((error) => {
+        console.log(error);
       });
     }
 
@@ -114,6 +125,8 @@ export default class DiscussionPost extends React.Component {
     }
 
     render() {
+      var { discussions } = this.state;
+      var user = JSON.parse(localStorage.getItem('user'));
       console.log(this.state.comments);
 
       return (
@@ -138,7 +151,11 @@ export default class DiscussionPost extends React.Component {
               <span>{this.state.discussion.pic}</span>
                 <p>
                   <small>Written By</small><br/>
-                  <span>{this.state.discussion.user} <span className="user-score-post-tag">{this.state.discussion.user_score}</span></span>
+                  <span>
+                    <Avatar src={this.state.discussion.user_img}/>
+                    <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>{this.state.discussion.user}</a> 
+                    <span className="user-score-post-tag">{this.state.discussion.user_score}</span>
+                  </span>
                   
                 </p>
                 <button className="community-btn-a">Follow</button>
@@ -172,8 +189,13 @@ export default class DiscussionPost extends React.Component {
               {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
               <p className="post-header">
                 {this.state.discussion.title}<br/>
+                <p style={{fontSize:14, color:'gray'}}>
+                  <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>
+                  <b style={{color:'gray'}}>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
+                  </a>
+                </p>
+
                 <Image src={this.state.discussion.picture} className="thumbnail"/>
-                <p className="text-muted"><b>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}</p>
               </p>
               
                 {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Written by</Tooltip>}>
@@ -272,18 +294,21 @@ export default class DiscussionPost extends React.Component {
               >
               <p className="post-content">{comment.comment}</p>
               </ShowMoreText>
+              <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button>
             <hr/>
               </div>
             ))}
-            
-         </div>                                   
-          </div>
-        </div>   
-          </div>          
-        </>
-      );
-    }
+         </div>  
+         <div>
+          <ReadMore/>
+         </div>
+      </div>
+    </div>   
+    </div>          
+    </>
+    );
   }
+}
 
 
   function ProfilePic() {

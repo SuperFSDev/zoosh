@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
@@ -192,6 +191,18 @@ render(){
       <div className="containerChartMiddle">
           <div className="global-feed">
         <Form onSubmit={this.onSubmit}>
+          <ImageUploader
+                withIcon={false}
+                withPreview={true}
+                buttonText='Add a cover image'
+                onChange={this.onDropPicture}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+                fileTypeError
+                withLabel={false}
+                buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
+          />
+
           <input 
             placeholder="Title ..." 
             className="Title-input"
@@ -215,15 +226,6 @@ render(){
             value={this.state.content}
             onChange={this.onChangeContent}
             required
-            />
-
-          <ImageUploader
-                withIcon={true}
-                withPreview={true}
-                buttonText='Choose images'
-                onChange={this.onDropPicture}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
             />
             
           <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>

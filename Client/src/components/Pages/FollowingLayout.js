@@ -6,31 +6,17 @@ import '../../Media.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import FeedOptions from '../Lists/FeedOptions'
-import QuickOptions from '../Common/QuickOptions'
-import { Dropdown , Image} from 'react-bootstrap';
+import {  Image} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { Helmet } from 'react-helmet'
 import cogoToast from 'cogo-toast'
-import {BsThreeDots} from 'react-icons/bs'
-import {MdInsertLink,MdReport} from 'react-icons/md'
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import Fab from '@material-ui/core/Fab';
-import {FaShare} from 'react-icons/fa'
-import QuickCreate from '../Common/QuickCreate'
-import {AiOutlineLink} from 'react-icons/ai'
-import {BsHeart,BsGem,BsChatQuote} from 'react-icons/bs'
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs'
+import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
-import Clapping from '../../images/clap-hands.png'
-import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
-
-
+import SearchbarFilter from '../Common/SearchbarFilter'
+import {BiPlanet} from 'react-icons/bi'
 
 export default class Feed extends React.Component {
 
@@ -143,7 +129,7 @@ export default class Feed extends React.Component {
 
 render(){
   console.log(this.state.posts);
-  const discussionList = this.state.posts.sort((a, b) => b.time - a.time).map(discussion => {
+  const discussionList = this.state.posts.reverse().map(discussion => {
     return(
 
         <div key={discussion._id}>
@@ -190,18 +176,55 @@ render(){
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
                     </div>
-                    <UsersCommunities/>
-                    <p>{discussionList}</p>
+                    {this.state.isLoading ? ( 
+                      <div><br/>
+                        <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
+                        <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
+                      </div>
+
+                    ) : (
+                      <div>
+                        <UsersCommunities/>
+                      </div>
+                    )}
+                  
+                  <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
+          
+                      </div>
+
+                    ) : (
+                      <p>{discussionList}</p>
+                    )}
                     
                 </div>
             </div>
 
             <div className="column2" style={{background:'white'}}>
                 <div  style={{marginTop:100, width:430, marginLeft:10}}>
-                    <div>
-                        <Recommended/>  
-                        <Contributors/>
-                  </div>
+                <SearchbarFilter/>
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <div className="spacing"></div>
+                        <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Recommended/>
+                    )}
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Contributors/> 
+                    )}
                 </div>
             </div>
         </div>

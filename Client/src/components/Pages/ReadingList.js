@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image, Badge} from 'react-bootstrap'
+import { Badge} from 'react-bootstrap'
 
 export default class ReadingList extends React.Component {
 

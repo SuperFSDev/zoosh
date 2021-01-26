@@ -8,12 +8,9 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
-import Fab from '@material-ui/core/Fab';
-import QuickCreate from '../Common/QuickCreate'
-import {BsHeart,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
+import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
-import {BsMic,BsBrightnessLow,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs'
-import Avatar from '@material-ui/core/Avatar';
+import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
@@ -61,7 +58,9 @@ export default class AllPosts extends React.Component {
 
     axios.get('http://localhost:4000/discussions/getDiscussions')
       .then((response) => {
-        this.setState({ discussions: response.data.discussions,
+        this.setState({ 
+          discussions: response.data.discussions,
+          users:response.data.discussions,
           isLoading: false, })
       })
       .catch((error) => {
@@ -98,7 +97,7 @@ render(){
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
             <div>
               <p>
-                <a href={"/me"} className="post-link-a"><span className="voting-btn">
+                <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
                   <b>{discussion.user}</b>  
 
                   {discussion.society == null ? (
@@ -111,7 +110,7 @@ render(){
                 {discussion.picture == null ? (
                   <div></div>
                 ) : (
-                  <Image className="post-image" src={discussion.picture} width={125} height={125}/>
+                  <Image className="post-image" src={discussion.picture} width={150} height={125}/>
                 )}
                 <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
@@ -183,6 +182,7 @@ render(){
 
             {this.state.isLoading ? ( 
                 <div>
+                  <div className="spacing"></div>
                   <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
                 </div>
 

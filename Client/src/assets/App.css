@@ -939,11 +939,11 @@
 }
 
 .menu{
-  width:303px!important;
+  width:405px!important;
   height:400px;
   padding:10px;
   margin-top:5rem;
-  margin-left: 78.2rem;
+  margin-left: 72.2rem;
   background-color: white;
   border:1px solid black;
   position: fixed;
@@ -954,26 +954,14 @@
   box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
 }
 
-.forum{
-  width:303px!important;
-  height:400px;
-  padding:10px;
-  margin-top:5rem;
-  margin-left: 75rem;
-  background-color: white;
-  border:1px solid black;
-  position: fixed;
-  z-index: 1000;
-  border-radius: 5px;
-  top: 0;
-  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+.header-image{
+  color:black;
+  box-shadow: none;
 }
-
 .Title-input{
   border:none!important;
   width:1000px;
   font-size: 40px;
-  color:lightgray;
   outline:none!important;
 }
 
@@ -985,7 +973,7 @@
 .Content-input{
   border:none!important;
   width:1000px;
-  height:500px;
+  height:100px;
   font-size: 20px;
   outline:none!important;
 }
@@ -1011,11 +999,11 @@
 }
 
 .profileDropdwn{
-  width:200px!important;
+  width:250px!important;
   height:auto;
   padding:10px;
   margin-top:4.8rem;
-  margin-left: 85rem;
+  margin-left: 81.75rem;
   background-color: white;
   border-radius: 5px;
   border:1px solid rgb(71, 69, 69);
@@ -1116,7 +1104,7 @@ li{
 
 .notify, .square{
   color:gray!important;
-  margin-right: 15px;
+  margin-right: 35px;
   font-size: 12px;
   font-weight: 500;
   text-decoration: none!important;
@@ -1473,7 +1461,7 @@ section::after {
 
 .miniprofile {
   width: auto;
-  height: 80px;
+  height: 70px;
   position: relative; /* all other elements styled relative to this section's position */
   font-family: Arial;
 }
@@ -1481,13 +1469,14 @@ section::after {
 
 .miniprofileCommunity {
   width: auto;
-  height: 120px;
+  height: 80px;
   position: relative; /* all other elements styled relative to this section's position */
   font-family: Arial;
 }
 
-.miniprofile:hover{
-  background:whitesmoke;
+.miniprofile:hover, .miniprofileCommunity:hover{
+  background:white;
+  border-radius: 15px;
 }
 
 .headshot {
@@ -1901,6 +1890,9 @@ section::after {
 .contributors-container{
   margin-top:50px;
   width:400px;
+  background-color:rgb(248, 248, 248);
+  padding:10px;
+  border-radius: 15px;
   /* background-color:rgb(248, 248, 248); */
 }
 
@@ -1912,7 +1904,7 @@ section::after {
 
 .post-image{
   float:right;
-  margin-right: 8rem;
+  margin-right: 6rem;
 }
 
 .feed-options-container{
@@ -2163,9 +2155,10 @@ section::after {
 
 .recommended-container{
   border: none;
-  /* background-color:rgb(248, 248, 248); */
+  background-color:rgb(248, 248, 248);
   width:400px;
-  height:200px!important;
+  padding:10px;
+  height:250px!important;
   border-radius: 15px;
   margin-top: 2.5rem;
 }
@@ -2674,17 +2667,17 @@ padding-left: 4rem;
 
 .navbar-search{
   width:400px;
-  height:50px;
+  height:55px;
   margin:auto;
-  border-radius: 25px!important;
+  border-radius: 30px!important;
   margin-right: 9.5rem!important;
   outline:none!important;
-  padding:10px;
-  border-color: lightgray;
+  padding:20px;
+  border:none!important;
+  background:whitesmoke;
 }
 
 .navbar-search:focus{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   border-color: transparent!important
 }
 

@@ -1,18 +1,13 @@
 import React from 'react';
 import '../../assets/App.css';
 import EditProfile from './EditProfile'
-import {Image,Card, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge} from 'react-bootstrap'
+import {Image, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge} from 'react-bootstrap'
 import CreateASoc from '../Socs/CreateASoc'
-import {SiAboutDotMe} from 'react-icons/si'
-import { RiCake2Fill } from 'react-icons/ri'
-import { MdSchool } from 'react-icons/md'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {FaBook,FaRegGem,FaRegLightbulb,FaRegLemon,FaRegHeart,FaRegCommentAlt,FaRegCircle} from 'react-icons/fa'
-import moment from 'moment'
 import {VscDiffAdded} from 'react-icons/vsc'
-import {TiLocation} from 'react-icons/ti'
 import Avatar from '@material-ui/core/Avatar';
+import History from './ProfilePostHistory'
 
 export default class MyProfile extends React.Component {
 
@@ -143,7 +138,7 @@ export default class MyProfile extends React.Component {
                 <span className="text-muted">COMMUNTIES</span><br/>
                 {this.state.societies.map(society=>
                   <span className="community-members-item-profile">
-                      <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/>
+                      <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/><br/>
                   </span>)}
               </div>
         </div>
@@ -151,30 +146,8 @@ export default class MyProfile extends React.Component {
 
         <div className="containerFeedRightProfile">
           <div  className="top-posts-profile-container">
-            <h5  className="-feed-item-header">TOP POSTS</h5>
-            {this.state.posts.slice(0,10).reverse().map(post=>  (
-              <div key={this.state.user._id}>  
-               <Card className='userPosts'>
-                  <Card.Body>          
-                    <Card.Text className="fontPost">
-                    <a href={"/d/?id=" + post.Post_id}>
-                      <p>
-                        <span className="forum-title">{post.title}</span><br/>
-                        <span className="content-muted">{post.post.slice(0,100)}...</span><br/>
-                        {post.society == null ? (
-                            <span  className="content-muted">Posted in<b> General</b><br/></span>
-                        ) : (
-                          <span  className="content-muted"><b>{post.society}</b><br/></span>
-                        )}
-                        <small className="text-muted">{moment(post.time).format(" MMM Do 'YY.")}</small><hr/>
-                      </p>
-                    </a>
-                    </Card.Text>        
-                  </Card.Body>  
-                  <h1></h1>                
-                </Card>
-              </div>
-            ))} 
+            <h5  className="-feed-item-header" style={{marginLeft:35}}>TOP POSTS</h5>
+            <History/>
           </div>
 
           <div  className="top-posts-profile-container">
@@ -183,21 +156,21 @@ export default class MyProfile extends React.Component {
                 <div className="badge-item-1">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
                             <span className="d-inline-block">
-                            <span>🥇 <h2>{this.state.badges.length}</h2></span>
+                            <span role="img" aria-label="gold">🥇 <h2>{this.state.badges.length}</h2></span>
                           </span>
                   </OverlayTrigger>   
                 </div>
                 <div className="badge-item-2">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
                             <span className="d-inline-block">
-                            <span>🥈 <h2>{this.state.badges.length}</h2></span>
+                            <span role="img" aria-label="silver">🥈 <h2>{this.state.badges.length}</h2></span>
                           </span>
                   </OverlayTrigger>  
                 </div>
                 <div className="badge-item-3">
                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
                             <span className="d-inline-block">
-                            <span>🥉 <h2>{this.state.badges.length}</h2></span>
+                            <span role="img" aria-label="bronze">🥉 <h2>{this.state.badges.length}</h2></span>
                           </span>
                   </OverlayTrigger>  
                 </div>

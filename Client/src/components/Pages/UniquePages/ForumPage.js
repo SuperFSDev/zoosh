@@ -2,12 +2,10 @@ import React from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import FeedOptions from '../../Lists/FeedOptions'
-import {Badge, Modal} from 'react-bootstrap'
+import { Modal} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import CreateForumPost from '../../Common/CreateForumPost'
 import AskQuestion from '../../Common/AskQuestion'
-import Avatar from '@material-ui/core/Avatar';
 export default class ForumPage extends React.Component {
 
   constructor(props) {

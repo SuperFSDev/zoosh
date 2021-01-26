@@ -171,19 +171,13 @@ export default class UserProfile extends React.Component {
                           {/* <b className="user-member-profile">{this.state.user.score}</b> */}
                         </span> 
                         <span>
-                        </span>
-                        <span>
                           {isUnfollowing ? (
                             <button className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                           ) : (
                             <button  className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                           )}<br/>
                         </span>
-                        
-                        
-                          
-                        
-                        
+                        {/* <span style={{marginTop:25,marginLeft:70, fontWeight:400, color:'gray'}}>{this.state.followers.length} Followers</span> */}
                         </Navbar.Brand>
                   </Nav>
 

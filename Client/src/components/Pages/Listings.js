@@ -1,17 +1,11 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal, Image} from 'react-bootstrap'
-import Event from '../Common/StartEvent'
+import {Modal} from 'react-bootstrap'
 import {RiAddFill} from 'react-icons/ri'
-import moment from 'moment'
 import CreateTutorListing from '../Common/CreateTutorListing'
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
-import Clap from '../../images/clap.png'
 
 export default class Tutor extends React.Component {
 

@@ -7,6 +7,7 @@ import {FcCheckmark} from 'react-icons/fc'
 import {Dropdown} from 'react-bootstrap'
 import {FaShare} from 'react-icons/fa'
 import {AiOutlineLink} from 'react-icons/ai'
+
 export default class EventsPage extends React.Component {
 
   constructor(props) {
