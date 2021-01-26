@@ -97,7 +97,7 @@ export default class Feed extends React.Component {
           })
             .then((response) => {
               this.setState({
-                posts: this.state.discussions.concat(response.data.discussion),
+                posts: this.state.posts.concat(response.data.discussion),
                 isLoading: false,
               })
       
@@ -143,7 +143,8 @@ export default class Feed extends React.Component {
 
 
 render(){
-  const discussionList = this.state.posts.reverse().map(discussion => {
+  console.log(this.state.posts);
+  const discussionList = this.state.posts.sort((a, b) => b.time - a.time).map(discussion => {
     return(
 
         <div key={discussion._id}>
