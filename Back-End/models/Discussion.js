@@ -12,6 +12,7 @@ const DiscussionSchema = new Schema({
     society:String,
     claps:Number,
     comments:Array,
+    picture: String
 })
 
 

@@ -18,14 +18,17 @@ discussions.use(function (req, res, next) {
 
 discussions.post('/NewDiscussions', (req, res) => {
 
+    console.log(req.body);
+
     DiscussionModel.create({
         user: req.body.user,
         user_id: req.body.user_id,
         title: req.body.title,
         caption:req.body.caption,
-        content: req.body.content,
+        content: req.body.content,  
         time: req.body.time,
         society: req.body.society.value,
+        picture: req.body.picture
     });
 })
 

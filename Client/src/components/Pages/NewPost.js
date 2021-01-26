@@ -6,7 +6,9 @@ import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
-import { ObjectID } from 'bson';
+import ImageUploader from 'react-images-upload';
+
+const Compress = require('compress.js')
 
 export default class NewPost extends React.Component {
 
@@ -27,7 +29,7 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       society: '',
       tags: [],
-      pictures: [],
+      picture: '',
       FollowingID: ''
       
     };
@@ -39,6 +41,7 @@ export default class NewPost extends React.Component {
     this.onChangeTime = this.onChangeTime.bind(this);
     this.onChangeCaption = this.onChangeCaption.bind(this);
     this.onChangeSociety = this.onChangeSociety.bind(this);
+    this.onDropPicture = this.onDropPicture.bind(this);
   }
 
   componentDidMount() {
@@ -107,9 +110,32 @@ export default class NewPost extends React.Component {
     });
   }
 
+  async onDropPicture(pictureFiles, pictureDataURLs) {
 
+    alert("Picture dropped");
+
+    const compress = new Compress();
+
+    compress.compress(pictureFiles, {
+      size: 4, // the max size in MB, defaults to 2MB
+      quality: .90, // the quality of the image, max is 1,
+      maxWidth: 100, // the max width of the output image, defaults to 1920px
+      maxHeight: 100, // the max height of the output image, defaults to 1920px
+      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    }).then((data) => {
+      if(data[0])
+      {
+        var data = data[0];
+        var b64 = data.prefix + data.data;
   
-
+        this.setState({
+          //picture: this.state.picture.concat(b64)
+          picture: b64
+        });
+        console.log(this.state.picture);
+      }
+    })
+  }
 
   onSubmit(e) {
 
@@ -123,8 +149,8 @@ export default class NewPost extends React.Component {
         caption:this.state.caption,
         content: this.state.content,
         time: new Date().getTime(),
-        society: this.state.society
-      
+        society: this.state.society,
+        picture: this.state.picture
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
@@ -140,6 +166,7 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       category: '',
       society:'',
+      picture: '',
       tags: []
     });
     window.location = '/';
@@ -188,6 +215,15 @@ render(){
             value={this.state.content}
             onChange={this.onChangeContent}
             required
+            />
+
+          <ImageUploader
+                withIcon={true}
+                withPreview={true}
+                buttonText='Choose images'
+                onChange={this.onDropPicture}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
             />
             
           <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
