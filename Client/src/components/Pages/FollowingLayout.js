@@ -188,7 +188,7 @@ render(){
                       </div>
                     )}
                   
-                  <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
+                  <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
 
                   {this.state.isLoading ? ( 
                       <div>

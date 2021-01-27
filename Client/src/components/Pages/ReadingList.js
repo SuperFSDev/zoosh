@@ -106,29 +106,25 @@ render(){
 
 
         <div className="containerChartMiddle">
-      <h3>Reading List ({this.state.readingList.length})</h3>
-      {this.state.posts.slice(0,10).reverse().map(post=>  (
-              <div key={this.state.user._id}>  
-               <Card className='userPosts'>
-                  <Card.Body>          
-                    <Card.Text className="fontPost">
-                    <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
-                      <p>
-                        <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
-                        <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
-                        {post.society == null ? (
-                            <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
-                        ) : (
-                          <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
-                        )}
-                      </p><hr/>
-                    </a>
-                    </Card.Text>        
-                  </Card.Body>  
-                  <h1></h1>                
-                </Card>
-              </div>
-            ))} 
+          <div className="reading-list">
+            <h3>Reading List ({this.state.readingList.length})</h3><br/>
+            {this.state.posts.slice(0,10).reverse().map(post=>  (
+                    <div key={this.state.user._id}>  
+                          <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
+                            <p>
+                              <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
+                              <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
+                              {post.society == null ? (
+                                  <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
+                              ) : (
+                                <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
+                              )}
+                            </p><hr/>
+                          </a>
+                        <h1></h1>                
+                    </div>
+                  ))} 
+            </div>
        </div>
        </div>
     );

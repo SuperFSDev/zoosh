@@ -109,11 +109,8 @@ export default class DiscussionPost extends React.Component {
         _id:this.state.discussion_id,
         comment:{
         user_id: user._id,
-        user: user.fullname,
         comment: this.state.comment,
         time: new Date().getTime(),
-        user_img: user.pic,
-        user_score: user.score,
       }
       
    }
@@ -161,7 +158,7 @@ export default class DiscussionPost extends React.Component {
                 <button className="community-btn-a">Follow</button>
                 <div className="spacing"></div>
                 <p >
-                  <b>{this.state.discussion.society}</b>
+                  <a href={"/c/?id="+this.state.discussion.society}><b>{this.state.discussion.society}</b></a>
                   <br/>Description about this community
                 </p>
                 <button className="community-btn-a">Join Community</button>

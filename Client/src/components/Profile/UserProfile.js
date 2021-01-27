@@ -239,7 +239,7 @@ export default class UserProfile extends React.Component {
                           <li className="community-members-item-user-profile">
                             <p>
 
-                            <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
+                            <b><a href={"/c/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
 
                               
                             </p>

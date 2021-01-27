@@ -6,6 +6,10 @@ import {Helmet} from 'react-helmet'
 import {Modal} from 'react-bootstrap'
 import {RiAddFill} from 'react-icons/ri'
 import CreateListing from '../Common/CreateListing'
+import Skeleton from 'react-loading-skeleton';
+import Recommended from '../Lists/Recommended'
+import Contributors from '../Lists/Contributors'
+import SearchbarFilter from '../Common/SearchbarFilter'
 
 export default class Tutor extends React.Component {
 
@@ -71,7 +75,7 @@ render(){
     return(
     <div key={listing._id}>
         <a href={"/u/?id=" +listing.user_id}><div>
-          <div className="users-list-items">
+          <div className="events-card">
               {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
               <h5>{listing.user}</h5>
               <p><b>Subject:</b> {listing.subject}</p>
@@ -97,31 +101,66 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-      <div className="containerChartMiddle">
-          <div className="global-feed">
-          <h3>Listings</h3>
-          <br/>
-          <QuickEvent/>
-          {/* <div className="search-div-forum">
-            <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Subject " title="Type in a category" autofocus/><br/><br/>
-          </div> */}
-            
+        <div class="row">
+            <div className="column" style={{background:'white'}}>
+                <div style={{marginTop:100, marginLeft:330}}>
+                    <div className="options-container">
+                        <a href="/posts"><button className="community-btn">All</button></a>
+                        <a href="/following"><button className="community-btn">Following</button></a>
+                        <a href="/questions"><button className="community-btn">Questions</button></a>
+                        <a href="/events"><button className="community-btn">Events</button></a>
+                        <a href="/listings"><button className="community-btn-active">Listings</button></a>
+                    </div>
 
-          </div>
+                  
+                  <h3 className="-feed-item-header" style={{marginTop:50}}>Listing</h3>
+                  <br/>
+                  <QuickEvent/>
 
-          <div className="post-option-listings">
-            <div className="options-container-listings">
-                      <button className="community-btn" >Find a Tutor</button>
-                      <button className="community-btn">Collaboration</button>
-                      <button className="community-btn">Seeking Mentorship</button>
-                      <button className="community-btn">Offering Mentorship</button>
-            </div>        
-          </div>
+                  <div className="search-div-forum">
+                    <input className="searchbar-nav-forum" type="text" id="mySearch"  placeholder="Search for a Subject " title="Type in a category" autofocus/><br/><br/>
+                  </div>
 
-          <div className="UsersLayout">
-            {listingsList}
-          </div>
-      </div>
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
+          
+                      </div>
+
+                    ) : (
+                      <div className="ListingLayout">
+                        {listingsList}
+                      </div>
+                    )}
+                    
+                </div>
+            </div>
+
+            <div className="column2" style={{background:'white'}}>
+                <div  style={{marginTop:100, width:430, marginLeft:10}}>
+                <SearchbarFilter/>
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <div className="spacing"></div>
+                        <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Recommended/>
+                    )}
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Contributors/> 
+                    )}
+                </div>
+            </div>
+        </div>
   </div>
   );
 }

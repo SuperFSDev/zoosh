@@ -10,6 +10,9 @@ import moment from 'moment'
 import background from "../../images/friends.jpg";
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../images/clap.png'
+import Recommended from '../Lists/Recommended'
+import Contributors from '../Lists/Contributors'
+import SearchbarFilter from '../Common/SearchbarFilter'
 
 export default class Events extends React.Component {
 
@@ -118,36 +121,66 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-      <div className="containerChartMiddle">
-          <div className="global-feed">
-            <h3>Upcoming Events</h3>
+        <div class="row">
+            <div className="column" style={{background:'white'}}>
+                <div style={{marginTop:100, marginLeft:330}}>
+                    <div className="options-container">
+                        <a href="/posts"><button className="community-btn">All</button></a>
+                        <a href="/following"><button className="community-btn">Following</button></a>
+                        <a href="/questions"><button className="community-btn">Questions</button></a>
+                        <a href="/events"><button className="community-btn-active">Events</button></a>
+                        <a href="/listings"><button className="community-btn">Listings</button></a>
+                    </div>
 
-            <div className="search-div-forum">
-              <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)}  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
-            </div>
-              <QuickEvent/>
-          </div><br/>
+                  
+                  <h3 className="-feed-item-header" style={{marginTop:50}}>Upcoming Events</h3>
+                  <br/>
+                  <QuickEvent/>
 
-          <div className="EventSocietyLayout">
+                  <div className="search-div-forum">
+                    <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)}  placeholder="Search for an Event " title="Type in a category" autofocus/><br/><br/>
+                  </div>
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
           
-          {this.state.isLoading ? ( 
-                <div className="SocietyLayout">
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>  
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-                  <Skeleton height={300} width={250} duration={1} className="skeleton-comms"/>
-              </div>
+                      </div>
 
-              ) : (
-                  eventList
-              )}
+                    ) : (
+                      <div className="ListingLayout">
+                        {eventList}
+                      </div>
+                    )}
+                    
+                </div>
+            </div>
 
-          </div>
-      </div>
+            <div className="column2" style={{background:'white'}}>
+                <div  style={{marginTop:100, width:430, marginLeft:10}}>
+                <SearchbarFilter/>
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <div className="spacing"></div>
+                        <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Recommended/>
+                    )}
+
+                  {this.state.isLoading ? ( 
+                      <div>
+                        <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
+                      </div>
+
+                    ) : (
+                      <Contributors/> 
+                    )}
+                </div>
+            </div>
+        </div>
   </div>
   );
 }

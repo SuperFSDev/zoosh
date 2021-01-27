@@ -93,8 +93,9 @@ export default class AllPosts extends React.Component {
 render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
+  var size = 5;
 
-  const discussionList = discussions.reverse().slice(0,3).map(discussion => {
+  const discussionList = discussions.reverse().slice(0,size).map(discussion => {
     return(
 
         <div key={discussion._id}>
@@ -152,10 +153,11 @@ render(){
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
             </div>
+            
 
             {this.state.isLoading ? ( 
                 <div><br/>
-                  <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
+                  <h3 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h3>
                   <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
                 </div>
 
@@ -165,7 +167,7 @@ render(){
                 </div>
               )}
             
-            <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
+            <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
 
             {this.state.isLoading ? ( 
                 <div>
