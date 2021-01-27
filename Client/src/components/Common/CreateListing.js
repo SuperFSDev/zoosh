@@ -3,15 +3,17 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 
-export default class CreateTutorListing extends React.Component {
+export default class CreateListing extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      _id: '',
       user: '',
       description: '',
       subject: '',
       rate: 0,
+      time: new Date().getTime(),
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,6 +26,8 @@ export default class CreateTutorListing extends React.Component {
   componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
+    this.setState({ id: user._id });
+
     if (user)
       var fullname = user.fullname;
       this.state.user = fullname;
@@ -53,20 +57,24 @@ export default class CreateTutorListing extends React.Component {
 
     e.preventDefault();
 
-    const newTutor = {
+    const newListing = {
+      user: this.state.user,
+      user_id: this.state.id,
       subject: this.state.subject,
       description: this.state.description,
       rate: this.state.rate,
     }
 
-    axios.post('http://localhost:4000/tutors/newTutor', newTutor)
+    axios.post('http://localhost:4000/listings/NewListing', newListing)
       .then()
       .catch();
 
     this.setState({
+      user:'',
       subject: '',
       description: '',
       rate: 0,
+      time: new Date().getTime(),
     });
     window.location = '/listings';
   }

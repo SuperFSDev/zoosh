@@ -63,9 +63,9 @@ app.use('/questions', Questions);
 var Podcasts = require('./routes/Podcasts');
 app.use('/podcasts', Podcasts);
 
-// Adds the "Tutors" route to the server.
-var Tutors = require('./routes/Tutors');
-app.use('/tutors', Tutors);
+// Adds the "Listings" route to the server.
+var Listings = require('./routes/Listing');
+app.use('/listings', Listings);
 
 
 
