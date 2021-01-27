@@ -110,7 +110,7 @@ render(){
                 {discussion.picture == null ? (
                   <div></div>
                 ) : (
-                  <Image className="post-image" src={discussion.picture} width={150} height={125}/>
+                  <Image className="post-image" src={discussion.picture} width={200} height={125}/>
                 )}
                 <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>

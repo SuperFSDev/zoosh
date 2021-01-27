@@ -292,7 +292,7 @@ export default class CommunityPage extends React.Component {
                               <div className="events-card-community">
                                   <h4><b>{event.title}</b></h4> 
                                   <p>{event.society}</p> 
-                                  <p>{event.time}</p>
+                                  <p>{moment(event.time).calendar()}</p>
                                   <div >
                                   </div>
                               </div>

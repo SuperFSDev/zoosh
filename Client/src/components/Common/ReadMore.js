@@ -31,7 +31,7 @@ export default class DiscussionPost extends React.Component {
     render() {
       var { discussions } = this.state;
       var user = JSON.parse(localStorage.getItem('user'));
-      var size = 3;
+      var size = 1;
 
       const readMore = discussions.slice(0,size).map(discussion => {
         return(

@@ -97,7 +97,7 @@ render(){
   var{users} = this.state;
   var { discussions } = this.state;
   let i = 0;
-  var size=3;
+  var size=5;
   var postSize = 2;
   var indents = [];
 
@@ -147,7 +147,7 @@ render(){
                       ))}  
                       <p className="searchbar-header">COMMUNITIES</p>
                       <p className="searchbar-header">USERS</p>
-                      {shuffledUsers.slice(0,3).sort((a,b)=> b.score- a.score).map(user  =>  ( 
+                      {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                       <a  href={"/u/?id="+user._id} style={{color:'black', textDecoration:'none'}}><div key={i} className="contributor-item-search">
                             <p className="-contributor-user-search"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname} <b  className="-contributor-user-score">{ user.score}</b></p>
                         </div></a>
