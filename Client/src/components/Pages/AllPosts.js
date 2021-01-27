@@ -67,18 +67,28 @@ export default class AllPosts extends React.Component {
         console.log(error);
       });
   }
-
-  addtoSaved = (discussion) =>{
-    // this.setState({ 
-    //   isSaved: true,
-      addToReadingList(discussion);
-    // })
-  }
-
   removeSaved = () =>{
     this.setState({ 
       isSaved: false,
     })
+  }
+
+ addToReadingList(discussion,user_id) {
+  
+    const addDiscussion = {
+        user_id:user_id,
+        discussion: discussion._id,
+    }
+  alert(JSON.stringify(discussion));
+  alert(user_id)
+    // Adds society to societies array in user model.
+    axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
+        .then(function (resp) {
+            console.log(resp);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
   }
 
 
@@ -121,11 +131,11 @@ render(){
                   <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
                   {!this.state.isSaved ? (
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>this.addToReadingList(discussion,user._id)}><BsBookmark size={22} /></button></span>
                   </OverlayTrigger> 
                   ) : (
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved(discussion)}><BsBookmarkFill size={22} /></button></span>
                   </OverlayTrigger>
                   )}
                 </small>
@@ -209,18 +219,3 @@ render(){
 }
 
  // Adding a User to a society array and adding the society to the users array
- async function addToReadingList(discussion) {
-  
-  const addDiscussion = {
-      discussion: discussion._id,
-  }
-
-  // Adds society to societies array in user model.
-  await axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
-      .then(function (resp) {
-          console.log(resp);
-      })
-      .catch(function (error) {
-          console.log(error);
-      })
-}
