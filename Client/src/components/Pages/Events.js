@@ -8,8 +8,6 @@ import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
 import background from "../../images/friends.jpg";
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendarFill,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../images/clap.png'
 

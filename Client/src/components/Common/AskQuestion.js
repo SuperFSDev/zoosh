@@ -3,157 +3,126 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import {Form} from 'react-bootstrap';
 import { ObjectID } from 'bson';
+import Select from 'react-select';
 
 class AskQuestion extends React.Component {
+
+  
   constructor(props) {
     super(props);
     this.state = {
       _id: '',
-      score:10,
       users: [],
-      questions: [],
+      societies: [],
+      posts: [],
+      question: '',
       user: '',
-      UniqueUser:'',
-      post: '',
+      claps: 0,
+      UniqueUser: '',
       time: new Date().getTime(),
-      category: '',
-      tags:[],
-      FollowingID:''
+      society: '',
+      FollowingID: ''
       
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeUser= this.onChangeUser.bind(this);
-    this.onChangePost = this.onChangePost.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
+    this.onChangeQuestion = this.onChangeQuestion.bind(this);
     this.onChangeTime = this.onChangeTime.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeTag = this.onChangeTag.bind(this);
+    this.onChangeSociety = this.onChangeSociety.bind(this);
   }
-  
-  async componentDidMount() {
+
+  componentDidMount() {
+
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    // axios.get('http://localhost:4000/users/getUsers')
-    // .then((response)=>{
-    //     this.setState({users: response.data.users})
-    // })
-    // .catch((error)=>{
-    //     console.log(error);
-    // });
+    if (user)
+    var fullname = user.fullname;
+    this.state.user = fullname;
 
+    // Get all users from database.
+    axios.get('http://localhost:4000/users/getUsers')
+      .then((response) => {
+        this.setState({ users: response.data.users })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    
-
-
-    
-    await axios.get('http://localhost:4000/users/get-user-details', {
+    // Get the societies the current user is in from the database.
+    axios.get('http://localhost:4000/users/getUserSocieties', {
       params: {
         id: user._id
       }
     })
       .then((response) => {
-        this.setState({ UniqueUser: response.data.user,
-          FollowingID: response.data.user.following, });
+        this.setState({ societies: response.data.societies })
       })
       .catch((error) => {
         console.log(error);
       });
-
-
-      for (var i = 0; i < this.state.FollowingID.length; i++) {
-        this.GetFollowedUser(this.state.FollowingID[i])
-      } 
   }
 
+  onChangeQuestion(e) {
+    this.setState({
+      question: e.target.value
+    });
+  }
 
-
-  async GetFollowedUser(FollowingID){
-    await axios.get('http://localhost:4000/users/get-user-details', {
-      params: {
-        id:FollowingID
-      }
-    })
-      .then((response) => {
-        this.setState({
-          users: this.state.users.concat(response.data.user)
-        })
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  onChangeSociety(e) {
+    this.setState({ society: e });
   }
 
   onChangeUser(e) {
     this.setState({
-        user: e.target.value
+      user: e.target.value
     });
   }
 
-  onChangePost(e) {
-      this.setState({
-          post: e.target.value
-      });
-  }
-
   onChangeTime(e) {
-      this.setState({
-        time: new Date().getTime(),
-      });
-  }
-
-  onChangeCategory(e) {
-    this.setState({ category: e.target.value });
-  }
-
-  onChangeTag(e) {
-    this.setState({tags:e})
+    this.setState({
+      time: new Date().getTime(),
+    });
   }
 
 
   onSubmit(e) {
 
     e.preventDefault();
-    var id  = new ObjectID();
-    const newPost = {
-      user_id: this.state.id,
-      score:this.state.UniqueUser.score+1,
-      post:{ 
-        Post_id: id,
+ 
+
+    const newQuestion = {
         user: this.state.user,
-        user_id:this.state.id,
-        post: this.state.post,
+        user_id: this.state.id,
+        question: this.state.question,
         time: new Date().getTime(),
-        category: this.state.category,
-        tags:this.state.tags
-      }
-  }
+        society: this.state.society,
+    }
 
-
-
-
- axios.post('http://localhost:4000/users/addQuestion', newPost)
-    .then()
-        .catch();
-        
+    axios.post('http://localhost:4000/questions/NewQuestion', newQuestion)
+      .then()
+      .catch();
+    
     this.setState({
       user: '',
-      score:+1,
-      post: '',
+      question: '',
       time: new Date().getTime(),
-      category: '',
-      tags:[]
+      society:'',
     });
-    alert(JSON.stringify(newPost));
-    window.location = '/forums';
-    }
+    window.location = '/questions';
+  }
+
 
   render(){
     var user = JSON.parse(localStorage.getItem('user'));
     if(user)
       var fullname = user.fullname;
     this.state.user = fullname;
+
+    let options = this.state.societies.map(function (society) {
+      return { value: society, label: society };
+    })
   
 
   return ( 
@@ -173,12 +142,14 @@ class AskQuestion extends React.Component {
           multiline
           variant="outlined"
           margin="normal"
-          value={this.state.post}
-          onChange={this.onChangePost}
+          value={this.state.question}
+          onChange={this.onChangeQuestion}
           InputLabelProps={{
             shrink: true,
           }}
           />
+
+        <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
 
           <button className="standard-button"  variant="primary" type="submit">Post Question</button>
         </Form>

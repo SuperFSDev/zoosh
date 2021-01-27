@@ -939,41 +939,30 @@
 }
 
 .menu{
-  width:303px!important;
+  width:405px!important;
   height:400px;
   padding:10px;
   margin-top:5rem;
-  margin-left: 78.2rem;
+  margin-left: 72.2rem;
   background-color: white;
   border:1px solid black;
   position: fixed;
   z-index: 1000;
   border-radius: 5px;
-
+  overflow:hidden; 
+  overflow-y:scroll;
   top: 0;
   box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
 }
 
-.forum{
-  width:303px!important;
-  height:400px;
-  padding:10px;
-  margin-top:5rem;
-  margin-left: 75rem;
-  background-color: white;
-  border:1px solid black;
-  position: fixed;
-  z-index: 1000;
-  border-radius: 5px;
-  top: 0;
-  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+.header-image{
+  color:black;
+  box-shadow: none;
 }
-
 .Title-input{
   border:none!important;
   width:1000px;
   font-size: 40px;
-  color:lightgray;
   outline:none!important;
 }
 
@@ -985,7 +974,7 @@
 .Content-input{
   border:none!important;
   width:1000px;
-  height:500px;
+  height:100px;
   font-size: 20px;
   outline:none!important;
 }
@@ -999,7 +988,7 @@
 }
 .searchFilter{
   width:405px!important;
-  height:auto;
+  height:600px;
   padding:10px;
   margin-top:0.5rem;
   background-color: white;
@@ -1008,14 +997,16 @@
   position: fixed!important;
   z-index: 1001!important;
   box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+  overflow:hidden; 
+  overflow-y:scroll;
 }
 
 .profileDropdwn{
-  width:200px!important;
+  width:250px!important;
   height:auto;
   padding:10px;
   margin-top:4.8rem;
-  margin-left: 85rem;
+  margin-left: 81.75rem;
   background-color: white;
   border-radius: 5px;
   border:1px solid rgb(71, 69, 69);
@@ -1116,7 +1107,7 @@ li{
 
 .notify, .square{
   color:gray!important;
-  margin-right: 15px;
+  margin-right: 35px;
   font-size: 12px;
   font-weight: 500;
   text-decoration: none!important;
@@ -1473,7 +1464,7 @@ section::after {
 
 .miniprofile {
   width: auto;
-  height: 80px;
+  height: 70px;
   position: relative; /* all other elements styled relative to this section's position */
   font-family: Arial;
 }
@@ -1481,13 +1472,14 @@ section::after {
 
 .miniprofileCommunity {
   width: auto;
-  height: 120px;
+  height: 80px;
   position: relative; /* all other elements styled relative to this section's position */
   font-family: Arial;
 }
 
-.miniprofile:hover{
-  background:whitesmoke;
+.miniprofile:hover, .miniprofileCommunity:hover{
+  background:white;
+  border-radius: 15px;
 }
 
 .headshot {
@@ -1567,34 +1559,6 @@ section::after {
   border:1px solid lightgray;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 15px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
-
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(190, 190, 190); 
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-
 }
 
 .join-comm-button{
@@ -1901,6 +1865,9 @@ section::after {
 .contributors-container{
   margin-top:50px;
   width:400px;
+  background-color:rgb(248, 248, 248);
+  padding:10px;
+  border-radius: 15px;
   /* background-color:rgb(248, 248, 248); */
 }
 
@@ -1912,7 +1879,7 @@ section::after {
 
 .post-image{
   float:right;
-  margin-right: 8rem;
+  margin-right: 6rem;
 }
 
 .feed-options-container{
@@ -2163,9 +2130,10 @@ section::after {
 
 .recommended-container{
   border: none;
-  /* background-color:rgb(248, 248, 248); */
+  background-color:rgb(248, 248, 248);
   width:400px;
-  height:200px!important;
+  padding:10px;
+  height:250px!important;
   border-radius: 15px;
   margin-top: 2.5rem;
 }
@@ -2188,6 +2156,7 @@ section::after {
   padding:20px;
   text-decoration: none!important;
   border-bottom:1px solid whitesmoke;
+
 }
 
 .miniprofile-post-redirect{
@@ -2641,10 +2610,12 @@ padding-left: 4rem;
 }
 
 .user-admin{
-  background:#e98c00!important;
-  color:white!important;
+  background:#8ed1fc!important;
+  border:1px solid #1273de ;
+  color:#1273de!important;
   font-size:10px;
-  font-weight: 300;
+  border-radius: 5px;
+  font-weight: 500;
   padding:5px;
 }
 
@@ -2674,17 +2645,17 @@ padding-left: 4rem;
 
 .navbar-search{
   width:400px;
-  height:50px;
+  height:55px;
   margin:auto;
-  border-radius: 25px!important;
+  border-radius: 30px!important;
   margin-right: 9.5rem!important;
   outline:none!important;
-  padding:10px;
-  border-color: lightgray;
+  padding:20px;
+  border:none!important;
+  background:whitesmoke;
 }
 
 .navbar-search:focus{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   border-color: transparent!important
 }
 
@@ -2986,6 +2957,7 @@ padding-left: 4rem;
   margin-top: 20px;
   margin-right: 10px;
   border-radius: 10px;
+
 }
 .community-members-item-user-profile{
   width:auto;

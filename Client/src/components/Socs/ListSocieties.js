@@ -7,10 +7,7 @@ import {Modal ,OverlayTrigger, Tooltip, Image} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
 import background from "../../images/group.jpg";
-import {BsHeart,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsFillDiamondFill,BsHouse} from 'react-icons/bs'
-import Avatar from '@material-ui/core/Avatar';
 import Skeleton from 'react-loading-skeleton';
-import Clap from '../../images/clap.png'
 
 export default class ListSocieties extends React.Component {
 

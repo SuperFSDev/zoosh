@@ -16,18 +16,18 @@ import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
 import ReadMore from '../../Common/ReadMore'
-export default class DiscussionPost extends React.Component {
+
+export default class QuestionPage extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      discussion: '',
-      discussions: [],
+      question: '',
+      questions: [],
       discussion_id:'',
       comments:[],
       societies: [],
       isLoading:true,
-      hearts: 0,
       isSaved: false,
       comment:''
     };
@@ -40,15 +40,15 @@ export default class DiscussionPost extends React.Component {
       // document.body.style.backgroundColor = "#FDFEFE";
 
 
-      axios.get('http://localhost:4000/discussions/get-discussion-page', {
+      axios.get('http://localhost:4000/questions/get-question-page', {
         params: {
-          id: this.state.discussion_id,
+          id: this.state.question_id,
 
         }
       })
         .then((response) => {
           this.setState({ 
-            discussion: response.data.discussion,
+            question: response.data.question,
             comments:response.data.discussion.comments,
             isLoading:false, })
         })
@@ -64,16 +64,6 @@ export default class DiscussionPost extends React.Component {
           console.log(error);
       });
       
-      axios.get('http://localhost:4000/discussions/getDiscussions')
-      .then((response) => {
-        this.setState({ 
-          discussions: response.data.discussions,
-          users:response.data.discussions,
-          isLoading: false, })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     }
 
     addLikes = () =>{
@@ -125,7 +115,7 @@ export default class DiscussionPost extends React.Component {
     }
 
     render() {
-      var { discussions } = this.state;
+      var { questions } = this.state;
       var user = JSON.parse(localStorage.getItem('user'));
       console.log(this.state.comments);
 
@@ -148,33 +138,22 @@ export default class DiscussionPost extends React.Component {
           <div className="containerPostLeft">
 
             <div className="discussion-div-sticky">
-              <span>{this.state.discussion.pic}</span>
                 <p>
                   <small>Written By</small><br/>
                   <span>
-                    <Avatar src={this.state.discussion.user_img}/>
-                    <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>{this.state.discussion.user}</a> 
-                    <span className="user-score-post-tag">{this.state.discussion.user_score}</span>
+                    <a href={"/u/?id="+this.state.question.user_id} style={{textDecoration:'none', color:'black'}}>{this.state.question.user}</a> 
                   </span>
                   
                 </p>
                 <button className="community-btn-a">Follow</button>
                 <div className="spacing"></div>
                 <p >
-                  <b>{this.state.discussion.society}</b>
+                  <b>{this.state.question.society}</b>
                   <br/>Description about this community
                 </p>
                 <button className="community-btn-a">Join Community</button>
                 <br/><hr/>
-                {this.state.hearts > 0 ? ( 
-                      <span><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clapping} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                    // <span className="voting-btn"><button className="standard-option-btn-post-hearts-liked" onClick={this.addLikes}><BsHeartFill size={22} /> {this.state.hearts} Hearts</button></span>
-                    ) : ( 
-                      <span><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                    // <span className="voting-btn"><button className="standard-option-btn-post-hearts" onClick={this.addLikes}><BsHeart size={22} /> {this.state.hearts} Hearts</button></span>
-                    )} 
+         
                 <br/>
                 <a href="#responses"><span><button className="standard-option-btn-post" ><BsChat size={20} className="feed-comment" /> {this.state.comments.length} responses</button></span></a>
                 <br/>
@@ -186,58 +165,10 @@ export default class DiscussionPost extends React.Component {
           </div>
           <div className="containerPostMiddle">
             <div className="forum-container">
-              {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
               <p className="post-header">
-                {this.state.discussion.title}<br/>
-                <p style={{fontSize:14, color:'gray'}}>
-                  <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>
-                  <b style={{color:'gray'}}>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
-                  </a>
-                </p>
-
-                <Image src={this.state.discussion.picture} className="thumbnail"/>
+                {this.state.question.question}<br/>
               </p>
-              
-                {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Written by</Tooltip>}>
-                  <span className="d-inline-block">
-                  </span>
-                </OverlayTrigger> */}
-            
-              <p className="post-content">{this.state.discussion.content}</p>
-
-                {/* Discussion Post interaction options */}
-                <div className="spacing"></div>
-                
-                {this.state.hearts > 0 ? ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clapping} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                  // <span className="voting-btn"><button className="standard-option-btn-post-hearts-liked" onClick={this.addLikes}><BsHeartFill size={22} /> {this.state.hearts} Hearts</button></span>
-                  ) : ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                  // <span className="voting-btn"><button className="standard-option-btn-post-hearts" onClick={this.addLikes}><BsHeart size={22} /> {this.state.hearts} Hearts</button></span>
-                  )} 
-
-                <span className="d-inline-block">
-                
-                  {!this.state.isSaved ? (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToSaved}><BsBookmark size={22} /></button></span>
-                  </OverlayTrigger> 
-                  ) : (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
-                  </OverlayTrigger>
-                  )}
-
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Community Guidelines</Tooltip>}>
-                    <span><button className="standard-option-btn-post" ><RiShieldStarLine size={20}/></button></span>
-                  </OverlayTrigger>
-                  <span><button className="standard-option-btn-post" >Report</button></span>
-                  
-                  
-                </span>
-                <hr/>
+              <hr/>
 
           <div className="comment-container" id="responses">
           

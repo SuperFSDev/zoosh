@@ -71,7 +71,7 @@ class Contributors extends React.Component {
                 </div>
               )}
             
-            <a href="/users"  className="explore-more">See More</a><br/><br/>
+            <a href="/users"  className="explore-more">Find Friends</a><br/><br/>
         </div>
   );
   }

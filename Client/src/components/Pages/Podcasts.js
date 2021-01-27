@@ -4,12 +4,11 @@ import 'react-calendar/dist/Calendar.css';
 import {Helmet} from 'react-helmet'
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
-import {Modal,Image} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 import Podcast from '../Common/CreatePodcast'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
-import {pod} from '../../images/podcasts.jpg'
-import {BsMicFill,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
+import {BsPeople,BsCalendar,BsBarChart,BsCardText,BsHouse} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 
 export default class Podcasts extends React.Component {
@@ -194,7 +193,6 @@ render(){
       <div className="containerFeedMiddle">
           <div className="global-feed">
           <h3>Podcasts</h3>
-          <Image src={pod} />
           <QuickEvent/>
             
         </div>

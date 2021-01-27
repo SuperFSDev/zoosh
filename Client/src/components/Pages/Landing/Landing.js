@@ -1,12 +1,10 @@
 import React from 'react';
 import '../../../assets/Landing.css';
-import {Navbar, Nav, Image, Form, Tooltip, OverlayTrigger, Badge} from 'react-bootstrap'
+import {Navbar, Nav, Image} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import Space from '../../../images/space.png'
-import {FcApproval,FcCollaboration,FcAdvertising} from 'react-icons/fc'
 import axios from 'axios';
 import {FaUserFriends} from 'react-icons/fa'
-import {BsLightning,BsHeart,BsGem,BsChatQuote,BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 import moment from 'moment'
 
 export default class Landing extends React.Component {
@@ -108,7 +106,7 @@ render(){
 
             <Navbar.Collapse className="justify-content-end">
                     <Nav.Link className="landing-link" href="/login">Sign in</Nav.Link> 
-                    <Nav.Link className="landing-link" href="/join"><button className="standard-button">Get Started</button></Nav.Link>        
+                    <Nav.Link className="landing-link" href="/join"><button className="standard-button">Create Account</button></Nav.Link>        
             </Navbar.Collapse>
         </Navbar>
 
@@ -159,7 +157,9 @@ render(){
                     <p>
                         <small>{discussion.user} <b className="user-score-post-tag">1,231</b> <span className="landing-name">posted in</span><b style={{color:'green'}}> {discussion.society}</b></small>
                         <br/>
-                        <b className="landing-post-title">{discussion.title}</b><br/><small className="muted-landing" >({moment(discussion.time).startOf('seconds').fromNow()})</small>
+                        <b className="landing-post-title">{discussion.title}</b><br/>
+                        <Image src={discussion.picture}/>
+                        <small className="muted-landing" >({moment(discussion.time).startOf('seconds').fromNow()})</small>
                     </p>
                 </div></a>
               <hr/></div><br/> 

@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const tutors = express.Router();
+const listings = express.Router();
 const app = express();
 
 //import model
-const TutorModel = require('../models/Tutor');
+const ListingModel = require('../models/Listing');
 
 //Use headers to give browser access to resources
-tutors.use(cors());
-tutors.use(function (req, res, next) {
+listings.use(cors());
+listings.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers",
@@ -16,23 +16,28 @@ tutors.use(function (req, res, next) {
     next();
 });
 
-tutors.post('/newTutor', (req, res) => {
+listings.post('/NewListing', (req, res) => {
 
-    TutorModel.create({
+    console.log(req.body);
+
+    ListingModel.create({
         user: req.body.user,
+        user_id: req.body.user_id,
         subject: req.body.subject,
+        description: req.body.description,
         rate: req.body.rate,
-        description: req.body.description
+        time: req.body.time,
     });
 })
 
-tutors.get('/getTutors', (req, res) => {
+listings.get('/getListings', (req, res) => {
 
-    TutorModel.find((error, data) => {
+    ListingModel.find((error, data) => {
         res.json({
-            tutors: data
+            listings: data
         });
     })
 })
 
-module.exports = tutors;
+
+module.exports = listings;

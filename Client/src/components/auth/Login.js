@@ -4,7 +4,6 @@ import { Nav, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
-import RegisterModal from './RegisterModal'
 import {Helmet} from 'react-helmet'
 
 /*const [login, setLogin] = useState(false);

@@ -7,12 +7,10 @@ import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning,BsSearch,BsCalendar} from 'react-icons/bs'
-import InputBase from '@material-ui/core/InputBase';
+import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning} from 'react-icons/bs'
 import Clap from '../images/clap.png'
-import {BiPlanet} from 'react-icons/bi'
 import {RiShieldStarLine} from 'react-icons/ri'
-
+import {MdSchool} from 'react-icons/md'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -192,9 +190,9 @@ render(){
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">             
                 {/* <span className="square" ><BsSearch size={20}/></span> */}
-                <span style={{marginRight:10, cursor:'pointer'}}><Image src={Clap} size={20} onClick={this.showContributions}/> {this.state.user.score}</span>
-                <span className="notify" onClick={this.showForum}><BsLightning size={20}/></span>
-                <span className="notify" onClick={this.showMenu}><BsBell size={20} /></span>
+                <span className="notify" style={{marginRight:30, cursor:'pointer'}}><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
+                <span className="notify" onClick={this.showForum}><BsLightning size={25}/>FORUMS</span>
+                <span className="notify" onClick={this.showMenu}><BsBell size={25} />ME</span>
             </div>      
             <a href="/new"className="notify"><button className="write-button">Write</button></a>
      
@@ -230,7 +228,7 @@ render(){
               {
                 this.state.showForum
                   ? (
-                    <div className="forum"
+                    <div className="menu"
                       ref={(element) => {
                         this.dropdownMenu4 = element;
                       }}
@@ -251,7 +249,7 @@ render(){
               {
                 this.state.showContributions
                   ? (
-                    <div className="forum"
+                    <div className="menu"
                       ref={(element) => {
                         this.dropdownMenu5 = element;
                       }}
@@ -281,7 +279,8 @@ render(){
                       <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a>
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community</p></a>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
                       <InviteFriend/>
                       <hr/>

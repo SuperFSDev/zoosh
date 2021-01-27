@@ -1,15 +1,10 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image, Badge} from 'react-bootstrap'
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChartFill,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
-// import { Badge } from "@chakra-ui/react"
-import Clapping from '../../images/clap-hands.png'
 
 export default class Two extends React.Component {
 

@@ -9,6 +9,7 @@ const port = 4000;
 // Access cluster through link
 const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.set("useCreateIndex", true);
 
 //Use headers to give browser access to resources
 app.use(cors());
@@ -46,10 +47,6 @@ app.use('/discussions', Discussions)
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);
 
-// Adds the "Links" route to the server.
-var Links = require('./routes/Links');
-app.use('/links', Links);
-
 // Adds the "Forums" route to the server.
 var Forums = require('./routes/Forums');
 app.use('/forums', Forums);
@@ -58,13 +55,17 @@ app.use('/forums', Forums);
 var Events = require('./routes/Events');
 app.use('/events', Events);
 
+// Adds the "Questions" route to the server.
+var Questions = require('./routes/Questions');
+app.use('/questions', Questions);
+
 // Adds the "Podcasts" route to the server.
 var Podcasts = require('./routes/Podcasts');
 app.use('/podcasts', Podcasts);
 
-// Adds the "Tutors" route to the server.
-var Tutors = require('./routes/Tutors');
-app.use('/tutors', Tutors);
+// Adds the "Listings" route to the server.
+var Listings = require('./routes/Listing');
+app.use('/listings', Listings);
 
 
 

@@ -2,12 +2,8 @@ import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-// import AddUserToForum from '../Profile/AddUserToForum'
 import { Helmet } from 'react-helmet'
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDotsFill,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
 import Clap from '../../images/clap.png'
-import {Image} from 'react-bootstrap'
 
 export default class Forum extends React.Component {
 
@@ -136,29 +132,19 @@ render(){
         </Helmet> 
 
       <div className="containerMiddleForum">
-        <div className="global-forum">
-        <div className="spacing"></div>
-        <h3>All Forums</h3>
-        <div className="search-div-forum">
+        <div className="global-forum" style={{marginTop:100}}>
+        <h5>All Forums</h5>
+        <div className="search-div-forum" style={{marginBottom:50}}>
           <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
         </div>
-      </div>
 
-        <div className="global-forum">
-          <div className="featured-forums">
-              <h5>Give Feedback</h5>
-              <div className="forum-option">
-                <li>Feature Requests</li><br/>
-              </div>
-          </div>
-
-        <h5>Featured Forums</h5>
-          <div className="ForumLayout">
-            {forums}
-          </div>
+          <h5>Featured Forums</h5>
+            <div className="ForumLayout">
+              {forums}
+            </div>
         </div>
       </div>
-  </div>
+    </div>
   );
   }
  }

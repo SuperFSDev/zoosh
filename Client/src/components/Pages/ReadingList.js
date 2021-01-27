@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image, Badge} from 'react-bootstrap'
+import { Badge} from 'react-bootstrap'
 
 export default class ReadingList extends React.Component {
 
@@ -28,7 +27,8 @@ export default class ReadingList extends React.Component {
       .then((response)=>{
           this.setState({
             users: response.data.users,
-            isLoading: false})
+            isLoading: false,
+          })
       })
       .catch((error)=>{
           console.log(error);
@@ -83,7 +83,7 @@ render(){
               <div className="spacing"></div>
 
               <div className="reading-list">
-                  <a href=""><h4>Title of Post</h4></a>
+                  <a href=""><h4>Title</h4></a>
                   <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>
                   <button >Remove</button>
                   <hr/>

@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Card, OverlayTrigger,Tooltip,Modal, Form} from 'react-bootstrap'
-import ProfilePic from '../../../images/blogging.jpg'
+import {Image, OverlayTrigger,Tooltip,Modal, Form} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
@@ -10,12 +9,10 @@ import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
 import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
-import {FaFacebook,FaTwitter,FaInstagram,FaLink,FaRegImage,FaRegCommentAlt} from 'react-icons/fa';
-import {BsMic,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsChat,BsHouseFill} from 'react-icons/bs';
+import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa';
+import {BsChat} from 'react-icons/bs';
 import Avatar from '@material-ui/core/Avatar';
 import {Navbar, Nav} from 'react-bootstrap'
-import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll} from 'react-icons/bs'
-import PrivateView from './Visibility/PrivateView'
 import cogoToast from 'cogo-toast'
 import Test from '../../../images/friends.jpg'
 
@@ -31,6 +28,7 @@ export default class CommunityPage extends React.Component {
       UserList:[],
       posts:[],
       events:[],
+      questions:[],
       showPeople:false,
       showStats:false,
       showEvents:false,
@@ -75,6 +73,18 @@ export default class CommunityPage extends React.Component {
           console.log(error);
         });
 
+        axios.get('http://localhost:4000/questions/get-society-questions',{
+          params: {
+            society: this.state.society.name
+          }
+        })
+        .then((response) => {
+          this.setState({questions: this.state.questions.concat(response.data.question),})
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
 
         axios.get('http://localhost:4000/events/get-society-events',{
           params: {
@@ -95,10 +105,6 @@ export default class CommunityPage extends React.Component {
       addUserToSoc(soc);
       var user = JSON.parse(localStorage.getItem('user'));
     }
-
-
- 
-     
 
       ShowUsers() {
         this.setState({
@@ -159,34 +165,41 @@ export default class CommunityPage extends React.Component {
       var title = this.state.society.name + " - Website"
       var{users} = this.state;
       var { events } = this.state;
+      var { questions } = this.state;
+
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
 
-      const discussionList = this.state.posts.sort((a, b) => b.time - a.time).map(discussion => {
+      const discussionList = this.state.posts.reverse().map(discussion => {
         return(
     
             <div key={discussion._id}>
-              <div className='discussion-post'>
+              <div className='discussion-post' style={{marginLeft:150}}>
                 <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
                 <div>
                   <p>
                     <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                      <b>{discussion.user}</b>  
+                      <b style={{color:'#0693e3'}}>{discussion.user}</b> posted <span style={{color:'gray'}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
     
-                      {discussion.society == null ? (
+                      {/* {discussion.society == null ? (
                           <span> posted in <b style={{color:'green'}}>General</b></span>
                       ) : (
                         <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                      )}
+                      )} */}
                     </span></a><br/>
-                    <span className="forum-title">{discussion.title.slice(0,35)}</span><Image className="post-image" src={Test} width={150}/><br/>
+                    <span className="forum-title">{discussion.title.slice(0,35)}</span>
+                    {discussion.picture == null ? (
+                      <div></div>
+                    ) : (
+                      <Image className="post-image" src={discussion.picture} width={150} height={125}/>
+                    )}<br/>
+                    {/* <Image className="post-image" src={Test} width={150}/><br/> */}
                     <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
+
                     <small  className="text-muted">
                       <br/>
-                      <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-    
-                      <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
+                      <button className="standard-option-btn-post"><BsChat size={22} /> {discussion.comments.length}</button>
                     
                     </small>
                   </p>
@@ -204,16 +217,7 @@ export default class CommunityPage extends React.Component {
           );
       }
 
-      else if(this.state.society.private === true){
-        return(
-          <div>
-            <PrivateView/>
-          </div>
-        )
-      }
-
-
-      else if(this.state.society.private === false){
+      else{
         return (
           <div>
             {/* REACTJS HELMET */}
@@ -270,10 +274,10 @@ export default class CommunityPage extends React.Component {
                     <p className="text-muted">{this.state.society.description}</p>
                     <p className="text-muted"><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
                     <div className="social-icons">
-                      <big><a href={this.state.society.facebook} target="_blank" className="social-link"><FaFacebook size={20}/> </a></big>
-                      <big><a href={this.state.society.twitter} target="_blank" className="social-link"><FaTwitter size={20}/> </a></big>
-                      <big><a href={this.state.society.instagram} target="_blank" className="social-link"><FaInstagram size={20}/> </a></big>
-                      <big><a href={this.state.society.facebook} target="_blank" className="social-link"><FaLink size={20}/> </a></big>
+                      <big><a href={this.state.society.facebook} target="_blank"  rel="noopener noreferrer" className="social-link"><FaFacebook size={20}/> </a></big>
+                      <big><a href={this.state.society.twitter} target="_blank"  rel="noopener noreferrer" className="social-link"><FaTwitter size={20}/> </a></big>
+                      <big><a href={this.state.society.instagram} target="_blank"  rel="noopener noreferrer" className="social-link"><FaInstagram size={20}/> </a></big>
+                      <big><a href={this.state.society.facebook} target="_blank"  rel="noopener noreferrer"  className="social-link"><FaLink size={20}/> </a></big>
                     </div>
                     
 
@@ -303,7 +307,35 @@ export default class CommunityPage extends React.Component {
                               <div className="events-card-community">
                                   <h4><b>{event.title}</b></h4> 
                                   <p>{event.society}</p> 
-                                  <p>{event.time}</p>
+                                  <p>{moment(event.time).calendar()}</p>
+                                  <div >
+                                  </div>
+                              </div>
+                              </a>
+                            </div>
+                          </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  }
+
+                  {this.state.showQuestions &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                      <div>
+                        <h3>Questions</h3>
+                        {/* <QuickEvent/> */}
+                        <div className="EventSocietyLayout">
+                        {questions.reverse().map(question => (
+                        <div key={question._id}>
+                            <div>
+                            <a href={"/q/?id=" + question._id} className="-soc-l-navigation">
+                              <div className="events-card-community">
+                                  <h4><b>{question.question}</b></h4> 
+                                  <p>{moment(question.time).calendar()}</p>
                                   <div >
                                   </div>
                               </div>
@@ -345,10 +377,9 @@ export default class CommunityPage extends React.Component {
                   <div>
                       <br/>
                       <div className="community-container">
-                        <h1>Meet the Community ({this.state.users.length})</h1>
+                        <h3>({this.state.users.length}) Members</h3>
                         <hr/>
                         <div>
-                        <h1><b className="user-admin">Admins {this.state.society.admin}</b></h1>
                           <div className="CommunityMembers">
                             <div className="community-members-item">
                             </div>
@@ -357,8 +388,8 @@ export default class CommunityPage extends React.Component {
                         <div className="CommunityMembers">
                           {this.state.mods.map(mod=>(
                             <div className="community-members-item">
-                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
-                                {/* <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a>  */}
+                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.users.fullname}</Tooltip>}>
+                                <a href={"/u/?id="+this.state.users.user._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a> 
                               </OverlayTrigger>
                             </div>
                           ))}
@@ -366,12 +397,22 @@ export default class CommunityPage extends React.Component {
 
                         <div>
                           {this.state.users.map(user=>(
-                            <div>
+                            
+                            <div className="miniprofile2">
                               <p>
                                 <span>
-                                  {/* <Avatar src={user.pic} roundedCircle /><h3>{user.fullname}</h3> */}
+                                  <a href={"/u/?id=" + user._id} className="post-link-a"><figure class="headshot">
+                                        <Avatar src={user.pic}/>
+                                  </figure></a>
+                                  <section class="bio-box">
+                                          <dl class="details"> 
+                                              <a href={"/u/?id=" + user._id} className="post-link-a"><b>{user.fullname}</b></a><br/>    
+                                              <b className="user-member" style={{fontSize:14}}>MEMBER</b>                                  
+                                          </dl>
+                                </section>
                                 </span>
-                                {user.bio}
+                                <br/> 
+                                <br/>
                                 <br/><hr/><br/>
                               </p>
                             </div>
@@ -387,12 +428,6 @@ export default class CommunityPage extends React.Component {
           </div>
         );
     } 
-
-    else{
-      return(
-        <div></div>
-      )
-    }
 }
 }
 

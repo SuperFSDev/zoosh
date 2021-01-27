@@ -1,17 +1,11 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import FeedOptions from '../Lists/FeedOptions'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal, Image} from 'react-bootstrap'
-import Event from '../Common/StartEvent'
+import {Modal} from 'react-bootstrap'
 import {RiAddFill} from 'react-icons/ri'
-import moment from 'moment'
-import CreateTutorListing from '../Common/CreateTutorListing'
-import Avatar from '@material-ui/core/Avatar';
-import {BsMic,BsPeople,BsColumnsGap,BsCalendar,BsChatSquareDots,BsBarChart,BsCardText,BsTag,BsXDiamond,BsHouse} from 'react-icons/bs'
-import Clap from '../../images/clap.png'
+import CreateListing from '../Common/CreateListing'
 
 export default class Tutor extends React.Component {
 
@@ -20,7 +14,7 @@ export default class Tutor extends React.Component {
         this.state = {
           societies:[],
           isLoading: true,
-          tutors:[],
+          listings:[],
           searchValue: '',
           filterBy: '',
           user: '',
@@ -49,9 +43,10 @@ export default class Tutor extends React.Component {
           console.log(error);
         });
 
-      axios.get('http://localhost:4000/tutors/getTutors')
+      axios.get('http://localhost:4000/listings/getListings')
       .then((response)=>{
-          this.setState({tutors: response.data.tutors,
+          this.setState({
+            listings: response.data.listings,
             isLoading: false})
       })
       .catch((error)=>{
@@ -69,19 +64,20 @@ render(){
       var fullname = user.fullname;
   }
   
-  var{tutors} = this.state;
-  const shuffledPosts = shuffleArray(tutors);
+  var{listings} = this.state;
+  const shuffledPosts = shuffleArray(listings);
 
-  const listingsList = shuffledPosts.reverse().map(tutor =>{ 
+  const listingsList = shuffledPosts.reverse().map(listing =>{ 
     return(
-    <div key={tutor._id}>
-        <a href={"/u/?id=" +tutor._id}><div>
+    <div key={listing._id}>
+        <a href={"/u/?id=" +listing.user_id}><div>
           <div className="users-list-items">
               {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
-              {/* <h5>{user.fullname}</h5> */}
-              <p><b>Subject:</b> {tutor.subject}</p>
-              <p><b>Rate:</b> €{tutor.rate}/hr</p>
-              <p>{tutor.description}</p>
+              <h5>{user.fullname}</h5>
+              <p><b>Subject:</b> {listing.subject}</p>
+              <p>{listing.description}</p>
+              <p><b>Rate:</b> €{listing.rate}/hr</p>
+              
 
               <div >
               </div>
@@ -159,7 +155,7 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Body>
-          <CreateTutorListing/>
+          <CreateListing/>
           </Modal.Body>
         </Modal.Header>
       </Modal>
