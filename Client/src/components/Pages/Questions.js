@@ -141,8 +141,8 @@ render(){
 
             </div>
             
-            <h5 className="-feed-item-header"><BsQuestionCircle size={20}/> QUESTIONS</h5>
-            
+            <h3 className="-feed-item-header" style={{marginTop:50}}>Questions</h3>
+            <br/>
             <QuestionModal/>
 
             {this.state.isLoading ? ( 
@@ -197,7 +197,7 @@ function QuestionModal() {
   
     return (
       <div>
-              <button className="post-option-btn-item-event"  onClick={() => setShowQuestion(true)}>Ask a Question</button>
+              <button className="standard-button"  onClick={() => setShowQuestion(true)}>Ask a Question</button>
   
               <Question
                   show={modalShowQuestion}

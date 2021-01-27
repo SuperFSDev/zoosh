@@ -14,7 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import ShowMoreText from 'react-show-more-text';
-import ReadMore from '../../Common/ReadMore'
 
 export default class QuestionPage extends React.Component {
 
@@ -169,7 +168,7 @@ export default class QuestionPage extends React.Component {
 
           <div className="comment-container" id="responses">
           
-          <h4>Responses ({this.state.comments.length})</h4>
+          <h4>Answers ({this.state.comments.length})</h4>
           
           <br/><Accordion className="comment-box-acc">
             <AccordionSummary
@@ -227,9 +226,7 @@ export default class QuestionPage extends React.Component {
               </div>
             ))}
          </div>  
-         <div>
-          <ReadMore/>
-         </div>
+
       </div>
     </div>   
     </div>          
@@ -237,30 +234,4 @@ export default class QuestionPage extends React.Component {
     );
   }
 }
-
-
-  function ProfilePic() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    var pp = user.pic;
-  
-    return (
-      <div>
-        <Avatar src={pp} className="profile-btn-wrapper-left"/>
-      </div>
-    );
-  }
-
-
-  function Username(){
-    var user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-      var fullname = user.fullname; 
-  
-    return (
-      <div>
-        <p>{fullname}</p>
-      </div>
-    );
-  
-  }
   

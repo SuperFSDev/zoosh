@@ -78,7 +78,7 @@ class UsersCommunities extends React.Component {
                 <p className="community-items-feed">
                   {this.state.societies.map(society => (
                     <div key={society.id}>
-                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect"><div className="community-items-feed">
+                        <a href={"/c/?id=" + society._id} className="miniprofile-post-redirect"><div className="community-items-feed">
                           {society.picture == null ? (
                             <Image src={background} roundedCircle className="community-item" height="90px" width="90px"/>
                           ) : (

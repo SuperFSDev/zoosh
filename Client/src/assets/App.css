@@ -561,7 +561,7 @@
 
 .events-card{
   background:white;
-  width:290px;
+  width:250px;
   margin-right: 25px;
   padding:20px;
   height:auto;
@@ -1062,7 +1062,7 @@
   /* margin-left: 10rem; */
 }
 
-.reading-list{margin-top: 1rem;}
+.reading-list{margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1250px;}
 
 .containerFeedMiddleProfile{
   width: 20%;
@@ -1341,7 +1341,7 @@ section::after {
 .options-container{
   width:auto;
   background:white;
-  padding:10px;
+  margin-bottom:10px;
   border-radius: 5px!important;
 }
 
@@ -2837,6 +2837,15 @@ padding-left: 4rem;
   text-align: center;
 }
 
+
+.ListingLayout {
+  /* width:50%; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin:auto;
+  text-align: center;
+}
+
 .UsersLayout{
   width:auto;
   display: grid;
@@ -3156,7 +3165,6 @@ padding-left: 4rem;
   text-align: left;
   background-color:white;
   border:none!important;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
 .edit-pic-btn{
