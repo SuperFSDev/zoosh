@@ -77,6 +77,8 @@ societies.get('/getSocieties', (req, res) => {
 
 societies.get('/get-societies-page', (req, res) => {
 
+    console.log(req.query.id);
+
     SocietyModel.findById({
             _id: req.query.id
         }).then(society => {

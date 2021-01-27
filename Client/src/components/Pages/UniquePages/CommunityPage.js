@@ -42,61 +42,63 @@ export default class CommunityPage extends React.Component {
   async componentDidMount() {
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
 
-     await axios.get('http://localhost:4000/societies/get-societies-page', {
+      console.log(society_id);
+
+      await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
           id: society_id
         }
       })
-        .then((response) => {
-          this.setState({ society: response.data.society,
-           users:response.data.society.users,
-           mods:response.data.society.mods,
-           admin:response.data.society.admin,
-           isLoading:false,
-           society: response.data.society})
-           console.log(this.state.society.picture);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        this.setState({ society: response.data.society,
+          users:response.data.society.users,
+          mods:response.data.society.mods,
+          admin:response.data.society.admin,
+          isLoading:false,
+          society: response.data.society})
+          console.log(this.state.society.picture);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
 
-        axios.get('http://localhost:4000/discussions/get-society-discussions',{
-          params: {
-            society: this.state.society.name
-          }
-        })
-        .then((response) => {
-          this.setState({posts: this.state.posts.concat(response.data.discussion),})
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.get('http://localhost:4000/discussions/get-society-discussions',{
+        params: {
+          society: this.state.society.name
+        }
+      })
+      .then((response) => {
+        this.setState({posts: this.state.posts.concat(response.data.discussion),})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-        axios.get('http://localhost:4000/questions/get-society-questions',{
-          params: {
-            society: this.state.society.name
-          }
-        })
-        .then((response) => {
-          this.setState({questions: this.state.questions.concat(response.data.question),})
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.get('http://localhost:4000/questions/get-society-questions',{
+        params: {
+          society: this.state.society.name
+        }
+      })
+      .then((response) => {
+        this.setState({questions: this.state.questions.concat(response.data.question),})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
 
-        axios.get('http://localhost:4000/events/get-society-events',{
-          params: {
-            society: this.state.society.name
-          }
-        })
-        .then((response) => {
-          this.setState({events: this.state.events.concat(response.data.event),})
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.get('http://localhost:4000/events/get-society-events',{
+        params: {
+          society: this.state.society.name
+        }
+      })
+      .then((response) => {
+        this.setState({events: this.state.events.concat(response.data.event),})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
 
     
