@@ -429,7 +429,7 @@ users.post('/addToReadingList', (req, res) => {
             _id: req.body.user_id,
         }, {
             $addToSet: {
-                readingList: req.body.user
+                readingList: req.body.discussion
             }
         }, {
             upsert: true,
