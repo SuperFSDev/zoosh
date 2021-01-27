@@ -79,8 +79,6 @@ export default class AllPosts extends React.Component {
         user_id:user_id,
         discussion: discussion._id,
     }
-  alert(JSON.stringify(discussion));
-  alert(user_id)
     // Adds society to societies array in user model.
     axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
         .then(function (resp) {
