@@ -95,9 +95,9 @@ societies.get('/get-societies-page', (req, res) => {
 })
 
 societies.post('/update', (req, res) => {
-    
-    SocietyModel.findOneAndUpdate(
-        { name: req.body.society, },
+
+    SocietyModel.findByIdAndUpdate(
+        { _id: req.body.society, },
         { $addToSet: { users: req.body.user } },
         { upsert: true, new: true, runValidators: true },
 

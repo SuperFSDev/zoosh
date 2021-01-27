@@ -364,7 +364,7 @@ users.post('/addComment', (req, res) => {
 users.post('/addToSocList', (req, res) => {
 
     UserModel.findByIdAndUpdate({
-            _id: req.body.user_id,
+            _id: req.body.user,
         }, {
             $addToSet: {
                 societies: req.body.society
@@ -381,7 +381,6 @@ users.post('/addToSocList', (req, res) => {
                 res.send(err)
             } else {
                 if (result) {
-                    console.log(result);
                     res.send(result)
                 } else {
                     res.send("Society already exists in user model.");

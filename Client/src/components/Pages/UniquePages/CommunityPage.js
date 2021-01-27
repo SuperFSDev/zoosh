@@ -259,7 +259,7 @@ export default class CommunityPage extends React.Component {
                 </Navbar>
 
             <div className="community-nav">
-                  <span><button className="join-comm-button" onClick={() => this.addUser(this.state.society.name)}>Join <small></small></button></span>
+                  <span><button className="join-comm-button" onClick={() => this.addUser(this.state.society._id)}>Join <small></small></button></span>
                   <span className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
                   <span className="comm-nav-item" onClick={() => {this.ShowFeed()}}>Feed</span>
                   <span className="comm-nav-item" onClick={() => {this.ShowQuestions()}}>Questions</span>
@@ -503,10 +503,12 @@ async function addUserToSoc(soc) {
   
   var getUser = JSON.parse(localStorage.getItem('user'))
 
+  console.log(soc);
+  console.log(getUser._id);
+
   const addUser = {
       society: soc,
-      user: getUser,
-      user_id: getUser._id,
+      user: getUser._id,
   }
 
   // Adds user to users array in society model.
@@ -516,7 +518,7 @@ async function addUserToSoc(soc) {
           cogoToast.success(
             <div>
               <h4>Welcome!</h4>
-              <div>You successfully joined {soc}</div>
+              <div>You successfully joined this society!</div>
             </div>
           );
       })

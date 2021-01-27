@@ -230,24 +230,23 @@ function QuickOptions() {
       var getUser = JSON.parse(localStorage.getItem('user'))
   
       const addUser = {
-          society: soc,
-          user: getUser,
-          user_id: getUser._id,
+          society: soc._id,
+          user: getUser._id,
       }
   
-      // Adds user to users array in society model.
-      await axios.post('http://localhost:4000/societies/update', addUser)
+      // Adds user ID to users array in society model.
+      await axios.post('http://localhost:4000/societies/update', addUser.user)
           .then(function (resp) {
               console.log(resp);
-              alert("Successfully joined " + soc);
+              //alert("Successfully joined " + soc);
           })
           .catch(function (error) {
               console.log(error);
           })
   
   
-      // Adds society to societies array in user model.
-      await axios.post('http://localhost:4000/users/addToSocList', addUser)
+      // Adds society ID to societies array in user model.
+      await axios.post('http://localhost:4000/users/addToSocList', addUser.society)
           .then(function (resp) {
               console.log(resp);
   

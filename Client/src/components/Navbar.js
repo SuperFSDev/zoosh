@@ -128,6 +128,10 @@ export default class NavBar extends React.Component {
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
+
+      if(user == null)
+        window.location = '/login';
+
       this.setState({ id: user._id });
 
       axios.get('http://localhost:4000/users/getUsers')

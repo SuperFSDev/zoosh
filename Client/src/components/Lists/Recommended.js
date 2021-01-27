@@ -97,7 +97,7 @@ render(){
     await axios.post('http://localhost:4000/societies/update', addUser)
         .then(function (resp) {
             console.log(resp);
-            alert("Successfully joined " + soc);
+            //alert("Successfully joined " + soc);
         })
         .catch(function (error) {
             console.log(error);
