@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const discussions = express.Router();
-const app = express();
 
 //import model
 const DiscussionModel = require('../models/Discussion');
@@ -17,8 +16,6 @@ discussions.use(function (req, res, next) {
 });
 
 discussions.post('/NewDiscussions', (req, res) => {
-
-    console.log(req.body);
 
     DiscussionModel.create({
         user: req.body.user,
