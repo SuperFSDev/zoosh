@@ -76,7 +76,7 @@ class UsersCommunities extends React.Component {
               ) : (
                 <li className="community-members-item-profile">
                 <p className="community-items-feed">
-                {this.state.societies.map(society => (
+                  {this.state.societies.map(society => (
                     <div key={society.id}>
                         <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect"><div className="community-items-feed">
                           {society.picture == null ? (
@@ -84,12 +84,12 @@ class UsersCommunities extends React.Component {
                           ) : (
                             <Image src={society.picture} roundedCircle className="community-item"/>
                           )}
+                          <p>{society._id}</p>
                         </div></a>
                     </div>
-                    ))}
+                  ))}
                   {/* <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/> */}
                 </p>
-               
               </li>
               )}
             {/* {this.state.societies.map(society=> */}
