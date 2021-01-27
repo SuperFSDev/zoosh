@@ -15,75 +15,26 @@ forums.use(function (req, res, next) {
     next();
 });
 
+forums.post('/NewPost', (req, res) => {
 
-forums.get('/getForums', (req, res) => {
+    console.log(req.body);
+
+    ForumModel.create({
+        user: req.body.user,
+        user_id: req.body.user_id,
+        post: req.body.post,
+        time: req.body.time,
+    });
+})
+
+
+forums.get('/getForumPosts', (req, res) => {
 
     ForumModel.find((error, data) => {
         res.json({
             forums: data
         });
     })
-})
-
-
-forums.get('/get-forum-page', (req, res) => {
-
-    ForumModel.findById({
-            _id: req.query.id
-        }).then(forum => {
-            if (forum) {
-                res.json({
-                    forum: forum
-                });
-            } else {
-                res.send("forum does not exist")
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
-
-})
-
-
-forums.post('/addForumPost', (req, res) => {
-
-
-})
-
-
-forums.post('/update', (req, res) => {
-    
-    ForumModel.findOneAndUpdate(
-        { name: req.body.forum, },
-        { $addToSet: { users: req.body.user } },
-        { upsert: true, new: true, runValidators: true },
-
-        function (err, result) {
-
-            if (err) {
-                res.send(err)   
-            }
-            else {
-                if(result){
-                    res.send(result)
-                } else {
-                    res.send("User already exists");
-                }
-            }
-
-        }
-    )
-})
-
-forums.post('/NewPost', (req, res) => {
-
-    ForumModel.create({
-        user: req.body.user,
-        title: req.body.title,
-        content: req.body.content,
-        time: req.body.time,
-    });
 })
 
 

@@ -504,7 +504,8 @@ async function addUserToSoc(soc) {
   var getUser = JSON.parse(localStorage.getItem('user'))
 
   const addUser = {
-      society: soc,
+      society: soc._id,
+
       user: getUser,
       user_id: getUser._id,
   }

@@ -13,7 +13,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
-import {RiShieldStarLine} from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
 import ReadMore from '../../Common/ReadMore'
 
@@ -24,7 +23,7 @@ export default class QuestionPage extends React.Component {
     this.state = {
       question: '',
       questions: [],
-      discussion_id:'',
+      question_id:'',
       comments:[],
       societies: [],
       isLoading:true,
@@ -36,20 +35,18 @@ export default class QuestionPage extends React.Component {
   }
 
     componentDidMount() {
-      this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
+      this.state.question_id = new URLSearchParams(this.props.location.search).get("id");
       // document.body.style.backgroundColor = "#FDFEFE";
 
 
       axios.get('http://localhost:4000/questions/get-question-page', {
         params: {
           id: this.state.question_id,
-
         }
       })
         .then((response) => {
           this.setState({ 
             question: response.data.question,
-            comments:response.data.discussion.comments,
             isLoading:false, })
         })
         .catch((error) => {
@@ -96,7 +93,7 @@ export default class QuestionPage extends React.Component {
     onSubmit(e) {
       var user = JSON.parse(localStorage.getItem('user'));  
       const newComment = {
-        _id:this.state.discussion_id,
+        _id:this.state.question_id,
         comment:{
         user_id: user._id,
         user: user.fullname,

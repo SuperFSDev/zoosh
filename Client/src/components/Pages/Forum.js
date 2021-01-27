@@ -2,8 +2,11 @@ import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import { Helmet } from 'react-helmet'
-import Clap from '../../images/clap.png'
+import { Modal} from 'react-bootstrap'
+import {Helmet} from 'react-helmet'
+import CreateForumPost from '../Common/CreateForumPost'
+import AskQuestion from '../Common/AskQuestion'
+import moment from 'moment'
 
 export default class Forum extends React.Component {
 
@@ -12,143 +15,171 @@ export default class Forum extends React.Component {
     this.state = {
       forums: [],
       users:[],
-      searchValue: '',
-      filterBy: '',
-      user: '',
-      isLoading: true,
-      user: '',
-      socs:[],
+      user:'',
+      isLoading:true,
+      isUnfollowing:true,
+      showPosts:true,
+      showQuestions:false,
     };
   }
 
     componentDidMount() {
-      // document.body.style.backgroundColor = "#FDFEFE";
-      var user_id = new URLSearchParams(this.props.location.search).get("id");
-  
-  
-      axios.get('http://localhost:4000/users/get-user-details', {
+      var forum_id = new URLSearchParams(this.props.location.search).get("id");
+      var user = JSON.parse(localStorage.getItem('user'));
+      this.setState({ id: user._id });
+      var user = JSON.parse(localStorage.getItem('user'));
+      this.setState({ id: user._id });
+
+      axios.get('http://localhost:4000/forums/get-forum-page', {
         params: {
-          id: user_id
+          id: forum_id
         }
       })
-  
         .then((response) => {
-          this.setState({ user: response.data.user,
-                          forums: response.data.user.forums,
-                          socs:response.data.user.societies
-
-  
+          this.setState({ forum: response.data.forum,
+            users: response.data.forum.users, 
+            isLoading:false
           })
         })
         .catch((error) => {
           console.log(error);
         });
-  
 
+      axios.get('http://localhost:4000/forums/getForumPosts')
+        .then((response) => {
+          this.setState({ 
+            forums: response.data.forums,
+            users:response.data.forums,
+            isLoading: false, })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      
 
-        axios.get('http://localhost:4000/forums/getForums')
+      axios.get('http://localhost:4000/users/get-user-details', {
+          params: {
+            id: user._id
+          }
+        })
           .then((response) => {
-            this.setState({ 
-              forums: response.data.forums,
-              isLoading:false,
-
-             })
+            this.setState({
+              forumPosts: response.data.user.forumPosts,
+            })
+    
           })
           .catch((error) => {
             console.log(error);
           });
 
-        axios.get('http://localhost:4000/forums/get-forum-page', {
-         
-          })
-            .then((response) => {
-              this.setState({ forum: response.data.forum,
-                users: response.data.forum.users, 
-              })
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-      }
-
-      updateSearch(event) {
-        this.setState({ searchValue: event.target.value.substr(0, 20) });
-      }
-
-      addForum(frm) {
-        addUserToForum(frm);
-      }
-
-render(){
-
-  var user = JSON.parse(localStorage.getItem('user'));
-  if(user) 
-  {
-      var fullname = user.fullname;
-  }
-
-  let filteredForumsByName = this.state.forums.filter(
-
-    (forum) => {
-      let filter = this.state.filterBy;
-      if (filter === "Name") {
-        return forum.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-
-      }  else {
-
-        return forum.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-      }
     }
 
-  );
+    addForum(frm) {
+      addUserToForum(frm);
+      this.setState({
+        isUnfollowing:false,
+      })
+    }
 
-  const forums = filteredForumsByName.reverse().map(forum => {
-    return(
-    <div key={forum._id}>
-        <div>
-        <a href={"/f/?id=" + forum._id} className="-soc-l-navigation">
-          <div className="forum-card">
-              <h5>{forum.name}</h5> 
+    render(){
+      var { forums } = this.state;
+      var isUnfollowing = this.state.isUnfollowing;
+      var user = JSON.parse(localStorage.getItem('user'));
+
+      const forumList = forums.reverse().map(forum => {
+        return(
+            <div key={forum._id}>
+              <div className='discussion-post'>
+                <a href={"/q/?id=" + forum._id} className="miniprofile-post-redirect">
+                <div>
+                  <p>
+                    <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
+                      <b>{forum.user}</b>  
+                    </span></a><br/>
+                    <span className="forum-title">{forum.post}</span><br/>
+                    <span style={{marginLeft:10}}>({moment(forum.time).startOf('seconds').fromNow()})</span>
+                    <br/>
+                  </p>
+                </div>
+                </a>
+              </div>
+            </div>
+          )})
+
+      return (
+        <div class="row">
+          <div className="columnForum2" style={{background:'white'}}>
+            <div className="forumContainer">
+              <div>
+                <h4>Feature Requests / Bugs</h4>
+                {isUnfollowing ? (
+                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+                ) : (
+                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+                )}
+                <br/>
+                <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
+                <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
+                <PostOptions/>
+              </div>
           </div>
-          </a>
         </div>
-    </div>
-    )})
+
+
+        <div className="columnForum" style={{background:'white',marginTop:100,}}>
+          <h5 style={{marginLeft:10}}>Forum Posts</h5>
+          <hr/>
+        
+        <div>
+          <div className="forum-post-container">
+              <p>{forumList}</p>
+          </div>
+        </div>
+          
+        </div>
+
+      </div>
+    );
+  }
+}
+
+//  FUNCTIONS TO OPEN EVENT MODAL
+function PostOptions() {
+  const [modalShowPost, setShowPost] = React.useState(false);
+  const [modalShowQuestion, setShowQuestion] = React.useState(false);
 
   return (
-     <div>
-        {/* REACTJS HELMET */}
-        <Helmet>
-                <meta charSet="utf-8" />
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Forums - Website</title>
+    <div>
+            <button className="post-option-btn-item-event" onClick={() => setShowPost(true)}>Create Post</button>
 
-                {/* LINKS */}
-                <link rel="canonical" href="http://mysite.com/example" />
-                <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
-                <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
-        </Helmet> 
+            <ForumPost
+                show={modalShowPost}
+                onHide={() => setShowPost(false)}
+            />
 
-      <div className="containerMiddleForum">
-        <div className="global-forum" style={{marginTop:100}}>
-        <h5>All Forums</h5>
-        <div className="search-div-forum" style={{marginBottom:50}}>
-          <input className="searchbar-nav-forum" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a forum " title="Type in a category"/>
-        </div>
-
-          <h5>Featured Forums</h5>
-            <div className="ForumLayout">
-              {forums}
-            </div>
-        </div>
-      </div>
     </div>
   );
-  }
- }
+}
 
+function ForumPost(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <Modal.Body>
+              <CreateForumPost/>
+          </Modal.Body>
+        </Modal.Header>
+      </Modal>
+    );
+  }
+
+  
 // Adding a User to forum to follow
 async function addUserToForum(frm) {
 

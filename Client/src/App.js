@@ -17,7 +17,6 @@ import ViewProfile from './components/Profile/UserProfile'
 import DiscussionPost from './components/Pages/UniquePages/DiscussionPost'
 import Forums from './components/Pages/Forum'
 import Events from './components/Pages/Events'
-import ForumPage from './components/Pages/UniquePages/ForumPage'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/UniquePages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
@@ -63,7 +62,6 @@ class App extends React.Component {
               <Route path="/saved" component={ReadingList}/>
 
               <Route path="/forums" component={Forums}/>
-              <Route path="/f" component={ForumPage}/>
               <Route path="/q" component={QuestionPage}/>
               <Route path="/home" component={AllPosts}/>
               <Route exact path="/" component={AllPosts}/>

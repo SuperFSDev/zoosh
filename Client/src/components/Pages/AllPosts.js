@@ -94,9 +94,6 @@ render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
 
-  const string =  "In an age when nature and magic rule the world, there is an extraordinary legend: the story of a warrior who communicates with animals, who fights sorcery and the unnatural.";
-  string.slice(0, 2)
-
   const discussionList = discussions.reverse().slice(0,3).map(discussion => {
     return(
 

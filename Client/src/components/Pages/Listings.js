@@ -73,7 +73,7 @@ render(){
         <a href={"/u/?id=" +listing.user_id}><div>
           <div className="users-list-items">
               {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
-              <h5>{user.fullname}</h5>
+              <h5>{listing.user}</h5>
               <p><b>Subject:</b> {listing.subject}</p>
               <p>{listing.description}</p>
               <p><b>Rate:</b> €{listing.rate}/hr</p>
