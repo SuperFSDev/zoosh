@@ -28,6 +28,7 @@ export default class CommunityPage extends React.Component {
       UserList:[],
       posts:[],
       events:[],
+      questions:[],
       showPeople:false,
       showStats:false,
       showEvents:false,
@@ -67,6 +68,18 @@ export default class CommunityPage extends React.Component {
         })
         .then((response) => {
           this.setState({posts: this.state.posts.concat(response.data.discussion),})
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+        axios.get('http://localhost:4000/questions/get-society-questions',{
+          params: {
+            society: this.state.society.name
+          }
+        })
+        .then((response) => {
+          this.setState({questions: this.state.questions.concat(response.data.question),})
         })
         .catch((error) => {
           console.log(error);
@@ -152,6 +165,8 @@ export default class CommunityPage extends React.Component {
       var title = this.state.society.name + " - Website"
       var{users} = this.state;
       var { events } = this.state;
+      var { questions } = this.state;
+
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
@@ -293,6 +308,34 @@ export default class CommunityPage extends React.Component {
                                   <h4><b>{event.title}</b></h4> 
                                   <p>{event.society}</p> 
                                   <p>{moment(event.time).calendar()}</p>
+                                  <div >
+                                  </div>
+                              </div>
+                              </a>
+                            </div>
+                          </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  }
+
+                  {this.state.showQuestions &&
+                  <div>
+                      <br/>
+                      <div className="community-container">
+                      <div>
+                        <h3>Questions</h3>
+                        {/* <QuickEvent/> */}
+                        <div className="EventSocietyLayout">
+                        {questions.reverse().map(question => (
+                        <div key={question._id}>
+                            <div>
+                            <a href={"/q/?id=" + question._id} className="-soc-l-navigation">
+                              <div className="events-card-community">
+                                  <h4><b>{question.question}</b></h4> 
+                                  <p>{moment(question.time).calendar()}</p>
                                   <div >
                                   </div>
                               </div>

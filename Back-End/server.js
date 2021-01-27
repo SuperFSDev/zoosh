@@ -47,10 +47,6 @@ app.use('/discussions', Discussions)
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);
 
-// Adds the "Links" route to the server.
-var Links = require('./routes/Links');
-app.use('/links', Links);
-
 // Adds the "Forums" route to the server.
 var Forums = require('./routes/Forums');
 app.use('/forums', Forums);
@@ -58,6 +54,10 @@ app.use('/forums', Forums);
 // Adds the "Events" route to the server.
 var Events = require('./routes/Events');
 app.use('/events', Events);
+
+// Adds the "Questions" route to the server.
+var Questions = require('./routes/Questions');
+app.use('/questions', Questions);
 
 // Adds the "Podcasts" route to the server.
 var Podcasts = require('./routes/Podcasts');

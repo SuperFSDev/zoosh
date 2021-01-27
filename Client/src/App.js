@@ -33,6 +33,8 @@ import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
 import FollowingLayout from './components/Pages/FollowingLayout';
 import AllPosts from './components/Pages/AllPosts';
+import Questions from './components/Pages/Questions';
+import QuestionPage from './components/Pages/UniquePages/QuestionPage';
 
 class App extends React.Component {
   render(){
@@ -62,9 +64,12 @@ class App extends React.Component {
 
               <Route path="/forums" component={Forums}/>
               <Route path="/f" component={ForumPage}/>
+              <Route path="/q" component={QuestionPage}/>
               <Route path="/home" component={AllPosts}/>
               <Route exact path="/" component={AllPosts}/>
               <Route path="/following" component={FollowingLayout}/>
+              <Route path="/questions" component={Questions}/>
+
 
 
               {/* 404 Not Found Exception */}

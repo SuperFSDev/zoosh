@@ -3,12 +3,12 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {Tooltip,OverlayTrigger, Image} from 'react-bootstrap'
+import {Tooltip,OverlayTrigger, Image, Modal} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
-import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
+import {BsBookmark,BsBookmarkFill,BsQuestionCircle} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
@@ -16,13 +16,14 @@ import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
 import {BiPlanet} from 'react-icons/bi'
 import SearchbarFilter from '../Common/SearchbarFilter'
+import AskQuestion from '../Common/AskQuestion';
 
-export default class AllPosts extends React.Component {
+export default class Questions extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      discussions: [],
+      questions: [],
       isLoading: true,
       comments:[],
       time:'',
@@ -56,16 +57,16 @@ export default class AllPosts extends React.Component {
           console.log(error);
         });
 
-    axios.get('http://localhost:4000/discussions/getDiscussions')
-      .then((response) => {
-        this.setState({ 
-          discussions: response.data.discussions,
-          users:response.data.discussions,
-          isLoading: false, })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        axios.get('http://localhost:4000/questions/getQuestions')
+        .then((response) => {
+          this.setState({ 
+            questions: response.data.questions,
+            users:response.data.questions,
+            isLoading: false, })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
   removeSaved = () =>{
     this.setState({ 
@@ -93,54 +94,36 @@ export default class AllPosts extends React.Component {
 
 
 render(){
-  var { discussions } = this.state;
+  var { questions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
 
   const string =  "In an age when nature and magic rule the world, there is an extraordinary legend: the story of a warrior who communicates with animals, who fights sorcery and the unnatural.";
   string.slice(0, 2)
 
-  const discussionList = discussions.reverse().slice(0,3).map(discussion => {
+  const questionList = questions.reverse().slice(0,3).map(question => {
     return(
 
-        <div key={discussion._id}>
+        <div key={question._id}>
           <div className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+            <a href={"/q/?id=" + question._id} className="miniprofile-post-redirect">
             <div>
               <p>
                 <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
-                  <b>{discussion.user}</b>  
+                  <b>{question.user}</b>  
 
-                  {discussion.society == null ? (
+                  {question.society == null ? (
                       <span> posted in <b style={{color:'green'}}>General</b></span>
                   ) : (
-                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
+                    <span> posted in <b style={{color:'green'}}>{question.society}</b></span>
                   )}
                 </span></a><br/>
-                <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                {discussion.picture == null ? (
-                  <div></div>
-                ) : (
-                  <Image className="post-image" src={discussion.picture} width={200} height={125}/>
-                )}
+                <span className="forum-title">{question.question}</span>
+                
                 <br/>
-                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-                <small  className="text-muted">
-                  <br/>
-                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-
-                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
-                  {!this.state.isSaved ? (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>this.addToReadingList(discussion,user._id)}><BsBookmark size={22} /></button></span>
-                  </OverlayTrigger> 
-                  ) : (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved(discussion)}><BsBookmarkFill size={22} /></button></span>
-                  </OverlayTrigger>
-                  )}
-                </small>
+                <button>Answer Question</button>
               </p>
-            </div></a>
+            </div>
+            </a>
           </div>
         </div>
       )})
@@ -150,27 +133,17 @@ render(){
     <div className="column" style={{background:'white'}}>
         <div style={{marginTop:100, marginLeft:330 }}>
             <div className="options-container">
-                <a href="/home"><button className="community-btn-active">All</button></a>
+                <a href="/home"><button className="community-btn">All</button></a>
                 <a href="/following"><button className="community-btn">Following</button></a>
-                <a href="/questions"><button className="community-btn">Questions</button></a>
+                <a href="/questions"><button className="community-btn-active">Questions</button></a>
                 <a href="/events"><button className="community-btn">Events</button></a>
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
             </div>
-
-            {this.state.isLoading ? ( 
-                <div><br/>
-                  <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
-                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
-                </div>
-
-              ) : (
-                <div>
-                  <UsersCommunities/>
-                </div>
-              )}
             
-            <h5 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h5>
+            <h5 className="-feed-item-header"><BsQuestionCircle size={20}/> QUESTIONS</h5>
+            
+            <QuestionModal/>
 
             {this.state.isLoading ? ( 
                 <div>
@@ -179,7 +152,7 @@ render(){
                 </div>
 
               ) : (
-                <p>{discussionList}</p>
+                  <p>{questionList}</p>
               )}
         </div>
     </div>
@@ -218,4 +191,36 @@ render(){
 }
 }
 
- // Adding a User to a society array and adding the society to the users array
+//  FUNCTIONS TO OPEN EVENT MODAL
+function QuestionModal() {
+    const [modalShowQuestion, setShowQuestion] = React.useState(false);
+  
+    return (
+      <div>
+              <button className="post-option-btn-item-event"  onClick={() => setShowQuestion(true)}>Ask a Question</button>
+  
+              <Question
+                  show={modalShowQuestion}
+                  onHide={() => setShowQuestion(false)}
+              />
+      </div>
+    );
+  }
+
+function Question(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+        <Modal.Body>
+            <AskQuestion/>
+        </Modal.Body>
+        </Modal.Header>
+      </Modal>
+    );
+  }

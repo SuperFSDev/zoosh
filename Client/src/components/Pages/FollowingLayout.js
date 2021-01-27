@@ -172,7 +172,7 @@ render(){
                     <div className="options-container">
                         <a href="/posts"><button className="community-btn">All</button></a>
                         <a href="/following"><button className="community-btn-active">Following</button></a>
-                        <a href="/home"><button className="community-btn">Questions</button></a>
+                        <a href="/questions"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
                     </div>
