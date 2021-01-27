@@ -3,7 +3,9 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
+import { Card} from 'react-bootstrap';
 import { Badge} from 'react-bootstrap'
+import moment from 'moment'
 
 export default class ReadingList extends React.Component {
 
@@ -16,25 +18,25 @@ export default class ReadingList extends React.Component {
           searchValue: '',
           filterBy: '',
           readingList: [],
+          posts: [],
           user: '',
         };
       }
 
-    componentDidMount() {
+   async componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
 
-      axios.get('http://localhost:4000/users/getUsers')
+     await axios.get('http://localhost:4000/users/getUsers')
       .then((response)=>{
           this.setState({
             users: response.data.users,
-            isLoading: false,
-          })
+            isLoading: false})
       })
       .catch((error)=>{
           console.log(error);
       });
 
-      axios.get('http://localhost:4000/users/get-user-details', {
+     await axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id,
              
@@ -48,9 +50,35 @@ export default class ReadingList extends React.Component {
           .catch((error) => {
               console.log(error);
           });
+
+          
+          for (var i = 0; i < this.state.readingList.length; i++) {
+            this.GetReadingList(this.state.readingList[i])
+          } 
+         
+   }
+    
+        async GetReadingList(readingList){
+        await axios.get('http://localhost:4000/discussions/get-discussion-page', {
+          params: {
+            id:readingList,
+          }
+        })
+          .then((response) => {
+            this.setState({
+              posts: this.state.posts.concat(response.data.discussion),
+              isLoading: false,
+            })
+    
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     
     
-    }
+    
+    
  
     updateSearch(event){
       this.setState({searchValue: event.target.value.substr(0,20)});
@@ -59,7 +87,7 @@ export default class ReadingList extends React.Component {
 render(){
 
     var{users} = this.state;
- 
+ console.log(this.state.posts);
   return (
      <div>
        {/* REACTJS HELMET */}
@@ -78,33 +106,31 @@ render(){
 
 
         <div className="containerChartMiddle">
-              <div className="global-feed">
-              <h3>Reading List ({this.state.readingList.length})</h3>
-              <div className="spacing"></div>
-
-              <div className="reading-list">
-                  <a href=""><h4>Title</h4></a>
-                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>
-                  <button >Remove</button>
-                  <hr/>
+      <h3>Reading List ({this.state.readingList.length})</h3>
+      {this.state.posts.slice(0,10).reverse().map(post=>  (
+              <div key={this.state.user._id}>  
+               <Card className='userPosts'>
+                  <Card.Body>          
+                    <Card.Text className="fontPost">
+                    <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
+                      <p>
+                        <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
+                        <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
+                        {post.society == null ? (
+                            <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
+                        ) : (
+                          <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
+                        )}
+                      </p><hr/>
+                    </a>
+                    </Card.Text>        
+                  </Card.Body>  
+                  <h1></h1>                
+                </Card>
               </div>
-              <div className="reading-list">
-                  <a href=""><h4>Title of Post</h4></a>
-                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>                  
-                  <button>Remove</button>
-                  <hr/>
-              </div>
-              <div className="reading-list">
-                  <a href=""><h4>Title of Post</h4></a>
-                  <p>Written by Aaron Moran - <Badge variant="primary">Computer Science GMIT</Badge></p>                  
-                  <button>Remove</button>
-                  <hr/>
-              </div>
-        </div>
-
-
-        </div>         
-  </div>
+            ))} 
+       </div>
+       </div>
     );
    }
   }

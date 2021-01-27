@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 // create database schema
 const ForumSchema = new Schema({
-    name: String,
-    visibility: String,
-    users: {type: Array, "default" : []},
+    user:String,
+    user_id:String,
+    post:String,
+    time:Date,
 })
 
 // create a model

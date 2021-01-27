@@ -79,8 +79,6 @@ export default class AllPosts extends React.Component {
         user_id:user_id,
         discussion: discussion._id,
     }
-  alert(JSON.stringify(discussion));
-  alert(user_id)
     // Adds society to societies array in user model.
     axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
         .then(function (resp) {
@@ -95,9 +93,6 @@ export default class AllPosts extends React.Component {
 render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
-
-  const string =  "In an age when nature and magic rule the world, there is an extraordinary legend: the story of a warrior who communicates with animals, who fights sorcery and the unnatural.";
-  string.slice(0, 2)
 
   const discussionList = discussions.reverse().slice(0,3).map(discussion => {
     return(

@@ -195,7 +195,7 @@ render(){
             <div className="quick-create-option">             
                 {/* <span className="square" ><BsSearch size={20}/></span> */}
                 <span className="notify" style={{marginRight:30, cursor:'pointer'}}><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
-                <span className="notify" onClick={this.showForum}><BsLightning size={25}/>FORUMS</span>
+                <span className="notify" onClick={this.showForum}><BsLightning size={25}/>FORUM</span>
                 <span className="notify" onClick={this.showMenu}><BsBell size={25} />ME</span>
             </div>      
             <a href="/new"className="notify"><button className="write-button">Write</button></a>
@@ -237,11 +237,9 @@ render(){
                         this.dropdownMenu4 = element;
                       }}
                     >
-                      <h5>Forums</h5>
+                      <h5>Forums (Beta)</h5>
                       <hr/>
-                      <div>Test 1</div>
-                      <div>Aaron Moran</div>
-                      <div>Aaron Moran</div>
+                      <div>Feature Requests or any bugs you found drop them into the forum!</div>
                       <a href="/forums">See All</a>
                     </div>
                   )
