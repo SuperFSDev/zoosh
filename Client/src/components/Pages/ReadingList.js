@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Fragment} from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
@@ -89,7 +89,7 @@ render(){
     var{users} = this.state;
  console.log(this.state.posts);
   return (
-     <div>
+     <Fragment>
        {/* REACTJS HELMET */}
        <Helmet>
                       <meta charSet="utf-8" />
@@ -109,7 +109,7 @@ render(){
           <div className="reading-list">
             <h3>Reading List ({this.state.readingList.length})</h3><br/>
             {this.state.posts.slice(0,10).reverse().map(post=>  (
-                    <div key={this.state.user._id}>  
+                    <Fragment key={this.state.user._id}>  
                           <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
                             <p>
                               <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
@@ -122,11 +122,11 @@ render(){
                             </p><hr/>
                           </a>
                         <h1></h1>                
-                    </div>
+                    </Fragment>
                   ))} 
             </div>
        </div>
-       </div>
+       </Fragment>
     );
    }
   }

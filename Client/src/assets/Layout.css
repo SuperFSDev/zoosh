@@ -62,3 +62,9 @@
     display: table;
     clear: both;
   }
+
+.right-col{
+  margin-top:100px;
+  width:430px;
+  margin-left:10px;
+}

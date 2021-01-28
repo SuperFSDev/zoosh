@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
@@ -91,8 +91,8 @@ render(){
 
   const eventList = filteredEvents.reverse().map(event => {
     return(
-    <div key={event._id}>
-        <div>
+    <Fragment key={event._id}>
+        <Fragment>
         <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
           <div className="events-card">
               <Image src={background} className="soc-item-image"/>
@@ -101,12 +101,12 @@ render(){
               {/* <p>{event.time}</p> */}
               <big className="text-muted"><b></b>{moment(event.time).format("H:mma - MMM Do, YYYY.")}</big>
 
-              <div >
-              </div>
+              <Fragment >
+              </Fragment>
           </div>
           </a>
-        </div>
-    </div>
+        </Fragment>
+    </Fragment>
     )})
 
   
@@ -161,19 +161,19 @@ render(){
                 <SearchbarFilter/>
 
                   {this.state.isLoading ? ( 
-                      <div>
-                        <div className="spacing"></div>
+                      <Fragment>
+                        <Fragment className="spacing"></Fragment>
                         <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
-                      </div>
+                      </Fragment>
 
                     ) : (
                       <Recommended/>
                     )}
 
                   {this.state.isLoading ? ( 
-                      <div>
+                      <Fragment>
                         <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
-                      </div>
+                      </Fragment>
 
                     ) : (
                       <Contributors/> 

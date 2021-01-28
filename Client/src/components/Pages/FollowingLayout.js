@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Fragment} from 'react';
 import '../../assets/Layout.css';
 import '../../assets/App.css';
 import '../../Media.css';
@@ -132,10 +132,10 @@ render(){
   const discussionList = this.state.posts.reverse().map(discussion => {
     return(
 
-        <div key={discussion._id}>
-          <div className='discussion-post'>
+        <Fragment key={discussion._id}>
+          <Fragment className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-            <div>
+            <Fragment>
               <p>
                 <a href={"/me"} className="post-link-a"><span className="voting-btn">
                   <b>{discussion.user}</b>  
@@ -148,7 +148,7 @@ render(){
                 </span></a><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span>
                 {discussion.picture == null ? (
-                  <div></div>
+                  <Fragment></Fragment>
                 ) : (
                   <Image className="post-image" src={discussion.picture} width={125} height={125}/>
                 )}<br/>
@@ -161,21 +161,21 @@ render(){
                 
                 </small>
               </p>
-            </div></a>
-          </div>
-        </div>
+            </Fragment></a>
+          </Fragment>
+        </Fragment>
       )})
   return (
         <div class="row">
             <div className="column" style={{background:'white'}}>
                 <div style={{marginTop:100, marginLeft:330}}>
-                    <div className="options-container">
+                    <Fragment className="options-container">
                         <a href="/posts"><button className="community-btn">All</button></a>
                         <a href="/following"><button className="community-btn-active">Following</button></a>
                         <a href="/questions"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
-                    </div>
+                    </Fragment>
                     {this.state.isLoading ? ( 
                       <div><br/>
                         <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
@@ -183,9 +183,9 @@ render(){
                       </div>
 
                     ) : (
-                      <div>
+                      <Fragment>
                         <UsersCommunities/>
-                      </div>
+                      </Fragment>
                     )}
                   
                   <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
@@ -208,19 +208,19 @@ render(){
                 <SearchbarFilter/>
 
                   {this.state.isLoading ? ( 
-                      <div>
-                        <div className="spacing"></div>
+                      <Fragment>
+                        <Fragment className="spacing"></Fragment>
                         <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
-                      </div>
+                      </Fragment>
 
                     ) : (
                       <Recommended/>
                     )}
 
                   {this.state.isLoading ? ( 
-                      <div>
+                      <Fragment>
                         <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
-                      </div>
+                      </Fragment>
 
                     ) : (
                       <Contributors/> 

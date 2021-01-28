@@ -830,13 +830,6 @@
   size: 10px;
 }
 
-.feedPost{
-  margin:auto;
-  width:800px;
-  height:auto;
-  border-radius: 5px;
-}
-
 .leaderboard-title{
   font-size: 50px;
   margin-bottom: 5rem;
@@ -945,16 +938,15 @@
   margin-top:5rem;
   margin-left: 72.2rem;
   background-color: white;
-  border:1px solid black;
+  /* border:1px solid black; */
   position: fixed;
   z-index: 1000;
   border-radius: 5px;
   overflow:hidden; 
   overflow-y:scroll;
   top: 0;
-  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
-
 .header-image{
   color:black;
   box-shadow: none;
@@ -993,10 +985,10 @@
   margin-top:0.5rem;
   background-color: white;
   border-radius: 5px;
-  border:1px solid black;
+  /* border:1px solid black; */
   position: fixed!important;
   z-index: 1001!important;
-  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   overflow:hidden; 
   overflow-y:scroll;
 }
@@ -1009,12 +1001,11 @@
   margin-left: 81.75rem;
   background-color: white;
   border-radius: 5px;
-  border:1px solid rgb(71, 69, 69);
+  /* border:1px solid rgb(71, 69, 69); */
   position: fixed!important;
   z-index: 1001!important;
-  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
-
 .uname-feed{
   padding-left:50px!important;
   font-size:20px;
@@ -2149,13 +2140,14 @@ section::after {
 }
 
 .discussion-post{
-  width:830px;
+  width:800px;
   height:auto;
+  margin-bottom: 10px;
   color:black;
   padding:20px;
   text-decoration: none!important;
-  border-bottom:1px solid whitesmoke;
-
+  border-bottom:1px solid lightgray;
+  /* box-shadow: rgba(0, 0, 0, 0.01) 0px 2px 8px; */
 }
 
 .miniprofile-post-redirect{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Fragment} from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
 import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
-import Skeleton from 'react-loading-skeleton';
+import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
 import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
@@ -98,10 +98,10 @@ render(){
   const discussionList = discussions.reverse().slice(0,size).map(discussion => {
     return(
 
-        <div key={discussion._id}>
-          <div className='discussion-post'>
+        <Fragment key={discussion._id}>
+          <Fragment className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-            <div>
+            <Fragment>
               <p>
                 <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
                   <b>{discussion.user}</b>  
@@ -116,7 +116,7 @@ render(){
                 {discussion.picture == null ? (
                   <div></div>
                 ) : (
-                  <Image className="post-image" src={discussion.picture} width={200} height={125}/>
+                  <img className="post-image" src={discussion.picture} width={125} height={125}/>
                 )}
                 <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
@@ -136,13 +136,13 @@ render(){
                   )}
                 </small>
               </p>
-            </div></a>
-          </div>
-        </div>
+            </Fragment></a>
+          </Fragment>
+        </Fragment>
       )})
 
   return (
-    <div class="row">
+    <Fragment class="row">
     <div className="column" style={{background:'white'}}>
         <div style={{marginTop:100, marginLeft:330 }}>
             <div className="options-container">
@@ -158,7 +158,9 @@ render(){
             {this.state.isLoading ? ( 
                 <div><br/>
                   <h3 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h3>
-                  <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
+                  <SkeletonTheme color="gray" highlightColor="#444">
+                    <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/>
+                  </SkeletonTheme><br/><br/><br/>
                 </div>
 
               ) : (
@@ -210,7 +212,7 @@ render(){
         
     </div>
 
-</div>
+</Fragment>
   );
 }
 }

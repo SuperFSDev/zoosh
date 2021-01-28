@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Fragment} from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
@@ -73,8 +73,8 @@ render(){
 
   const listingsList = shuffledPosts.reverse().map(listing =>{ 
     return(
-    <div key={listing._id}>
-        <a href={"/u/?id=" +listing.user_id}><div>
+    <Fragment key={listing._id}>
+        <a href={"/u/?id=" +listing.user_id}><Fragment>
           <div className="events-card">
               {/* <Image className="user-image-square" roundedCircle src={tutor.pic}/> */}
               <h5>{listing.user}</h5>
@@ -83,11 +83,11 @@ render(){
               <p><b>Rate:</b> €{listing.rate}/hr</p>
               
 
-              <div >
-              </div>
+              <Fragment >
+              </Fragment>
           </div>
-        </div></a>
-    </div>
+        </Fragment></a>
+    </Fragment>
     )})
 
   return (
