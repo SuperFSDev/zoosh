@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import {Image, OverlayTrigger,Tooltip,Modal, Form} from 'react-bootstrap'
@@ -179,7 +179,7 @@ export default class CommunityPage extends React.Component {
             <div key={discussion._id}>
               <div className='discussion-post' style={{marginLeft:150}}>
                 <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                <div>
+                <Fragment>
                   <p>
                     <a href={"/me"} className="post-link-a"><span className="voting-btn">
                       <b style={{color:'#0693e3'}}>{discussion.user}</b> posted <span style={{color:'gray'}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
@@ -192,7 +192,7 @@ export default class CommunityPage extends React.Component {
                     </span></a><br/>
                     <span className="forum-title">{discussion.title.slice(0,35)}</span>
                     {discussion.picture == null ? (
-                      <div></div>
+                      <Fragment></Fragment>
                     ) : (
                       <Image className="post-image" src={discussion.picture} width={150} height={125}/>
                     )}<br/>
@@ -205,7 +205,7 @@ export default class CommunityPage extends React.Component {
                     
                     </small>
                   </p>
-                </div></a>
+                </Fragment></a>
               </div>
             </div>
           )})
@@ -281,30 +281,30 @@ export default class CommunityPage extends React.Component {
                       <big><a href={this.state.society.instagram} target="_blank"  rel="noopener noreferrer" className="social-link"><FaInstagram size={20}/> </a></big>
                       <big><a href={this.state.society.facebook} target="_blank"  rel="noopener noreferrer"  className="social-link"><FaLink size={20}/> </a></big>
                     </div>
-                    
+                    <br/>     
 
                   </div>
                 </div>
 
                 <div className="containerPostMiddleCommunity">
                 {this.state.showFeed &&
-                  <div>
+                  <Fragment>
                     {discussionList}
                   
-                  </div>
+                  </Fragment>
                   }
 
                   {this.state.showEvents &&
-                  <div>
+                  <Fragment>
                       <br/>
                       <div className="community-container">
-                      <div>
+                      <Fragment>
                         <h3>Upcoming Events</h3>
                         <QuickEvent/>
                         <div className="EventSocietyLayout">
                         {events.reverse().map(event => (
-                        <div key={event._id}>
-                            <div>
+                        <Fragment key={event._id}>
+                            <Fragment>
                             <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
                               <div className="events-card-community">
                                   <h4><b>{event.title}</b></h4> 
@@ -314,74 +314,67 @@ export default class CommunityPage extends React.Component {
                                   </div>
                               </div>
                               </a>
-                            </div>
-                          </div>
+                            </Fragment>
+                          </Fragment>
                           ))}
                         </div>
-                      </div>
+                      </Fragment>
                     </div>
-                  </div>
+                  </Fragment>
                   }
 
                   {this.state.showQuestions &&
-                  <div>
+                  <Fragment>
                       <br/>
                       <div className="community-container">
-                      <div>
+                      <Fragment>
                         <h3>Questions</h3>
                         {/* <QuickEvent/> */}
                         <div className="EventSocietyLayout">
                         {questions.reverse().map(question => (
                         <div key={question._id}>
-                            <div>
+                            <Fragment>
                             <a href={"/q/?id=" + question._id} className="-soc-l-navigation">
                               <div className="events-card-community">
                                   <h4><b>{question.question}</b></h4> 
                                   <p>{moment(question.time).calendar()}</p>
-                                  <div >
-                                  </div>
                               </div>
                               </a>
-                            </div>
+                            </Fragment>
                           </div>
                           ))}
                         </div>
-                      </div>
+                      </Fragment>
                     </div>
-                  </div>
+                  </Fragment>
                   }
 
 
                   {this.state.showStats &&
-                  <div>
+                  <Fragment>
                       <br/>
                       <div className="community-container">
-                      <div> 
                       <h3>Community Leaderboard</h3>                          
                       <div className="container-individual-community">
-                          <div className="">
                             {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                              <div>
+                              <Fragment>
                                 <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                              </div>
+                              </Fragment>
                             ))}    
                             <a href="#">See More</a>
-                          </div>
                         </div>                         
                       </div>
                       
-                      </div>
 
-                  </div>
+                  </Fragment>
                   }
 
                 {this.state.showPeople &&
-                  <div>
+                  <Fragment>
                       <br/>
                       <div className="community-container">
                         <h3>({this.state.users.length}) Members</h3>
                         <hr/>
-                        <div>
                           <div className="CommunityMembers">
                             <div className="community-members-item">
                             </div>
@@ -421,9 +414,8 @@ export default class CommunityPage extends React.Component {
                           ))}
                         </div>
                         </div>
-                      </div>
 
-                  </div>
+                  </Fragment>
                 }
 
                 </div>

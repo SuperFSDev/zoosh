@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
@@ -8,6 +8,10 @@ import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
 import background from "../../images/group.jpg";
 import Skeleton from 'react-loading-skeleton';
+import Recommended from '../Lists/Recommended'
+import Contributors from '../Lists/Contributors'
+import SearchbarFilter from '../Common/SearchbarFilter'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class ListSocieties extends React.Component {
 
@@ -112,8 +116,76 @@ render(){
                 <title>Communities - Website</title>
         </Helmet> 
 
+        <div class="row">
+            <div className="column" style={{background:'white'}}>
+                <div style={{marginTop:100, marginLeft:330}}>
+                    <div className="options-container">
+                        <a href="/posts"><button className="community-btn-active">All</button></a>
+                        <a href="/following"><button className="community-btn">Top Communities</button></a>
+                    </div>
+                  
+                  <div className="search-div">
+                    <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
+                    />
+                    <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
+                      <option value="n/a">All</option>
+                      <option value="Name">Name</option>
+                      <option value="College">College</option>
+                      <option value="Category">Category</option>
 
-      <div className="containerChartMiddle">
+                    </select>
+                      <QuickOptions/>
+                  </div>
+                  <br/>
+
+                  
+
+                  <div className="SocietyLayout">
+                    {filteredSocietiesByName.map(society => (
+                    <div key={society.id}>
+                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect">
+                        <div class="miniprofileCommunities">
+                            <figure class="headshot">
+                              {society.picture == null ? (
+                                  <Avatar src={background} className="soc-item-image" roundedCircle/>
+                                ) : (
+                                  <Avatar src={society.picture} className="soc-item-image" roundedCircle/>
+                                )}
+                            </figure>
+                            <section class="bio-box">
+                                <dl class="details"> 
+                                    <b>{society.name} </b>
+                                </dl>
+                            </section>
+                
+                        </div>
+                        </a>
+                    </div>
+                    ))}
+                    </div>
+
+             
+                    
+                </div>
+            </div>
+
+            <div className="column2" style={{background:'white'}}>
+                <div  style={{marginTop:100, width:430, marginLeft:10}}>
+                <SearchbarFilter/>
+                    <Fragment>
+                      <Recommended/> 
+                    </Fragment>
+                    
+                    <Fragment>
+                      <Contributors/>
+                    </Fragment>
+                       
+                </div>
+            </div>
+        </div>
+
+
+      {/* <div className="containerChartMiddle">
           <div className="global-feed"  style={{ backgroundImage: `url(${background})`}}>
               <h3>Communities</h3>
           <div className="search-div">
@@ -128,8 +200,6 @@ render(){
           </select><br/><br/>
             <QuickOptions/>
         </div>
-
-          {/* <QuickEvent/> */}
         </div>
 
         { this.state.isLoading ? ( 
@@ -168,18 +238,14 @@ render(){
                                     <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
                                     </span>
                             </OverlayTrigger>   
-                            {/* <div >
-                              <span>
-                                  <button className="soc-item-list-join-btn" onClick={() => this.addUser(society.name)}>Join Community</button>
-                              </span>
-                            </div> */}
+              
                         </div></a>
                     </div>
                     ))}
                     </div>
               )}
         
-      </div>
+      </div> */}
   </div>
   );
 }

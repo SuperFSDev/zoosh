@@ -109,8 +109,10 @@ export default class DiscussionPost extends React.Component {
         _id:this.state.discussion_id,
         comment:{
         user_id: user._id,
+        user_name: user.fullname,
         comment: this.state.comment,
         time: new Date().getTime(),
+        user_img: user.pic
       }
       
    }
@@ -264,7 +266,7 @@ export default class DiscussionPost extends React.Component {
                   </figure></a>
                   <section class="bio-box">
                             <dl class="details"> 
-                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user} </b></a>
+                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
                                 <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
                                 
                                 

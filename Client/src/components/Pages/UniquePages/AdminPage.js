@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import {Image, Form, Tooltip, OverlayTrigger} from 'react-bootstrap'
@@ -270,7 +270,6 @@ export default class AdminPage extends React.Component {
             <div key={discussion._id}>
               <div className='discussion-post' style={{marginLeft:150}}>
                 <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                <div>
                   <p>
                     <a href={"/me"} className="post-link-a"><span className="voting-btn">
                       <b style={{color:'#0693e3'}}>{discussion.user}</b> posted <span style={{color:'gray'}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
@@ -296,13 +295,13 @@ export default class AdminPage extends React.Component {
                     
                     </small>
                   </p>
-                </div></a>
+                </a>
               </div>
             </div>
           )})
       
         return (
-          <div>
+          <Fragment>
             {/* REACTJS HELMET */}
             <Helmet>
                       <meta charSet="utf-8" />
@@ -526,7 +525,7 @@ export default class AdminPage extends React.Component {
               }
 
               </div>
-        </div>
+        </Fragment>
         );
     } 
 }

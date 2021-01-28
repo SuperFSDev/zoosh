@@ -101,12 +101,12 @@ render(){
                 <title>Events - Website</title>
         </Helmet> 
 
-        <div class="row">
+        <Fragment class="row">
             <div className="column" style={{background:'white'}}>
                 <div style={{marginTop:100, marginLeft:330}}>
                     <div className="options-container">
-                        <a href="/posts"><button className="community-btn">All</button></a>
-                        <a href="/following"><button className="community-btn">Following</button></a>
+                        <a href="/home"><button className="community-btn">Best</button></a>
+                        <a href="/trending"><button className="community-btn">Trending</button></a>
                         <a href="/questions"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn-active">Listings</button></a>
@@ -140,27 +140,16 @@ render(){
                 <div  style={{marginTop:100, width:430, marginLeft:10}}>
                 <SearchbarFilter/>
 
-                  {this.state.isLoading ? ( 
-                      <div>
-                        <div className="spacing"></div>
-                        <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
-                      </div>
-
-                    ) : (
-                      <Recommended/>
-                    )}
-
-                  {this.state.isLoading ? ( 
-                      <div>
-                        <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
-                      </div>
-
-                    ) : (
-                      <Contributors/> 
-                    )}
+                    <Fragment>
+                      <Recommended/> 
+                    </Fragment>
+                    
+                    <Fragment>
+                      <Contributors/>
+                    </Fragment>
                 </div>
             </div>
-        </div>
+        </Fragment>
   </div>
   );
 }

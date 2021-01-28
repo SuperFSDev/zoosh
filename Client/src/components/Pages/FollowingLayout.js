@@ -41,7 +41,7 @@ export default class Feed extends React.Component {
         };
       }
     
-        async componentDidMount() {
+    async componentDidMount() {
           // document.body.style.backgroundColor = "#FDFEFE";
     
           var user = JSON.parse(localStorage.getItem('user'));
@@ -91,6 +91,7 @@ export default class Feed extends React.Component {
               console.log(error);
             });
         }
+        
     
   
     
@@ -166,12 +167,12 @@ render(){
         </Fragment>
       )})
   return (
-        <div class="row">
+        <Fragment class="row">
             <div className="column" style={{background:'white'}}>
                 <div style={{marginTop:100, marginLeft:330}}>
                     <Fragment className="options-container">
-                        <a href="/posts"><button className="community-btn">All</button></a>
-                        <a href="/following"><button className="community-btn-active">Following</button></a>
+                        <a href="/home"><button className="community-btn-active">Best</button></a>
+                        <a href="/trending"><button className="community-btn">Trending</button></a>
                         <a href="/questions"><button className="community-btn">Questions</button></a>
                         <a href="/events"><button className="community-btn">Events</button></a>
                         <a href="/listings"><button className="community-btn">Listings</button></a>
@@ -188,7 +189,7 @@ render(){
                       </Fragment>
                     )}
                   
-                  <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
+                  <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> LATEST FROM FOLLOWING</h3>
 
                   {this.state.isLoading ? ( 
                       <div>
@@ -206,28 +207,16 @@ render(){
             <div className="column2" style={{background:'white'}}>
                 <div  style={{marginTop:100, width:430, marginLeft:10}}>
                 <SearchbarFilter/>
-
-                  {this.state.isLoading ? ( 
-                      <Fragment>
-                        <Fragment className="spacing"></Fragment>
-                        <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
-                      </Fragment>
-
-                    ) : (
+                    <Fragment>
                       <Recommended/>
-                    )}
+                    </Fragment>
 
-                  {this.state.isLoading ? ( 
-                      <Fragment>
-                        <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
-                      </Fragment>
-
-                    ) : (
+                    <Fragment>
                       <Contributors/> 
-                    )}
+                    </Fragment>          
                 </div>
             </div>
-        </div>
+        </Fragment>
   );
   }
  }

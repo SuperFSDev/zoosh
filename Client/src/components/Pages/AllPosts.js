@@ -24,6 +24,8 @@ export default class AllPosts extends React.Component {
     this.state = {
       discussions: [],
       isLoading: true,
+      isLoadingUsers: true,
+
       comments:[],
       time:'',
       toggle: false,
@@ -35,11 +37,18 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    // document.body.style.backgroundColor = "#FDFEFE";
+  
+    this.getUserDetails();
+    this.getDiscussions();
 
+    // Fetch discussions every 1 second
+    // this.timer = setInterval(() => this.getDiscussions(), 1000);
+  }
+
+  // Fetching the users Details
+  async getUserDetails(){
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-  
-  
+
     axios.get('http://localhost:4000/users/get-user-details', {
         params: {
           id: user_id
@@ -55,18 +64,24 @@ export default class AllPosts extends React.Component {
         .catch((error) => {
           console.log(error);
         });
-
-    axios.get('http://localhost:4000/discussions/getDiscussions')
-      .then((response) => {
-        this.setState({ 
-          discussions: response.data.discussions,
-          users:response.data.discussions,
-          isLoading: false, })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
+
+  // Fetching the discussions
+  async getDiscussions (){
+    axios.get('http://localhost:4000/discussions/getDiscussions')
+    .then((response) => {
+      this.setState({ 
+        discussions: response.data.discussions,
+        users:response.data.discussions,
+        isLoading: false,
+      
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   removeSaved = () =>{
     this.setState({ 
       isSaved: false,
@@ -95,7 +110,7 @@ render(){
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
 
-  const discussionList = discussions.reverse().slice(0,size).map(discussion => {
+  const discussionList = discussions.reverse().map(discussion => {
     return(
 
         <Fragment key={discussion._id}>
@@ -146,8 +161,8 @@ render(){
     <div className="column" style={{background:'white'}}>
         <div style={{marginTop:100, marginLeft:330 }}>
             <div className="options-container">
-                <a href="/home"><button className="community-btn-active">All</button></a>
-                <a href="/following"><button className="community-btn">Following</button></a>
+                <a href="/home"><button className="community-btn">Best</button></a>
+                <a href="/trending"><button className="community-btn-active">Trending</button></a>
                 <a href="/questions"><button className="community-btn">Questions</button></a>
                 <a href="/events"><button className="community-btn">Events</button></a>
                 <a href="/listings"><button className="community-btn">Listings</button></a>
@@ -188,25 +203,15 @@ render(){
             <div>
 
             <SearchbarFilter/>
-
-            {this.state.isLoading ? ( 
-                <div>
-                  <div className="spacing"></div>
-                  <Skeleton height={300} style={{marginBottom:10}} count={1}/><br/>
-                </div>
-
-              ) : (
+              <Fragment>
                 <Recommended/>
-              )}
+              </Fragment>
 
-            {this.state.isLoading ? ( 
-                <div>
-                  <Skeleton height={300} style={{marginTop:50}} count={1}/><br/>
-                </div>
-
-              ) : (
-                <Contributors/> 
-              )}
+              <Fragment>
+                <Contributors/>
+              </Fragment>
+            
+            
             </div>
         </div>
         

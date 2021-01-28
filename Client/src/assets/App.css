@@ -1452,6 +1452,17 @@ section::after {
   font-family: Arial;
 }
 
+.miniprofileCommunities{
+  width: 1000px;
+  height: 70px;
+  position: relative; /* all other elements styled relative to this section's position */
+  font-family: Arial;
+}
+
+.miniprofileCommunities:hover{
+  background:whitesmoke;
+}
+
 .miniprofile {
   width: auto;
   height: 70px;
@@ -1854,6 +1865,7 @@ section::after {
 
 .contributors-container{
   margin-top:50px;
+  height:320px;
   width:400px;
   background-color:rgb(248, 248, 248);
   padding:10px;
@@ -2123,7 +2135,7 @@ section::after {
   background-color:rgb(248, 248, 248);
   width:400px;
   padding:10px;
-  height:250px!important;
+  height:270px!important;
   border-radius: 15px;
   margin-top: 2.5rem;
 }
@@ -2144,9 +2156,8 @@ section::after {
   height:auto;
   margin-bottom: 10px;
   color:black;
-  padding:20px;
   text-decoration: none!important;
-  border-bottom:1px solid lightgray;
+  border-bottom:1px solid lightgray!important;
   /* box-shadow: rgba(0, 0, 0, 0.01) 0px 2px 8px; */
 }
 
@@ -2288,7 +2299,6 @@ padding-left: 4rem;
 
 /* SEARCH BAR */
 .search-div{
-  /* text-align:center !important; */
   padding-top:20px;
 }
 
@@ -2822,9 +2832,8 @@ padding-left: 4rem;
 }
 
 .SocietyLayout {
-  /* width:50%; */
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   margin:auto;
   text-align: center;
 }
@@ -2898,10 +2907,11 @@ padding-left: 4rem;
 
 .socs-list-items{
   margin:auto;
-  width: 221px;
-  height: auto;
+  width: auto;
+  height: 100px;
   background:white;
   margin-top:1.5rem;
+  margin-bottom: 20px;
   margin-right: 33px;
   padding-bottom:10px;
   transition:0.2s;

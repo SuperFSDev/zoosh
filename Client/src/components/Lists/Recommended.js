@@ -40,7 +40,7 @@ export default class Recommended extends React.Component {
 
 render(){
   var { societies } = this.state;
-  var size = 1;
+  var size = 2;
   const shuffledPosts = shuffleArray(societies);
 
    return (

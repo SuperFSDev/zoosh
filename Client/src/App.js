@@ -58,22 +58,21 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
-              <Route path="/posts" component={AllPosts}/> 
+              <Route path="/home" component={FollowingLayout}/> 
               <Route path="/saved" component={ReadingList}/>
 
               <Route path="/forums" component={Forums}/>
               <Route path="/q" component={QuestionPage}/>
-              <Route path="/home" component={AllPosts}/>
+              {/* <Route path="/home" component={AllPosts}/> */}
               <Route exact path="/" component={AllPosts}/>
-              <Route path="/following" component={FollowingLayout}/>
+              <Route path="/trending" component={AllPosts}/>
               <Route path="/questions" component={Questions}/>
-
 
 
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
-                    <Route exact path='/' component={AllPosts} />
+                    <Route exact path='/' component={FollowingLayout} />
                     <Route path="*" component={NotFoundPage} />
                 </Switch>
               </Router>    
