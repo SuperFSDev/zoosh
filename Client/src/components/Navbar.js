@@ -11,6 +11,8 @@ import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning} from 'react-i
 import Clap from '../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import {MdSchool} from 'react-icons/md'
+import SearchbarFilter from '../components/Common/SearchbarFilter'
+import {BiPlanet} from 'react-icons/bi'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -187,14 +189,17 @@ render(){
         <div id="top"></div>
         <Navbar className="navbar" fixed="top">
           <Nav className="mr-auto">
-            <Navbar.Brand className="header" href="/home">Website Name</Navbar.Brand>
+            <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
+            <SearchbarFilter/>
+
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <div className="quick-create-option">             
+            <div className="quick-create-option">   
+                <span className="notify"><a href="communities"><BiPlanet size={25}/></a></span>      
                 <span className="notify" ><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
-                <span className="notify" onClick={this.showForum}><BsLightning size={25}/>FORUM</span>
-                <span className="notify" onClick={this.showMenu}><BsBell size={25} />ME</span>
+                <span className="notify" onClick={this.showForum}><BsLightning size={25}/></span>
+                <span className="notify" onClick={this.showMenu}><BsBell size={25} /></span>
             </div>      
             <a href="/new"><button className="write-button">Write</button></a>
             <div id="#battleBox">

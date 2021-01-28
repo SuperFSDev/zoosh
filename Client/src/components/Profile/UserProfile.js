@@ -188,11 +188,9 @@ export default class UserProfile extends React.Component {
                       </div>
                     </div>           
                       
-                    <div className="navbar-prof-btn">
                       <div id="#battleBox">
                         <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
                       </div>
-                    </div>               
                   </Navbar.Collapse>
         </Navbar>
 
@@ -202,7 +200,7 @@ export default class UserProfile extends React.Component {
           </div>
             <div id="social">
               <div className="profile-card-align">
-                <Image src={this.state.user.pic} className="user-image"/>
+                {/* <Image src={this.state.user.pic} className="user-image"/> */}
 
                 {/* <br/>
                 {isUnfollowing ? (
@@ -214,18 +212,16 @@ export default class UserProfile extends React.Component {
                 <br/><br/>
                 
                 {/* If the user has not edited their profile to display college/course then dont display */}
-                {this.state.user.college == null ? (
+                {/* {this.state.user.college == null ? (
                   <div></div>
-                  // <b>{this.state.user.fullname} is hiding from you</b>
                 ) : (
                   <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
-                )}
+                )} */}
                </div>
                
               </div>
 
-              <div className="user-profile-about-bio">
-                  {/* {this.state.user.bio} */}
+              {/* <div className="user-profile-about-bio">
 
                 <br/><br/>
                 <span className="text-muted">COMMUNTIES</span>
@@ -247,7 +243,7 @@ export default class UserProfile extends React.Component {
                         </div>
                       )}
                 
-              </div>
+              </div> */}
         </div>
 
         <div className="containerFeedRightUser">

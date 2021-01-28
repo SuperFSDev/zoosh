@@ -161,7 +161,7 @@ export default class DiscussionPost extends React.Component {
                 <div className="spacing"></div>
                 <p >
                   <a href={"/c/?id="+this.state.discussion.society}><b>{this.state.discussion.society}</b></a>
-                  <br/>Description about this community
+                  <br/>
                 </p>
                 <button className="community-btn-a">Join Community</button>
                 <br/><hr/>
@@ -299,7 +299,7 @@ export default class DiscussionPost extends React.Component {
             ))}
          </div>  
          <div>
-          <ReadMore/>
+          {/* <ReadMore/> */}
          </div>
       </div>
     </div>   

@@ -38,6 +38,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = "#f0f2f5";
   
     this.getUserDetails();
     this.getDiscussions();
@@ -189,32 +190,8 @@ render(){
   return (
     <Fragment class="row">
     <div className="column" style={{background:'white'}}>
-        <div className="feed-container">
-            <div className="options-container">
-                <a href="/home"><button className="community-btn">Best</button></a>
-                <a href="/trending"><button className="community-btn-active">Trending</button></a>
-                <a href="/questions"><button className="community-btn">Questions</button></a>
-                <a href="/events"><button className="community-btn">Events</button></a>
-                <a href="/listings"><button className="community-btn">Listings</button></a>
+          <div className="feed-container">
 
-            </div>
-            <br/>
-            
-
-            {this.state.isLoading ? ( 
-                <div><br/>
-                  <h3 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h3>
-                  <SkeletonTheme color="gray" highlightColor="#444">
-                    <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/>
-                  </SkeletonTheme><br/><br/><br/>
-                </div>
-
-              ) : (
-                <div>
-                  <UsersCommunities/>
-                </div>
-              )}
-            
             <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
 
             {this.state.isLoading ? ( 
@@ -226,26 +203,17 @@ render(){
               ) : (
                 <p>{discussionList}</p>
               )}
-        </div>
+          </div>
     </div>
 
     <div className="column2" style={{background:'white'}}>
-        <div >
-            <div>
-
-            <SearchbarFilter/>
               <Fragment>
                 <Recommended/>
               </Fragment>
 
               <Fragment>
                 <Contributors/>
-              </Fragment>
-            
-            
-            </div>
-        </div>
-        
+              </Fragment>        
     </div>
 
 </Fragment>

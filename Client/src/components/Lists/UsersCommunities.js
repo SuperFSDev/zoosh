@@ -88,14 +88,9 @@ class UsersCommunities extends React.Component {
                         </div></a>
                     </div>
                   ))}
-                  {/* <b><a href={"/s/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">Admin</b></b><br/> */}
                 </p>
               </li>
               )}
-            {/* {this.state.societies.map(society=> */}
-                 
-                  {/* )}                */}
-                <hr/>
         </div>
   );
   }

@@ -4,6 +4,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import {BiCompass} from 'react-icons/bi'
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
+import {BiPlanet} from 'react-icons/bi'
 
 export default class Recommended extends React.Component {
 
@@ -47,7 +48,7 @@ render(){
     <StickyContainer>
         <div>
             <div className="recommended-container">
-            <h5 className="-feed-item-header"><BiCompass size={20}/> EXPLORE</h5><hr/>
+            <p><BiPlanet size={20}/> COMMUNITIES</p><hr/>
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={140} style={{marginBottom:10}} count={1}/><br/>
@@ -58,7 +59,7 @@ render(){
                   {shuffledPosts.slice(0, size).map(society =>(
                     <a href={"/c/?id="+society._id} className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><div class="miniprofileCommunity">
                       <figure class="headshot">
-                          <Image src={society.picture} width={50} height={50} roundedCircle/>
+                          <Image src={society.picture} className="user-image-mini" roundedCircle/>
                       </figure>
                       <a href={"/c/?id="+society._id} className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 

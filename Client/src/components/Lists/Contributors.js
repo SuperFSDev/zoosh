@@ -35,7 +35,7 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <h5 className="-feed-item-header"><BiRadar  size={20}/> RADAR</h5><hr/>
+            <p><BiRadar  size={20}/> RADAR</p><hr/>
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={100} style={{marginBottom:10}} count={3}/><br/>

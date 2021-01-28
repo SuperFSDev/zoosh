@@ -30,7 +30,7 @@ export default class ListSocieties extends React.Component {
 
 
     componentDidMount() {
-      // document.body.style.backgroundColor = "#FDFEFE";
+      document.body.style.backgroundColor = "#f0f2f5";
 
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
@@ -118,11 +118,12 @@ render(){
 
         <div class="row">
             <div className="column" style={{background:'white'}}>
-                <div style={{marginTop:100, marginLeft:330}}>
-                    <div className="options-container">
+                {/* <div style={{marginTop:100, marginLeft:330}}> */}
+                    {/* <div className="options-container">
                         <a href="/posts"><button className="community-btn-active">All</button></a>
                         <a href="/following"><button className="community-btn">Top Communities</button></a>
-                    </div>
+                    </div> */}
+                  <div className="feed-container">
                   
                   <div className="search-div">
                     <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
@@ -170,8 +171,6 @@ render(){
             </div>
 
             <div className="column2" style={{background:'white'}}>
-                <div  style={{marginTop:100, width:430, marginLeft:10}}>
-                <SearchbarFilter/>
                     <Fragment>
                       <Recommended/> 
                     </Fragment>
@@ -179,8 +178,6 @@ render(){
                     <Fragment>
                       <Contributors/>
                     </Fragment>
-                       
-                </div>
             </div>
         </div>
 

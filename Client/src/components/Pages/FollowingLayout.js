@@ -42,7 +42,7 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-          // document.body.style.backgroundColor = "#FDFEFE";
+      document.body.style.backgroundColor = "#f0f2f5";
     
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
@@ -169,26 +169,7 @@ render(){
   return (
         <Fragment class="row">
             <div className="column" style={{background:'white'}}>
-                <div style={{marginTop:100, marginLeft:330}}>
-                    <Fragment className="options-container">
-                        <a href="/home"><button className="community-btn-active">Best</button></a>
-                        <a href="/trending"><button className="community-btn">Trending</button></a>
-                        <a href="/questions"><button className="community-btn">Questions</button></a>
-                        <a href="/events"><button className="community-btn">Events</button></a>
-                        <a href="/listings"><button className="community-btn">Listings</button></a>
-                    </Fragment>
-                    {this.state.isLoading ? ( 
-                      <div><br/>
-                        <h5 className="-feed-item-header"><BiPlanet size={20}/> YOUR COMMUNITIES </h5>
-                        <Skeleton circle={true} height={100} width={100} style={{marginLeft:10}} count={5}/><br/><br/><br/>
-                      </div>
-
-                    ) : (
-                      <Fragment>
-                        <UsersCommunities/>
-                      </Fragment>
-                    )}
-                  
+            <div className="feed-container">
                   <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> LATEST FROM FOLLOWING</h3>
 
                   {this.state.isLoading ? ( 
@@ -200,13 +181,10 @@ render(){
                     ) : (
                       <p>{discussionList}</p>
                     )}
-                    
-                </div>
+             </div>
             </div>
 
             <div className="column2" style={{background:'white'}}>
-                <div  style={{marginTop:100, width:430, marginLeft:10}}>
-                <SearchbarFilter/>
                     <Fragment>
                       <Recommended/>
                     </Fragment>
@@ -214,7 +192,6 @@ render(){
                     <Fragment>
                       <Contributors/> 
                     </Fragment>          
-                </div>
             </div>
         </Fragment>
   );
