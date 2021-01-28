@@ -142,10 +142,9 @@ render(){
   const discussionList = discussions.reverse().map(discussion => {
     return(
 
-        <Fragment key={discussion._id}>
-          <Fragment className='discussion-post'>
+        <div key={discussion._id}>
+          <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-            <Fragment>
               <p>
                 <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
                   <b>{discussion.user}</b>  
@@ -180,17 +179,17 @@ render(){
                   )}
                 </small>
               </p>
-              
-            </Fragment></a>
-          </Fragment>
-          {this.CheckPost(discussion.user_id,discussion._id)}
-        </Fragment>
+              {this.CheckPost(discussion.user_id,discussion._id)}
+            </a>
+          </div>
+          
+        </div>
       )})
 
   return (
     <Fragment class="row">
     <div className="column" style={{background:'white'}}>
-        <div style={{marginTop:100, marginLeft:330 }}>
+        <div className="feed-container">
             <div className="options-container">
                 <a href="/home"><button className="community-btn">Best</button></a>
                 <a href="/trending"><button className="community-btn-active">Trending</button></a>
@@ -199,6 +198,7 @@ render(){
                 <a href="/listings"><button className="community-btn">Listings</button></a>
 
             </div>
+            <br/>
             
 
             {this.state.isLoading ? ( 
@@ -230,7 +230,7 @@ render(){
     </div>
 
     <div className="column2" style={{background:'white'}}>
-        <div  style={{marginTop:100, width:430, marginLeft:10}}>
+        <div >
             <div>
 
             <SearchbarFilter/>

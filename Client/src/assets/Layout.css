@@ -5,7 +5,7 @@
   /* Create two equal columns that floats next to each other */
   .column {
     float: left;
-    width: 50%;
+    width: 60%;
     display:flex;
     text-align: left;
     color:black;
@@ -13,13 +13,10 @@
 
   .column2 {
     float: left;
-    width: 50%;
+    width: 40%;
     padding: 10px;
     height:100%!important;
     border-left:1px solid whitesmoke;
-    position: fixed!important;
-    margin-left: 72.5rem;
-
   }
 
   .columnForum2{
@@ -67,4 +64,100 @@
   margin-top:100px;
   width:430px;
   margin-left:10px;
+}
+
+@media only screen   
+and (min-device-width : 320px)   
+and (max-device-width : 480px) {
+  .column{
+    width:50%
+  }
+
+  .discussion-post{
+    width:100px;
+  }
+
+  .column2{
+    width:50%
+  }
+}
+
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  /* CSS */
+
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  /* CSS */
+  .menu { margin-left:-15%; }
+  .profileDropdwn { margin-left:-8%; }
+
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  /* CSS */
+  .menu{ margin-left:-25%; }
+  .profileDropdwn { margin-left:-20%; }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  /* CSS */
+    /* CSS */
+    .menu{ margin-left:-30%; }
+    .profileDropdwn { margin-left:-20%; }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  /* CSS */
+  .menu { margin-left:-9%; }
+  .profileDropdwn { margin-left:-40%; }
+  .column{width:100%}
+  .column2{display:none;}
+  .discussion-post{width: auto}
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  /* CSS */
+  .profileDropdwn { margin-left:-30%; }
+  .column2{display:none;}
+  
 }

@@ -188,24 +188,20 @@ render(){
         <Navbar className="navbar" fixed="top">
           <Nav className="mr-auto">
             <Navbar.Brand className="header" href="/home">Website Name</Navbar.Brand>
-            {/* <input className="searchbar-navbar" type="text" id="mySearch" placeholder="Search users and communities " title="Type in a category" onClick={this.showFilter} onChange={this.updateSearch.bind(this)}/> */}
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">             
-                {/* <span className="square" ><BsSearch size={20}/></span> */}
-                <span className="notify" style={{marginRight:30, cursor:'pointer'}}><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
+                <span className="notify" ><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
                 <span className="notify" onClick={this.showForum}><BsLightning size={25}/>FORUM</span>
                 <span className="notify" onClick={this.showMenu}><BsBell size={25} />ME</span>
             </div>      
-            <a href="/new"className="notify"><button className="write-button">Write</button></a>
-     
-              
-            <div className="navbar-prof-btn">
-              <div id="#battleBox">
+            <a href="/new"><button className="write-button">Write</button></a>
+            <div id="#battleBox">
                 <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/>
               </div>
-            </div>         
+     
+                    
           </Navbar.Collapse>
         </Navbar>
 

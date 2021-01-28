@@ -10,7 +10,7 @@
 .navbar{
   background:white  ;
   /* border-bottom: 1px solid whitesmoke;   */
-  height:75px;
+  height:auto;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
 
@@ -91,10 +91,7 @@
   text-decoration: none;
   font-size: 2rem !important;
   font-weight: bolder;
-  margin-left: 19rem;
-  /* color:black!important; */
   color:black  !important;
-
   font-family: 'Righteous', cursive;
 }
 
@@ -358,16 +355,6 @@
 
 
 #container{width: 100%;}
-
-.column {
-  float: left;
-  width: 19.33%;
-  /* padding: 5px; */
-  display: inline-block;
-  text-align: center;
-
-}
-
 /* LEADERBOARD */
 
  h2 a {
@@ -936,7 +923,7 @@
   height:400px;
   padding:10px;
   margin-top:5rem;
-  margin-left: 72.2rem;
+  left: 75%;
   background-color: white;
   /* border:1px solid black; */
   position: fixed;
@@ -998,10 +985,9 @@
   height:auto;
   padding:10px;
   margin-top:4.8rem;
-  margin-left: 81.75rem;
+  left: 85%;
   background-color: white;
   border-radius: 5px;
-  /* border:1px solid rgb(71, 69, 69); */
   position: fixed!important;
   z-index: 1001!important;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
@@ -2145,6 +2131,11 @@ section::after {
   color:black;
 }
 
+.feed-container{
+  width: 100%;
+  margin-left: 20rem;
+}
+
 #mySearch{
   border:1px solid lightgray;
   border-radius: 5px;
@@ -2152,13 +2143,13 @@ section::after {
 }
 
 .discussion-post{
-  width:800px;
   height:auto;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   color:black;
+  border:1px solid lightgray;
+  padding:20px;
   text-decoration: none!important;
-  border-bottom:1px solid lightgray!important;
-  /* box-shadow: rgba(0, 0, 0, 0.01) 0px 2px 8px; */
+  border-radius: 5px;
 }
 
 .miniprofile-post-redirect{

@@ -134,7 +134,7 @@ render(){
     return(
 
         <Fragment key={discussion._id}>
-          <Fragment className='discussion-post'>
+          <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
             <Fragment>
               <p>
@@ -163,7 +163,7 @@ render(){
                 </small>
               </p>
             </Fragment></a>
-          </Fragment>
+          </div>
         </Fragment>
       )})
   return (
