@@ -98,6 +98,18 @@ discussions.get('/get-society-discussions', (req, res) => {
         })
 
 })
+
+
+
+discussions.delete('/getDiscussions:id', (req, res) => {  //delete a discussion
+    console.log(req.params.id);
+
+    DiscussionModel.deleteOne({ _id: req.params.id },
+        (error, data) => {
+            res.json(data);
+
+        })
+})
 discussions.post('/addComment', (req, res) => {
 
     DiscussionModel.findByIdAndUpdate(

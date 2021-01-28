@@ -41,9 +41,6 @@ export default class CommunityPage extends React.Component {
  
   async componentDidMount() {
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
-
-      console.log(society_id);
-
       await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
           id: society_id
@@ -90,7 +87,7 @@ export default class CommunityPage extends React.Component {
 
       axios.get('http://localhost:4000/events/get-society-events',{
         params: {
-          society: this.state.society.name
+          society: society_id
         }
       })
       .then((response) => {
@@ -172,7 +169,7 @@ export default class CommunityPage extends React.Component {
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
-
+       
       const discussionList = this.state.posts.reverse().map(discussion => {
         return(
     
@@ -293,7 +290,7 @@ export default class CommunityPage extends React.Component {
                   
                   </Fragment>
                   }
-
+                  {console.log(events)}
                   {this.state.showEvents &&
                   <Fragment>
                       <br/>

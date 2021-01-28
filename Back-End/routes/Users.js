@@ -612,16 +612,13 @@ users.post('/deleteSoc', (req, res) => { //delete user
 })
 
 
-users.post('/deletePost', (req, res) => { //delete user
+users.post('/removeFromReadingList', (req, res) => { //delete user
 
 
-    UserModel.updateOne({
-            _id: req.body.id
-        }, {
+    UserModel.updateMany({
             $pull: {
-                posts: {
-                    Post_id: req.body.Post_id
-                }
+                readingList:req.body.discussion_id
+                
             }
         }, {
             new: true

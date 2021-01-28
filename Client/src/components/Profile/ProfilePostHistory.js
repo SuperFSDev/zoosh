@@ -35,6 +35,29 @@ export default class History extends React.Component {
         
     }
 
+    
+    CheckPost(id,discussion_id) {
+      var user = JSON.parse(localStorage.getItem('user'));
+    if(id == user._id){
+      return(<div>
+        <button onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
+      </div>)
+    }
+    } 
+    onDeletePost(id,discussion_id) {
+    axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
+    .then()
+    .catch();
+  
+    const RemovedDiscussion = {
+      discussion_id:discussion_id      
+  }
+    axios.post('http://localhost:4000/users/removeFromReadingList',RemovedDiscussion)
+     .then().catch();
+     window.location.reload(); //refreshes page automatically 
+  
+  }
+
   render(){
 
     var size = 10;
@@ -59,9 +82,10 @@ console.log(this.state.posts);
                         )}
                       </p><hr/>
                     </a>
+                    {this.CheckPost(post.user_id,post._id)}  
                     </Card.Text>        
                   </Card.Body>  
-                  <h1></h1>                
+                  <h1></h1>              
                 </Card>
               </div>
             ))} 

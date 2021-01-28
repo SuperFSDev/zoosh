@@ -309,29 +309,4 @@ export default class DiscussionPost extends React.Component {
   }
 }
 
-
-  function ProfilePic() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    var pp = user.pic;
-  
-    return (
-      <div>
-        <Avatar src={pp} className="profile-btn-wrapper-left"/>
-      </div>
-    );
-  }
-
-
-  function Username(){
-    var user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-      var fullname = user.fullname; 
-  
-    return (
-      <div>
-        <p>{fullname}</p>
-      </div>
-    );
-  
-  }
   

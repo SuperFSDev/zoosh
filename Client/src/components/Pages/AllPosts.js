@@ -16,6 +16,7 @@ import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
 import {BiPlanet} from 'react-icons/bi'
 import SearchbarFilter from '../Common/SearchbarFilter'
+import { json } from 'body-parser';
 
 export default class AllPosts extends React.Component {
 
@@ -40,6 +41,7 @@ export default class AllPosts extends React.Component {
   
     this.getUserDetails();
     this.getDiscussions();
+    this.onDeletePost = this.onDeletePost.bind(this);
 
     // Fetch discussions every 1 second
     // this.timer = setInterval(() => this.getDiscussions(), 1000);
@@ -105,6 +107,33 @@ export default class AllPosts extends React.Component {
   }
 
 
+   // Render hide/show comment section
+   CheckPost(id,discussion_id) {
+    var user = JSON.parse(localStorage.getItem('user'));
+  if(id == user._id){
+    return(<div>
+      <button onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
+    </div>)
+  }
+  }
+
+
+  onDeletePost(id,discussion_id) {
+  axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
+  .then()
+  .catch();
+
+  const RemovedDiscussion = {
+    discussion_id:discussion_id      
+}
+  axios.post('http://localhost:4000/users/removeFromReadingList',RemovedDiscussion)
+   .then().catch();
+   window.location.reload(); //refreshes page automatically 
+
+}
+
+
+
 render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
@@ -151,8 +180,10 @@ render(){
                   )}
                 </small>
               </p>
+              
             </Fragment></a>
           </Fragment>
+          {this.CheckPost(discussion.user_id,discussion._id)}
         </Fragment>
       )})
 
