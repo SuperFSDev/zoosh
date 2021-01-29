@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import {Form} from 'react-bootstrap';
+import Select from 'react-select';
 
 class CreateForumPost extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class CreateForumPost extends React.Component {
       forumPosts: [],
       user: '',
       post: '',
+      tags: [],
       time: new Date().getTime(),
     };
 
@@ -19,6 +21,8 @@ class CreateForumPost extends React.Component {
     this.onChangeUser= this.onChangeUser.bind(this);
     this.onChangePost = this.onChangePost.bind(this);
     this.onChangeTime = this.onChangeTime.bind(this);
+    this.onChangeTag = this.onChangeTag.bind(this);
+
   }
   
 componentDidMount() {
@@ -51,6 +55,10 @@ componentDidMount() {
     });
   }
 
+  onChangeTag(e) {
+    this.setState({ tags: e })
+  }
+
   onChangeTime(e) {
     this.setState({
       time: new Date().getTime(),
@@ -66,6 +74,7 @@ componentDidMount() {
         user_id: this.state.id,
         post: this.state.post,
         time: new Date().getTime(),
+        tags: this.state.tags,
       }
 
     axios.post('http://localhost:4000/forums/NewPost', newPost)
@@ -76,6 +85,8 @@ componentDidMount() {
       user: '',
       post: '',
       time: new Date().getTime(),
+      tags: [],
+
     });
     window.location = '/forums';
 }
@@ -83,16 +94,21 @@ componentDidMount() {
 
   render(){
     var user = JSON.parse(localStorage.getItem('user'));
-    if(user)
+    if(user){
       var fullname = user.fullname;
       this.state.user = fullname;
-  
+    }
+    
+    const options = [
+      { value: 'bug', label: 'Bug' },
+      { value: 'feature', label: 'Feature Request' },
+    ]
 
   return ( 
     <div className="create-a-post">
       <div>
         
-      <h1>Feature Request</h1><br/><br/>
+      <h1>Leave Feedback</h1><br/><br/>
   
       <Form onSubmit={this.onSubmit} className="post-container">
 
@@ -111,6 +127,8 @@ componentDidMount() {
             shrink: true,
           }}
           />
+
+        <Select options={options} required onChange={this.onChangeTag} value={this.state.tags} placeholder="#tag" />
 
           <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
         </Form>

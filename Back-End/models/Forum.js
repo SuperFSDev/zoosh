@@ -7,6 +7,7 @@ const ForumSchema = new Schema({
     user_id:String,
     post:String,
     time:Date,
+    tag:String,
 })
 
 // create a model

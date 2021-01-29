@@ -30,8 +30,8 @@ import Users from './components/Pages/Users'
 import Listings from './components/Pages/Listings'
 import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
-import FollowingLayout from './components/Pages/FollowingLayout';
-import AllPosts from './components/Pages/AllPosts';
+import Following from './components/Pages/FollowingLayout';
+import TopPosts from './components/Pages/AllPosts';
 import Questions from './components/Pages/Questions';
 import QuestionPage from './components/Pages/UniquePages/QuestionPage';
 
@@ -58,22 +58,22 @@ class App extends React.Component {
               <Route path="/users" component={Users}/>
               <Route path="/listings" component={Listings}/>
               <Route path="/new" component={NewPost}/>
-              <Route path="/home" component={FollowingLayout}/> 
+              <Route path="/home" component={Following}/> 
               <Route path="/saved" component={ReadingList}/>
               <Route path="/me" component={Profile}/>
               <Route path="/forums" component={Forums}/>
               <Route path="/q" component={QuestionPage}/>
               <Route path="/c" component={CommunityPage}/>
               {/* <Route path="/home" component={AllPosts}/> */}
-              <Route exact path="/" component={AllPosts}/>
-              <Route path="/trending" component={AllPosts}/>
+              <Route exact path="/" component={Following}/>
+              <Route path="/top" component={TopPosts}/>
               <Route path="/questions" component={Questions}/>
 
 
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
-                    <Route exact path='/' component={FollowingLayout} />
+                    <Route exact path='/' component={Following} />
                     <Route path="*" component={NotFoundPage} />
                 </Switch>
               </Router>    

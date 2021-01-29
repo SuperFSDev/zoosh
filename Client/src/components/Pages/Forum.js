@@ -7,6 +7,7 @@ import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
 import AskQuestion from '../Common/AskQuestion'
 import moment from 'moment'
+import { lightBlue } from '@material-ui/core/colors';
 
 export default class Forum extends React.Component {
 
@@ -16,6 +17,7 @@ export default class Forum extends React.Component {
       forums: [],
       users:[],
       user:'',
+      tags:'',
       isLoading:true,
       isUnfollowing:true,
       showPosts:true,
@@ -76,34 +78,25 @@ export default class Forum extends React.Component {
 
     }
 
-    addForum(frm) {
-      addUserToForum(frm);
-      this.setState({
-        isUnfollowing:false,
-      })
-    }
-
     render(){
       var { forums } = this.state;
-      var isUnfollowing = this.state.isUnfollowing;
       var user = JSON.parse(localStorage.getItem('user'));
 
-      const forumList = forums.reverse().map(forum => {
+      const forumList = forums.map(forum => {
         return(
             <div key={forum._id}>
-              <div className='discussion-post'>
-                <a href={"/q/?id=" + forum._id} className="miniprofile-post-redirect">
+              <div className='forum-post'>
                 <div>
                   <p>
                     <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
                       <b>{forum.user}</b>  
                     </span></a><br/>
                     <span className="forum-title">{forum.post}</span><br/>
-                    <span style={{marginLeft:10}}>({moment(forum.time).startOf('seconds').fromNow()})</span>
+                    <span style={{marginLeft:10}}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
+                    <span style={{background:'lightblue', color:'gray'}}>#{forum.tags}</span>
                     <br/>
                   </p>
                 </div>
-                </a>
               </div>
             </div>
           )})
@@ -112,71 +105,34 @@ export default class Forum extends React.Component {
 
         <Container>
           <Row>
-            <Col>
+            <Col sm={4}>
                 <div className="forum-container">
                   <h4>Feature Requests / Bugs</h4>
-                  {isUnfollowing ? (
-                  <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
-                  ) : (
-                  <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
-                  )}
                   <br/>
                   <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
                   <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
-                  <PostOptions/>
+                  <FeaturePost/>
                 </div>
             </Col>
     
-            <Col>
+            <Col sm={8}>
+              <div className="forum-list">
                 <p>{forumList}</p>
+              </div>
             </Col>
           </Row>
         </Container>
-
-      //   <div class="row">
-          // <div className="columnForum2" style={{background:'white'}}>
-          //   <div className="forumContainer">
-          //     <div>
-          //       <h4>Feature Requests / Bugs</h4>
-          //       {isUnfollowing ? (
-          //       <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
-          //       ) : (
-          //       <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
-          //       )}
-          //       <br/>
-          //       <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
-          //       <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
-          //       <PostOptions/>
-          //     </div>
-          // </div>
-      //   </div>
-
-
-      //   <div className="columnForum" style={{background:'white',marginTop:100,}}>
-      //     <h5 style={{marginLeft:10}}>Forum Posts</h5>
-      //     <hr/>
-        
-      //   <div>
-          // <div className="forum-post-container">
-          //     <p>{forumList}</p>
-          // </div>
-      //   </div>
-          
-      //   </div>
-
-      // </div>
     );
   }
 }
 
 //  FUNCTIONS TO OPEN EVENT MODAL
-function PostOptions() {
+function FeaturePost() {
   const [modalShowPost, setShowPost] = React.useState(false);
-  const [modalShowQuestion, setShowQuestion] = React.useState(false);
 
   return (
     <div>
-            <button className="post-option-btn-item-event" onClick={() => setShowPost(true)}>Create Post</button>
+            <button className="post-option-btn-item-event" onClick={() => setShowPost(true)}>Post</button>
 
             <ForumPost
                 show={modalShowPost}
@@ -205,37 +161,4 @@ function ForumPost(props) {
     );
   }
 
-  
-// Adding a User to forum to follow
-async function addUserToForum(frm) {
-
-  var getUser = JSON.parse(localStorage.getItem('user'))
-
-  const addForum = {
-      forum: frm,
-      user: getUser,
-      user_id: getUser._id,
-  }
-
-   // Adds users to forums followers array in user model.
-   await axios.post('http://localhost:4000/forums/update', addForum)
-      .then(function (resp) {
-          console.log(resp);
-          alert("Successfully followed forum " + frm);
-      })
-      .catch(function (error) {
-          console.log(error);
-      })
-
-  // Adds forum to following array in user model.
-  await axios.post('http://localhost:4000/users/addToForumFollowingList',addForum)
-      //add to following array
-      .then(function (resp) {
-          console.log(resp);
-      })
-      .catch(function (error) {
-          console.log(error);
-      })
-
-}
 

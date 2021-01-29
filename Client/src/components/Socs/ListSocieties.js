@@ -159,70 +159,7 @@ render(){
 
           <Col><Recommended/><Contributors/></Col>
         </Row>
-      </Container>
-
-        {/* <div class="row">
-            <div className="column" style={{background:'white'}}>
-                  <div className="feed-container">
-                  
-                  <div className="search-div">
-                    <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
-                    />
-                    <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
-                      <option value="n/a">All</option>
-                      <option value="Name">Name</option>
-                      <option value="College">College</option>
-                      <option value="Category">Category</option>
-
-                    </select>
-                      <QuickOptions/>
-                  </div>
-                  <br/>
-
-                  
-
-                  <div className="SocietyLayout">
-                    {filteredSocietiesByName.map(society => (
-                    <div key={society.id}>
-                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect">
-                        <div class="miniprofileCommunities">
-                            <figure class="headshot">
-                              {society.picture == null ? (
-                                  <Avatar src={background} className="soc-item-image" roundedCircle/>
-                                ) : (
-                                  <Avatar src={society.picture} className="soc-item-image" roundedCircle/>
-                                )}
-                            </figure>
-                            <section class="bio-box">
-                                <dl class="details"> 
-                                    <b>{society.name} </b>
-                                </dl>
-                            </section>
-                
-                        </div>
-                        </a>
-                    </div>
-                    ))}
-                    </div>
-
-             
-                    
-                </div>
-            </div>
-
-            <div className="column2" style={{background:'white'}}>
-                    <Fragment>
-                      <Recommended/> 
-                    </Fragment>
-                    
-                    <Fragment>
-                      <Contributors/>
-                    </Fragment>
-            </div>
-        </div> */}
-
-
-     
+      </Container>    
   </div>
   );
 }

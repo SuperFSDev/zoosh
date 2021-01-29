@@ -168,15 +168,16 @@ render(){
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
             <Fragment>
               <p>
-                <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                  <b>{discussion.user}</b>  
+                <span className="voting-btn">
+                  <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                  <span class="showme"> <b>{discussion.user}</b></span></span>
 
                   {discussion.society == null ? (
                       <span> posted in <b style={{color:'green'}}>General</b></span>
                   ) : (
                     <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}
-                </span></a><br/>
+                </span><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span>
 
                 {discussion.picture == null && <div></div> }  
@@ -205,8 +206,8 @@ render(){
           <Col>
               <div className="filter-options">
                 <span>Feed</span>
-                <a href="/home"><button className="filter-button">Following</button></a>
-                <a href="/trending"><button className="filter-button">Trending</button></a>
+                <a href="/top"><button className="filter-button">Top</button></a>
+                <a href="/"><button className="filter-button">Following</button></a>
               </div>
               {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
               {!this.state.isLoading &&  <div>{discussionList}</div>}

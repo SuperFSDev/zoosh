@@ -36,7 +36,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7";
+    document.body.style.backgroundColor = "#FDFEFE";
   
     this.getUserDetails();
     this.getDiscussions();
@@ -138,7 +138,7 @@ render(){
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
 
-  const discussionList = discussions.reverse().map(discussion => {
+  const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
 
       <Fragment key={discussion._id}>
@@ -146,15 +146,22 @@ render(){
               <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
               <Fragment>
                 <p>
-                  <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                    <b>{discussion.user}</b>  
-
+                  
+                  
+                  <span className="voting-btn">
+                   <span class="showhim">
+                      <a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>  
+                      <span class="showme"> <b>{discussion.user}</b></span>
+                    </span>
+                    </span>
+                    
+                    
                     {discussion.society == null ? (
                         <span> posted in <b style={{color:'green'}}>General</b></span>
                     ) : (
                       <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
                     )}
-                  </span></a><br/>
+                  <br/>
                   <span className="forum-title">{discussion.title.slice(0,35)}</span>
 
                   {discussion.picture == null && <div></div> }  
@@ -168,6 +175,7 @@ render(){
 
                     <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
                     <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsThreeDots size={22} /></button>
+                    <span>{discussion.likes}</span>
 
                     {this.CheckPost(discussion.user_id,discussion._id)}
                   </small>
@@ -183,8 +191,8 @@ render(){
         <Col>
           <div className="filter-options">
             <span>Feed</span>
-            <a href="/home"><button className="filter-button">Following</button></a>
-            <a href="/trending"><button className="filter-button">Trending</button></a>
+            <a href="/top"><button className="filter-button">Top</button></a>
+            <a href="/"><button className="filter-button">Following</button></a>
           </div>
           {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}

@@ -744,6 +744,7 @@
   border:1px solid lightgray;
 }
 
+
 .new-post-feed{
   margin-top: 25px;
   padding:50px;
@@ -1192,13 +1193,15 @@ section::after {
 }
 
 .forum-container{
-  background:whitesmoke;
-  width:100%;
-  margin: auto;
+  background:white;
+  width:250px;
   padding:20px;
   border-radius: 5px;
   margin-top: 2vh;
+  position: fixed;
 }
+
+.forum-list{background:white;margin-top: 2vh;}
 
 .community-container{
   background:white;
@@ -1208,26 +1211,7 @@ section::after {
   padding:20px;
 }
 
-.forum-post-container{
-  background:white;
-  width:600px;
-  padding:10px;
-  margin-bottom: 20px;
-}
-
-.forum-post-container:hover{
-  cursor: pointer;
-}
 .forum-post-content{font-size: 12px;}
-.forum-visibility{
-  background:#d9e4f7;
-  padding:1px;
-  width:70px;
-  text-align:center;
-  border-radius: 25px;
-  font-weight: bold;
-}
-
 
 .profile-card{
   background:none;
@@ -1989,7 +1973,7 @@ section::after {
   height:270px!important;
   border-radius: 5px;
   border:1px solid lightgray;
-  margin-top: 2vh;
+  margin-top: 5vh;
 }
 
 .recommended-content{
@@ -2019,6 +2003,15 @@ section::after {
   background:white;
   width:700px;
   margin-top: 2vh;
+}
+
+.forum-post{
+  height:auto;
+  color:black;
+  padding:20px;
+  text-decoration: none!important;
+  background:white;
+  width:600px;
 }
 
 .discussion-post:hover{
@@ -2079,7 +2072,7 @@ section::after {
 }
 
 .forum-title{
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   margin-left: 8px;
   margin-bottom: 20px;
@@ -2161,18 +2154,44 @@ section::after {
   transition: 0.3s;
 }
 .textfield-create-a-soc{
-  width:65vh;
+  width:40vh;
 }
 .create-soc-div{
   text-align:center;
 }
 
+.showme {
+  position: absolute;
+  background-color: white;
+  padding: .4em;
+  border: 2px solid black;
+  transition: 0s;
+  opacity: 0;
+  width:300px;
+  height: 200px;
+  text-align: center;
+  z-index: -999;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.showhim:hover >.showme {
+  position: absolute;
+  z-index: 999;
+  opacity: 1;
+  transition-delay: 0.75s;
+
+}
+
 .profile-card-align{
   position: fixed;
   margin-top: 5vh;
-  border:1px solid lightgray;
+  /* border:1px solid lightgray; */
   padding:20px;
+  width:300px;
   border-radius: 5px;
+  text-align: center;
   background-color:white;
 }
 
