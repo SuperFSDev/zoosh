@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, OverlayTrigger,Tooltip,Modal, Form} from 'react-bootstrap'
+import {Image, OverlayTrigger,Tooltip,Modal, Form, Container, Row, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
@@ -62,7 +62,7 @@ export default class CommunityPage extends React.Component {
 
       axios.get('http://localhost:4000/discussions/get-society-discussions',{
         params: {
-          society: this.state.society.name
+          society: society_id
         }
       })
       .then((response) => {
@@ -74,7 +74,7 @@ export default class CommunityPage extends React.Component {
 
       axios.get('http://localhost:4000/questions/get-society-questions',{
         params: {
-          society: this.state.society.name
+          society: society_id
         }
       })
       .then((response) => {
@@ -233,189 +233,22 @@ export default class CommunityPage extends React.Component {
                     <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-            <Navbar  className="navbar-comm" >
-                    <Nav className="mr-auto">
-                        <Navbar.Brand className="header-landing">
-                          <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
-                          <span  className="navbar-title">{this.state.society.name}<br/>
-                          <p className="content-muted">z/{this.state.society.name}</p></span>
-                        </Navbar.Brand>
-                    </Nav>
+            <Container fluid>
+                <div className="community-header">
+                  <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
+                  <br/>
+                  <h5>{this.state.society.name} </h5>
+                </div>           
 
-                    <Navbar.Collapse className="justify-content-end">
-                      <div className="quick-create-option">
-                        <div>
-                          <a href="/home"><button className="write-button">Home</button></a>
-                        </div>
-                      </div>           
-                        
-                      <div className="navbar-prof-btn">
-                        <div id="#battleBox">
-                          <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
-                        </div>
-                      </div>               
-                    </Navbar.Collapse>
-                </Navbar>
+                <div className="community-options">
+                  <span  className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
+                  <span  className="comm-nav-item" onClick={() => {this.ShowFeed()}}> Feed</span>
+                  <span  className="comm-nav-item" onClick={() => {this.ShowQuestions()}}> Questions</span>
+                  <span  className="comm-nav-item" onClick={() => {this.ShowStats()}}> Stats</span>
+                </div>     
+            </Container>
 
-            <div className="community-nav">
-                  <span><button className="join-comm-button" onClick={() => this.addUser(this.state.society._id)}>Join <small></small></button></span>
-                  <span className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
-                  <span className="comm-nav-item" onClick={() => {this.ShowFeed()}}>Feed</span>
-                  <span className="comm-nav-item" onClick={() => {this.ShowQuestions()}}>Questions</span>
-                  <span className="comm-nav-item" onClick={() => {this.ShowEvents()}}>Events</span>
-                  <span className="comm-nav-item" onClick={() => {this.ShowStats()}}>Stats</span>
-                </div>
-
-                <div className="containerPostLeft">
-                  <div className="community-sticky">
-                    <span className="text-muted">ABOUT US</span>
-                    <p  className="community-title">{this.state.society.name}</p>
-                    <p className="text-muted">{this.state.society.description}</p>
-                    <p className="text-muted"><RiCake2Fill /> Created on <b >{moment(this.state.society.time).format("MMM Do, YYYY.")}</b></p>
-                    <div className="social-icons">
-                      <big><a href={this.state.society.facebook} target="_blank"  rel="noopener noreferrer" className="social-link"><FaFacebook size={20}/> </a></big>
-                      <big><a href={this.state.society.twitter} target="_blank"  rel="noopener noreferrer" className="social-link"><FaTwitter size={20}/> </a></big>
-                      <big><a href={this.state.society.instagram} target="_blank"  rel="noopener noreferrer" className="social-link"><FaInstagram size={20}/> </a></big>
-                      <big><a href={this.state.society.facebook} target="_blank"  rel="noopener noreferrer"  className="social-link"><FaLink size={20}/> </a></big>
-                    </div>
-                    <br/>     
-
-                  </div>
-                </div>
-
-                <div className="containerPostMiddleCommunity">
-                {this.state.showFeed &&
-                  <Fragment>
-                    {discussionList}
-                  
-                  </Fragment>
-                  }
-                  {console.log(events)}
-                  {this.state.showEvents &&
-                  <Fragment>
-                      <br/>
-                      <div className="community-container">
-                      <Fragment>
-                        <h3>Upcoming Events</h3>
-                        <QuickEvent/>
-                        <div className="EventSocietyLayout">
-                        {events.reverse().map(event => (
-                        <Fragment key={event._id}>
-                            <Fragment>
-                            <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
-                              <div className="events-card-community">
-                                  <h4><b>{event.title}</b></h4> 
-                                  <p>{event.society}</p> 
-                                  <p>{moment(event.time).calendar()}</p>
-                                  <div >
-                                  </div>
-                              </div>
-                              </a>
-                            </Fragment>
-                          </Fragment>
-                          ))}
-                        </div>
-                      </Fragment>
-                    </div>
-                  </Fragment>
-                  }
-
-                  {this.state.showQuestions &&
-                  <Fragment>
-                      <br/>
-                      <div className="community-container">
-                      <Fragment>
-                        <h3>Questions</h3>
-                        {/* <QuickEvent/> */}
-                        <div className="EventSocietyLayout">
-                        {questions.reverse().map(question => (
-                        <div key={question._id}>
-                            <Fragment>
-                            <a href={"/q/?id=" + question._id} className="-soc-l-navigation">
-                              <div className="events-card-community">
-                                  <h4><b>{question.question}</b></h4> 
-                                  <p>{moment(question.time).calendar()}</p>
-                              </div>
-                              </a>
-                            </Fragment>
-                          </div>
-                          ))}
-                        </div>
-                      </Fragment>
-                    </div>
-                  </Fragment>
-                  }
-
-
-                  {this.state.showStats &&
-                  <Fragment>
-                      <br/>
-                      <div className="community-container">
-                      <h3>Community Leaderboard</h3>                          
-                      <div className="container-individual-community">
-                            {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                              <Fragment>
-                                <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                              </Fragment>
-                            ))}    
-                            <a href="#">See More</a>
-                        </div>                         
-                      </div>
-                      
-
-                  </Fragment>
-                  }
-
-                {this.state.showPeople &&
-                  <Fragment>
-                      <br/>
-                      <div className="community-container">
-                        <h3>({this.state.users.length}) Members</h3>
-                        <hr/>
-                          <div className="CommunityMembers">
-                            <div className="community-members-item">
-                            </div>
-                        </div><br/>
-
-                        <div className="CommunityMembers">
-                          {this.state.mods.map(mod=>(
-                            <div className="community-members-item">
-                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.users.fullname}</Tooltip>}>
-                                <a href={"/u/?id="+this.state.users.user._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a> 
-                              </OverlayTrigger>
-                            </div>
-                          ))}
-                        </div><br/>
-
-                        <div>
-                          {this.state.users.map(user=>(
-                            
-                            <div className="miniprofile2">
-                              <p>
-                                <span>
-                                  <a href={"/u/?id=" + user._id} className="post-link-a"><figure class="headshot">
-                                        <Avatar src={user.pic}/>
-                                  </figure></a>
-                                  <section class="bio-box">
-                                          <dl class="details"> 
-                                              <a href={"/u/?id=" + user._id} className="post-link-a"><b>{user.fullname}</b></a><br/>    
-                                              <b className="user-member" style={{fontSize:14}}>MEMBER</b>                                  
-                                          </dl>
-                                </section>
-                                </span>
-                                <br/> 
-                                <br/>
-                                <br/><hr/><br/>
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        </div>
-
-                  </Fragment>
-                }
-
-                </div>
+         
           </div>
         );
     } 

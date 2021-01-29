@@ -63,6 +63,7 @@ class App extends React.Component {
               <Route path="/me" component={Profile}/>
               <Route path="/forums" component={Forums}/>
               <Route path="/q" component={QuestionPage}/>
+              <Route path="/c" component={CommunityPage}/>
               {/* <Route path="/home" component={AllPosts}/> */}
               <Route exact path="/" component={AllPosts}/>
               <Route path="/trending" component={AllPosts}/>
@@ -87,7 +88,6 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/c" component={CommunityPage}/>
           <Route path="/join" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/landing" component={Landing}/>

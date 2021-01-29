@@ -172,8 +172,9 @@ render(){
         <Row>
           <Col>
               <div className="filter-options">
-                <a href="/home"><button>Following</button></a>
-                <a href="/trending"><button>Trending</button></a>
+                <span>Feed</span>
+                <a href="/home"><button className="filter-button">Following</button></a>
+                <a href="/trending"><button className="filter-button">Trending</button></a>
               </div>
               {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
               {!this.state.isLoading &&  <div>{discussionList}</div>}
