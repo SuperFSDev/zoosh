@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import {Helmet} from 'react-helmet'
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
 
@@ -188,7 +188,62 @@ render(){
                 <title>New Post - Website</title>
         </Helmet> 
 
-      <div className="containerChartMiddle">
+      <Container>
+        <Row>
+          <Col>
+          <div className="new-post-feed">
+            <Form onSubmit={this.onSubmit}>
+              <ImageUploader
+                    withIcon={false}
+                    withPreview={true}
+                    buttonText='Add a cover image'
+                    onChange={this.onDropPicture}
+                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                    maxFileSize={5242880}
+                    fileTypeError
+                    withLabel={false}
+                    buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
+              />
+
+              <input 
+                placeholder="Title ..." 
+                className="Title-input"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
+                required
+                />
+
+              <input 
+                placeholder="Post Caption" 
+                className="Content-input"
+                value={this.state.caption}
+                onChange={this.onChangeCaption}
+                required
+              />
+
+              <textarea 
+                placeholder="Write your post content here ..." 
+                className="Content-input" 
+                rows = "5" cols = "60"
+                value={this.state.content}
+                onChange={this.onChangeContent}
+                required
+                />
+                
+              <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
+              <br/>
+              <button className="standard-button" type="submit">Publish</button>
+              <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+
+            </Form>
+            </div>
+          </Col>
+
+          {/* <Col><Recommended/><Contributors/></Col> */}
+        </Row>
+      </Container>
+
+      {/* <div className="containerChartMiddle">
           <div className="global-feed">
         <Form onSubmit={this.onSubmit}>
           <ImageUploader
@@ -235,7 +290,7 @@ render(){
 
         </Form>
         </div>
-      </div>
+      </div> */}
   </div>
   );
 }

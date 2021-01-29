@@ -6,7 +6,7 @@ import '../../Media.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {  Image} from 'react-bootstrap';
+import {  Image, Row, Col, Container} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -42,8 +42,8 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
-    
+    document.body.style.backgroundColor = "#FDFEFE";
+
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
       
@@ -166,34 +166,18 @@ render(){
           </div>
         </Fragment>
       )})
+
   return (
-        <Fragment class="row">
-            <div className="column" style={{background:'white'}}>
-            <div className="feed-container">
-                  <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> LATEST FROM FOLLOWING</h3>
+      <Container>
+        <Row>
+          <Col>
+              {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
+              {!this.state.isLoading &&  <div>{discussionList}</div>}
+          </Col>
 
-                  {this.state.isLoading ? ( 
-                      <div>
-                        <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
-          
-                      </div>
-
-                    ) : (
-                      <p>{discussionList}</p>
-                    )}
-             </div>
-            </div>
-
-            <div className="column2" style={{background:'white'}}>
-                    <Fragment>
-                      <Recommended/>
-                    </Fragment>
-
-                    <Fragment>
-                      <Contributors/> 
-                    </Fragment>          
-            </div>
-        </Fragment>
+          <Col><Recommended/><Contributors/></Col>
+        </Row>
+      </Container>
   );
   }
  }

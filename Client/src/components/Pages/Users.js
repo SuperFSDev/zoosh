@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image} from 'react-bootstrap'
+import {Image, Row, Col, Container} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
 
 export default class ListSocieties extends React.Component {
@@ -111,8 +111,10 @@ render(){
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-        <div className="containerChartMiddle">
-              <div className="global-feed">
+        <Container>
+          <Row>
+            <Col>
+            <div className="global-feed">
                 <h3>Meet the Community</h3>
                   <div className="container-square">
                     <div className="search-div-square">
@@ -149,7 +151,9 @@ render(){
                   usersList
                 )}
               </div>
-        </div>         
+            </Col>
+          </Row>
+        </Container>
   </div>
     );
    }

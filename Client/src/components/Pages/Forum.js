@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import { Modal} from 'react-bootstrap'
+import { Modal, Row, Col, Container} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
 import AskQuestion from '../Common/AskQuestion'
@@ -24,6 +24,7 @@ export default class Forum extends React.Component {
   }
 
     componentDidMount() {
+      document.body.style.backgroundColor = "#FDFEFE";
       var forum_id = new URLSearchParams(this.props.location.search).get("id");
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
@@ -107,38 +108,62 @@ export default class Forum extends React.Component {
           )})
 
       return (
-        <div class="row">
-          <div className="columnForum2" style={{background:'white'}}>
-            <div className="forumContainer">
-              <div>
-                <h4>Feature Requests / Bugs</h4>
-                {isUnfollowing ? (
-                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
-                ) : (
-                <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
-                )}
-                <br/>
-                <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
-                <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
-                <PostOptions/>
-              </div>
-          </div>
-        </div>
+
+        <Container>
+          <Row>
+            <Col>
+                <div className="forum-container">
+                  <h4>Feature Requests / Bugs</h4>
+                  {isUnfollowing ? (
+                  <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+                  ) : (
+                  <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+                  )}
+                  <br/>
+                  <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
+                  <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
+                  <PostOptions/>
+                </div>
+            </Col>
+    
+            <Col>
+                <p>{forumList}</p>
+            </Col>
+          </Row>
+        </Container>
+
+      //   <div class="row">
+          // <div className="columnForum2" style={{background:'white'}}>
+          //   <div className="forumContainer">
+          //     <div>
+          //       <h4>Feature Requests / Bugs</h4>
+          //       {isUnfollowing ? (
+          //       <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Follow</button> 
+          //       ) : (
+          //       <button className="community-btn-b" onClick={() => this.addForum(this.state.forum.name)}>Unfollow</button> 
+          //       )}
+          //       <br/>
+          //       <p className="forum-followers-item"><b className="forum-followers">This forum is Public</b></p>
+          //       <p className="forum-followers-item"><b className="forum-followers">{this.state.users.length} Posts</b></p>
+          //       <PostOptions/>
+          //     </div>
+          // </div>
+      //   </div>
 
 
-        <div className="columnForum" style={{background:'white',marginTop:100,}}>
-          <h5 style={{marginLeft:10}}>Forum Posts</h5>
-          <hr/>
+      //   <div className="columnForum" style={{background:'white',marginTop:100,}}>
+      //     <h5 style={{marginLeft:10}}>Forum Posts</h5>
+      //     <hr/>
         
-        <div>
-          <div className="forum-post-container">
-              <p>{forumList}</p>
-          </div>
-        </div>
+      //   <div>
+          // <div className="forum-post-container">
+          //     <p>{forumList}</p>
+          // </div>
+      //   </div>
           
-        </div>
+      //   </div>
 
-      </div>
+      // </div>
     );
   }
 }

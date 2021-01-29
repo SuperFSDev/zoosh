@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal ,OverlayTrigger, Tooltip, Image} from 'react-bootstrap';
+import {Modal ,OverlayTrigger, Tooltip, Image, Row, Col, Container} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
 import {FaUserFriends} from 'react-icons/fa'
 import background from "../../images/group.jpg";
@@ -30,7 +30,6 @@ export default class ListSocieties extends React.Component {
 
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
 
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
@@ -116,13 +115,54 @@ render(){
                 <title>Communities - Website</title>
         </Helmet> 
 
-        <div class="row">
+      <Container>
+        <Row>
+          <Col>
+          <div className="search-div">
+                    <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
+                    />
+                    <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
+                      <option value="n/a">All</option>
+                      <option value="Name">Name</option>
+                      <option value="College">College</option>
+                      <option value="Category">Category</option>
+
+                    </select>
+                      <QuickOptions/>
+            </div>
+            <br/>
+
+            <div className="SocietyLayout">
+                    {filteredSocietiesByName.map(society => (
+                    <div key={society.id}>
+                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect">
+                        <div class="miniprofileCommunities">
+                            <figure class="headshot">
+                              {society.picture == null ? (
+                                  <Avatar src={background} className="soc-item-image" roundedCircle/>
+                                ) : (
+                                  <Avatar src={society.picture} className="soc-item-image" roundedCircle/>
+                                )}
+                            </figure>
+                            <section class="bio-box">
+                                <dl class="details"> 
+                                    <b>{society.name} </b>
+                                </dl>
+                            </section>
+                
+                        </div>
+                        </a>
+                    </div>
+                    ))}
+              </div>
+          </Col>
+
+          <Col><Recommended/><Contributors/></Col>
+        </Row>
+      </Container>
+
+        {/* <div class="row">
             <div className="column" style={{background:'white'}}>
-                {/* <div style={{marginTop:100, marginLeft:330}}> */}
-                    {/* <div className="options-container">
-                        <a href="/posts"><button className="community-btn-active">All</button></a>
-                        <a href="/following"><button className="community-btn">Top Communities</button></a>
-                    </div> */}
                   <div className="feed-container">
                   
                   <div className="search-div">
@@ -179,70 +219,10 @@ render(){
                       <Contributors/>
                     </Fragment>
             </div>
-        </div>
+        </div> */}
 
 
-      {/* <div className="containerChartMiddle">
-          <div className="global-feed"  style={{ backgroundImage: `url(${background})`}}>
-              <h3>Communities</h3>
-          <div className="search-div">
-          <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
-          />
-          <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
-            <option value="n/a">All</option>
-            <option value="Name">Name</option>
-            <option value="College">College</option>
-            <option value="Category">Category</option>
-
-          </select><br/><br/>
-            <QuickOptions/>
-        </div>
-        </div>
-
-        { this.state.isLoading ? ( 
-                <div>
-                  <br/>
-                  <div className="SocietyLayout">
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={300} width={220} duration={1} className="skeleton-comms"/>
-                  </div>
-                  
-                </div>
-
-              ) : (
-                <div className="SocietyLayout">
-                    {filteredSocietiesByName.map(society => (
-                    <div key={society.id}>
-                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect"><div className="socs-list-items">
-                          {society.picture == null ? (
-                            <Image src={background} className="soc-item-image"/>
-                          ) : (
-                            <Image src={society.picture} className="soc-item-image"/>
-                          )}
-                          <h5><b>{society.name}</b> - {society.college} </h5>
-                          <p>{society.description}</p>  
-
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Members</Tooltip>}>
-                                    <span className="d-inline-block">
-                                    <p maxLength={10}><FaUserFriends size={20}/> {society.users.length}</p>     
-                                    </span>
-                            </OverlayTrigger>   
-              
-                        </div></a>
-                    </div>
-                    ))}
-                    </div>
-              )}
-        
-      </div> */}
+     
   </div>
   );
 }

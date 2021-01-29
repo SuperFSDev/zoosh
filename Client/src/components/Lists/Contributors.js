@@ -53,7 +53,7 @@ class Contributors extends React.Component {
                         </figure>
                         <section class="bio-box">
                             <dl class="details"> 
-                                <b>{user.fullname} </b>
+                                <b className="text-name">{user.fullname} </b>
                                 <dd class="location">{user.college}</dd>
                             </dl>
                         </section>

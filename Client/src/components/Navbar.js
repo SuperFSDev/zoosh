@@ -189,15 +189,15 @@ render(){
         <div id="top"></div>
         <Navbar className="navbar" fixed="top">
           <Nav className="mr-auto">
+            
             <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
             <SearchbarFilter/>
-
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div className="quick-create-option">   
                 <span className="notify"><a href="communities"><BiPlanet size={25}/></a></span>      
-                <span className="notify" ><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span>
+                {/* <span className="notify" ><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span> */}
                 <span className="notify" onClick={this.showForum}><BsLightning size={25}/></span>
                 <span className="notify" onClick={this.showMenu}><BsBell size={25} /></span>
             </div>      

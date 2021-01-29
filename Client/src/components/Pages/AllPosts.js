@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {Tooltip,OverlayTrigger, Image} from 'react-bootstrap'
+import { Image, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -38,7 +38,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.style.backgroundColor = "#FDFEFE";
   
     this.getUserDetails();
     this.getDiscussions();
@@ -143,82 +143,51 @@ render(){
   const discussionList = discussions.reverse().map(discussion => {
     return(
 
-        <div key={discussion._id}>
-          <div className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-              <p>
-                <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
-                  <b>{discussion.user}</b>  
+      <Fragment key={discussion._id}>
+            <div className='discussion-post'>
+              <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+              <Fragment>
+                <p>
+                  <a href={"/me"} className="post-link-a"><span className="voting-btn">
+                    <b>{discussion.user}</b>  
 
-                  {discussion.society == null ? (
-                      <span> posted in <b style={{color:'green'}}>General</b></span>
+                    {discussion.society == null ? (
+                        <span> posted in <b style={{color:'green'}}>General</b></span>
+                    ) : (
+                      <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
+                    )}
+                  </span></a><br/>
+                  <span className="forum-title">{discussion.title.slice(0,35)}</span>
+                  {discussion.picture == null ? (
+                    <Fragment></Fragment>
                   ) : (
-                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                  )}
-                </span></a><br/>
-                <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                {discussion.picture == null ? (
-                  <div></div>
-                ) : (
-                  <img className="post-image" src={discussion.picture} width={125} height={125}/>
-                )}
-                <br/>
-                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-                <small  className="text-muted">
-                  <br/>
-                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                    <Image className="post-image" src={discussion.picture} width={125} height={125}/>
+                  )}<br/>
+                  <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
+                  <small  className="text-muted">
+                    <br/>
+                    <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
-                  {!this.state.isSaved ? (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>this.addToReadingList(discussion,user._id)}><BsBookmark size={22} /></button></span>
-                  </OverlayTrigger> 
-                  ) : (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved(discussion)}><BsBookmarkFill size={22} /></button></span>
-                  </OverlayTrigger>
-                  )}
-                </small>
-              </p>
-              {this.CheckPost(discussion.user_id,discussion._id)}
-            </a>
-          </div>
-          
-        </div>
+                    <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
+                    {this.CheckPost(discussion.user_id,discussion._id)}
+                  </small>
+                </p>
+              </Fragment></a>
+            </div>
+          </Fragment>
       )})
-
+ 
   return (
-    <Fragment class="row">
-    <div className="column" style={{background:'white'}}>
-          <div className="feed-container">
+    <Container>
+      <Row>
+        <Col>
+          {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
+          {!this.state.isLoading &&  <div>{discussionList}</div>}
+        </Col>
 
-            <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
-
-            {this.state.isLoading ? ( 
-                <div>
-                  <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
-    
-                </div>
-
-              ) : (
-                <p>{discussionList}</p>
-              )}
-          </div>
-    </div>
-
-    <div className="column2" style={{background:'white'}}>
-              <Fragment>
-                <Recommended/>
-              </Fragment>
-
-              <Fragment>
-                <Contributors/>
-              </Fragment>        
-    </div>
-
-</Fragment>
+        <Col><Recommended/><Contributors/></Col>
+      </Row>
+    </Container>
   );
 }
 }
-
- // Adding a User to a society array and adding the society to the users array

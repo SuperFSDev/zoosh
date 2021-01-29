@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../assets/App.css';
 import axios from 'axios';
-import {Image , OverlayTrigger, Tooltip, Badge, Navbar, Nav} from 'react-bootstrap'
+import {Image , OverlayTrigger, Tooltip, Badge, Navbar, Nav, Row, Col, Container} from 'react-bootstrap'
 import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
 import {Helmet} from 'react-helmet'
@@ -194,12 +194,44 @@ export default class UserProfile extends React.Component {
                   </Navbar.Collapse>
         </Navbar>
 
+        <Container>
+            <Col sm={4}>
+            <div className="profile-card-align">
+              <Image src={this.state.user.pic} className="user-image"/>
 
-        <div className="containerFeedMiddleProfile">
+                <br/><br/>
+                <span className="text-muted">COMMUNTIES</span>
+                {this.state.societies.length == 0 ? (
+                        <div>                        
+                          <p className="text-muted">Nothing to see here yet...</p>
+                        </div>
+                      ) : (
+                        <div>
+                          {this.state.societies.map(society=>
+                          <li className="community-members-item-user-profile">
+                            <p>
+
+                            <b><a href={"/c/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
+
+                              
+                            </p>
+                          </li>)}
+                        </div>
+                      )}
+                </div>
+            </Col>
+              
+            <Col sm={8}>
+              <History />
+            </Col>
+        </Container>
+
+
+        {/* <div className="containerFeedMiddleProfile">
           <div className="profile-card">
           </div>
             <div id="social">
-              <div className="profile-card-align">
+              <div className="profile-card-align"> */}
                 {/* <Image src={this.state.user.pic} className="user-image"/> */}
 
                 {/* <br/>
@@ -217,9 +249,9 @@ export default class UserProfile extends React.Component {
                 ) : (
                   <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
                 )} */}
-               </div>
+               {/* </div>
                
-              </div>
+              </div> */}
 
               {/* <div className="user-profile-about-bio">
 
@@ -244,14 +276,14 @@ export default class UserProfile extends React.Component {
                       )}
                 
               </div> */}
-        </div>
+        {/* </div> */}
 
-        <div className="containerFeedRightUser">
+        {/* <div className="containerFeedRightUser">
           <div  className="top-posts-profile-container-2">
             <h5  className="-feed-item-header" style={{marginLeft:35}}>TOP POSTS</h5>
             <History />
           </div>
-          <br/>
+          <br/> */}
           {/* <div  className="top-posts-profile-container-2">
             <h5>Badges</h5>
             <section className="badge-container">
@@ -280,7 +312,7 @@ export default class UserProfile extends React.Component {
               </section>
           </div> */}
           
-        </div>
+        {/* </div> */}
       </>
     );
   }
