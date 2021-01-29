@@ -453,6 +453,36 @@ users.post('/addToReadingList', (req, res) => {
     )
 })
 
+users.post('/addToLikedPosts', (req, res) => {
+    UserModel.findByIdAndUpdate({
+            _id: req.body.id,
+        }, {
+            $addToSet: {
+                likedPosts: req.body.discussion
+            }
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
+
+        function (err, result) {
+            console.log(result);
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already in liked list.");
+                }
+            }
+
+        }
+    )
+})
+
 
 
 users.post('/updateFollowers', (req, res) => {

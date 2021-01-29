@@ -103,7 +103,7 @@ render(){
 
   let filteredUsers = this.state.users.filter(
     (user) => {
-        return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+        //return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
     }
   );
 

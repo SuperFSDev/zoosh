@@ -35,6 +35,7 @@ export default class Feed extends React.Component {
           user: '',
           pic:'',
           claps:0,
+          likes:0,
           socs:[],
           posts:[],
           time: new Date().getTime(),
@@ -127,9 +128,38 @@ export default class Feed extends React.Component {
              .then().catch();
            }
 
+          addToLikedPosts(discussion,user_id,likes) {
+  
+            const addDiscussion = {
+                id:user_id,
+                discussion: discussion,
+            }
+            // Adds the discussion to liked list
+            axios.post('http://localhost:4000/users/addToLikedPosts', addDiscussion)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                const UpdateLike = {
+                  discussion: discussion,
+                  likeCount:likes+1
+              }
+                alert(this.state.posts.likes);
+                axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                window.location.reload(); //refreshes page automatically 
+          }
+
 
 render(){
-  console.log(this.state.posts);
+  var user = JSON.parse(localStorage.getItem('user'));
   const discussionList = this.state.posts.reverse().map(discussion => {
     return(
 
@@ -159,6 +189,7 @@ render(){
                   <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                   <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
+                  <button className="standard-option-btn-post"  onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>Like Post</button>
                 
                 </small>
               </p>
