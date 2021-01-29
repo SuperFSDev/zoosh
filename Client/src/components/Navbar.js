@@ -191,7 +191,7 @@ render(){
           <Nav className="mr-auto">
             
             <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
-            {/* <SearchbarFilter/> */}
+            <SearchbarFilter/>
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">

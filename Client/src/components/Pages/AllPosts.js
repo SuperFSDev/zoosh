@@ -14,8 +14,6 @@ import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
-import {BiPlanet} from 'react-icons/bi'
-import SearchbarFilter from '../Common/SearchbarFilter'
 import { json } from 'body-parser';
 
 export default class AllPosts extends React.Component {
@@ -38,7 +36,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
   
     this.getUserDetails();
     this.getDiscussions();
@@ -158,11 +156,11 @@ render(){
                     )}
                   </span></a><br/>
                   <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                  {discussion.picture == null ? (
-                    <Fragment></Fragment>
-                  ) : (
-                    <Image className="post-image" src={discussion.picture} width={125} height={125}/>
-                  )}<br/>
+
+                  {discussion.picture == null && <div></div> }  
+                  {discussion.picture && <Image className="post-image" src={discussion.picture} width={125} height={125}/> }          
+                  
+                  <br/>
                   <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
                   <small  className="text-muted">
                     <br/>

@@ -40,6 +40,7 @@ export default class CommunityPage extends React.Component {
   }
  
   async componentDidMount() {
+      document.body.style.backgroundColor = "#F7F7F7";
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
       await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
@@ -246,6 +247,58 @@ export default class CommunityPage extends React.Component {
                   <span  className="comm-nav-item" onClick={() => {this.ShowQuestions()}}> Questions</span>
                   <span  className="comm-nav-item" onClick={() => {this.ShowStats()}}> Stats</span>
                 </div>     
+
+                <div className="community-options">
+                {this.state.showFeed &&
+                  <div>
+                    {discussionList}
+                  </div>
+                }
+
+                {this.state.showQuestions &&
+                  <div>
+                    Questions
+                  </div>
+                }
+
+                {this.state.showStats &&
+                <div>
+                    <br/>
+                          {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
+                            <div>
+                              <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
+                            </div>
+                          ))}    
+                </div>
+                }
+                
+                
+              {this.state.showPeople &&
+                <div>
+                    <br/>
+                      <hr/>
+                      <div>
+                      <h1><b className="user-admin">Founder: {this.state.society.admin}</b></h1>
+                        <div className="CommunityMembers">
+                          <div className="community-members-item">
+                          </div>
+                      </div><br/>
+
+                      <div className="CommunityMembers">
+                        {this.state.mods.map(mod=>(
+                          <div className="community-members-item">
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
+                              <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            </OverlayTrigger>
+                          </div>
+                        ))}
+                      </div><br/>
+                      </div>
+                    </div>
+              }
+                </div> 
+
+                
             </Container>
 
          

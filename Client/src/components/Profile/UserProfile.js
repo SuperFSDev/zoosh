@@ -55,7 +55,7 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-    // document.body.style.backgroundColor = "#FCFCFC";
+    document.body.style.backgroundColor = "#F7F7F7";
 
 
     axios.get(`http://localhost:4000/users/get-user-details`, {
@@ -170,6 +170,12 @@ export default class UserProfile extends React.Component {
               <br/>
               <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
               <br/>
+              {isUnfollowing ? (
+                  <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                ) : (
+                  <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                )}
+                <br/>
               <span>Followers {this.state.followers.length}</span>
 
                 <br/><br/>
@@ -195,97 +201,12 @@ export default class UserProfile extends React.Component {
             </Col>
               
             <Col sm={8}>
-              <History />
+              <div className="top-posts">
+                <History />
+              </div>
+              
             </Col>
         </Container>
-
-
-        {/* <div className="containerFeedMiddleProfile">
-          <div className="profile-card">
-          </div>
-            <div id="social">
-              <div className="profile-card-align"> */}
-                {/* <Image src={this.state.user.pic} className="user-image"/> */}
-
-                {/* <br/>
-                {isUnfollowing ? (
-                  <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                ) : (
-                  <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
-                )}
-                <br/><br/> */}
-                <br/><br/>
-                
-                {/* If the user has not edited their profile to display college/course then dont display */}
-                {/* {this.state.user.college == null ? (
-                  <div></div>
-                ) : (
-                  <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
-                )} */}
-               {/* </div>
-               
-              </div> */}
-
-              {/* <div className="user-profile-about-bio">
-
-                <br/><br/>
-                <span className="text-muted">COMMUNTIES</span>
-                {this.state.societies.length == 0 ? (
-                        <div>                        
-                          <p className="text-muted">Nothing to see here yet...</p>
-                        </div>
-                      ) : (
-                        <div>
-                          {this.state.societies.map(society=>
-                          <li className="community-members-item-user-profile">
-                            <p>
-
-                            <b><a href={"/c/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
-
-                              
-                            </p>
-                          </li>)}
-                        </div>
-                      )}
-                
-              </div> */}
-        {/* </div> */}
-
-        {/* <div className="containerFeedRightUser">
-          <div  className="top-posts-profile-container-2">
-            <h5  className="-feed-item-header" style={{marginLeft:35}}>TOP POSTS</h5>
-            <History />
-          </div>
-          <br/> */}
-          {/* <div  className="top-posts-profile-container-2">
-            <h5>Badges</h5>
-            <section className="badge-container">
-                <div className="badge-item-1">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥇 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>   
-                </div>
-                <div className="badge-item-2">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥈 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>  
-                </div>
-                <div className="badge-item-3">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
-                            <span className="d-inline-block">
-                            <span>🥉 <h2>{this.state.badges.length}</h2></span>
-                          </span>
-                  </OverlayTrigger>  
-                </div>
-                
-              </section>
-          </div> */}
-          
-        {/* </div> */}
       </>
     );
   }

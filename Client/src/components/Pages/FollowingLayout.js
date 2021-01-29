@@ -43,7 +43,7 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
 
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
@@ -178,11 +178,11 @@ render(){
                   )}
                 </span></a><br/>
                 <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                {discussion.picture == null ? (
-                  <Fragment></Fragment>
-                ) : (
-                  <Image className="post-image" src={discussion.picture} width={125} height={125}/>
-                )}<br/>
+
+                {discussion.picture == null && <div></div> }  
+                {discussion.picture && <Image className="post-image" src={discussion.picture} width={125} height={125}/> }  
+
+                <br/>
                 <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
                 <small  className="text-muted">
                   <br/>
@@ -190,6 +190,7 @@ render(){
 
                   <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
                   <button className="standard-option-btn-post"  onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>Like Post</button>
+                  <span>{discussion.likes}</span>
                 
                 </small>
               </p>

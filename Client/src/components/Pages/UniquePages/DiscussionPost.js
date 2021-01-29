@@ -29,7 +29,7 @@ export default class DiscussionPost extends React.Component {
       isLoading:true,
       hearts: 0,
       isSaved: false,
-      comment:''
+      comment:'',
     };
     this.onChangeComment = this.onChangeComment.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -196,13 +196,10 @@ export default class DiscussionPost extends React.Component {
 
                 <div className="spacing"></div>
                 
-                {this.state.hearts > 0 ? ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clapping} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.discussion.likes} </button></span>
 
-                  ) : ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
+                    {/* <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.likes} claps</button></span> */}
 
-                  )} 
 
                 <span className="d-inline-block">
                 

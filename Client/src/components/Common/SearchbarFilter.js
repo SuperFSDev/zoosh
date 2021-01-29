@@ -97,13 +97,13 @@ render(){
   var{users} = this.state;
   var { discussions } = this.state;
   let i = 0;
-  var size=5;
+  var size=3;
   var postSize = 2;
   var indents = [];
 
   let filteredUsers = this.state.users.filter(
     (user) => {
-        //return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+        return user.fullname.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
     }
   );
 

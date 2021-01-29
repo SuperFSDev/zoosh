@@ -24,7 +24,8 @@ export default class Forum extends React.Component {
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      document.body.style.backgroundColor = "#F7F7F7";
+
       var forum_id = new URLSearchParams(this.props.location.search).get("id");
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });

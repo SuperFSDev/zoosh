@@ -296,12 +296,14 @@
   margin: auto;
 }
 
-.top-posts-profile-container{
+.top-posts{
   background:white;
   padding:10px;
   height:auto;
-  width:960px;
+  width:auto;
   border-radius: 5px;
+  border:1px solid lightgray;
+  margin-top: 5vh;
 }
 
 .top-posts-profile-container-2{
@@ -310,8 +312,8 @@
   height:auto;
   width:960px;
   border-radius: 5px;
-  /* border:1px solid lightgray!important;
-  box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important; */
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important; 
 }
 
 #container-mobile, .mobile-login{display:none;}
@@ -2168,6 +2170,10 @@ section::after {
 .profile-card-align{
   position: fixed;
   margin-top: 5vh;
+  border:1px solid lightgray;
+  padding:20px;
+  border-radius: 5px;
+  background-color:white;
 }
 
 .create-soc:hover{
@@ -2758,6 +2764,7 @@ section::after {
   text-align: left;
   background-color:white;
   border:none!important;
+  border:1px solid lightgray;
 }
 
 .edit-pic-btn{

@@ -35,7 +35,7 @@ export default class MyProfile extends React.Component {
   async componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-    // document.body.style.backgroundColor = "#FCFCFC";
+    document.body.style.backgroundColor = "#F7F7F7";
 
     this.setState({ id: user._id });
 
@@ -94,33 +94,6 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-        {/* <Navbar className="navbar-profile" >
-          <Nav className="mr-auto">
-            <Navbar.Brand className="header-profile">
-              <span className="navbar-title">
-                <b>{this.state.user.fullname} </b>
-              </span>
-              <span>
-                <EditProfile />
-              </span>
-            </Navbar.Brand>
-          </Nav>
-
-          <Navbar.Collapse className="justify-content-end">
-            <div className="quick-create-option">
-              <div>
-                <a href="/home"><button className="write-button">Home</button></a>
-              </div>
-            </div>
-
-            <div className="navbar-prof-btn">
-              <div id="#battleBox">
-                <a href="/me"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left" onClick={this.showProfile} roundedCircle /></a>
-              </div>
-            </div>
-          </Navbar.Collapse>
-        </Navbar> */}
-
       <Container>
           <Col sm={4}>
             <div className="profile-card-align">
@@ -146,35 +119,6 @@ export default class MyProfile extends React.Component {
             
           </Col>
       </Container>
-
-        {/* <div className="containerFeedMiddleProfile">
-          <div className="profile-card"></div>
-          <div className="profile-card-align">
-            <Image src={this.state.user.pic} className="user-image" />
-
-            <br /><br />
-            <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
-          </div>
-          <br />
-          <div className="user-profile-about-bio">
-
-            <br /><br />
-            <span className="text-muted">COMMUNTIES</span><br />
-            {this.state.societies.map(society =>
-              <span key={society._id} className="community-members-item-profile">
-                <b><a href={"/c/?id=" + society._id} className="community-item-link">{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
-              </span>)}
-          </div>
-        </div>
-
-
-        <div className="containerFeedRightProfile">
-          <div className="top-posts-profile-container">
-            <h5 className="-feed-item-header" style={{ marginLeft: 35 }}>TOP POSTS</h5>
-            <History />
-          </div>
-
-        </div> */}
       </>
     );
   }

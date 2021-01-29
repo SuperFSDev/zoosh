@@ -36,7 +36,7 @@ export default class Questions extends React.Component {
   }
 
   componentDidMount() {
-    // document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
   
