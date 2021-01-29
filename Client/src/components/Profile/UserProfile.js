@@ -163,55 +163,28 @@ export default class UserProfile extends React.Component {
                 <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet> 
 
-        <Navbar  className="navbar-profile" >
-                  <Nav className="mr-auto">
-                      <Navbar.Brand className="header-profile">
-                        <span  className="navbar-title">
-                          <b>{this.state.user.fullname}</b>
-                          {/* <b className="user-member-profile">{this.state.user.score}</b> */}
-                        </span> 
-                        <span>
-                          {isUnfollowing ? (
-                            <button className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                          ) : (
-                            <button  className="community-btn-b" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
-                          )}<br/>
-                        </span>
-                        {/* <span style={{marginTop:25,marginLeft:70, fontWeight:400, color:'gray'}}>{this.state.followers.length} Followers</span> */}
-                        </Navbar.Brand>
-                  </Nav>
-
-                  <Navbar.Collapse className="justify-content-end">
-                    <div className="quick-create-option">
-                      <div>
-                        <a href="/home"><button className="write-button">Home</button></a>
-                      </div>
-                    </div>           
-                      
-                      <div id="#battleBox">
-                        <a href="/me"><Avatar src={user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
-                      </div>
-                  </Navbar.Collapse>
-        </Navbar>
-
         <Container>
             <Col sm={4}>
             <div className="profile-card-align">
-              <Image src={this.state.user.pic} className="user-image"/>
+              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+              <br/>
+              <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+              <br/>
+              <span>Followers {this.state.followers.length}</span>
 
                 <br/><br/>
-                <span className="text-muted">COMMUNTIES</span>
+                <span>COMMUNTIES</span>
                 {this.state.societies.length == 0 ? (
                         <div>                        
-                          <p className="text-muted">Nothing to see here yet...</p>
+                          <p>Nothing to see here yet...</p>
                         </div>
                       ) : (
                         <div>
                           {this.state.societies.map(society=>
-                          <li className="community-members-item-user-profile">
+                          <li>
                             <p>
 
-                            <b><a href={"/c/?id="+society} className="community-item-link">{society}</a> <b className="user-admin">ADMIN</b></b><br/>
+                            <b><a href={"/c/?id="+society}>{society}</a> <b className="user-admin">ADMIN</b></b><br/>
 
                               
                             </p>

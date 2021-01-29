@@ -46,7 +46,7 @@ class Contributors extends React.Component {
                 <div>
 
                 {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
-                    <a className="-contributor-user" href={"/u/?id="+user._id} style={{color:'black', fontWeight:'light'}}>
+                    <a className="-contributor-user" href={"/u/?id="+user._id}>
                     <div class="miniprofile">
                         <figure class="headshot">
                             <Image src={user.pic} className="user-image-mini" roundedCircle />

@@ -10,7 +10,7 @@ import moment from 'moment'
 import {Helmet} from 'react-helmet'
 import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import {BsBrightnessLow,BsChat} from 'react-icons/bs'
+import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
 import UsersCommunities from '../Lists/UsersCommunities';
@@ -169,6 +169,8 @@ render(){
                     <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                     <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
+                    <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsThreeDots size={22} /></button>
+
                     {this.CheckPost(discussion.user_id,discussion._id)}
                   </small>
                 </p>
@@ -181,6 +183,10 @@ render(){
     <Container>
       <Row>
         <Col>
+          <div className="filter-options">
+            <a href="/home"><button>Following</button></a>
+            <a href="/trending"><button>Trending</button></a>
+          </div>
           {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}
         </Col>

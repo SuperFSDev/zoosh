@@ -191,8 +191,9 @@ render(){
       <Container>
         <Row>
           <Col>
-          <div className="new-post-feed">
+          
             <Form onSubmit={this.onSubmit}>
+            <div className="new-post-feed">
               <ImageUploader
                     withIcon={false}
                     withPreview={true}
@@ -206,7 +207,7 @@ render(){
               />
 
               <input 
-                placeholder="Title ..." 
+                placeholder="New post title..." 
                 className="Title-input"
                 value={this.state.title}
                 onChange={this.onChangeTitle}
@@ -232,11 +233,13 @@ render(){
                 
               <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
               <br/>
+              </div>
+              <br/>
               <button className="standard-button" type="submit">Publish</button>
               <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
 
             </Form>
-            </div>
+            
           </Col>
 
           {/* <Col><Recommended/><Contributors/></Col> */}

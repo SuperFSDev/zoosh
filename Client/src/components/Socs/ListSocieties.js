@@ -30,7 +30,7 @@ export default class ListSocieties extends React.Component {
 
 
     componentDidMount() {
-
+      document.body.style.backgroundColor = "#FDFEFE";
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
 

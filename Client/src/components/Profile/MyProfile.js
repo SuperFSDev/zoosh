@@ -94,12 +94,11 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-        <Navbar className="navbar-profile" >
+        {/* <Navbar className="navbar-profile" >
           <Nav className="mr-auto">
             <Navbar.Brand className="header-profile">
               <span className="navbar-title">
                 <b>{this.state.user.fullname} </b>
-                {/* <b className="user-member-profile">{this.state.user.score}</b> */}
               </span>
               <span>
                 <EditProfile />
@@ -120,35 +119,32 @@ export default class MyProfile extends React.Component {
               </div>
             </div>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
 
       <Container>
-        <Row>
-          <Col>
+          <Col sm={4}>
             <div className="profile-card-align">
-              <Image src={this.state.user.pic} className="user-image" />
+              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+              <br/>
+              <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+              <br/>
+              <span>Followers{this.state.followers.length}</span>
 
               <br /><br />
-              <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
-            </div>
-            <br />
-            <div className="user-profile-about-bio">
-
-              <br /><br />
-              <span className="text-muted">COMMUNTIES</span><br />
+              <span>COMMUNTIES</span><br />
               {this.state.societies.map(society =>
-                <span key={society._id} className="community-members-item-profile">
-                  <b><a href={"/c/?id=" + society._id} className="community-item-link">{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
+                <span key={society._id}>
+                  <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
                 </span>)}
             </div>
-
           </Col>
 
-          <Col><div className="top-posts-profile-container">
-            <h5 className="-feed-item-header">TOP POSTS</h5>
-            <History />
-          </div></Col>
-        </Row>
+          <Col sm={8}>
+            {this.state.posts.length === 0 && <div>No Posts</div>}
+            {this.state.posts.length === 0 && <div><History /></div>}
+
+            
+          </Col>
       </Container>
 
         {/* <div className="containerFeedMiddleProfile">
