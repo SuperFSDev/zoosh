@@ -36,11 +36,12 @@ export default class AllPosts extends React.Component {
       isSaved: false,
       socs:[],
       posts:[],
+      likedPosts:[],
       user:'',
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     document.body.style.backgroundColor = "#F7F7F7";
   
     this.getUserDetails();
@@ -53,11 +54,10 @@ export default class AllPosts extends React.Component {
 
   // Fetching the users Details
   async getUserDetails(){
-    var user_id = new URLSearchParams(this.props.location.search).get("id");
-
-    axios.get('http://localhost:4000/users/get-user-details', {
+    var user = JSON.parse(localStorage.getItem('user'));
+    await axios.get('http://localhost:4000/users/get-user-details', {
         params: {
-          id: user_id
+          id: user._id
         }
       })
   
@@ -65,6 +65,7 @@ export default class AllPosts extends React.Component {
           this.setState({ user: response.data.user,
                           forums: response.data.user.forums,
                           socs:response.data.user.societies,
+                          likedPosts:response.data.user.likedPosts
           })
         })
         .catch((error) => {
@@ -123,6 +124,24 @@ export default class AllPosts extends React.Component {
   }
   }
 
+   isLiked(discussion_id,user_id,likes) {
+  if(this.state.likedPosts.includes(discussion_id) == true){
+    return(<div>
+      <Button size="small" color="primary" onClick={() => {this.RemovefromLikedPosts(discussion_id,user_id,likes)}}>
+                Unlike
+              </Button>
+    </div>)
+  }
+  else{
+    return(<div>
+      <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion_id,user_id,likes)}}>
+                like
+              </Button>
+    </div>)
+
+  }
+  }
+
 
   onDeletePost(id,discussion_id) {
   axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
@@ -138,13 +157,68 @@ export default class AllPosts extends React.Component {
 
 }
 
+addToLikedPosts(discussion,user_id,likes) {
+  
+  const addDiscussion = {
+      id:user_id,
+      discussion: discussion,
+  }
+  // Adds the discussion to liked list
+  axios.post('http://localhost:4000/users/addToLikedPosts', addDiscussion)
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+      const UpdateLike = {
+        discussion: discussion,
+        likeCount:likes+1
+    }
+      axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+}
+
+
+RemovefromLikedPosts(discussion,user_id,likes) {
+  
+  const removeDiscussion = {
+      id:user_id,
+      discussion: discussion,
+  }
+  // Adds the discussion to liked list
+  axios.post('http://localhost:4000/users/removeFromLikedPosts', removeDiscussion)
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+      const UpdateLike = {
+        discussion: discussion,
+        likeCount:likes-1
+    }
+      axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+      .then(function (resp) {
+          console.log(resp);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+}
+
+
 
 
 render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
-  
 
   const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
@@ -169,10 +243,7 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-              <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-                Like Post
-              </Button>
-
+              {this.isLiked(discussion._id,user._id,discussion.likes)} 
               <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
                 <BsChat size={15} style={{marginRight:5}}/> Add Comment 
               </Button>
