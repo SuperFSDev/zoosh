@@ -7,14 +7,14 @@ import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
-import Event from '../../Common/StartEvent'
-import {RiAddFill} from 'react-icons/ri'
 import {BsChat} from 'react-icons/bs';
 import cogoToast from 'cogo-toast'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
+
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -28,10 +28,6 @@ export default class CommunityPage extends React.Component {
       posts:[],
       events:[],
       questions:[],
-      showPeople:false,
-      showStats:false,
-      showEvents:false,
-      showQuestions:false,
       showFeed:true,
       isLoading:true,
     };
@@ -83,19 +79,6 @@ export default class CommunityPage extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-
-
-      axios.get('http://localhost:4000/events/get-society-events',{
-        params: {
-          society: society_id
-        }
-      })
-      .then((response) => {
-        this.setState({events: this.state.events.concat(response.data.event),})
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     }
 
     
@@ -103,69 +86,10 @@ export default class CommunityPage extends React.Component {
     addUser(soc) {
       addUserToSoc(soc);
       var user = JSON.parse(localStorage.getItem('user'));
-    }
-
-      ShowUsers() {
-        this.setState({
-          showPeople: true,
-          showFeed: false,
-          showEvents: false,
-          showQuestions: false,
-          showStats: false
-          
-        });   
-        }
-
-        
-      ShowFeed() {
-        this.setState({
-          showPeople: false,
-          showFeed: true,
-          showEvents: false,
-          showQuestions: false,
-          showStats: false,
-        });   
-        }
-
-      ShowEvents() {
-        this.setState({
-          showPeople: false,
-          showFeed: false,
-          showEvents: true,
-          showQuestions: false,
-          showStats: false,
-        });   
-      }
-
-
-        
-      ShowStats() {
-        this.setState({
-          showPeople: false,
-          showFeed: false,
-          showEvents: false,
-          showQuestions: false,
-          showStats: true,
-        });   
-        }
-
-        
-      ShowQuestions() {
-        this.setState({
-          showPeople: false,
-          showFeed: false,
-          showEvents: false,
-          showQuestions: true,
-          showStats: false,
-        });   
-        }     
+    } 
       
     render(){
       var title = this.state.society.name + " - Website"
-      var{users} = this.state;
-      var { events } = this.state;
-      var { questions } = this.state;
-
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
@@ -232,70 +156,39 @@ export default class CommunityPage extends React.Component {
             </Helmet> 
 
             <Container fluid>
-    
+              <Row>
                 <div className="community-header">
-                  <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
+                  <span><Image src={this.state.society.picture} className="community-image" /></span>
                   <br/>
-                  <h5>{this.state.society.name} </h5>
-                  <button onClick={() => {this.addUser(this.state.society.society_id)}}>Join</button>
-                </div>           
+                  <h5 className="community-name">{this.state.society.name} </h5>
+                  {this.state.society.description}
+                  <br/>
+                  <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
+                </div>  
+              </Row>
+    
+                         
+        <Row>
+          <Col sm></Col>
+          <Col sm>
+            {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+            {!this.state.isLoading &&  <div>{discussionList}</div>}
+          </Col>
 
-                <div className="community-options">
-                  <span  className="comm-nav-item" onClick={() => {this.ShowUsers()}}>{this.state.users.length} Members</span>
-                  <span  className="comm-nav-item" onClick={() => {this.ShowFeed()}}> Feed</span>
-                  <span  className="comm-nav-item" onClick={() => {this.ShowQuestions()}}> Questions</span>
-                  <span  className="comm-nav-item" onClick={() => {this.ShowStats()}}> Stats</span>
-                </div>     
-
-                <div className="community-options">
-                {this.state.showFeed &&
-                  <div className="community-feed">
-                    {discussionList}
-                  </div>
-                }
-
-                {this.state.showQuestions &&
-                  <div>
-                    Questions
-                  </div>
-                }
-
-                {this.state.showStats &&
-                <div>
-                    <br/>
-                          {users.sort((a,b)=> b.score- a.score).map(user=>  ( 
-                            <div>
-                              <p className="leaderboard-item"><b>{i+=1}</b><a className="soc-leaderboard-name-item" href={"/u/?id="+user._id}>{user.fullname}</a> <b className="soc-leaderboard-score-item">{ user.score}</b></p><hr/>      
-                            </div>
-                          ))}    
-                </div>
-                }
-                
-                
-              {this.state.showPeople &&
-                <div>
-                    <br/>
-                      <hr/>
-                      <div>
-                      <h1><b className="user-admin">Founder: {this.state.society.admin}</b></h1>
-                        <div className="CommunityMembers">
+          <Col sm>
+            <div className="contributors-container">
+              {/* {this.state.users.map(user=>(
                           <div className="community-members-item">
-                          </div>
-                      </div><br/>
-
-                      <div className="CommunityMembers">
-                        {this.state.mods.map(mod=>(
-                          <div className="community-members-item">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.mod.fullname}</Tooltip>}>
-                              <a href={"/u/?id="+mod._id}><Image src={mod.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
+                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
                             </OverlayTrigger>
                           </div>
-                        ))}
-                      </div><br/>
-                      </div>
-                    </div>
-              }
-                </div> 
+                        ))} */}
+            </div>
+          </Col>
+          <Col sm></Col>
+
+        </Row>
 
                 
             </Container>
@@ -305,73 +198,6 @@ export default class CommunityPage extends React.Component {
         );
     } 
 }
-}
-
-//  FUNCTIONS TO OPEN EVENT MODAL
-function QuickEvent() {
-  const [modalShow, setModalShowEvent] = React.useState(false);
-
-  return (
-    <div>
-            <button className="standard-button"  onClick={() => setModalShowEvent(true)}>Create Event <RiAddFill size={25}/></button><br/><br/>
-
-            <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShowEvent(false)}
-            />
-    </div>
-  );
-}
-
-function Question() {
-  const [modalShowQuestion, setModalShowQuestion] = React.useState(false);
-
-  return (
-    <div>
-            <button className="standard-button"  onClick={() => setModalShowQuestion(true)}>Ask a Question</button><br/><br/>
-
-            <QuestionModal
-                show={modalShowQuestion}
-                onHide={() => setModalShowQuestion(false)}
-            />
-    </div>
-  );
-}
-
-function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        textAlign="left"
-      >
-        <Modal.Header closeButton>
-            <Modal.Body>
-                <Event/>
-            </Modal.Body>
-        </Modal.Header>
-      </Modal>
-    );
-  }
-
-  function QuestionModal(props) {
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        textAlign="left"
-      >
-        <Modal.Header closeButton>
-          <Modal.Body>
-              <Event/>
-          </Modal.Body>
-        </Modal.Header>
-      </Modal>
-    );
 }
 
 // Adding a User to a society array and adding the society to the users array

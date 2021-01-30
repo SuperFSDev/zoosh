@@ -8,10 +8,6 @@
     "body-parser": "^1.19.0",
     "bson": "^4.2.0",
     "cors": "^2.8.5",
-<<<<<<< HEAD
-=======
-    "draft-js": "^0.11.7",
->>>>>>> 3bedb5d211fbf5ec04eba6d4fb3037121f86d3d6
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9"
   },

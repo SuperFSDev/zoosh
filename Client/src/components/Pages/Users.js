@@ -142,8 +142,6 @@ render(){
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                   </div>
                   
                 </div>

@@ -101,7 +101,7 @@ class Login extends React.Component {
        <div className="login-bg">
 
               <div className="centered">
-              <a className="header-login" href="/landing"><h1 className="header-login">Website Name</h1></a>
+              <a className="header-login" href="/landing"><h1 className="header-login">NAME</h1></a>
               <big className="motto">A place for students to express and innovate</big>
               <div class="login-card">
               <Form onSubmit={this.onLogin}>

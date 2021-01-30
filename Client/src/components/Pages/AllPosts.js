@@ -159,7 +159,7 @@ render(){
                   ) : (
                     <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}<br/>
-                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                  <span style={{color:'gray', fontSize:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                     
                   {discussion.picture == null && <div></div> }  

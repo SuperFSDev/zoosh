@@ -71,7 +71,6 @@ class App extends React.Component {
               <Route path="/top" component={TopPosts}/>
               <Route path="/questions" component={Questions}/>
 
-
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
@@ -90,9 +89,9 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route path="/landing" component={Landing}/>
           <Route path="/join" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
-          <Route path="/landing" component={Landing}/>
           <Route path="/contact" component={Contact}/>
 
           <Route component={DefaultRoutes} />

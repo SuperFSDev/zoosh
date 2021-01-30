@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import {Link} from 'react-router-dom';
 
 class Settings extends React.Component {
     constructor(){
@@ -25,7 +24,7 @@ class Settings extends React.Component {
     componentDidMount(){
         const token = localStorage.usertoken;
         if(!token){
-            window.location = '/login';
+            window.location = '/landing';
             console.log('Invalid login');
         }else{
             const decoded = jwt_decode(token);

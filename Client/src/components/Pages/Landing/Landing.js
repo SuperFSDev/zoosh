@@ -1,206 +1,225 @@
-import React from 'react';
-import '../../../assets/Landing.css';
-import {Navbar, Nav, Image} from 'react-bootstrap'
-import {Helmet} from 'react-helmet'
-import Space from '../../../images/space.png'
+import React , {Fragment} from 'react';
+import '../../../assets/App.css';
+import 'react-calendar/dist/Calendar.css';
+import Recommended from '../../Lists/Recommended'
+import Contributors from '../../Lists/Contributors'
+import { Image, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
-import {FaUserFriends} from 'react-icons/fa'
+import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
+import {Helmet} from 'react-helmet'
+import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
+import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
+import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
+import Clapping from '../../../images/clap-hands.png'
+import Clap from '../../../images/clap.png'
+import { json } from 'body-parser';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import {BsGear,BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill} from 'react-icons/bs'
+import {IoMdPlanet} from 'react-icons/io'
 
 export default class Landing extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          societies: [],
-          searchValue: '',
-          filterBy: '',
-          isLoading: true,
-          discussions: [],
-          comments:[],
-          time:'',
-          toggle: false,
-          isSaved: false,
-        };
-        this.handleDropdownChange = this.handleDropdownChange.bind(this);
-      }
-    
-    
-        componentDidMount() {
-        
-            axios.get('http://localhost:4000/societies/getSocieties')
-              .then((response) => {
-                this.setState({ 
-                  societies: response.data.societies,
-                  isLoading: false,
-                 })
-              })
-              .catch((error) => {
-                console.log(error);
-              });
 
-              axios.get('http://localhost:4000/discussions/getDiscussions')
-                .then((response) => {
-                    this.setState({ discussions: response.data.discussions,
-                    isLoading: false, })
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-          }
-      
-          updateSearch(event) {
-            this.setState({ searchValue: event.target.value.substr(0, 20) });
-          }
-        
-          handleDropdownChange(e) {
-            this.setState({ filterBy: e.target.value });
-          }
-        
+  constructor(props) {
+    super(props);
+    this.state = {
+      discussions: [],
+      isLoading: true,
+      isLoadingUsers: true,
 
-render(){
+      comments:[],
+      time:'',
+      toggle: false,
+      isSaved: false,
+      socs:[],
+      posts:[],
+      user:'',
+    };
+  }
 
-    var size = 8;
-    var k = 5;
-    var { discussions } = this.state;
-    const shuffledPosts = shuffleArray(discussions);
-
-
-    let filteredSocietiesByName = this.state.societies.filter(
-
-        (society) => {
-          let filter = this.state.filterBy;
-          if (filter === "Name") {
-            return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+  componentDidMount() {
+    document.body.style.backgroundColor = "#FDFEFE";
   
-          } if (filter === "College") {
-            return society.college.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-  
-          }
-          if (filter === "Category") {
-            return society.category.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-  
-          } else {
-  
-            return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
-          }
+    this.getUserDetails();
+    this.getDiscussions();
+    this.onDeletePost = this.onDeletePost.bind(this);
+
+    // Fetch discussions every 1 second
+    // this.timer = setInterval(() => this.getDiscussions(), 1000);
+  }
+
+  // Fetching the users Details
+  async getUserDetails(){
+    var user_id = new URLSearchParams(this.props.location.search).get("id");
+
+    axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user_id
         }
+      })
   
-      );
+        .then((response) => {
+          this.setState({ user: response.data.user,
+                          forums: response.data.user.forums,
+                          socs:response.data.user.societies,
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
 
-    return (
-    <div>
-        {/* REACTJS HELMET */}
-        <Helmet>
-            <meta charSet="utf-8" />
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Website Name</title>
-        </Helmet>
+  // Fetching the discussions
+  async getDiscussions (){
+    axios.get('http://localhost:4000/discussions/getDiscussions')
+    .then((response) => {
+      this.setState({ 
+        discussions: response.data.discussions,
+        users:response.data.discussions,
+        isLoading: false,
+      
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
-        <Navbar className="landing-navbar">
-            <Nav className="mr-auto">
-                <Navbar.Brand className="header-landing" href="/landing">Website Name</Navbar.Brand>
-            </Nav>
+  removeSaved = () =>{
+    this.setState({ 
+      isSaved: false,
+    })
+  }
 
-            <Navbar.Collapse className="justify-content-end">
-                    <Nav.Link className="landing-link" href="/login">Sign in</Nav.Link> 
-                    <Nav.Link className="landing-link" href="/join"><button className="standard-button">Create Account</button></Nav.Link>        
-            </Navbar.Collapse>
-        </Navbar>
-
-        <div>
-            <div className="containerLanding">
-                <div class="row">
-                    <div class="columnX">
-                        <p className="landing-message">Make the most out of student life.</p><br/>
-                    </div>
-
-                    <div class="columnX">
-                        <Image src={Space} className="landing-image"/>
-                    </div>
-                </div>     
-            </div><hr/> 
-
-        </div>
-        <br/>
-        <h1 className="landing-h1">Top Communities</h1>
-        <div className="SocietyLayoutLanding">
-                {filteredSocietiesByName.slice(0,size).map(society => (
-                <div key={society.id}>
-                    <a href={"/login"} className="comm-link"><div className="socs-list-items-landing">
-                      <h5><b>{society.name}</b> </h5>
-                        <span className="d-inline-block">
-                            <p maxLength={10}><FaUserFriends size={20}/> {society.users.length} members</p>     
-                        </span>
-                        <div >
-                        </div>
-                    </div></a>
-                </div>
-
-                ))}
-        </div>
-
-        <br/>
-        <hr/>
-
-        <div className="discussion-feed">
-          
-          {/* DISCUSSION TAB */}
-          {shuffledPosts.slice(0,k).reverse().map(discussion => (
-            <div key={discussion._id}>
-              <div className='discussion-post-landing'>
-                
-                <a href="/login" className="miniprofile-post-redirect">
-                <div>
-                    <p>
-                        <small>{discussion.user} <b className="user-score-post-tag">1,231</b> <span className="landing-name">posted in</span><b style={{color:'green'}}> {discussion.society}</b></small>
-                        <br/>
-                        <b className="landing-post-title">{discussion.title}</b><br/>
-                        <Image src={discussion.picture}/>
-                        <small className="muted-landing" >({moment(discussion.time).startOf('seconds').fromNow()})</small>
-                    </p>
-                </div></a>
-              <hr/></div><br/> 
-            </div>
-           
-          ))}
-        </div>
-
-        {/* <footer className="footer">
-            <div className="footer-items">
-                <div class="footer-column">
-                  <a className="footer-links" href="/landing"><p>Our Website 2020</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="#"><p>Privacy</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="#"><p>Community Guidlines</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="/manifesto"><p>Manifesto</p></a>
-                </div>
-                <div class="footer-column">
-                <a className="footer-links" href="/contact"><p>Contact</p></a>
-                </div>
-            </div>
-          </footer> */}
-    </div>
-    );
+ addToReadingList(discussion,user_id) {
+  
+    const addDiscussion = {
+        user_id:user_id,
+        discussion: discussion._id,
     }
+    // Adds society to societies array in user model.
+    axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
+        .then(function (resp) {
+            console.log(resp);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+  }
+
+
+   // Render hide/show comment section
+   CheckPost(id,discussion_id) {
+    var user = JSON.parse(localStorage.getItem('user'));
+  if(id == user._id){
+    return(<div>
+      <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,discussion_id)}}>
+        Delete Post
+      </Button>
+    </div>)
+  }
+  }
+
+
+  onDeletePost(id,discussion_id) {
+  axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
+  .then()
+  .catch();
+
+  const RemovedDiscussion = {
+    discussion_id:discussion_id      
+}
+  axios.post('http://localhost:4000/users/removeFromReadingList',RemovedDiscussion)
+   .then().catch();
+   window.location.reload(); //refreshes page automatically 
+
 }
 
 
-// Return a random society from the array - Shuffles them
-function shuffleArray(array) {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  }
+
+render(){
+  var { discussions } = this.state;
+  var size = 5;
+  
+
+  const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
+    return(
+      <Fragment  key={discussion._id}>
+        <Card className='discussion-post'>
+          <a href="/login" className="miniprofile-post-redirect"><CardContent>
+            <span className="voting-btn">
+                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                <span class="showme"> <b>{discussion.user}</b></span></span>
+                  {discussion.society == null ? (
+                    <span> in <b style={{color:'green'}}>General</b></span>
+                  ) : (
+                    <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+                  )}<br/>
+                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+
+                    
+                  {discussion.picture == null && <div></div> }  
+                  {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+                </span><br/>
+                <span  className="title-post">{discussion.title}</span><br/>
+                <span  className="content-post">{discussion.content.slice(0,200)}</span>
+          </CardContent></a>
+            <CardActions>
+              <Button size="small" color="primary" href="/login">
+                Like Post
+              </Button>
+
+              <Button size="small" color="primary" href="/login">
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
+
+            </CardActions>
+            
+          </Card> 
+          
+      </Fragment>
+    )})
+
+  return (
+  <>
+    <nav class="navbar justify-content-center fixed-top">
+          <ul class="nav justify-content-center">
+          <li class="nav-item">
+              <a class="nav-link" href="/login"><BsLightningFill size={25}/> LOGIN</a>
+            </li>
+            <li class="nav-item">
+              <a href="/landing" className="header">NAME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/join"><BsLightningFill size={25}/> JOIN</a>
+            </li>
+          </ul>
+        </nav>
+
+    <Container>
+      <Row>
+        <Col sm></Col>
+        <Col sm>
+          <div className="filter-options">
+            <a href="/top"><button className="feed-option-active">Top</button></a>
+          </div>
+          
+
+          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+          {!this.state.isLoading &&  <div>{discussionList}</div>}
+        </Col>
+
+        <Col sm><Recommended/><Contributors/></Col>
+        <Col sm></Col>
+
+      </Row>
+    </Container>
+  </>
+  );
+}
+}
