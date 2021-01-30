@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import Select from 'react-select';
@@ -24,15 +24,15 @@ export default class NewPost extends React.Component {
       claps: 0,
       UniqueUser: '',
       content: '',
-      caption:'',
+      caption: '',
       time: new Date().getTime(),
       society: '',
       tags: [],
       picture: '',
       FollowingID: ''
-      
     };
 
+    var user;
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
     this.onChangeContent = this.onChangeContent.bind(this);
@@ -45,35 +45,20 @@ export default class NewPost extends React.Component {
 
   componentDidMount() {
 
-    var user = JSON.parse(localStorage.getItem('user'));
+    this.user = JSON.parse(localStorage.getItem('user'));
     document.body.style.backgroundColor = "#FDFEFE";
-    this.setState({ id: user._id });
+    this.setState({ id: this.user._id });
 
-    if (user)
-    var fullname = user.fullname;
+    if (this.user)
+      var fullname = this.user.fullname;
     this.state.user = fullname;
 
-    // Get all users from database.
-    axios.get('http://localhost:4000/users/getUsers')
-      .then((response) => {
-        this.setState({ users: response.data.users })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Gets all users from the database.
+    this.getUsers();
 
     // Get the societies the current user is in from the database.
-    axios.get('http://localhost:4000/users/getUserSocieties', {
-      params: {
-        id: user._id
-      }
-    })
-      .then((response) => {
-        this.setState({ societies: response.data.societies })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.getUserSocieties();
+
   }
 
   onChangeTitle(e) {
@@ -122,11 +107,10 @@ export default class NewPost extends React.Component {
       maxHeight: 500, // the max height of the output image, defaults to 1920px
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
-      if(data[0])
-      {
+      if (data[0]) {
         var data = data[0];
         var b64 = data.prefix + data.data;
-  
+
         this.setState({
           //picture: this.state.picture.concat(b64)
           picture: b64
@@ -136,62 +120,100 @@ export default class NewPost extends React.Component {
     })
   }
 
+  getUsers() {
+    // Get all users from database.
+    axios.get('http://localhost:4000/users/getUsers')
+      .then((response) => {
+        this.setState({ users: response.data.users })
+        console.log(this.state.users);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  getUserSocieties() {
+    axios.get('http://localhost:4000/users/getUserSocieties', {
+      params: {
+        id: this.user._id
+      }
+    })
+      .then((response) => {
+        //this.setState({ societies: response.data.societies })
+        response.data.societies.map(society_id => (
+          axios.get('http://localhost:4000/societies/get-societies-page', {
+            params: {
+              id: society_id
+            }
+          })
+            .then((response) => {
+              var joined = this.state.societies.concat(response.data.society);
+              this.setState({ societies: joined });
+              console.log(this.state.societies);
+            })
+        ));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   onSubmit(e) {
 
     e.preventDefault();
- 
+
 
     const newPost = {
-        user: this.state.user,
-        user_id: this.state.id,
-        title: this.state.title,
-        caption:this.state.caption,
-        content: this.state.content,
-        time: new Date().getTime(),
-        society: this.state.society,
-        picture: this.state.picture
+      user: this.state.user,
+      user_id: this.state.id,
+      title: this.state.title,
+      caption: this.state.caption,
+      content: this.state.content,
+      time: new Date().getTime(),
+      society: this.state.society,
+      picture: this.state.picture
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
       .then()
       .catch();
-    
+
     this.setState({
       user: '',
       title: '',
       claps: 0,
       content: '',
-      caption:'',
+      caption: '',
       time: new Date().getTime(),
       category: '',
-      society:'',
+      society: '',
       picture: '',
       tags: []
     });
     window.location = '/';
   }
 
-render(){
+  render() {
 
-   let options = this.state.societies.map(function (society) {
-     return { value: society, label: society };
-   })
+    let options = this.state.societies.map(function (society) {
+      return { value: society.name, label: society.name };
+    })
 
-  return (
-     <div>
-       {/* REACTJS HELMET */}
-       <Helmet>
-                <meta charSet="utf-8" />
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>New Post - Website</title>
-        </Helmet> 
+    return (
+      <div>
+        {/* REACTJS HELMET */}
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>New Post - Website</title>
+        </Helmet>
 
-      <div className="containerChartMiddle">
+        <div className="containerChartMiddle">
           <div className="global-feed">
-        <Form onSubmit={this.onSubmit}>
-          <ImageUploader
+            <Form onSubmit={this.onSubmit}>
+              <ImageUploader
                 withIcon={false}
                 withPreview={true}
                 buttonText='Add a cover image'
@@ -200,43 +222,43 @@ render(){
                 maxFileSize={5242880}
                 fileTypeError
                 withLabel={false}
-                buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
-          />
+                buttonStyles={{ backgroundColor: 'whitesmoke', color: 'black', fontWeight: 'bold', fontSize: 20 }}
+              />
 
-          <input 
-            placeholder="Title ..." 
-            className="Title-input"
-            value={this.state.title}
-            onChange={this.onChangeTitle}
-            required
-            />
+              <input
+                placeholder="Title ..."
+                className="Title-input"
+                value={this.state.title}
+                onChange={this.onChangeTitle}
+                required
+              />
 
-          <input 
-            placeholder="Post Caption" 
-            className="Content-input"
-            value={this.state.caption}
-            onChange={this.onChangeCaption}
-            required
-          />
+              <input
+                placeholder="Post Caption"
+                className="Content-input"
+                value={this.state.caption}
+                onChange={this.onChangeCaption}
+                required
+              />
 
-          <textarea 
-            placeholder="Write your post content here ..." 
-            className="Content-input" 
-            rows = "5" cols = "60"
-            value={this.state.content}
-            onChange={this.onChangeContent}
-            required
-            />
-            
-          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
-          <br/>
-          <button className="standard-button" type="submit">Publish</button>
-          <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+              <textarea
+                placeholder="Write your post content here ..."
+                className="Content-input"
+                rows="5" cols="60"
+                value={this.state.content}
+                onChange={this.onChangeContent}
+                required
+              />
 
-        </Form>
+              <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community" defaultValue="General" /><br />
+              <br />
+              <button className="standard-button" type="submit">Publish</button>
+              <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+
+            </Form>
+          </div>
         </div>
       </div>
-  </div>
-  );
-}
+    );
+  }
 }
