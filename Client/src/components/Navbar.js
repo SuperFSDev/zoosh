@@ -9,12 +9,13 @@ import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {BsGear,BsBell,BsBookmarks,BsPeople,BsReplyAll,BsLightning} from 'react-icons/bs'
+import {BsGear,BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill} from 'react-icons/bs'
 import Clap from '../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import {MdSchool} from 'react-icons/md'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiPlanet} from 'react-icons/bi'
+import {IoMdPlanet} from 'react-icons/io'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -192,17 +193,20 @@ render(){
 
         <nav class="navbar justify-content-center fixed-top">
           <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active"  href="/communities"><BiPlanet size={25}/> COMMUNITY</a>
+          <li class="nav-item">
+              <a class="nav-link" href="/"><BsHouseFill size={25}/> HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={this.showForum}><BsLightning size={25}/> FORUMS</a>
+              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> SPACES</a>
             </li>
             <li class="nav-item">
               <a href="/home" className="header">NAME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBell size={25} /> NOTIFICATIONS</a>
+              <a class="nav-link" href="/forums"><BsLightningFill size={25}/> FORUM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> ME</a>
             </li>
             <li class="nav-item-icon">
               <a class="nav-link-profile"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>

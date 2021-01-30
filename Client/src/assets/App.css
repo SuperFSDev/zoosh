@@ -370,14 +370,14 @@
   margin-right:10px;
   outline:none!important;
   border:none;
-  color:white;
-  background:green;
+  color: #FFD700  ;  ;
+  background:black;
   font-weight: bold;
   border-radius: 5px;
 }
 
 .standard-button:hover{
-  background:rgb(0, 99, 0)!important;
+  background:gray!important;
   color:white;
   font-weight: bold;
   transition: 0.15s;
@@ -389,11 +389,11 @@
   padding:10px;
   margin-right:10px;
   outline:none!important;
-  border:2px solid black;
+  border:2px solid red;
   color:white;
-  background:black;
+  background:red;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .write-button{
@@ -430,7 +430,7 @@
 .nav-link{
   margin-top: 5px;
   color:#d9e1e8  !important;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none!important;
   cursor: pointer;
@@ -456,6 +456,17 @@
   outline:none!important;
 }
 
+.feed-option-post{
+  border:none;
+  background:none;
+  color:black;
+  margin-right:10px;
+  padding:10px;
+  font-weight: bold;
+  outline:none!important;
+  float: right;
+}
+
 .feed-option-active{
   border:none;
   background:rgb(245, 245, 245)  ;
@@ -467,7 +478,7 @@
   outline:none!important;
 }
 
-.feed-option:hover{
+.feed-option:hover, .feed-option-post:hover{
   background:rgb(245, 245, 245)  ;
   border-radius: 5px;
 
@@ -1036,7 +1047,7 @@
 
 .reading-list{margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1250px;}
 
-.nav-item{margin-right: 8vh;}
+.nav-item{margin-right: 6vh;}
 .nav-item-icon{margin-left: 1vh;}
 
 
@@ -1078,7 +1089,7 @@ header {
   height: auto;
   color: #FFD700  ;
   margin-left: 15rem;
-  margin-right: 16rem;
+  margin-right: 18rem;
   border-radius: 5px;
   /* background: white; */
   /* border:1px solid lightgray; */
@@ -1999,6 +2010,8 @@ section::after {
   border:1px lightgray solid;
 }
 
+.nav{margin-left: 10vh;}
+
 .searchbar-nav-square{
   width:800px;
   height:50px;
@@ -2122,7 +2135,7 @@ section::after {
 }
 
 .profile-card-align{
-  position: fixed;
+  /* position: fixed; */
   margin-top: 5vh;
   border:1px solid whitesmoke;
   padding:20px;

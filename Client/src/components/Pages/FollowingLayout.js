@@ -205,6 +205,8 @@ render(){
           <div className="filter-options">
             <a href="/"><button className="feed-option-active">Following</button></a>
             <a href="/top"><button className="feed-option">Top</button></a>
+            <a href="/new"><button className="feed-option-post">Create Post</button></a>
+
           </div>
           {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}

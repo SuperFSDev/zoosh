@@ -121,13 +121,13 @@ render(){
           <div className="search-div">
                     <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
                     />
-                    <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
+                    {/* <select id="dropdown" onChange={this.handleDropdownChange} className="filterBox" placeholder="Filter">
                       <option value="n/a">All</option>
                       <option value="Name">Name</option>
                       <option value="College">College</option>
                       <option value="Category">Category</option>
 
-                    </select>
+                    </select> */}
                       <QuickOptions/>
             </div>
             <br/>

@@ -193,6 +193,8 @@ render(){
           <div className="filter-options">
             <a href="/"><button className="feed-option">Following</button></a>
             <a href="/top"><button className="feed-option-active">Top</button></a>
+            <a href="/new"><button className="feed-option-post">Create Post</button></a>
+
           </div>
           
 
