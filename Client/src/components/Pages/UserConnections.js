@@ -18,6 +18,7 @@ export default class UserConnections extends React.Component {
       }
 
     componentDidMount() {
+      document.body.style.backgroundColor = "#FDFEFE";
 
       var user = JSON.parse(localStorage.getItem('user'));
 

@@ -48,7 +48,10 @@ render(){
     <StickyContainer>
         <div>
             <div className="recommended-container">
-            <p><BiPlanet size={20}/> COMMUNITIES</p><hr/>
+              <div className="column-head">
+                <p className="column-title"><BiPlanet size={20}/> COMMUNITIES</p><hr/>
+              </div>
+            
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={140} style={{marginBottom:10}} count={1}/><br/>

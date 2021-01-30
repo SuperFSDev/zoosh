@@ -1,5 +1,7 @@
 import React from 'react';
 import '../assets/App.css';
+import '../assets/Media.css';
+
 import {Navbar, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown} from 'react-bootstrap'
@@ -187,28 +189,26 @@ render(){
   return (
       <div>
         <div id="top"></div>
-        <Navbar className="navbar" fixed="top">
-          <Nav className="mr-auto">
-            
-            <Navbar.Brand className="header" href="/home">Name</Navbar.Brand>
-            <SearchbarFilter/>
-          </Nav>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <div className="quick-create-option">   
-                <span className="notify"><a href="communities"><BiPlanet size={25}/></a></span>      
-                {/* <span className="notify" ><Image src={Clap} size={25} onClick={this.showContributions}/> {this.state.user.score}</span> */}
-                <span className="notify" onClick={this.showForum}><BsLightning size={25}/></span>
-                <span className="notify" onClick={this.showMenu}><BsBell size={25} /></span>
-            </div>      
-            <a href="/new"><button className="write-button">Write</button></a>
-            <div id="#battleBox">
-                <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/>
-              </div>
-     
-                    
-          </Navbar.Collapse>
-        </Navbar>
+
+        <nav class="navbar justify-content-center fixed-top">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active"  href="/communities"><BiPlanet size={25}/> COMMUNITY</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onClick={this.showForum}><BsLightning size={25}/> FORUMS</a>
+            </li>
+            <li class="nav-item">
+              <a href="/home" className="header">NAME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBell size={25} /> NOTIFICATIONS</a>
+            </li>
+            <li class="nav-item-icon">
+              <a class="nav-link-profile"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+            </li>
+          </ul>
+        </nav>
 
               {
                 this.state.showMenu
@@ -233,7 +233,7 @@ render(){
               {
                 this.state.showForum
                   ? (
-                    <div className="menu"
+                    <div className="forum"
                       ref={(element) => {
                         this.dropdownMenu4 = element;
                       }}

@@ -1,5 +1,7 @@
 import React from 'react';
 import './assets/App.css';
+import './assets/Media.css';
+
 import {
   BrowserRouter as Router,
   Switch,

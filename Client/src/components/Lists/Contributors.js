@@ -35,7 +35,10 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <p><BiRadar  size={20}/> RADAR</p><hr/>
+            <div className="column-head">
+              <p className="column-title"><BiRadar  size={20}/> RADAR</p><hr/>
+            </div>
+            
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={100} style={{marginBottom:10}} count={3}/><br/>

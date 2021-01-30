@@ -13,10 +13,15 @@ import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
 import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
-import UsersCommunities from '../Lists/UsersCommunities';
 import { json } from 'body-parser';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 export default class AllPosts extends React.Component {
+
 
   constructor(props) {
     super(props);
@@ -111,7 +116,9 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
   if(id == user._id){
     return(<div>
-      <button onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
+      <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,discussion_id)}}>
+        Delete Post
+      </Button>
     </div>)
   }
   }
@@ -137,68 +144,65 @@ render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
+  
 
   const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
+      <Fragment  key={discussion._id}>
+        <Card className='discussion-post'>
+          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+            <span className="voting-btn">
+                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                <span class="showme"> <b>{discussion.user}</b></span></span>
+                  {discussion.society == null ? (
+                    <span> in <b style={{color:'green'}}>General</b></span>
+                  ) : (
+                    <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+                  )}<br/>
+                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-      <Fragment key={discussion._id}>
-            <div className='discussion-post'>
-              <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-              <Fragment>
-                <p>
-                  
-                  
-                  <span className="voting-btn">
-                   <span class="showhim">
-                      <a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>  
-                      <span class="showme"> <b>{discussion.user}</b></span>
-                    </span>
-                    </span>
                     
-                    
-                    {discussion.society == null ? (
-                        <span> posted in <b style={{color:'green'}}>General</b></span>
-                    ) : (
-                      <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                    )}
-                  <br/>
-                  <span className="forum-title">{discussion.title.slice(0,35)}</span>
-
                   {discussion.picture == null && <div></div> }  
-                  {discussion.picture && <Image className="post-image" src={discussion.picture} width={125} height={125}/> }          
-                  
-                  <br/>
-                  <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-                  <small  className="text-muted">
-                    <br/>
-                    <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                  {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+                </span><br/>
+                <span  className="title-post">{discussion.title}</span><br/>
+                <span  className="content-post">{discussion.content.slice(0,200)}</span>
+          </CardContent></a>
+            <CardActions>
+              <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                Like Post
+              </Button>
 
-                    <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
-                    <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsThreeDots size={22} /></button>
-                    <span>{discussion.likes}</span>
+              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
 
-                    {this.CheckPost(discussion.user_id,discussion._id)}
-                  </small>
-                </p>
-              </Fragment></a>
-            </div>
-          </Fragment>
-      )})
- 
+              {this.CheckPost(discussion.user_id,discussion._id)} 
+            </CardActions>
+            
+          </Card> 
+          
+      </Fragment>
+    )})
+
   return (
     <Container>
       <Row>
-        <Col>
+        <Col sm></Col>
+        <Col sm>
           <div className="filter-options">
-            <span>Feed</span>
-            <a href="/top"><button className="filter-button">Top</button></a>
-            <a href="/"><button className="filter-button">Following</button></a>
+            <a href="/"><button className="feed-option">Following</button></a>
+            <a href="/top"><button className="feed-option-active">Top</button></a>
           </div>
-          {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
+          
+
+          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}
         </Col>
 
-        <Col><Recommended/><Contributors/></Col>
+        <Col sm><Recommended/><Contributors/></Col>
+        <Col sm></Col>
+
       </Row>
     </Container>
   );

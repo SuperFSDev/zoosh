@@ -9,13 +9,12 @@ import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
 import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
-import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa';
 import {BsChat} from 'react-icons/bs';
-import Avatar from '@material-ui/core/Avatar';
-import {Navbar, Nav} from 'react-bootstrap'
 import cogoToast from 'cogo-toast'
-import Test from '../../../images/friends.jpg'
-
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -40,7 +39,7 @@ export default class CommunityPage extends React.Component {
   }
  
   async componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
+      document.body.style.backgroundColor = "#FDFEFE";
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
       await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
@@ -173,39 +172,37 @@ export default class CommunityPage extends React.Component {
        
       const discussionList = this.state.posts.reverse().map(discussion => {
         return(
-    
-            <div key={discussion._id}>
-              <div className='discussion-post' style={{marginLeft:150}}>
-                <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                <Fragment>
-                  <p>
-                    <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                      <b style={{color:'#0693e3'}}>{discussion.user}</b> posted <span style={{color:'gray'}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-    
-                      {/* {discussion.society == null ? (
-                          <span> posted in <b style={{color:'green'}}>General</b></span>
-                      ) : (
-                        <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                      )} */}
-                    </span></a><br/>
-                    <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                    {discussion.picture == null ? (
-                      <Fragment></Fragment>
+          <Fragment  key={discussion._id}>
+          <Card className='discussion-post'>
+            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+              <span className="voting-btn">
+                  <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                  <span class="showme"> <b>{discussion.user}</b></span></span>
+                    {discussion.society == null ? (
+                      <span> in <b style={{color:'green'}}>General</b></span>
                     ) : (
-                      <Image className="post-image" src={discussion.picture} width={150} height={125}/>
+                      <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
                     )}<br/>
-                    {/* <Image className="post-image" src={Test} width={150}/><br/> */}
-                    <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-
-                    <small  className="text-muted">
-                      <br/>
-                      <button className="standard-option-btn-post"><BsChat size={22} /> {discussion.comments.length}</button>
-                    
-                    </small>
-                  </p>
-                </Fragment></a>
-              </div>
-            </div>
+                    <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+  
+                      
+                    {discussion.picture == null && <div></div> }  
+                    {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+                  </span><br/>
+                  <span  className="title-post">{discussion.title}</span><br/>
+                  <span  className="content-post">{discussion.content.slice(0,200)}</span>
+            </CardContent></a>
+              <CardActions>
+                <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                  Like Post
+                </Button>
+  
+                <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                  <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+                </Button>
+              </CardActions>
+            </Card> 
+        </Fragment>
           )})
 
       if(this.state.society.admin === user._id){
@@ -235,10 +232,12 @@ export default class CommunityPage extends React.Component {
             </Helmet> 
 
             <Container fluid>
+    
                 <div className="community-header">
                   <span><Image src={this.state.society.picture} className="user-image" roundedCircle /></span>
                   <br/>
                   <h5>{this.state.society.name} </h5>
+                  <button onClick={() => {this.addUser(this.state.society.society_id)}}>Join</button>
                 </div>           
 
                 <div className="community-options">
@@ -250,7 +249,7 @@ export default class CommunityPage extends React.Component {
 
                 <div className="community-options">
                 {this.state.showFeed &&
-                  <div>
+                  <div className="community-feed">
                     {discussionList}
                   </div>
                 }

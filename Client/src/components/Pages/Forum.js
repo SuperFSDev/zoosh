@@ -5,9 +5,7 @@ import axios from 'axios';
 import { Modal, Row, Col, Container} from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
-import AskQuestion from '../Common/AskQuestion'
 import moment from 'moment'
-import { lightBlue } from '@material-ui/core/colors';
 
 export default class Forum extends React.Component {
 
@@ -89,7 +87,10 @@ export default class Forum extends React.Component {
                 <div>
                   <p>
                     <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
-                      <b>{forum.user}</b>  
+                    <span class="showhim">
+                      <a href={"/me"} className="post-link-a"><b>{forum.user}</b></a>  
+                      <span class="showme"> <b>{forum.user}</b></span>
+                    </span>
                     </span></a><br/>
                     <span className="forum-title">{forum.post}</span><br/>
                     <span style={{marginLeft:10}}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
@@ -105,6 +106,7 @@ export default class Forum extends React.Component {
 
         <Container>
           <Row>
+
             <Col sm={4}>
                 <div className="forum-container">
                   <h4>Feature Requests / Bugs</h4>
@@ -115,11 +117,12 @@ export default class Forum extends React.Component {
                 </div>
             </Col>
     
-            <Col sm={8}>
+            <Col sm={2}>
               <div className="forum-list">
                 <p>{forumList}</p>
               </div>
             </Col>
+
           </Row>
         </Container>
     );

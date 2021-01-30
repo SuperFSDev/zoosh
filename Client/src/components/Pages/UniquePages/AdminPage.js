@@ -44,7 +44,7 @@ export default class AdminPage extends React.Component {
   }
 
   async componentDidMount() {
-     document.body.style.backgroundColor = "#F7F7F7";
+    document.body.style.backgroundColor = "#FDFEFE";
 
     
       var society_id = new URLSearchParams(document.location.search).get("id");

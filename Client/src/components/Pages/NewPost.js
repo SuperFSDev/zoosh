@@ -46,7 +46,7 @@ export default class NewPost extends React.Component {
   componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-    document.body.style.backgroundColor = "#F7F7F7";
+    document.body.style.backgroundColor = "#FDFEFE";
     this.setState({ id: user._id });
 
     if (user)
@@ -241,59 +241,9 @@ render(){
             </Form>
             
           </Col>
-
-          {/* <Col><Recommended/><Contributors/></Col> */}
         </Row>
       </Container>
 
-      {/* <div className="containerChartMiddle">
-          <div className="global-feed">
-        <Form onSubmit={this.onSubmit}>
-          <ImageUploader
-                withIcon={false}
-                withPreview={true}
-                buttonText='Add a cover image'
-                onChange={this.onDropPicture}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-                fileTypeError
-                withLabel={false}
-                buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
-          />
-
-          <input 
-            placeholder="Title ..." 
-            className="Title-input"
-            value={this.state.title}
-            onChange={this.onChangeTitle}
-            required
-            />
-
-          <input 
-            placeholder="Post Caption" 
-            className="Content-input"
-            value={this.state.caption}
-            onChange={this.onChangeCaption}
-            required
-          />
-
-          <textarea 
-            placeholder="Write your post content here ..." 
-            className="Content-input" 
-            rows = "5" cols = "60"
-            value={this.state.content}
-            onChange={this.onChangeContent}
-            required
-            />
-            
-          <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
-          <br/>
-          <button className="standard-button" type="submit">Publish</button>
-          <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
-
-        </Form>
-        </div>
-      </div> */}
   </div>
   );
 }

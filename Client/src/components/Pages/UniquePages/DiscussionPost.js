@@ -37,7 +37,6 @@ export default class DiscussionPost extends React.Component {
 
     componentDidMount() {
       this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
-      // document.body.style.backgroundColor = "#FDFEFE";
 
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
@@ -248,9 +247,9 @@ export default class DiscussionPost extends React.Component {
                 width={1000}
                 height={100}
               >
-              <p className="post-content">{comment.comment}</p>
+              {comment.comment}
               </ShowMoreText>
-              <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button>
+              {/* <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button> */}
             <hr/>
               </div>
             ))}

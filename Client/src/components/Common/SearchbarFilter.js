@@ -20,7 +20,7 @@ export default class SearchbarFilter extends React.Component {
         filterBy: '',
         users: [],
         discussions: [],
-
+        societies: [],
     };
       this.showFilter = this.showFilter.bind(this);
 
@@ -86,6 +86,17 @@ export default class SearchbarFilter extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+
+      axios.get('http://localhost:4000/societies/getSocieties')
+          .then((response) => {
+            this.setState({ 
+              societies: response.data.societies,
+              isLoading: false,
+             })
+          })
+          .catch((error) => {
+            console.log(error);
+          });
   }
 
   updateSearch(user) {
@@ -96,8 +107,11 @@ render(){
 
   var{users} = this.state;
   var { discussions } = this.state;
+  var { societies } = this.state;
+
   let i = 0;
-  var size=3;
+  var size1=2;
+  var size2=1;
   var postSize = 2;
   var indents = [];
 
@@ -107,7 +121,21 @@ render(){
     }
   );
 
+  let filteredPosts = this.state.discussions.filter(
+    (discussion) => {
+        return discussion.title.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+    }
+  );
+
+  let filteredCommunities = this.state.societies.filter(
+    (society) => {
+        return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1;
+    }
+  );
+
   const shuffledUsers = shuffleArray(filteredUsers);
+  const shuffledPosts = shuffleArray(filteredPosts);
+  const shuffledCommunities = shuffleArray(filteredCommunities);
 
 
   for (var k = 0; k < 4; k++) {
@@ -136,7 +164,7 @@ render(){
                       <h5>Search Results</h5>
                       <hr/>
                       <p className="searchbar-header">POSTS</p>
-                      {discussions.slice(0,postSize).sort((a,b)=> b.score- a.score).map(discussion  =>  ( 
+                      {shuffledPosts.slice(0,size2).sort((a,b)=> b.score- a.score).map(discussion  =>  ( 
                       <a  href={"/d/?id="+discussion._id} style={{color:'black', textDecoration:'none'}}><div key={k} className="contributor-item-search">
                             <p className="-contributor-user-search">
                               <span style={{padding:10, color:'black', fontSize:20}}><b>{discussion.title}</b></span>
@@ -146,8 +174,15 @@ render(){
                         </div></a>
                       ))}  
                       <p className="searchbar-header">COMMUNITIES</p>
+                      {shuffledCommunities.slice(0,size2).map(society  =>  ( 
+                      <a  href={"/c/?id="+society._id} style={{color:'black', textDecoration:'none'}}><div key={k} className="contributor-item-search">
+                            <p className="-contributor-user-search">
+                              <span style={{padding:10, color:'black', fontSize:20}}><b>{society.name}</b></span>
+                            </p>
+                        </div></a>
+                      ))}  
                       <p className="searchbar-header">USERS</p>
-                      {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
+                      {shuffledUsers.slice(0,size1).sort((a,b)=> b.score- a.score).map(user  =>  ( 
                       <a  href={"/u/?id="+user._id} style={{color:'black', textDecoration:'none'}}><div key={i} className="contributor-item-search">
                             <p className="-contributor-user-search"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname} <b  className="-contributor-user-score">{ user.score}</b></p>
                         </div></a>

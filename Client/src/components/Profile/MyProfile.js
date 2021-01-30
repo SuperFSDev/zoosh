@@ -35,7 +35,7 @@ export default class MyProfile extends React.Component {
   async componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-    document.body.style.backgroundColor = "#F7F7F7";
+    document.body.style.backgroundColor = "#FDFEFE";
 
     this.setState({ id: user._id });
 
