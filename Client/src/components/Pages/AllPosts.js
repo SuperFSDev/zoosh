@@ -41,7 +41,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
   
     this.getUserDetails();
     this.getDiscussions();

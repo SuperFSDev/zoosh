@@ -7,6 +7,8 @@ import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
+import Event from '../../Common/StartEvent'
+import {RiAddFill} from 'react-icons/ri'
 import {BsChat} from 'react-icons/bs';
 import cogoToast from 'cogo-toast'
 import Card from '@material-ui/core/Card';
@@ -28,7 +30,6 @@ export default class CommunityPage extends React.Component {
       posts:[],
       events:[],
       questions:[],
-      showFeed:true,
       isLoading:true,
     };
    
@@ -68,17 +69,6 @@ export default class CommunityPage extends React.Component {
         console.log(error);
       });
 
-      axios.get('http://localhost:4000/questions/get-society-questions',{
-        params: {
-          society: society_id
-        }
-      })
-      .then((response) => {
-        this.setState({questions: this.state.questions.concat(response.data.question),})
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     }
 
     
@@ -90,6 +80,10 @@ export default class CommunityPage extends React.Component {
       
     render(){
       var title = this.state.society.name + " - Website"
+      var{users} = this.state;
+      var { events } = this.state;
+      var { questions } = this.state;
+
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
@@ -199,6 +193,7 @@ export default class CommunityPage extends React.Component {
     } 
 }
 }
+
 
 // Adding a User to a society array and adding the society to the users array
 async function addUserToSoc(soc) {

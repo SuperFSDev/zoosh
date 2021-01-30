@@ -107,11 +107,14 @@
 }
 
 .comment-container{
-  /* background:#393D46; */
   background:white;
   padding:10px;
+  width:100%;
 }
 
+.col-w{
+  width: 100%;
+}
 .users-comment{
   background-color: white;
   padding:10px;
@@ -1369,8 +1372,9 @@ section::after {
 }
 
 .community-btn-a:hover{
-  background:rgb(0, 99, 0);
-  color:white;
+  background:white;
+  color:black;
+  border:2px solid black;
   transition: 0.2s;
 }
 
@@ -1381,10 +1385,9 @@ section::after {
   font-size: 16px;
   font-weight: bold;
   color:white;
-  border-radius: 5px;
-    background:green;
-    transition: 0.2s;
-    height:50px!important;
+  background:black;
+  transition: 0.2s;
+  height:50px!important;
 }
 
 .community-btn-b{
@@ -2508,7 +2511,6 @@ section::after {
 }
 
 .edit-profile-form{
-  width:500px;
   height:auto;
   text-align: left;
   margin-top:2rem;

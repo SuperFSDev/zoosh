@@ -55,7 +55,7 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
-    document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
 
 
     axios.get(`http://localhost:4000/users/get-user-details`, {

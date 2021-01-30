@@ -37,6 +37,7 @@ export default class DiscussionPost extends React.Component {
 
     componentDidMount() {
       this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
+      document.body.style.backgroundColor = "#F7F7F7";
 
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
@@ -145,7 +146,8 @@ export default class DiscussionPost extends React.Component {
 
           <Container>
             <Row>
-              <Col sm>
+              <Col sm/>
+              <Col  sm>
               <p className="post-header">
                 {this.state.discussion.title}<br/>
                 <p style={{fontSize:14, color:'gray'}}>
@@ -192,9 +194,13 @@ export default class DiscussionPost extends React.Component {
 
           <div className="comment-container" id="responses">
           
-          <h4>Responses ({this.state.comments.length})</h4>
+            <h4>Responses ({this.state.comments.length})</h4>
+            
+            <div className="comment-box-acc">
+              
+            </div>
           
-          <br/><Accordion className="comment-box-acc">
+          {/* <br/><Accordion className="comment-box-acc">
             <AccordionSummary
               aria-controls="panel1a-content"
               id="panel1a-header"
@@ -205,7 +211,7 @@ export default class DiscussionPost extends React.Component {
             <textarea value={this.state.comment} onChange={this.onChangeComment} className="Comment-input" rows = "5" cols = "60"/>
             </AccordionDetails>
             <button className="standard-button" onClick={this.onSubmit}>Publish</button>
-          </Accordion><br/>
+          </Accordion><br/> */}
           
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
@@ -259,6 +265,8 @@ export default class DiscussionPost extends React.Component {
          </div>
 
               </Col>
+              <Col sm/>
+
             </Row>
           </Container>
 
