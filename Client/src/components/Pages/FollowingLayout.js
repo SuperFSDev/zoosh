@@ -1,12 +1,9 @@
 import React , {Fragment} from 'react';
-import '../../assets/Layout.css';
 import '../../assets/App.css';
-import '../../Media.css';
-
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {  Image} from 'react-bootstrap';
+import {  Image, Row, Col, Container} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -14,9 +11,11 @@ import { Helmet } from 'react-helmet'
 import cogoToast from 'cogo-toast'
 import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
-import UsersCommunities from '../Lists/UsersCommunities';
-import SearchbarFilter from '../Common/SearchbarFilter'
-import {BiPlanet} from 'react-icons/bi'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 export default class Feed extends React.Component {
 
@@ -35,6 +34,7 @@ export default class Feed extends React.Component {
           user: '',
           pic:'',
           claps:0,
+          likes:0,
           socs:[],
           posts:[],
           time: new Date().getTime(),
@@ -42,8 +42,8 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-      document.body.style.backgroundColor = "#f0f2f5";
-    
+      document.body.style.backgroundColor = "#FDFEFE";
+
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
       
@@ -99,8 +99,11 @@ export default class Feed extends React.Component {
           CheckPost(id,post_id) {
             var user = JSON.parse(localStorage.getItem('user'));
             if(id == user._id){
-              return(<div>
-                <span onClick={() => {this.onDeletePost(id,post_id)}}>Delete Post</span>
+              return(
+              <div>
+                <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,post_id)}}>
+                  Delete Post
+                </Button>
               </div>)
             }
           }
@@ -127,73 +130,93 @@ export default class Feed extends React.Component {
              .then().catch();
            }
 
+          addToLikedPosts(discussion,user_id,likes) {
+  
+            const addDiscussion = {
+                id:user_id,
+                discussion: discussion,
+            }
+            // Adds the discussion to liked list
+            axios.post('http://localhost:4000/users/addToLikedPosts', addDiscussion)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                const UpdateLike = {
+                  discussion: discussion,
+                  likeCount:likes+1
+              }
+                alert(this.state.posts.likes);
+                axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                // window.location.reload(); //refreshes page automatically 
+          }
+
 
 render(){
-  console.log(this.state.posts);
+  var user = JSON.parse(localStorage.getItem('user'));
   const discussionList = this.state.posts.reverse().map(discussion => {
     return(
-
-        <Fragment key={discussion._id}>
-          <div className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-            <Fragment>
-              <p>
-                <a href={"/me"} className="post-link-a"><span className="voting-btn">
-                  <b>{discussion.user}</b>  
-
+      <Fragment  key={discussion._id}>
+        <Card className='discussion-post'>
+          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+            <span className="voting-btn">
+                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                <span class="showme"> <b>{discussion.user}</b></span></span>
                   {discussion.society == null ? (
-                      <span> posted in <b style={{color:'green'}}>General</b></span>
+                    <span> in <b style={{color:'green'}}>General</b></span>
                   ) : (
-                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                  )}
-                </span></a><br/>
-                <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                {discussion.picture == null ? (
-                  <Fragment></Fragment>
-                ) : (
-                  <Image className="post-image" src={discussion.picture} width={125} height={125}/>
-                )}<br/>
-                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-                <small  className="text-muted">
-                  <br/>
-                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                    <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+                  )}<br/>
+                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
-                
-                </small>
-              </p>
-            </Fragment></a>
-          </div>
-        </Fragment>
-      )})
+                    
+                  {discussion.picture == null && <div></div> }  
+                  {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+                </span><br/>
+                <span  className="title-post">{discussion.title}</span><br/>
+                <span  className="content-post">{discussion.content.slice(0,200)}</span>
+          </CardContent></a>
+            <CardActions>
+              <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                Like Post
+              </Button>
+
+              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
+            </CardActions>
+          </Card> 
+      </Fragment>
+    )})
+
   return (
-        <Fragment class="row">
-            <div className="column" style={{background:'white'}}>
-            <div className="feed-container">
-                  <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> LATEST FROM FOLLOWING</h3>
+    <Container>
+      <Row>
+        <Col sm></Col>
+        <Col sm>
+          <div className="filter-options">
+            <a href="/"><button className="feed-option-active">Following</button></a>
+            <a href="/top"><button className="feed-option">Top</button></a>
+            <a href="/new"><button className="feed-option-post">Create Post</button></a>
 
-                  {this.state.isLoading ? ( 
-                      <div>
-                        <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
-          
-                      </div>
+          </div>
+          {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
+          {!this.state.isLoading &&  <div>{discussionList}</div>}
+        </Col>
 
-                    ) : (
-                      <p>{discussionList}</p>
-                    )}
-             </div>
-            </div>
+        <Col sm><Recommended/><Contributors/></Col>
+        <Col sm></Col>
 
-            <div className="column2" style={{background:'white'}}>
-                    <Fragment>
-                      <Recommended/>
-                    </Fragment>
-
-                    <Fragment>
-                      <Contributors/> 
-                    </Fragment>          
-            </div>
-        </Fragment>
+      </Row>
+    </Container>
   );
   }
  }

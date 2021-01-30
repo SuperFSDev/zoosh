@@ -3,8 +3,6 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import { Card} from 'react-bootstrap';
-import { Badge} from 'react-bootstrap'
 import moment from 'moment'
 
 export default class ReadingList extends React.Component {
@@ -24,7 +22,8 @@ export default class ReadingList extends React.Component {
       }
 
    async componentDidMount() {
-      var user = JSON.parse(localStorage.getItem('user'));
+    document.body.style.backgroundColor = "#FDFEFE";
+    var user = JSON.parse(localStorage.getItem('user'));
 
      await axios.get('http://localhost:4000/users/getUsers')
       .then((response)=>{

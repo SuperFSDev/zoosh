@@ -35,7 +35,10 @@ class Contributors extends React.Component {
 
     return (
         <div className="contributors-container">
-            <p><BiRadar  size={20}/> RADAR</p><hr/>
+            <div className="column-head">
+              <p className="column-title"><BiRadar  size={20}/> RADAR</p><hr/>
+            </div>
+            
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={100} style={{marginBottom:10}} count={3}/><br/>
@@ -46,14 +49,14 @@ class Contributors extends React.Component {
                 <div>
 
                 {shuffledUsers.slice(0,size).sort((a,b)=> b.score- a.score).map(user  =>  ( 
-                    <a className="-contributor-user" href={"/u/?id="+user._id} style={{color:'black', fontWeight:'light'}}>
+                    <a className="-contributor-user" href={"/u/?id="+user._id}>
                     <div class="miniprofile">
                         <figure class="headshot">
                             <Image src={user.pic} className="user-image-mini" roundedCircle />
                         </figure>
                         <section class="bio-box">
                             <dl class="details"> 
-                                <b>{user.fullname} </b>
+                                <b className="text-name">{user.fullname} </b>
                                 <dd class="location">{user.college}</dd>
                             </dl>
                         </section>

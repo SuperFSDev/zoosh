@@ -3,22 +3,25 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {Tooltip,OverlayTrigger, Image} from 'react-bootstrap'
+import { Image, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
 import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
 import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import {BsBrightnessLow,BsChat} from 'react-icons/bs'
+import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
 import Clapping from '../../images/clap-hands.png'
 import Clap from '../../images/clap.png'
-import UsersCommunities from '../Lists/UsersCommunities';
-import {BiPlanet} from 'react-icons/bi'
-import SearchbarFilter from '../Common/SearchbarFilter'
 import { json } from 'body-parser';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 export default class AllPosts extends React.Component {
+
 
   constructor(props) {
     super(props);
@@ -38,7 +41,7 @@ export default class AllPosts extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#f0f2f5";
+    document.body.style.backgroundColor = "#FDFEFE";
   
     this.getUserDetails();
     this.getDiscussions();
@@ -113,7 +116,9 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
   if(id == user._id){
     return(<div>
-      <button onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
+      <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,discussion_id)}}>
+        Delete Post
+      </Button>
     </div>)
   }
   }
@@ -139,86 +144,69 @@ render(){
   var { discussions } = this.state;
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
+  
 
-  const discussionList = discussions.reverse().map(discussion => {
+  const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
-
-        <div key={discussion._id}>
-          <div className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-              <p>
-                <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
-                  <b>{discussion.user}</b>  
-
+      <Fragment  key={discussion._id}>
+        <Card className='discussion-post'>
+          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+            <span className="voting-btn">
+                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                <span class="showme"> <b>{discussion.user}</b></span></span>
                   {discussion.society == null ? (
-                      <span> posted in <b style={{color:'green'}}>General</b></span>
+                    <span> in <b style={{color:'green'}}>General</b></span>
                   ) : (
-                    <span> posted in <b style={{color:'green'}}>{discussion.society}</b></span>
-                  )}
-                </span></a><br/>
-                <span className="forum-title">{discussion.title.slice(0,35)}</span>
-                {discussion.picture == null ? (
-                  <div></div>
-                ) : (
-                  <img className="post-image" src={discussion.picture} width={125} height={125}/>
-                )}
-                <br/>
-                <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
-                <small  className="text-muted">
-                  <br/>
-                  <span style={{marginLeft:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                    <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+                  )}<br/>
+                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-                  <button className="standard-option-btn-post"  style={{marginLeft:10}}><BsChat size={22} /> {discussion.comments.length}</button>
-                  {!this.state.isSaved ? (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>this.addToReadingList(discussion,user._id)}><BsBookmark size={22} /></button></span>
-                  </OverlayTrigger> 
-                  ) : (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved(discussion)}><BsBookmarkFill size={22} /></button></span>
-                  </OverlayTrigger>
-                  )}
-                </small>
-              </p>
-              {this.CheckPost(discussion.user_id,discussion._id)}
-            </a>
-          </div>
+                    
+                  {discussion.picture == null && <div></div> }  
+                  {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+                </span><br/>
+                <span  className="title-post">{discussion.title}</span><br/>
+                <span  className="content-post">{discussion.content.slice(0,200)}</span>
+          </CardContent></a>
+            <CardActions>
+              <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                Like Post
+              </Button>
+
+              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
+
+              {this.CheckPost(discussion.user_id,discussion._id)} 
+            </CardActions>
+            
+          </Card> 
           
-        </div>
-      )})
+      </Fragment>
+    )})
 
   return (
-    <Fragment class="row">
-    <div className="column" style={{background:'white'}}>
-          <div className="feed-container">
+    <Container>
+      <Row>
+        <Col sm></Col>
+        <Col sm>
+          <div className="filter-options">
+            <a href="/"><button className="feed-option">Following</button></a>
+            <a href="/top"><button className="feed-option-active">Top</button></a>
+            <a href="/new"><button className="feed-option-post">Create Post</button></a>
 
-            <h3 className="-feed-item-header"><BsBrightnessLow size={20}/> DAILY DIGEST</h3>
-
-            {this.state.isLoading ? ( 
-                <div>
-                  <Skeleton height={200} width={800} style={{marginBottom:10}} count={5}/><br/>
-    
-                </div>
-
-              ) : (
-                <p>{discussionList}</p>
-              )}
           </div>
-    </div>
+          
 
-    <div className="column2" style={{background:'white'}}>
-              <Fragment>
-                <Recommended/>
-              </Fragment>
+          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+          {!this.state.isLoading &&  <div>{discussionList}</div>}
+        </Col>
 
-              <Fragment>
-                <Contributors/>
-              </Fragment>        
-    </div>
+        <Col sm><Recommended/><Contributors/></Col>
+        <Col sm></Col>
 
-</Fragment>
+      </Row>
+    </Container>
   );
 }
 }
-
- // Adding a User to a society array and adding the society to the users array

@@ -289,34 +289,6 @@ export default class CreateASoc extends React.Component {
                     </Form.Group> */}
                     <div className="spacing"></div>
                     <hr/>
-                    <div className="spacing"></div>
-                    {/* <Form.Row>
-                        <Form.Group>
-                            <Form.Label>
-                                <b>Community Visibility</b>
-                            </Form.Label>
-                            <Col>
-                                <Form.Check
-                                type="radio"
-                                label="Public"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios1"
-                                value={this.state.public}
-                                onChange={this.onChangePublic}
-                                defaultChecked 
-                                />
-                                <Form.Check
-                                type="radio"
-                                label="Private"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios2"
-                                value={this.state.private} 
-                                onChange={this.onChangePrivate}
-                                />
-                            </Col>
-                        </Form.Group>
-                    </Form.Row> */}
-                    <div className="spacing"></div>
                     <div className="create-soc-div">
                         <button className="standard-button" variant="primary" type="submit">Create Community</button>
                     </div>

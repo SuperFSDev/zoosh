@@ -4,6 +4,7 @@ const forums = express.Router();
 const app = express();
 //import model
 const ForumModel = require('../models/Forum');
+const ForumModelBug = require('../models/Forum');
 
 //Use headers to give browser access to resources
 forums.use(cors());
@@ -24,9 +25,9 @@ forums.post('/NewPost', (req, res) => {
         user_id: req.body.user_id,
         post: req.body.post,
         time: req.body.time,
+        tag: req.body.tag,
     });
 })
-
 
 forums.get('/getForumPosts', (req, res) => {
 

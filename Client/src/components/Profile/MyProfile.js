@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/App.css';
 import EditProfile from './EditProfile'
-import { Image, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge } from 'react-bootstrap'
+import { Image, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge, Row, Col, Container } from 'react-bootstrap'
 import CreateASoc from '../Socs/CreateASoc'
 import axios from 'axios';
 import { Helmet } from 'react-helmet'
@@ -35,7 +35,7 @@ export default class MyProfile extends React.Component {
   async componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-    // document.body.style.backgroundColor = "#FCFCFC";
+    document.body.style.backgroundColor = "#FDFEFE";
 
     this.setState({ id: user._id });
 
@@ -94,103 +94,31 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-        <Navbar className="navbar-profile" >
-          <Nav className="mr-auto">
-            <Navbar.Brand className="header-profile">
-              <span className="navbar-title">
-                <b>{this.state.user.fullname} </b>
-                {/* <b className="user-member-profile">{this.state.user.score}</b> */}
-              </span>
-              <span>
-                <EditProfile />
-              </span>
-            </Navbar.Brand>
-          </Nav>
+      <Container>
+          <Col sm={4}>
+            <div className="profile-card-align">
+              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+              <br/>
+              <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+              <br/>
+              <span>Followers{this.state.followers.length}</span>
 
-          <Navbar.Collapse className="justify-content-end">
-            <div className="quick-create-option">
-              <div>
-                <a href="/home"><button className="write-button">Home</button></a>
-              </div>
+              <br /><br />
+              <span>COMMUNTIES</span><br />
+              {this.state.societies.map(society =>
+                <span key={society._id}>
+                  <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
+                </span>)}
             </div>
+          </Col>
 
-            <div className="navbar-prof-btn">
-              <div id="#battleBox">
-                <a href="/me"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left" onClick={this.showProfile} roundedCircle /></a>
-              </div>
-            </div>
-          </Navbar.Collapse>
-        </Navbar>
+          <Col sm={8}>
+            {this.state.posts.length === 0 && <div>No Posts</div>}
+            {this.state.posts.length === 0 && <div><History /></div>}
 
-        <div className="containerFeedMiddleProfile">
-          <div className="profile-card"></div>
-          {/* <div className="user-profile-about"> */}
-          <div className="profile-card-align">
-            <Image src={this.state.user.pic} className="user-image" />
-            {/* <h3>
-                  {this.state.user.score >= 1 && this.state.user.score <=999 ? (
-                      <span><b className="user-member">{this.state.user.score}</b><br/></span>
-
-                  ) : this.state.user.score >=1000 ?(
-                    <span><b  className="user-mod">{this.state.user.score}</b><br/></span>
-                  ) : this.state.user.score >= 5000 ? (
-                    <span><b  className="user-admin">{this.state.user.score}</b><br/></span>
-                  ) : (
-                    <span><b>{this.state.user.score}</b><br/></span>
-                  )} 
-                
-                </h3> */}
-            <br /><br />
-            <Badge variant="secondary"><h6>{this.state.user.college} &#x2022; {this.state.user.course}</h6></Badge>
-          </div>
-          <br />
-          <div className="user-profile-about-bio">
-
-            <br /><br />
-            <span className="text-muted">COMMUNTIES</span><br />
-            {this.state.societies.map(society =>
-              <span key={society._id} className="community-members-item-profile">
-                <b><a href={"/c/?id=" + society._id} className="community-item-link">{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
-              </span>)}
-          </div>
-        </div>
-
-
-        <div className="containerFeedRightProfile">
-          <div className="top-posts-profile-container">
-            <h5 className="-feed-item-header" style={{ marginLeft: 35 }}>TOP POSTS</h5>
-            <History />
-          </div>
-
-          <div className="top-posts-profile-container">
-            <h5>Badges</h5>
-            <section className="badge-container">
-              <div className="badge-item-1">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Gold</Tooltip>}>
-                  <span className="d-inline-block">
-                    <span role="img" aria-label="gold">🥇 <h2>{this.state.badges.length}</h2></span>
-                  </span>
-                </OverlayTrigger>
-              </div>
-              <div className="badge-item-2">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Silver</Tooltip>}>
-                  <span className="d-inline-block">
-                    <span role="img" aria-label="silver">🥈 <h2>{this.state.badges.length}</h2></span>
-                  </span>
-                </OverlayTrigger>
-              </div>
-              <div className="badge-item-3">
-                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Bronze</Tooltip>}>
-                  <span className="d-inline-block">
-                    <span role="img" aria-label="bronze">🥉 <h2>{this.state.badges.length}</h2></span>
-                  </span>
-                </OverlayTrigger>
-              </div>
-
-            </section>
-          </div>
-
-        </div>
+            
+          </Col>
+      </Container>
       </>
     );
   }

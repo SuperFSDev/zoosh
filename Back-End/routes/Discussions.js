@@ -38,6 +38,7 @@ discussions.get('/getDiscussions', (req, res) => {
     })
 })
 
+
 discussions.get('/get-discussion-page', (req, res) => {
 
     DiscussionModel.findById({
@@ -137,6 +138,30 @@ discussions.post('/addComment', (req, res) => {
                     res.send(result)
                 } else {
                     res.send("Society already exists in user model.");
+                }
+            }
+
+        }
+    )
+})
+
+discussions.post('/UpdateLikeCount', (req, res) => {
+
+    DiscussionModel.findByIdAndUpdate(
+
+        { _id: req.body.discussion},
+        { likes : req.body.likeCount},
+              //console.log('here now.' + req.body.post),
+              function (err, result) {
+
+            if (err) {
+                console.log("error" + err);
+                res.send(err)
+            } else {
+                if (result) {
+                    res.send(result)
+                } else {
+                    res.send("error");
                 }
             }
 

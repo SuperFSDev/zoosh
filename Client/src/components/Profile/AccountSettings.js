@@ -2,7 +2,7 @@ import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
 // import Dropzone from "react-dropzone";
 import '../../assets/App.css';
-import { Form } from 'react-bootstrap';
+import { Form, Col, Container, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { FcCheckmark } from "react-icons/fc";
 
@@ -248,20 +248,10 @@ export default class AccountSettings extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="settings-options-container">
-          <ProfileUsername />
-          <div className="">
-            <a href="/settings/profile" className="feed-option-redirects"><div className="option-container">
-              Profile
-                    </div></a>
-            <a href="/login" className="feed-option-redirects"><div className="option-container">
-              Logout
-                    </div></a>
-          </div>
-        </div>
 
-        <div className="containerFeedMiddle">
+      <Container>
+        <Row>
+          <Col>
           <div>
             {this.picPreview()}
             <image src={`data:image/png;base64,${this.scaledImg}`} />
@@ -352,9 +342,10 @@ export default class AccountSettings extends React.Component {
               
             </Form>
           </div>
+          </Col>
 
-        </div>
-      </div>
+        </Row>
+      </Container>
     );
   }
 }

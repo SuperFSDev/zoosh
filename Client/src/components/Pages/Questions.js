@@ -3,18 +3,13 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import {Tooltip,OverlayTrigger, Image, Modal} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import {Helmet} from 'react-helmet'
 import {BsBookmark,BsBookmarkFill,BsQuestionCircle} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
-import {BsBrightnessLow,BsChat} from 'react-icons/bs'
-import Clapping from '../../images/clap-hands.png'
-import Clap from '../../images/clap.png'
-import UsersCommunities from '../Lists/UsersCommunities';
-import {BiPlanet} from 'react-icons/bi'
 import SearchbarFilter from '../Common/SearchbarFilter'
 import AskQuestion from '../Common/AskQuestion';
 
@@ -36,7 +31,7 @@ export default class Questions extends React.Component {
   }
 
   componentDidMount() {
-    // document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#FDFEFE";
 
     var user_id = new URLSearchParams(this.props.location.search).get("id");
   

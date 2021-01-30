@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import '../../../assets/App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {  OverlayTrigger,Tooltip } from 'react-bootstrap';
+import {  OverlayTrigger,Tooltip, Row, Col, Container } from 'react-bootstrap';
 import moment from 'moment'
 import { Image, Card, Button} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
@@ -29,7 +29,7 @@ export default class DiscussionPost extends React.Component {
       isLoading:true,
       hearts: 0,
       isSaved: false,
-      comment:''
+      comment:'',
     };
     this.onChangeComment = this.onChangeComment.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -37,7 +37,6 @@ export default class DiscussionPost extends React.Component {
 
     componentDidMount() {
       this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
-      // document.body.style.backgroundColor = "#FDFEFE";
 
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
@@ -144,78 +143,31 @@ export default class DiscussionPost extends React.Component {
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
 
-          <div className="containerPostLeft">
-
-            <div className="discussion-div-sticky">
-              <span>{this.state.discussion.pic}</span>
-                <p>
-                  <small>Written By</small><br/>
-                  <span>
-                    <Avatar src={this.state.discussion.user_img}/>
-                    <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>{this.state.discussion.user}</a> 
-                    <span className="user-score-post-tag">{this.state.discussion.user_score}</span>
-                  </span>
-                  
-                </p>
-                <button className="community-btn-a">Follow</button>
-                <div className="spacing"></div>
-                <p >
-                  <a href={"/c/?id="+this.state.discussion.society}><b>{this.state.discussion.society}</b></a>
-                  <br/>
-                </p>
-                <button className="community-btn-a">Join Community</button>
-                <br/><hr/>
-                {this.state.hearts > 0 ? ( 
-                      <span><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clapping} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                    // <span className="voting-btn"><button className="standard-option-btn-post-hearts-liked" onClick={this.addLikes}><BsHeartFill size={22} /> {this.state.hearts} Hearts</button></span>
-                    ) : ( 
-                      <span><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
-
-                    // <span className="voting-btn"><button className="standard-option-btn-post-hearts" onClick={this.addLikes}><BsHeart size={22} /> {this.state.hearts} Hearts</button></span>
-                    )} 
-                <br/>
-                <a href="#responses"><span><button className="standard-option-btn-post" ><BsChat size={20} className="feed-comment" /> {this.state.comments.length} responses</button></span></a>
-                <br/>
-                <span><button className="standard-option-btn-post" onClick={this.addtoSaved}><BsBookmark size={22} /></button></span>
-            </div>
-              
-
-
-          </div>
-          <div className="containerPostMiddle">
-            <div className="forum-container">
-              {/* <Badge variant="secondary">{this.state.discussion.society}</Badge> */}
+          <Container>
+            <Row>
+              <Col sm>
               <p className="post-header">
                 {this.state.discussion.title}<br/>
                 <p style={{fontSize:14, color:'gray'}}>
                   <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>
-                  <b style={{color:'gray'}}>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
+                  <span class="showhim">
+                    <b style={{color:'gray'}}>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
+                    <span class="showme"> <b>{this.state.discussion.user}</b></span>
+                  </span>
                   </a>
                 </p>
 
                 <Image src={this.state.discussion.picture} className="thumbnail"/>
               </p>
-              
-                {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Written by</Tooltip>}>
-                  <span className="d-inline-block">
-                  </span>
-                </OverlayTrigger> */}
             
               <p className="post-content">{this.state.discussion.content}</p>
 
-                {/* Discussion Post interaction options */}
                 <div className="spacing"></div>
                 
-                {this.state.hearts > 0 ? ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clapping} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
+                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.discussion.likes} </button></span>
 
-                  // <span className="voting-btn"><button className="standard-option-btn-post-hearts-liked" onClick={this.addLikes}><BsHeartFill size={22} /> {this.state.hearts} Hearts</button></span>
-                  ) : ( 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button></span>
+                    {/* <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.likes} claps</button></span> */}
 
-                  // <span className="voting-btn"><button className="standard-option-btn-post-hearts" onClick={this.addLikes}><BsHeart size={22} /> {this.state.hearts} Hearts</button></span>
-                  )} 
 
                 <span className="d-inline-block">
                 
@@ -266,7 +218,12 @@ export default class DiscussionPost extends React.Component {
                   </figure></a>
                   <section class="bio-box">
                             <dl class="details"> 
-                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
+                                <a href={"/u/?id=" + comment.user_id} className="post-link-a">
+                                  <span class="showhim">
+                                    <b>{comment.user_name} </b>
+                                    <span class="showme"> <b>{comment.user_name}</b></span>
+                                  </span>
+                                </a>
                                 <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
                                 
                                 
@@ -281,7 +238,6 @@ export default class DiscussionPost extends React.Component {
                 
               </div>
               <ShowMoreText
-                /* Default options */
                 lines={1}
                 more='Read more'
                 less='Read less'
@@ -291,19 +247,23 @@ export default class DiscussionPost extends React.Component {
                 width={1000}
                 height={100}
               >
-              <p className="post-content">{comment.comment}</p>
+              {comment.comment}
               </ShowMoreText>
-              <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button>
+              {/* <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button> */}
             <hr/>
               </div>
             ))}
          </div>  
          <div>
-          {/* <ReadMore/> */}
          </div>
-      </div>
-    </div>   
-    </div>          
+         </div>
+
+              </Col>
+            </Row>
+          </Container>
+
+         
+
     </>
     );
   }

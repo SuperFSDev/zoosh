@@ -4,7 +4,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import {BiCompass} from 'react-icons/bi'
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
-import {BiPlanet} from 'react-icons/bi'
+import {IoMdPlanet} from 'react-icons/io'
 
 export default class Recommended extends React.Component {
 
@@ -48,7 +48,10 @@ render(){
     <StickyContainer>
         <div>
             <div className="recommended-container">
-            <p><BiPlanet size={20}/> COMMUNITIES</p><hr/>
+              <div className="column-head">
+                <p className="column-title"><IoMdPlanet size={20}/> SPACES</p><hr/>
+              </div>
+            
             {this.state.isLoading ? ( 
                 <div>
                   <Skeleton height={140} style={{marginBottom:10}} count={1}/><br/>
