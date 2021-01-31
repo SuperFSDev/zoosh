@@ -222,7 +222,7 @@ render(){
 
   const discussionList = discussions.reverse().slice(0, size).sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
-      <Fragment  key={discussion._id}>
+      <React.Fragment  key={discussion._id}>
         <Card className='discussion-post'>
           <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
             <span className="voting-btn">
@@ -243,7 +243,7 @@ render(){
           </CardContent></a>
             <CardActions>
 
-              {this.isLiked(discussion._id,user._id,discussion.likes)}
+              {/* {this.isLiked(discussion._id,user._id,discussion.likes)} */}
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
                 {discussion.likes === 0 && <></>}
                 {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
@@ -262,7 +262,7 @@ render(){
             
           </Card> 
           
-      </Fragment>
+      </React.Fragment>
     )})
 
   return (
@@ -274,7 +274,6 @@ render(){
             <a href="/"><button className="feed-option">Following</button></a>
             <a href="/top"><button className="feed-option-active">Top</button></a>
             <a href="/new"><button className="feed-option-post">Create Post</button></a>
-
           </div>
           
 

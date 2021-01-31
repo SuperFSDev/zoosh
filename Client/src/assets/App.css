@@ -1205,13 +1205,8 @@ section::after {
 .forum-post-content{font-size: 12px;}
 
 .profile-card{
-  background:none;
   text-align: center;
-  height:auto;
-  width:1400px;
-  padding:10px;
-  padding-left: 30px;
-  
+  margin-top: 5vh;
 }
 
 .options-container{
@@ -1412,7 +1407,7 @@ section::after {
 .community-btn-a:hover{
   background:white;
   color:black;
-  border:2px solid black;
+  border:2px solid black!important;
   transition: 0.2s;
 }
 

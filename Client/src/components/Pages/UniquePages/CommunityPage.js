@@ -155,7 +155,7 @@ export default class CommunityPage extends React.Component {
             </Helmet> 
 
             <Container fluid>
-              <Row>
+                <Col sm>
                 <div className="community-header">
                   <span><Image src={this.state.society.picture} className="community-image" /></span>
                   <br/>
@@ -164,7 +164,7 @@ export default class CommunityPage extends React.Component {
                   <br/>
                   <button className="follow-community" onClick={() => {this.addUser(this.state.society._id)}}>Follow</button>
                 </div>  
-              </Row>
+                </Col>
     
                          
         <Row>

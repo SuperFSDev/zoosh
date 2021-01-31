@@ -221,7 +221,7 @@ render(){
                   ) : (
                     <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}<br/>
-                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                  <span style={{color:'gray', fontSize:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                     
                   {discussion.picture == null && <div></div> }  
@@ -231,7 +231,7 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-              {this.isLiked(discussion._id,user._id,discussion.likes)}
+              {/* {this.isLiked(discussion._id,user._id,discussion.likes)} */}
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
                 {discussion.likes === 0 && <></>}
                 {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
@@ -260,11 +260,14 @@ render(){
             <a href="/new"><button className="feed-option-post">Create Post</button></a>
 
           </div>
+
           {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}
         </Col>
 
-        <Col sm><Recommended/><Contributors/></Col>
+        <Col sm>
+          <Recommended/><Contributors/>
+        </Col>
         <Col sm></Col>
 
       </Row>
