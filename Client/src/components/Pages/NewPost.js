@@ -101,10 +101,10 @@ export default class NewPost extends React.Component {
     const compress = new Compress();
 
     compress.compress(pictureFiles, {
-      size: 50, // the max size in MB, defaults to 2MB
-      quality: 1, // the quality of the image, max is 1,
-      maxWidth: 500, // the max width of the output image, defaults to 1920px
-      maxHeight: 500, // the max height of the output image, defaults to 1920px
+      size: 4, // the max size in MB, defaults to 2MB
+      quality: 0.9, // the quality of the image, max is 1,
+      maxWidth: 250, // the max width of the output image, defaults to 1920px
+      maxHeight: 250, // the max height of the output image, defaults to 1920px
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
       if (data[0]) {

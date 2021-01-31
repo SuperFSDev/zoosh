@@ -52,6 +52,7 @@ export default class ListSocieties extends React.Component {
     
         axios.get('http://localhost:4000/societies/getSocieties')
           .then((response) => {
+            console.log(response.data);
             this.setState({ 
               societies: response.data.societies,
               isLoading: false,

@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
-app.use(bodyParser.json({limit: '50mb', extended: true}))
+app.use(bodyParser.json({limit: '5mb', extended: true}))
 
 // Add the "Users" route to the server.
 var Users = require('./routes/Users');

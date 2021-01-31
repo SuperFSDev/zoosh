@@ -126,9 +126,9 @@ export default class CreateASoc extends React.Component {
     
         compress.compress(pictureFiles, {
           size: 4, // the max size in MB, defaults to 2MB
-          quality: .90, // the quality of the image, max is 1,
-          maxWidth: 100, // the max width of the output image, defaults to 1920px
-          maxHeight: 100, // the max height of the output image, defaults to 1920px
+          quality: 0.9, // the quality of the image, max is 1,
+          maxWidth: 250, // the max width of the output image, defaults to 1920px
+          maxHeight: 250, // the max height of the output image, defaults to 1920px
           resize: true, // defaults to true, set false if you do not want to resize the image width and height
         }).then((data) => {
           if(data[0])

@@ -47,8 +47,6 @@ class UsersCommunities extends React.Component {
                 societies: response.data.user.societies,
                 posts:response.data.user.posts,
                 badges:response.data.user.badges,
-                
-  
               })
             })
             .catch((error) => {
