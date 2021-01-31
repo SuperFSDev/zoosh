@@ -28,6 +28,7 @@ export default class DiscussionPost extends React.Component {
       societies: [],
       isLoading:true,
       hearts: 0,
+      views:0,
       isSaved: false,
       comment:'',
     };
@@ -37,14 +38,13 @@ export default class DiscussionPost extends React.Component {
 
     componentDidMount() {
       this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
-      document.body.style.backgroundColor = "#F7F7F7";
-
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
           id: this.state.discussion_id,
 
         }
+
       })
         .then((response) => {
           this.setState({ 
@@ -84,6 +84,15 @@ export default class DiscussionPost extends React.Component {
       })
     }
 
+    addPageView = () =>{
+
+      const {views} = this.state;
+
+      this.setState({
+        views: views + 1
+      })
+    }
+
     addToSaved = () =>{
       this.setState({ 
         isSaved: true,
@@ -101,6 +110,35 @@ export default class DiscussionPost extends React.Component {
       this.setState({
         comment: e.target.value
       });
+    }
+
+    addToLikedPosts(discussion,user_id,likes) {
+  
+      const addDiscussion = {
+          id:user_id,
+          discussion: discussion,
+      }
+      // Adds the discussion to liked list
+      axios.post('http://localhost:4000/users/addToLikedPosts', addDiscussion)
+          .then(function (resp) {
+              console.log(resp);
+          })
+          .catch(function (error) {
+              console.log(error);
+          })
+          const UpdateLike = {
+            discussion: discussion,
+            likeCount:likes+1
+        }
+          // alert(this.state.posts.likes);
+          axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+          .then(function (resp) {
+              console.log(resp);
+          })
+          .catch(function (error) {
+              console.log(error);
+          })
+          // window.location.reload(); //refreshes page automatically 
     }
 
     onSubmit(e) {
@@ -126,6 +164,9 @@ export default class DiscussionPost extends React.Component {
     render() {
       var { discussions } = this.state;
       var user = JSON.parse(localStorage.getItem('user'));
+      let string = this.state.discussions.content;
+      // string.replaceAll("Hooks","she")
+
       console.log(this.state.comments);
 
       return (
@@ -144,10 +185,12 @@ export default class DiscussionPost extends React.Component {
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
 
-          <Container>
+          <Container fluid>
             <Row>
-              <Col sm/>
               <Col  sm>
+                <div className="discussion-container">
+
+     
               <p className="post-header">
                 {this.state.discussion.title}<br/>
                 <p style={{fontSize:14, color:'gray'}}>
@@ -162,11 +205,12 @@ export default class DiscussionPost extends React.Component {
                 <Image src={this.state.discussion.picture} className="thumbnail"/>
               </p>
             
-              <p className="post-content">{this.state.discussion.content}</p>
+              <p className="post-content">{string}</p>
+
 
                 <div className="spacing"></div>
                 
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.discussion.likes} </button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToLikedPosts}><Image src={Clap} size={20} className="feed-comment"/> {this.state.discussion.likes} </button></span>
 
                     {/* <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.likes} claps</button></span> */}
 
@@ -197,51 +241,30 @@ export default class DiscussionPost extends React.Component {
             <h4>Responses ({this.state.comments.length})</h4>
             
             <div className="comment-box-acc">
-              
+              <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
+              <button className="standard-button" onClick={this.onSubmit}>Publish</button>
             </div>
-          
-          {/* <br/><Accordion className="comment-box-acc">
-            <AccordionSummary
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-            <Typography className="motto">What are your thoughts?</Typography>
-            </AccordionSummary>
-           <AccordionDetails>
-            <textarea value={this.state.comment} onChange={this.onChangeComment} className="Comment-input" rows = "5" cols = "60"/>
-            </AccordionDetails>
-            <button className="standard-button" onClick={this.onSubmit}>Publish</button>
-          </Accordion><br/> */}
           
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
               <div>
-              <div  class="miniprofile2">
+             <div  class="miniprofile2">
                 <p>
                   <span className="voting-btn">
                   <a href={"/u/?id=" + comment.user_id} className="post-link-a"><figure class="headshot">
                         <Avatar src={comment.user_img}/>
                   </figure></a>
                   <section class="bio-box">
-                            <dl class="details"> 
-                                <a href={"/u/?id=" + comment.user_id} className="post-link-a">
-                                  <span class="showhim">
-                                    <b>{comment.user_name} </b>
-                                    <span class="showme"> <b>{comment.user_name}</b></span>
-                                  </span>
-                                </a>
+                  <dl class="details"> 
+                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user} </b></a>
                                 <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
-                                
-                                
+                                <p className="post-content">{comment.comment}</p>
+
+
                             </dl>
                   </section>
                 </span>                  
                 </p>
-                <br/>
-                <p>
-                  
-                </p>
-                
               </div>
               <ShowMoreText
                 lines={1}
@@ -255,17 +278,14 @@ export default class DiscussionPost extends React.Component {
               >
               {comment.comment}
               </ShowMoreText>
-              {/* <button className="standard-option-btn-post" onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button> */}
+              <button onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button>
             <hr/>
               </div>
             ))}
          </div>  
-         <div>
          </div>
          </div>
-
               </Col>
-              <Col sm/>
 
             </Row>
           </Container>

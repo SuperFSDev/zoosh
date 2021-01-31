@@ -114,43 +114,40 @@ render(){
 
         <Container>
           <Row>
+            <Col sm/>
             <Col>
-            <div className="global-feed">
-                <h3>Meet the Community</h3>
-                  <div className="container-square">
+              <div>
+                {usersList}
+              </div>
+              
+                  {/* <div className="container-square">
+                  <h3>Meet the Community</h3>
+
                     <div className="search-div-square">
                         <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category"/>
                     </div>
-                  </div>  
-              </div>
+                  </div>   */}
 
-              <div className="UsersLayout">
-              {this.state.isLoading ? ( 
-                <div>
+              {/* <div className="UsersLayout"> */}
+              {/* {this.state.isLoading ? ( 
+                <div className="UsersLayout">
                   <br/>
-                  <div className="UsersLayout">
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                  </div>
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
+                    <Skeleton height={140} width={150} duration={1} className="skeleton-comms"/>  
                   
                 </div>
 
                 ) : (
                   usersList
-                )}
-              </div>
+                )} */}
+              {/* </div> */}
             </Col>
+            <Col sm/>
           </Row>
         </Container>
   </div>

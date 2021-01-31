@@ -14,8 +14,8 @@ import cogoToast from 'cogo-toast'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
+import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
 
 export default class CommunityPage extends React.Component {
 
@@ -36,7 +36,7 @@ export default class CommunityPage extends React.Component {
   }
  
   async componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
       await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
@@ -59,7 +59,7 @@ export default class CommunityPage extends React.Component {
 
       axios.get('http://localhost:4000/discussions/get-society-discussions',{
         params: {
-          society: society_id
+          society: this.state.society.name
         }
       })
       .then((response) => {
@@ -111,13 +111,18 @@ export default class CommunityPage extends React.Component {
                   <span  className="content-post">{discussion.content.slice(0,200)}</span>
             </CardContent></a>
               <CardActions>
-                <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-                  Like Post
-                </Button>
-  
-                <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
-                  <BsChat size={15} style={{marginRight:5}}/> Add Comment 
-                </Button>
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                {discussion.likes === 0 && <></>}
+                {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
+              </button></a>
+
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                <RiChat1Line size={20}/> 
+                {discussion.comments.length === 0 && <span> Add comment</span>}
+                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+
+              </button></a>
               </CardActions>
             </Card> 
         </Fragment>
@@ -157,7 +162,7 @@ export default class CommunityPage extends React.Component {
                   <h5 className="community-name">{this.state.society.name} </h5>
                   {this.state.society.description}
                   <br/>
-                  <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
+                  <button className="follow-community" onClick={() => {this.addUser(this.state.society._id)}}>Follow</button>
                 </div>  
               </Row>
     
@@ -165,12 +170,25 @@ export default class CommunityPage extends React.Component {
         <Row>
           <Col sm></Col>
           <Col sm>
-            {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
-            {!this.state.isLoading &&  <div>{discussionList}</div>}
+            <div style={{width:700}}>
+              {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+              {!this.state.isLoading &&  <div>{discussionList}</div>}
+            </div>
           </Col>
 
           <Col sm>
             <div className="contributors-container">
+              Users
+              {/* {this.state.users.map(user=>(
+                          <div className="community-members-item">
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
+                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            </OverlayTrigger>
+                          </div>
+                        ))} */}
+            </div>
+            <div className="contributors-container">
+              Stats
               {/* {this.state.users.map(user=>(
                           <div className="community-members-item">
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
@@ -180,7 +198,9 @@ export default class CommunityPage extends React.Component {
                         ))} */}
             </div>
           </Col>
-          <Col sm></Col>
+          <Col sm>
+            
+          </Col>
 
         </Row>
 

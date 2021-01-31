@@ -10,6 +10,7 @@
   background:black;
   position:fixed;
   text-align: center!important;
+  border-bottom: 1px solid lightgray;
 }
 
 .motto{
@@ -17,16 +18,24 @@
   font-weight: bolder;
 }
 
+.reaction-button{
+  background:none;
+  border:none;
+  padding:10px;
+  border-radius: 5px;
+}
+
+.reaction-button:hover{
+  background:whitesmoke;
+  color:black;
+}
+
 .post-container {
   margin: 20px 20px 0 0;  
   border: 5px solid #333;
   overflow: auto
 }
-.post-container {
-  margin: 20px 20px 0 0;  
-  border: 5px solid #333;
-  overflow: auto
-}
+
 .post-thumb {
   float: right
 }
@@ -74,6 +83,8 @@
   text-align: left;
 }
 
+
+
 .landing-img{
   margin-right: 5rem!important;
   margin: 0;
@@ -116,7 +127,7 @@
   width: 100%;
 }
 .users-comment{
-  background-color: white;
+  margin-top: 10vh;
   padding:10px;
 }
 
@@ -318,6 +329,8 @@
   margin: auto;
 }
 
+.container-square{width:500px;}
+
 .top-posts{
   background:white;
   padding:10px;
@@ -373,7 +386,7 @@
   margin-right:10px;
   outline:none!important;
   border:none;
-  color: #FFD700  ;  ;
+  color: white  ;  ;
   background:black;
   font-weight: bold;
   border-radius: 5px;
@@ -437,6 +450,8 @@
   font-weight: 500;
   text-decoration: none!important;
   cursor: pointer;
+  margin-right: 5vh;
+  font-family: 'Paytone One', sans-serif;
 }
 
 .nav-link-profile{
@@ -461,13 +476,14 @@
 
 .feed-option-post{
   border:none;
-  background:none;
-  color:black;
+  background:black;
+  color:white;
   margin-right:10px;
   padding:10px;
   font-weight: bold;
   outline:none!important;
   float: right;
+  border-radius: 5px;
 }
 
 .feed-option-active{
@@ -481,10 +497,22 @@
   outline:none!important;
 }
 
-.feed-option:hover, .feed-option-post:hover{
+.feed-option:hover{
   background:rgb(245, 245, 245)  ;
   border-radius: 5px;
 
+}
+
+.feed-option-post:hover{
+  border:none;
+  background:lightgray;
+  color:black;
+  margin-right:10px;
+  padding:10px;
+  font-weight: bold;
+  outline:none!important;
+  float: right;
+  transition: 0.1s;
 }
 
 .standard-button-remove:hover{border:2px solid black;}
@@ -765,6 +793,14 @@
   cursor: pointer;
 }
 
+.discussion-container{
+  width:700px;
+  margin:auto;
+  text-align: left;
+  margin-top: 12vh;
+  background-color: white;
+}
+
 .text-muted-society{
   background-color:#2488d8;
   border-radius: 25px;
@@ -876,12 +912,21 @@
 }
 
 .comment-box-acc{
+  margin-top: 5vh;
   background:white!important;
-  border:1px white solid!important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
   border-radius: 5px!important;
   cursor: auto!important;
   padding:10px;
+  height:auto;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.comment-input{
+  overflow: visible;
+  width: 100%;
+  border:none;
+  outline:none;
+
 }
 #dropdown-basic{
   background:none!important;
@@ -948,12 +993,14 @@
   border:1px solid lightgray;
   background:white;
   padding:10px;
+  width:700px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .filter-button{
   float: right;
+
 }
 
 
@@ -1007,7 +1054,7 @@
   width:300px!important;
   height:auto;
   padding:10px;
-  left: 61.4%;
+  left: 75%;
   background-color: white;
   border-radius: 5px;
   position: fixed!important;
@@ -1051,7 +1098,7 @@
 .reading-list{margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1250px;}
 
 .nav-item{margin-right: 6vh;}
-.nav-item-icon{margin-left: 1vh;}
+/* .nav-item-icon{margin-left: 1vh;} */
 
 
 .navbar-btn-icons{
@@ -1085,23 +1132,14 @@
 
 /* Style the header */
 header {
-  /* background-color: #666; */
-  /* padding: 30px; */
   text-align: left;
-  font-size: 35px;
+  font-size: 25px;
   height: auto;
   color: #FFD700  ;
-  margin-left: 15rem;
   margin-right: 18rem;
   border-radius: 5px;
-  /* background: white; */
-  /* border:1px solid lightgray; */
-  margin-top: 7rem;
-  margin-bottom: 1rem;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important; */
 }
 
-/* Create two columns/boxes that floats next to each other */
 
 /* Style the list inside the menu */
 
@@ -1958,7 +1996,6 @@ section::after {
 
 #mySearch{
   border:1px solid lightgray;
-  border-radius: 5px;
   margin-right: 40PX;
 }
 
@@ -2166,7 +2203,6 @@ section::after {
   padding:20px;
   width:300px;
   border-radius: 5px;
-  text-align: center;
   background-color:white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
@@ -2203,8 +2239,8 @@ section::after {
 
 
 .user-image{
-  width:150px;
-  height:150px;
+  width:200px;
+  height:200px;
   text-align: center;
   border:2px solid white;
 }
@@ -2401,7 +2437,6 @@ section::after {
 .navbar-search{
   height:20px;
   margin-top:10px;
-  border-radius: 10px!important;
   outline:none!important;
   padding:20px;
   width:400px;
@@ -2493,13 +2528,8 @@ section::after {
 
 .profile-btn-wrapper-left{
   display: inline-block;
-  border:1px solid black;
-}
-
-.profile-btn-wrapper-left:hover{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  border:1px solid gray;
   cursor: pointer;
+
 }
 
 .post-links-options:hover{
@@ -2542,6 +2572,7 @@ section::after {
   border-radius: 5px;
   margin-top: 5vh;
   padding:10px;
+  width:700px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -2620,7 +2651,7 @@ section::after {
 .users-list-items{
   padding-top:1rem;
   margin:auto;
-  width: 150px;
+  width: 800px;
   height: auto;
   color: black;
   background:white;

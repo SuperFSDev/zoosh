@@ -165,9 +165,22 @@ export default class UserProfile extends React.Component {
 
         <Container>
             <Col sm={4}>
+            <Image src={this.state.user.pic} className="user-image" roundedCircle/>
+            <h3>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
             <div className="profile-card-align">
-              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-              <br/>
+              {this.state.user.bio === null ? (
+                <div>Aaron is keeping quiet</div>
+              ) : (
+                <div>{this.state.user.bio}</div>
+              )}
+              
+            </div>
+
+            <div className="profile-card-align">
+              <p><b>Followers</b> {this.state.followers.length} </p>
+              <p><b>Following</b> {this.state.following.length}</p>
+            </div>
+              {/* <br/>
               <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
               <br/>
               {isUnfollowing ? (
@@ -190,14 +203,13 @@ export default class UserProfile extends React.Component {
                           <li>
                             <p>
 
-                            <b><a href={"/c/?id="+society}>{society}</a> <b className="user-admin">ADMIN</b></b><br/>
+                            <b><a href={"/c/?id="+society}>{society}</a></b><br/>
 
                               
                             </p>
                           </li>)}
                         </div>
-                      )}
-                </div>
+                      )} */}
             </Col>
               
             <Col sm={8}>
