@@ -21,7 +21,7 @@ export default class Two extends React.Component {
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
+      document.body.style.backgroundColor = "#FDFEFE";
 
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   

@@ -7,6 +7,7 @@ import {Modal, Image} from 'react-bootstrap'
 import Event from '../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import moment from 'moment'
+import background from "../../images/friends.jpg";
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../images/clap.png'
 import Recommended from '../Lists/Recommended'
@@ -94,7 +95,7 @@ render(){
         <Fragment>
         <a href={"/e/?id=" + event._id} className="-soc-l-navigation">
           <div className="events-card">
-              {/* <Image src={background} className="soc-item-image"/> */}
+              <Image src={background} className="soc-item-image"/>
               <h4><b>{event.title}</b></h4> 
               <p>{event.society}</p> 
               {/* <p>{event.time}</p> */}

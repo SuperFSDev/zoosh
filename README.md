@@ -20,10 +20,10 @@ Our project is a web application built using the MERN stack. It is a forum for s
 
 Running the react application:
 ```
- Navigate into the 'tasq' directory 
+ > Navigate into the 'tasq' directory 
 ```
 ```
-> Open Command Prompt
+ > Open Command Prompt
 ```
 ```
 > npm start

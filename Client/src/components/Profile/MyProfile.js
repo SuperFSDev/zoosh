@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../assets/App.css';
+import EditProfile from './EditProfile'
 import { Image, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge, Row, Col, Container } from 'react-bootstrap'
 import CreateASoc from '../Socs/CreateASoc'
 import axios from 'axios';

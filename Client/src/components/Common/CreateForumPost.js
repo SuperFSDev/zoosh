@@ -110,7 +110,7 @@ componentDidMount() {
         
       <h1>Leave Feedback</h1><br/><br/>
   
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit} className="post-container">
 
         <TextField
           id="outlined-textarea"

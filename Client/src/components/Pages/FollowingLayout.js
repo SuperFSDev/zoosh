@@ -9,13 +9,13 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { Helmet } from 'react-helmet'
 import cogoToast from 'cogo-toast'
-import {BsHeart,BsChat} from 'react-icons/bs'
+import {BsBrightnessLow,BsChat} from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {RiHeart2Line,RiChat1Line} from 'react-icons/ri'
+import Typography from '@material-ui/core/Typography';
 
 export default class Feed extends React.Component {
 
@@ -43,7 +43,7 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
+      document.body.style.backgroundColor = "#FDFEFE";
 
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
@@ -206,9 +206,8 @@ export default class Feed extends React.Component {
           }
 
 render(){
-  let user = JSON.parse(localStorage.getItem('user'));
-  let size = 5;
-  const discussionList = this.state.posts.reverse().slice(0,size).map(discussion => {
+  var user = JSON.parse(localStorage.getItem('user'));
+  const discussionList = this.state.posts.reverse().map(discussion => {
     return(
       <Fragment  key={discussion._id}>
         <Card className='discussion-post'>
@@ -221,7 +220,7 @@ render(){
                   ) : (
                     <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
                   )}<br/>
-                  <span style={{color:'gray', fontSize:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                     
                   {discussion.picture == null && <div></div> }  
@@ -231,19 +230,11 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-              {/* {this.isLiked(discussion._id,user._id,discussion.likes)} */}
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-                {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
-              </button></a>
+            {this.isLiked(discussion._id,user._id,discussion.likes)} 
 
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
-                <RiChat1Line size={20}/> 
-                {discussion.comments.length === 0 && <span> Add comment</span>}
-                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
-
-              </button></a>
+              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
             </CardActions>
           </Card> 
       </Fragment>
@@ -260,14 +251,11 @@ render(){
             <a href="/new"><button className="feed-option-post">Create Post</button></a>
 
           </div>
-
           {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}
         </Col>
 
-        <Col sm>
-          <Recommended/><Contributors/>
-        </Col>
+        <Col sm><Recommended/><Contributors/></Col>
         <Col sm></Col>
 
       </Row>

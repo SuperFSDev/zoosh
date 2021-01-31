@@ -7,11 +7,9 @@ import {Helmet} from 'react-helmet'
 import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
 import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa'
+import {BsChat,BsHouseFill} from 'react-icons/bs';
+import Avatar from '@material-ui/core/Avatar';
 import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
 
 export default class AdminPage extends React.Component {
 
@@ -160,44 +158,32 @@ export default class AdminPage extends React.Component {
 
       const discussionList = this.state.posts.reverse().map(discussion => {
         return(
-          <Fragment  key={discussion._id}>
-          <Card className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
-              <span className="voting-btn">
-                  <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
-                  <span class="showme"> <b>{discussion.user}</b></span></span>
-                    {discussion.society == null ? (
-                      <span> in <b style={{color:'green'}}>General</b></span>
+    
+            <div key={discussion._id}>
+              <div className='discussion-post' style={{marginLeft:150}}>
+                <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+                  <p>
+                    <a href={"/me"} className="post-link-a"><span className="voting-btn">
+                      <b style={{color:'#0693e3'}}>{discussion.user}</b> posted <span style={{color:'gray'}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                    </span></a><br/>
+                    <span className="forum-title">{discussion.title.slice(0,35)}</span>
+                    {discussion.picture == null ? (
+                      <div></div>
                     ) : (
-                      <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+                      <Image className="post-image" src={discussion.picture} width={150} height={125}/>
                     )}<br/>
-                    <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-  
-                      
-                    {discussion.picture == null && <div></div> }  
-                    {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
-                  </span><br/>
-                  <span  className="title-post">{discussion.title}</span><br/>
-                  <span  className="content-post">{discussion.content.slice(0,200)}</span>
-            </CardContent></a>
-              <CardActions>
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
-                {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
-              </button></a>
+                    <span className="post-content" style={{marginLeft:10}}>{discussion.caption}</span>
 
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
-                <RiChat1Line size={20}/> 
-                {discussion.comments.length === 0 && <span> Add comment</span>}
-                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
-
-              </button></a>
-              </CardActions>
-            </Card> 
-        </Fragment>
+                    <small  className="text-muted">
+                      <br/>
+                      <button className="standard-option-btn-post"><BsChat size={22} /> {discussion.comments.length}</button>
+                    
+                    </small>
+                  </p>
+                </a>
+              </div>
+            </div>
           )})
-
       
         return (
           <Fragment>
@@ -224,7 +210,7 @@ export default class AdminPage extends React.Component {
                   <h5 className="community-name">{this.state.society.name} </h5>
                   {this.state.society.description}
                   <br/>
-                  {/* <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button> */}
+                  <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
                 </div>  
               </Row>
     
@@ -232,26 +218,12 @@ export default class AdminPage extends React.Component {
         <Row>
           <Col sm></Col>
           <Col sm>
-            <div style={{width:700}}>
-              {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+            {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
             {!this.state.isLoading &&  <div>{discussionList}</div>}
-            </div>
-            
           </Col>
 
           <Col sm>
             <div className="contributors-container">
-              Users
-              {/* {this.state.users.map(user=>(
-                          <div className="community-members-item">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
-                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
-                            </OverlayTrigger>
-                          </div>
-                        ))} */}
-            </div>
-            <div className="contributors-container">
-              Stats
               {/* {this.state.users.map(user=>(
                           <div className="community-members-item">
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>

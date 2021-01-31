@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from 'react';
+import React from 'react';
 import './assets/App.css';
 import './assets/Media.css';
 
@@ -6,78 +6,93 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
-import loadable from '@loadable/component'
-
-
-const Landing = lazy(() => import('./components/Pages/Landing/Landing'));
-const NavBar = lazy(() => import('./components/Navbar'));
-const RegisterPage = lazy(() => import('./components/auth/Login'));
-const LoginPage = lazy(() => import('./components/auth/Register'));
-const NotFoundPage = lazy(() => import('./components/404/NotFoundPage'));
-
-const TopPosts = lazy(() => import('./components/Pages/AllPosts'));
-const Following = lazy(() => import('./components/Pages/FollowingLayout'));
-const Users = loadable(() => import('./components/Pages/Users'));
-const Profile = loadable(() => import('./components/Profile/MyProfile'));
-const NewPost = lazy(() => import('./components/Pages/NewPost'));
-const ReadingList = loadable(() => import('./components/Pages/ReadingList'));
-const Forums = loadable(() => import('./components/Pages/Forum'));
-const ViewProfile = loadable(() => import('./components/Profile/UserProfile'));
-const CommunityPage = lazy(() => import('./components/Pages/UniquePages/CommunityPage'));
-const AccountSettings = loadable(() => import('./components/Profile/AccountSettings'));
-const Communities = lazy(() => import('./components/Socs/ListSocieties'));
-const DiscussionPost = loadable(() => import('./components/Pages/UniquePages/DiscussionPost'));
-const Leaderboard = loadable(() => import('./components/Pages/Leaderboard'));
-const Connections = loadable(() => import('./components/Pages/UserConnections'));
-
-
+import NotFoundPage from './components/404/NotFoundPage';
+import LoginPage from './components/auth/Login';
+import RegisterPage from './components/auth/Register';
+import SocsList from './components/Socs/ListSocieties';
+import Leaderboard from './components/Pages/Leaderboard';
+import CreateSociety from './components/Socs/CreateASoc';
+import Profile from './components/Profile/MyProfile'
+import ViewProfile from './components/Profile/UserProfile'
+import DiscussionPost from './components/Pages/UniquePages/DiscussionPost'
+import Forums from './components/Pages/Forum'
+import Events from './components/Pages/Events'
+import NavBar from './components/Navbar'
+import CommunityPage from './components/Pages/UniquePages/CommunityPage'
+import AccountSettings from './components/Profile/AccountSettings'
+import UserConnections from './components/Pages/UserConnections'
+import EventPage from './components/Pages/UniquePages/EventsPage'
+import Podcasts from './components/Pages/Podcasts';
+import PodcastPage from './components/Pages/UniquePages/PodcastPage';
+import Landing from './components/Pages/Landing/Landing'
+import Contact from './components/Pages/Landing/Contact'
+import Users from './components/Pages/Users'
+import Listings from './components/Pages/Listings'
+import NewPost from './components/Pages/NewPost'
+import ReadingList from './components/Pages/ReadingList'
+import Following from './components/Pages/FollowingLayout';
+import TopPosts from './components/Pages/AllPosts';
+import Questions from './components/Pages/Questions';
+import QuestionPage from './components/Pages/UniquePages/QuestionPage';
 
 class App extends React.Component {
   render(){
-    
     const DefaultRoutes = () => {
       return(
-        <div>            
-         <Suspense fallback={<></>}>
+        <div>
           <Router> 
             <NavBar/>   
             <Switch>
-                <TopPosts path="/top"/>
-                <Following exact path="/"/>
-                <Users exact path="/users"/>
-                <Profile exact path="/me"/>
-                <NewPost exact path="/new"/>
-                <ReadingList exact path="/saved"/>
-                <Forums exact path="/forums"/>
-                <ViewProfile exact path="/u"/>
-                <CommunityPage exact path="/c"/>
-                <AccountSettings exact path="/settings"/>
-                <Communities exact path="/communities"/>
-                <DiscussionPost exact path="/d"/>
-                <Leaderboard exact path="/leaderboard"/>
-                <Connections exact path="/connections"/>
+              <Route path="/communities" component={SocsList}/>
+              <Route path="/create-a-society" component={CreateSociety}/>
+              <Route path="/settings" component={AccountSettings}/>
+              <Route path="/settings/profile" component={AccountSettings}/>
+              <Route path="/d" component={DiscussionPost}/>
+              <Route path="/pod" component={PodcastPage}/>
+              <Route path="/e" component={EventPage}/>
+              <Route path="/connections" component={UserConnections}/>
+              <Route path="/leaderboard" component={Leaderboard}/>
+              <Route path="/u" component={ViewProfile}/>
+              <Route path="/events" component={Events}/>
+              <Route path="/podcasts" component={Podcasts}/>
+              <Route path="/users" component={Users}/>
+              <Route path="/listings" component={Listings}/>
+              <Route path="/new" component={NewPost}/>
+              <Route path="/home" component={Following}/> 
+              <Route path="/saved" component={ReadingList}/>
+              <Route path="/me" component={Profile}/>
+              <Route path="/forums" component={Forums}/>
+              <Route path="/q" component={QuestionPage}/>
+              <Route path="/c" component={CommunityPage}/>
+              {/* <Route path="/home" component={AllPosts}/> */}
+              <Route exact path="/" component={Following}/>
+              <Route path="/top" component={TopPosts}/>
+              <Route path="/questions" component={Questions}/>
 
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
-                  <NotFoundPage  path="*"/>
+                    <Route exact path='/' component={Following} />
+                    <Route path="*" component={NotFoundPage} />
                 </Switch>
               </Router>    
 
+
+
             </Switch>
           </Router>
-        </Suspense>
         </div>
       );
     }
     return (
       <Router>
         <Switch>
-          <Landing exact path="/landing"/>
-          <LoginPage exact path="/login"/>
-          <RegisterPage exact path="/join"/>
-
+          <Route path="/landing" component={Landing}/>
+          <Route path="/join" component={RegisterPage}/>
+          <Route path="/login" component={LoginPage}/>
+          <Route path="/contact" component={Contact}/>
 
           <Route component={DefaultRoutes} />
         </Switch>

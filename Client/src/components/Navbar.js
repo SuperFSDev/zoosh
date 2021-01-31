@@ -6,10 +6,10 @@ import {Navbar, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
-import {Modal, Image, Container} from 'react-bootstrap'
+import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {BsGear,BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill,BsSearch} from 'react-icons/bs'
+import {BsGear,BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill} from 'react-icons/bs'
 import Clap from '../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import {MdSchool} from 'react-icons/md'
@@ -191,30 +191,8 @@ render(){
       <div>
         <div id="top"></div>
 
-        <Navbar className="navbar" collapseOnSelect expand="lg" fixed="top">
-          <Navbar.Brand href="#home" className="header" href="/">NAME</Navbar.Brand>
-          {/* <SearchbarFilter/> */}
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse className="justify-content-center">
-            <Navbar.Text>
-            <Nav className="mr-auto">
-              <Nav.Link href="/communities" className="nav-link"><IoMdPlanet size={20}/> SPACES</Nav.Link>
-              <Nav.Link href="/forums"  className="nav-link"><BsLightningFill SIZE={20}/> FORUM</Nav.Link>
-              <Nav.Link href="#pricing"  className="nav-link" onClick={this.showMenu} aria-disabled="true"><BsBellFill size={15}/> ME</Nav.Link>
-              <Nav.Link href="/"  className="nav-link"><BsSearch size={15}/> SEARCH</Nav.Link>
-            </Nav>
-            </Navbar.Text>
-          </Navbar.Collapse>
-            <Navbar.Text>
-            <Nav className="mr-auto">
-              <Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/>
-            </Nav>
-            </Navbar.Text>
-        </Navbar>
-        
-         {/* <nav class="navbar fixed-top">
-          <ul class="nav ">
-
+        <nav class="navbar justify-content-center fixed-top">
+          <ul class="nav justify-content-center">
           <li class="nav-item">
               <a class="nav-link" href="/"><BsHouseFill size={25}/> HOME</a>
             </li>
@@ -222,18 +200,19 @@ render(){
               <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> SPACES</a>
             </li>
             <li class="nav-item">
-              <a class="header"  href="/">NAME</a>
+              <a href="/home" className="header">NAME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> NOTIES</a>
+              <a class="nav-link" href="/forums"><BsLightningFill size={25}/> FORUM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> ME</a>
+            </li>
+            <li class="nav-item-icon">
+              <a class="nav-link-profile"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
             </li>
           </ul>
-
-
-        </nav>  */}
+        </nav>
 
               {
                 this.state.showMenu
@@ -364,4 +343,15 @@ function InviteModal(props) {
         </Modal.Body>
       </Modal>
     );
+  }
+
+function shuffleArray(array) {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
   }

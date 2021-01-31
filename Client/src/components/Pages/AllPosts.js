@@ -18,7 +18,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Typography from '@material-ui/core/Typography';
 
 export default class AllPosts extends React.Component {
 
@@ -117,29 +117,29 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
   if(id == user._id){
     return(<div>
-      <button size="small" color="primary" className="reaction-button" onClick={() => {this.onDeletePost(id,discussion_id)}}>
-        <RiDeleteBinLine size={20}/>Delete Post
-      </button>
+      <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,discussion_id)}}>
+        Delete Post
+      </Button>
     </div>)
   }
   }
 
    isLiked(discussion_id,user_id,likes) {
-      if(this.state.likedPosts.includes(discussion_id) == true){
-        return(<div>
-          <Button size="small" color="primary" onClick={() => {this.RemovefromLikedPosts(discussion_id,user_id,likes)}}>
-                    Unlike
-                  </Button>
-        </div>)
-      }
-      else{
-        return(<div>
-          <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion_id,user_id,likes)}}>
-                    like
-                  </Button>
-        </div>)
+  if(this.state.likedPosts.includes(discussion_id) == true){
+    return(<div>
+      <Button size="small" color="primary" onClick={() => {this.RemovefromLikedPosts(discussion_id,user_id,likes)}}>
+                Unlike
+              </Button>
+    </div>)
+  }
+  else{
+    return(<div>
+      <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion_id,user_id,likes)}}>
+                like
+              </Button>
+    </div>)
 
-      }
+  }
   }
 
 
@@ -220,9 +220,9 @@ render(){
   var user = JSON.parse(localStorage.getItem('user'));
   var size = 5;
 
-  const discussionList = discussions.reverse().slice(0, size).sort((a,b)=> b.likes - a.likes).map(discussion => {
+  const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
     return(
-      <React.Fragment  key={discussion._id}>
+      <Fragment  key={discussion._id}>
         <Card className='discussion-post'>
           <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
             <span className="voting-btn">
@@ -235,6 +235,7 @@ render(){
                   )}<br/>
                   <span style={{color:'gray', fontSize:10}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
+                    
                   {discussion.picture == null && <div></div> }  
                   {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
                 </span><br/>
@@ -242,27 +243,17 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-
-              {/* {this.isLiked(discussion._id,user._id,discussion.likes)} */}
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-                {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
-              </button></a>
-
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
-                <RiChat1Line size={20}/> 
-                {discussion.comments.length === 0 && <span> Add comment</span>}
-                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
-
-              </button></a>
+              {this.isLiked(discussion._id,user._id,discussion.likes)} 
+              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+              </Button>
 
               {this.CheckPost(discussion.user_id,discussion._id)} 
             </CardActions>
             
           </Card> 
           
-      </React.Fragment>
+      </Fragment>
     )})
 
   return (
@@ -274,6 +265,7 @@ render(){
             <a href="/"><button className="feed-option">Following</button></a>
             <a href="/top"><button className="feed-option-active">Top</button></a>
             <a href="/new"><button className="feed-option-post">Create Post</button></a>
+
           </div>
           
 

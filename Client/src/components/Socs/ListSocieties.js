@@ -30,7 +30,7 @@ export default class ListSocieties extends React.Component {
 
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
+      document.body.style.backgroundColor = "#FDFEFE";
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
 
@@ -132,9 +132,6 @@ render(){
             </div>
             <br/>
 
-            {this.state.isLoading &&  <div><Skeleton height={50} width={700}  count={8}/></div>}
-           
-            {!this.state.isLoading && 
             <div className="SocietyLayout">
                     {filteredSocietiesByName.map(society => (
                     <div key={society.id}>
@@ -158,8 +155,6 @@ render(){
                     </div>
                     ))}
               </div>
-            }
-
           </Col>
 
           <Col><Recommended/><Contributors/></Col>
