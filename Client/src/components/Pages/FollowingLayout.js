@@ -37,6 +37,7 @@ export default class Feed extends React.Component {
           likes:0,
           socs:[],
           posts:[],
+          likedPosts:[],
           time: new Date().getTime(),
         };
       }
@@ -59,7 +60,7 @@ export default class Feed extends React.Component {
                 following: response.data.user.following,
                 socs:response.data.user.societies,
                 claps: response.data.user.claps,
-                views: response.data.user.views,
+                likedPosts:response.data.user.likedPosts
               })
       
             })
@@ -108,6 +109,24 @@ export default class Feed extends React.Component {
               </div>)
             }
           }
+          isLiked(discussion_id,user_id,likes) {
+            if(this.state.likedPosts.includes(discussion_id) == true){
+              return(<div>
+                <Button size="small" color="primary" onClick={() => {this.RemovefromLikedPosts(discussion_id,user_id,likes)}}>
+                          Unlike
+                        </Button>
+              </div>)
+            }
+            else{
+              return(<div>
+                <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion_id,user_id,likes)}}>
+                          like
+                        </Button>
+              </div>)
+          
+            }
+            }
+          
     
           addClaps = () =>{
             const {claps} = this.state;
@@ -131,7 +150,7 @@ export default class Feed extends React.Component {
              .then().catch();
            }
 
-          addToLikedPosts(discussion,user_id,likes) {
+           addToLikedPosts(discussion,user_id,likes) {
   
             const addDiscussion = {
                 id:user_id,
@@ -149,7 +168,6 @@ export default class Feed extends React.Component {
                   discussion: discussion,
                   likeCount:likes+1
               }
-                alert(this.state.posts.likes);
                 axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
                 .then(function (resp) {
                     console.log(resp);
@@ -157,9 +175,35 @@ export default class Feed extends React.Component {
                 .catch(function (error) {
                     console.log(error);
                 })
-                // window.location.reload(); //refreshes page automatically 
           }
-
+          
+          
+          RemovefromLikedPosts(discussion,user_id,likes) {
+            
+            const removeDiscussion = {
+                id:user_id,
+                discussion: discussion,
+            }
+            // Adds the discussion to liked list
+            axios.post('http://localhost:4000/users/removeFromLikedPosts', removeDiscussion)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                const UpdateLike = {
+                  discussion: discussion,
+                  likeCount:likes-1
+              }
+                axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
+                .then(function (resp) {
+                    console.log(resp);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+          }
 
 render(){
   let user = JSON.parse(localStorage.getItem('user'));
@@ -187,7 +231,8 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-            <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+              {this.isLiked(discussion._id,user._id,discussion.likes)}
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
                 {discussion.likes === 0 && <></>}
                 {discussion.likes > 0 && <span> <RiHeart2Line size={20} /> {discussion.likes} reactions</span>}
               </button></a>
