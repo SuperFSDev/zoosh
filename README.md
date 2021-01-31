@@ -18,26 +18,28 @@ Our project is a web application built using the MERN stack. It is a forum for s
 
 ## Running the Program
 
+Running the react application:
 ```
  Navigate into the 'tasq' directory 
 ```
 ```
- Open Command Prompt
+> Open Command Prompt
 ```
 ```
-npm start
+> npm start
+```
+Running the server:
+```
+> Open new CMD window in current directory
 ```
 ```
-Open new CMD window in current directory
+> cd ./backend 
 ```
 ```
-cd ./backend 
+> node server.js 
 ```
 ```
-node server.js 
-```
-```
- Go to 'http://localhost:3000' on your web browser
+> Go to 'http://localhost:3000' on your web browser
  ```
 
 ## Built With
