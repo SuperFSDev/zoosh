@@ -24,17 +24,6 @@ export default class ReadingList extends React.Component {
    async componentDidMount() {
     document.body.style.backgroundColor = "#FDFEFE";
     var user = JSON.parse(localStorage.getItem('user'));
-
-     await axios.get('http://localhost:4000/users/getUsers')
-      .then((response)=>{
-          this.setState({
-            users: response.data.users,
-            isLoading: false})
-      })
-      .catch((error)=>{
-          console.log(error);
-      });
-
      await axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id,

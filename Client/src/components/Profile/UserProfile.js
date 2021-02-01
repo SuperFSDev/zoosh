@@ -262,7 +262,9 @@ checkIfNull(discussion){
                         <div>
                           {this.state.likedDiscussions.map(discussion=>
                             <p>
+                              <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
                                   {this.state.user.fullname +" liked the post "+discussion.title + " created by "+discussion.user}
+                                  </a>
                             {/* <b><a href={"/c/?id="+society}>{society}</a></b><br/> */}
 
                               
