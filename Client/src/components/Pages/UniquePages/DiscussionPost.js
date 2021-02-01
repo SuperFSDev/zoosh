@@ -217,7 +217,7 @@ export default class DiscussionPost extends React.Component {
                 <Image src={this.state.discussion.picture} className="thumbnail"/>
               </p>
             
-              <p className="post-content">{this.state.discussions.content}</p>
+              <p className="post-content">{this.state.discussion.content}</p>
 
 
                 <div className="spacing"></div>
