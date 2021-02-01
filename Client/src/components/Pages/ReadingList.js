@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
+import{Row, Col, Container} from 'react-bootstrap'
 
 export default class ReadingList extends React.Component {
 
@@ -22,19 +23,8 @@ export default class ReadingList extends React.Component {
       }
 
    async componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
     var user = JSON.parse(localStorage.getItem('user'));
-
-     await axios.get('http://localhost:4000/users/getUsers')
-      .then((response)=>{
-          this.setState({
-            users: response.data.users,
-            isLoading: false})
-      })
-      .catch((error)=>{
-          console.log(error);
-      });
-
      await axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id,
@@ -124,20 +114,22 @@ render(){
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
             </Helmet> 
 
-
-        <div className="containerChartMiddle">
-          <div className="reading-list">
+            <Container>
+          <Row>
+            <Col></Col>
+            <Col>
+            <div className="reading-list">
             <h3>Reading List ({this.state.readingList.length})</h3><br/>
             {this.state.posts.slice(0,10).reverse().map(post=>  (
                     <Fragment key={this.state.user._id}>  
                           <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
                             <p>
                               <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
-                              <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
+                              <small>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
                               {post.society == null ? (
-                                  <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
+                                  <span>Posted in<b style={{color:'green'}}> General</b><br/></span>
                               ) : (
-                                <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
+                                <span >Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
                               )}
                             </p><hr/>
                           </a>
@@ -145,7 +137,10 @@ render(){
                     </Fragment>
                   ))} 
             </div>
-       </div>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
        </Fragment>
     );
    }

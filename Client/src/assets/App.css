@@ -381,9 +381,8 @@
 .top-posts-empty{
   padding:10px;
   height:auto;
-  width:700px;
+  width:600px;
   border-radius: 5px;
-  margin-top: 2vh;
   background:white;
   border:1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -1113,7 +1112,11 @@
   /* margin-left: 10rem; */
 }
 
-.reading-list{margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1250px;}
+.reading-list{
+  margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1250px;
+  border-radius: 5px;
+  background:white;
+}
 
 .nav-item{margin-right: 6vh;}
 .nav-item-icon{margin-left: 1vh;}
@@ -1219,7 +1222,8 @@ section::after {
 }
 
 .community-feed{
-  margin-top: 17vh;
+  margin-top: 14vh;
+  margin-left: 6vh;
 }
 
 .forum-list{background:white;margin-top: 2vh; margin-left: 40vh; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;}
@@ -1323,7 +1327,7 @@ section::after {
 }
 
 .skeleton-comms{
-  margin-left: 10vh;
+  margin-left: 5vh;
   margin-bottom: 20px;
 }
 
@@ -1792,7 +1796,7 @@ section::after {
 }
 
 .community-members-container{
-  margin-top:20vh;
+  margin-top:15vh;
   height:320px;
   width:300px;
   background-color: white;
@@ -1802,6 +1806,23 @@ section::after {
   position: -webkit-sticky;
   position: sticky;
   top: 4rem;
+  overflow: auto;
+  padding:10px;
+}
+
+.user-profile-communities-container{
+  margin-top: 5vh;
+  height:320px;
+  width:300px;
+  background-color: white;
+  border:1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+  overflow: auto;
+  padding:10px;
 }
 
 dt {

@@ -110,34 +110,9 @@ export default class Feed extends React.Component {
               </div>)
             }
           }
-          isLiked(discussion_id,user_id,likes) {
-            if(this.state.likedPosts.includes(discussion_id) == true){
-              return(<div>
-                <Button size="small" color="primary" onClick={() => {this.RemovefromLikedPosts(discussion_id,user_id,likes)}}>
-                          Unlike
-                        </Button>
-              </div>)
-            }
-            else{
-              return(<div>
-                <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion_id,user_id,likes)}}>
-                          like
-                        </Button>
-              </div>)
-          
-            }
-            }
+       
           
     
-          addClaps = () =>{
-            const {claps} = this.state;
-      
-            this.setState({ 
-              claps: claps + 1
-              
-            })
-            console.log(claps);
-          }
     
     
           onDeletePost(id,post_id) {
@@ -151,60 +126,7 @@ export default class Feed extends React.Component {
              .then().catch();
            }
 
-           addToLikedPosts(discussion,user_id,likes) {
-  
-            const addDiscussion = {
-                id:user_id,
-                discussion: discussion,
-            }
-            // Adds the discussion to liked list
-            axios.post('http://localhost:4000/users/addToLikedPosts', addDiscussion)
-                .then(function (resp) {
-                    console.log(resp);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                const UpdateLike = {
-                  discussion: discussion,
-                  likeCount:likes+1
-              }
-                axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
-                .then(function (resp) {
-                    console.log(resp);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-          }
-          
-          
-          RemovefromLikedPosts(discussion,user_id,likes) {
-            
-            const removeDiscussion = {
-                id:user_id,
-                discussion: discussion,
-            }
-            // Adds the discussion to liked list
-            axios.post('http://localhost:4000/users/removeFromLikedPosts', removeDiscussion)
-                .then(function (resp) {
-                    console.log(resp);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                const UpdateLike = {
-                  discussion: discussion,
-                  likeCount:likes-1
-              }
-                axios.post('http://localhost:4000/discussions/UpdateLikeCount', UpdateLike)
-                .then(function (resp) {
-                    console.log(resp);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-          }
+           
 
 render(){
   var user = JSON.parse(localStorage.getItem('user'));
@@ -231,11 +153,11 @@ render(){
                 <span  className="content-post">{discussion.content.slice(0,200)}</span>
           </CardContent></a>
             <CardActions>
-            {this.isLiked(discussion._id,user._id,discussion.likes)} 
-
-            <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+           
+            <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" >
                 {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+                {discussion.likes === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
               </button></a>
 
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">

@@ -240,11 +240,15 @@ export default class AllPosts extends React.Component {
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
             </CardContent></a>
             <CardActions>
-              {this.isLiked(discussion._id, user._id, discussion.likes)}
-              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
                 {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+<<<<<<< HEAD
+                {discussion.likes  === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
               </button></a>
+=======
+                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+           
+>>>>>>> 1d4983c547761f8a18d9a4830d41cd34b03eb473
 
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 <RiChat1Line size={20}/> 
@@ -254,7 +258,6 @@ export default class AllPosts extends React.Component {
 
               </button></a>
 
-              {this.CheckPost(discussion.user_id, discussion._id)}
             </CardActions>
 
           </Card>

@@ -130,14 +130,14 @@ render(){
                 <div>
                   <br/>
                   <div className="UsersLayout">
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
-                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                   </div>
                   
                 </div>

@@ -32,14 +32,22 @@ const DiscussionSchema = new Schema({
 
 DiscussionSchema.pre("validate", function(next) {
     const post = this;
+    var result           = ' ';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+
+    for ( var i = 0; i < 5; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
     
     if(post.title) {
-      post.slug = slugify(post.title, { lower: true, strict: true });
+      post.slug = slugify(post.title + result, { lower: true, strict: true });
     }
 
     next();
   })
-
+ 
 
 // create a post model
 var DiscussionModel = mongoose.model('discussions', DiscussionSchema);
