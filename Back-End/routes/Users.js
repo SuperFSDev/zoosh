@@ -162,6 +162,34 @@ users.get('/getUsers', (req, res) => {
 
 })
 
+users.get('/get-users-radar', (req, res) => {
+
+    // Gets two random societies from the database.
+    UserModel.aggregate(
+        [{
+            // Gets a random sample of documents from the collection given a sample size.
+            $sample: {
+                size: 3
+            }
+        }, {
+            // Specifies the inclusion of which fields to retrieve from the document.
+            $project: {
+                "_id": 1,
+                "fullname": 1,
+                "pic": 1,
+                "college": 1,
+                "score": 1
+            }
+        }],
+        (err, data) => {
+            console.log(data);
+            res.json({
+                users: data
+            });
+        });
+
+})
+
 users.post('/edit-user-profile', (req, res) => {
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {

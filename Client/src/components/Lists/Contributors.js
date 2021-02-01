@@ -7,7 +7,7 @@ import {BiRadar} from 'react-icons/bi'
 class Contributors extends React.Component {
 
  componentDidMount = () => {
-        axios.get('http://localhost:4000/users/getUsers')
+        axios.get('http://localhost:4000/users/get-users-radar')
         .then((response)=>{
             this.setState({users: response.data.users})
         })
@@ -30,7 +30,7 @@ class Contributors extends React.Component {
     var size = 3;
     var k =0;
 
-    const shuffledUsers = shuffleArray(users);
+    const shuffledUsers = users; //shuffleArray(users);
 
 
     return (
@@ -80,7 +80,7 @@ class Contributors extends React.Component {
   }
 }
 
-function shuffleArray(array) {
+/*function shuffleArray(array) {
     let i = array.length - 1;
     for (; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -89,6 +89,6 @@ function shuffleArray(array) {
       array[j] = temp;
     }
     return array;
-  }
+  }*/
 
 export default Contributors;

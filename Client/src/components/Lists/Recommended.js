@@ -16,7 +16,7 @@ export default class Recommended extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/societies/getSocieties')
+    axios.get('http://localhost:4000/societies/get-explore-societies')
       .then((response) => {
         this.setState({ societies: response.data.societies })
       })
@@ -42,7 +42,7 @@ export default class Recommended extends React.Component {
 render(){
   var { societies } = this.state;
   var size = 2;
-  const shuffledPosts = shuffleArray(societies);
+  const shuffledPosts = societies; //shuffleArray(societies);
 
    return (
     <StickyContainer>
@@ -126,7 +126,7 @@ render(){
 }
 
 
-// Return a random society from the array - Shuffles them
+/*// Return a random society from the array - Shuffles them
 function shuffleArray(array) {
   let i = array.length - 1;
   for (; i > 0; i--) {
@@ -136,4 +136,4 @@ function shuffleArray(array) {
     array[j] = temp;
   }
   return array;
-}
+}*/

@@ -98,6 +98,33 @@ societies.get('/get-societies-page', (req, res) => {
 
 })
 
+societies.get('/get-explore-societies', (req, res) => {
+
+    // Gets two random societies from the database.
+    SocietyModel.aggregate(
+        [{
+            // Gets a random sample of documents from the collection given a sample size.
+            $sample: {
+                size: 2
+            }
+        }, {
+            // Specifies the inclusion of which fields to retrieve from the document.
+            $project: {
+                "name": 1,
+                "college": 1,
+                "picture": 1,
+                "_id": 1
+            }
+        }],
+        (err, data) => {
+            console.log(data);
+            res.json({
+                societies: data
+            });
+        });
+
+})
+
 societies.post('/update', (req, res) => {
 
     SocietyModel.findByIdAndUpdate(
