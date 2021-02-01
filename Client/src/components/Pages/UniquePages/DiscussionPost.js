@@ -202,7 +202,7 @@ export default class DiscussionPost extends React.Component {
                   </a>
                 </p>
 
-                <Image src={this.state.discussion.picture} className="thumbnail"/>
+                <Image src={this.state.discussion.full_pic} className="thumbnail"/>
               </p>
             
               <p className="post-content">{string}</p>

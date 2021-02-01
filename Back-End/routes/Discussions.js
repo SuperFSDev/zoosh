@@ -25,8 +25,10 @@ discussions.post('/NewDiscussions', (req, res) => {
         content: req.body.content,  
         time: req.body.time,
         society: req.body.society.value,
-        picture: req.body.picture
+        thumbnail_pic: req.body.thumbnail_picture,
+        full_pic: req.body.full_picture
     });
+
 })
 
 discussions.get('/getDiscussions', (req, res) => {
@@ -38,6 +40,18 @@ discussions.get('/getDiscussions', (req, res) => {
     })
 })
 
+discussions.get('/get-discussion-feed', (req, res) => {
+
+    var query = DiscussionModel.find({}).select('user society time thumbnail_pic title content likes comments')
+
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            discussions: data
+        });
+    });
+
+})
 
 discussions.get('/get-discussion-page', (req, res) => {
     DiscussionModel.findById({

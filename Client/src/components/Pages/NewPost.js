@@ -28,7 +28,8 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       society: '',
       tags: [],
-      picture: '',
+      thumbnail_picture: '',
+      full_picture: '',
       FollowingID: ''
     };
 
@@ -96,15 +97,14 @@ export default class NewPost extends React.Component {
 
   async onDropPicture(pictureFiles, pictureDataURLs) {
 
-    alert("Picture dropped");
-
     const compress = new Compress();
 
+    // Create thumbnail picture
     compress.compress(pictureFiles, {
       size: 4, // the max size in MB, defaults to 2MB
-      quality: 0.9, // the quality of the image, max is 1,
-      maxWidth: 250, // the max width of the output image, defaults to 1920px
-      maxHeight: 250, // the max height of the output image, defaults to 1920px
+      quality: 0.8, // the quality of the image, max is 1,
+      maxWidth: 200, // the max width of the output image, defaults to 1920px
+      maxHeight: 125, // the max height of the output image, defaults to 1920px
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
       if (data[0]) {
@@ -113,9 +113,27 @@ export default class NewPost extends React.Component {
 
         this.setState({
           //picture: this.state.picture.concat(b64)
-          picture: b64
+          thumbnail_picture: b64
         });
-        console.log(this.state.picture);
+      }
+    })
+
+    // Create full picture
+    compress.compress(pictureFiles, {
+      size: 4, // the max size in MB, defaults to 2MB
+      quality: 1, // the quality of the image, max is 1,
+      maxWidth: 1000, // the max width of the output image, defaults to 1920px
+      maxHeight: 500, // the max height of the output image, defaults to 1920px
+      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    }).then((data) => {
+      if (data[0]) {
+        var data = data[0];
+        var b64 = data.prefix + data.data;
+
+        this.setState({
+          //picture: this.state.picture.concat(b64)
+          full_picture: b64
+        });
       }
     })
   }
@@ -171,7 +189,8 @@ export default class NewPost extends React.Component {
       content: this.state.content,
       time: new Date().getTime(),
       society: this.state.society,
-      picture: this.state.picture
+      thumbnail_picture: this.state.thumbnail_picture,
+      full_picture: this.state.full_picture
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
@@ -187,7 +206,8 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       category: '',
       society: '',
-      picture: '',
+      thumbnail_picture: '',
+      full_picture: '',
       tags: []
     });
     window.location = '/';

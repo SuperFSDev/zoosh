@@ -16,7 +16,8 @@ const DiscussionSchema = new Schema({
     society:String,
     claps:Number,
     comments:Array,
-    picture: String,
+    thumbnail_pic: String,
+    full_pic: String,
     likes:{type:Number , "default":0},
     slug: {
         type: String,

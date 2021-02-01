@@ -30,7 +30,6 @@ export default class AllPosts extends React.Component {
       discussions: [],
       isLoading: true,
       isLoadingUsers: true,
-
       comments: [],
       time: '',
       toggle: false,
@@ -77,13 +76,12 @@ export default class AllPosts extends React.Component {
 
   // Fetching the discussions
   async getDiscussions() {
-    axios.get('http://localhost:4000/discussions/getDiscussions')
+    await axios.get('http://localhost:4000/discussions/get-discussion-feed')
       .then((response) => {
+        console.log(response.data);
         this.setState({
           discussions: response.data.discussions,
-          users: response.data.discussions,
           isLoading: false,
-
         })
       })
       .catch((error) => {
@@ -214,9 +212,6 @@ export default class AllPosts extends React.Component {
       })
   }
 
-
-
-
   render() {
     var { discussions } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
@@ -237,9 +232,8 @@ export default class AllPosts extends React.Component {
                   )}<br />
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-
-                {discussion.picture == null && <div></div>} 
-                {discussion.picture && <Image className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
+                {discussion.thumbnail_pic == null && <div></div>} 
+                {discussion.thumbnail_pic && <Image className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
               </span><br />
               <span className="title-post">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>

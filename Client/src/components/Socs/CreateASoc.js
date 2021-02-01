@@ -129,8 +129,6 @@ export default class CreateASoc extends React.Component {
 
     async onDropPicture(pictureFiles, pictureDataURLs) {
 
-        alert("Picture dropped");
-    
         const compress = new Compress();
     
         compress.compress(pictureFiles, {

@@ -128,8 +128,6 @@ class LayoutTextFeilds extends React.Component {
 
   async onDrop(pictureFiles, pictureDataURLs) {
 
-    alert("Picture dropped");
-
     const compress = new Compress();
 
     compress.compress(pictureFiles, {
