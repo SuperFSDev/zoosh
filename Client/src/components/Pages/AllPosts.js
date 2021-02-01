@@ -19,6 +19,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
 
 export default class AllPosts extends React.Component {
 
@@ -118,9 +119,9 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     if (id == user._id) {
       return (<div>
-        <Button size="small" color="primary" onClick={() => { this.onDeletePost(id, discussion_id) }}>
-          Delete Post
-      </Button>
+      <button size="small" color="primary"  className="reaction-button" onClick={() => {this.onDeletePost(id,discussion_id)}}>
+        <RiDeleteBinLine size={20}/> Delete Post
+      </button>
       </div>)
     }
   }
@@ -245,9 +246,18 @@ export default class AllPosts extends React.Component {
             </CardContent></a>
             <CardActions>
               {this.isLiked(discussion._id, user._id, discussion.likes)}
-              <Button size="small" color="primary" href={"/d/?id=" + discussion._id}>
-                <BsChat size={15} style={{ marginRight: 5 }} /> Add Comment
-              </Button>
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                {discussion.likes === 0 && <></>}
+                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+              </button></a>
+
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                <RiChat1Line size={20}/> 
+                {discussion.comments.length === 0 && <span> Add comment</span>}
+                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+
+              </button></a>
 
               {this.CheckPost(discussion.user_id, discussion._id)}
             </CardActions>

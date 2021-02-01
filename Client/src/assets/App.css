@@ -10,11 +10,57 @@
   background:black;
   position:fixed;
   text-align: center!important;
+  border-bottom: 1px solid lightgray;
 }
 
 .motto{
   color:gray;
   font-weight: bolder;
+}
+
+
+.reaction-button{
+  background:none;
+  border:none;
+  padding:10px;
+  border-radius: 5px;
+}
+
+.comment-input{
+  overflow: visible;
+  width: 100%;
+  border:none;
+  outline:none;
+
+}
+
+.comment-box-acc{
+  margin-top: 5vh;
+  background:white!important;
+  border-radius: 5px!important;
+  cursor: auto!important;
+  padding:10px;
+  height:auto;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.comment-container{
+  background:white;
+  padding:10px;
+  width:100%;
+}
+
+.discussion-container{
+  width:700px;
+  margin:auto;
+  text-align: left;
+  margin-top: 12vh;
+  background-color: white;
+}
+
+.reaction-button:hover{
+  background:whitesmoke;
+  color:black;
 }
 
 .post-container {
@@ -949,6 +995,7 @@
   background:white;
   padding:10px;
   border-radius: 5px;
+  width:700px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -1735,13 +1782,10 @@ section::after {
 }
 
 .community-header{
-  margin: auto;
   width: 100%;
-  padding: 10px;
   text-align:center;
   background:white;
   border:1px solid lightgray;
-  border-radius: 10px;
 }
 
 .community-image{
@@ -2070,8 +2114,6 @@ section::after {
 /* CREATE A SOC */
 .create-a-soc{
   margin:auto;
-  width:400px;
-  margin-top:5rem;
 }
 
 .-c-list-options{
@@ -2212,7 +2254,7 @@ section::after {
 .follow-community{
   background-color: black;
   color:whitesmoke;
-  width: 100px;
+  width: auto;
   height:40px;
   border:none;
   border-radius: 5px;
@@ -2493,12 +2535,13 @@ section::after {
 
 .profile-btn-wrapper-left{
   display: inline-block;
-  border:1px solid black;
+  margin-top: 8px;
+  width:35px;
+  height:35px;
 }
 
 .profile-btn-wrapper-left:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  border:1px solid gray;
   cursor: pointer;
 }
 
@@ -2541,6 +2584,7 @@ section::after {
   background-color:white;
   border-radius: 5px;
   margin-top: 5vh;
+  width:700px;
   padding:10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }

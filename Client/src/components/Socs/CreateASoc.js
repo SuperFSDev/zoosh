@@ -25,6 +25,7 @@ export default class CreateASoc extends React.Component {
             description: '',
             facebook: '',
             twitter: '',
+            color:'',
             instagram: '',
             other: '',
             private: false,
@@ -37,6 +38,8 @@ export default class CreateASoc extends React.Component {
         this.onChangeCollege = this.onChangeCollege.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onChangeColor = this.onChangeColor.bind(this);
+
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrivate = this.onChangePrivate.bind(this);
         this.onChangePublic = this.onChangePublic.bind(this);
@@ -53,6 +56,12 @@ export default class CreateASoc extends React.Component {
     onChangeName(e) {
         this.setState({
             name: e.target.value
+        });
+    }
+
+    onChangeColor(e) {
+        this.setState({
+            color: e.target.value
         });
     }
     onChangeCollege(e) {
@@ -163,7 +172,9 @@ export default class CreateASoc extends React.Component {
             public: this.state.public,
             admin:getUser._id,
             time: new Date().getTime(),
-            picture: this.state.picture
+            picture: this.state.picture,
+            color: this.state.color
+
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.address) {
@@ -197,6 +208,8 @@ export default class CreateASoc extends React.Component {
             address: '',
             description: '',
             facebook: '',
+            color: '',
+
             twitter: '',
             instagram: '',
             other: '',
@@ -210,7 +223,6 @@ export default class CreateASoc extends React.Component {
     render(){
         return(
             <>
-            
             <div className="create-a-soc">
                 <Form onSubmit={this.onSubmit}>
                     <Form.Label>
@@ -223,13 +235,13 @@ export default class CreateASoc extends React.Component {
                         </Form.Group>
                     </Form.Row>
 
-                    <Form.Group controlId="formGridCollege">
+                    {/* <Form.Group controlId="formGridCollege">
                         <TextField placeholder="University/College - GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
-                    </Form.Group>
+                    </Form.Group> */}
 
-                    <Form.Group controlId="formGridAddress">
+                    {/* <Form.Group controlId="formGridAddress">
                         <TextField placeholder="Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Form.Group controlId="formGridDescription">
                         <TextField type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} id="outlined-basic" variant="outlined" name="desc" placeholder="Community Description" maxLength={60}/>
@@ -240,7 +252,7 @@ export default class CreateASoc extends React.Component {
                     <div className="spacing"></div>
 
                     <Form.Label>
-                        <b>Community Picture</b>
+                        <b>Display</b>
                     </Form.Label>
 
                     <Form.Group controlId="formGridDescription">
@@ -254,14 +266,21 @@ export default class CreateASoc extends React.Component {
                             required
                         />
                     </Form.Group>
-                    <div className="spacing"></div>
+
+                    <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Color Code"  value={this.state.color} onChange={this.onChangeColor} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                    </Form.Group>
+                    {/* <div className="spacing"></div>
                     <hr/>
                     <div className="spacing"></div>
                     <Form.Label>
                         <b>Social Media URL's</b>
-                    </Form.Label>
+                    </Form.Label> */}
                     {/* Social Media Links */}
-                    <Form.Group controlId="formGridDescription">
+                    {/* <Form.Group controlId="formGridDescription">
+                        <TextField placeholder="Color URL"  value={this.state.color} onChange={this.onChangeColor} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                    </Form.Group> */}
+                    {/* <Form.Group controlId="formGridDescription">
                         <TextField placeholder="Facebook URL"  value={this.state.facebook} onChange={this.onChangeFacebook} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                     </Form.Group>
                     <Form.Group controlId="formGridDescription">
@@ -272,7 +291,7 @@ export default class CreateASoc extends React.Component {
                     </Form.Group>
                     <Form.Group controlId="formGridDescription">
                         <TextField placeholder="Other URLS"  value={this.state.other} onChange={this.onChangeOther} className="textfield-create-a-soc" id="outlined-basic"  variant="outlined" />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     {/* <Form.Group controlId="formGridAddress">
                         <select className="-c-list-options" name="category" id="category" placeholder="Choose a Category" value={this.state.category} onChange={this.onChangeCategory}>

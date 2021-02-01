@@ -22,6 +22,10 @@ const SocietySchema = new Schema({
     score:{type:Number , "default":0},
     slugify:{type:String, unique: true},
     time:Date,
+    color:{
+        type:String, 
+        default :'#FECE00'
+    },
 
 })
 

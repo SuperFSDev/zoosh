@@ -15,7 +15,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Clap from '../../images/clap.png'
 
 export default class Feed extends React.Component {
 
@@ -43,7 +44,7 @@ export default class Feed extends React.Component {
       }
     
     async componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      document.body.style.backgroundColor = "#F7F7F7";
 
           var user = JSON.parse(localStorage.getItem('user'));
           this.setState({ id: user._id });
@@ -213,7 +214,7 @@ render(){
         <Card className='discussion-post'>
           <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
             <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+              <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
                 <span class="showme"> <b>{discussion.user}</b></span></span>
                   {discussion.society == null ? (
                     <span> in <b style={{color:'green'}}>General</b></span>
@@ -232,9 +233,18 @@ render(){
             <CardActions>
             {this.isLiked(discussion._id,user._id,discussion.likes)} 
 
-              <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
-                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
-              </Button>
+            <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                {discussion.likes === 0 && <></>}
+                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+              </button></a>
+
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                <RiChat1Line size={20}/> 
+                {discussion.comments.length === 0 && <span> Add comment</span>}
+                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+
+              </button></a>
             </CardActions>
           </Card> 
       </Fragment>

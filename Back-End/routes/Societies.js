@@ -32,7 +32,9 @@ societies.post('/create', (req, res) => {
         twitter: req.body.twitter,
         instagram: req.body.instagram,
         other: req.body.other,
-        picture: req.body.picture
+        picture: req.body.picture,
+        color: req.body.color
+
         // pic: req.body.pic,
     }
 

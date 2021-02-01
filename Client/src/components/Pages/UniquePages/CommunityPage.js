@@ -7,7 +7,6 @@ import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
 import { RiCake2Fill } from 'react-icons/ri'
-import Event from '../../Common/StartEvent'
 import {RiAddFill} from 'react-icons/ri'
 import {BsChat} from 'react-icons/bs';
 import cogoToast from 'cogo-toast'
@@ -36,7 +35,7 @@ export default class CommunityPage extends React.Component {
   }
  
   async componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+    document.body.style.backgroundColor = "#F7F7F7";
       var society_id  = new URLSearchParams(this.props.location.search).get("id");
       await axios.get('http://localhost:4000/societies/get-societies-page', {
         params: {
@@ -81,9 +80,6 @@ export default class CommunityPage extends React.Component {
     render(){
       var title = this.state.society.name + " - Website"
       var{users} = this.state;
-      var { events } = this.state;
-      var { questions } = this.state;
-
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
@@ -155,7 +151,8 @@ export default class CommunityPage extends React.Component {
                   <span><Image src={this.state.society.picture} className="community-image" /></span>
                   <br/>
                   <h5 className="community-name">{this.state.society.name} </h5>
-                  {this.state.society.description}
+                  <b>{this.state.users.length} members</b>
+                  {/* {this.state.society.description} */}
                   <br/>
                   <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
                 </div>  
@@ -171,13 +168,11 @@ export default class CommunityPage extends React.Component {
 
           <Col sm>
             <div className="contributors-container">
-              {/* {this.state.users.map(user=>(
-                          <div className="community-members-item">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
-                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
-                            </OverlayTrigger>
-                          </div>
-                        ))} */}
+            {this.state.users.map(user=>(
+                        <div className="community-members-item">
+                            <b>{user.fulname}</b>
+                        </div>
+                      ))}
             </div>
           </Col>
           <Col sm></Col>

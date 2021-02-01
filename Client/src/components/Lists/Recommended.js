@@ -49,7 +49,7 @@ render(){
         <div>
             <div className="recommended-container">
               <div className="column-head">
-                <p className="column-title"><IoMdPlanet size={20}/> SPACES</p><hr/>
+                <p className="column-title"><IoMdPlanet size={20}/> EXPLORE</p><hr/>
               </div>
             
             {this.state.isLoading ? ( 

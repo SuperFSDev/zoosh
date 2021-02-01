@@ -204,13 +204,13 @@ export default class AdminPage extends React.Component {
 
               <Container fluid>
               <Row>
-                <div className="community-header">
+                <div className="community-header" style={{background:this.state.society.color}}>
                   <span><Image src={this.state.society.picture} className="community-image" /></span>
                   <br/>
                   <h5 className="community-name">{this.state.society.name} </h5>
                   {this.state.society.description}
                   <br/>
-                  <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
+                  <button className="follow-community">Community Settings</button>
                 </div>  
               </Row>
     
@@ -224,13 +224,14 @@ export default class AdminPage extends React.Component {
 
           <Col sm>
             <div className="contributors-container">
-              {/* {this.state.users.map(user=>(
+            {this.state.users.map(user=>(
                           <div className="community-members-item">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.name}</Tooltip>}>
-                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /></a> 
+                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.fullname}</Tooltip>}>
+                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
                             </OverlayTrigger>
                           </div>
-                        ))} */}
+                        ))}
             </div>
           </Col>
           <Col sm></Col>
