@@ -228,7 +228,6 @@ export default class CreateASoc extends React.Component {
                     <Form.Label>
                         <b>Community Details</b>
                     </Form.Label>
-                    <div className="spacing"></div>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridSocName">
                         <TextField type="text" placeholder="Community Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
@@ -267,8 +266,11 @@ export default class CreateASoc extends React.Component {
                         />
                     </Form.Group>
 
+                    <Form.Label>
+                        <b>Color code</b>
+                    </Form.Label>
                     <Form.Group controlId="formGridDescription">
-                        <TextField placeholder="Color Code"  value={this.state.color} onChange={this.onChangeColor} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                        <TextField placeholder="#000000"  value={this.state.color} onChange={this.onChangeColor} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                     </Form.Group>
                     {/* <div className="spacing"></div>
                     <hr/>

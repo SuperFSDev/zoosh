@@ -214,7 +214,7 @@ render(){
         <Card className='discussion-post'>
           <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
             <span className="voting-btn">
-              <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+              <span class="showhim"><a href={"/me"} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
                 <span class="showme"> <b>{discussion.user}</b></span></span>
                   {discussion.society == null ? (
                     <span> in <b style={{color:'green'}}>General</b></span>
@@ -261,7 +261,7 @@ render(){
             <a href="/new"><button className="feed-option-post">Create Post</button></a>
 
           </div>
-          {this.state.isLoading &&  <Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/>}
+          {this.state.isLoading &&  <div><br /><Skeleton height={250} width={700} style={{marginBottom:10}} count={5}/></div>}
           {!this.state.isLoading &&  <div>{discussionList}</div>}
         </Col>
 

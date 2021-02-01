@@ -125,12 +125,13 @@ componentDidMount() {
           onChange={this.onChangePost}
           InputLabelProps={{
             shrink: true,
+            maxLength: 100
           }}
           />
 
         <Select options={options} required onChange={this.onChangeTag} value={this.state.tags} placeholder="#tag" />
 
-          <button className="create-post-btn-submit"  variant="primary" type="submit">Post</button>
+          <button className="standard-button"  variant="primary" type="submit">Submit</button>
         </Form>
       </div>
       
