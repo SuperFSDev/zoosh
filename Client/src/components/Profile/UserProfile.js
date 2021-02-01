@@ -253,28 +253,20 @@ checkIfNull(discussion){
 
           <Col sm>
           <div className="community-members-container">
-            <span>Activity</span>
-                {/* {this.state.societies.length == 0 ? ( */}
-                        <div>                        
-                          {/* <p>Nothing to see here yet...</p> */}
-                        </div>
-                      {/* ) : ( */}
+            <span>Activity</span><hr/>
                         <div>
                           {this.state.likedDiscussions.map(discussion=>
                             <p>
                               <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                                  {this.state.user.fullname +" liked the post "+discussion.title + " created by "+discussion.user}
+                                  <b>{this.state.user.fullname}</b> clapped to a post written by <b>{discussion.user}.</b>
                                   </a>
-                            {/* <b><a href={"/c/?id="+society}>{society}</a></b><br/> */}
-
-                              
+                                  <hr/>
                             </p>
                           )}
                         </div>
-                      {/* )} */}
             </div>
 
-            <div className="contributors-container">
+            <div className="user-profile-communities-container">
               <span>Communities</span>
             </div>
           </Col>

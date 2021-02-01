@@ -243,7 +243,8 @@ export default class AllPosts extends React.Component {
               {this.isLiked(discussion._id, user._id, discussion.likes)}
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
                 {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+                {discussion.likes  === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
               </button></a>
 
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">

@@ -232,13 +232,13 @@ export default class CreateASoc extends React.Component {
                         </Form.Group>
                     </Form.Row>
 
-                    {/* <Form.Group controlId="formGridCollege">
+                    <Form.Group controlId="formGridCollege">
                         <TextField placeholder="University/College - GMIT, NUIG, GTI" required value={this.state.college} onChange={this.onChangeCollege} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
-                    </Form.Group> */}
+                    </Form.Group> 
 
-                    {/* <Form.Group controlId="formGridAddress">
+                    <Form.Group controlId="formGridAddress">
                         <TextField placeholder="Address" required value={this.state.address} onChange={this.onChangeAddress} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
-                    </Form.Group> */}
+                    </Form.Group> 
 
                     <Form.Group controlId="formGridDescription">
                         <TextField type="text" className="textfield-create-a-soc"   required value={this.state.description} onChange={this.onChangeDescription} id="outlined-basic" variant="outlined" name="desc" placeholder="Community Description" maxLength={60}/>

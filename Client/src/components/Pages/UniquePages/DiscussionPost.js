@@ -16,6 +16,8 @@ import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
 import ReadMore from '../../Common/ReadMore'
+import cogoToast from 'cogo-toast'
+
 export default class DiscussionPost extends React.Component {
 
   constructor(props) {
@@ -108,7 +110,12 @@ export default class DiscussionPost extends React.Component {
         .catch(function (error) {
           console.log(error);
         })
-        alert("Discussion added to your reading list!")
+        // alert("Discussion added to your reading list!")
+        cogoToast.success(
+          <div>
+            <div>Discussion added to your reading list!</div>
+          </div>
+        );
     }
 
 
@@ -166,14 +173,14 @@ export default class DiscussionPost extends React.Component {
    .catch();
    window.location.reload();
     }
+    
 
     render() {
       var { discussions } = this.state;
       var user = JSON.parse(localStorage.getItem('user'));
       let string = this.state.discussions.content;
+      
       // string.replaceAll("Hooks","she")
-
-      console.log(this.state.comments);
 
       return (
         <>
@@ -304,15 +311,7 @@ export default class DiscussionPost extends React.Component {
          </div>
          </div>
               </Col>
-              <Col md>
-              {/* <div className="user-card-container">
-                <div className="column-head">
-                  {this.state.discussion.user}
-                  <br/>
-                  <button>Follow</button>
-                </div>
-              </div> */}
-            </Col>
+              <Col md></Col>
 
             </Row>
           </Container>

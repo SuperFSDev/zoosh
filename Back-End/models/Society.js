@@ -29,6 +29,16 @@ const SocietySchema = new Schema({
 
 })
 
+SocietySchema.pre("validate", function(next) {
+    const community = this;
+    
+    if(community.name) {
+        community.slug = slugify(community.name, { lower: true, strict: true });
+    }
+
+    next();
+  })
+
 // create a model
 var SocietyModel = mongoose.model('societies', SocietySchema);
 
