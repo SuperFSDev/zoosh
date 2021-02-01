@@ -15,6 +15,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
+import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Clap from '../../../images/clap.png'
 
 export default class CommunityPage extends React.Component {
 
@@ -84,40 +86,87 @@ export default class CommunityPage extends React.Component {
      
       var user = JSON.parse(localStorage.getItem('user'));
        
-      const discussionList = this.state.posts.reverse().map(discussion => {
-        return(
-          <Fragment  key={discussion._id}>
-          <Card className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
-              <span className="voting-btn">
-                  <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
-                  <span class="showme"> <b>{discussion.user}</b></span></span>
-                    {discussion.society == null ? (
-                      <span> in <b style={{color:'green'}}>General</b></span>
-                    ) : (
-                      <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
-                    )}<br/>
-                    <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+      // const discussionList = this.state.posts.reverse().map(discussion => {
+      //   return(
+      //     <Fragment  key={discussion._id}>
+      //     <Card className='discussion-post'>
+      //       <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+      //         <span className="voting-btn">
+      //             <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+      //             <span class="showme"> <b>{discussion.user}</b></span></span>
+      //               {discussion.society == null ? (
+      //                 <span> in <b style={{color:'green'}}>General</b></span>
+      //               ) : (
+      //                 <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
+      //               )}<br/>
+      //               <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
   
                       
-                    {discussion.picture == null && <div></div> }  
-                    {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
-                  </span><br/>
-                  <span  className="title-post">{discussion.title}</span><br/>
-                  <span  className="content-post">{discussion.content.slice(0,200)}</span>
-            </CardContent></a>
-              <CardActions>
-                <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-                  Like Post
-                </Button>
+      //               {discussion.picture == null && <div></div> }  
+      //               {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
+      //             </span><br/>
+      //             <span  className="title-post">{discussion.title}</span><br/>
+      //             <span  className="content-post">{discussion.content.slice(0,200)}</span>
+      //       </CardContent></a>
+      //         <CardActions>
+      //           <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+      //             Like Post
+      //           </Button>
   
-                <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
-                  <BsChat size={15} style={{marginRight:5}}/> Add Comment 
-                </Button>
-              </CardActions>
-            </Card> 
-        </Fragment>
-          )})
+      //           <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
+      //             <BsChat size={15} style={{marginRight:5}}/> Add Comment 
+      //           </Button>
+      //         </CardActions>
+      //       </Card> 
+      //   </Fragment>
+      //     )})
+
+          const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
+            return (
+              <Fragment key={discussion._id}>
+                <Card className='discussion-post'>
+                  <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+                    <span className="voting-btn">
+                      <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                        <span class="showme"> <b>{discussion.user}</b></span></span>
+                      {discussion.society == null ? (
+                        <span> in <b style={{ color: 'green' }}>General</b></span>
+                      ) : (
+                          <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                        )}<br />
+                      <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+      
+      
+                      {discussion.picture == null && <div></div>} 
+                      {discussion.picture && <Image className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
+                    </span><br />
+                    <span className="title-post">{discussion.title}</span><br />
+                    <span className="content-post">{discussion.content.slice(0, 200)}</span>
+                  </CardContent></a>
+                  <CardActions>
+                    {this.isLiked(discussion._id, user._id, discussion.likes)}
+                    <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
+                      {discussion.likes === 0 && <></>}
+                      {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+                    </button></a>
+      
+                    <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                      <RiChat1Line size={20}/> 
+                      {discussion.comments.length === 0 && <span> Add comment</span>}
+                      {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                      {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+      
+                    </button></a>
+      
+                    {this.CheckPost(discussion.user_id, discussion._id)}
+                  </CardActions>
+      
+                </Card>
+      
+              </Fragment>
+            )
+          })
+      
 
       if(this.state.society.admin === user._id){
         return (
@@ -151,7 +200,10 @@ export default class CommunityPage extends React.Component {
                   <span><Image src={this.state.society.picture} className="community-image" /></span>
                   <br/>
                   <h5 className="community-name">{this.state.society.name} </h5>
-                  <b>{this.state.users.length} members</b>
+                  {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
+                  {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                  {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}
+
                   {/* {this.state.society.description} */}
                   <br/>
                   <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>

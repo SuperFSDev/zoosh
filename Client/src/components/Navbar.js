@@ -281,14 +281,13 @@ render(){
                         this.dropdownMenu3 = element3;
                       }}
                     >
-                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>Hello, {this.state.user.fullname}</b></p></a>
+                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                       <hr/>
-                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a>
+                      {/* <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a> */}
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
+                      {/* <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a> */}
+                      {/* <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a> */}
                       <InviteFriend/>
                       <hr/>
                       <a href="/login" className="profile-navs">Sign Out</a>
