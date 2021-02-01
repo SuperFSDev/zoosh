@@ -209,7 +209,7 @@ render(){
               <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> ME</a>
             </li>
             <li class="nav-item-icon">
-              <a class="nav-link-profile"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+              <a class="nav-link-profile"><Avatar src={this.state.user.pic}  onClick={this.showProfile} roundedCircle/></a>
             </li>
           </ul>
         </nav>

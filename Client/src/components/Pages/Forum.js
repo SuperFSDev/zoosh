@@ -107,7 +107,7 @@ export default class Forum extends React.Component {
         <Container>
           <Row>
 
-            <Col sm={4}>
+            <Col sm>
                 <div className="forum-container">
                   <h4>Feature Requests / Bugs</h4>
                   <br/>
@@ -117,11 +117,12 @@ export default class Forum extends React.Component {
                 </div>
             </Col>
     
-            <Col sm={2}>
+            <Col sm>
               <div className="forum-list">
                 <p>{forumList}</p>
               </div>
             </Col>
+
 
           </Row>
         </Container>

@@ -114,7 +114,8 @@ render(){
 
         <Container>
           <Row>
-            <Col>
+            <Col sm></Col>
+            <Col sm>
             <div className="global-feed">
                 <h3>Meet the Community</h3>
                   <div className="container-square">
@@ -135,13 +136,6 @@ render(){
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                     <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
                   </div>
                   
                 </div>
@@ -151,6 +145,8 @@ render(){
                 )}
               </div>
             </Col>
+            <Col sm></Col>
+
           </Row>
         </Container>
   </div>
