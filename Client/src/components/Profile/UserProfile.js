@@ -19,6 +19,8 @@ export default class UserProfile extends React.Component {
       followers: [],
       following: [],
       societies:[],
+      likedPosts:[],
+      likedDiscussions:[],
       posts:[],
       badges:[],
       time:'',
@@ -53,7 +55,7 @@ export default class UserProfile extends React.Component {
     });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
 
     let user_id = new URLSearchParams(this.props.location.search).get("id");
 
@@ -61,7 +63,7 @@ export default class UserProfile extends React.Component {
 
 
 
-    axios.get(`http://localhost:4000/users/get-user-details`, {
+    await axios.get(`http://localhost:4000/users/get-user-details`, {
       params: {
         id: user_id
       }
@@ -74,13 +76,37 @@ export default class UserProfile extends React.Component {
                         societies: response.data.user.societies,
                         posts: response.data.user.posts,
                         badges: response.data.user.badges,
+                        likedPosts:response.data.user.likedPosts,
                         isLoading: false,
         })
       })
       .catch((error) => {
         console.log(error);
       });
+  
+  for (var i = 0; i < this.state.likedPosts.length; i++) {
+    this.GetLikedPost(this.state.likedPosts[i])
+  } 
+ 
+}
+
+ async GetLikedPost(DiscussionID){
+ await axios.get('http://localhost:4000/discussions/get-discussion-page', {
+  params: {
+    id:DiscussionID,
   }
+})
+  .then((response) => {
+    this.setState({
+      likedDiscussions: this.state.likedDiscussions.concat(response.data.discussion),
+      isLoading: false,
+    })
+
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
 
   followUser(user) {
     this.setState({
@@ -142,6 +168,7 @@ export default class UserProfile extends React.Component {
 }
 
   render() {
+    console.log(this.state.likedDiscussions)
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
     var user = JSON.parse(localStorage.getItem('user'));
@@ -194,23 +221,23 @@ export default class UserProfile extends React.Component {
 
           <Col sm>
             <div className="contributors-container">
-            <span>COMMUNTIES</span>
-                {this.state.societies.length == 0 ? (
+            <span>Activity</span>
+                {/* {this.state.societies.length == 0 ? ( */}
                         <div>                        
-                          <p>Nothing to see here yet...</p>
+                          {/* <p>Nothing to see here yet...</p> */}
                         </div>
-                      ) : (
+                      {/* ) : ( */}
                         <div>
-                          {this.state.societies.map(society=>
+                          {this.state.likedDiscussions.map(discussion=>
                             <p>
-
-                            <b><a href={"/c/?id="+society}>{society}</a></b><br/>
+                             {this.state.user.fullname +" liked the post "+discussion.title + " created by "+discussion.user}
+                            {/* <b><a href={"/c/?id="+society}>{society}</a></b><br/> */}
 
                               
                             </p>
                           )}
                         </div>
-                      )}
+                      {/* )} */}
             </div>
           </Col>
           <Col sm>

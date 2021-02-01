@@ -40,7 +40,6 @@ discussions.get('/getDiscussions', (req, res) => {
 
 
 discussions.get('/get-discussion-page', (req, res) => {
-
     DiscussionModel.findById({
             _id: req.query.id
         }).then(discussion => {

@@ -238,8 +238,8 @@ export default class AllPosts extends React.Component {
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
 
-                {discussion.picture == null && <div></div>}
-                {discussion.picture && <Image className="post-image" src={discussion.picture} height="90px" width="90px"/>}
+                {discussion.picture == null && <div></div>} 
+                {discussion.picture && <Image className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
               </span><br />
               <span className="title-post">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
