@@ -10,7 +10,7 @@
   background:black;
   position:fixed;
   text-align: center!important;
-  border-bottom: 1px solid lightgray;
+  border:none;
 }
 
 .motto{
@@ -24,6 +24,7 @@
   border:none;
   padding:10px;
   border-radius: 5px;
+  font-size: 16px;
 }
 
 .comment-input{
@@ -51,28 +52,32 @@
 }
 
 .discussion-container{
-  width:700px;
-  margin:auto;
+  padding:50px;
   text-align: left;
-  margin-top: 12vh;
+  margin-top: 2vh;
   background-color: white;
+  border:1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 5px;
+  height:auto;
+  width:900px;
 }
 
+
+.user-card-container{
+  /* width:00px;
+  height:300px;
+  border:1px solid gray;
+  margin-top: 2vh;
+  background:white;
+  position: fixed;
+  border-radius: 5px; */
+}
 .reaction-button:hover{
   background:whitesmoke;
   color:black;
 }
 
-.post-container {
-  margin: 20px 20px 0 0;  
-  border: 5px solid #333;
-  overflow: auto
-}
-.post-container {
-  margin: 20px 20px 0 0;  
-  border: 5px solid #333;
-  overflow: auto
-}
 .post-thumb {
   float: right
 }
@@ -365,13 +370,22 @@
 }
 
 .top-posts{
-  background:white;
   padding:10px;
   height:auto;
   width:auto;
   border-radius: 5px;
-  border:1px solid whitesmoke;
   margin-top: 5vh;
+  
+}
+
+.top-posts-empty{
+  padding:10px;
+  height:auto;
+  width:700px;
+  border-radius: 5px;
+  margin-top: 2vh;
+  background:white;
+  border:1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -419,7 +433,8 @@
   margin-right:10px;
   outline:none!important;
   border:none;
-  color: #FFD700  ;  ;
+  color: white;
+  margin-top: 2vh;
   background:black;
   font-weight: bold;
   border-radius: 5px;
@@ -501,7 +516,7 @@
   color:black;
   margin-right:10px;
   padding:10px;
-  font-weight: bold;
+  /* font-weight: bold; */
   outline:none!important;
 }
 
@@ -530,7 +545,9 @@
 .feed-option:hover, .feed-option-post:hover{
   background:rgb(245, 245, 245)  ;
   border-radius: 5px;
-
+  transition: 0.15s;
+  /* color: #FFD700  ; */
+  color:black;
 }
 
 .standard-button-remove:hover{border:2px solid black;}
@@ -820,7 +837,7 @@
   font-weight: bold;
 }
 
-.post-header{font-size: 50px;text-align: center;font-family: 'Noto Serif', serif;}
+.post-header{font-size: 50px;}
 .post-content{font-size: 21px;font-weight: 300;margin-bottom: 10px;}
 .discussion-button{width:100%; background:gray;color:white;font-weight: 500;border:none!important;border-radius: 5px; height: 40px;}
 
@@ -850,12 +867,13 @@
 }
 
 .global-feed{
-  margin-top: 55px;
+  margin-top: 10vh;
   padding:50px;
-  width:1240px!important;
+  width:1000px!important;
+  margin:auto;
   background-color: white;
   border-radius: 5px;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border:1px solid lightgray;
 }
 
@@ -1195,13 +1213,16 @@ section::after {
   border-radius: 5px;
   margin-top: 2vh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  position: fixed;
-}
-.community-feed{
-  text-align: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5rem;
 }
 
-.forum-list{background:white;margin-top: 2vh;  margin-right: 35vh;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;}
+.community-feed{
+  margin-top: 17vh;
+}
+
+.forum-list{background:white;margin-top: 2vh; margin-left: 40vh; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;}
 
 .community-container{
   background:gray;
@@ -1212,16 +1233,6 @@ section::after {
 }
 
 .forum-post-content{font-size: 12px;}
-
-.profile-card{
-  background:none;
-  text-align: center;
-  height:auto;
-  width:1400px;
-  padding:10px;
-  padding-left: 30px;
-  
-}
 
 .options-container{
   width:auto;
@@ -1312,7 +1323,7 @@ section::after {
 }
 
 .skeleton-comms{
-  margin-right: 33px;
+  margin-left: 10vh;
   margin-bottom: 20px;
 }
 
@@ -1419,22 +1430,24 @@ section::after {
 }
 
 .community-btn-a:hover{
-  background:white;
+  background:lightgray;
   color:black;
-  border:2px solid black;
-  transition: 0.2s;
+  border:none;
 }
 
 .community-btn-a{
-  border:none!important;
-  padding:10px;
-  outline:none!important;
-  font-size: 16px;
+  background-color: black;
+  color:whitesmoke;
+  width: 100px;
+  height:40px;
+  border:none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   font-weight: bold;
-  color:white;
-  background:black;
-  transition: 0.2s;
-  height:50px!important;
+  float: right;
+  padding:10px;
+  margin-right: 5vh;
 }
 
 .community-btn-b{
@@ -1773,8 +1786,35 @@ section::after {
   border:1px solid lightgray;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
 }
 
+.community-members-container{
+  margin-top:20vh;
+  height:320px;
+  width:300px;
+  background-color: white;
+  border:1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+}
+
+dt {
+  background: #B8C1C8;
+  border-bottom: 1px solid #989EA4;
+  border-top: 1px solid #717D85;
+  color: #FFF;
+  margin: 0;
+  padding: 2px 0 0 12px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 .communities-container{
   margin-top:30px;
   width:820px;
@@ -1782,10 +1822,22 @@ section::after {
 }
 
 .community-header{
-  width: 100%;
+  width: 100%!important;
+  height:30vh;
+  text-align:center;
+  background:white;
+  border:none!important;
+}
+
+.community-header-profile{
+  width: 100%!important;
+  height:30vh;
   text-align:center;
   background:white;
   border:1px solid lightgray;
+  margin-top: 5vh;
+  pointer-events: auto;
+
 }
 
 .community-image{
@@ -1796,16 +1848,56 @@ section::after {
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   border-radius: 10px;
-  margin-top: 12vh;
+  margin-top:2vh;
   -webkit-transform: scale(0.999);
   transform: scale(0.999);
+  margin-left: 12vh;
+}
+
+.profile-image{
+  width: 125px;
+  height:125px;
+  border:2px solid black;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  border-radius: 10px;
+  margin-top:2vh;
+  -webkit-transform: scale(0.999);
+  transform: scale(0.999);
+  margin-left: 15vh;
+
+}
+
+.community-image-admin{
+  width: 125px;
+  height:125px;
+  border:2px solid black;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  border-radius: 10px;
+  margin-top:2vh;
+  -webkit-transform: scale(0.999);
+  transform: scale(0.999);
+  margin-left: 24vh;
+}
+
+.community-profile{
+  background:white;
+  width:400px;
+  margin-top: 20vh;
+  width: 50%;
+  border-radius: 10px;
+  margin:auto;
+  margin-top: 15vh;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .community-name{
   margin-top: 2vh;
-  font-size: 25px;
+  font-size: 35px;
   font-weight: bold;
-  font-family: 'Paytone One', sans-serif;
 }
 
 .community-options{
@@ -2026,18 +2118,30 @@ section::after {
   text-decoration: none!important;
   background:white;
   width:600px;
+  margin-top: 2vh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
 }
 
 .discussion-post:hover{
-  border:1px solid gray;
+  border:1px solid rgb(165, 165, 165);
   /* background:whitesmoke; */
 }
 
 .miniprofile-post-redirect{
   text-decoration: none!important;
   color:black!important;
+}
+
+.post-reactions{
+  color:black;
+  display:block;
+  padding:12px;
+  text-decoration: none;
+  margin-top: 10vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
 }
 
 .post-field{
@@ -2092,8 +2196,6 @@ section::after {
 
 .forum-title{
   font-size: 22px;
-  font-weight: bold;
-  margin-left: 8px;
   margin-bottom: 20px;
 }
 
@@ -2188,7 +2290,6 @@ section::after {
   height: 200px;
   text-align: center;
   z-index: -999;
-
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 }
@@ -2258,7 +2359,12 @@ section::after {
   height:40px;
   border:none;
   border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   font-weight: bold;
+  float: right;
+  padding:10px;
+  margin-right: 5vh;
 }
 
 .follow-community:hover{
@@ -2328,7 +2434,6 @@ section::after {
 .standard-option-btn-post-hearts{
   border:none!important;
   padding:10px;
-  background:white;
   color:grey;
   outline:none!important;
   border-radius: 15px;
@@ -2337,7 +2442,6 @@ section::after {
 .standard-option-btn-post-hearts-liked{
   border:none!important;
   padding:10px;
-  background:white;
   color:red;
   outline:none!important;
   border-radius: 15px;
@@ -2347,17 +2451,19 @@ section::after {
 
 
 .standard-option-btn-post{
+  border-radius:10px!important;
   border:none!important;
   padding:10px;
-  background:white;
+  background:none;
   color:grey;
   outline:none!important;
   margin-right: 10px;
+  margin-bottom: 2vh;
 }
 
  .standard-option-btn-post:hover{
   cursor:pointer;
-  background:whitesmoke;
+  background:white;
   transition: 0.2s;
   /* color:#8a6bf5; */
   color:black;
@@ -2536,8 +2642,9 @@ section::after {
 .profile-btn-wrapper-left{
   display: inline-block;
   margin-top: 8px;
-  width:35px;
-  height:35px;
+  width:25px;
+  height:25px;
+  margin-bottom: 10px;
 }
 
 .profile-btn-wrapper-left:hover{
@@ -2601,7 +2708,7 @@ section::after {
 .UsersLayout{
   width:auto;
   display: grid;
-  grid-template-columns: repeat(7, 2fr);
+  grid-template-columns: repeat(4, 2fr);
   margin:auto;
   text-align: center;
 }
@@ -2664,17 +2771,17 @@ section::after {
 .users-list-items{
   padding-top:1rem;
   margin:auto;
-  width: 150px;
+  width: 200px;
   height: auto;
   color: black;
   background:white;
   margin-top:1.5rem;
-  margin-right: 25px;
+  margin-left: 2.5vh;
   padding-bottom:10px;
   transition:0.2s;
   border:1px solid white;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .soc-item-image{

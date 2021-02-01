@@ -93,7 +93,7 @@ export default class Forum extends React.Component {
                     </span>
                     </span></a><br/>
                     <span className="forum-title">{forum.post}</span><br/>
-                    <span style={{marginLeft:10}}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
+                    <span style={{ color: 'gray', fontSize: 10 }}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
                     <span style={{background:'lightblue', color:'gray'}}>#{forum.tags}</span>
                     <br/>
                   </p>
@@ -106,8 +106,7 @@ export default class Forum extends React.Component {
 
         <Container>
           <Row>
-
-            <Col sm={4}>
+            <Col md>
                 <div className="forum-container">
                   <h4>Feature Requests / Bugs</h4>
                   <br/>
@@ -117,11 +116,10 @@ export default class Forum extends React.Component {
                 </div>
             </Col>
     
-            <Col sm={2}>
-              <div className="forum-list">
-                <p>{forumList}</p>
-              </div>
+            <Col md>
+              <p>{forumList}</p>
             </Col>
+
 
           </Row>
         </Container>

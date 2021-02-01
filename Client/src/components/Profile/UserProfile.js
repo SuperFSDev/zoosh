@@ -97,16 +97,21 @@ export default class UserProfile extends React.Component {
   }
 })
   .then((response) => {
+    if(response.data.discussion == null){
+      this.checkIfNull(DiscussionID)
+    }
+    else{
     this.setState({
       likedDiscussions: this.state.likedDiscussions.concat(response.data.discussion),
       isLoading: false,
     })
-
+  }
   })
   .catch((error) => {
     console.log(error);
   });
 }
+ 
 
   followUser(user) {
     this.setState({
@@ -167,8 +172,24 @@ export default class UserProfile extends React.Component {
   }
 }
 
+checkIfNull(discussion){
+  let user_id = new URLSearchParams(this.props.location.search).get("id");
+
+  const removeDiscussion = {
+    id: user_id,
+    discussion: discussion,
+  }
+  // Adds the discussion to liked list
+  axios.post('http://localhost:4000/users/removeFromLikedPosts', removeDiscussion)
+    .then(function (resp) {
+      console.log(resp);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
   render() {
-    console.log(this.state.likedDiscussions)
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
     var user = JSON.parse(localStorage.getItem('user'));
@@ -193,34 +214,45 @@ export default class UserProfile extends React.Component {
         </Helmet> 
 
         <Container fluid>
-          <Row>
-                <div className="community-header">
-                  <Image src={this.state.user.pic} className="community-image" roundedCircle/>
-                  <h3>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
+ <Row>
+          <div className="community-header" style={{background:'black'}}>
+            <Col md>
+              <div className="community-profile">
+                <span>
+                  <Image src={this.state.user.pic} className="profile-image" roundedCircle/>
                   {isUnfollowing ? (
                   <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                   ) : (
                   <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                   )}
-                  <br/><br/>
-                  <span><b>Followers</b> {this.state.followers.length}</span>
+                </span>
 
-                </div>  
-              </Row>
+                <br/>
+                <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+                
+                <br/>
+                {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
+                {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
+                {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br/>
+              </div>
+            </Col>
+            </div>
+          </Row>
     
           <Row>
           <Col sm></Col>
           <Col sm>
-            <div style={{width:700}}>
-            <div className="top-posts">
-                <History />
+            <div className="community-feed">
+              <div className="top-posts">
+                {this.state.posts.length === 0 && <div  className="top-posts-empty">No Posts</div>}
+                {this.state.posts.length > 0 && <div><History /></div>}  
               </div>
-     
             </div>
+
           </Col>
 
           <Col sm>
-            <div className="contributors-container">
+          <div className="community-members-container">
             <span>Activity</span>
                 {/* {this.state.societies.length == 0 ? ( */}
                         <div>                        
@@ -230,7 +262,7 @@ export default class UserProfile extends React.Component {
                         <div>
                           {this.state.likedDiscussions.map(discussion=>
                             <p>
-                             {this.state.user.fullname +" liked the post "+discussion.title + " created by "+discussion.user}
+                                  {this.state.user.fullname +" liked the post "+discussion.title + " created by "+discussion.user}
                             {/* <b><a href={"/c/?id="+society}>{society}</a></b><br/> */}
 
                               
@@ -239,71 +271,15 @@ export default class UserProfile extends React.Component {
                         </div>
                       {/* )} */}
             </div>
-          </Col>
-          <Col sm>
-            
-          </Col>
-          </Row>
-            {/* <Col sm={4}> */}
-              {/* <div className="profile-card">
-                <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-                <h3>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3>
-              </div>
-            
-            <div className="profile-card-align">
-              {this.state.user.bio === null ? (
-                <div>Aaron is keeping quiet</div>
-              ) : (
-                <div>{this.state.user.bio}</div>
-              )}
-              
+
+            <div className="contributors-container">
+              <span>Communities</span>
             </div>
-
-            <div className="profile-card-align">
-              <p><b>Followers</b> {this.state.followers.length} </p>
-              <p><b>Following</b> {this.state.following.length}</p>
-            </div> */}
-              {/* <br/>
-              <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-              <br/>
-              {isUnfollowing ? (
-                  <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                ) : (
-                  <button  className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
-                )}
-                <br/>
-              <span>Followers {this.state.followers.length}</span>
-
-                <br/><br/>
-                <span>COMMUNTIES</span>
-                {this.state.societies.length == 0 ? (
-                        <div>                        
-                          <p>Nothing to see here yet...</p>
-                        </div>
-                      ) : (
-                        <div>
-                          {this.state.societies.map(society=>
-                          <li>
-                            <p>
-
-                            <b><a href={"/c/?id="+society}>{society}</a></b><br/>
-
-                              
-                            </p>
-                          </li>)}
-                        </div>
-                      )} */}
-            {/* </Col>
-              
-            <Col sm={8}>
-              <div className="top-posts">
-                <History />
-              </div>
-              
-            </Col> */}
-            
-        </Container>
-      </>
+          </Col>
+          <Col sm></Col>
+        </Row>
+      </Container>
+    </>
     );
   }
 }

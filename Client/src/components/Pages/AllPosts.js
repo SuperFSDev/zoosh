@@ -20,6 +20,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class AllPosts extends React.Component {
 
@@ -223,7 +224,7 @@ export default class AllPosts extends React.Component {
           <Card className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
               <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
+                <span class="showhim"><a href={"/me"} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
                 {discussion.society == null ? (
                   <span> in <b style={{ color: 'green' }}>General</b></span>
@@ -275,7 +276,7 @@ export default class AllPosts extends React.Component {
             </div>
 
 
-            {this.state.isLoading && <div><br /><Skeleton height={200} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
+            {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
           </Col>
 

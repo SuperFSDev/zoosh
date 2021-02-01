@@ -64,17 +64,38 @@ export default class ReadingList extends React.Component {
           }
         })
           .then((response) => {
+            if(response.data.discussion == null){
+              this.checkIfNull(readingList)
+            }
+            else{
             this.setState({
               posts: this.state.posts.concat(response.data.discussion),
               isLoading: false,
             })
-    
+            }
           })
           .catch((error) => {
             console.log(error);
           });
       }
     
+
+      checkIfNull(discussion){
+        var user = JSON.parse(localStorage.getItem('user'));
+      
+        const removeDiscussion = {
+          id: user._id,
+          discussion: discussion,
+        }
+        // Adds the discussion to liked list
+        axios.post('http://localhost:4000/users/removeFromReadingList', removeDiscussion)
+          .then(function (resp) {
+            console.log(resp);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+      }
     
     
     

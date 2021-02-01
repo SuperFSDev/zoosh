@@ -23,7 +23,7 @@ export default class ListSocieties extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#FDFEFE";
+      document.body.style.backgroundColor = "#F7F7F7";
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
   
@@ -114,7 +114,8 @@ render(){
 
         <Container>
           <Row>
-            <Col>
+            <Col></Col>
+            <Col >
             <div className="global-feed">
                 <h3>Meet the Community</h3>
                   <div className="container-square">
@@ -129,19 +130,14 @@ render(){
                 <div>
                   <br/>
                   <div className="UsersLayout">
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
-                    <Skeleton height={140} width={180} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
+                      <Skeleton height={140} width={190} duration={1} className="skeleton-comms"/>  
                   </div>
                   
                 </div>
@@ -151,6 +147,7 @@ render(){
                 )}
               </div>
             </Col>
+            <Col></Col>
           </Row>
         </Container>
   </div>

@@ -197,7 +197,7 @@ render(){
               <a class="nav-link" href="/"><BsHouseFill size={25}/> HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> SPACES</a>
+              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> EXPLORE</a>
             </li>
             <li class="nav-item">
               <a href="/home" className="header">NAME</a>
@@ -209,7 +209,7 @@ render(){
               <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> ME</a>
             </li>
             <li class="nav-item-icon">
-              <a class="nav-link-profile"><Avatar src={this.state.user.pic} className="profile-btn-wrapper-left"  onClick={this.showProfile} roundedCircle/></a>
+              <a class="nav-link-profile"><Avatar src={this.state.user.pic}  onClick={this.showProfile} roundedCircle/></a>
             </li>
           </ul>
         </nav>
@@ -281,14 +281,13 @@ render(){
                         this.dropdownMenu3 = element3;
                       }}
                     >
-                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>Hello, {this.state.user.fullname}</b></p></a>
+                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                       <hr/>
-                      <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a>
+                      {/* <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a> */}
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                       <hr/>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
-                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGear/> Account Settings</p></a>
+                      {/* <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a> */}
+                      {/* <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a> */}
                       <InviteFriend/>
                       <hr/>
                       <a href="/login" className="profile-navs">Sign Out</a>

@@ -38,6 +38,7 @@ export default class DiscussionPost extends React.Component {
 
     componentDidMount() {
       this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
+      document.body.style.backgroundColor = "#F7F7F7";
 
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
@@ -93,16 +94,21 @@ export default class DiscussionPost extends React.Component {
       })
     }
 
-    addToSaved = () =>{
-      this.setState({ 
-        isSaved: true,
-      })
-    }
+    addToReadingList(discussion, user_id) {
 
-    removeSaved = () =>{
-      this.setState({ 
-        isSaved: false,
-      })
+      const addDiscussion = {
+        user_id: user_id,
+        discussion: discussion,
+      }
+      // Adds society to societies array in user model.
+      axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
+        .then(function (resp) {
+          console.log(resp);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        alert("Discussion added to your reading list!")
     }
 
 
@@ -185,9 +191,21 @@ export default class DiscussionPost extends React.Component {
                   <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet> 
 
-          <Container fluid>
+          <Container>
             <Row>
-              <Col  sm>
+              <Col md>
+                <div className="post-reactions">
+                  <Avatar src={user.pic}/>
+                  {this.state.discussion.user}
+                  <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(this.state.discussion._id, user._id, this.state.discussion.likes) }}><Image src={Clap} size={30} className="feed-comment"/> {this.state.discussion.likes} </button></span>
+                  <br/>
+                  <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>{this.addToReadingList(this.state.discussion._id,user._id)}}><BsBookmark size={30} /></button></span>
+                  <br/>
+                  <span><button className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
+
+                </div>
+              </Col>
+              <Col md>
                 <div className="discussion-container">
 
      
@@ -196,7 +214,7 @@ export default class DiscussionPost extends React.Component {
                 <p style={{fontSize:14, color:'gray'}}>
                   <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>
                   <span class="showhim">
-                    <b style={{color:'gray'}}>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
+                    <b>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
                     <span class="showme"> <b>{this.state.discussion.user}</b></span>
                   </span>
                   </a>
@@ -205,7 +223,7 @@ export default class DiscussionPost extends React.Component {
                 <Image src={this.state.discussion.full_pic} className="thumbnail"/>
               </p>
             
-              <p className="post-content">{string}</p>
+              <p className="post-content">{this.state.discussion.content}</p>
 
 
                 <div className="spacing"></div>
@@ -230,7 +248,6 @@ export default class DiscussionPost extends React.Component {
                   <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Community Guidelines</Tooltip>}>
                     <span><button className="standard-option-btn-post" ><RiShieldStarLine size={20}/></button></span>
                   </OverlayTrigger>
-                  <span><button className="standard-option-btn-post" >Report</button></span>
                   
                   
                 </span>
@@ -241,6 +258,7 @@ export default class DiscussionPost extends React.Component {
             <h4>Responses ({this.state.comments.length})</h4>
             
             <div className="comment-box-acc">
+              <Avatar src={user.pic}/><br/>
               <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
               <button className="standard-button" onClick={this.onSubmit}>Publish</button>
             </div>
@@ -286,6 +304,15 @@ export default class DiscussionPost extends React.Component {
          </div>
          </div>
               </Col>
+              <Col md>
+              {/* <div className="user-card-container">
+                <div className="column-head">
+                  {this.state.discussion.user}
+                  <br/>
+                  <button>Follow</button>
+                </div>
+              </div> */}
+            </Col>
 
             </Row>
           </Container>
