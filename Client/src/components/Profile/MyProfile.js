@@ -50,7 +50,6 @@ export default class MyProfile extends React.Component {
           following: response.data.user.following,
           admin: response.data.user.admin,
           society_ids: response.data.user.societies,
-          posts: response.data.user.posts,
           badges: response.data.user.badges,
         })
       })
