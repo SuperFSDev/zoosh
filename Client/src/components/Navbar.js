@@ -197,7 +197,7 @@ render(){
               <a class="nav-link" href="/"><BsHouseFill size={25}/> HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> SPACES</a>
+              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> EXPLORE</a>
             </li>
             <li class="nav-item">
               <a href="/home" className="header">NAME</a>

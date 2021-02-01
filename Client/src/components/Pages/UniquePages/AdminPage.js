@@ -224,42 +224,44 @@ export default class AdminPage extends React.Component {
               </Helmet>
 
               <Container fluid>
-              <Row>
-                <div className="community-header" style={{background:this.state.society.color}}>
-                  <span><Image src={this.state.society.picture} className="community-image" /></span>
-                  <br/>
-                  <h5 className="community-name">{this.state.society.name} </h5>
-                  {this.state.society.description}
-                  <br/>
-                  <button className="follow-community">Community Settings</button>
-                </div>  
-              </Row>
-    
-                         
-        <Row>
-          <Col sm></Col>
-          <Col sm>
-            {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
-            {!this.state.isLoading &&  <div>{discussionList}</div>}
-          </Col>
+                <Row>
+                  <div className="community-header" style={{background:this.state.society.color}}>
+                    <Col md>
+                    <div className="community-profile">
+                      <span>
+                        <Image src={this.state.society.picture} className="community-image-admin" />
+                        <button className="follow-community">Community Settings</button>
 
-          <Col sm>
-            <div className="contributors-container">
-            {/* {this.state.users.map(user=>(
-                          <div className="community-members-item">
-                            <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{this.state.user.fullname}</Tooltip>}>
-                              <a href={"/u/?id="+user._id}><Image src={user.pic} className="community-member-item-pic" roundedCircle /> </a>
-                            </OverlayTrigger>
-                          </div>
-                        ))} */}
-            </div>
-          </Col>
-          <Col sm></Col>
+                        </span>
+                      <br/>
+                      <h5 className="community-name">{this.state.society.name} </h5>
+                      {this.state.society.description}
+                      <br/>
+                    </div>
+                    </Col>
+                  </div>
+                </Row>
 
-        </Row>
+                <Row>
+                  <Col sm></Col>
+                  <Col sm>
+                  <div className="community-feed">
+                        <div className="top-posts">
+                          {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+                          {!this.state.isLoading &&  <div>{discussionList}</div>}
+                        </div>
+                    </div>
+                  </Col>
 
-                
+                  <Col sm>
+                    <div className="community-members-container">
+                      Members
+
+                    </div>
+                  </Col>
+                  <Col sm></Col>
+                </Row>
             </Container>
         </Fragment>
         );

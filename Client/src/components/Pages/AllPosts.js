@@ -282,7 +282,7 @@ export default class AllPosts extends React.Component {
             </div>
 
 
-            {this.state.isLoading && <div><br /><Skeleton height={200} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
+            {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
           </Col>
 

@@ -92,30 +92,53 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-      <Container>
-          <Col sm={4}>
-            <div className="profile-card-align">
-              <Image src={this.state.user.pic} className="user-image" roundedCircle/>
-              <br/>
-              <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-              <br/>
-              <span>Followers{this.state.followers.length}</span>
+      <Container fluid>
+        <Row>
+          <div className="community-header" style={{background:'black'}}>
+            <Col md>
+              <div className="community-profile">
+                <span>
+                  <Image src={this.state.user.pic} className="profile-image" roundedCircle/>
+                  <button className="community-btn-a" >Settings</button>
+                </span>
 
-              <br /><br />
-              <span>COMMUNTIES</span><br />
+                <br/>
+                <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+                <br/>
+                {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
+                {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
+                {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br/>
+              </div>
+            </Col>
+            </div>
+          </Row>
+
+        <Row>
+          <Col sm></Col>
+          <Col sm>
+            <div className="community-feed">
+              <div className="top-posts">
+                {this.state.posts.length === 0 && <div  className="top-posts-empty">No Posts</div>}
+                {this.state.posts.length > 0 && <div><History /></div>}  
+              </div>
+            </div>
+
+          </Col>
+          <Col sm>
+            <div className="community-members-container">
+              <span>Activity</span>
+            </div>
+
+            <div className="contributors-container">
+              <span>Communities</span>
               {this.state.societies.map(society =>
                 <span key={society._id}>
                   <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
                 </span>)}
             </div>
           </Col>
-
-          <Col sm={8}>
-            {this.state.posts.length === 0 && <div>No Posts</div>}
-            {this.state.posts.length === 0 && <div><History /></div>}
-
-            
-          </Col>
+          <Col sm></Col>
+        </Row>
       </Container>
       </>
     );

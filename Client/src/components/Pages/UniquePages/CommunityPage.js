@@ -85,41 +85,6 @@ export default class CommunityPage extends React.Component {
       let i, k = 0;
      
       var user = JSON.parse(localStorage.getItem('user'));
-       
-      // const discussionList = this.state.posts.reverse().map(discussion => {
-      //   return(
-      //     <Fragment  key={discussion._id}>
-      //     <Card className='discussion-post'>
-      //       <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
-      //         <span className="voting-btn">
-      //             <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
-      //             <span class="showme"> <b>{discussion.user}</b></span></span>
-      //               {discussion.society == null ? (
-      //                 <span> in <b style={{color:'green'}}>General</b></span>
-      //               ) : (
-      //                 <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
-      //               )}<br/>
-      //               <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-  
-                      
-      //               {discussion.picture == null && <div></div> }  
-      //               {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
-      //             </span><br/>
-      //             <span  className="title-post">{discussion.title}</span><br/>
-      //             <span  className="content-post">{discussion.content.slice(0,200)}</span>
-      //       </CardContent></a>
-      //         <CardActions>
-      //           <Button size="small" color="primary" onClick={() => {this.addToLikedPosts(discussion._id,user._id,discussion.likes)}}>
-      //             Like Post
-      //           </Button>
-  
-      //           <Button size="small" color="primary" href={"/d/?id=" + discussion._id }>
-      //             <BsChat size={15} style={{marginRight:5}}/> Add Comment 
-      //           </Button>
-      //         </CardActions>
-      //       </Card> 
-      //   </Fragment>
-      //     )})
 
           const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
             return (
@@ -195,49 +160,53 @@ export default class CommunityPage extends React.Component {
             </Helmet> 
 
             <Container fluid>
-              <Row>
-                <div className="community-header">
-                  <span><Image src={this.state.society.picture} className="community-image" /></span>
-                  <br/>
-                  <h5 className="community-name">{this.state.society.name} </h5>
-                  {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
-                  {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                  {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}
+                <Row>
+                  
+                  <div className="community-header" style={{background:this.state.society.color}}>
+                    <Col md>
+                      
+                    <div className="community-profile">
 
-                  {/* {this.state.society.description} */}
-                  <br/>
-                  <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
-                </div>  
-              </Row>
-    
-                         
-        <Row>
-          <Col sm></Col>
-          <Col sm>
-            {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
-            {!this.state.isLoading &&  <div>{discussionList}</div>}
-          </Col>
+                      <span>
+                        <Image src={this.state.society.picture} className="community-image" />                      
+                        <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
+                      </span>
+                      
+                      <br/>
+                      <h5 className="community-name">{this.state.society.name} </h5>
+                      {this.state.society.description}
+                      <br/>
+                      {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
+                      {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                      {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      <br/>
+                    </div>
+                    </Col>
+                  </div>
+                </Row>
 
-          <Col sm>
-            <div className="contributors-container">
-            {this.state.users.map(user=>(
-                        <div className="community-members-item">
-                            <b>{user.fulname}</b>
+                <Row>
+                  <Col sm></Col>
+                  <Col sm>
+                  <div className="community-feed">
+                        <div className="top-posts">
+                          {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
+                          {!this.state.isLoading &&  <div>{discussionList}</div>}
                         </div>
-                      ))}
-            </div>
-          </Col>
-          <Col sm></Col>
+                    </div>
+                  </Col>
 
-        </Row>
-
-                
+                  <Col sm>
+                    <div className="community-members-container">
+                      Members
+                    </div>
+                  </Col>
+                  <Col sm></Col>
+                </Row>
             </Container>
-
-         
-          </div>
-        );
-    } 
+    </div>
+    );
+  } 
 }
 }
 
