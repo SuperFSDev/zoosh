@@ -1,12 +1,14 @@
 import React from 'react'
 import '../../assets/App.css';
 import axios from 'axios';
-import {Image , OverlayTrigger, Tooltip, Badge, Navbar, Nav, Row, Col, Container} from 'react-bootstrap'
+import {Image, Row, Col, Container} from 'react-bootstrap'
 import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
 import {Helmet} from 'react-helmet'
 import Avatar from '@material-ui/core/Avatar';
 import cogoToast from 'cogo-toast'
+import moment from 'moment'
+import{RiCake3Line} from 'react-icons/ri'
 
 export default class UserProfile extends React.Component {
 
@@ -229,11 +231,14 @@ checkIfNull(discussion){
 
                 <br/>
                 <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-                
+                <br/>
+                <RiCake3Line/> Member since {moment(this.state.user.time).format('LL')}
+                <br/>
                 <br/>
                 {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
                 {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br/>
+                {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      
+                <br/><br/>
               </div>
             </Col>
             </div>
@@ -252,7 +257,7 @@ checkIfNull(discussion){
           </Col>
 
           <Col sm>
-          <div className="community-members-container">
+          <div className="user-profile-activity-container">
             <span>Activity</span><hr/>
                         <div>
                           {this.state.likedDiscussions.map(discussion=>

@@ -7,10 +7,6 @@ import moment from 'moment'
 import { Image, Card, Button} from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 import {BsChat,BsBookmark,BsBookmarkFill,BsThreeDots} from 'react-icons/bs'
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
@@ -111,7 +107,7 @@ export default class DiscussionPost extends React.Component {
         // alert("Discussion added to your reading list!")
         cogoToast.success(
           <div>
-            <div>Discussion added to your reading list!</div>
+            <div>Added to your reading list!</div>
           </div>
         );
     }
@@ -199,16 +195,15 @@ export default class DiscussionPost extends React.Component {
 
     isLiked(discussion_id, user_id, likes) {
       if (this.state.likedPosts.includes(discussion_id) == true) {
-        return ( <div><span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
-          <Image src={Clapping} size={30} className="feed-comment"/> {this.state.discussion.likes}</button></span>
-          
-          </div>
+        return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
+          <Image src={Clapping} size={30}/> {this.state.discussion.likes}</button><br/></span>
+        
         )
         
       }
       else {
-        return ( <div><span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, user_id, likes) }}>
-          <Image src={Clap} size={30} className="feed-comment"/> {this.state.discussion.likes} </button></span></div>
+        return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, user_id, likes) }}>
+          <Image src={Clap} size={30}/> {this.state.discussion.likes} </button></span>
         )
         
       }
@@ -217,8 +212,6 @@ export default class DiscussionPost extends React.Component {
 
     render() {
       var user = JSON.parse(localStorage.getItem('user'));
-      // string.replaceAll("Hooks","she")
-
       console.log(this.state.likedPosts);
 
       return (
@@ -241,13 +234,17 @@ export default class DiscussionPost extends React.Component {
             <Row>
               <Col md>
                 <div className="post-reactions">
-                  <Avatar src={user.pic}/>
-                  {this.state.discussion.user}
+                  <span>
+                    <Image src={user.pic} className="user-image"/>
+                    <b>{this.state.discussion.user}</b><br/>
+                    <a href={"/u/?id="+this.state.discussion.user_id}><button className="standard-button">View Profile</button></a>
+                  </span>
+                 
                   {this.isLiked(this.state.discussion._id, user._id, this.state.discussion.likes)}
                   <br/>
                   <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>{this.addToReadingList(this.state.discussion._id,user._id)}}><BsBookmark size={30} /></button></span>
                   <br/>
-                  <span><button className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
+                  <span className="voting-btn"><button className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
 
                 </div>
               </Col>
@@ -284,12 +281,6 @@ export default class DiscussionPost extends React.Component {
                     <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
                   </OverlayTrigger>
                   )} */}
-
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Community Guidelines</Tooltip>}>
-                    <span><button className="standard-option-btn-post" ><RiShieldStarLine size={20}/></button></span>
-                  </OverlayTrigger>
-                  
-                  
                 </span>
                 <hr/>
 
@@ -305,39 +296,26 @@ export default class DiscussionPost extends React.Component {
           
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
-              <div>
-             <div  class="miniprofile2">
-                <p>
-                  <span className="voting-btn">
-                  <a href={"/u/?id=" + comment.user_id} className="post-link-a"><figure class="headshot">
-                        <Avatar src={comment.user_img}/>
-                  </figure></a>
-                  <section class="bio-box">
-                  <dl class="details"> 
-                                <a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
-                                <dd class="location" style={{color:'gray'}}>{moment(comment.time).startOf('seconds').fromNow()}</dd>
-                                <p className="post-content">{comment.comment}</p>
-
-
-                            </dl>
-                  </section>
-                </span>                  
-                </p>
-              </div>
-              <ShowMoreText
-                lines={1}
-                more='Read more'
-                less='Read less'
-                onClick={this.executeOnClick}
-                expanded={false}
-                font={20}
-                width={1000}
-                height={100}
-              >
-              {comment.comment}
-              </ShowMoreText>
-              <button onClick={this.addLikes}><Image src={Clap} size={20} className="feed-comment"/> {this.state.hearts} claps</button>
-            <hr/>
+              <div className="comment-box">
+                <span >
+                  <Avatar src={comment.user_img}/><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
+                  {moment(comment.time).startOf('seconds').fromNow()}
+                  <ShowMoreText
+                    lines={1}
+                    more='Read more'
+                    less='Read less'
+                    onClick={this.executeOnClick}
+                    expanded={false}
+                    font={20}
+                    width={1000}
+                    height={100}
+                  >
+                  <p className="post-content">{comment.comment}</p>
+                  </ShowMoreText>           
+                  <span><button className="standard-option-btn-comment">
+                  <Image src={Clap} size={30}/></button></span>     
+                </span>
+                <hr/>
               </div>
             ))}
          </div>  

@@ -99,7 +99,7 @@ export default class MyProfile extends React.Component {
               <div className="community-profile">
                 <span>
                   <Image src={this.state.user.pic} className="profile-image" roundedCircle/>
-                  <button className="community-btn-a" >Settings</button>
+                  <a href="/settings"><button className="community-btn-a" >Settings</button></a>
                 </span>
 
                 <br/>

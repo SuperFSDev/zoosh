@@ -83,9 +83,7 @@ export default class Forum extends React.Component {
       const forumList = forums.map(forum => {
         return(
             <div key={forum._id}>
-              <div className='forum-post'>
-                <div>
-                  <p>
+                <div className="forum-post">
                     <a href={"u/?id=" + user._id} className="post-link-a"><span className="voting-btn">
                     <span class="showhim">
                       <a href={"/me"} className="post-link-a"><b>{forum.user}</b></a>  
@@ -96,10 +94,8 @@ export default class Forum extends React.Component {
                     <span style={{ color: 'gray', fontSize: 10 }}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
                     <span style={{background:'lightblue', color:'gray'}}>#{forum.tags}</span>
                     <br/>
-                  </p>
                 </div>
               </div>
-            </div>
           )})
 
       return (

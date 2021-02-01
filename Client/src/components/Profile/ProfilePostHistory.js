@@ -40,7 +40,7 @@ export default class History extends React.Component {
       var user = JSON.parse(localStorage.getItem('user'));
     if(id == user._id){
       return(<div>
-        <button onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
+        <button className="standard-button-cancel" onClick={() => {this.onDeletePost(id,discussion_id)}}>Delete post</button>
       </div>)
     }
     } 
@@ -68,17 +68,17 @@ console.log(this.state.posts);
         
           {this.state.posts.slice(0,10).reverse().map(post=>  (
               <div key={this.state.user._id}>  
-               <Card className='userPosts'>
+               <Card className='discussion-post'>
                   <Card.Body>          
                     <Card.Text className="fontPost">
                     <a href={"/d/?id=" + post._id} style={{textDecoration:'none'}}>
                       <p>
-                        <span className="forum-title" style={{color:'black'}}>{post.title}</span><br/>
-                        <small className="text-muted">{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
+                        <span className="title-post" style={{color:'black'}}>{post.title}</span><br/>
+                        <small style={{ color: 'gray', fontSize: 10 }}>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br/>
                         {post.society == null ? (
-                            <span  className="content-muted">Posted in<b style={{color:'green'}}> General</b><br/></span>
+                            <span className="post-link-a" >Posted in<b style={{color:'green'}}> General</b><br/></span>
                         ) : (
-                          <span  className="content-muted">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
+                          <span className="post-link-a">Posted in <b style={{color:'green'}}>{post.society}</b><br/></span>
                         )}
                       </p><hr/>
                     </a>

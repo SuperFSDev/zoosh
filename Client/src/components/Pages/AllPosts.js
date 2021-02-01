@@ -240,15 +240,12 @@ export default class AllPosts extends React.Component {
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
             </CardContent></a>
             <CardActions>
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 {discussion.likes === 0 && <></>}
-<<<<<<< HEAD
-                {discussion.likes  === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
+                {discussion.likes === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
                 {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
               </button></a>
-=======
-                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
-           
->>>>>>> 1d4983c547761f8a18d9a4830d41cd34b03eb473
+
 
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 <RiChat1Line size={20}/> 
