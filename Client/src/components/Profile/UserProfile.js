@@ -217,7 +217,7 @@ checkIfNull(discussion){
 
         <Container fluid>
  <Row>
-          <div className="community-header" style={{background:'black'}}>
+          <div className="community-header" style={{background:'#222831'}}>
             <Col md>
               <div className="community-profile">
                 <span>

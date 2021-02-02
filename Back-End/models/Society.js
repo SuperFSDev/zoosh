@@ -24,7 +24,7 @@ const SocietySchema = new Schema({
     time:Date,
     color:{
         type:String, 
-        default :'#FECE00'
+        default :'#FFD700'
     },
 
 })

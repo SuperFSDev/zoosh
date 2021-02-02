@@ -40,14 +40,6 @@ export default class PreNavbar extends React.Component {
 
       this.setState({ id: user._id });
 
-      axios.get('http://localhost:4000/users/getUsers')
-      .then((response)=>{
-          this.setState({users: response.data.users})
-      })
-      .catch((error)=>{
-          console.log(error);
-      });
-
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id
@@ -64,33 +56,20 @@ export default class PreNavbar extends React.Component {
               console.log(error);
           });
 
-      axios.get('http://localhost:4000/discussions/getDiscussions')
-        .then((response) => {
-          this.setState({ discussions: response.data.discussions,
-          isLoading: false, })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
 render(){
   return (
       <div>
         <div id="top"></div>
-        {/* <nav class="navbar justify-content-center fixed-top">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link"><Login/></a>
-            </li>
-            <li class="nav-item">
-              <a href="/landing" className="header">NAME</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"><Register/></a>
-            </li>
-          </ul>
-        </nav> */}
+        <div id="container">
+            <div><SearchbarFilter/></div>
+            <div className="div2"><a href="/" className="header">NAME</a></div>
+            <div>
+              <a className="link" href="/communities"><IoMdPlanet  size={20}/> LOGIN</a>  
+              <a className="link" href="/leaderboard"><BsLightningFill  size={20}/> JOIN</a>  
+            </div>
+          </div>
       </div>
     );
   }
