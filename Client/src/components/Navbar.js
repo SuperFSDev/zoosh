@@ -139,13 +139,6 @@ export default class NavBar extends React.Component {
 
       this.setState({ id: user._id });
 
-      axios.get('http://localhost:4000/users/getUsers')
-      .then((response)=>{
-          this.setState({users: response.data.users})
-      })
-      .catch((error)=>{
-          console.log(error);
-      });
 
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
@@ -163,6 +156,7 @@ export default class NavBar extends React.Component {
               console.log(error);
           });
 
+ 
   }
 
 render(){
@@ -175,9 +169,9 @@ render(){
   var indents = [];
 
 
-  for (var k = 0; k < 4; k++) {
-    indents.push(users[1]);
-  }
+  // for (var k = 0; k < 4; k++) {
+  //   indents.push(users[1]);
+  // }
 
   return (
       <div>

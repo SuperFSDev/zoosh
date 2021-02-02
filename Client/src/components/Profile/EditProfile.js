@@ -6,7 +6,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Form } from 'react-bootstrap';
 import { BiEdit } from 'react-icons/bi'
 import axios from 'axios';
-// import { HashPassword, ComparePassword } from '../auth/HashPassword';
+import ImageUploader from 'react-images-upload';
+
+const Compress = require('compress.js')
 
 export default class EditProfile extends React.Component {
 
@@ -18,7 +20,6 @@ export default class EditProfile extends React.Component {
       user: '',
       // Edit details
       profilePic: '',
-      picSrc: '',
       fullname: '',
       bio: '',
       college: '',
@@ -37,7 +38,7 @@ export default class EditProfile extends React.Component {
     this.onChangeDob = this.onChangeDob.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRetype = this.onChangeRetype.bind(this);
-    this.onChangePicture = this.onChangePicture.bind(this);
+    this.onDropPicture = this.onDropPicture.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -97,17 +98,29 @@ export default class EditProfile extends React.Component {
       retype: e.target.value
     });
   }
-  async onChangePicture(e) {
-    var pic = e.target.files[0];
-    var src = URL.createObjectURL(pic);
-  
-    var b64 = await this.imageToB64(src);
-    alert(b64);
 
-    this.setState({
-      profilePic: b64,
-      picSrc: src
-    });
+  async onDropPicture(pictureFiles, pictureDataURLs) {
+
+    const compress = new Compress();
+
+    // Create thumbnail picture
+    compress.compress(pictureFiles, {
+      size: 4, // the max size in MB, defaults to 2MB
+      quality: 1, // the quality of the image, max is 1,
+      maxWidth: 150, // the max width of the output image, defaults to 1920px
+      maxHeight: 150, // the max height of the output image, defaults to 1920px
+      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    }).then((data) => {
+      if (data[0]) {
+        var data = data[0];
+        var b64 = data.prefix + data.data;
+
+        this.setState({
+          //picture: this.state.picture.concat(b64)
+          profilePic: b64
+        });
+      }
+    })
   }
 
   onSubmit(e) {
@@ -195,28 +208,6 @@ export default class EditProfile extends React.Component {
     }
   }
 
-  imageToB64(imgUrl) {
-    return new Promise(resolve =>{   
-      var img = new Image();
-      img.crossOrigin = 'Anonymous';
-
-      img.onload = function() {
-        var canvas = document.createElement('canvas'),
-          ctx = canvas.getContext('2d');
-      
-        canvas.height = img.naturalHeight / 4;
-        canvas.width = img.naturalWidth / 4;
-        ctx.drawImage(img, 0, 0);
-
-        var uri = canvas.toDataURL('image/png'),
-          b64 = uri.replace(/^data:image.+;base64,/, '');
-        resolve(b64);
-      };
-      img.src = imgUrl;
-    })
-  }
-
-
   render() {
     return (
       <div>
@@ -290,78 +281,4 @@ export default class EditProfile extends React.Component {
       </div>
     );
   }
-
-  /*constructor(props) {
-    super(props);
-
-    this.state = {
-      picture: false,
-      src: false
-    }
-  }
-
-  handlePictureSelected(event) {
-    var picture = event.target.files[0];
-    var src     = URL.createObjectURL(picture);
-
-    this.setState({
-      picture: picture,
-      src: src
-    });
-  }
-
-  renderPreview() {
-    if(this.state.src) {
-      return (
-        <img src={this.state.src}/>
-      );
-    } else {
-      return (
-        <p>
-          No Preview
-        </p>
-      );
-    }
-  }
-
-  upload() {
-    var formData = new FormData();
-
-    formData.append("file", this.state.picture);
-
-    $.ajax({
-      url: "/some/api/endpoint",
-      method: "POST",
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: function(response) {
-        // Code to handle a succesful upload
-      }
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h5>Picture Uploader</h5>
-
-        <input
-          type="file"
-          onChange={this.handlePictureSelected.bind(this)}
-        />
-        <br/>
-        <div>
-        {this.renderPreview()}
-        </div>
-        <hr/>
-        <button
-          onClick={this.upload.bind(this)}
-        >
-          Upload
-        </button>
-      </div>
-    );
-  }*/
 }

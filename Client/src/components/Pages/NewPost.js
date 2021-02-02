@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import { Helmet } from 'react-helmet'
 import axios from 'axios';
-import { Form, Row, Col, Container } from 'react-bootstrap';
+import { Form, Row, Col, Container, NavItem } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
 
@@ -122,7 +122,7 @@ export default class NewPost extends React.Component {
     compress.compress(pictureFiles, {
       size: 4, // the max size in MB, defaults to 2MB
       quality: 1, // the quality of the image, max is 1,
-      maxWidth: 1000, // the max width of the output image, defaults to 1920px
+      maxWidth: 800, // the max width of the output image, defaults to 1920px
       maxHeight: 500, // the max height of the output image, defaults to 1920px
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
@@ -215,10 +215,17 @@ export default class NewPost extends React.Component {
 
   render() {
 
-    let options = this.state.societies.map(function (society) {
-      return { value: society.name, label: society.name };
-    })
-
+    let options = null;
+    
+    if(this.state.societies[0] != undefined)
+    {
+      options = this.state.societies.map(function (society) {
+        return { value: society.name, label: society.name };
+      })
+    } else {
+      this.state.tags = "General";
+    }
+      
     return (
       <div>
         {/* REACTJS HELMET */}
@@ -272,8 +279,9 @@ export default class NewPost extends React.Component {
                 onChange={this.onChangeContent}
                 required
                 />
-                
-              <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/><br/>
+              
+              {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/>}
+              <br/>
               <br/>
               </div>
               <br/>
