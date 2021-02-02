@@ -191,6 +191,22 @@ checkIfNull(discussion){
     })
 }
 
+isMyProfile(fullname,discussionUser){
+  let user_id = new URLSearchParams(this.props.location.search).get("id");
+  var getUser = JSON.parse(localStorage.getItem('user'))
+  if(user_id ==getUser._id ){
+    return(<div>
+       <b>You</b> clapped to a post written by <b>{discussionUser}.</b>
+    </div>)
+
+  }else{
+    return(<div>
+      <b>{fullname}</b> clapped to a post written by <b>{discussionUser}.</b>
+   </div>)
+  }
+
+}
+
   render() {
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
@@ -263,7 +279,9 @@ checkIfNull(discussion){
                           {this.state.likedDiscussions.map(discussion=>
                             <p>
                               <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                                  <b>{this.state.user.fullname}</b> clapped to a post written by <b>{discussion.user}.</b>
+                                
+                                  {/* <b>{this.state.user.fullname}</b> clapped to a post written by <b>{discussion.user}.</b> */}
+                                  {this.isMyProfile(this.state.user.fullname,discussion.user)}
                                   </a>
                                   <hr/>
                             </p>

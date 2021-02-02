@@ -14,6 +14,7 @@ import ShowMoreText from 'react-show-more-text';
 import ReadMore from '../../Common/ReadMore'
 import cogoToast from 'cogo-toast'
 
+
 export default class DiscussionPost extends React.Component {
 
   constructor(props) {
@@ -24,6 +25,7 @@ export default class DiscussionPost extends React.Component {
       likedPosts:[],
       discussion_id:'',
       comments:[],
+      readingList:[],
       societies: [],
       isLoading:true,
       hearts: 0,
@@ -66,7 +68,8 @@ export default class DiscussionPost extends React.Component {
   
         .then((response) => {
           this.setState({
-            likedPosts: response.data.user.likedPosts
+            likedPosts: response.data.user.likedPosts,
+            readingList:response.data.user.readingList
           })
         })
         .catch((error) => {
@@ -109,6 +112,28 @@ export default class DiscussionPost extends React.Component {
             <div>Added to your reading list!</div>
           </div>
         );
+    }
+    RemoveFromReadingList(discussion, user_id) {
+
+      const RemovedDiscussion = {
+        user_id: user_id,
+        discussion: discussion,
+      }
+      // Adds society to societies array in user model.
+      axios.post('http://localhost:4000/users/removeFromReadingList', RemovedDiscussion)
+        .then(function (resp) {
+          console.log(resp);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        // alert("Discussion added to your reading list!")
+        cogoToast.warn(
+          <div>
+            <div>Removed from your reading list!</div>
+          </div>
+        );
+        
     }
 
 
@@ -209,6 +234,23 @@ export default class DiscussionPost extends React.Component {
     
     }
 
+    isInReadingList(discussion_id,user_id) {
+      if (this.state.readingList.includes(discussion_id) == true) {
+        return (  <span className="voting-btn">
+          <button className="standard-option-btn-post" onClick={() =>{this.RemoveFromReadingList(discussion_id,user_id)}}><BsBookmarkFill size={30} /></button></span>
+        
+        )
+        
+      }
+      else {
+        return (  <span className="voting-btn">
+          <button className="standard-option-btn-post" onClick={() =>{this.addToReadingList(discussion_id,user_id)}}><BsBookmark size={30} /></button></span>
+        )
+        
+      }
+    
+    }
+
     render() {
       var user = JSON.parse(localStorage.getItem('user'));
       console.log(this.state.likedPosts);
@@ -241,7 +283,7 @@ export default class DiscussionPost extends React.Component {
                  
                   {this.isLiked(this.state.discussion._id, user._id, this.state.discussion.likes)}
                   <br/>
-                  <span className="voting-btn"><button className="standard-option-btn-post" onClick={() =>{this.addToReadingList(this.state.discussion._id,user._id)}}><BsBookmark size={30} /></button></span>
+                   {this.isInReadingList(this.state.discussion._id, user._id,)}
                   <br/>
                   <span className="voting-btn"><button className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
 
