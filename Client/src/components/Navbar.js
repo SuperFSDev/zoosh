@@ -194,10 +194,10 @@ render(){
         <nav class="navbar justify-content-center fixed-top">
           <ul class="nav justify-content-center">
           <li class="nav-item">
-              <a class="nav-link" href="/"><BsHouseFill size={25}/> HOME</a>
+              <a class="nav-link" href="/"><BsHouseFill  size={25}/> HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  href="/communities"><IoMdPlanet size={25}/> EXPLORE</a>
+              <a class="nav-link active"  href="/communities"><IoMdPlanet  size={25}/> EXPLORE</a>
             </li>
             <li class="nav-item">
               <a href="/home" className="header">NAME</a>
@@ -206,10 +206,10 @@ render(){
               <a class="nav-link" href="/forums"><BsLightningFill size={25}/> FORUM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill size={25} /> ME</a>
+              <a class="nav-link"  onClick={this.showMenu} aria-disabled="true"><BsBellFill  size={25} /> NOTIES</a>
             </li>
             <li class="nav-item-icon">
-              <a class="nav-link-profile"><Avatar src={this.state.user.pic}  onClick={this.showProfile} roundedCircle/></a>
+              <a class="nav-link-profile" ><Image src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}  onClick={this.showProfile} roundedCircle/></a>
             </li>
           </ul>
         </nav>

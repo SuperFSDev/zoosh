@@ -16,6 +16,7 @@ const DiscussionSchema = new Schema({
     society:String,
     claps:Number,
     comments:Array,
+    commentsCount:Number,
     thumbnail_pic: String,
     full_pic: String,
     likes:{type:Number , "default":0},
@@ -32,9 +33,13 @@ const DiscussionSchema = new Schema({
 
 DiscussionSchema.pre("validate", function(next) {
     const post = this;
+
     var result           = ' ';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
+    var commentsLength = post.comments.length;
+
+    commentsLength = post.commentsCount;
 
     for ( var i = 0; i < 5; i++ ) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));

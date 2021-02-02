@@ -47,6 +47,7 @@ export default class AccountSettings extends React.Component {
 
     this.user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: this.user._id });
+    document.body.style.backgroundColor = "#F7F7F7";
 
 
     await axios.get('http://localhost:4000/users/get-user-details', {
@@ -337,7 +338,7 @@ export default class AccountSettings extends React.Component {
               
               <div>
                 <button className="standard-button" variant="secondary" type="submit" >Save changes</button>
-                <a href="/home"><button className="standard-button-cancel" variant="primary" type="button" >Cancel</button></a>
+                <a href="/home"><button className="settings-button-cancel" variant="primary" type="button" >Cancel</button></a>
               </div>
               
             </Form>
