@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown} from 'react-bootstrap'
 import Avatar from '@material-ui/core/Avatar';
@@ -163,14 +163,6 @@ export default class NavBar extends React.Component {
               console.log(error);
           });
 
-      axios.get('http://localhost:4000/discussions/getDiscussions')
-        .then((response) => {
-          this.setState({ discussions: response.data.discussions,
-          isLoading: false, })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
 render(){
@@ -190,8 +182,23 @@ render(){
   return (
       <div>
         <div id="top"></div>
+        <nav>
+          <div style={{textAlign:'center' , background:'black'}}>
+            <a href="/home" className="header" >NAME</a>
+          </div>
+          <div style={{textAlign:'center', background:'black'}}>
+            <br/>
+            <span >
+            <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
+            <a className="link" href="/communities"><IoMdPlanet  size={20}/> CHARTS</a>  
+            <a className="link-right" onClick={this.showMenu}><BsBellFill  size={20} /> NOTIES</a>
+            <a className="link-right"   onClick={this.showProfile}>{this.state.user.score} <Image src={this.state.user.pic} style={{width:35, height:35}}   roundedCircle/></a>
+            </span>
+          </div>
+        </nav>
 
-        <nav class="navbar justify-content-center fixed-top">
+
+        {/* <nav class="navbar justify-content-center fixed-top">
           <ul class="nav justify-content-center">
           <li class="nav-item">
               <a class="nav-link" href="/"><BsHouseFill  size={25}/> HOME</a>
@@ -212,7 +219,7 @@ render(){
               <a class="nav-link-profile" ><Image src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}  onClick={this.showProfile} roundedCircle/></a>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
               {
                 this.state.showMenu

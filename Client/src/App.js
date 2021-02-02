@@ -36,6 +36,7 @@ import Following from './components/Pages/FollowingLayout';
 import TopPosts from './components/Pages/AllPosts';
 import Questions from './components/Pages/Questions';
 import QuestionPage from './components/Pages/UniquePages/QuestionPage';
+import PreNavbar from './components/PreNavbar';
 
 class App extends React.Component {
   render(){
@@ -88,6 +89,7 @@ class App extends React.Component {
     }
     return (
       <Router>
+        <PreNavbar/>   
         <Switch>
           <Route path="/landing" component={Landing}/>
           <Route path="/join" component={RegisterPage}/>

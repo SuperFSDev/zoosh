@@ -1,28 +1,25 @@
-import React , {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../../Lists/Recommended'
 import Contributors from '../../Lists/Contributors'
-import { Image, Row, Col, Container} from 'react-bootstrap'
+import { Image, Row, Col, Container } from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import {Helmet} from 'react-helmet'
-import {BsBookmark,BsBookmarkFill} from 'react-icons/bs'
-import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import {BsBrightnessLow,BsChat, BsThreeDots} from 'react-icons/bs'
-import Clapping from '../../../images/clap-hands.png'
+import { Helmet } from 'react-helmet'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { BsBrightnessLow, BsChat, BsThreeDots } from 'react-icons/bs'
 import Clap from '../../../images/clap.png'
-import { json } from 'body-parser';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import {BsGear,BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill} from 'react-icons/bs'
+import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Avatar from '@material-ui/core/Avatar';
 import {IoMdPlanet} from 'react-icons/io'
-
-export default class Landing extends React.Component {
+import ScrollToTop from 'react-scroll-up'
+export default class AllPosts extends React.Component {
 
 
   constructor(props) {
@@ -31,195 +28,136 @@ export default class Landing extends React.Component {
       discussions: [],
       isLoading: true,
       isLoadingUsers: true,
-
-      comments:[],
-      time:'',
+      comments: [],
+      time: '',
       toggle: false,
-      isSaved: false,
-      socs:[],
-      posts:[],
-      user:'',
+      posts: [],
+      user: '',
+      societies: [],
+
     };
   }
 
-  componentDidMount() {
-    document.body.style.backgroundColor = "#FDFEFE";
-  
+  async componentDidMount() {
+    document.body.style.backgroundColor = "#F7F7F7";
+
     this.getUserDetails();
     this.getDiscussions();
-    this.onDeletePost = this.onDeletePost.bind(this);
-
-    // Fetch discussions every 1 second
-    // this.timer = setInterval(() => this.getDiscussions(), 1000);
   }
 
   // Fetching the users Details
-  async getUserDetails(){
-    var user_id = new URLSearchParams(this.props.location.search).get("id");
+  async getUserDetails() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id: user._id
+      }
+    })
 
-    axios.get('http://localhost:4000/users/get-user-details', {
-        params: {
-          id: user_id
-        }
-      })
-  
-        .then((response) => {
-          this.setState({ user: response.data.user,
-                          forums: response.data.user.forums,
-                          socs:response.data.user.societies,
-          })
+      .then((response) => {
+        this.setState({
+          user: response.data.user,
+          forums: response.data.user.forums,
+          socs: response.data.user.societies,
+          likedPosts: response.data.user.likedPosts
         })
-        .catch((error) => {
-          console.log(error);
-        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // Fetching the discussions
-  async getDiscussions (){
-    axios.get('http://localhost:4000/discussions/getDiscussions')
-    .then((response) => {
-      this.setState({ 
-        discussions: response.data.discussions,
-        users:response.data.discussions,
-        isLoading: false,
-      
+  async getDiscussions() {
+    await axios.get('http://localhost:4000/discussions/get-discussion-feed')
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          discussions: response.data.discussions,
+          isLoading: false,
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  removeSaved = () =>{
-    this.setState({ 
-      isSaved: false,
-    })
-  }
-
- addToReadingList(discussion,user_id) {
-  
-    const addDiscussion = {
-        user_id:user_id,
-        discussion: discussion._id,
-    }
-    // Adds society to societies array in user model.
-    axios.post('http://localhost:4000/users/addToReadingList', addDiscussion)
-        .then(function (resp) {
-            console.log(resp);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-  }
-
-
-   // Render hide/show comment section
-   CheckPost(id,discussion_id) {
+  render() {
+    var { discussions } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-  if(id == user._id){
-    return(<div>
-      <Button size="small" color="primary" onClick={() => {this.onDeletePost(id,discussion_id)}}>
-        Delete Post
-      </Button>
-    </div>)
-  }
-  }
+    var size = 10;
 
+    const discussionList = discussions.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
+      return (
+        <Fragment key={discussion._id}>
+          <Card className='discussion-post'>
+            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
+              <span className="voting-btn">
+                <span class="showhim"><a href={"/me"} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
+                  <span class="showme"> <b>{discussion.user}</b></span></span>
+                {discussion.society == null ? (
+                  <span> in <b style={{ color: 'green' }}>General</b></span>
+                ) : (
+                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                  )}<br />
+                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-  onDeletePost(id,discussion_id) {
-  axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
-  .then()
-  .catch();
-
-  const RemovedDiscussion = {
-    discussion_id:discussion_id      
-}
-  axios.post('http://localhost:4000/users/removeFromReadingList',RemovedDiscussion)
-   .then().catch();
-   window.location.reload(); //refreshes page automatically 
-
-}
-
-
-
-render(){
-  var { discussions } = this.state;
-  var size = 5;
-  
-
-  const discussionList = discussions.reverse().sort((a,b)=> b.likes - a.likes).map(discussion => {
-    return(
-      <Fragment  key={discussion._id}>
-        <Card className='discussion-post'>
-          <a href="/login" className="miniprofile-post-redirect"><CardContent>
-            <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
-                <span class="showme"> <b>{discussion.user}</b></span></span>
-                  {discussion.society == null ? (
-                    <span> in <b style={{color:'green'}}>General</b></span>
-                  ) : (
-                    <span> in <b style={{color:'green'}}>{discussion.society}</b></span>
-                  )}<br/>
-                  <span style={{color:'gray', fontSize:12}}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-
-                    
-                  {discussion.picture == null && <div></div> }  
-                  {discussion.picture && <Image className="post-image" src={discussion.picture} /> } 
-                </span><br/>
-                <span  className="title-post">{discussion.title}</span><br/>
-                <span  className="content-post">{discussion.content.slice(0,200)}</span>
-          </CardContent></a>
+                {discussion.thumbnail_pic == null && <div></div>} 
+                {discussion.thumbnail_pic && <Image className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
+              </span><br />
+              <span className="title-post">{discussion.title}</span><br />
+              <span className="content-post">{discussion.content.slice(0, 200)}</span>
+            </CardContent></a>
             <CardActions>
-              <Button size="small" color="primary" href="/login">
-                Like Post
-              </Button>
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                {discussion.likes === 0 && <></>}
+                {discussion.likes === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+              </button></a>
 
-              <Button size="small" color="primary" href="/login">
-                <BsChat size={15} style={{marginRight:5}}/> Add Comment 
-              </Button>
+
+              <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
+                <RiChat1Line size={20}/> 
+                {discussion.comments.length === 0 && <span> Add comment</span>}
+                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+
+              </button></a>
 
             </CardActions>
+
+          </Card>
+
+        </Fragment>
+      )
+    })
+
+    return (
+      <Container>
+        <Row>
+          <Col sm></Col>
+          <Col sm>
+            <div className="filter-options">
+              <a href="/top"><button className="feed-option-active">Top</button></a>
+              <a href="/trending"><button className="feed-option-active">Trending</button></a>
+              <a href="/new"><button className="feed-option-active">New</button></a>
+            </div>
+
+
+            {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
+            {!this.state.isLoading && <div>{discussionList}</div>}            
+
+          </Col>
+
+          <Col sm>
+            <Recommended/>
+          </Col>
+          <Col sm>
             
-          </Card> 
-          
-      </Fragment>
-    )})
+          </Col>
 
-  return (
-  <>
-    <nav class="navbar justify-content-center fixed-top">
-          <ul class="nav justify-content-center">
-          <li class="nav-item">
-              <a class="nav-link" href="/login"><BsLightningFill size={25}/> LOGIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="/landing" className="header">NAME</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/join"><BsLightningFill size={25}/> JOIN</a>
-            </li>
-          </ul>
-        </nav>
-
-    <Container>
-      <Row>
-        <Col sm></Col>
-        <Col sm>
-          <div className="filter-options">
-            <a href="/top"><button className="feed-option-active">Top</button></a>
-          </div>
-          
-
-          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
-          {!this.state.isLoading &&  <div>{discussionList}</div>}
-        </Col>
-
-        <Col sm><Recommended/><Contributors/></Col>
-        <Col sm></Col>
-
-      </Row>
-    </Container>
-  </>
-  );
-}
+        </Row>
+      </Container>
+    );
+  }
 }
