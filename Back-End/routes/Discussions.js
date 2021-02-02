@@ -42,7 +42,11 @@ discussions.get('/getDiscussions', (req, res) => {
 
 discussions.get('/get-discussion-feed', (req, res) => {
 
-    var query = DiscussionModel.find({}).select('user society time thumbnail_pic title content likes comments')
+    var query = DiscussionModel
+        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .select('user society time thumbnail_pic title content likes comments')
+        .sort({'likes': -1})
+        .limit(8)
 
     query.exec(function (err, data) {
         if (err) return next(err);
@@ -51,6 +55,26 @@ discussions.get('/get-discussion-feed', (req, res) => {
         });
     });
 
+})
+
+discussions.get('/get-following-feed', (req, res) => {
+
+    // Gets discussions for the given user ID
+    var query = DiscussionModel
+        .find({user_id: req.query.id})
+        .select('user society time thumbnail_pic title content likes comments')
+        .sort({'likes': -1})
+
+    query.exec(function (err, data) {
+        // error check
+        if (err) return next(err);
+        if(data[0]) {
+            res.json({
+                discussions: data
+            });
+        }
+    });
+    
 })
 
 discussions.get('/get-discussion-page', (req, res) => {

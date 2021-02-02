@@ -99,7 +99,7 @@ export default class MyProfile extends React.Component {
               <div className="community-profile">
                 <span>
                   <Image src={this.state.user.pic} className="profile-image" roundedCircle/>
-                  <button className="community-btn-a" >Settings</button>
+                  <button className="community-btn-a" onClick={() => window.location = '/settings'}>Settings</button>
                 </span>
 
                 <br/>
@@ -130,11 +130,17 @@ export default class MyProfile extends React.Component {
             </div>
 
             <div className="contributors-container">
-              <span>Communities</span>
-              {this.state.societies.map(society =>
-                <span key={society._id}>
-                  <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
-                </span>)}
+              <span>Communities</span><br/>
+
+              {this.state.societies[0] == undefined ? (
+                <div></div>
+              ) : (
+                this.state.societies.map(society =>
+                  <span key={society._id}>
+                    <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
+                  </span>
+                )
+              )}
             </div>
           </Col>
           <Col sm></Col>

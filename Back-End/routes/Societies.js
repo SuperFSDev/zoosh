@@ -117,12 +117,28 @@ societies.get('/get-explore-societies', (req, res) => {
             }
         }],
         (err, data) => {
-            console.log(data);
             res.json({
                 societies: data
             });
         });
 
+})
+
+societies.get('/get-users-societies', (req, res) => {
+
+    // Gets communities of the given user for the community list on profile.
+    var query = SocietyModel
+        .find({users: req.query.id})
+        .select('name picture score')
+        .sort({'score': -1})
+        .limit(10)
+
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            users: data
+        });
+    });
 })
 
 societies.post('/update', (req, res) => {

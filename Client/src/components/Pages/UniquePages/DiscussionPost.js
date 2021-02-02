@@ -46,7 +46,6 @@ export default class DiscussionPost extends React.Component {
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
           id: this.state.discussion_id,
-
         }
 
       })
@@ -266,7 +265,8 @@ export default class DiscussionPost extends React.Component {
                   </a>
                 </p>
 
-                <Image src={this.state.discussion.full_pic} className="thumbnail"/>
+                {/* <Image src={this.state.discussion.full_pic} className="thumbnail"/> */}
+                <img src={this.state.discussion.full_pic} className="thumbnail"/>
               </p>
             
               <p className="post-content">{this.state.discussion.content}</p>

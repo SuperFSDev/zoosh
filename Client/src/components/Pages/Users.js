@@ -27,7 +27,7 @@ export default class ListSocieties extends React.Component {
       var user_id = new URLSearchParams(this.props.location.search).get("id");
   
   
-      axios.get('http://localhost:4000/users/get-user-details', {
+      /*axios.get('http://localhost:4000/users/get-user-details', {
         params: {
           id: user_id
         }
@@ -43,9 +43,9 @@ export default class ListSocieties extends React.Component {
         })
         .catch((error) => {
           console.log(error);
-        });
+        });*/
 
-      axios.get('http://localhost:4000/users/getUsers')
+      axios.get('http://localhost:4000/users/get-users-list')
       .then((response)=>{
           this.setState({users: response.data.users,
             isLoading: false})

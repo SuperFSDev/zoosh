@@ -182,12 +182,28 @@ users.get('/get-users-radar', (req, res) => {
             }
         }],
         (err, data) => {
-            console.log(data);
             res.json({
                 users: data
             });
-        });
+        }).sort({'score': -1});
 
+})
+
+users.get('/get-users-list', (req, res) => {
+
+    // Gets users for the user list.
+    var query = UserModel
+        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .select('fullname pic score')
+        .sort({'score': -1})
+        .limit(10)
+
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            users: data
+        });
+    });
 })
 
 users.post('/edit-user-profile', (req, res) => {

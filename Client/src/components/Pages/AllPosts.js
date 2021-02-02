@@ -42,7 +42,7 @@ export default class AllPosts extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     document.body.style.backgroundColor = "#F7F7F7";
 
     this.getUserDetails();
@@ -54,9 +54,9 @@ export default class AllPosts extends React.Component {
   }
 
   // Fetching the users Details
-  async getUserDetails() {
+  getUserDetails() {
     var user = JSON.parse(localStorage.getItem('user'));
-    await axios.get('http://localhost:4000/users/get-user-details', {
+    axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id
       }
@@ -76,8 +76,8 @@ export default class AllPosts extends React.Component {
   }
 
   // Fetching the discussions
-  async getDiscussions() {
-    await axios.get('http://localhost:4000/discussions/get-discussion-feed')
+  getDiscussions() {
+    axios.get('http://localhost:4000/discussions/get-discussion-feed')
       .then((response) => {
         console.log(response.data);
         this.setState({
@@ -218,7 +218,7 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     var size = 5;
 
-    const discussionList = discussions.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
+    const discussionList = discussions.map(discussion => {
       return (
         <Fragment key={discussion._id}>
           <Card className='discussion-post'>
@@ -241,14 +241,8 @@ export default class AllPosts extends React.Component {
             </CardContent></a>
             <CardActions>
                 {discussion.likes === 0 && <></>}
-<<<<<<< HEAD
-                {discussion.likes  === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
-                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
-              </button></a>
-=======
                 {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
            
->>>>>>> 1d4983c547761f8a18d9a4830d41cd34b03eb473
 
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 <RiChat1Line size={20}/> 
