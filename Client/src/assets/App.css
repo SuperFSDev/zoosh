@@ -5,8 +5,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 .navbar{
-  background:#393e46;
+  /* background:#393e46; */
+  background:white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 
@@ -16,8 +19,12 @@
   overflow: hidden;        
   flex-wrap: nowrap;     
   justify-content: space-between; 
-  background-color: #222831;
-
+  /* background-color: #222831; */
+  background:white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  position:fixed;
+  z-index: 999;
+  width: 100%;
 }
 #container > div {
   width: 550px;
@@ -73,7 +80,7 @@
 .discussion-container{
   padding:50px;
   text-align: left;
-  margin-top: 2vh;
+  margin-top:10vh;
   background-color: white;
   border:1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -171,9 +178,10 @@
   text-decoration: none!important;
   font-size: 2rem !important;
   font-weight: bolder;
-  color: #f8b500  !important;
-  font-family: 'Paytone One', sans-serif;
-
+  color:black;
+  /* color: #f8b500  !important; */
+  /* font-family: 'Paytone One', sans-serif; */
+  font-family: 'Comfortaa', cursive;
 }
 .navmenu { margin: 0 auto }
 .navlink { display: flex; justify-content: center }
@@ -528,7 +536,8 @@
 }
 
 .link{
-  color:#d9e1e8  !important;
+  color:black;
+  /* color:#d9e1e8  !important; */
   font-size: 14px;
   font-weight: 500;
   text-decoration: none!important;
@@ -553,7 +562,7 @@
   cursor: pointer;
 }
 
-.link:hover,.link-right:hover{color: #f8b500!important;}
+/* .link:hover,.link-right:hover{color: #f8b500!important;} */
 
 .feed-option{
   border:none;
@@ -880,7 +889,7 @@
 
 
 .new-post-feed{
-  margin-top: 25px;
+  margin-top:10vh;
   padding:50px;
   width:850px!important;
   background-color: white;
@@ -986,7 +995,7 @@
   overflow:hidden; 
   overflow-y:scroll;
   transition: 0.2s;
-  margin-top:1vh;
+  margin-top:7vh;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
@@ -1015,7 +1024,7 @@
   padding:10px;
   border-radius: 5px;
   width:700px;
-  margin-top:2vh;
+  margin-top:10vh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -1080,7 +1089,7 @@
   border-radius: 5px;
   position: fixed!important;
   z-index: 1001!important;
-  margin-top: 1vh;
+  margin-top:7vh;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 .uname-feed{
@@ -1121,6 +1130,8 @@
   margin-top: 1rem;margin-bottom: 1rem;border:1px solid gray;padding:50px; width:1000px;
   border-radius: 5px;
   background:white;
+  margin-top:10vh;
+
 }
 
 /* .nav-item{margin:0  3vh  0 1vh;} */
@@ -2096,7 +2107,7 @@ section::after {
   border:1px solid lightgray;
   text-align: left;
   border-radius: 5px;
-  margin-top: 2vh;
+  margin-top:10vh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -2159,7 +2170,7 @@ section::after {
   position: -webkit-sticky;
   position: sticky;
   top: 4rem;
-  margin-top: 1vh;
+  margin-top:9vh;
   text-align: center;
 }
 
@@ -2716,7 +2727,7 @@ section::after {
   border:1px solid lightgray;
   background-color:white;
   border-radius: 5px;
-  margin-top: 2vh;
+  margin-top: 10vh;
   width:700px;
   padding:10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;

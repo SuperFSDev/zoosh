@@ -21,7 +21,6 @@ import Forums from './components/Pages/Forum'
 import NavBar from './components/Navbar'
 import CommunityPage from './components/Pages/UniquePages/CommunityPage'
 import AccountSettings from './components/Profile/AccountSettings'
-import UserConnections from './components/Pages/UserConnections'
 import Landing from './components/Pages/Landing/Landing'
 import Users from './components/Pages/Users'
 import NewPost from './components/Pages/NewPost'
@@ -43,7 +42,6 @@ class App extends React.Component {
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>
               <Route path="/d" component={DiscussionPost}/>
-              <Route path="/connections" component={UserConnections}/>
               <Route path="/leaderboard" component={Leaderboard}/>
               <Route path="/u" component={ViewProfile}/>
               <Route path="/users" component={Users}/>

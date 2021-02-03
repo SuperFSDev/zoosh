@@ -115,7 +115,7 @@ render(){
         <div id="top"></div>
           <div id="container">
             <div><SearchbarFilter/></div>
-            <div className="div2"><a href="/" className="header">NAME</a></div>
+            <div className="div2"><a href="/" className="header">wagwan</a></div>
             <div>
               <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
               <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
