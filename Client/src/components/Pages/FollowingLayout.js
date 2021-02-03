@@ -46,7 +46,7 @@ export default class Feed extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    axios.get('http://localhost:4000/users/get-user-details', {
+    axios.get('http://localhost:4000/users/get-followed-users', {
       params: {
         id: user._id,
       }

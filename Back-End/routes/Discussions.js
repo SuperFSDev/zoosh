@@ -5,6 +5,9 @@ const discussions = express.Router();
 //import model
 const DiscussionModel = require('../models/Discussion');
 
+//import multer and gridfs storage engine
+const singleUpload = require('../server');
+
 //Use headers to give browser access to resources
 discussions.use(cors());
 discussions.use(function (req, res, next) {

@@ -206,6 +206,23 @@ users.get('/get-users-list', (req, res) => {
     });
 })
 
+users.get('/get-followed-users', (req, res) => {
+
+    // Gets users for the user list.
+    var query = UserModel
+        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .select('following')
+        .sort({'score': -1})
+        .limit(10)
+
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            users: data
+        });
+    });
+})
+
 users.post('/edit-user-profile', (req, res) => {
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {
