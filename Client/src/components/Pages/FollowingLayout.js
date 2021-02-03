@@ -190,7 +190,7 @@ export default class Feed extends React.Component {
             <div className="filter-options">
               <a href="/"><button className="feed-option-active">Following</button></a>
               <a href="/top"><button className="feed-option">Top</button></a>
-              <a href="/new"><button className="feed-option-post">Create Post</button></a>
+              <a href="/new"><button className="write-button">Write a Post</button></a>
 
             </div>
             {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}

@@ -116,8 +116,8 @@ render(){
 
             <Container>
           <Row>
-            <Col></Col>
-            <Col>
+            <Col sm></Col>
+            <Col sm>
             <div className="reading-list">
             <h3>Reading List ({this.state.readingList.length})</h3><br/>
             {this.state.posts.slice(0,10).reverse().map(post=>  (
@@ -138,7 +138,7 @@ render(){
                   ))} 
             </div>
             </Col>
-            <Col></Col>
+            <Col sm></Col>
           </Row>
         </Container>
        </Fragment>

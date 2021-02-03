@@ -118,7 +118,8 @@ render(){
 
       <Container>
         <Row>
-          <Col>
+          <Col sm></Col>
+          <Col sm>
           <div className="search-div">
             <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
               />
@@ -153,7 +154,9 @@ render(){
               </div>
           </Col>
 
-          <Col><Recommended/><Contributors/></Col>
+          <Col sm><Recommended/><Contributors/></Col>
+          <Col sm></Col>
+
         </Row>
       </Container>    
   </div>

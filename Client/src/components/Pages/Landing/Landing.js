@@ -18,8 +18,8 @@ import Button from '@material-ui/core/Button';
 import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
 import Avatar from '@material-ui/core/Avatar';
 import {IoMdPlanet} from 'react-icons/io'
-import ScrollToTop from 'react-scroll-up'
-export default class AllPosts extends React.Component {
+
+export default class Landing extends React.Component {
 
 
   constructor(props) {
