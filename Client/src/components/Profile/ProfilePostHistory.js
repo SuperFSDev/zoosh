@@ -24,6 +24,7 @@ export default class History extends React.Component {
       }
     })
       .then((response) => {
+        console.log(response);
         this.setState({
           posts: this.state.posts.concat(response.data.discussion)
         })
@@ -59,7 +60,9 @@ export default class History extends React.Component {
 
   render() {
 
+    console.log("==============");
     console.log(this.state.posts);
+    console.log("==============");
     return (
       <div>
 

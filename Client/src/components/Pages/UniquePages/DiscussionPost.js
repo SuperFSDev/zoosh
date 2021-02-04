@@ -37,17 +37,17 @@ export default class DiscussionPost extends React.Component {
   }
 
     componentDidMount() {
-      this.setState({discussion_id: new URLSearchParams(this.props.location.search).get("id")});
+      var id = new URLSearchParams(this.props.location.search).get("id");
 
       document.body.style.backgroundColor = "#F7F7F7";
       this.getUserDetails();
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
         params: {
-          id: this.state.discussion_id,
+          id: id,
         }
-
       })
         .then((response) => {
+          console.log(response);
           this.setState({ 
             discussion: response.data.discussion,
             comments:response.data.discussion.comments,

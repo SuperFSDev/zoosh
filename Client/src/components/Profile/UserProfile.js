@@ -65,7 +65,8 @@ export default class UserProfile extends React.Component {
 
     await axios.get(`http://localhost:4000/users/get-user-details`, {
       params: {
-        id: user_id
+        id: user_id,
+        fields: 'fullname followers following posts likedPosts pic societies badges college time score'
       }
     })
 
