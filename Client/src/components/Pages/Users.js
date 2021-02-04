@@ -23,9 +23,7 @@ export default class ListSocieties extends React.Component {
       }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
-      var user_id = new URLSearchParams(this.props.location.search).get("id");
-  
+      document.body.style.backgroundColor = "#F7F7F7";  
   
       /*axios.get('http://localhost:4000/users/get-user-details', {
         params: {
@@ -62,11 +60,8 @@ export default class ListSocieties extends React.Component {
     }
 
 render(){
-  var{users} = this.state;
   var size = 10;
-  var user = JSON.parse(localStorage.getItem('user'));
-
-
+  
   let filteredUsers = this.state.users.filter(
 
     (user) => {
@@ -88,7 +83,7 @@ render(){
           <span>{user.fullname} <b className="user-score">{user.score}</b></span>
           
         </p>
-        <h5></h5>
+        {/* <h5></h5> */}
           
           
       </div></a>

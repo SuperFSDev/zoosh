@@ -3,14 +3,17 @@ import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown} from 'react-bootstrap'
-import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
+<<<<<<< HEAD
 import {BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsSearch} from 'react-icons/bs'
+=======
+import {BsBellFill,BsBookmarks,BsReplyAll,BsLightningFill} from 'react-icons/bs'
+>>>>>>> 1fc84b1e2a816f076a29fb6f06410d372da8ad0d
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
-import {BiPlanet,BiChart} from 'react-icons/bi'
+import {BiChart} from 'react-icons/bi'
 import {IoMdPlanet} from 'react-icons/io'
 
 export default class NavBar extends React.Component {
@@ -24,7 +27,6 @@ export default class NavBar extends React.Component {
         followers:[],
         showMenu: false,
         showProfile: false,
-        user: '',
         searchValue: '',
         filterBy: '',
         users: [],
@@ -91,14 +93,15 @@ export default class NavBar extends React.Component {
 
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
-              id: user._id
+              id: user._id,
+              fields: 'score pic'
           }
       })
           .then((response) => {
+              console.log(response);
               this.setState({ user: response.data.user,
-                following: response.data.user.following,
-                followers: response.data.user.followers,
-
+                // following: response.data.user.following,
+                // followers: response.data.user.followers,
               })
           })
           .catch((error) => {
@@ -199,23 +202,21 @@ render(){
   }
 }
 
+// function InviteFriend() {
+//   const [modalShow, setModalShowText] = React.useState(false);
 
 
-function InviteFriend() {
-  const [modalShow, setModalShowText] = React.useState(false);
+//   return (
+//     <div>
+//             <Dropdown.Item onClick={() => setModalShowText(true)}><BsReplyAll/> Invite a Friend</Dropdown.Item>
 
-
-  return (
-    <div>
-            <Dropdown.Item onClick={() => setModalShowText(true)}><BsReplyAll/> Invite a Friend</Dropdown.Item>
-
-            <InviteModal
-                show={modalShow}
-                onHide={() => setModalShowText(false)}
-            />
-    </div>
-  );
-}
+//             <InviteModal
+//                 show={modalShow}
+//                 onHide={() => setModalShowText(false)}
+//             />
+//     </div>
+//   );
+// }
 
 function InviteModal(props) {
 

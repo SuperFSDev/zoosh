@@ -1,16 +1,14 @@
-import React, {Fragment} from 'react';
+import React  from 'react';
 import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal ,OverlayTrigger, Tooltip, Image, Row, Col, Container} from 'react-bootstrap';
+import {Modal, Row, Col, Container} from 'react-bootstrap';
 import CreateASoc from './CreateASoc'
-import {FaUserFriends} from 'react-icons/fa'
 import background from "../../images/group.jpg";
 import Skeleton from 'react-loading-skeleton';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import SearchbarFilter from '../Common/SearchbarFilter'
 import Avatar from '@material-ui/core/Avatar';
 
 export default class ListSocieties extends React.Component {
@@ -40,7 +38,8 @@ export default class ListSocieties extends React.Component {
           }
       })
         .then((response) => {
-            this.setState({ user: response.data.user,
+            this.setState({ 
+                user: response.data.user,
                 following: response.data.user.following,
                 socs:response.data.user.societies
 
@@ -50,7 +49,11 @@ export default class ListSocieties extends React.Component {
             console.log(error);
         });
     
-        axios.get('http://localhost:4000/societies/getSocieties')
+        axios.get('http://localhost:4000/societies/get-societies', {
+          params: {
+            fields: 'name picture'
+          }
+        })
           .then((response) => {
             console.log(response.data);
             this.setState({ 
@@ -76,11 +79,6 @@ export default class ListSocieties extends React.Component {
       }
 
 render(){
-  var user = JSON.parse(localStorage.getItem('user'));
-  if(user) 
-  {
-      var fullname = user.fullname;
-  }
 
   let filteredSocietiesByName = this.state.societies.filter(
 

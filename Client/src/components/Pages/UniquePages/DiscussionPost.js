@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
+import React  from 'react';
 import '../../../assets/App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {  OverlayTrigger,Tooltip, Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import moment from 'moment'
-import { Image, Card, Button} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
-import {BsChat,BsBookmark,BsBookmarkFill,BsThreeDots} from 'react-icons/bs'
+import { BsBookmark,BsBookmarkFill } from 'react-icons/bs'
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import {RiShieldStarLine} from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
-import ReadMore from '../../Common/ReadMore'
 import cogoToast from 'cogo-toast'
 
 
@@ -38,7 +37,8 @@ export default class DiscussionPost extends React.Component {
   }
 
     componentDidMount() {
-      this.state.discussion_id = new URLSearchParams(this.props.location.search).get("id");
+      this.setState({discussion_id: new URLSearchParams(this.props.location.search).get("id")});
+
       document.body.style.backgroundColor = "#F7F7F7";
       this.getUserDetails();
       axios.get('http://localhost:4000/discussions/get-discussion-page', {
@@ -218,8 +218,8 @@ export default class DiscussionPost extends React.Component {
 
 
     isLiked(discussion_id, user_id, likes) {
-      if (this.state.likedPosts.includes(discussion_id) == true) {
-        return ( <span className="voting-btn"><button aria-label="remove" className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
+      if (this.state.likedPosts.includes(discussion_id) === true) {
+        return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
           <Image src={Clapping} size={30}/> {this.state.discussion.likes}</button><br/></span>
         
         )
@@ -235,7 +235,7 @@ export default class DiscussionPost extends React.Component {
     }
 
     isInReadingList(discussion_id,user_id) {
-      if (this.state.readingList.includes(discussion_id) == true) {
+      if (this.state.readingList.includes(discussion_id) === true) {
         return (  <span className="voting-btn">
           <button aria-label="remove"  className="standard-option-btn-post" onClick={() =>{this.RemoveFromReadingList(discussion_id,user_id)}}><BsBookmarkFill size={30} /></button></span>
         
@@ -304,9 +304,8 @@ export default class DiscussionPost extends React.Component {
                   </a>
                 </p>
 
-                {/* <Image src={this.state.discussion.full_pic} className="thumbnail"/> */}
-                {this.state.discussion.full_pic == null && <div></div>}
-                {this.state.discussion.full_pic && <div> <img alt="Thumbnail" src={this.state.discussion.full_pic} className="thumbnail"/></div>}
+                <Image src={this.state.discussion.full_pic} className="thumbnail"/>
+                {/* <img src={this.state.discussion.full_pic} className="thumbnail"/> */}
               </p>
             
               <p className="post-content">{this.state.discussion.content}</p>

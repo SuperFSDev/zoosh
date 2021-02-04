@@ -7,16 +7,16 @@ import { Image, Row, Col, Container } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { Helmet } from 'react-helmet'
-import cogoToast from 'cogo-toast'
-import { BsBrightnessLow, BsChat } from 'react-icons/bs'
 import Skeleton from 'react-loading-skeleton';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { RiHeart2Line, RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
+import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../images/clap.png'
+
+// Allows array of following ids to be passed as params
+var qs = require('qs');
 
 export default class Feed extends React.Component {
 
@@ -29,7 +29,6 @@ export default class Feed extends React.Component {
       comments: [],
       following: [],
       comment: '',
-      comments: [],
       user: '',
       pic: '',
       claps: 0,
@@ -52,10 +51,9 @@ export default class Feed extends React.Component {
       }
     })
       .then((response) => {
+        console.log(response);
         this.setState({
-          following: response.data.user.following,
-          claps: response.data.user.claps,
-          likedPosts: response.data.user.likedPosts
+          following: response.data.users,
         })
         this.GetFollowingPosts();
       })
@@ -63,60 +61,34 @@ export default class Feed extends React.Component {
         console.log(error);
       });
 
-
-    // for (var i = 0; i < this.state.FollowingID.length; i++) {
-    //   this.GetFollowedUser(this.state.FollowingID[i])
-    // }
   }
-
-  /*GetFollowedUser(FollowingID) {
-    axios.get('http://localhost:4000/discussions/get-following-discussions', {
-      params: {
-        id: FollowingID,
-      }
-    })
-      .then((response) => {
-        console.log(response.data.discussion);
-        this.setState({
-          posts: this.state.posts.concat(response.data.discussion),
-          isLoading: false,
-        })
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }*/
 
   GetFollowingPosts()
   {
-    console.log("Getting following posts");
-
-    this.state.following.map(following_id => {
-      axios.get('http://localhost:4000/discussions/get-following-feed', {
-        params: {
-          id: following_id
-        }
-      })
-      .then((response) => {
-          console.log(response.data);
-          this.setState({
-            posts: this.state.posts.concat(response.data.discussions),
-            isLoading: false,
-          }) 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    axios.get('http://localhost:4000/discussions/get-following-feed', {
+      params: {
+        ids: this.state.following
+      },
+      paramsSerializer: params => {
+        return qs.stringify(params);
+      }
     })
-
-    console.log("finished map");
+    .then((response) => {
+        console.log(response);
+        this.setState({
+          posts: response.data.discussions,
+          isLoading: false,
+        }) 
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   // Render hide/show comment section
   CheckPost(id, post_id) {
     var user = JSON.parse(localStorage.getItem('user'));
-    if (id == user._id) {
+    if (id === user._id) {
       return (
         <div>
           <Button size="small" color="primary" onClick={() => { this.onDeletePost(id, post_id) }}>

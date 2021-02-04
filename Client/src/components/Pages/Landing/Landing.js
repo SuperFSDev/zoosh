@@ -2,22 +2,16 @@ import React, { Fragment } from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../../Lists/Recommended'
-import Contributors from '../../Lists/Contributors'
 import { Image, Row, Col, Container } from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { Helmet } from 'react-helmet'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { BsBrightnessLow, BsChat, BsThreeDots } from 'react-icons/bs'
+import Skeleton from 'react-loading-skeleton';
 import Clap from '../../../images/clap.png'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
-import Avatar from '@material-ui/core/Avatar';
-import {IoMdPlanet} from 'react-icons/io'
+import { RiChat1Line } from 'react-icons/ri'
 
 export default class Landing extends React.Component {
 
@@ -85,9 +79,8 @@ export default class Landing extends React.Component {
   render() {
     var { discussions } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-    var size = 10;
 
-    const discussionList = discussions.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
+    const discussionList = discussions.map(discussion => {
       return (
         <Fragment key={discussion._id}>
           <Card className='discussion-post'>

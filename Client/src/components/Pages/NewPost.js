@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import { Helmet } from 'react-helmet'
 import axios from 'axios';
-import { Form, Row, Col, Container, NavItem } from 'react-bootstrap';
+import { Form, Row, Col, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
 
@@ -33,7 +33,6 @@ export default class NewPost extends React.Component {
       FollowingID: ''
     };
 
-    var user;
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
     this.onChangeContent = this.onChangeContent.bind(this);
@@ -52,7 +51,8 @@ export default class NewPost extends React.Component {
 
     if (this.user)
       var fullname = this.user.fullname;
-    this.state.user = fullname;
+    
+    this.setState({user: fullname});
 
     // Gets all users from the database.
     this.getUsers();
@@ -108,7 +108,7 @@ export default class NewPost extends React.Component {
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
       if (data[0]) {
-        var data = data[0];
+        data = data[0];
         var b64 = data.prefix + data.data;
 
         this.setState({
@@ -127,7 +127,7 @@ export default class NewPost extends React.Component {
       resize: true, // defaults to true, set false if you do not want to resize the image width and height
     }).then((data) => {
       if (data[0]) {
-        var data = data[0];
+        data = data[0];
         var b64 = data.prefix + data.data;
 
         this.setState({
@@ -217,13 +217,13 @@ export default class NewPost extends React.Component {
 
     let options = null;
     
-    if(this.state.societies[0] != undefined)
+    if(this.state.societies[0] !== undefined)
     {
       options = this.state.societies.map(function (society) {
         return { value: society.name, label: society.name };
       })
     } else {
-      this.state.tags = "General";
+      this.setState({tags: "General"});
     }
       
     return (

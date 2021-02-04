@@ -26,9 +26,6 @@ class Contributors extends React.Component {
   render(){
 
     var{users} = this.state;
-    let i = 0;
-    var size = 3;
-    var k =0;
 
     const shuffledUsers = users; //shuffleArray(users);
 

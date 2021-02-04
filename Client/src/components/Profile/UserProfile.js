@@ -5,8 +5,6 @@ import {Image, Row, Col, Container} from 'react-bootstrap'
 import History from './ProfilePostHistory'
 // import addUserToFollow from './AddUserToFollow'
 import {Helmet} from 'react-helmet'
-import Avatar from '@material-ui/core/Avatar';
-import cogoToast from 'cogo-toast'
 import moment from 'moment'
 import{RiCake3Line} from 'react-icons/ri'
 
@@ -194,7 +192,7 @@ checkIfNull(discussion){
 isMyProfile(fullname,discussionUser){
   let user_id = new URLSearchParams(this.props.location.search).get("id");
   var getUser = JSON.parse(localStorage.getItem('user'))
-  if(user_id ==getUser._id ){
+  if(user_id === getUser._id ){
     return(<div>
        <b>You</b> clapped to a post written by <b>{discussionUser}.</b>
     </div>)
@@ -210,9 +208,6 @@ isMyProfile(fullname,discussionUser){
   render() {
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
-    var user = JSON.parse(localStorage.getItem('user'));
-    var pp = user.pic;
-    var size = 5;
 
     return (
       <>

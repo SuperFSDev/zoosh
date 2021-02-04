@@ -34,50 +34,54 @@ discussions.post('/NewDiscussions', (req, res) => {
 
 })
 
-discussions.get('/getDiscussions', (req, res) => {
+// New get discussion query, selected fields are passed in when calling axios.get
+discussions.get('/get-discussions', (req, res) => {
 
-    DiscussionModel.find((error, data) => {
-        res.json({
-            discussions: data
-        });
-    })
-})
-
-discussions.get('/get-discussion-feed', (req, res) => {
-
-    var query = DiscussionModel
+    if(req.query.fields)
+    {
+        var query = DiscussionModel
         .find({/* Can input limitations e.g post likes greater than 0 */})
-        .select('user society time thumbnail_pic title content likes comments')
+        .select(req.query.fields)
         .sort({'likes': -1})
-        .limit(8)
+        //.limit(8)
 
-    query.exec(function (err, data) {
-        if (err) return next(err);
-        res.json({
-            discussions: data
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                discussions: data
+            });
         });
-    });
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE:/get-discussions ");
+    }
 
 })
 
 discussions.get('/get-following-feed', (req, res) => {
 
-    // Gets discussions for the given user ID
-    var query = DiscussionModel
-        .find({user_id: req.query.id})
-        .select('user society time thumbnail_pic title content likes comments')
-        .sort({'likes': -1})
+    var following = req.query.ids.following;
+    var discussions = [];
 
-    query.exec(function (err, data) {
-        // error check
-        if (err) return next(err);
-        if(data[0]) {
-            res.json({
-                discussions: data
-            });
-        }
-    });
-    
+    for(var i = 0; i < following.length; i++) 
+    {
+        // Gets discussions for the given user ID
+        var query = DiscussionModel
+            .find({user_id: following[i]})
+            .select('user society time thumbnail_pic title content likes comments')
+            .sort({'likes': -1})
+        
+        query.exec(function (err, data) {
+            // Error check
+            if (err) return next(err);
+
+            discussions.push(data);
+            if(discussions.length == following.length) {
+                res.json({
+                    discussions: data
+                });
+            }
+        });
+    }
 })
 
 discussions.get('/get-discussion-page', (req, res) => {

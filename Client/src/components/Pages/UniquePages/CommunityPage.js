@@ -1,21 +1,17 @@
 import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, OverlayTrigger,Tooltip,Modal, Form, Container, Row, Col} from 'react-bootstrap'
+import {Image, Container, Row, Col} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
-import { RiCake2Fill } from 'react-icons/ri'
-import {RiAddFill} from 'react-icons/ri'
-import {BsChat} from 'react-icons/bs';
 import cogoToast from 'cogo-toast'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Skeleton from 'react-loading-skeleton';
+import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../../images/clap.png'
 
 export default class CommunityPage extends React.Component {
@@ -45,13 +41,13 @@ export default class CommunityPage extends React.Component {
         }
       })
       .then((response) => {
-        this.setState({ society: response.data.society,
+        this.setState({ 
+          society: response.data.society,
           users:response.data.society.users,
           mods:response.data.society.mods,
           admin:response.data.society.admin,
           isLoading:false,
-          society: response.data.society})
-          console.log(this.state.society.picture);
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -76,13 +72,11 @@ export default class CommunityPage extends React.Component {
 
     addUser(soc) {
       addUserToSoc(soc);
-      var user = JSON.parse(localStorage.getItem('user'));
     } 
       
     render(){
       var title = this.state.society.name + " - Website"
-      var{users} = this.state;
-      let i, k = 0;
+      // var{users} = this.state;
      
       var user = JSON.parse(localStorage.getItem('user'));
 

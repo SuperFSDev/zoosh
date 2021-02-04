@@ -67,12 +67,6 @@ export default class Two extends React.Component {
       
 render(){
 
-  var user = JSON.parse(localStorage.getItem('user'));
-  if(user) 
-  {
-      var fullname = user.fullname;
-  }
-
   var{users} = this.state;
     let i = 0;
     let k = 0;
