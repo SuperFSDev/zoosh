@@ -220,7 +220,7 @@ export default class DiscussionPost extends React.Component {
     onSubmit(e) {
       var user = JSON.parse(localStorage.getItem('user'));  
       const newComment = {
-        _id:this.state.discussion_id,
+        _id:this.state.discussion._id,
         comment:{
         user_id: user._id,
         user_name: user.fullname,
@@ -239,7 +239,7 @@ export default class DiscussionPost extends React.Component {
     time:new Date().getTime()
     }
 }
-axios.post('http://localhost:4000/discussions/addComment', newComment)
+axios.post('http://localhost:4000/discussions/CreateComment', newComment)
    .then()
    .catch();
 // Adds the discussion to liked list
