@@ -54,8 +54,8 @@ export default class NewPost extends React.Component {
     
     this.setState({user: fullname});
 
-    // Gets all users from the database.
-    this.getUsers();
+    // // Gets all users from the database.
+    // this.getUsers();
 
     // Get the societies the current user is in from the database.
     this.getUserSocieties();
@@ -138,39 +138,29 @@ export default class NewPost extends React.Component {
     })
   }
 
-  getUsers() {
-    // Get all users from database.
-    axios.get('http://localhost:4000/users/getUsers')
-      .then((response) => {
-        this.setState({ users: response.data.users })
-        console.log(this.state.users);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // getUsers() {
+  //   // Get all users from database.
+  //   axios.get('http://localhost:4000/users/getUsers')
+  //     .then((response) => {
+  //       this.setState({ users: response.data.users })
+  //       console.log(this.state.users);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   getUserSocieties() {
-    axios.get('http://localhost:4000/users/getUserSocieties', {
+    axios.get('http://localhost:4000/societies/get-users-societies', {
       params: {
-        id: this.user._id
+        id: this.user._id,
       }
     })
       .then((response) => {
-        //this.setState({ societies: response.data.societies })
-        response.data.societies.map(society_id => (
-          axios.get('http://localhost:4000/societies/get-societies-page', {
-            params: {
-              id: society_id
-            }
-          })
-            .then((response) => {
-              var joined = this.state.societies.concat(response.data.society);
-              this.setState({ societies: joined });
-              console.log(this.state.societies);
-            })
-        ));
-      })
+        console.log(response);
+        this.setState({societies: response.data.societies});
+        console.log(this.state.societies);
+      })  
       .catch((error) => {
         console.log(error);
       });
@@ -217,7 +207,7 @@ export default class NewPost extends React.Component {
 
     let options = null;
     
-    if(this.state.societies[0] !== undefined)
+    if(this.state.societies !== undefined)
     {
       options = this.state.societies.map(function (society) {
         return { value: society.name, label: society.name };

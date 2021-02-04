@@ -39,7 +39,7 @@ export default class MyProfile extends React.Component {
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: 'fullname followers posts likedPosts pic societies badges college time score'
+        fields: 'fullname followers likedPosts pic societies badges college time score'
       }
     })
       .then((response) => {
@@ -54,11 +54,39 @@ export default class MyProfile extends React.Component {
           posts: response.data.user.posts,
           likedPosts: response.data.user.likedPosts
         })
-        console.log(this.state.posts);
+        console.log(this.state.societies);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    axios.get('http://localhost:4000/discussions/get-user-discussions', {
+      params: {
+        id: user._id,
+        fields: 'user society time thumbnail_pic title content likes comments user_id',
+        sort: 'likes'
+      }
+    })
+      .then((response) => {
+        if (this.state.post == undefined) {
+          this.setState({
+            posts: response.data.discussions
+          })
+        } else {
+          this.setState({
+            posts: this.state.posts.concat(response.data.discussions)
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    if (this.state.likedPosts != null) {
+      for (var i = 0; i < this.state.likedPosts.length; i++) {
+        this.GetLikedPost(this.state.likedPosts[i])
+      }
+    }
 
     // Loops through society ID's and gets the data for each society.
     this.state.society_ids.map(society_id => (
@@ -72,12 +100,6 @@ export default class MyProfile extends React.Component {
           this.setState({ societies: joined });
         })
     ));
-
-    if (this.state.likedPosts != null) {
-      for (var i = 0; i < this.state.likedPosts.length; i++) {
-        this.GetLikedPost(this.state.likedPosts[i])
-      }
-    }
   }
 
   async GetLikedPost(DiscussionID) {
@@ -104,7 +126,6 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-
     var title = this.state.user.fullname + " - Website"
 
     return (
@@ -130,16 +151,16 @@ export default class MyProfile extends React.Component {
               <Col md>
                 <div className="community-profile">
                   <span>
-                    <Image alt={this.state.user.fullname} src={this.state.user.pic} className="profile-image" roundedCircle />
+                    <Image alt="" src={this.state.user.pic} className="profile-image" roundedCircle />
                     <a href="/settings"><button className="community-btn-a" >Settings</button></a>
                   </span>
 
                   <br />
                   <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
                   <br />
-                  {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
-                  {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                  {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br />
+                  {this.state.followers != null && this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers != null && this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers != null && this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br />
                 </div>
               </Col>
             </div>
@@ -150,8 +171,8 @@ export default class MyProfile extends React.Component {
             <Col sm>
               <div className="community-feed">
                 <div className="top-posts">
-                  {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                  {this.state.posts.length > 0 && <div><History /></div>}
+                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
                 </div>
               </div>
 
@@ -163,7 +184,7 @@ export default class MyProfile extends React.Component {
                   {this.state.likedDiscussions !== undefined && this.state.likedDiscussions.map(discussion =>
                     <p>
                       <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                        <b>You</b> clapped to a post written by <b>{discussion.user}.</b>                        
+                        <b>You</b> clapped to a post written by <b>{discussion.user}.</b>
                       </a>
                       <hr />
                     </p>

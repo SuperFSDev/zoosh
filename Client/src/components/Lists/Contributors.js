@@ -45,7 +45,7 @@ class Contributors extends React.Component {
               ) : (
                 <div>
 
-                {shuffledUsers.map(user  =>  ( 
+                {users.map(user  =>  ( 
                     <a className="-recommended-item-a" href={"/u/?id="+user._id}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">

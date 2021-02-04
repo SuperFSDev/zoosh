@@ -222,7 +222,7 @@ export default class AllPosts extends React.Component {
           <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
               <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><Image alt="Thumbnail" src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
+                <span class="showhim"><a href={"/me"} className="post-link-a"><Image alt="" src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
                 {discussion.society == null ? (
                   <span> in <b style={{ color: 'green' }}>General</b></span>
@@ -232,7 +232,7 @@ export default class AllPosts extends React.Component {
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                 {discussion.thumbnail_pic == null && <div></div>} 
-                {discussion.thumbnail_pic && <Image alt="Thumbail" className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
+                {discussion.thumbnail_pic && <Image alt="" className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
               </span><br />
               <span className="heading">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
@@ -240,8 +240,8 @@ export default class AllPosts extends React.Component {
             <CardActions>
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 {discussion.likes === 0 && <></>}
-                {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="Clap"/> {discussion.likes} reaction</span>}
-                {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="Clap"/> {discussion.likes} reactions</span>}
+                {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt=""/> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt=""/> {discussion.likes} reactions</span>}
               </button></a>
 
 

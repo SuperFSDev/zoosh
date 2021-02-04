@@ -16,7 +16,7 @@ export default class History extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     var user_id = new URLSearchParams(document.location.search).get("id");
     if(user_id == null)
     {
@@ -24,7 +24,7 @@ export default class History extends React.Component {
       user_id = user._id;
     }
 
-    axios.get('http://localhost:4000/discussions/get-user-discussions', {
+    await axios.get('http://localhost:4000/discussions/get-user-discussions', {
       params: {
         id: user_id,
         fields: 'user society time thumbnail_pic title content likes comments user_id',
@@ -84,7 +84,7 @@ export default class History extends React.Component {
                       <span className="title-post" style={{ color: 'black' }}>{post.title}</span><br />
                       <small style={{ color: 'gray', fontSize: 10 }}>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br />
                       {post.thumbnail_pic == null && <div></div>} 
-                      {post.thumbnail_pic && <Image alt="Thumbail" className="post-image" src={post.thumbnail_pic} width={200} height={125}/>} 
+                      {post.thumbnail_pic && <Image alt="" className="post-image" src={post.thumbnail_pic} width={200} height={125}/>} 
                       {post.society == null ? (
                         <span className="post-link-a" >Posted in<b style={{ color: 'green' }}> General</b><br /></span>
                       ) : (

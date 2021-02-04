@@ -172,7 +172,6 @@ export default class CreateASoc extends React.Component {
             time: new Date().getTime(),
             picture: this.state.picture,
             color: this.state.color
-
         };
 
         if (!newSoc.name || !newSoc.college || !newSoc.address) {

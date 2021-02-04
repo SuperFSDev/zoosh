@@ -172,7 +172,7 @@ export default class AdminPage extends React.Component {
   
   
                   {discussion.picture == null && <div></div>} 
-                  {discussion.picture && <Image alt="Thumbnail" className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
+                  {discussion.picture && <Image alt="" className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
                 </span><br />
                 <span className="title-post">{discussion.title}</span><br />
                 <span className="content-post">{discussion.content.slice(0, 200)}</span>
@@ -180,7 +180,7 @@ export default class AdminPage extends React.Component {
               <CardActions>
                 <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary" >
                   {discussion.likes === 0 && <></>}
-                  {discussion.likes > 0 && <span> <Image alt="Clap" src={Clap} size={20} /> {discussion.likes} reactions</span>}
+                  {discussion.likes > 0 && <span> <Image alt="" src={Clap} size={20} /> {discussion.likes} reactions</span>}
                 </button></a>
   
                 <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
@@ -222,7 +222,7 @@ export default class AdminPage extends React.Component {
                     <Col md>
                     <div className="community-profile">
                       <span>
-                        <Image alt={this.state.society.name} src={this.state.society.picture} className="community-image-admin" />
+                        <Image alt="" src={this.state.society.picture} className="community-image-admin" />
                         <button className="follow-community">Community Settings</button>
 
                         </span>

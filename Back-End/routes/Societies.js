@@ -33,8 +33,8 @@ societies.post('/create', (req, res) => {
         instagram: req.body.instagram,
         other: req.body.other,
         picture: req.body.picture,
-        color: req.body.color
-
+        color: req.body.color,
+        users: req.body.admin
         // pic: req.body.pic,
     }
 
@@ -147,7 +147,7 @@ societies.get('/get-users-societies', (req, res, next) => {
     query.exec(function (err, data) {
         if (err) return next(err);
         res.json({
-            users: data
+            societies: data
         });
     });
 })

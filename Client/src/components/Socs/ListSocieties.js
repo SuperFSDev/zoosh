@@ -134,9 +134,9 @@ render(){
                         <div class="miniprofileCommunities">
                             <figure class="headshot">
                               {society.picture == null ? (
-                                  <Avatar alt="community" src={background} className="soc-item-image" roundedCircle/>
+                                  <Avatar alt="" src={background} className="soc-item-image" roundedCircle/>
                                 ) : (
-                                  <Avatar alt="community" src={society.picture} className="soc-item-image" roundedCircle/>
+                                  <Avatar alt="" src={society.picture} className="soc-item-image" roundedCircle/>
                                 )}
                             </figure>
                             <section class="bio-box">
