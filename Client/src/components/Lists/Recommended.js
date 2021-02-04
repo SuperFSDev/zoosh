@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { StickyContainer, Sticky } from 'react-sticky';
-import {BiCompass} from 'react-icons/bi'
+import { StickyContainer } from 'react-sticky';
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
 import {IoMdPlanet} from 'react-icons/io'

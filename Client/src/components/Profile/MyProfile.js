@@ -1,11 +1,10 @@
 import React from 'react';
 import '../../assets/App.css';
-import { Image, OverlayTrigger, Tooltip, Modal, Navbar, Nav, Badge, Row, Col, Container } from 'react-bootstrap'
-import CreateASoc from '../Socs/CreateASoc'
+import { Image, Row, Col, Container } from 'react-bootstrap'
+// import CreateASoc from '../Socs/CreateASoc'
 import axios from 'axios';
 import { Helmet } from 'react-helmet'
-import { VscDiffAdded } from 'react-icons/vsc'
-import Avatar from '@material-ui/core/Avatar';
+// import { VscDiffAdded } from 'react-icons/vsc'
 import History from './ProfilePostHistory'
 
 export default class MyProfile extends React.Component {
@@ -41,9 +40,11 @@ export default class MyProfile extends React.Component {
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
+        fields: 'pic fullname score followers posts societies'
       }
     })
       .then((response) => {
+        console.log(response);
         this.setState({
           user: response.data.user,
           followers: response.data.user.followers,
@@ -51,7 +52,9 @@ export default class MyProfile extends React.Component {
           admin: response.data.user.admin,
           society_ids: response.data.user.societies,
           badges: response.data.user.badges,
+          posts: response.data.user.posts
         })
+        console.log(this.state.posts);
       })
       .catch((error) => {
         console.log(error);
@@ -132,7 +135,7 @@ export default class MyProfile extends React.Component {
             <div className="contributors-container">
               <span>Communities</span><br/>
 
-              {this.state.societies[0] == undefined ? (
+              {this.state.societies[0] === undefined ? (
                 <div></div>
               ) : (
                 this.state.societies.map(society =>
@@ -151,39 +154,39 @@ export default class MyProfile extends React.Component {
   }
 }
 
-// MODAL TO CREATE SOCIETY/CLUB
-function QuickOptions() {
-  const [modalShow, setModalShow] = React.useState(false);
+// // MODAL TO CREATE SOCIETY/CLUB
+// function QuickOptions() {
+//   const [modalShow, setModalShow] = React.useState(false);
 
-  return (
-    <div>
-      <div>
-        <VscDiffAdded size={55} className="square" id="dropdown-basic" onClick={() => setModalShow(true)} />
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <div>
+//         <VscDiffAdded size={55} className="square" id="dropdown-basic" onClick={() => setModalShow(true)} />
+//         <MyVerticallyCenteredModal
+//           show={modalShow}
+//           onHide={() => setModalShow(false)}
+//         />
+//       </div>
+//     </div>
+//   );
+// }
 
-// MODEL HANDLE
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      textAlign="left"
-    >
-      <Modal.Header closeButton>
-        <h3>Create Community</h3>
-      </Modal.Header>
-      <Modal.Body>
-        <CreateASoc />
-      </Modal.Body>
-    </Modal>
-  );
-}
+// // MODEL HANDLE
+// function MyVerticallyCenteredModal(props) {
+//   return (
+//     <Modal
+//       {...props}
+//       size="lg"
+//       aria-labelledby="contained-modal-title-vcenter"
+//       centered
+//       textAlign="left"
+//     >
+//       <Modal.Header closeButton>
+//         <h3>Create Community</h3>
+//       </Modal.Header>
+//       <Modal.Body>
+//         <CreateASoc />
+//       </Modal.Body>
+//     </Modal>
+//   );
+// }

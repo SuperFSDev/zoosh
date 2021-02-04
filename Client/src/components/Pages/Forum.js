@@ -3,7 +3,6 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import { Modal, Row, Col, Container} from 'react-bootstrap'
-import {Helmet} from 'react-helmet'
 import CreateForumPost from '../Common/CreateForumPost'
 import moment from 'moment'
 
@@ -27,8 +26,6 @@ export default class Forum extends React.Component {
       document.body.style.backgroundColor = "#F7F7F7";
 
       var forum_id = new URLSearchParams(this.props.location.search).get("id");
-      var user = JSON.parse(localStorage.getItem('user'));
-      this.setState({ id: user._id });
       var user = JSON.parse(localStorage.getItem('user'));
       this.setState({ id: user._id });
 

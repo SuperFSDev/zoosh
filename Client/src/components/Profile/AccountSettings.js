@@ -350,18 +350,3 @@ export default class AccountSettings extends React.Component {
     );
   }
 }
-
-function ProfileUsername() {
-  var user = JSON.parse(localStorage.getItem('user'));
-  if (user)
-    var fullname = user.fullname;
-  var id = user._id;
-  var societies = user.societies;
-
-  return (
-    <div id="social">
-      <h4 className="settings-welcome">Hello, {fullname}.</h4>
-      {/* {id} */}
-    </div>
-  );
-}

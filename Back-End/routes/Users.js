@@ -151,15 +151,47 @@ users.get('/settings', (req, res) => {
         })
 })
 
-users.get('/getUsers', (req, res) => {
+// New get users query, selected fields are passed in when calling axios.get
+users.get('/get-users', (req, res) => {
 
-    UserModel.find((error, data) => {
-        res.json({
-            users: data
+    console.log("Fields = " + req.query.fields)
+    if(req.query.fields)
+    {
+        var query = UserModel
+            .find({/* Can input limitations e.g post likes greater than 0 */})
+            .select(req.query.fields)
+
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                users: data
+            });
         });
-        //console.log(data);
-    })
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-users");
+    }
 
+})
+
+// Gets one users details
+users.get('/get-user-details', (req, res) => {
+
+    if(req.query.fields)
+    {
+        var query = UserModel
+            .findById({_id: req.query.id})
+            .select(req.query.fields)
+        
+            query.exec(function (err, data) {
+                if (err) return next(err);
+                res.json({
+                    user: data
+                });
+            });
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-details");
+    }
+    
 })
 
 users.get('/get-users-radar', (req, res) => {
@@ -210,12 +242,12 @@ users.get('/get-followed-users', (req, res) => {
 
     // Gets users for the user list.
     var query = UserModel
-        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .findById({ _id: req.query.id })
         .select('following')
         .sort({'score': -1})
-        .limit(10)
 
     query.exec(function (err, data) {
+        console.log(data);
         if (err) return next(err);
         res.json({
             users: data
@@ -709,26 +741,6 @@ users.get('/getUserSocieties', (req, res) => {
             if (user) {
                 res.json({
                     societies: user.societies
-                });
-            } else {
-                res.send("User does not exist")
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
-
-})
-
-// Gets one users details
-users.get('/get-user-details', (req, res) => {
-
-    UserModel.findById({
-            _id: req.query.id
-        }).then(user => {
-            if (user) {
-                res.json({
-                    user: user
                 });
             } else {
                 res.send("User does not exist")

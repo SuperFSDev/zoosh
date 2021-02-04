@@ -7,20 +7,13 @@ import { Image, Row, Col, Container } from 'react-bootstrap'
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { Helmet } from 'react-helmet'
-import { BsBookmark, BsBookmarkFill } from 'react-icons/bs'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { BsBrightnessLow, BsChat, BsThreeDots } from 'react-icons/bs'
-import Clapping from '../../images/clap-hands.png'
+import Skeleton from 'react-loading-skeleton';
 import Clap from '../../images/clap.png'
-import { json } from 'body-parser';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
-import Avatar from '@material-ui/core/Avatar';
+import { RiChat1Line,RiDeleteBinLine } from 'react-icons/ri'
 
 export default class AllPosts extends React.Component {
 
@@ -77,7 +70,11 @@ export default class AllPosts extends React.Component {
 
   // Fetching the discussions
   getDiscussions() {
-    axios.get('http://localhost:4000/discussions/get-discussion-feed')
+    axios.get('http://localhost:4000/discussions/get-discussions', {
+      params: {
+        fields: 'user society time thumbnail_pic title content likes comments'
+      }
+    })
       .then((response) => {
         console.log(response.data);
         this.setState({
@@ -116,7 +113,7 @@ export default class AllPosts extends React.Component {
   // Render hide/show comment section
   CheckPost(id, discussion_id) {
     var user = JSON.parse(localStorage.getItem('user'));
-    if (id == user._id) {
+    if (id === user._id) {
       return (<div>
       <button size="small" color="primary"  className="reaction-button" onClick={() => {this.onDeletePost(id,discussion_id)}}>
         <RiDeleteBinLine size={20}/> Delete Post
@@ -126,7 +123,7 @@ export default class AllPosts extends React.Component {
   }
 
   isLiked(discussion_id, user_id, likes) {
-    if (this.state.likedPosts.includes(discussion_id) == true) {
+    if (this.state.likedPosts.includes(discussion_id) === true) {
       return (<div>
         <Button size="small" color="primary" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
           Unlike
@@ -216,7 +213,6 @@ export default class AllPosts extends React.Component {
   render() {
     var { discussions } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-    var size = 5;
 
     const discussionList = discussions.map(discussion => {
       return (

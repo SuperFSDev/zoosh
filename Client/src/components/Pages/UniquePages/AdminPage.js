@@ -1,16 +1,12 @@
 import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Form, Tooltip, OverlayTrigger, Row, Col, Container} from 'react-bootstrap'
+import {Image, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
-import { RiCake2Fill } from 'react-icons/ri'
-import {FaFacebook,FaTwitter,FaInstagram,FaLink} from 'react-icons/fa'
-import {BsChat,BsHouseFill} from 'react-icons/bs';
-import Avatar from '@material-ui/core/Avatar';
-import Skeleton , { SkeletonTheme } from 'react-loading-skeleton';
-import {RiHeart2Line,RiChat1Line,RiDeleteBinLine} from 'react-icons/ri'
+import Skeleton from 'react-loading-skeleton';
+import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../../images/clap.png'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -63,14 +59,13 @@ export default class AdminPage extends React.Component {
         }
       })
         .then((response) => {
-          this.setState({ society: response.data.society,
+          this.setState({ 
+           society: response.data.society,
            users:response.data.society.users,
            admin:response.data.society.admin,
            mods:response.data.society.mods,
            score: response.data.society.score,  
            isLoading:false,
-           society: response.data.society,
-           mods:response.data.society.mods
           })
         })
         .catch((error) => {
@@ -159,10 +154,8 @@ export default class AdminPage extends React.Component {
              
     render(){
       var title = this.state.society.name + " - Website"
-      let i, k = 0;
-
     
-      const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
+      const discussionList = this.state.posts.map(discussion => {
         return (
           <Fragment key={discussion._id}>
             <Card className='discussion-post'>

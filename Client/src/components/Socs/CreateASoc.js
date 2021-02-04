@@ -140,7 +140,7 @@ export default class CreateASoc extends React.Component {
         }).then((data) => {
           if(data[0])
           {
-            var data = data[0];
+            data = data[0];
             var b64 = data.prefix + data.data;
       
             this.setState({

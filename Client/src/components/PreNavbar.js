@@ -28,34 +28,13 @@ export default class PreNavbar extends React.Component {
         discussions: [],
 
     };
-
-
   }
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
 
-      if(user == null)
-        window.location = '/login';
-
-      this.setState({ id: user._id });
-
-      axios.get('http://localhost:4000/users/get-user-details', {
-          params: {
-              id: user._id
-          }
-      })
-          .then((response) => {
-              this.setState({ user: response.data.user,
-                following: response.data.user.following,
-                followers: response.data.user.followers,
-
-              })
-          })
-          .catch((error) => {
-              console.log(error);
-          });
-
+      // if(user == null)
+      //    window.location = '/login';
   }
 
 render(){

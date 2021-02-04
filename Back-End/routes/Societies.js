@@ -62,18 +62,29 @@ societies.post('/create', (req, res) => {
             res.send(err);
         })
 
-    console.log("Society has been registered!");
-    console.log(socData);
+    console.log("Society " + society.name + " has been registered!");
 })
 
 
-// Get societies from database
-societies.get('/getSocieties', (req, res) => {
+// New get societies query, selected fields are passed in when calling axios.get
+societies.get('/get-societies', (req, res) => {
 
-    SocietyModel.find((error, data) => {
-        res.json({ societies: data });
-        //console.log(data);
-    })
+    if(req.query.fields)
+    {
+        var query = SocietyModel
+            .find({/* Can input limitations e.g post likes greater than 0 */})
+            .select(req.query.fields)
+            //.limit(8)
+
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                societies: data
+            });
+        });
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE:/get-societies ")
+    }
 
 })
 

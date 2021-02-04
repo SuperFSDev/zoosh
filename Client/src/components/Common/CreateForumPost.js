@@ -30,8 +30,7 @@ componentDidMount() {
   this.setState({ id: user._id });
 
   if (user)
-  var fullname = user.fullname;
-  this.state.user = fullname;
+    this.setState({user: user.fullname});
 
   // Get all users from database.
   axios.get('http://localhost:4000/users/getUsers')
@@ -95,8 +94,7 @@ componentDidMount() {
   render(){
     var user = JSON.parse(localStorage.getItem('user'));
     if(user){
-      var fullname = user.fullname;
-      this.state.user = fullname;
+      this.setState({user: user.fullname});
     }
     
     const options = [

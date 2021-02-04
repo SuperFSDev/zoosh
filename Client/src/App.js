@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  //Redirect
 } from "react-router-dom";
 import NotFoundPage from './components/404/NotFoundPage';
 import LoginPage from './components/auth/Login';
@@ -27,7 +27,7 @@ import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
 import Following from './components/Pages/FollowingLayout';
 import TopPosts from './components/Pages/AllPosts';
-import PreNavbar from './components/PreNavbar';
+//import PreNavbar from './components/PreNavbar';
 
 class App extends React.Component {
   render(){
