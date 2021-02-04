@@ -63,7 +63,14 @@ export default class Landing extends React.Component {
 
   // Fetching the discussions
   async getDiscussions() {
-    await axios.get('http://localhost:4000/discussions/get-discussion-feed')
+    var user = JSON.parse(localStorage.getItem('user'));
+    await axios.get('http://localhost:4000/discussions/get-discussions', {
+      params: {
+        fields: 'user society time thumbnail_pic title content likes comments',
+        sort: 'likes',
+        limit: 5
+      }
+    })
       .then((response) => {
         console.log(response.data);
         this.setState({

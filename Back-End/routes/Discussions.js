@@ -37,16 +37,18 @@ discussions.post('/NewDiscussions', (req, res) => {
 // New get discussion query, selected fields are passed in when calling axios.get
 discussions.get('/get-discussions', (req, res) => {
 
+    var sort = req.query.sort;
+
     if(req.query.fields)
     {
         var query = DiscussionModel
-        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .find()
         .select(req.query.fields)
-        .sort({'likes': -1})
-        //.limit(8)
+        .sort({sort: -1})
+        .limit(parseInt(req.query.limit));
 
         query.exec(function (err, data) {
-            if (err) return next(err);
+            if (err) return (err);
             res.json({
                 discussions: data
             });

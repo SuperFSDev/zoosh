@@ -73,7 +73,8 @@ export default class AllPosts extends React.Component {
   getDiscussions() {
     axios.get('http://localhost:4000/discussions/get-discussions', {
       params: {
-        fields: 'user society time thumbnail_pic title content likes comments'
+        fields: 'user society time thumbnail_pic title content likes comments',
+        sort: 'likes'
       }
     })
       .then((response) => {
