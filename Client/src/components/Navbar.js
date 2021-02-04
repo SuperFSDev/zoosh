@@ -39,6 +39,10 @@ export default class NavBar extends React.Component {
       this.closeProfile2 = this.closeProfile2.bind(this);
   }
 
+  clearLocalStorage(){
+    window.localStorage.clear();
+  }
+
   // NOTIFICATIONS MENU DROPDOWNS
   showMenu(event) {
     event.preventDefault();
@@ -144,6 +148,8 @@ render(){
               <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
               <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
               <a className="link" onClick={this.showMenu}><BsBellFill  size={20} /> ME</a>
+              <a href="/login" className="profile-navs" onClick={() => {this.clearLocalStorage()}}>Sign Out</a>
+
               <a className="link" onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a>
             </div>
           </div>
@@ -222,7 +228,7 @@ render(){
                       <hr/>
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGearFill/> Account Settings</p></a>
                       <hr/>
-                      <a href="/login" className="profile-navs">Sign Out</a>
+                      <a href="/login" className="profile-navs" onClick={() => {this.clearLocalStorage()}}>Sign Out</a>
                      
                     </div>
                   )
