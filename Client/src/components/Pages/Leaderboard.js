@@ -25,28 +25,30 @@ export default class Two extends React.Component {
     componentDidMount() {
       document.body.style.backgroundColor = "#F7F7F7";
 
-      var user_id = new URLSearchParams(this.props.location.search).get("id");
-  
+      var user = JSON.parse(localStorage.getItem('user'));
   
       axios.get('http://localhost:4000/users/get-user-details', {
         params: {
-          id: user_id
+          id: user._id,
+          fields: 'fullname pic societies forums'
         }
       })
-  
         .then((response) => {
-          this.setState({ user: response.data.user,
-                          forums: response.data.user.forums,
-                          socs:response.data.user.societies
-
-  
+          this.setState({ 
+            user: response.data.user,             
+            forums: response.data.user.forums,
+            socs:response.data.user.societies
           })
         })
         .catch((error) => {
           console.log(error);
         });
   
-        axios.get('http://localhost:4000/societies/getSocieties')
+        axios.get('http://localhost:4000/societies/get-societies', {
+          params: {
+            fields: 'name picture users'
+          }
+        })
         .then((response)=>{
             this.setState({societies: response.data.societies})
         })
@@ -54,23 +56,33 @@ export default class Two extends React.Component {
             console.log(error);
         });
   
-        axios.get('http://localhost:4000/users/getUsers')
+        axios.get('http://localhost:4000/users/get-users', {
+          params: {
+            fields: 'pic fullname score'
+          }
+        })
         .then((response)=>{
-            this.setState({users: response.data.users,isLoading:false,})
+            this.setState({
+              users: response.data.users,
+              isLoading:false
+            })
         })
         .catch((error)=>{
             console.log(error);
         });
-      
-      
+    
       }
       
 render(){
+
+  console.log(this.state.societies);
+  console.log(this.state.users);
 
   var{users} = this.state;
     let i = 0;
     let k = 0;
     let j = 0;
+
     let societies = this.state.societies.filter(
     (society)=>{
         return society.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())!==-1;
@@ -134,8 +146,6 @@ render(){
             </div>
             <br/>
             <Skeleton height={50} width={700} style={{ marginBottom: 10 }} count={15} />
-
-           
           </Col>
 
           <Col sm><Recommended/><Contributors/></Col>

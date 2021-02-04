@@ -223,7 +223,7 @@ export default class NewPost extends React.Component {
         return { value: society.name, label: society.name };
       })
     } else {
-      this.setState({tags: "General"});
+      this.state.tags = "General";
     }
       
     return (

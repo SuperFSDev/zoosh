@@ -67,7 +67,7 @@ societies.post('/create', (req, res) => {
 
 
 // New get societies query, selected fields are passed in when calling axios.get
-societies.get('/get-societies', (req, res) => {
+societies.get('/get-societies', (req, res, next) => {
 
     if(req.query.fields)
     {
@@ -135,7 +135,7 @@ societies.get('/get-explore-societies', (req, res) => {
 
 })
 
-societies.get('/get-users-societies', (req, res) => {
+societies.get('/get-users-societies', (req, res, next) => {
 
     // Gets communities of the given user for the community list on profile.
     var query = SocietyModel

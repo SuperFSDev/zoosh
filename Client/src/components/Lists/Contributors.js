@@ -49,7 +49,7 @@ class Contributors extends React.Component {
                     <a className="-contributor-user" href={"/u/?id="+user._id}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">
-                            <Image src={user.pic} className="user-image-mini" roundedCircle alt="User Picture"/>
+                            <Image src={user.pic} className="user-image-mini" roundedCircle />
                         </figure>
                         <section class="bio-box">
                             <span class="details"> 

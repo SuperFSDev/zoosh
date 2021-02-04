@@ -39,18 +39,6 @@ class LayoutTextFeilds extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    // axios.get('http://localhost:4000/users/getUsers')
-    // .then((response)=>{
-    //     this.setState({users: response.data.users})
-    // })
-    // .catch((error)=>{
-    //     console.log(error);
-    // });
-
-
-
-
-
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id

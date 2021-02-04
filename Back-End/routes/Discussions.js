@@ -35,7 +35,7 @@ discussions.post('/NewDiscussions', (req, res) => {
 })
 
 // New get discussion query, selected fields are passed in when calling axios.get
-discussions.get('/get-discussions', (req, res) => {
+discussions.get('/get-discussions', (req, res, next) => {
 
     var sort = req.query.sort;
 
@@ -48,7 +48,7 @@ discussions.get('/get-discussions', (req, res) => {
         .limit(parseInt(req.query.limit));
 
         query.exec(function (err, data) {
-            if (err) return (err);
+            if (err) return next(err);
             res.json({
                 discussions: data
             });
@@ -59,7 +59,7 @@ discussions.get('/get-discussions', (req, res) => {
 
 })
 
-discussions.get('/get-following-feed', (req, res) => {
+discussions.get('/get-following-feed', (req, res, next) => {
 
     var following = req.query.ids.following;
     var discussions = [];

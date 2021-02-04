@@ -152,7 +152,7 @@ users.get('/settings', (req, res) => {
 })
 
 // New get users query, selected fields are passed in when calling axios.get
-users.get('/get-users', (req, res) => {
+users.get('/get-users', (req, res, next) => {
 
     console.log("Fields = " + req.query.fields)
     if(req.query.fields)
@@ -174,7 +174,7 @@ users.get('/get-users', (req, res) => {
 })
 
 // Gets one users details
-users.get('/get-user-details', (req, res) => {
+users.get('/get-user-details', (req, res, next) => {
 
     if(req.query.fields)
     {
