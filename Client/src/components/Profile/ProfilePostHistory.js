@@ -18,6 +18,12 @@ export default class History extends React.Component {
 
   componentDidMount() {
     var user_id = new URLSearchParams(document.location.search).get("id");
+    if(user_id == null)
+    {
+      var user = JSON.parse(localStorage.getItem('user'));
+      user_id = user._id;
+    }
+
     axios.get('http://localhost:4000/discussions/get-following-discussions', {
       params: {
         id: user_id

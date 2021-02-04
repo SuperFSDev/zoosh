@@ -24,6 +24,7 @@ export default class MyProfile extends React.Component {
       followers: [],
       societies: [],
       society_ids: [],
+      likedDiscussions: [],
       admin: [],
       badges: [],
       isYellowTag: false,
@@ -35,12 +36,10 @@ export default class MyProfile extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     document.body.style.backgroundColor = "#F7F7F7";
 
-    this.setState({ id: user._id });
-
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: 'pic fullname score followers posts societies'
+        fields: 'fullname followers posts likedPosts pic societies badges college time score'
       }
     })
       .then((response) => {
@@ -52,7 +51,8 @@ export default class MyProfile extends React.Component {
           admin: response.data.user.admin,
           society_ids: response.data.user.societies,
           badges: response.data.user.badges,
-          posts: response.data.user.posts
+          posts: response.data.user.posts,
+          likedPosts: response.data.user.likedPosts
         })
         console.log(this.state.posts);
       })
@@ -72,6 +72,35 @@ export default class MyProfile extends React.Component {
           this.setState({ societies: joined });
         })
     ));
+
+    if (this.state.likedPosts != null) {
+      for (var i = 0; i < this.state.likedPosts.length; i++) {
+        this.GetLikedPost(this.state.likedPosts[i])
+      }
+    }
+  }
+
+  async GetLikedPost(DiscussionID) {
+    console.log("disc id = " + DiscussionID);
+    await axios.get('http://localhost:4000/discussions/get-discussion-page', {
+      params: {
+        id: DiscussionID,
+      }
+    })
+      .then((response) => {
+        if (response.data.discussion == null) {
+          this.checkIfNull(DiscussionID)
+        }
+        else {
+          this.setState({
+            likedDiscussions: this.state.likedDiscussions.concat(response.data.discussion),
+            isLoading: false,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -95,60 +124,70 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-      <Container fluid>
-        <Row>
-          <div className="community-header" style={{background:'#222831'}}>
-            <Col md>
-              <div className="community-profile">
-                <span>
-                  <Image alt={this.state.user.fullname} src={this.state.user.pic} className="profile-image" roundedCircle/>
-                  <a href="/settings"><button className="community-btn-a" >Settings</button></a>
-                </span>
+        <Container fluid>
+          <Row>
+            <div className="community-header" style={{ background: '#222831' }}>
+              <Col md>
+                <div className="community-profile">
+                  <span>
+                    <Image alt={this.state.user.fullname} src={this.state.user.pic} className="profile-image" roundedCircle />
+                    <a href="/settings"><button className="community-btn-a" >Settings</button></a>
+                  </span>
 
-                <br/>
-                <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-                <br/>
-                {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
-                {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br/>
-              </div>
-            </Col>
+                  <br />
+                  <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
+                  <br />
+                  {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br />
+                </div>
+              </Col>
             </div>
           </Row>
 
-        <Row>
-          <Col sm></Col>
-          <Col sm>
-            <div className="community-feed">
-              <div className="top-posts">
-                {this.state.posts.length === 0 && <div  className="top-posts-empty">No Posts</div>}
-                {this.state.posts.length > 0 && <div><History /></div>}  
+          <Row>
+            <Col sm></Col>
+            <Col sm>
+              <div className="community-feed">
+                <div className="top-posts">
+                  {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                  {this.state.posts.length > 0 && <div><History /></div>}
+                </div>
               </div>
-            </div>
 
-          </Col>
-          <Col sm>
-            <div className="community-members-container">
-              <span>Activity</span>
-            </div>
+            </Col>
+            <Col sm>
+              <div className="community-members-container">
+                <span>Activity</span>
+                <div>
+                  {this.state.likedDiscussions !== undefined && this.state.likedDiscussions.map(discussion =>
+                    <p>
+                      <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+                        <b>You</b> clapped to a post written by <b>{discussion.user}.</b>                        
+                      </a>
+                      <hr />
+                    </p>
+                  )}
+                </div>
+              </div>
 
-            <div className="contributors-container">
-              <span>Communities</span><br/>
+              <div className="contributors-container">
+                <span>Communities</span><br />
 
-              {this.state.societies[0] === undefined ? (
-                <div></div>
-              ) : (
-                this.state.societies.map(society =>
-                  <span key={society._id}>
-                    <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
-                  </span>
-                )
-              )}
-            </div>
-          </Col>
-          <Col sm></Col>
-        </Row>
-      </Container>
+                {this.state.societies[0] === undefined ? (
+                  <div></div>
+                ) : (
+                    this.state.societies.map(society =>
+                      <span key={society._id}>
+                        <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin">Founder</b></b><br /><br />
+                      </span>
+                    )
+                  )}
+              </div>
+            </Col>
+            <Col sm></Col>
+          </Row>
+        </Container>
       </>
     );
   }
