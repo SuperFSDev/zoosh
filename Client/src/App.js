@@ -27,6 +27,7 @@ import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
 import Following from './components/Pages/FollowingLayout';
 import TopPosts from './components/Pages/AllPosts';
+import Notifications from './components/Pages/Notifications';
 
 class App extends React.Component {
   render(){
@@ -53,6 +54,8 @@ class App extends React.Component {
               <Route path="/home" component={Following}/>
               <Route exact path="/" component={Following}/>
               <Route path="/top" component={TopPosts}/>
+              <Route path="/notifications" component={Notifications}/>
+
 
               {/* 404 Not Found Exception */}
               <Router>

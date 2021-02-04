@@ -46,15 +46,14 @@ class Contributors extends React.Component {
                 <div>
 
                 {shuffledUsers.map(user  =>  ( 
-                    <a className="-contributor-user" href={"/u/?id="+user._id}>
+                    <a className="-recommended-item-a" href={"/u/?id="+user._id}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">
                             <Image src={user.pic} className="user-image-mini" roundedCircle alt="User Picture"/>
                         </figure>
                         <section class="bio-box">
                             <span class="details"> 
-                                <b className="text-name">{user.fullname} </b>
-                                <span class="location">{user.college}</span>
+                                <b className="profile-name">{user.fullname} </b>
                             </span>
                         </section>
                         {user.score >= 1 && user.score <=999 ? (

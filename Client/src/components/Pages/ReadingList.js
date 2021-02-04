@@ -116,7 +116,7 @@ export default class ReadingList extends React.Component {
           <Row>
             <Col sm></Col>
             <Col sm>
-              <div className="reading-list">
+              <div className="dashboard">
                 <h3>Reading List ({this.state.readingList.length})</h3><br />
                 {this.state.posts.slice(0, 10).reverse().map(post => (
                   <Fragment key={this.state.user._id}>

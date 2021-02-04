@@ -66,7 +66,6 @@ render(){
                       <a href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 
                               <h1 class="profile-name">{society.name}</h1>
-                              <dd class="location">{society.college}</dd>
                           </dl>
                       </section></a>
                   </div></a>

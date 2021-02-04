@@ -132,7 +132,7 @@ export default class Feed extends React.Component {
                 {discussion.thumbnail_pic == null && <div></div>}
                 {discussion.thumbnail_pic && <Image className="post-image" src={discussion.thumbnail_pic} />}
               </span><br />
-              <span className="title-post">{discussion.title}</span><br />
+              <span className="heading">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
             </CardContent></a>
             <CardActions>

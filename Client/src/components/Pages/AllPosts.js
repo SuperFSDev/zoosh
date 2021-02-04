@@ -234,7 +234,7 @@ export default class AllPosts extends React.Component {
                 {discussion.thumbnail_pic == null && <div></div>} 
                 {discussion.thumbnail_pic && <Image alt="Thumbail" className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
               </span><br />
-              <span className="title-post">{discussion.title}</span><br />
+              <span className="heading">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
             </CardContent></a>
             <CardActions>
