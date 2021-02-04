@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-import {BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsHouseFill} from 'react-icons/bs'
+import {BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsSearch} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiPlanet,BiChart} from 'react-icons/bi'
@@ -114,14 +114,36 @@ render(){
       <div>
         <div id="top"></div>
           <div id="container">
-            <div><SearchbarFilter/></div>
-            <div className="div2"><a href="/" className="header">wagwan</a></div>
             <div>
+              <SearchbarFilter/>
+            </div>
+            <div className="div2"><a href="/" className="header">zoosh</a></div>
+            <div style={{ marginTop:10}}>
+              <BsSearch className="search-icon" size={25}/>
               <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
               <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
               <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
               <a className="link" onClick={this.showMenu}><BsBellFill  size={20} /> NOTIES</a>
-              <a className="link" onClick={this.showProfile}>{this.state.user.score} <Image src={this.state.user.pic} style={{width:35, height:35}}   roundedCircle/></a>
+              <a className="link" onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a>
+            </div>
+          </div>
+
+          <div class="container2">
+              <div class="content">
+                <nav role="navigation">
+                  <div id="menuToggle">
+                    <input type="checkbox" />
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  <ul id="menu">
+                    <li><a href="/me">My Profile</a></li>
+                    <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
+                    <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
+                    <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
+                  </ul>
+                </div>
+                </nav>
             </div>
           </div>
 

@@ -234,13 +234,18 @@ export default class NewPost extends React.Component {
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
           <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>New Post - Website</title>
+          <title>New Post / Website</title>
+
+          {/* LINKS */}
+
+          <link rel="canonical" href="http://mysite.com/example" />
+          <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+          <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
       <Container>
         <Row>
           <Col>
-          
             <Form onSubmit={this.onSubmit}>
             <div className="new-post-feed">
               <ImageUploader
@@ -254,39 +259,42 @@ export default class NewPost extends React.Component {
                     withLabel={false}
                     buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
               />
-
-              <input 
+             
+               <label><input 
                 placeholder="New post title..." 
                 className="Title-input"
                 value={this.state.title}
                 onChange={this.onChangeTitle}
                 required
-                />
+                /></label>
 
-              <input 
+              <label><input 
                 placeholder="Post Caption" 
                 className="Content-input"
                 value={this.state.caption}
                 onChange={this.onChangeCaption}
                 required
-              />
+              /></label>
 
-              <textarea 
+              <label><textarea 
                 placeholder="Write your post content here ..." 
                 className="Content-input" 
                 rows = "5" cols = "60"
                 value={this.state.content}
                 onChange={this.onChangeContent}
                 required
-                />
+                /></label>
               
               {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/>}
               <br/>
               <br/>
               </div>
               <br/>
-              <button className="standard-button" type="submit">Publish</button>
-              <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+              <div className="post-buttons">
+                <button className="standard-button" type="submit">Publish</button>
+                <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
+              </div>
+              
 
             </Form>
             

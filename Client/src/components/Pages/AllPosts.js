@@ -221,10 +221,10 @@ export default class AllPosts extends React.Component {
     const discussionList = discussions.map(discussion => {
       return (
         <Fragment key={discussion._id}>
-          <Card className='discussion-post'>
+          <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
               <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
+                <span class="showhim"><a href={"/me"} className="post-link-a"><Image alt="Thumbnail" src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
                 {discussion.society == null ? (
                   <span> in <b style={{ color: 'green' }}>General</b></span>
@@ -234,7 +234,7 @@ export default class AllPosts extends React.Component {
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                 {discussion.thumbnail_pic == null && <div></div>} 
-                {discussion.thumbnail_pic && <Image className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
+                {discussion.thumbnail_pic && <Image alt="Thumbail" className="post-image" src={discussion.thumbnail_pic} width={200} height={125}/>} 
               </span><br />
               <span className="title-post">{discussion.title}</span><br />
               <span className="content-post">{discussion.content.slice(0, 200)}</span>
@@ -242,8 +242,8 @@ export default class AllPosts extends React.Component {
             <CardActions>
               <a  href={"/d/?id=" + discussion._id }><button className="reaction-button" size="small" color="primary">
                 {discussion.likes === 0 && <></>}
-                {discussion.likes === 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reaction</span>}
-                {discussion.likes > 1 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
+                {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="Clap"/> {discussion.likes} reaction</span>}
+                {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="Clap"/> {discussion.likes} reactions</span>}
               </button></a>
 
 
@@ -257,7 +257,7 @@ export default class AllPosts extends React.Component {
 
             </CardActions>
 
-          </Card>
+          </div>
 
         </Fragment>
       )
@@ -267,7 +267,7 @@ export default class AllPosts extends React.Component {
       <Container>
         <Row>
           <Col sm></Col>
-          <Col sm>
+          <Col sm className="feed">
             <div className="filter-options">
               <a href="/"><button className="feed-option">Following</button></a>
               <a href="/top"><button className="feed-option-active">Top</button></a>
@@ -276,7 +276,33 @@ export default class AllPosts extends React.Component {
             </div>
 
 
-            {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
+            {this.state.isLoading && 
+            <div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+            </div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
           </Col>
 

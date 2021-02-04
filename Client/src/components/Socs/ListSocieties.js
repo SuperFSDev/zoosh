@@ -121,7 +121,7 @@ render(){
           <Col sm></Col>
           <Col sm>
           <div className="search-div">
-            <input className="searchbar-nav" type="text" id="mySearch" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
+            <input className="searchbar-nav" type="text" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
               />
               <QuickOptions/>
             </div>
@@ -132,19 +132,19 @@ render(){
             <div className="SocietyLayout">
                     {filteredSocietiesByName.map(society => (
                     <div key={society.id}>
-                        <a href={"/c/?id=" +society._id} className="miniprofile-post-redirect">
+                        <a href={"/c/?id=" +society._id} aria-label="community" rel="noopener" className="miniprofile-post-redirect">
                         <div class="miniprofileCommunities">
                             <figure class="headshot">
                               {society.picture == null ? (
-                                  <Avatar src={background} className="soc-item-image" roundedCircle/>
+                                  <Avatar alt="community" src={background} className="soc-item-image" roundedCircle/>
                                 ) : (
-                                  <Avatar src={society.picture} className="soc-item-image" roundedCircle/>
+                                  <Avatar alt="community" src={society.picture} className="soc-item-image" roundedCircle/>
                                 )}
                             </figure>
                             <section class="bio-box">
-                                <dl class="details"> 
+                                <span class="details"> 
                                     <b>{society.name} </b>
-                                </dl>
+                                </span>
                             </section>
                 
                         </div>

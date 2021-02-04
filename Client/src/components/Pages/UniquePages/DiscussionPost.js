@@ -219,14 +219,14 @@ export default class DiscussionPost extends React.Component {
 
     isLiked(discussion_id, user_id, likes) {
       if (this.state.likedPosts.includes(discussion_id) == true) {
-        return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
+        return ( <span className="voting-btn"><button aria-label="remove" className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
           <Image src={Clapping} size={30}/> {this.state.discussion.likes}</button><br/></span>
         
         )
         
       }
       else {
-        return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, user_id, likes) }}>
+        return ( <span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, user_id, likes) }}>
           <Image src={Clap} size={30}/> {this.state.discussion.likes} </button></span>
         )
         
@@ -237,14 +237,14 @@ export default class DiscussionPost extends React.Component {
     isInReadingList(discussion_id,user_id) {
       if (this.state.readingList.includes(discussion_id) == true) {
         return (  <span className="voting-btn">
-          <button className="standard-option-btn-post" onClick={() =>{this.RemoveFromReadingList(discussion_id,user_id)}}><BsBookmarkFill size={30} /></button></span>
+          <button aria-label="remove"  className="standard-option-btn-post" onClick={() =>{this.RemoveFromReadingList(discussion_id,user_id)}}><BsBookmarkFill size={30} /></button></span>
         
         )
         
       }
       else {
         return (  <span className="voting-btn">
-          <button className="standard-option-btn-post" onClick={() =>{this.addToReadingList(discussion_id,user_id)}}><BsBookmark size={30} /></button></span>
+          <button aria-label="add" className="standard-option-btn-post" onClick={() =>{this.addToReadingList(discussion_id,user_id)}}><BsBookmark size={30} /></button></span>
         )
         
       }
@@ -273,23 +273,23 @@ export default class DiscussionPost extends React.Component {
 
           <Container>
             <Row>
-              <Col md>
+              <Col sm={2}>
                 <div className="post-reactions">
                   <span>
-                    <Image src={user.pic} className="user-image"/>
+                    <Image alt={user.fullname} src={user.pic} className="user-image"/>
                     <b>{this.state.discussion.user}</b><br/>
-                    <a href={"/u/?id="+this.state.discussion.user_id}><button className="standard-button">View Profile</button></a>
+                    <a href={"/u/?id="+this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                   </span>
                  
                   {this.isLiked(this.state.discussion._id, user._id, this.state.discussion.likes)}
                   <br/>
                    {this.isInReadingList(this.state.discussion._id, user._id,)}
                   <br/>
-                  <span className="voting-btn"><button className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
+                  <span className="voting-btn"><button aria-label="community" className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
 
                 </div>
               </Col>
-              <Col md>
+              <Col sm={8}>
                 <div className="discussion-container">
 
      
@@ -305,7 +305,8 @@ export default class DiscussionPost extends React.Component {
                 </p>
 
                 {/* <Image src={this.state.discussion.full_pic} className="thumbnail"/> */}
-                <img src={this.state.discussion.full_pic} className="thumbnail"/>
+                {this.state.discussion.full_pic == null && <div></div>}
+                {this.state.discussion.full_pic && <div> <img alt="Thumbnail" src={this.state.discussion.full_pic} className="thumbnail"/></div>}
               </p>
             
               <p className="post-content">{this.state.discussion.content}</p>
@@ -331,16 +332,18 @@ export default class DiscussionPost extends React.Component {
             <h4>Responses ({this.state.comments.length})</h4>
             
             <div className="comment-box-acc">
-              <Avatar src={user.pic}/><br/>
-              <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
-              <button className="standard-button" onClick={this.onSubmit}>Publish</button>
+              <Avatar alt="User" src={user.pic}/><br/>
+              <label>
+                <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
+                <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
+              </label>
             </div>
           
           <div className="users-comment">
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
               <div className="comment-box">
                 <span >
-                  <Avatar src={comment.user_img}/><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
+                  <Avatar alt="User" src={comment.user_img}/><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
                   {moment(comment.time).startOf('seconds').fromNow()}
                   <ShowMoreText
                     lines={1}
@@ -354,8 +357,8 @@ export default class DiscussionPost extends React.Component {
                   >
                   <p className="post-content">{comment.comment}</p>
                   </ShowMoreText>           
-                  <span><button className="standard-option-btn-comment">
-                  <Image src={Clap} size={30}/></button></span>     
+                  <span><button aria-label="clap" className="standard-option-btn-comment">
+                  <Image alt="Clap" src={Clap} size={30}/></button></span>     
                 </span>
                 <hr/>
               </div>

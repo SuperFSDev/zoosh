@@ -52,13 +52,13 @@ class Contributors extends React.Component {
                     <a className="-contributor-user" href={"/u/?id="+user._id}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">
-                            <Image src={user.pic} className="user-image-mini" roundedCircle />
+                            <Image src={user.pic} className="user-image-mini" roundedCircle alt="User Picture"/>
                         </figure>
                         <section class="bio-box">
-                            <dl class="details"> 
+                            <span class="details"> 
                                 <b className="text-name">{user.fullname} </b>
-                                <dd class="location">{user.college}</dd>
-                            </dl>
+                                <span class="location">{user.college}</span>
+                            </span>
                         </section>
                         {user.score >= 1 && user.score <=999 ? (
                           <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>

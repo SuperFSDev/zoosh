@@ -237,7 +237,7 @@ isMyProfile(fullname,discussionUser){
             <Col md>
               <div className="community-profile">
                 <span>
-                  <Image src={this.state.user.pic} className="profile-image" roundedCircle/>
+                  <Image alt={this.state.user.fullname} src={this.state.user.pic} className="profile-image" roundedCircle/>
                   {isUnfollowing ? (
                   <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                   ) : (

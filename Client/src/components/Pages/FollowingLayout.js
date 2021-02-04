@@ -193,7 +193,33 @@ export default class Feed extends React.Component {
               <a href="/new"><button className="write-button">Write a Post</button></a>
 
             </div>
-            {this.state.isLoading && <div><br /><Skeleton height={250} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
+            {this.state.isLoading && 
+            <div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+              <div className="discussion-post" style={{padding:30}}>
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
+                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+              </div>
+            </div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
           </Col>
 

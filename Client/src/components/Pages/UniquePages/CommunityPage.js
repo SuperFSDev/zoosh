@@ -168,7 +168,7 @@ export default class CommunityPage extends React.Component {
                     <div className="community-profile">
 
                       <span>
-                        <Image src={this.state.society.picture} className="community-image" />                      
+                        <Image alt={this.state.society.name} src={this.state.society.picture} className="community-image" />                      
                         <button className="follow-community" onClick={() => {this.addUser(this.state.society.society_id)}}>Follow</button>
                       </span>
                       

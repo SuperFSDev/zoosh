@@ -6,7 +6,7 @@
 @media (min-width: 1281px) {
   
     /* CSS */
-    
+    .search-icon{display:none;}
   }
   
   /* 
@@ -15,9 +15,8 @@
   */
   
   @media (min-width: 1025px) and (max-width: 1280px) {
-    
-    /* CSS */
-    
+    #container{display:none;}
+
   }
   
   /* 
@@ -28,8 +27,9 @@
   @media (min-width: 768px) and (max-width: 1024px) {
     
     /* CSS */
-    .nav-link{display:none!important;}
-  
+    .discussion-post{width:100%;padding:0px;}
+    #container{display:none;}
+    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
   }
   
   /* 
@@ -38,10 +38,9 @@
   */
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    
-    /* CSS */
-    .nav-link{display:none!important;}
-  
+    #container{display:none;}
+    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
+    .filter-options,.discussion-post, .discussion-container{width: 100%;}
   }
   
   /* 
@@ -50,10 +49,10 @@
   */
   
   @media (min-width: 481px) and (max-width: 767px) {
-    
-    /* CSS */
-    .nav-link{display:none!important;}
-  
+    #container{display:none;}
+    .discussion-post{width:100%;padding:0px;}
+    .filter-options,.discussion-post{width: 100%;}
+    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
   }
   
   /* 
@@ -63,6 +62,17 @@
   
   @media (min-width: 320px) and (max-width: 480px) {
     
-    .nav-link{display:none!important;}
-    
+    .link, .navbar-search, .recommended-container, .contributors-container, .container{display:none!important;}
+    .filter-options,.discussion-post{width: 100%;}
+    #container{display:none;}
+
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+   .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    #container{display:none;} 
+    .post-image{max-width: 100%;}
+    .container2{display:block;}
   }
