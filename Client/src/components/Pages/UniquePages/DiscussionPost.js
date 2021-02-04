@@ -160,6 +160,7 @@ export default class DiscussionPost extends React.Component {
             user:user_id,
             discussion:discussion,
             message: "liked your post",
+            time:new Date().getTime()
             }
         }
         // Adds the discussion to liked list
