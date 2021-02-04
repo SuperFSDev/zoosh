@@ -35,7 +35,7 @@ discussions.post('/NewDiscussions', (req, res) => {
 })
 
 // New get discussion query, selected fields are passed in when calling axios.get
-discussions.get('/get-discussions', (req, res) => {
+discussions.get('/get-discussions', (req, res, next) => {
 
     var sort = req.query.sort;
 
@@ -48,7 +48,7 @@ discussions.get('/get-discussions', (req, res) => {
         .limit(parseInt(req.query.limit));
 
         query.exec(function (err, data) {
-            if (err) return (err);
+            if (err) return next(err);
             res.json({
                 discussions: data
             });
@@ -59,7 +59,7 @@ discussions.get('/get-discussions', (req, res) => {
 
 })
 
-discussions.get('/get-following-feed', (req, res) => {
+discussions.get('/get-following-feed', (req, res, next) => {
 
     var following = req.query.ids.following;
     var discussions = [];
@@ -105,23 +105,27 @@ discussions.get('/get-discussion-page', (req, res) => {
 })
 
 
-discussions.get('/get-following-discussions', (req, res) => {
+discussions.get('/get-user-discussions', (req, res) => {
 
-    DiscussionModel.find({
-            user_id: req.query.id
-        }).then(discussion => {
-            if (discussion) {
-                res.json({
-                    discussion: discussion
-                });
-            } else {
-                res.send("Discussion does not exist")
-            }
-        })
-        .catch(err => {
-            res.send(err)
-            console.log(err);
-        })
+    var sort = req.query.sort;
+
+    if(req.query.fields)
+    {
+        var query = DiscussionModel
+        .find({user_id: req.query.id})
+        .select(req.query.fields)
+        .sort({sort: -1})
+        .limit(parseInt(req.query.limit));
+
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                discussions: data
+            });
+        });
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-discussions ");
+    }
 
 })
 
