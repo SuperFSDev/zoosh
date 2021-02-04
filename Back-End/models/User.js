@@ -25,7 +25,8 @@ const UserSchema = new Schema({
     badges:{type: Array, "default" : []},
     podcasts:{type: Array, "default" : []},
     readingList:{type: Array, "default" : []},
-    likedPosts:{type: Array, "default" : []}
+    likedPosts:{type: Array, "default" : []},
+    notifications:{type: Array, "default" : []}
 
 })
 
