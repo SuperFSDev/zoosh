@@ -454,6 +454,37 @@ users.post('/addComment', (req, res) => {
     )
 })
 
+
+users.post('/notify', (req, res) => {
+    UserModel.findByIdAndUpdate({
+        _id: req.body.id,
+    }, {
+        $addToSet: {
+            notifications: req.body.notification
+        }
+    }, {
+        upsert: true,
+        new: true,
+        runValidators: true
+    },
+
+    function (err, result) {
+        console.log(result);
+        if (err) {
+            res.send(err)
+        } else {
+            if (result) {
+                console.log(result);
+                res.send(result)
+            } else {
+                res.send("Already in liked list.");
+            }
+        }
+
+    }
+)
+})
+
 users.post('/addToSocList', (req, res) => {
 
     UserModel.findByIdAndUpdate({

@@ -157,7 +157,7 @@ discussions.delete('/getDiscussions:id', (req, res) => {  //delete a discussion
 
         })
 })
-discussions.post('/addComment', (req, res) => {
+discussions.post('/CreateComment', (req, res) => {
 
     DiscussionModel.findByIdAndUpdate(
 

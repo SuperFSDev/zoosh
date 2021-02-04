@@ -62,7 +62,8 @@ export default class DiscussionPost extends React.Component {
       var user = JSON.parse(localStorage.getItem('user'));
       await axios.get('http://localhost:4000/users/get-user-details', {
         params: {
-          id: user._id
+          id: user._id,
+          fields:"likedPosts readingList"
         }
       })
   
@@ -138,7 +139,7 @@ export default class DiscussionPost extends React.Component {
 
 
 
-    addToLikedPosts(discussion,user_id,likes) {
+    addToLikedPosts(discussion,discussion_uID,user_id,likes) {
   
       const addDiscussion = {
           id:user_id,
@@ -152,6 +153,27 @@ export default class DiscussionPost extends React.Component {
           .catch(function (error) {
               console.log(error);
           })
+
+          const notify = {
+            id:discussion_uID,
+            notification: {
+            user:user_id,
+            discussion:discussion,
+            message: "liked your post",
+            time:new Date().getTime()
+            }
+        }
+        // Adds the discussion to liked list
+        axios.post('http://localhost:4000/users/notify', notify)
+            .then(function (resp) {
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+
           const UpdateLike = {
             discussion: discussion,
             likeCount:likes+1
@@ -198,7 +220,7 @@ export default class DiscussionPost extends React.Component {
     onSubmit(e) {
       var user = JSON.parse(localStorage.getItem('user'));  
       const newComment = {
-        _id:this.state.discussion_id,
+        _id:this.state.discussion._id,
         comment:{
         user_id: user._id,
         user_name: user.fullname,
@@ -208,8 +230,20 @@ export default class DiscussionPost extends React.Component {
       }
       
    }
-   
-   axios.post('http://localhost:4000/discussions/addComment', newComment)
+   const notify = {
+    id:this.state.discussion.user_id,
+    notification: {
+    user:user._id,
+    discussion:this.state.discussion._id,
+    message: "commented on post",
+    time:new Date().getTime()
+    }
+}
+axios.post('http://localhost:4000/discussions/CreateComment', newComment)
+   .then()
+   .catch();
+// Adds the discussion to liked list
+axios.post('http://localhost:4000/users/notify', notify)
    .then()
    .catch();
    window.location.reload();
@@ -217,7 +251,7 @@ export default class DiscussionPost extends React.Component {
     
 
 
-    isLiked(discussion_id, user_id, likes) {
+    isLiked(discussion_id,discussion_uID ,user_id, likes) {
       if (this.state.likedPosts.includes(discussion_id) === true) {
         return ( <span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
           <Image src={Clapping} size={30}/> {this.state.discussion.likes}</button><br/></span>
@@ -226,7 +260,7 @@ export default class DiscussionPost extends React.Component {
         
       }
       else {
-        return ( <span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, user_id, likes) }}>
+        return ( <span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id,discussion_uID, user_id, likes) }}>
           <Image src={Clap} size={30}/> {this.state.discussion.likes} </button></span>
         )
         
@@ -281,7 +315,7 @@ export default class DiscussionPost extends React.Component {
                     <a href={"/u/?id="+this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                   </span>
                  
-                  {this.isLiked(this.state.discussion._id, user._id, this.state.discussion.likes)}
+                  {this.isLiked(this.state.discussion._id,this.state.discussion.user_id ,user._id, this.state.discussion.likes)}
                   <br/>
                    {this.isInReadingList(this.state.discussion._id, user._id,)}
                   <br/>

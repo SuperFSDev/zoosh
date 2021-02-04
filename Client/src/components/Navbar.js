@@ -144,7 +144,17 @@ render(){
               <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
               <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
               <a className="link" onClick={this.showMenu}><BsBellFill  size={20} /> ME</a>
-              <a className="link" onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a>
+              <span class="dropdown">
+                <span style={{padding:20}}><a className="link" onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a></span>
+                  <div class="dropdown-content">
+                    <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
+                    <hr/>
+                    <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
+                    <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
+                    <hr/>
+                    <a href="/login" className="profile-navs">Sign Out</a>
+                  </div>
+              </span>
             </div>
           </div>
 
