@@ -27,7 +27,6 @@ import NewPost from './components/Pages/NewPost'
 import ReadingList from './components/Pages/ReadingList'
 import Following from './components/Pages/FollowingLayout';
 import TopPosts from './components/Pages/AllPosts';
-//import PreNavbar from './components/PreNavbar';
 
 class App extends React.Component {
   render(){
@@ -51,7 +50,7 @@ class App extends React.Component {
               <Route path="/me" component={Profile}/>
               <Route path="/forum" component={Forums}/>
               <Route path="/c" component={CommunityPage}/>
-              {/* <Route path="/home" component={AllPosts}/> */}
+              <Route path="/home" component={Following}/>
               <Route exact path="/" component={Following}/>
               <Route path="/top" component={TopPosts}/>
 

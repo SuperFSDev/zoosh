@@ -2,15 +2,10 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Dropdown} from 'react-bootstrap'
 import {Modal, Image} from 'react-bootstrap'
 import Invite from '../components/Common/Invite'
 import axios from 'axios';
-<<<<<<< HEAD
-import {BsBellFill,BsBookmarks,BsPeople,BsReplyAll,BsLightningFill, BsSearch} from 'react-icons/bs'
-=======
-import {BsBellFill,BsBookmarks,BsReplyAll,BsLightningFill} from 'react-icons/bs'
->>>>>>> 1fc84b1e2a816f076a29fb6f06410d372da8ad0d
+import {BsBellFill,BsBookmarks, BsSearch,BsLightningFill, BsGearFill,BsBookmarksFill, BsGear} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiChart} from 'react-icons/bi'
@@ -27,6 +22,7 @@ export default class NavBar extends React.Component {
         followers:[],
         showMenu: false,
         showProfile: false,
+        showProfile2: false,
         searchValue: '',
         filterBy: '',
         users: [],
@@ -36,10 +32,11 @@ export default class NavBar extends React.Component {
 
       this.showMenu = this.showMenu.bind(this);
       this.showProfile = this.showProfile.bind(this);
+      this.showProfile2 = this.showProfile2.bind(this);
 
       this.closeMenu = this.closeMenu.bind(this);
       this.closeProfile = this.closeProfile.bind(this);
-
+      this.closeProfile2 = this.closeProfile2.bind(this);
   }
 
   // NOTIFICATIONS MENU DROPDOWNS
@@ -81,6 +78,26 @@ export default class NavBar extends React.Component {
       
     }
   }
+
+    // USER PROFILE DROPDOWN
+    showProfile2(event) {
+      event.preventDefault();
+      
+      this.setState({ showProfile2: true }, () => {
+        document.addEventListener('click', this.closeProfile2);
+      });
+    }
+  
+    closeProfile2(event) {
+      
+      if (!this.dropdownMenu4.contains(event.target)) {
+        
+        this.setState({ showProfile2: false }, () => {
+          document.removeEventListener('click', this.closeProfile2);
+        });  
+        
+      }
+    }
 
   componentDidMount() {
       var user = JSON.parse(localStorage.getItem('user'));
@@ -126,27 +143,19 @@ render(){
               <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
               <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
               <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
-              <a className="link" onClick={this.showMenu}><BsBellFill  size={20} /> NOTIES</a>
+              <a className="link" onClick={this.showMenu}><BsBellFill  size={20} /> ME</a>
               <a className="link" onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a>
             </div>
           </div>
 
-          <div class="container2">
-              <div class="content">
-                <nav role="navigation">
-                  <div id="menuToggle">
-                    <input type="checkbox" />
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                  <ul id="menu">
-                    <li><a href="/me">My Profile</a></li>
-                    <a className="link" href="/communities"><IoMdPlanet  size={20}/> EXPLORE</a>  
-                    <a className="link" href="/leaderboard"><BiChart  size={20}/> CHARTS</a>  
-                    <a className="link" href="/forum"><BsLightningFill  size={20}/> FORUM</a>  
-                  </ul>
-                </div>
-                </nav>
+          <div id="container2">
+            <div style={{ marginTop:5, marginLeft:15}}>
+              <a href="/" className="header">zoosh</a>
+            </div>
+            <div className="div2" style={{color:'black',marginTop:7.5}}>
+              <a href="/communities" style={{color:'black',marginTop:5,marginLeft:20}}><IoMdPlanet  size={25}/></a>  
+              <a href="/forum" style={{color:'black',marginTop:5, marginLeft:20}}><BsSearch  size={20}/></a>  
+              <a style={{color:'black',marginTop:5, marginLeft:20}}  onClick={this.showProfile2}><Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:3,marginRight:20, cursor:'pointer'}}   roundedCircle/></a>
             </div>
           </div>
 
@@ -183,11 +192,35 @@ render(){
                     >
                       <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                       <hr/>
-                      {/* <a href="/connections" className="profile-navs"><p className="contributor-item-profile"><BsPeople/> Connections <b>{this.state.followers.length}</b></p></a> */}
                       <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
-                      {/* <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><MdSchool size={20}/> Verify Student ID</p></a> */}
                       <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
-                      {/* <InviteFriend/> */}
+                      <hr/>
+                      <a href="/login" className="profile-navs">Sign Out</a>
+                     
+                    </div>
+                  )
+                  : (
+                    null
+                  )
+              }
+
+              {/* PROFILE FILTER MOBILE*/}
+              {
+                this.state.showProfile2
+                  ? (
+                    <div className="profileDropdwn2"
+                      ref={(element4) => {
+                        this.dropdownMenu4 = element4;
+                      }}
+                    >
+                      <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
+                      <hr/>
+                      <a href="/forum" className="profile-navs"><p className="contributor-item-profile"><BsLightningFill/> Forum</p></a>
+                      <a href="/leaderboard" className="profile-navs"><p className="contributor-item-profile"><BiChart/> Charts</p></a>
+                      <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
+                      <hr/>
+                      <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><BsGearFill/> Account Settings</p></a>
                       <hr/>
                       <a href="/login" className="profile-navs">Sign Out</a>
                      
@@ -201,22 +234,6 @@ render(){
     );
   }
 }
-
-// function InviteFriend() {
-//   const [modalShow, setModalShowText] = React.useState(false);
-
-
-//   return (
-//     <div>
-//             <Dropdown.Item onClick={() => setModalShowText(true)}><BsReplyAll/> Invite a Friend</Dropdown.Item>
-
-//             <InviteModal
-//                 show={modalShow}
-//                 onHide={() => setModalShowText(false)}
-//             />
-//     </div>
-//   );
-// }
 
 function InviteModal(props) {
 

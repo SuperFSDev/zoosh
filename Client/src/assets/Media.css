@@ -15,7 +15,7 @@
   */
   
   @media (min-width: 1025px) and (max-width: 1280px) {
-    #container{display:none;}
+    #container > .div2 {width:100%;}
 
   }
   
@@ -27,9 +27,16 @@
   @media (min-width: 768px) and (max-width: 1024px) {
     
     /* CSS */
-    .discussion-post{width:100%;padding:0px;}
+    .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .post-image{max-width: 100%;}
+    .filter-options, .search-div{margin-top: 10vh;}
+    #container2{display:flex;}
     #container{display:none;}
-    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
+    #one,#four{display:none;}
+    .recommended-container, .contributors-container{display:none;}
+    #container > .div2 {width:100%;}
+
   }
   
   /* 
@@ -38,9 +45,13 @@
   */
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .post-image{max-width: 100%;}
+    .filter-options, .search-div{margin-top: 10vh;}
+    #container2{display:flex;}
+    .recommended-container, .contributors-container{display:none;}
     #container{display:none;}
-    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
-    .filter-options,.discussion-post, .discussion-container{width: 100%;}
   }
   
   /* 
@@ -49,10 +60,14 @@
   */
   
   @media (min-width: 481px) and (max-width: 767px) {
+    .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .post-image{max-width: 100%;}
+    .filter-options, .search-div{margin-top: 10vh;}
+    #container2{display:flex;}
     #container{display:none;}
-    .discussion-post{width:100%;padding:0px;}
-    .filter-options,.discussion-post{width: 100%;}
-    .link, .navbar-search, .recommended-container, .contributors-container{display:none!important;}
+    #one,#four{display:none;}
+
   }
   
   /* 
@@ -62,17 +77,24 @@
   
   @media (min-width: 320px) and (max-width: 480px) {
     
-    .link, .navbar-search, .recommended-container, .contributors-container, .container{display:none!important;}
-    .filter-options,.discussion-post{width: 100%;}
+    .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .post-image{max-width: 100%;}
+    .filter-options, .search-div{margin-top: 10vh;}
+    #container2{display:flex;}
     #container{display:none;}
+    #one,#four{display:none;}
 
   }
 
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-   .filter-options, .new-post-feed,.community-profile,.reading-list{width: 100%;}
+    .filter-options, .new-post-feed,.community-profile,.reading-list, .community-header,.forum-container,.forum-post,.settings-container{width: 100%;}
     .discussion-post{width:100%;padding:0px; border:1px solid white;}
-    #container{display:none;} 
     .post-image{max-width: 100%;}
-    .container2{display:block;}
+    .filter-options, .search-div,.forum-container{margin-top: 10vh;}
+    #container2{display:flex;}
+    #container{display:none;}
+    .recommended-container, .contributors-container{display:none;}
+    #container > .div2 {width:100%;}
   }

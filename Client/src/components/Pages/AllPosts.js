@@ -13,8 +13,9 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import {BsArrowUp} from 'react-icons/bs'
 import { RiChat1Line,RiDeleteBinLine } from 'react-icons/ri'
-
+import ScrollToTop from 'react-scroll-up'
 export default class AllPosts extends React.Component {
 
 
@@ -262,7 +263,7 @@ export default class AllPosts extends React.Component {
     return (
       <Container>
         <Row>
-          <Col sm></Col>
+          <Col sm  className="d-none d-lg-block"></Col>
           <Col sm className="feed">
             <div className="filter-options">
               <a href="/"><button className="feed-option">Following</button></a>
@@ -279,32 +280,43 @@ export default class AllPosts extends React.Component {
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  /><br/>
+
               </div>
               <div className="discussion-post" style={{padding:30}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  /><br/>
+
               </div>
               <div className="discussion-post" style={{padding:30}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  /><br/>
+
               </div>
               <div className="discussion-post" style={{padding:30}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  /><br/>
+
               </div>
             </div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
+            <ScrollToTop showUnder={1000}>
+              <span className="back-to-top"><BsArrowUp size={25}/>Back to top</span>
+            </ScrollToTop>
           </Col>
 
           <Col sm><Recommended /><Contributors /></Col>
           <Col sm></Col>
-
+          
         </Row>
       </Container>
     );
