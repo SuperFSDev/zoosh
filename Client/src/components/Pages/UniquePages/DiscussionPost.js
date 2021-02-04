@@ -230,8 +230,20 @@ export default class DiscussionPost extends React.Component {
       }
       
    }
-   
-   axios.post('http://localhost:4000/discussions/addComment', newComment)
+   const notify = {
+    id:this.state.discussion.user_id,
+    notification: {
+    user:user._id,
+    discussion:this.state.discussion._id,
+    message: "commented on post",
+    time:new Date().getTime()
+    }
+}
+axios.post('http://localhost:4000/discussions/addComment', newComment)
+   .then()
+   .catch();
+// Adds the discussion to liked list
+axios.post('http://localhost:4000/users/notify', notify)
    .then()
    .catch();
    window.location.reload();
