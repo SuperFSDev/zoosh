@@ -17,6 +17,7 @@ import { BsArrowUp } from 'react-icons/bs'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
+import createPalette from '@material-ui/core/styles/createPalette';
 
 export default class AllPosts extends React.Component {
 
@@ -42,7 +43,8 @@ export default class AllPosts extends React.Component {
     document.body.style.backgroundColor = "#F7F7F7";
 
     this.getUserDetails();
-    this.getDiscussions();
+    //this.checkSessionStorage();
+    this.checkSessionStorage();
     this.onDeletePost = this.onDeletePost.bind(this);
 
     // Fetch discussions every 1 second
@@ -54,10 +56,10 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     axios.get('http://localhost:4000/users/get-user-details', {
       params: {
-        id: user._id
+        id: user._id,
+        fields: 'forums societies likedPosts'
       }
     })
-
       .then((response) => {
         this.setState({
           user: response.data.user,
@@ -71,7 +73,7 @@ export default class AllPosts extends React.Component {
       });
   }
 
-  // Fetching the discussions
+  // Fetching the discussions from MongoDB Atlas
   getDiscussions() {
     axios.get('http://localhost:4000/discussions/get-discussions', {
       params: {
@@ -80,7 +82,8 @@ export default class AllPosts extends React.Component {
       }
     })
       .then((response) => {
-        console.log(response.data);
+        // Store
+        sessionStorage.setItem('AllPosts', JSON.stringify(response.data.discussions));
         this.setState({
           discussions: response.data.discussions,
           isLoading: false,
@@ -90,6 +93,26 @@ export default class AllPosts extends React.Component {
         console.log(error);
       });
   }
+
+  // Checks if the discussion feed is stored in session storage, if not
+  // then get discussions and store them.
+  checkSessionStorage() {
+    // Retrieve from storage
+    var stored_discussions = JSON.parse(sessionStorage.getItem("AllPosts"));
+
+    console.log(stored_discussions);
+
+    // If not stored, then get from database and store.
+    if (stored_discussions !== null && stored_discussions.length !== 0) {
+      this.setState({ discussions: stored_discussions, isLoading: false }, () => {
+        console.log(this.state.discussions);
+      })
+    } else {
+      // Get discussions from database.
+      this.getDiscussions()
+    }
+  }
+
 
   removeSaved = () => {
     this.setState({
@@ -227,11 +250,11 @@ export default class AllPosts extends React.Component {
               <span className="voting-btn">
                 <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
-                    {discussion.society == null ? (
-                      <span> in <b style={{ color: 'green' }}>General</b></span>
-                    ) : (
-                        <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                      )}<br />
+                {discussion.society == null ? (
+                  <span> in <b style={{ color: 'green' }}>General</b></span>
+                ) : (
+                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                  )}<br />
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                 {discussion.thumbnail_pic == null && <div></div>}
@@ -266,20 +289,20 @@ export default class AllPosts extends React.Component {
 
     return (
       <Container>
-          {/* REACTJS HELMET */}
-          <Helmet>
-            <meta charSet="utf-8" />
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Home / Website</title>
+        {/* REACTJS HELMET */}
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Home / Website</title>
 
-            {/* LINKS */}
+          {/* LINKS */}
 
-            <link rel="canonical" href="http://mysite.com/example" />
-            <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
-            <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
-          </Helmet>
+          <link rel="canonical" href="http://mysite.com/example" />
+          <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+          <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+        </Helmet>
         <Row>
           <Col sm className="d-none d-lg-block"></Col>
           <Col sm className="feed">
