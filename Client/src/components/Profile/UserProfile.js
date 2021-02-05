@@ -7,6 +7,7 @@ import History from './ProfilePostHistory'
 import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { RiCake3Line } from 'react-icons/ri'
+import Skeleton from 'react-loading-skeleton';
 
 export default class UserProfile extends React.Component {
 
@@ -296,8 +297,19 @@ export default class UserProfile extends React.Component {
             <Col sm>
               <div className="community-feed">
                 <div className="top-posts">
-                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
+                  {this.state.isLoading &&
+                  <div>
+                    <div className="discussion-post" style={{ padding: 30 }}>
+                      <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                      <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+
+                    </div>
+                  </div>
+                  }
+                  {this.state.posts > 0 && this.state.posts.length > 0 && <div><History /></div>}
                 </div>
               </div>
 

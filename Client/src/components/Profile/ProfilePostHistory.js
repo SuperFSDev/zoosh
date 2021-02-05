@@ -4,7 +4,8 @@ import { Image, Card } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-
+import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
+import Clap from '../../images/clap.png'
 
 export default class History extends React.Component {
 
@@ -76,28 +77,36 @@ export default class History extends React.Component {
 
         {this.state.posts.map(post => (
           <div key={this.state.user._id}>
-            <Card className='discussion-post'>
-              <Card.Body>
-                <Card.Text className="fontPost">
-                  <a href={"/d/?id=" + post._id} style={{ textDecoration: 'none' }}>
-                    <p>
-                      <span className="title-post" style={{ color: 'black' }}>{post.title}</span><br />
-                      <small style={{ color: 'gray', fontSize: 10 }}>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br />
-                      {post.thumbnail_pic == null && <div></div>} 
-                      {post.thumbnail_pic && <Image alt="" className="post-image" src={post.thumbnail_pic} width={200} height={125}/>} 
-                      {post.society == null ? (
-                        <span className="post-link-a" >Posted in<b style={{ color: 'green' }}> General</b><br /></span>
-                      ) : (
-                          <span className="post-link-a">Posted in <b style={{ color: 'green' }}>{post.society}</b><br /></span>
-                        )}
-                    </p><hr />
-                  </a>
-                  {this.CheckPost(post.user_id, post._id)}
-                </Card.Text>
-              </Card.Body>
-              {/* <h1></h1> */}
-            </Card>
+            <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect"> 
+            <div  className='discussion-post'>
+              <div class="one">
+                <div class="two">
+                  <h2>{post.title}</h2>
+                  <p>{post.content.slice(0,100)}</p>
+                  <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>
+                  <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
+                    {post.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
+                    {post.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes} reaction</span>}
+                    {post.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes} reactions</span>}
+                  </button></a>
+
+
+                  <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
+                    <RiChat1Line size={20} />
+                    {post.comments.length === 0 && <span> Add comment</span>}
+                    {post.comments.length === 1 && <span> {post.comments.length} comment</span>}
+                    {post.comments.length > 1 && <span> {post.comments.length} comments</span>}
+
+                  </button></a>
+                </div>
+                <div class="two">
+                    {post.thumbnail_pic == null && <div></div>}
+                    {post.thumbnail_pic && <Image alt="" className="post-image" src={post.thumbnail_pic} width={200} height={125} />}
+                </div>
+              </div>
+            </div></a>
           </div>
+          
         ))}
       </div>
     );

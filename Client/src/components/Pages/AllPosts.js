@@ -9,9 +9,6 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../images/clap.png'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { BsArrowUp } from 'react-icons/bs'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
@@ -245,7 +242,7 @@ export default class AllPosts extends React.Component {
       console.log(discussion);
       return (
         <Fragment key={discussion._id}>
-<a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
+          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
             <div class="one">
               <div class="two">
                 <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>

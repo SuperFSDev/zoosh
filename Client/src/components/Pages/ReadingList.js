@@ -117,7 +117,7 @@ export default class ReadingList extends React.Component {
             <Col sm></Col>
             <Col sm>
               <div className="dashboard">
-                <h3>Reading List ({this.state.readingList.length})</h3><br />
+                <h3 className="heading">Reading List ({this.state.readingList.length})</h3><hr /><br />
                 {this.state.posts.slice(0, 10).reverse().map(post => (
                   <Fragment key={this.state.user._id}>
                     <a href={"/d/?id=" + post._id} style={{ textDecoration: 'none' }}>

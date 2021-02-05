@@ -77,12 +77,12 @@ render(){
             <span class="dropdown">
                           <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
-                            <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
+                            <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             <hr/>
-                            <a href="/saved" className="profile-navs"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
-                            <a href="/settings" className="profile-navs"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
+                            <a href="/saved"  className="nowrap"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
+                            <a href="/settings" className="nowrap"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
                             <hr/>
-                            <a href="/login" className="profile-navs">Sign Out</a>
+                            <a href="/login" className="nowrap">Sign Out</a>
                           </div>
                       </span>
             <a href="/new"><button className="write-button">Write a post</button></a>

@@ -1,74 +1,69 @@
-import React from 'react';
+import loadable from '@loadable/component'
 import './assets/App.css';
 import './assets/Media.css';
-
+import React, {lazy, Suspense} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  //Redirect
 } from "react-router-dom";
-import NotFoundPage from './components/404/NotFoundPage';
-import LoginPage from './components/auth/Login';
-import RegisterPage from './components/auth/Register';
-import Explore from './components/Pages/Explore';
-import Leaderboard from './components/Pages/Leaderboard';
-import CreateSociety from './components/Common/CreateASoc';
-import Profile from './components/Profile/MyProfile'
-import ViewProfile from './components/Profile/UserProfile'
-import DiscussionPost from './components/Pages/UniquePages/DiscussionPost'
-import Forums from './components/Pages/Forum'
-import NavBar from './components/Navbar'
-import CommunityPage from './components/Pages/UniquePages/CommunityPage'
-import AccountSettings from './components/Profile/AccountSettings'
-import Landing from './components/Pages/Landing/Landing'
-import Users from './components/Pages/Users'
-import NewPost from './components/Pages/NewPost'
-import ReadingList from './components/Pages/ReadingList'
-import Following from './components/Pages/FollowingLayout';
-import TopPosts from './components/Pages/AllPosts';
-import Notifications from './components/Pages/Notifications';
+const Landing = loadable(() => import('./components/Pages/Landing/Landing'));
+const NavBar = loadable(() => import('./components/Navbar'));
+const RegisterPage = loadable(() => import('./components/auth/Login'));
+const LoginPage = loadable(() => import('./components/auth/Register'));
+const NotFoundPage = loadable(() => import('./components/404/NotFoundPage'));
+
+const TopPosts = loadable(() => import('./components/Pages/AllPosts'));
+const Following = loadable(() => import('./components/Pages/FollowingLayout'));
+const Users = loadable(() => import('./components/Pages/Users'));
+const Profile = loadable(() => import('./components/Profile/MyProfile'));
+const NewPost = loadable(() => import('./components/Pages/NewPost'));
+const ReadingList = loadable(() => import('./components/Pages/ReadingList'));
+const Forums = loadable(() => import('./components/Pages/Forum'));
+const ViewProfile = loadable(() => import('./components/Profile/UserProfile'));
+const CommunityPage = loadable(() => import('./components/Pages/UniquePages/CommunityPage'));
+const AccountSettings = loadable(() => import('./components/Profile/AccountSettings'));
+const Explore = loadable(() => import('./components/Pages/Explore'));
+const DiscussionPost = loadable(() => import('./components/Pages/UniquePages/DiscussionPost'));
+const Leaderboard = loadable(() => import('./components/Pages/Leaderboard'));
+const Notifications = loadable(() => import('./components/Pages/Notifications'));
 
 class App extends React.Component {
   render(){
     const DefaultRoutes = () => {
       return(
-        <div>
+        <div>            
+        <Suspense fallback={<></>}>
           <Router> 
             <NavBar/>   
             <Switch>
-              <Route path="/explore" component={Explore}/>
-              <Route path="/create-a-society" component={CreateSociety}/>
-              <Route path="/settings" component={AccountSettings}/>
-              <Route path="/settings/profile" component={AccountSettings}/>
-              <Route path="/d" component={DiscussionPost}/>
-              <Route path="/leaderboard" component={Leaderboard}/>
-              <Route path="/u" component={ViewProfile}/>
-              <Route path="/users" component={Users}/>
-              <Route path="/new" component={NewPost}/>
-              <Route path="/home" component={Following}/> 
-              <Route path="/saved" component={ReadingList}/>
-              <Route path="/me" component={Profile}/>
-              <Route path="/forum" component={Forums}/>
-              <Route path="/c" component={CommunityPage}/>
-              <Route path="/home" component={Following}/>
-              <Route exact path="/" component={Following}/>
-              <Route path="/top" component={TopPosts}/>
-              <Route path="/notifications" component={Notifications}/>
+              <TopPosts path="/top"/>
+              <Following exact path="/"/>
+              <Following exact path="/home"/>
+              <Users exact path="/users"/>
+              <Profile exact path="/me"/>
+              <NewPost exact path="/new"/>
+              <ReadingList exact path="/saved"/>
+              <Forums exact path="/forum"/>
+              <ViewProfile exact path="/u"/>
+              <CommunityPage exact path="/c"/>
+              <AccountSettings exact path="/settings"/>
+              <Explore exact path="/explore"/>
+              <DiscussionPost exact path="/d"/>
+              <Leaderboard exact path="/leaderboard"/>
+              <Notifications exact path="/notifications"/>
 
 
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
-                    <Route exact path='/' component={Following} />
-                    <Route path="*" component={NotFoundPage} />
+                  <NotFoundPage  path="*"/>
                 </Switch>
               </Router>    
 
-
-
             </Switch>
           </Router>
+          </Suspense>
         </div>
       );
     }
@@ -76,10 +71,9 @@ class App extends React.Component {
       <Router>
         {/* <PreNavbar/>    */}
         <Switch>
-          <Route path="/landing" component={Landing}/>
-          <Route path="/join" component={RegisterPage}/>
-          <Route path="/login" component={LoginPage}/>
-
+          <Landing exact path="/landing"/>
+          <LoginPage exact path="/login"/>
+          <RegisterPage exact path="/join"/>
           <Route component={DefaultRoutes} />
         </Switch>
       </Router>

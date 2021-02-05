@@ -91,8 +91,8 @@ render(){
 
     const topUsersList = users.slice(0,5).sort((a,b)=> b.score- a.score).map(user=>  {
       return( 
-      <a href={"/u/?id="+user._id}><div>
-        <p className="leaderboard-item"><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
+      <a href={"/u/?id="+user._id}className="nowrap"><div>
+        <p className="nowrap"><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
           {user.score >= 1 && user.score <=999 ? (
             <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
           ) : user.score >=1000 ?(
@@ -110,14 +110,14 @@ render(){
     const topCommunities = societies.slice(0,10).sort((a,b)=> b.score - a.score).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
+        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="-contributor-user-score">{ society.score}</b></p><hr/>      
       </div>
     )})
 
     const topGrowingCommunities = societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
+        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="-contributor-user-score">{ society.users.length}</b></p><hr/>      
       </div>
     )})
 

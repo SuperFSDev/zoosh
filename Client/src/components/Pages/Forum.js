@@ -89,7 +89,6 @@ export default class Forum extends React.Component {
                     </span></a><br/>
                     <span className="forum-title">{forum.post}</span><br/>
                     <span style={{ color: 'gray', fontSize: 10 }}>({moment(forum.time).startOf('seconds').fromNow()})</span><br/>
-                    <span style={{background:'lightblue', color:'gray'}}>#{forum.tags}</span>
                     <br/>
                 </div><br/>
               </div>
