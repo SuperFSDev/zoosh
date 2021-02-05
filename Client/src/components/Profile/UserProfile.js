@@ -64,8 +64,8 @@ export default class UserProfile extends React.Component {
         fields: 'fullname followers following posts likedPosts pic societies badges college time score'
       }
     })
-
       .then((response) => {
+        console.log(response);
         this.setState({
           user: response.data.user,
           followers: response.data.user.followers,
@@ -104,18 +104,20 @@ export default class UserProfile extends React.Component {
       });
 
     // Loops through society ID's and gets the data for each society.
-    this.state.society_ids.map(society_id => (
-      axios.get('http://localhost:4000/societies/get-societies-page', {
-        params: {
-          id: society_id
-        }
-      })
-        .then((response) => {
-          var joined = this.state.societies.concat(response.data.society);
-          this.setState({ societies: joined });
+    if(this.state.society_ids != undefined) {
+      this.state.society_ids.map(society_id => (
+        axios.get('http://localhost:4000/societies/get-societies-page', {
+          params: {
+            id: society_id
+          }
         })
-    ));
-    
+          .then((response) => {
+            var joined = this.state.societies.concat(response.data.society);
+            this.setState({ societies: joined });
+          })
+      ));
+    }
+
     if (this.state.likedPosts != null) {
       for (var i = 0; i < this.state.likedPosts.length; i++) {
         this.GetLikedPost(this.state.likedPosts[i])
@@ -294,8 +296,8 @@ export default class UserProfile extends React.Component {
             <Col sm>
               <div className="community-feed">
                 <div className="top-posts">
-                  {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                  {this.state.posts.length > 0 && <div><History /></div>}
+                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
                 </div>
               </div>
 

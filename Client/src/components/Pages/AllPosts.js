@@ -75,7 +75,7 @@ export default class AllPosts extends React.Component {
   getDiscussions() {
     axios.get('http://localhost:4000/discussions/get-discussions', {
       params: {
-        fields: 'user society time thumbnail_pic user_pic title content likes comments',
+        fields: 'user user_id society time thumbnail_pic user_pic title content likes comments',
         sort: 'likes'
       }
     })
@@ -219,12 +219,13 @@ export default class AllPosts extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
 
     const discussionList = discussions.map(discussion => {
+      console.log(discussion);
       return (
         <Fragment key={discussion._id}>
           <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
               <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
+                <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
                     {discussion.society == null ? (
                       <span> in <b style={{ color: 'green' }}>General</b></span>
