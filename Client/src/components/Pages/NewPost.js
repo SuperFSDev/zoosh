@@ -54,8 +54,8 @@ export default class NewPost extends React.Component {
     
     this.setState({user: fullname});
 
-    // Gets all users from the database.
-    this.getUsers();
+    // // Gets all users from the database.
+    // this.getUsers();
 
     // Get the societies the current user is in from the database.
     this.getUserSocieties();
@@ -138,39 +138,29 @@ export default class NewPost extends React.Component {
     })
   }
 
-  getUsers() {
-    // Get all users from database.
-    axios.get('http://localhost:4000/users/getUsers')
-      .then((response) => {
-        this.setState({ users: response.data.users })
-        console.log(this.state.users);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // getUsers() {
+  //   // Get all users from database.
+  //   axios.get('http://localhost:4000/users/getUsers')
+  //     .then((response) => {
+  //       this.setState({ users: response.data.users })
+  //       console.log(this.state.users);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   getUserSocieties() {
-    axios.get('http://localhost:4000/users/getUserSocieties', {
+    axios.get('http://localhost:4000/societies/get-users-societies', {
       params: {
-        id: this.user._id
+        id: this.user._id,
       }
     })
       .then((response) => {
-        //this.setState({ societies: response.data.societies })
-        response.data.societies.map(society_id => (
-          axios.get('http://localhost:4000/societies/get-societies-page', {
-            params: {
-              id: society_id
-            }
-          })
-            .then((response) => {
-              var joined = this.state.societies.concat(response.data.society);
-              this.setState({ societies: joined });
-              console.log(this.state.societies);
-            })
-        ));
-      })
+        console.log(response);
+        this.setState({societies: response.data.societies});
+        console.log(this.state.societies);
+      })  
       .catch((error) => {
         console.log(error);
       });
@@ -178,8 +168,9 @@ export default class NewPost extends React.Component {
 
   onSubmit(e) {
 
-    e.preventDefault();
+    var user = JSON.parse(localStorage.getItem('user'));
 
+    e.preventDefault();
 
     const newPost = {
       user: this.state.user,
@@ -190,7 +181,8 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       society: this.state.society,
       thumbnail_picture: this.state.thumbnail_picture,
-      full_picture: this.state.full_picture
+      full_picture: this.state.full_picture,
+      user_pic: user.pic
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
@@ -208,6 +200,7 @@ export default class NewPost extends React.Component {
       society: '',
       thumbnail_picture: '',
       full_picture: '',
+      user_pic: '',
       tags: []
     });
     window.location = '/';
@@ -217,7 +210,7 @@ export default class NewPost extends React.Component {
 
     let options = null;
     
-    if(this.state.societies[0] !== undefined)
+    if(this.state.societies !== undefined)
     {
       options = this.state.societies.map(function (society) {
         return { value: society.name, label: society.name };

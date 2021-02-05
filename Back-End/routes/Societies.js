@@ -33,21 +33,24 @@ societies.post('/create', (req, res) => {
         instagram: req.body.instagram,
         other: req.body.other,
         picture: req.body.picture,
-        color: req.body.color
-
+        color: req.body.color,
+        users: req.body.admin
         // pic: req.body.pic,
     }
 
-    //Check if user is already registered
-    //If User is not registered encrypt password using bcrypt
+    console.log(socData);
+
     SocietyModel.findOne({
         name: req.body.name
     })
         .then(society => {
+            console.log(society);
             // Checks if society exists in DB, if NOT, then proceed with creation.
-            if (!society) {
+            if (society == null) {
+                console.log("sociey is null");
                 SocietyModel.create(socData)
                     .then(society => {
+                        console.log(society);
                         res.json({ status: society.name + ' has been registered' });
                     })
                     .catch(err => {
@@ -57,12 +60,11 @@ societies.post('/create', (req, res) => {
             } else {
                 res.json({ error: 'Society already exists' })
             }
+            console.log("Society " + society.name + " has been registered!");
         })
         .catch(err => {
             res.send(err);
         })
-
-    console.log("Society " + society.name + " has been registered!");
 })
 
 
@@ -147,7 +149,7 @@ societies.get('/get-users-societies', (req, res, next) => {
     query.exec(function (err, data) {
         if (err) return next(err);
         res.json({
-            users: data
+            societies: data
         });
     });
 })

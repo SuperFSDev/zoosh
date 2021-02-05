@@ -20,6 +20,8 @@ discussions.use(function (req, res, next) {
 
 discussions.post('/NewDiscussions', (req, res) => {
 
+    console.log(req.body.user_pic);
+
     DiscussionModel.create({
         user: req.body.user,
         user_id: req.body.user_id,
@@ -29,7 +31,8 @@ discussions.post('/NewDiscussions', (req, res) => {
         time: req.body.time,
         society: req.body.society.value,
         thumbnail_pic: req.body.thumbnail_picture,
-        full_pic: req.body.full_picture
+        full_pic: req.body.full_picture,
+        user_pic: req.body.user_pic
     });
 
 })

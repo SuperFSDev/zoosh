@@ -32,11 +32,8 @@ export default class UserProfile extends React.Component {
     };
 
     this.unfollow = this.unfollow.bind(this);
-
     this.followBtn = this.followBtn.bind(this);
     this.unfollowBtn = this.unfollowBtn.bind(this);
-
-
   }
 
   followBtn(event) {
@@ -61,8 +58,6 @@ export default class UserProfile extends React.Component {
 
     document.body.style.backgroundColor = "#F7F7F7";
 
-
-
     await axios.get(`http://localhost:4000/users/get-user-details`, {
       params: {
         id: user_id,
@@ -86,6 +81,28 @@ export default class UserProfile extends React.Component {
         console.log(error);
       });
 
+    axios.get('http://localhost:4000/discussions/get-user-discussions', {
+      params: {
+        id: user_id,
+        fields: 'user society time thumbnail_pic title content likes comments user_id',
+        sort: 'likes'
+      }
+    })
+      .then((response) => {
+        if (this.state.post == undefined) {
+          this.setState({
+            posts: response.data.discussions
+          })
+        } else {
+          this.setState({
+            posts: this.state.posts.concat(response.data.discussions)
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     // Loops through society ID's and gets the data for each society.
     this.state.society_ids.map(society_id => (
       axios.get('http://localhost:4000/societies/get-societies-page', {
@@ -98,9 +115,11 @@ export default class UserProfile extends React.Component {
           this.setState({ societies: joined });
         })
     ));
-
-    for (var i = 0; i < this.state.likedPosts.length; i++) {
-      this.GetLikedPost(this.state.likedPosts[i])
+    
+    if (this.state.likedPosts != null) {
+      for (var i = 0; i < this.state.likedPosts.length; i++) {
+        this.GetLikedPost(this.state.likedPosts[i])
+      }
     }
 
   }
@@ -247,7 +266,7 @@ export default class UserProfile extends React.Component {
               <Col md>
                 <div className="community-profile">
                   <span>
-                    <Image alt={this.state.user.fullname} src={this.state.user.pic} className="profile-image" roundedCircle />
+                    <Image alt="" src={this.state.user.pic} className="profile-image" roundedCircle />
                     {isUnfollowing ? (
                       <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                     ) : (
@@ -301,7 +320,7 @@ export default class UserProfile extends React.Component {
 
               <div className="user-profile-communities-container">
                 <span>Communities</span>
-                <br/>
+                <br />
                 {this.state.societies[0] === undefined ? (
                   <div></div>
                 ) : (

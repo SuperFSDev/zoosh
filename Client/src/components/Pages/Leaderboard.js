@@ -145,7 +145,10 @@ render(){
 
             </div>
             <br/>
-            <Skeleton height={50} width={700} style={{ marginBottom: 10 }} count={15} />
+            { this.state.isLoading && <Skeleton height={50} width={700} style={{ marginBottom: 10 }} count={15} /> }
+            { !this.state.isLoading && <div>{topUsersList}</div>}
+            { !this.state.isLoading && <div>{topCommunities}</div>}
+            { !this.state.isLoading && <div>{topGrowingCommunities}</div>}
           </Col>
 
           <Col sm><Recommended/><Contributors/></Col>
