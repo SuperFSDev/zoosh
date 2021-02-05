@@ -49,7 +49,7 @@ export default class History extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     if (id === user._id) {
       return (<div>
-        <button className="standard-button-cancel" onClick={() => { this.onDeletePost(id, discussion_id) }}>Delete post</button>
+        <button className="reaction-button" onClick={() => { this.onDeletePost(id, discussion_id) }}><RiDeleteBinLine size={17}/></button>
       </div>)
     }
   }
@@ -96,13 +96,18 @@ export default class History extends React.Component {
                     {post.comments.length === 0 && <span> Add comment</span>}
                     {post.comments.length === 1 && <span> {post.comments.length} comment</span>}
                     {post.comments.length > 1 && <span> {post.comments.length} comments</span>}
-
                   </button></a>
+
+                  <a><button className="reaction-button" size="small" color="primary">
+                    {this.CheckPost(post.user_id, post._id)}
+                  </button></a>
+
                 </div>
                 <div class="two">
                     {post.thumbnail_pic == null && <div></div>}
                     {post.thumbnail_pic && <Image alt="" className="post-image" src={post.thumbnail_pic} width={200} height={125} />}
                 </div>
+                
               </div>
             </div></a>
           </div>

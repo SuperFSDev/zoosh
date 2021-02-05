@@ -4,13 +4,14 @@ import { Image, Row, Col, Container } from 'react-bootstrap'
 import axios from 'axios';
 import { Helmet } from 'react-helmet'
 import History from './ProfilePostHistory'
+import Skeleton from 'react-loading-skeleton';
 
 export default class MyProfile extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
       id: '',
       user: '',
       college: '',
@@ -145,54 +146,20 @@ export default class MyProfile extends React.Component {
 
         <Container fluid>
           <Row>
-            <div className="community-header" style={{ background: '#222831' }}>
-              <Col md>
-                <div className="community-profile">
-                  <span>
-                    <Image alt="" src={this.state.user.pic} className="profile-image" roundedCircle />
-                    <a href="/settings"><button className="community-btn-a" >Settings</button></a>
-                  </span>
-
-                  <br />
-                  <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-                  <br />
-                  {this.state.followers != null && this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
-                  {this.state.followers != null && this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                  {this.state.followers != null && this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}                      <br />
-                </div>
-              </Col>
-            </div>
-          </Row>
-
-          <Row>
-            <Col sm></Col>
-            <Col sm>
-              <div className="community-feed">
-                <div className="top-posts">
-                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
-                </div>
-              </div>
-
-            </Col>
-            <Col sm>
-              <div className="community-members-container">
-                <span>Activity</span>
-                <div>
-                  {this.state.likedDiscussions !== undefined && this.state.likedDiscussions.map(discussion =>
-                    <p>
-                      <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-                        <b>You</b> clapped to a post written by <b>{discussion.user}.</b>
-                      </a>
-                      <hr />
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="contributors-container">
+            <Col sm={2}></Col>
+            <Col>
+              
+              <div className="user-column-one">
+                <Image alt="" src={this.state.user.pic} roundedCircle  />
+                <br/>
+                <h3>@{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3> 
+                  <a href="/settings"><button className="community-btn-a" >Settings</button></a>
+                <br/>
+                  {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
+                  {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}
+                <div className="user-profile-communities-container">
                 <span>Communities</span><br />
-
                 {this.state.societies[0] === undefined ? (
                   <div></div>
                 ) : (
@@ -202,49 +169,67 @@ export default class MyProfile extends React.Component {
                       </span>
                     )
                   )}
+                </div>
+                <div className="user-profile-activity-container">
+                  <span>Activity</span>
+                  <div>
+                    {this.state.likedDiscussions !== undefined && this.state.likedDiscussions.map(discussion =>
+                      <p>
+                        <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+                          <b>You</b> clapped to a post written by <b>{discussion.user}.</b>
+                        </a>
+                        <hr />
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
             </Col>
-            <Col sm></Col>
+            <Col sm>
+                <div className="top-posts">
+                <p>{this.state.user.fullname}'s posts</p>
+                {this.state.isLoading &&
+                <div>
+                  <div className="discussion-post" style={{ padding: 30 }}>
+                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+
+                  </div>
+                  <div className="discussion-post" style={{ padding: 30 }}>
+                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+
+                  </div>
+                  <div className="discussion-post" style={{ padding: 30 }}>
+                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+
+                  </div>
+                  <div className="discussion-post" style={{ padding: 30 }}>
+                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+
+                  </div>
+                </div>}
+                  {!this.state.isLoading  && <div><History /></div>}
+                </div>
+            </Col>
+            <Col sm={2}></Col>
           </Row>
         </Container>
       </>
     );
   }
 }
-
-// // MODAL TO CREATE SOCIETY/CLUB
-// function QuickOptions() {
-//   const [modalShow, setModalShow] = React.useState(false);
-
-//   return (
-//     <div>
-//       <div>
-//         <VscDiffAdded size={55} className="square" id="dropdown-basic" onClick={() => setModalShow(true)} />
-//         <MyVerticallyCenteredModal
-//           show={modalShow}
-//           onHide={() => setModalShow(false)}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-
-// // MODEL HANDLE
-// function MyVerticallyCenteredModal(props) {
-//   return (
-//     <Modal
-//       {...props}
-//       size="lg"
-//       aria-labelledby="contained-modal-title-vcenter"
-//       centered
-//       textAlign="left"
-//     >
-//       <Modal.Header closeButton>
-//         <h3>Create Community</h3>
-//       </Modal.Header>
-//       <Modal.Body>
-//         <CreateASoc />
-//       </Modal.Body>
-//     </Modal>
-//   );
-// }

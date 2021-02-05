@@ -16,7 +16,7 @@
   
   @media (min-width: 1025px) and (max-width: 1280px) {
     #container > .div2 {width:100%;}
-    .community-feed{margin-top: 30vh;}
+    .community-feed{margin-top: 40vh!important;}
     .community-members-container{margin-top: 33vh;}
     .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
     .filter-options{width:100%;}
@@ -114,7 +114,8 @@
     .write-button{width:100%;margin-right: 0vh;}
     .navbar-search{display:none;}
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
-    .standard-navbar{display:none!important;}
+    .standard-navbar, .user-profile-activity-container, .user-profile-communities-container{display:none!important;}
     .mobile-navbar{display:block!important;}
     .header{margin-left: 60%;}
+    .top-posts{margin-top:0vh;}
   }

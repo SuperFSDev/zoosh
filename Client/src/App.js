@@ -1,7 +1,7 @@
 import loadable from '@loadable/component'
+import React, {Suspense} from 'react';
 import './assets/App.css';
 import './assets/Media.css';
-import React, {lazy, Suspense} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,7 +37,7 @@ class App extends React.Component {
           <Router> 
             <NavBar/>   
             <Switch>
-              <TopPosts path="/top"/>
+            <TopPosts path="/top"/>
               <Following exact path="/"/>
               <Following exact path="/home"/>
               <Users exact path="/users"/>
@@ -52,7 +52,6 @@ class App extends React.Component {
               <DiscussionPost exact path="/d"/>
               <Leaderboard exact path="/leaderboard"/>
               <Notifications exact path="/notifications"/>
-
 
               {/* 404 Not Found Exception */}
               <Router>
@@ -74,6 +73,7 @@ class App extends React.Component {
           <Landing exact path="/landing"/>
           <LoginPage exact path="/login"/>
           <RegisterPage exact path="/join"/>
+
           <Route component={DefaultRoutes} />
         </Switch>
       </Router>

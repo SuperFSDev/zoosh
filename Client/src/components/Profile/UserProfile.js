@@ -265,88 +265,65 @@ export default class UserProfile extends React.Component {
 
         <Container fluid>
           <Row>
-            <div className="community-header" style={{ background: '#222831' }}>
-              <Col md>
-                <div className="community-profile">
-                  <span>
-                    <Image alt="" src={this.state.user.pic} className="profile-image" roundedCircle />
-                    {isUnfollowing ? (
+            <Col sm={2}></Col>
+            <Col sm>
+              
+              <div className="user-column-one">
+                <Image alt="" src={this.state.user.pic} roundedCircle  />
+                <br/>
+                <h3>@{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h3> 
+                {isUnfollowing ? (
                       <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                     ) : (
                         <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                       )}
-                  </span>
-
-                  <br />
-                  <h5>{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></h5>
-                  <br />
-                  <RiCake3Line /> Member since {moment(this.state.user.time).format('LL')}
-                  <br />
-                  <br />
+                <br/>
                   {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
                   {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
                   {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}
-                  <br /><br />
+                <div className="user-profile-communities-container">
+                  <span>Communities</span>
+                  <br />
+                  {this.state.societies[0] === undefined ? (
+                    <div></div>
+                  ) : (
+                      this.state.societies.map(society =>
+                        <span key={society._id}>
+                          <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin"> | Founder</b></b><br /><br />
+                        </span>
+                      )
+                    )}
                 </div>
-              </Col>
-            </div>
-          </Row>
-
-          <Row>
-            <Col sm></Col>
-            <Col sm>
-              <div className="community-feed">
-                <div className="top-posts">
-                  {this.state.isLoading &&
+                <div className="user-profile-activity-container">
+                  <span>Activity</span><hr />
                   <div>
-                    <div className="discussion-post" style={{ padding: 30 }}>
-                      <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
-                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
-                      <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
-                      <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
-                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+                    {this.state.likedDiscussions.map(discussion =>
+                      <p>
+                        <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
 
-                    </div>
+                          {this.isMyProfile(this.state.user.fullname, discussion.user)}
+                        </a>
+                        <hr />
+                      </p>
+                    )}
                   </div>
-                  }
-                  {this.state.posts > 0 && this.state.posts.length > 0 && <div><History /></div>}
                 </div>
               </div>
-
+              
+              
             </Col>
-
             <Col sm>
-              <div className="user-profile-activity-container">
-                <span>Activity</span><hr />
-                <div>
-                  {this.state.likedDiscussions.map(discussion =>
-                    <p>
-                      <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+            <div className="community-feed">
 
-                        {/* <b>{this.state.user.fullname}</b> clapped to a post written by <b>{discussion.user}.</b> */}
-                        {this.isMyProfile(this.state.user.fullname, discussion.user)}
-                      </a>
-                      <hr />
-                    </p>
-                  )}
+                <div className="top-posts">
+                  <p>{this.state.user.fullname}'s posts</p>
+                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
+
                 </div>
-              </div>
-
-              <div className="user-profile-communities-container">
-                <span>Communities</span>
-                <br />
-                {this.state.societies[0] === undefined ? (
-                  <div></div>
-                ) : (
-                    this.state.societies.map(society =>
-                      <span key={society._id}>
-                        <b><a href={"/c/?id=" + society._id}>{society.name}</a> <b className="user-admin"> | Founder</b></b><br /><br />
-                      </span>
-                    )
-                  )}
-              </div>
+                    </div>
             </Col>
-            <Col sm></Col>
+            <Col sm={2}></Col>
           </Row>
         </Container>
       </>

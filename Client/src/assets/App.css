@@ -239,7 +239,7 @@
   height:auto;
   width:auto;
   border-radius: 5px;
-  margin-top: 5vh;
+  margin-top: 20vh;
   
 }
 
@@ -993,7 +993,6 @@ section::after {
 
 .community-feed{
   margin-top: 16vh;
-  margin-left: 6vh;
 }
 
 .forum-list{background:white;margin-top: 2vh; margin-left: 40vh; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;}
@@ -1165,6 +1164,18 @@ section::after {
   margin: 0px;
 }
 
+.user-column-one{
+  padding:50px;
+  text-align: center;
+  bottom: 100% !important;;
+}
+
+.top-posts p {
+  font-size:16px;
+  font-weight: 500;
+  color:gray;
+}
+
 .comment-content{width:200px!important;}
 
 .title, .location {
@@ -1209,9 +1220,7 @@ section::after {
   margin-bottom: 10px;
   margin-top: 10px;
   font-weight: bold;
-  float: right;
   padding:10px;
-  margin-right: 5vh;
 }
 
 .comm-nav-item{
@@ -1435,25 +1444,29 @@ section::after {
 
 .user-profile-communities-container{
   margin-top: 5vh;
+  margin-bottom: 5vh!important;
+  margin-top: 5vh!important;
+
   height:320px;
   width:300px;
   background-color: white;
-  border:1px solid lightgray;
+  /* border:1px solid lightgray; */
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  position: -webkit-sticky;
-  position: sticky;
   top: 4rem;
   overflow: auto;
+  text-align: left;
+  margin:auto;
   padding:10px;
 }
 
 .user-profile-activity-container{
-  margin-top: 19vh;
   height:320px;
   width:300px;
   background-color: white;
-  border:1px solid lightgray;
+  text-align: left;
+  margin:auto;
+  /* border:1px solid lightgray; */
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   overflow: auto;
@@ -1468,10 +1481,7 @@ section::after {
 
 .community-header{
   width: 100%!important;
-  height:30vh;
-  text-align:center;
-  background:white;
-  border:none!important;
+  height:18vh;
 }
 
 .community-header-profile{
