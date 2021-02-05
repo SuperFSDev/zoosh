@@ -2,7 +2,7 @@ import React  from 'react';
 import '../../../assets/App.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container,Form } from 'react-bootstrap';
 import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
@@ -346,13 +346,6 @@ axios.post('http://localhost:4000/users/notify', notify)
 
 
                 <div className="spacing"></div>
-                <span className="d-inline-block">
-                <div className="post-reactions-mobile">                 
-                  {this.isLiked(this.state.discussion._id,this.state.discussion.user_id ,user._id, this.state.discussion.likes)}
-                  {this.isInReadingList(this.state.discussion._id, user._id,)}
-                  <span className="voting-btn"><button aria-label="community" className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
-                </div>
-                </span>
                 <hr/>
 
           <div className="comment-container" id="responses">
@@ -361,10 +354,12 @@ axios.post('http://localhost:4000/users/notify', notify)
             
             <div className="comment-box-acc">
               <Avatar alt="User" src={user.pic}/><br/>
-              <label>
-                <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
-                <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
-              </label>
+              <Form>
+                <label>
+                  <textarea required rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
+                  <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
+                </label>
+              </Form>
             </div>
           
           <div className="users-comment">
