@@ -1,10 +1,8 @@
 import React from 'react';
 import '../../assets/App.css';
 import { Image, Row, Col, Container } from 'react-bootstrap'
-// import CreateASoc from '../Socs/CreateASoc'
 import axios from 'axios';
 import { Helmet } from 'react-helmet'
-// import { VscDiffAdded } from 'react-icons/vsc'
 import History from './ProfilePostHistory'
 
 export default class MyProfile extends React.Component {

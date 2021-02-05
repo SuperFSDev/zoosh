@@ -4,11 +4,9 @@ import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Modal, Row, Col, Container} from 'react-bootstrap';
-import CreateASoc from './CreateASoc'
+import CreateASoc from '../Common/CreateASoc'
 import background from "../../images/group.jpg";
 import Skeleton from 'react-loading-skeleton';
-import Recommended from '../Lists/Recommended'
-import Contributors from '../Lists/Contributors'
 import Avatar from '@material-ui/core/Avatar';
 
 export default class ListSocieties extends React.Component {
@@ -51,7 +49,7 @@ export default class ListSocieties extends React.Component {
     
         axios.get('http://localhost:4000/societies/get-societies', {
           params: {
-            fields: 'name picture'
+            fields: 'name picture color description users'
           }
         })
           .then((response) => {
@@ -116,8 +114,7 @@ render(){
 
       <Container>
         <Row>
-          <Col sm></Col>
-          <Col sm>
+          <Col>
           <div className="search-div">
             <input className="searchbar-nav" type="text" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
               />
@@ -132,29 +129,16 @@ render(){
                     <div key={society.id}>
                         <a href={"/c/?id=" +society._id} aria-label="community" rel="noopener" className="miniprofile-post-redirect">
                         <div class="miniprofileCommunities">
-                            <figure class="headshot">
-                              {society.picture == null ? (
-                                  <Avatar alt="" src={background} className="soc-item-image" roundedCircle/>
-                                ) : (
-                                  <Avatar alt="" src={society.picture} className="soc-item-image" roundedCircle/>
-                                )}
-                            </figure>
-                            <section class="bio-box">
-                                <span class="details"> 
-                                    <b>{society.name} </b>
-                                </span>
-                            </section>
-                
+                        <div className="column-head-comm" style={{ background: society.color }}/>
+                        <Avatar className="soc-item-image" src={society.picture}/>
+                        <h3><b>{society.name}</b></h3>
+                        <p><b>{society.users.length} members</b></p>
                         </div>
                         </a>
                     </div>
                     ))}
               </div>
           </Col>
-
-          <Col sm><Recommended/><Contributors/></Col>
-          <Col sm></Col>
-
         </Row>
       </Container>    
   </div>

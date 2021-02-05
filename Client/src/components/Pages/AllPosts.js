@@ -245,44 +245,40 @@ export default class AllPosts extends React.Component {
       console.log(discussion);
       return (
         <Fragment key={discussion._id}>
-          <div className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
-              <span className="voting-btn">
+<a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
+            <div class="one">
+              <div class="two">
                 <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
-                {discussion.society == null ? (
-                  <span> in <b style={{ color: 'green' }}>General</b></span>
-                ) : (
-                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                  )}<br />
-                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
+                    {discussion.society == null ? (
+                      <span> in <b style={{ color: 'green' }}>General</b></span>
+                    ) : (
+                        <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                )}<br />
+                <h2>{discussion.title}</h2>
+                <p>{discussion.content.slice(0,100)}</p>
+                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+                  <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
+                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reaction</span>}
+                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reactions</span>}
+                </button></a>
 
+
+                <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  <RiChat1Line size={20} />
+                  {discussion.comments.length === 0 && <span> Add comment</span>}
+                  {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
+                  {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+
+                </button></a>
+              </div>
+              <div class="two">
                 {discussion.thumbnail_pic == null && <div></div>}
                 {discussion.thumbnail_pic && <Image alt="" className="post-image" src={discussion.thumbnail_pic} width={200} height={125} />}
-              </span><br />
-              <span className="heading">{discussion.title}</span><br />
-              <span className="content-post">{discussion.content.slice(0, 200)}</span>
-            </CardContent></a>
-            <CardActions>
-              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                {discussion.likes === 0 && <></>}
-                {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reaction</span>}
-                {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reactions</span>}
-              </button></a>
-
-
-              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                <RiChat1Line size={20} />
-                {discussion.comments.length === 0 && <span> Add comment</span>}
-                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
-
-              </button></a>
-
-            </CardActions>
-
-          </div>
-
+              </div>
+            </div>
+          </div></a>
         </Fragment>
       )
     })
@@ -309,7 +305,7 @@ export default class AllPosts extends React.Component {
             <div className="filter-options">
               <a href="/"><button className="feed-option">Following</button></a>
               <a href="/top"><button className="feed-option-active">Top</button></a>
-              <a href="/new"><button className="write-button">Write a Post</button></a>
+              {/* <a href="/new"><button className="write-button">Write a Post</button></a> */}
 
             </div>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../../assets/App.css';
 import axios from 'axios';
-import { Helmet } from 'react-helmet'
-import { Row, Col, Container } from 'react-bootstrap';
+import {Helmet} from 'react-helmet'
+import { Row, Col, Container,Form } from 'react-bootstrap';
 import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
@@ -359,10 +359,12 @@ export default class DiscussionPost extends React.Component {
 
                   <div className="comment-box-acc">
                     <Avatar alt="User" src={user.pic} /><br />
-                    <label>
-                      <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment" value={this.state.comment} onChange={this.onChangeComment} />
-                      <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
-                    </label>
+                    <Form>
+                      <label>
+                        <textarea required rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment" value={this.state.comment} onChange={this.onChangeComment} />
+                        <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
+                      </label>
+                    </Form>
                   </div>
 
                   <div className="users-comment">

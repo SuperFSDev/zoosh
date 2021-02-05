@@ -11,9 +11,9 @@ import {
 import NotFoundPage from './components/404/NotFoundPage';
 import LoginPage from './components/auth/Login';
 import RegisterPage from './components/auth/Register';
-import SocsList from './components/Socs/ListSocieties';
+import Explore from './components/Pages/Explore';
 import Leaderboard from './components/Pages/Leaderboard';
-import CreateSociety from './components/Socs/CreateASoc';
+import CreateSociety from './components/Common/CreateASoc';
 import Profile from './components/Profile/MyProfile'
 import ViewProfile from './components/Profile/UserProfile'
 import DiscussionPost from './components/Pages/UniquePages/DiscussionPost'
@@ -37,7 +37,7 @@ class App extends React.Component {
           <Router> 
             <NavBar/>   
             <Switch>
-              <Route path="/communities" component={SocsList}/>
+              <Route path="/explore" component={Explore}/>
               <Route path="/create-a-society" component={CreateSociety}/>
               <Route path="/settings" component={AccountSettings}/>
               <Route path="/settings/profile" component={AccountSettings}/>

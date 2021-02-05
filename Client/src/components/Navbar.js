@@ -4,11 +4,12 @@ import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, Image, Navbar, Nav, NavDropdown} from 'react-bootstrap'
 import axios from 'axios';
-import {BsBell,BsBookmarks, BsSearch,BsLightningFill, BsGearFill,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
+import {BsBellFill,BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiChart} from 'react-icons/bi'
 import {IoMdPlanet} from 'react-icons/io'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class NavBar extends React.Component {
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id,
-              fields: 'score pic'
+              fields: 'score pic fullname'
           }
       })
           .then((response) => {
@@ -59,8 +60,7 @@ render(){
   return (
       <div>
         <div id="top"></div>
-
-        <Navbar  expand="lg" bg="light" variant="light">
+        <Navbar className="standard-navbar"  expand="lg" bg="light" variant="light">
           <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -68,12 +68,14 @@ render(){
               <SearchbarFilter/>
             </Nav>
             <Nav>
-            <Nav.Link href="/communities" className="link"><BsCompass size={25}/></Nav.Link>
+            <Nav.Link href="/home" className="link"><BsHouseFill size={25}/></Nav.Link>
+            <Nav.Link href="/explore" className="link"><BsCompass size={25}/></Nav.Link>
+            <Nav.Link href="/leaderboard"  className="link"><BsFillBarChartFill size={25}/></Nav.Link>
             <Nav.Link href="/forum" className="link"><BsLightningFill size={25}/></Nav.Link>
-            <Nav.Link href="/leaderboard"  className="link"><BiChart size={25}/></Nav.Link>
-            <Nav.Link href="/notifications"  className="link"><BsBell size={25}/></Nav.Link>
+            <Nav.Link href="/notifications"  className="link"><BsBellFill size={25}/></Nav.Link>
+           {/* <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/> */}
             <span class="dropdown">
-                        <span style={{padding:20}}><a onClick={this.showProfile}>{this.state.user.score} <Image alt="" src={this.state.user.pic} style={{width:35, height:35, marginTop:10}}   roundedCircle/></a></span>
+                          <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
                             <a href="/me" className="profile-navs" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             <hr/>
@@ -83,7 +85,30 @@ render(){
                             <a href="/login" className="profile-navs">Sign Out</a>
                           </div>
                       </span>
+            <a href="/new"><button className="write-button">Write a post</button></a>
             </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Navbar className="mobile-navbar"  expand="lg" bg="light" variant="light">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
+
+          <Navbar.Collapse id="responsive-navbar-nav">
+            
+            <Nav>
+            <a href="/new"><button className="write-button">Write a post</button></a>
+            <Nav.Link href="/me" className="link"><Image alt="" className="user-image-mini" src={this.state.user.pic}  roundedCircle/>  {this.state.user.fullname}</Nav.Link>
+            <Nav.Link href="/home" className="link"><BsHouse size={25}/> Home</Nav.Link>
+            <Nav.Link href="/notifications"  className="link"><BsBell size={25}/> Notifications</Nav.Link>
+            <Nav.Link href="/saved" className="link"><BsBookmarks size={25}/> Reading List</Nav.Link>
+            <Nav.Link href="/explore" className="link"><BsCompass size={25}/> Explore</Nav.Link>
+            <Nav.Link href="/leaderboard"  className="link"><BsFillBarChartFill size={25}/> Charts</Nav.Link>
+            <Nav.Link href="/forum" className="link"><BsLightning size={25}/> Forum</Nav.Link>
+            <Nav.Link href="/settings" className="link"><BsGear size={25}/> Account Settings</Nav.Link>
+            <Nav.Link href="/login" className="link">Sign Out</Nav.Link>
+            </Nav>
+            
           </Navbar.Collapse>
         </Navbar>
       </div>

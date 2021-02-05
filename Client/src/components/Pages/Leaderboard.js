@@ -5,8 +5,7 @@ import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Image, Badge, Container, Row, Col} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
-import Recommended from '../Lists/Recommended'
-import Contributors from '../Lists/Contributors'
+import Avatar from '@material-ui/core/Avatar';
 
 export default class Two extends React.Component {
 
@@ -93,7 +92,7 @@ render(){
     const topUsersList = users.slice(0,5).sort((a,b)=> b.score- a.score).map(user=>  {
       return( 
       <a href={"/u/?id="+user._id}><div>
-        <p className="leaderboard-item"><b className="chart-left">{i+=1}</b><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
+        <p className="leaderboard-item"><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
           {user.score >= 1 && user.score <=999 ? (
             <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
           ) : user.score >=1000 ?(
@@ -111,14 +110,14 @@ render(){
     const topCommunities = societies.slice(0,10).sort((a,b)=> b.score - a.score).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><b  className="chart-left">{k+=1}</b><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
+        <p className="leaderboard-item"><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      
       </div>
     )})
 
     const topGrowingCommunities = societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=> { 
       return(
       <div>
-        <p className="leaderboard-item"><b  className="chart-left">{j+=1}</b><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}>{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
+        <p className="leaderboard-item"><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="soc-leaderboard-score-item">{ society.users.length}</b></p><hr/>      
       </div>
     )})
 
@@ -136,23 +135,30 @@ render(){
 
         <Container>
         <Row>
-          <Col sm></Col>
-          <Col sm>
+          <Col>
           <div className="filter-options">
-              <a href="#top"><button className="feed-option">Top Contributors</button></a>
-              <a href="#communities"><button className="feed-option">Top Communities</button></a>
-              <a href="#growing"><button className="feed-option">Top Growing</button></a>
 
             </div>
-            <br/>
-            { this.state.isLoading && <Skeleton height={50} width={700} style={{ marginBottom: 10 }} count={15} /> }
-            { !this.state.isLoading && <div>{topUsersList}</div>}
-            { !this.state.isLoading && <div>{topCommunities}</div>}
-            { !this.state.isLoading && <div>{topGrowingCommunities}</div>}
+            <div className="spacing"></div>
+            { this.state.isLoading && <Skeleton className="leaderboard" style={{ marginBottom: 10 }} count={10} /> }
+            { !this.state.isLoading && <>
+
+            <h1 className="leaderboard-heading">CONTRIBUTORS</h1>
+            <div className="leaderboard">
+              { !this.state.isLoading && <div>{topUsersList}</div>}
+            </div>
+            <h1 className="leaderboard-heading">COMMUNITIES</h1>
+            <div className="leaderboard">
+              { !this.state.isLoading && <div>{topCommunities}</div>}
+            </div>
+            <h1 className="leaderboard-heading">GROWING</h1>
+            <div className="leaderboard">
+              { !this.state.isLoading && <div>{topGrowingCommunities}</div>}
+            </div>
+            </>
+            }
           </Col>
 
-          <Col sm><Recommended/><Contributors/></Col>
-          <Col sm></Col>
 
         </Row>
       </Container>   

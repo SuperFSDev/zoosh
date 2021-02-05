@@ -195,7 +195,7 @@ export default class CreateASoc extends React.Component {
                   <div>Your new Community was created.</div>
                 </div>
               );
-            window.location = '/communities';
+            window.location = '/explore';
         }
 
         this.setState({
