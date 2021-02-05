@@ -443,7 +443,6 @@ users.post('/addComment', (req, res) => {
                 res.send(err)
             } else {
                 if (result) {
-                    console.log("jkldsjflksjdflkjsl" + result);
                     res.send(result)
                 } else {
                     res.send("Society already exists in user model.");
@@ -456,6 +455,7 @@ users.post('/addComment', (req, res) => {
 
 
 users.post('/notify', (req, res) => {
+    console.log(req.body);
     UserModel.findByIdAndUpdate({
         _id: req.body.id,
     }, {
