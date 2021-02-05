@@ -16,9 +16,9 @@ mongoose.connect(mongoDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    //autoIndex: false
+    autoIndex: false
 });
-//mongoose.set("useCreateIndex", true);
+mongoose.set("useCreateIndex", true);
 
 //Use headers to give browser access to resources
 app.use(cors());

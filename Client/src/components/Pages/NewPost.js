@@ -168,8 +168,9 @@ export default class NewPost extends React.Component {
 
   onSubmit(e) {
 
-    e.preventDefault();
+    var user = JSON.parse(localStorage.getItem('user'));
 
+    e.preventDefault();
 
     const newPost = {
       user: this.state.user,
@@ -180,7 +181,8 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       society: this.state.society,
       thumbnail_picture: this.state.thumbnail_picture,
-      full_picture: this.state.full_picture
+      full_picture: this.state.full_picture,
+      user_pic: user.pic
     }
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
@@ -198,6 +200,7 @@ export default class NewPost extends React.Component {
       society: '',
       thumbnail_picture: '',
       full_picture: '',
+      user_pic: '',
       tags: []
     });
     window.location = '/';
