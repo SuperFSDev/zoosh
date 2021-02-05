@@ -245,12 +245,11 @@ export default class AllPosts extends React.Component {
       console.log(discussion);
       return (
         <Fragment key={discussion._id}>
-          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
+<a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
             <div class="one">
               <div class="two">
                 <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
-<<<<<<< HEAD
                     {discussion.society == null ? (
                       <span> in <b style={{ color: 'green' }}>General</b></span>
                     ) : (
@@ -275,15 +274,6 @@ export default class AllPosts extends React.Component {
                 </button></a>
               </div>
               <div class="two">
-=======
-                {discussion.society == null ? (
-                  <span> in <b style={{ color: 'green' }}>General</b></span>
-                ) : (
-                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                  )}<br />
-                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
-
->>>>>>> 9235127edef2607c345280598fa7dd68dcf66ea4
                 {discussion.thumbnail_pic == null && <div></div>}
                 {discussion.thumbnail_pic && <Image alt="" className="post-image" src={discussion.thumbnail_pic} width={200} height={125} />}
               </div>
