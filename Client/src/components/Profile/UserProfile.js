@@ -359,6 +359,25 @@ function addUserToFollow(user) {
 
   }
 
+  
+  const notify = {
+    id:user._id,
+    notification: {
+    user:getUser._id,
+    message: "just followed you",
+    time:new Date().getTime()
+    }
+}
+// Adds the discussion to liked list
+axios.post('http://localhost:4000/users/notify', notify)
+    .then(function (resp) {
+        console.log(resp);
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+
+
   // Adds user to following array in user model.
   axios.post('http://localhost:4000/users/addToFollowingList', myUser)
     //add to following array

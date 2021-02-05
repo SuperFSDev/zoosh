@@ -551,6 +551,40 @@ users.post('/clearComments', (req, res) => {
     )
 })
 
+
+
+users.post('/clearFollows', (req, res) => {
+    UserModel.findByIdAndUpdate({
+        
+            _id: req.body.id,
+        }, {
+            $pull: {
+                notifications:{message:"just followed you"},
+            }
+            
+        }, {
+            upsert: true,
+            multi:true,
+            new: true,
+            runValidators: true
+        },
+        function (err, result) {
+            console.log(err)
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already in liked list.");
+                }
+            }
+
+        }
+    )
+})
+
 users.post('/addToSocList', (req, res) => {
 
     UserModel.findByIdAndUpdate({

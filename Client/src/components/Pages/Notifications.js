@@ -75,6 +75,22 @@ export default class Notifications extends React.Component {
         })
         window.location.reload();
       }
+
+      ClearFollows() {
+        var user = JSON.parse(localStorage.getItem('user'));
+        const UserID= {
+            id:user._id
+        }
+        // Adds the discussion to liked list
+        axios.post('http://localhost:4000/users/clearFollows', UserID)
+            .then(function (resp) {
+                console.log(resp);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            window.location.reload();
+          }
   
   render() {
     return (
@@ -109,6 +125,7 @@ export default class Notifications extends React.Component {
                 )}
                  <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() =>{this.Clearlikes()}}>Clear Likes</button>
                  <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() =>{this.ClearComments()}}>Clear Comments</button>
+                 <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() =>{this.ClearFollows()}}>Clear Follows</button>
               </div>
             </Col>
             <Col sm></Col>
