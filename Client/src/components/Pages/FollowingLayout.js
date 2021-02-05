@@ -16,7 +16,7 @@ import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../images/clap.png'
 import ScrollToTop from 'react-scroll-up'
 import {BsArrowUp} from 'react-icons/bs'
-
+import { Helmet } from 'react-helmet'
 // Allows array of following ids to be passed as params
 var qs = require('qs');
 
@@ -112,7 +112,7 @@ export default class Feed extends React.Component {
   }
 
   render() {
-    var user = JSON.parse(localStorage.getItem('user'));
+    var user = JSON.parse(localStorage.getItem('user'));    
     const discussionList = this.state.posts.map(discussion => {
       return (
         <Fragment key={discussion._id}>
@@ -158,6 +158,20 @@ export default class Feed extends React.Component {
 
     return (
       <Container>
+        {/* REACTJS HELMET */}
+          <Helmet>
+            <meta charSet="utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Home / Website</title>
+
+            {/* LINKS */}
+
+            <link rel="canonical" href="http://mysite.com/example" />
+            <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+            <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+          </Helmet>
         <Row>
           <Col sm></Col>
           <Col sm>
@@ -167,6 +181,7 @@ export default class Feed extends React.Component {
               <a href="/new"><button className="write-button">Write a Post</button></a>
 
             </div>
+            {this.state.following.length === 0 && <div>Empty</div>}
             {this.state.isLoading && 
             <div>
               <div className="discussion-post" style={{padding:30}}>

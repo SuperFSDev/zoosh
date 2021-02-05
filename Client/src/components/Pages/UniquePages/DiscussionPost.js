@@ -297,7 +297,7 @@ axios.post('http://localhost:4000/users/notify', notify)
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                  <title>Discussions</title>
+                  <title>{this.state.discussion.user}</title>
 
                   {/* LINKS */}
                   <link rel="canonical" href="http://mysite.com/example" />
@@ -310,7 +310,7 @@ axios.post('http://localhost:4000/users/notify', notify)
               <Col sm={2}>
                 <div className="post-reactions">
                   <span>
-                    <Image alt="" src={user.pic} className="user-image"/>
+                    <Image alt={user.fullname} src={user.pic} className="user-image"/>
                     <b>{this.state.discussion.user}</b><br/>
                     <a href={"/u/?id="+this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                   </span>
@@ -360,7 +360,7 @@ axios.post('http://localhost:4000/users/notify', notify)
             <h4>Responses ({this.state.comments.length})</h4>
             
             <div className="comment-box-acc">
-              <Avatar alt="" src={user.pic}/><br/>
+              <Avatar alt="User" src={user.pic}/><br/>
               <label>
                 <textarea rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment"  value={this.state.comment} onChange={this.onChangeComment}/>
                 <button aria-label="submit" className="standard-button" onClick={this.onSubmit}>Publish</button>
@@ -371,7 +371,7 @@ axios.post('http://localhost:4000/users/notify', notify)
             {this.state.comments.sort((a, b) => b.time - a.time).map(comment=>(
               <div className="comment-box">
                 <span >
-                  <Avatar alt="" src={comment.user_img}/><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
+                  <Avatar alt="User" src={comment.user_img}/><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
                   {moment(comment.time).startOf('seconds').fromNow()}
                   <ShowMoreText
                     lines={1}
@@ -386,7 +386,7 @@ axios.post('http://localhost:4000/users/notify', notify)
                   <p className="post-content">{comment.comment}</p>
                   </ShowMoreText>           
                   <span><button aria-label="clap" className="standard-option-btn-comment">
-                  <Image alt="" src={Clap} size={30}/></button></span>     
+                  <Image alt="Clap" src={Clap} size={30}/></button></span>     
                 </span>
                 <hr/>
               </div>

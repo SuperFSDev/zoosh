@@ -18,6 +18,8 @@
     #container > .div2 {width:100%;}
     .community-feed{margin-top: 30vh;}
     .community-members-container{margin-top: 33vh;}
+    .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
+    .filter-options{width:100%;}
   }
   
   /* 
@@ -85,6 +87,8 @@
     #container2{display:flex;}
     #container{display:none;}
     #one,#four{display:none;}
+    .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
+
 
   }
 

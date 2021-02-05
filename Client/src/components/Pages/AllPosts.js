@@ -16,6 +16,8 @@ import Button from '@material-ui/core/Button';
 import { BsArrowUp } from 'react-icons/bs'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
+import { Helmet } from 'react-helmet'
+
 export default class AllPosts extends React.Component {
 
 
@@ -263,6 +265,20 @@ export default class AllPosts extends React.Component {
 
     return (
       <Container>
+          {/* REACTJS HELMET */}
+          <Helmet>
+            <meta charSet="utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Home / Website</title>
+
+            {/* LINKS */}
+
+            <link rel="canonical" href="http://mysite.com/example" />
+            <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+            <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+          </Helmet>
         <Row>
           <Col sm className="d-none d-lg-block"></Col>
           <Col sm className="feed">
