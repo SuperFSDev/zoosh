@@ -18,13 +18,13 @@ export default class Notifications extends React.Component {
       posts: [],
       user: '',
       notifications: [],
+      name:''
     };
   }
 
   async componentDidMount() {
     document.body.style.backgroundColor = "#F7F7F7";
     var user = JSON.parse(localStorage.getItem('user'));
-    
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
@@ -35,6 +35,7 @@ export default class Notifications extends React.Component {
         this.setState({
           user: response.data.user,
           notifications: response.data.user.notifications,
+
         })
       })
       .catch((error) => {
@@ -59,6 +60,25 @@ export default class Notifications extends React.Component {
         window.location.reload();
       }
 
+
+      getNotificationUser(id){
+      axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id: id,
+        fields:"fullname"
+      }
+    })
+      .then((response) => {
+        console.log(response.data.user.fullname)
+  
+      
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
       
   ClearComments() {
     var user = JSON.parse(localStorage.getItem('user'));
@@ -75,6 +95,9 @@ export default class Notifications extends React.Component {
         })
         window.location.reload();
       }
+
+
+
 
       ClearFollows() {
         var user = JSON.parse(localStorage.getItem('user'));
@@ -118,7 +141,7 @@ export default class Notifications extends React.Component {
                 {this.state.notifications.length === 0 && <div >No Notifications</div>}
                 {this.state.notifications.reverse().map(notification=>
                     <a href={"/d/?id=" + notification.discussion} aria-label="notification" rel="noopener"><div className="notification">
-                        <Image src={Clapped} />  <b>{notification.user}</b> {notification.message} {notification.discussion}<br></br>
+                        <Image src={Clapped} />  <b>{this.getNotificationUser(notification.user)}</b> {notification.message} {notification.discussion}<br></br>
                         {moment(notification.time).startOf('seconds').fromNow()}
                     </div></a>
 
