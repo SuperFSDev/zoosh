@@ -45,10 +45,12 @@ export default class Two extends React.Component {
   
         axios.get('http://localhost:4000/societies/get-societies', {
           params: {
-            fields: 'name picture users'
+            fields: 'name picture users score',
+            limit: 10
           }
         })
         .then((response)=>{
+            console.log(response);
             this.setState({societies: response.data.societies})
         })
         .catch((error)=>{
@@ -107,7 +109,7 @@ render(){
       </div></a> 
     )})
 
-    const topCommunities = societies.slice(0,10).sort((a,b)=> b.score - a.score).map(society=> { 
+    const topCommunities = societies.sort((a,b)=> b.score - a.score).map(society=> { 
       return(
       <div>
         <p className="leaderboard-item"><a className="soc-leaderboard-name-item" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="soc-leaderboard-score-item">{ society.score}</b></p><hr/>      

@@ -43,7 +43,6 @@ export default class AllPosts extends React.Component {
     document.body.style.backgroundColor = "#F7F7F7";
 
     this.getUserDetails();
-    //this.checkSessionStorage();
     this.checkSessionStorage();
     this.onDeletePost = this.onDeletePost.bind(this);
 
