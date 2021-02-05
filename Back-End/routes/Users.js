@@ -485,6 +485,72 @@ users.post('/notify', (req, res) => {
 )
 })
 
+
+users.post('/clearLikes', (req, res) => {
+    UserModel.findByIdAndUpdate({
+        
+            _id: req.body.id,
+        }, {
+            $pull: {
+                notifications:{message:"liked your post"},
+            }
+            
+        }, {
+            upsert: true,
+            multi:true,
+            new: true,
+            runValidators: true
+        },
+        function (err, result) {
+            console.log(err)
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already in liked list.");
+                }
+            }
+
+        }
+    )
+})
+
+
+users.post('/clearComments', (req, res) => {
+    UserModel.findByIdAndUpdate({
+        
+            _id: req.body.id,
+        }, {
+            $pull: {
+                notifications:{message:"commented on post"},
+            }
+            
+        }, {
+            upsert: true,
+            multi:true,
+            new: true,
+            runValidators: true
+        },
+        function (err, result) {
+            console.log(err)
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("Already in liked list.");
+                }
+            }
+
+        }
+    )
+})
+
 users.post('/addToSocList', (req, res) => {
 
     UserModel.findByIdAndUpdate({
