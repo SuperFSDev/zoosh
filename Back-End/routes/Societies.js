@@ -76,7 +76,7 @@ societies.get('/get-societies', (req, res, next) => {
         var query = SocietyModel
             .find({/* Can input limitations e.g post likes greater than 0 */})
             .select(req.query.fields)
-            //.limit(8)
+            .limit(parseInt(req.query.limit))
 
         query.exec(function (err, data) {
             if (err) return next(err);

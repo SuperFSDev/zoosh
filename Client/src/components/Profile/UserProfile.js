@@ -376,6 +376,7 @@ function addUserToFollow(user) {
     id:user._id,
     notification: {
     user:getUser._id,
+    user_pic:getUser.pic,
     user_name: getUser.fullname,
     message: "just followed you",
     time:new Date().getTime()
