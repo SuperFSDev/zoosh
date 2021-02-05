@@ -60,7 +60,7 @@ render(){
   return (
       <div>
         <div id="top"></div>
-        <Navbar className="standard-navbar"  expand="lg" bg="light" variant="light">
+        <Navbar className="navbar"   expand="lg">
           <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -90,7 +90,7 @@ render(){
           </Navbar.Collapse>
         </Navbar>
 
-        <Navbar className="mobile-navbar"  expand="lg" bg="light" variant="light">
+        <Navbar className="mobile-navbar"  expand="lg">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
 

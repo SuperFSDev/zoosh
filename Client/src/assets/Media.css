@@ -20,6 +20,7 @@
     .community-members-container{margin-top: 33vh;}
     .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
     .filter-options{width:100%;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
   }
   
   /* 
@@ -30,15 +31,15 @@
   @media (min-width: 768px) and (max-width: 1024px) {
     
     /* CSS */
-    .filter-options, .new-post-feed,.community-profile,.dashboard{width: 100%;}
-    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header,.forum-container,.forum-post,.settings-container, .serach-div, .discussion-container{width: 100%;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div{margin-top: 10vh;}
     #container2{display:flex;}
-    #container, .standard-navbar{display:none;}
+    #container, .navbar{display:none;}
     #one,#four{display:none;}
     .recommended-container, .contributors-container{display:none;}
     #container > .div2 {width:100%;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
 
   }
   
@@ -48,15 +49,18 @@
   */
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .filter-options, .new-post-feed,.community-profile,.dashboard{width: 100%;}
-    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header,.forum-container,.forum-post,.settings-container, .serach-div, .discussion-container{width: 100%;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div{margin-top: 10vh;}
     #container2{display:flex;}
     .recommended-container, .contributors-container{display:none;}
     #container{display:none;}
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
-    .standard-navbar{display:none!important;}
+    .navbar{display:none!important;}
+    .mobile-navbar{display:block!important; background:white!important;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
+    .write-button{width:100%;margin-right: 0vh;}
+
   }
   
   /* 
@@ -65,15 +69,16 @@
   */
   
   @media (min-width: 481px) and (max-width: 767px) {
-    .filter-options, .new-post-feed,.community-profile,.dashboard{width: 100%;}
-    .discussion-post{width:100%;padding:0px;}
+    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header,.forum-container,.forum-post,.settings-container, .serach-div, .discussion-container{width: 100%;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div{margin-top: 10vh;}
     #container2{display:flex;}
     #container{display:none;}
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
-    .standard-navbar{display:none!important;}
-
+    .navbar{display:none!important;}
+    .mobile-navbar{display:block!important; background:white!important;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
+    .write-button{width:100%;margin-right: 0vh;}
   }
   
   /* 
@@ -90,9 +95,12 @@
     #container2{display:flex;}
     #container{display:none;}
     #one,#four{display:none;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
     .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
-    .standard-navbar{display:none!important;}
+    .navbar{display:none!important;}
+    .mobile-navbar{display:block!important; background:white!important;}
+    .write-button{width:100%;margin-right: 0vh;}
 
   }
 
@@ -114,8 +122,9 @@
     .write-button{width:100%;margin-right: 0vh;}
     .navbar-search{display:none;}
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
-    .standard-navbar, .user-profile-activity-container, .user-profile-communities-container{display:none!important;}
-    .mobile-navbar{display:block!important;}
+    .navbar, .user-profile-activity-container, .user-profile-communities-container{display:none!important;}
+    .mobile-navbar{display:block!important; background:white!important;}
     .header{margin-left: 60%;}
     .top-posts{margin-top:0vh;}
+    .top-posts, .top-posts-empty{width:100%;}
   }

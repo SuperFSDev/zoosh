@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import { Image, Container, Row, Col } from 'react-bootstrap'
+import { Image, Container, Row, Col , Badge} from 'react-bootstrap'
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import AdminPage from './AdminPage';
@@ -194,45 +194,33 @@ export default class CommunityPage extends React.Component {
 
           <Container fluid>
             <Row>
+            <Col sm></Col>
 
-              <div className="community-header" style={{ background: this.state.society.color }}>
-                <Col md>
-
-                  <div className="community-profile">
-
-                    <span>
-                      <Image alt="" src={this.state.society.picture} className="community-image" />
-                      <button className="follow-community" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
-                    </span>
-
-                    <br />
-                    <h5 className="community-name">{this.state.society.name} </h5>
-                    {this.state.society.description}
-                    <br />
-                    {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
-                    {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                    {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      <br />
-                  </div>
-                </Col>
-              </div>
-            </Row>
-
-            <Row>
-              <Col sm></Col>
               <Col sm>
-                <div className="community-feed">
-                  <div className="top-posts">
-                    {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                    {this.state.isLoading && <div><br /><Skeleton height={200} width={700} style={{ marginBottom: 10 }} count={5} /></div>}
-                    {!this.state.isLoading && <div>{discussionList}</div>}
-                  </div>
+                <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color}}>
+                  <span>
+                    <Image alt="" src={this.state.society.picture} className="community-image" />
+                    <br/><br/>
+                    <button className="follow-community" style={{background:this.state.society.color}} onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
+                  </span>
+
+                  <br />
+                  <h5 className="community-name">{this.state.society.name} </h5>
+                  {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
+                  {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                  {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      
+                  <br /><br/>
+                </div>
+                <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color, textAlign:'left', padding:10}}>
+                  <p>{this.state.society.description}</p>
                 </div>
               </Col>
-
               <Col sm>
-                <div className="community-members-container">
-                  Members
-                    </div>
+                  <div className="top-posts">
+                    {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                    {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
+                    {this.state.posts.length > 0 && <div>{discussionList}</div>}
+                  </div>
               </Col>
               <Col sm></Col>
             </Row>

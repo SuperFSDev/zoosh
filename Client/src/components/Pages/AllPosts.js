@@ -245,7 +245,10 @@ export default class AllPosts extends React.Component {
             <div class="one">
               <div class="two">
                 <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
-                  <span class="showme"> <b>{discussion.user}</b></span></span>
+                  <span class="showme"> 
+                    <Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /><br/>
+                    <b>{discussion.user}</b>
+                  </span></span>
                     {discussion.society == null ? (
                       <span> in <b style={{ color: 'green' }}>General</b></span>
                     ) : (
@@ -256,16 +259,16 @@ export default class AllPosts extends React.Component {
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
                   <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
                   {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reaction</span>}
-                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes} reactions</span>}
+                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
                 </button></a>
 
 
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
                   <RiChat1Line size={20} />
                   {discussion.comments.length === 0 && <span> Add comment</span>}
-                  {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                  {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
+                  {discussion.comments.length === 1 && <span> {discussion.comments.length}</span>}
+                  {discussion.comments.length > 1 && <span> {discussion.comments.length}</span>}
 
                 </button></a>
               </div>

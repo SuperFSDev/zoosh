@@ -313,15 +313,12 @@ export default class UserProfile extends React.Component {
               
             </Col>
             <Col sm>
-            <div className="community-feed">
-
                 <div className="top-posts">
                   <p>{this.state.user.fullname}'s posts</p>
+                  {this.state.isLoading && <div  className='discussion-post'></div>}
                   {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
                   {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
-
                 </div>
-                    </div>
             </Col>
             <Col sm={2}></Col>
           </Row>

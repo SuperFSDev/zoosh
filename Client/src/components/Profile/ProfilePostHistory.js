@@ -85,17 +85,17 @@ export default class History extends React.Component {
                   <p>{post.content.slice(0,100)}</p>
                   <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>
                   <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                    {post.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                    {post.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes} reaction</span>}
-                    {post.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes} reactions</span>}
+                    {post.likes === 0 && <span> <Image src={Clap} size={20} alt="" /></span>}
+                    {post.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes}</span>}
+                    {post.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {post.likes}</span>}
                   </button></a>
 
 
                   <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
                     <RiChat1Line size={20} />
-                    {post.comments.length === 0 && <span> Add comment</span>}
-                    {post.comments.length === 1 && <span> {post.comments.length} comment</span>}
-                    {post.comments.length > 1 && <span> {post.comments.length} comments</span>}
+                    {post.comments.length === 0 && <span></span>}
+                    {post.comments.length === 1 && <span> {post.comments.length}</span>}
+                    {post.comments.length > 1 && <span> {post.comments.length}</span>}
                   </button></a>
 
                   <a><button className="reaction-button" size="small" color="primary">

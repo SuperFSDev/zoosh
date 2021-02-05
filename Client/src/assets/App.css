@@ -5,7 +5,7 @@
 
 .navbar{
   background:white;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 
@@ -239,15 +239,13 @@
   height:auto;
   width:auto;
   border-radius: 5px;
-  margin-top: 20vh;
-  
 }
 
 .top-posts-empty{
   padding:10px;
   height:auto;
-  margin-top:2vh;
-  width:600px;
+  width:700px;
+  margin-top: 2.5rem;
   border-radius: 5px;
   background:white;
   border:1px solid lightgray;
@@ -898,7 +896,7 @@
   text-align: center;
 }
 
-.mobile-navbar{display:none!important;}
+.mobile-navbar{display:none!important; background:white;}
 .standard-navbar{display:block;}
 
 .dashboard{
@@ -1498,15 +1496,13 @@ section::after {
 .community-image{
   width: 125px;
   height:125px;
-  border:2px solid black;
   image-rendering: auto;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
-  border-radius: 10px;
   margin-top:2vh;
   -webkit-transform: scale(0.999);
   transform: scale(0.999);
-  margin-left: 12vh;
+  text-align: center;
 }
 
 .profile-image{
@@ -1540,12 +1536,12 @@ section::after {
 
 .community-profile{
   background:white;
-  width:400px;
-  margin-top: 20vh;
-  width: 50%;
-  border-radius: 10px;
+  width: 350px !important;
+  border-radius: 5px;
+  flex: 1;
   margin:auto;
-  margin-top: 15vh;
+  text-align: center;
+  margin-top: 5vh;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -1881,8 +1877,7 @@ section::after {
 }
 
 .follow-community{
-  background-color: blue;
-  color:whitesmoke;
+  color:white;
   width: auto;
   height:40px;
   border:none;
@@ -1890,14 +1885,11 @@ section::after {
   margin-bottom: 10px;
   margin-top: 10px;
   font-weight: bold;
-  float: right;
   padding:10px;
-  margin-right: 5vh;
 }
 
 .follow-community:hover{
-  background-color:lightgray;
-  color:black;
+  background-color:gray!important;
 }
 .podcast-desc{
   margin-top: 5rem!important;

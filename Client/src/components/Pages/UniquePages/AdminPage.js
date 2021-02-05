@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Row, Col, Container} from 'react-bootstrap'
+import {Image, Row, Col, Container, Badge} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
@@ -215,8 +215,41 @@ export default class AdminPage extends React.Component {
                       <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
               </Helmet>
-
+              
               <Container fluid>
+                <Row>
+                <Col sm></Col>
+
+                  <Col sm>
+                    <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color}}>
+                      <span>
+                        <Image alt="" src={this.state.society.picture} className="community-image" />
+                        <br/><br/>
+                        <button className="follow-community">Community Settings</button>
+                      </span>
+
+                      <br />
+                      <h5 className="community-name">{this.state.society.name} </h5>
+                      {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
+                      {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                      {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      
+                      <br /><br/>
+                    </div>
+                    <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color, textAlign:'left', padding:10}}>
+                      <p>{this.state.society.description}</p>
+                    </div>
+                  </Col>
+                  <Col sm>
+                      <div className="top-posts">
+                        {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                        {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
+                        {this.state.posts.length > 0 && <div>{discussionList}</div>}
+                      </div>
+                  </Col>
+                  <Col sm></Col>
+                </Row>
+              </Container>
+              {/* <Container fluid>
                 <Row>
                   <div className="community-header" style={{background:this.state.society.color}}>
                     <Col md>
@@ -255,7 +288,7 @@ export default class AdminPage extends React.Component {
                   </Col>
                   <Col sm></Col>
                 </Row>
-            </Container>
+            </Container> */}
         </Fragment>
         );
     } 
