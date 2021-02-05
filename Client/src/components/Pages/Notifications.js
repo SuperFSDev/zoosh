@@ -138,9 +138,10 @@ export default class Notifications extends React.Component {
                 <h3 className="heading">Notifications</h3><hr /><br />
                 {this.state.notifications.length === 0 && <div >No Notifications</div>}
                 {this.state.notifications.reverse().map(notification =>
-                  <a href={"/d/?id=" + notification.discussion} aria-label="notification" rel="noopener"  class="nowrap"><div className="notification">
+                  <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion) || (notification.discussion_title == null && "/u/?id=" + notification.user)} aria-label="notification" rel="noopener"  class="nowrap">
+                    <div className="notification">
                     <p>
-                      <span class="nowrap"><Image className="user-image-mini" roundedCircle src={notification.user_pic}/>  <b>{notification.user_name}</b> {notification.message} <b>"{notification.discussion_title}"</b></span>
+                      <span class="nowrap"><Image className="user-image-mini" roundedCircle src={notification.user_pic}/>  <b>{notification.user_name}</b> {notification.message} {notification.discussion_title != null && <b> "{notification.discussion_title}" </b>}</span>
                       <span class="nowrap">- {moment(notification.time).startOf('seconds').fromNow()}</span>
                     </p>
                     
