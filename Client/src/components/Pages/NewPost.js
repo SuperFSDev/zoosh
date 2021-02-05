@@ -138,18 +138,6 @@ export default class NewPost extends React.Component {
     })
   }
 
-  // getUsers() {
-  //   // Get all users from database.
-  //   axios.get('http://localhost:4000/users/getUsers')
-  //     .then((response) => {
-  //       this.setState({ users: response.data.users })
-  //       console.log(this.state.users);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-
   getUserSocieties() {
     axios.get('http://localhost:4000/societies/get-users-societies', {
       params: {
@@ -172,9 +160,11 @@ export default class NewPost extends React.Component {
 
     e.preventDefault();
 
+    alert(user._id);
+
     const newPost = {
       user: this.state.user,
-      user_id: this.state.id,
+      user_id: user._id,
       title: this.state.title,
       caption: this.state.caption,
       content: this.state.content,
@@ -184,6 +174,8 @@ export default class NewPost extends React.Component {
       full_picture: this.state.full_picture,
       user_pic: user.pic
     }
+
+    alert(newPost.user_id);
 
     axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
       .then()

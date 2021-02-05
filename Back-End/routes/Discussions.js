@@ -20,7 +20,7 @@ discussions.use(function (req, res, next) {
 
 discussions.post('/NewDiscussions', (req, res) => {
 
-    console.log(req.body.user_pic);
+    console.log("ID = " + req.body.user_id);
 
     DiscussionModel.create({
         user: req.body.user,
@@ -72,7 +72,7 @@ discussions.get('/get-following-feed', (req, res, next) => {
         // Gets discussions for the given user ID
         var query = DiscussionModel
             .find({user_id: following[i]})
-            .select('user society time thumbnail_pic title content likes comments')
+            .select('user society time thumbnail_pic title content likes comments user_id')
             .sort({'likes': -1})
         
         query.exec(function (err, data) {

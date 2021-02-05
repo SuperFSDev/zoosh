@@ -114,12 +114,13 @@ export default class Feed extends React.Component {
   render() {
     var user = JSON.parse(localStorage.getItem('user'));
     const discussionList = this.state.posts.map(discussion => {
+      console.log(discussion.user_id);
       return (
         <Fragment key={discussion._id}>
           <div className='discussion-post'>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
               <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
+                <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image src={user.pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
                 {discussion.society == null ? (
                   <span> in <b style={{ color: 'green' }}>General</b></span>
