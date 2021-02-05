@@ -16,7 +16,8 @@
   
   @media (min-width: 1025px) and (max-width: 1280px) {
     #container > .div2 {width:100%;}
-
+    .community-feed{margin-top: 30vh;}
+    .community-members-container{margin-top: 33vh;}
   }
   
   /* 
@@ -61,7 +62,7 @@
   
   @media (min-width: 481px) and (max-width: 767px) {
     .filter-options, .new-post-feed,.community-profile,.dashboard{width: 100%;}
-    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .discussion-post{width:100%;padding:0px;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div{margin-top: 10vh;}
     #container2{display:flex;}
@@ -77,8 +78,8 @@
   
   @media (min-width: 320px) and (max-width: 480px) {
     
-    .filter-options, .new-post-feed,.community-profile,.dashboard{width: 100%;}
-    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header,.forum-container,.forum-post,.settings-container, .serach-div, .discussion-container{width: 100%;}
+    .discussion-post{width:100%;padding:0px;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div{margin-top: 10vh;}
     #container2{display:flex;}
@@ -89,12 +90,18 @@
 
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header,.forum-container,.forum-post,.settings-container{width: 100%;}
-    .discussion-post{width:100%;padding:0px; border:1px solid white;}
+    .filter-options, .new-post-feed,.community-profile,.dashboard, .community-header, .miniprofileCommunities,.forum-container, .forum-post,.settings-container, .serach-div, .discussion-container{width: 100%;}
+    .discussion-post{width:100%;padding:0px;}
     .post-image{max-width: 100%;}
     .filter-options, .search-div,.forum-container{margin-top: 10vh;}
     #container2{display:flex;}
     #container{display:none;}
-    .recommended-container, .contributors-container{display:none;}
+    .recommended-container, .contributors-container, .post-reactions{display:none;}
     #container > .div2 {width:100%;}
+    .post-header{font-size: 45px; font-weight: bold; width:100%!important; word-wrap: break-word; margin-bottom: 6vh;}
+    .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
+    .filter-options, .discussion-container, .new-post-feed, .search-div{margin-top: 2vh!important;}
+    .thumbnail{margin-top: 2vh; margin-bottom: 2vh;}
+    .new-post-feed, .Title-input, .search-div, .Content-input{width:100%!important;}
+
   }

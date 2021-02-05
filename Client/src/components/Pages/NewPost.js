@@ -231,8 +231,8 @@ export default class NewPost extends React.Component {
       <Container>
         <Row>
           <Col>
+          <div className="new-post-feed">
             <Form onSubmit={this.onSubmit}>
-            <div className="new-post-feed">
               <ImageUploader
                     withIcon={false}
                     withPreview={true}
@@ -273,7 +273,6 @@ export default class NewPost extends React.Component {
               {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/>}
               <br/>
               <br/>
-              </div>
               <br/>
               <div className="post-buttons">
                 <button className="standard-button" type="submit">Publish</button>
@@ -282,7 +281,7 @@ export default class NewPost extends React.Component {
               
 
             </Form>
-            
+            </div>
           </Col>
         </Row>
       </Container>

@@ -327,8 +327,8 @@ axios.post('http://localhost:4000/users/notify', notify)
                 <div className="discussion-container">
 
      
-              <p className="post-header">
-                {this.state.discussion.title}<br/>
+              <p>
+                <p className="post-header">{this.state.discussion.title}</p>
                 <p style={{fontSize:14, color:'gray'}}>
                   <a href={"/u/?id="+this.state.discussion.user_id} style={{textDecoration:'none', color:'black'}}>
                   <span class="showhim">
@@ -347,16 +347,11 @@ axios.post('http://localhost:4000/users/notify', notify)
 
                 <div className="spacing"></div>
                 <span className="d-inline-block">
-                
-                  {/* {!this.state.isSaved ? (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Save</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.addToSaved}><BsBookmark size={22} /></button></span>
-                  </OverlayTrigger> 
-                  ) : (
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Unsave</Tooltip>}>
-                    <span className="voting-btn"><button className="standard-option-btn-post" onClick={this.removeSaved}><BsBookmarkFill size={22} /></button></span>
-                  </OverlayTrigger>
-                  )} */}
+                <div className="post-reactions-mobile">                 
+                  {this.isLiked(this.state.discussion._id,this.state.discussion.user_id ,user._id, this.state.discussion.likes)}
+                  {this.isInReadingList(this.state.discussion._id, user._id,)}
+                  <span className="voting-btn"><button aria-label="community" className="standard-option-btn-post" ><RiShieldStarLine size={30}/></button></span>
+                </div>
                 </span>
                 <hr/>
 
