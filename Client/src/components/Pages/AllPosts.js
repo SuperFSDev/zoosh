@@ -224,11 +224,11 @@ export default class AllPosts extends React.Component {
               <span className="voting-btn">
                 <span class="showhim"><a href={"/me"} className="post-link-a"><Image alt="Thumbnail" src={user.pic} className="profile-btn-wrapper-left" roundedCircle/> <b> {discussion.user}</b></a>
                   <span class="showme"> <b>{discussion.user}</b></span></span>
-                {discussion.society == null ? (
-                  <span> in <b style={{ color: 'green' }}>General</b></span>
-                ) : (
-                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                  )}<br />
+                    {discussion.society == null ? (
+                      <span> in <b style={{ color: 'green' }}>General</b></span>
+                    ) : (
+                        <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                      )}<br />
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
                 {discussion.thumbnail_pic == null && <div></div>} 
