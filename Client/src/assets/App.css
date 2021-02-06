@@ -246,6 +246,9 @@
   height:auto;
   width:50%;
   border-radius: 5px;
+  margin-top: 50px;
+  margin-left: 50px;
+
 }
 
 .top-posts-empty{
@@ -1177,6 +1180,7 @@ section::after {
   padding:50px;
   bottom: 100% !important;
   background: rgba( 255, 255, 255, 0.25 );
+  margin-left: 50px;
 }
 
 .user-column-one b, .user-column-one button{
@@ -1235,8 +1239,7 @@ section::after {
   height:40px;
   border:none;
   border-radius: 5px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-left: 20px!important;
   font-weight: bold;
   padding:10px;
 }
@@ -2086,10 +2089,10 @@ section::after {
 
 .PostLayout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background-color:none;
   border-radius: 5px;
-  margin:10px 10px 10px 10px;
+  margin:10px 10px 20px 50px;
 }
 
 .search-div{

@@ -155,9 +155,8 @@ export default class MyProfile extends React.Component {
                   </figure>
                   <section class="bio-box">
                    <dl class="details"> 
-                    <b className="user-name">{this.state.user.fullname}</b><br/>
+                    <b className="user-name">{this.state.user.fullname}</b><a href="/settings"><button className="community-btn-a" >Settings</button></a><br/>
                     <b>@{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></b> <br/>
-                      <a href="/settings"><button className="community-btn-a" >Settings</button></a>
                       <br/>
                       {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
                       {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
