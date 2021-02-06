@@ -39,7 +39,7 @@ export default class DiscussionPost extends React.Component {
   componentDidMount() {
     var id = new URLSearchParams(this.props.location.search).get("id");
 
-    document.body.style.backgroundColor = "#F7F7F7";
+    // document.body.style.backgroundColor = "#F7F7F7";
     this.getUserDetails();
     axios.get('http://localhost:4000/discussions/get-discussion-page', {
       params: {
@@ -308,7 +308,7 @@ export default class DiscussionPost extends React.Component {
             <Col sm={2}>
               <div className="post-reactions">
                 <span>
-                  <Image alt={user.fullname} src={user.pic} className="user-image" />
+                  <Image alt={user.fullname} src={user.pic} className="user-image"  roundedCircle/>
                   <b>{this.state.discussion.user}</b><br />
                   <a href={"/u/?id=" + this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                 </span>

@@ -110,13 +110,20 @@
 .discussion-container{
   padding:50px;
   text-align: left;
-  margin-top:5vh;
   background-color: white;
-  border:1px solid lightgray;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  border-radius: 5px;
+  border:1px solid white;
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+  border-radius: 10px;
   height:auto;
   width:900px;
+}
+
+.container{
+  padding:20px;
+}
+
+.container p {
+
 }
 
 .reaction-button:hover{
@@ -237,7 +244,7 @@
 .top-posts{
   padding:10px;
   height:auto;
-  width:auto;
+  width:50%;
   border-radius: 5px;
 }
 
@@ -320,13 +327,13 @@
   height:auto;
   padding:10px;
   outline:none!important;
-  border:none!important;
-  background:blue;
+  border:2px solid black!important;
+  background:black;
   color:white;
   font-weight: bold;
-  border-radius:5px;
   float:right;
   margin-left:3vh;
+  border-radius: 25px;
   margin-right: 10vh;
 
 }
@@ -338,9 +345,13 @@
 }
 
 .write-button:hover{
-  background:darkblue;
-  color:white;
+  background:white;
+  color:black;
+  border:2px solid black!important;
   transition: 0.2s;
+  transition: background-color 0.5s ease, color 1s ease;
+  cursor: pointer;
+  box-shadow: 3px 3px black;
 }
 
 .standard-button-cancel:hover, .settings-button-cancel:hover{
@@ -388,7 +399,7 @@
 }
 
 .link:hover{
-  color:gray!important;
+  color:blue!important;
 }
 
 .link-right{
@@ -645,26 +656,28 @@
 }
 
 .global-feed{
-  margin-top: 12vh!important;
+  margin-top: 2vh!important;
   padding:50px;
   width:1000px!important;
   margin:auto;
   background-color: white;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  border:1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border:1px solid white;
 }
 
 
 .new-post-feed{
-  margin-top:10vh!important;
+  margin-top:5vh!important;
   padding:50px;
   margin:auto;
   width:850px!important;
   background-color: white;
   height:auto;
-  border-radius: 5px;
-  border:1px solid lightgray;
+  border-radius: 10px;
+  border:1px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
 }
 
 .post-buttons{
@@ -783,7 +796,6 @@
   padding:10px;
   border-radius: 5px;
   width:100%;
-  margin-top:3vh;
 }
 
 .filter-button{
@@ -900,18 +912,17 @@
 .standard-navbar{display:block;}
 
 .dashboard{
-  margin-top: 1rem;margin-bottom: 1rem;
-  border:1px solid lightgray;
+  border:1px solid white;
   padding:50px; 
   width:1000px;
-  border-radius: 5px;
+  border-radius: 10px;
   background:white;
   margin-top:10vh;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .notification{background:white; padding:10px;}
 .notification:hover{background:whitesmoke; padding:10px;}
-.leaderboard{background:white; padding:50px; margin-bottom: 10vh; border-radius: 5px;  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;}
+.leaderboard{background:white; padding:50px; margin-bottom: 10vh; border-radius: 10px;   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);}
 .leaderboard-heading{margin-bottom: 2vh; text-align: center;}
 
 .dashboard{
@@ -981,9 +992,9 @@ section::after {
   background:white;
   width:350px;
   padding:20px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top: 5vh!important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   position: -webkit-sticky;
   position: sticky;
   top: 5rem;
@@ -1118,7 +1129,7 @@ section::after {
   font-family: Arial;
   background:white;
   border-bottom: 1px solid lightgray;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .community-desc-option{
   padding:10px;
@@ -1164,9 +1175,15 @@ section::after {
 
 .user-column-one{
   padding:50px;
-  text-align: center;
-  bottom: 100% !important;;
+  bottom: 100% !important;
+  background: rgba( 255, 255, 255, 0.25 );
 }
+
+.user-column-one b, .user-column-one button{
+  margin-left: 10px;
+}
+
+.user-name{font-size: 40px; margin-left: 5vh;}
 
 .top-posts p {
   font-size:16px;
@@ -1205,6 +1222,9 @@ section::after {
 .community-btn-a:hover{
   background:lightgray;
   color:black;
+  transition: background-color 0.5s ease, color 1s ease;
+  cursor: pointer;
+  box-shadow: 3px 3px rgba(77, 77, 77, 0.5);
   border:none;
 }
 
@@ -1409,20 +1429,21 @@ section::after {
 }
 
 .column-title{padding:10px;}
-.column-head{  background:#393e46; color:#d9e1e8!important;  border-radius: 5px 5px 0 0;}
+.column-head{  background:black; color:white!important;  border-radius: 10px 10px 0 0;}
 .column-head-comm{  background:#393e46;height: 50px;  border-radius: 15px 15px 0 0;}
 
 .contributors-container{
-  margin-top:20px;
+  margin-top:40px;
   height:350px;
   width:300px;
   background-color: white;
   border:1px solid lightgray;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   position: -webkit-sticky;
   position: sticky;
-  top: 5rem;
+  top: 2rem;
+  border-radius: 10px;
 }
 
 .community-members-container{
@@ -1557,6 +1578,28 @@ section::after {
   padding: 10px;
   text-align:center;
 }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 400px;
+  border-radius: 10px!important;
+  border: none !important;
+  margin-right: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.post-img{
+  border-radius: 10px 10px 0 0;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width:100%;
+  height:auto;
+}
+
 
 .post-image{
   float:right;
@@ -1568,7 +1611,6 @@ section::after {
   image-rendering: crisp-edges;
   image-rendering: pixelated;
 }
-
 .settings-options-container{
   margin-top: 11vh;
   height:auto;
@@ -1636,9 +1678,9 @@ section::after {
   height:270px!important;
   border:1px solid lightgray;
   text-align: left;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top:5vh;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 
@@ -1670,8 +1712,8 @@ section::after {
   background:white;
   width:600px;
   margin-top: 5vh!important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  border-radius:5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius:10px;
 }
 
 .discussion-post:hover{
@@ -1889,7 +1931,11 @@ section::after {
 }
 
 .follow-community:hover{
-  background-color:gray!important;
+  background-color:lightgray!important;
+  transition: 0.1s;
+  transition: background-color 0.5s ease, color 1s ease;
+  cursor: pointer;
+  box-shadow: 3px 3px rgba(77, 77, 77, 0.5);
 }
 .podcast-desc{
   margin-top: 5rem!important;
@@ -1950,22 +1996,6 @@ section::after {
   transition: 0.2s;
 }
 
-.standard-option-btn-post-hearts{
-  border:none!important;
-  padding:10px;
-  color:grey;
-  outline:none!important;
-  border-radius: 15px;
-}
-
-.standard-option-btn-post-hearts-liked{
-  border:none!important;
-  padding:10px;
-  color:red;
-  outline:none!important;
-  border-radius: 15px;
-}
-
 .post-time{font-size: 12px; margin-left:10px}
 
 
@@ -1976,7 +2006,6 @@ section::after {
   background:none;
   color:grey;
   outline:none!important;
-  margin-bottom: 1vh;
   margin-top: 5vh;
 }
 
@@ -2026,7 +2055,7 @@ section::after {
   padding:20px;
   width:400px;
   background:whitesmoke;
-  border-radius: 5px;
+  border-radius: 25px;
   height:40px;
   outline:none!important;
   border:1px lightgray solid;
@@ -2055,14 +2084,22 @@ section::after {
   border-radius: 5px;
 }
 
+.PostLayout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color:none;
+  border-radius: 5px;
+  margin:10px 10px 10px 10px;
+}
+
 .search-div{
   border:1px solid lightgray;
   background-color:white;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top:5vh;
   width:auto;
   padding:10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .UsersLayout{
@@ -2100,8 +2137,8 @@ section::after {
   padding-bottom:10px;
   transition:0.2s;
   border:1px solid white;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .soc-item-image{
@@ -2175,8 +2212,7 @@ section::after {
 }
 
 .socs-list-items:hover,.users-list-items:hover {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  border:1px solid rgb(177, 176, 176)!important;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
   cursor:pointer;
   border-radius: 5px;
   background:rgb(250, 249, 249);
@@ -2194,12 +2230,13 @@ section::after {
   padding-left: 1rem;
   transition: all .2s;
   transition-delay: .1s;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .searchbar-nav:focus, .navbar-search:focus{
   transition: 0.2s;
   background:white;
+  border: 1px solid blue;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 

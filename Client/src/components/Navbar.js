@@ -10,6 +10,7 @@ import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiChart} from 'react-icons/bi'
 import {IoMdPlanet} from 'react-icons/io'
 import Avatar from '@material-ui/core/Avatar';
+import {RiHome5Fill,RiCompass3Fill} from 'react-icons/ri'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -68,11 +69,9 @@ render(){
               <SearchbarFilter/>
             </Nav>
             <Nav>
-            <Nav.Link href="/home" className="link"><BsHouseFill size={25}/></Nav.Link>
-            <Nav.Link href="/explore" className="link"><BsCompass size={25}/></Nav.Link>
-            <Nav.Link href="/leaderboard"  className="link"><BsFillBarChartFill size={25}/></Nav.Link>
-            <Nav.Link href="/forum" className="link"><BsLightningFill size={25}/></Nav.Link>
-            <Nav.Link href="/notifications"  className="link"><BsBellFill size={25}/></Nav.Link>
+            <Nav.Link href="/home" className="link"><RiHome5Fill size={25}/></Nav.Link>
+            <Nav.Link href="/explore" className="link"><RiCompass3Fill size={25}/></Nav.Link>
+            <Nav.Link href="/notifications"  className="link"><BsBellFill size={23}/></Nav.Link>
            {/* <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/> */}
             <span class="dropdown">
                           <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/>
@@ -80,6 +79,9 @@ render(){
                             <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             <hr/>
                             <a href="/saved"  className="nowrap"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
+                            <a href="/forum"  className="nowrap"><p className="contributor-item-profile"><BsLightning/> Forum</p></a>
+                            <a href="/leaderboard"  className="nowrap"><p className="contributor-item-profile"><BiChart/> Charts</p></a>
+                            <hr/>
                             <a href="/settings" className="nowrap"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
                             <hr/>
                             <a href="/login" className="nowrap">Sign Out</a>

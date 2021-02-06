@@ -20,7 +20,6 @@
     .community-members-container{margin-top: 33vh;}
     .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
     .filter-options{width:100%;}
-    .recommended-container, .contributors-container, .post-reactions{display:none;}
   }
   
   /* 

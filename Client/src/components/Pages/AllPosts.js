@@ -8,13 +8,12 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
-import Clap from '../../images/clap.png'
 import Button from '@material-ui/core/Button';
-import { BsArrowUp } from 'react-icons/bs'
+import { BsArrowUp, BsStarFill, BsGem } from 'react-icons/bs'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
-import createPalette from '@material-ui/core/styles/createPalette';
+import {GiUfo} from 'react-icons/gi'
 
 export default class AllPosts extends React.Component {
 
@@ -241,26 +240,24 @@ export default class AllPosts extends React.Component {
       console.log(discussion);
       return (
         <Fragment key={discussion._id}>
-          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div className='discussion-post' >
-            <div class="one">
-              <div class="two">
-                <span class="showhim"><a href={"/u/?id=" + discussion.user_id} className="post-link-a"><Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /> <b> {discussion.user}</b></a>
-                  <span class="showme"> 
-                    <Image alt="" src={discussion.user_pic} className="profile-btn-wrapper-left" roundedCircle /><br/>
-                    <b>{discussion.user}</b>
-                  </span></span>
-                    {discussion.society == null ? (
-                      <span> in <b style={{ color: 'green' }}>General</b></span>
-                    ) : (
-                        <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                )}<br />
-                <h2>{discussion.title}</h2>
-                <p>{discussion.content.slice(0,100)}</p>
-                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
-                  <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
-                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
+
+        <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
+          <Image src={discussion.thumbnail_pic} className="post-img"/>
+          <div class="container">
+            <h3><b>{discussion.title}</b></h3> 
+            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
+            <span>Posted in <b style={{ color: 'green' }}>
+            {discussion.society == null ? (
+              <span> in <b style={{ color: 'green' }}>General</b></span>
+               ) : (
+              <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+              )}<br />
+              </b></span><br/>
+            <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+            <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  {discussion.likes === 0 && <span> <BsGem size={20} alt="" /> Be the first</span>}
+                  {discussion.likes === 1 && <span> <BsGem size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes > 1 && <span> <BsGem size={20} alt="" /> {discussion.likes}</span>}
                 </button></a>
 
 
@@ -269,15 +266,9 @@ export default class AllPosts extends React.Component {
                   {discussion.comments.length === 0 && <span> Add comment</span>}
                   {discussion.comments.length === 1 && <span> {discussion.comments.length}</span>}
                   {discussion.comments.length > 1 && <span> {discussion.comments.length}</span>}
-
                 </button></a>
-              </div>
-              <div class="two">
-                {discussion.thumbnail_pic == null && <div></div>}
-                {discussion.thumbnail_pic && <Image alt="" className="post-image" src={discussion.thumbnail_pic} width={200} height={125} />}
-              </div>
-            </div>
-          </div></a>
+          </div>
+        </div></a><br/>
         </Fragment>
       )
     })
@@ -346,7 +337,7 @@ export default class AllPosts extends React.Component {
               </div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
             <ScrollToTop showUnder={1000}>
-              <span className="back-to-top"><BsArrowUp size={25} />Back to top</span>
+              <span><GiUfo size={25} /></span>
             </ScrollToTop>
           </Col>
 
