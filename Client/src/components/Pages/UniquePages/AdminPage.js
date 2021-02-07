@@ -11,6 +11,7 @@ import Clap from '../../../images/clap.png'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import {BsSquareFill} from'react-icons/bs'
 
 export default class AdminPage extends React.Component {
 
@@ -217,78 +218,36 @@ export default class AdminPage extends React.Component {
               </Helmet>
               
               <Container fluid>
-                <Row>
-                <Col sm></Col>
-
-                  <Col sm>
-                    <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color}}>
-                      <span>
-                        <Image alt="" src={this.state.society.picture} className="community-image" roundedCircle/>
-                        <br/><br/>
-                        <button className="follow-community">Community Settings</button>
-                      </span>
-
-                      <br />
-                      <h5 className="community-name">{this.state.society.name} </h5>
-                      {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
-                      {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                      {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      
-                      <br /><br/>
-                    </div>
-                    <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color, textAlign:'left', padding:10}}>
+            <Row>
+              <Col>
+              <div className="community-column-one">
+                      <Image alt="" src={this.state.society.picture} roundedCircle  width={130} height={130} />
+                    <dl class="details"> 
+                      <b className="community-name">{this.state.society.name}</b>
+                      <br/>
+                      <span className="community-badge"><BsSquareFill/> Community</span>
+                      <br/>
+                      <button className="follow-community">Community Settings</button>
+                        <br/>
+                        {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
+                        {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                        {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
+                      <br/><br/>
+                      <hr/>
+                      <br/>
                       <p>{this.state.society.description}</p>
-                    </div>
-                  </Col>
-                  <Col sm>
-                      <div className="top-posts">
-                        {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                        {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
-                        {this.state.posts.length > 0 && <div>{discussionList}</div>}
-                      </div>
-                  </Col>
-                  <Col sm></Col>
-                </Row>
-              </Container>
-              {/* <Container fluid>
-                <Row>
-                  <div className="community-header" style={{background:this.state.society.color}}>
-                    <Col md>
-                    <div className="community-profile">
-                      <span>
-                        <Image alt="" src={this.state.society.picture} className="community-image-admin" />
-                        <button className="follow-community">Community Settings</button>
-
-                        </span>
-                      <br/>
-                      <h5 className="community-name">{this.state.society.name} </h5>
-                      {this.state.society.description}
-                      <br/>
-                    </div>
-                    </Col>
-                  </div>
-                </Row>
-
-                <Row>
-                  <Col sm></Col>
-                  <Col sm>
-                  <div className="community-feed">
-                        <div className="top-posts">
-                          {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                          {this.state.isLoading &&  <div><br/><Skeleton height={200} width={700} style={{marginBottom:10}} count={5}/></div>}
-                          {!this.state.isLoading &&  <div>{discussionList}</div>}
-                        </div>
-                    </div>
-                  </Col>
-
-                  <Col sm>
-                    <div className="community-members-container">
-                      Members
-
-                    </div>
-                  </Col>
-                  <Col sm></Col>
-                </Row>
-            </Container> */}
+                    </dl>
+              </div>
+              </Col>
+              <Col sm={8}>
+                <div className="top-posts">
+                      {this.state.posts.length === 0 && <div className="card">No Posts</div>}
+                      {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
+                      {this.state.posts.length > 0 && <div>{discussionList}</div>}
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </Fragment>
         );
     } 

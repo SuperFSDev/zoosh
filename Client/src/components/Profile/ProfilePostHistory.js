@@ -78,7 +78,7 @@ export default class History extends React.Component {
 
         {this.state.posts.map(post => (
           <div key={this.state.user._id}>
-        <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect"><div class="card">
+        <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect"><div class="card2">
           <Image src={post.thumbnail_pic} className="post-img"/>
           <div class="container">
             <h3><b>{post.title}</b></h3> 

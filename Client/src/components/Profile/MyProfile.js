@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet'
 import History from './ProfilePostHistory'
 import Skeleton from 'react-loading-skeleton';
+import {BsFillCircleFill, BsBookmarkFill} from 'react-icons/bs'
 
 export default class MyProfile extends React.Component {
 
@@ -38,7 +39,7 @@ export default class MyProfile extends React.Component {
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: 'fullname followers likedPosts pic societies badges college time score'
+        fields: 'fullname followers following likedPosts pic societies badges college time score'
       }
     })
       .then((response) => {
@@ -155,12 +156,21 @@ export default class MyProfile extends React.Component {
                   </figure>
                   <section class="bio-box">
                    <dl class="details"> 
-                    <b className="user-name">{this.state.user.fullname}</b><a href="/settings"><button className="community-btn-a" >Settings</button></a><br/>
-                    <b>@{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></b> <br/>
+                    <b className="user-name">{this.state.user.fullname}</b><a href="/settings"><button className="community-btn-a" >Edit Profile</button></a>
+                    <a href="/saved"><button className="community-btn-a" ><BsBookmarkFill size={20}/></button></a><br/>
+
+                    <b>@{this.state.user.fullname}</b> <br/>
+                    <span className="user-badge"><BsFillCircleFill/> Member</span>
                       <br/>
-                      {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
-                      {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                      {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}
+                      {this.state.followers.length === 0 && <span><b>{this.state.followers.length}</b> followers</span>}
+                      {this.state.followers.length > 1 && <span><b>{this.state.followers.length}</b> followers</span>}
+                      {this.state.followers.length === 1 &&<span><b>{this.state.followers.length}</b> follower</span>}
+
+                      {this.state.following.length === 0 && <span><b>{this.state.following.length}</b> following</span>}
+                      {this.state.following.length > 1 && <span><b>{this.state.following.length}</b> following</span>}
+                      {this.state.following.length === 1 && <span><b>{this.state.following.length}</b> following</span>}
+
+                      <span><b>{this.state.user.score}</b> claps</span>
                     </dl>
                 </section>
               </p>   

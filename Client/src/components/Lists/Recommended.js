@@ -61,7 +61,7 @@ render(){
                   {shuffledPosts.slice(0, size).map(society =>(
                     <a  href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><div class="miniprofileCommunity">
                       <figure class="headshot">
-                          <Image src={society.picture} className="user-image-mini" roundedCircle alt=""/>
+                          <Image src={society.picture} className="user-image-mini"  alt=""/>
                       </figure>
                       <a href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 

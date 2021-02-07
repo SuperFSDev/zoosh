@@ -65,21 +65,9 @@ app.use('/societies', Societies);
 var Forums = require('./routes/Forums');
 app.use('/forums', Forums);
 
-// Adds the "Events" route to the server.
-var Events = require('./routes/Events');
-app.use('/events', Events);
-
 // Adds the "Questions" route to the server.
 var Questions = require('./routes/Questions');
 app.use('/questions', Questions);
-
-// Adds the "Podcasts" route to the server.
-var Podcasts = require('./routes/Podcasts');
-app.use('/podcasts', Podcasts);
-
-// Adds the "Listings" route to the server.
-var Listings = require('./routes/Listing');
-app.use('/listings', Listings);
 
 // // set up connection to db for file storage
 // const storage = require('multer-gridfs-storage')({

@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { RiCake3Line } from 'react-icons/ri'
 import Skeleton from 'react-loading-skeleton';
+import {BsCircleFill, BsFillCircleFill} from 'react-icons/bs'
 
 export default class UserProfile extends React.Component {
 
@@ -268,7 +269,6 @@ export default class UserProfile extends React.Component {
             <Col>
             <div className="user-column-one">
               <p className="nowrap">
-                  {/* <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} /> */}
                   <figure class="headshot">
                     <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} />
                   </figure>
@@ -276,17 +276,24 @@ export default class UserProfile extends React.Component {
                    <dl class="details"> 
                     <b className="user-name">{this.state.user.fullname}</b>
                     {isUnfollowing ? (
-                       <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+                       <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
                          ) : (
-                      <button className="community-btn-a" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+                      <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                        )}
                     <br/>
-                    <b>@{this.state.user.fullname} <b className="user-score">{this.state.user.score}</b></b> <br/>
+                    <b>@{this.state.user.fullname}</b> <br/>
+                    <span className="user-badge"><BsFillCircleFill/> Member</span>
                       <br/>
-                      {this.state.followers.length === 0 && <b>{this.state.followers.length} followers</b>}
-                      {this.state.followers.length > 1 && <b>{this.state.followers.length} followers</b>}
-                      {this.state.followers.length === 1 && <b>{this.state.followers.length} follower</b>}
-                    </dl>
+                      {this.state.followers.length === 0 && <span><b>{this.state.followers.length}</b> followers</span>}
+                      {this.state.followers.length > 1 && <span><b>{this.state.followers.length}</b> followers</span>}
+                      {this.state.followers.length === 1 &&<span><b>{this.state.followers.length}</b> follower</span>}
+
+                      {this.state.following.length === 0 && <span><b>{this.state.following.length}</b> following</span>}
+                      {this.state.following.length > 1 && <span><b>{this.state.following.length}</b> following</span>}
+                      {this.state.following.length === 1 && <span><b>{this.state.following.length}</b> following</span>}
+
+                      <span><b>{this.state.user.score}</b> claps</span>
+                  </dl>
                 </section>
               </p>   
             </div>
@@ -294,12 +301,11 @@ export default class UserProfile extends React.Component {
           </Row>
           <Row>
             <Col>
-            <div className="top-posts">
+              <div className="top-posts">
                   {this.state.isLoading && <div  className='discussion-post'></div>}
                   {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
                   {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
-                </div>
-
+              </div>
             </Col>
           </Row>
         </Container>

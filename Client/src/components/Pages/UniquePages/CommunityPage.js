@@ -13,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Skeleton from 'react-loading-skeleton';
 import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../../images/clap.png'
+import {BsSquareFill, BsHeart, BsChat} from 'react-icons/bs'
 
 export default class CommunityPage extends React.Component {
 
@@ -33,7 +34,6 @@ export default class CommunityPage extends React.Component {
   }
 
   async componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7";
     var society_id = new URLSearchParams(this.props.location.search).get("id");
     await axios.get('http://localhost:4000/societies/get-societies-page', {
       params: {
@@ -123,44 +123,34 @@ export default class CommunityPage extends React.Component {
     const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
       return (
         <Fragment key={discussion._id}>
-          <Card className='discussion-post'>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><CardContent>
-              <span className="voting-btn">
-                <span class="showhim"><a href={"/me"} className="post-link-a"><b>{discussion.user}</b></a>
-                  <span class="showme"> <b>{discussion.user}</b></span></span>
-                {discussion.society == null ? (
-                  <span> in <b style={{ color: 'green' }}>General</b></span>
-                ) : (
-                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
-                  )}<br />
-                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span>
 
-                {discussion.picture == null && <div></div>}
-                {discussion.picture && <Image className="post-image" src={discussion.picture} height="90px" width="90px" />}
-              </span><br />
-              <span className="title-post">{discussion.title}</span><br />
-              <span className="content-post">{discussion.content.slice(0, 200)}</span>
-            </CardContent></a>
-            <CardActions>
-              {this.isLiked(discussion._id, user._id, discussion.likes)}
-              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary" onClick={() => { this.addToLikedPosts(discussion._id, user._id, discussion.likes) }}>
-                {discussion.likes === 0 && <></>}
-                {discussion.likes > 0 && <span> <Image src={Clap} size={20} /> {discussion.likes} reactions</span>}
-              </button></a>
+        <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
+          <Image src={discussion.thumbnail_pic} className="post-img"/>
+          <div class="container">
+            <h3><b>{discussion.title}</b></h3> 
+            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
+            <span>Posted in <b style={{ color: 'green' }}>
+            {discussion.society == null ? (
+              <span> in <b style={{ color: 'green' }}>General</b></span>
+               ) : (
+              <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+              )}<br />
+              </b></span><br/>
+            <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+            <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  {discussion.likes === 0 && <span> <BsHeart size={20} alt="" /> Be the first</span>}
+                  {discussion.likes === 1 && <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes > 1 && <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>}
+                </button></a>
 
-              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                <RiChat1Line size={20} />
-                {discussion.comments.length === 0 && <span> Add comment</span>}
-                {discussion.comments.length === 1 && <span> {discussion.comments.length} comment</span>}
-                {discussion.comments.length > 1 && <span> {discussion.comments.length} comments</span>}
 
-              </button></a>
-
-              {this.CheckPost(discussion.user_id, discussion._id)}
-            </CardActions>
-
-          </Card>
-
+                <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  {discussion.comments.length === 0 && <span><BsChat size={20} /> Add comment</span>}
+                  {discussion.comments.length === 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
+                  {discussion.comments.length > 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
+                </button></a>
+          </div>
+        </div></a><br/>
         </Fragment>
       )
     })
@@ -194,35 +184,33 @@ export default class CommunityPage extends React.Component {
 
           <Container fluid>
             <Row>
-            <Col sm></Col>
-
-              <Col sm>
-                <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color}}>
-                  <span>
-                    <Image alt="" src={this.state.society.picture} className="community-image" roundedCircle/>
-                    <br/><br/>
-                    <button className="follow-community" style={{background:this.state.society.color}} onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
-                  </span>
-
-                  <br />
-                  <h5 className="community-name">{this.state.society.name} </h5>
-                  {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
-                  {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                  {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}                      
-                  <br /><br/>
-                </div>
-                <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color, textAlign:'left', padding:10}}>
-                  <p>{this.state.society.description}</p>
+              <Col>
+              <div className="community-column-one">
+                      <Image alt="" src={this.state.society.picture} roundedCircle  width={130} height={130} />
+                    <dl class="details"> 
+                      <b className="community-name">{this.state.society.name}</b>
+                      <br/>
+                      <span className="community-badge"><BsSquareFill/> Community</span>
+                      <br/>
+                      <button className="follow-community" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
+                        <br/>
+                        {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
+                        {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
+                        {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
+                      <br/><br/>
+                      <hr/>
+                      <br/>
+                      <p>{this.state.society.description}</p>
+                    </dl>
+              </div>
+              </Col>
+              <Col sm={8}>
+                <div className="top-posts">
+                      {this.state.posts.length === 0 && <div className="card-empty">No posts yet, follow this community and start posting!</div>}
+                      {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
+                      {this.state.posts.length > 0 && <div>{discussionList}</div>}
                 </div>
               </Col>
-              <Col sm>
-                  <div className="top-posts">
-                    {this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
-                    {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
-                    {this.state.posts.length > 0 && <div>{discussionList}</div>}
-                  </div>
-              </Col>
-              <Col sm></Col>
             </Row>
           </Container>
         </div>

@@ -248,9 +248,24 @@
   border-radius: 5px;
   margin-top: 50px;
   margin-left: 50px;
-
 }
 
+.community-badge{
+  background:#EEEEEE;
+  border-radius: 5px;
+  color:blue;
+  padding:5px;
+  font-size: 12px;
+}
+.user-badge{
+  background:#EEEEEE;
+  border-radius: 5px;
+  color:gray;
+  padding:5px;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 10px!important;
+}
 .top-posts-empty{
   padding:10px;
   height:auto;
@@ -336,7 +351,7 @@
   font-weight: bold;
   float:right;
   margin-left:3vh;
-  border-radius: 25px;
+  border-radius: 10px;
   margin-right: 10vh;
 
 }
@@ -351,8 +366,7 @@
   background:white;
   color:black;
   border:2px solid black!important;
-  transition: 0.2s;
-  transition: background-color 0.5s ease, color 1s ease;
+  /* transition: background-color 0.5s ease, color 1s ease; */
   cursor: pointer;
   box-shadow: 3px 3px black;
 }
@@ -418,8 +432,10 @@
   border:none;
   background:none;
   color:black;
-  margin-right:10px;
   padding:10px;
+  font-size: 20px;
+  width:200px;
+  text-align: left;
   outline:none!important;
 }
 
@@ -427,19 +443,22 @@
 .feed-option-active{
   border:none;
   color:blue;
-  margin-right:10px;
   padding:10px;
+  font-size: 20px;
   background:none;
-  border-bottom: 2px solid blue;
+  width:200px;
+  text-align: left;
   font-weight: bold;
   outline:none!important;
 }
 
 .feed-option:hover{
-  background:#BBDEFB;
+  background:#E1F5FE;
   transition: 0.1s;
   color:#1E88E5;
   border-radius: 5px;
+  width:200px;
+  text-align: left;
 }
 
 .standard-button-remove:hover{border:2px solid black;}
@@ -453,6 +472,11 @@
   content: "";
   clear: both;
   display: table;
+}
+
+.reactions{
+  vertical-align: middle;
+
 }
 
 
@@ -1173,7 +1197,8 @@ section::after {
   font-weight: bold;
 }
 .details {
-  margin: 0px;
+  margin-right: 10px;
+  line-height: 30px;
 }
 
 .user-column-one{
@@ -1183,11 +1208,21 @@ section::after {
   margin-left: 50px;
 }
 
+.community-column-one{
+  padding:50px;
+  bottom: 100% !important;
+  background: rgba( 255, 255, 255, 0.25 );
+  margin-left: 50px;
+  text-align: left;
+}
+
 .user-column-one b, .user-column-one button{
   margin-left: 10px;
 }
 
 .user-name{font-size: 40px; margin-left: 5vh;}
+.community-name{font-size: 30px!important;}
+
 
 .top-posts p {
   font-size:16px;
@@ -1226,22 +1261,21 @@ section::after {
 .community-btn-a:hover{
   background:lightgray;
   color:black;
-  transition: background-color 0.5s ease, color 1s ease;
   cursor: pointer;
   box-shadow: 3px 3px rgba(77, 77, 77, 0.5);
   border:none;
 }
 
 .community-btn-a{
-  background-color: blue;
-  color:whitesmoke;
-  width: 100px;
+  background-color: black;
+  color:white;
+  width: auto;
   height:40px;
   border:none;
   border-radius: 5px;
   margin-left: 20px!important;
   font-weight: bold;
-  padding:10px;
+  padding:5px;
 }
 
 .comm-nav-item{
@@ -1432,17 +1466,17 @@ section::after {
 }
 
 .column-title{padding:10px;}
-.column-head{  background:black; color:white!important;  border-radius: 10px 10px 0 0;}
+.column-head{ color:black!important;  border-radius: 10px 10px 0 0;}
 .column-head-comm{  background:#393e46;height: 50px;  border-radius: 15px 15px 0 0;}
 
 .contributors-container{
   margin-top:40px;
   height:350px;
-  width:300px;
-  background-color: white;
-  border:1px solid lightgray;
+  width:250px;
+  /* background-color: white; */
+  /* border:1px solid lightgray; */
   border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
   position: -webkit-sticky;
   position: sticky;
   top: 2rem;
@@ -1584,13 +1618,40 @@ section::after {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 400px;
+  width: 500px;
   border-radius: 10px!important;
   border: none !important;
   margin-right: 20px;
 }
 
+.card-empty{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 500px;
+  height:100px;
+  border-radius: 10px!important;
+  border: none !important;
+  text-align: center;
+  margin: auto;
+  padding-top: 30px;
+  text-align: center;
+}
+
 .card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.card2 {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 350px;
+  border-radius: 10px!important;
+  border: none !important;
+  margin-right: 20px;
+}
+
+.card2:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -1677,13 +1738,12 @@ section::after {
 .recommended-container{
   border: none;
   background-color: white;
-  width:300px;
+  width:250px;
   height:270px!important;
-  border:1px solid lightgray;
   text-align: left;
   border-radius: 10px;
   margin-top:5vh;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-bottom: 5vh;
 }
 
 
@@ -1895,14 +1955,14 @@ section::after {
   width: 40vh;
 }
 
-.follow-btn , .community-button-join{
+.community-button-join{
   width:auto;
   padding:10px;
   margin-bottom:1rem;
 }
 
 .forum-follow-btn:hover, .edit-pic-btn:hover, .create-event-btn:hover,  .forum-options-btn:hover , 
-.settings-btn-save:hover, .settings-btn-cancel:hover,.follow-btn:hover , .post-option-btn-item-forum:hover{
+.settings-btn-save:hover, .settings-btn-cancel:hover , .post-option-btn-item-forum:hover{
   background:black;
   color:white;
 }
@@ -1921,25 +1981,19 @@ section::after {
   vertical-align:middle;
 }
 
-.follow-community{
+.follow-community, .follow-btn{
   color:white;
+  background-color:blue;
   width: auto;
-  height:40px;
+  height:auto;
   border:none;
   border-radius: 5px;
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
   padding:10px;
 }
 
-.follow-community:hover{
-  background-color:lightgray!important;
-  transition: 0.1s;
-  transition: background-color 0.5s ease, color 1s ease;
-  cursor: pointer;
-  box-shadow: 3px 3px rgba(77, 77, 77, 0.5);
-}
 .podcast-desc{
   margin-top: 5rem!important;
   width:800px;

@@ -46,7 +46,7 @@ class Contributors extends React.Component {
                 <div>
 
                 {users.map(user  =>  ( 
-                    <a className="-recommended-item-a" href={"/u/?id="+user._id}>
+                    <a className="-recommended-item-a" href={"/u/?id="+user._id} style={{color:'black', fontWeight:'light'}}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">
                             <Image src={user.pic} className="user-image-mini" roundedCircle />
@@ -56,15 +56,7 @@ class Contributors extends React.Component {
                                 <b className="profile-name">{user.fullname} </b>
                             </span>
                         </section>
-                        {user.score >= 1 && user.score <=999 ? (
-                          <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
-                        ) : user.score >=1000 ?(
-                            <span  className="-contributor-user-score"><b  className="user-mod">{ user.score}</b><br/></span>
-                        ) : user.score >= 5000 ? (
-                            <span  className="-contributor-user-score"><b  className="user-admin">{ user.score}</b><br/></span>
-                        ) : (
-                            <span className="-contributor-user-score"><b  className="user-member">{ user.score}</b><br/></span>
-                        )} 
+
                     </div></a>
                 ))} 
                 </div>

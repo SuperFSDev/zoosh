@@ -13,11 +13,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { RiChat1Line } from 'react-icons/ri'
-import Clap from '../../images/clap.png'
+import {FaRegArrowAltCircleUp} from 'react-icons/fa'
 import ScrollToTop from 'react-scroll-up'
-import {BsArrowUp, BsGem} from 'react-icons/bs'
+import {BsHeart, BsGem, BsPersonFill, BsChat} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
-import {GiUfo} from 'react-icons/gi'
+import Clap from '../../images/clap.png'
 // Allows array of following ids to be passed as params
 var qs = require('qs');
 
@@ -43,7 +43,6 @@ export default class Feed extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7";
 
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
@@ -156,20 +155,20 @@ export default class Feed extends React.Component {
               )}<br />
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+            <span className="reactions">
             <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.likes === 0 && <span> <BsGem size={20} alt="" /> Be the first</span>}
-                  {discussion.likes === 1 && <span> <BsGem size={20} alt="" /> {discussion.likes}</span>}
-                  {discussion.likes > 1 && <span> <BsGem size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
+                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
                 </button></a>
 
 
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  <RiChat1Line size={20} />
-                  {discussion.comments.length === 0 && <span> Add comment</span>}
-                  {discussion.comments.length === 1 && <span> {discussion.comments.length}</span>}
-                  {discussion.comments.length > 1 && <span> {discussion.comments.length}</span>}
+                  {discussion.comments.length === 0 && <span><BsChat size={20} /> Add comment</span>}
+                  {discussion.comments.length === 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
+                  {discussion.comments.length > 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
                 </button></a>
-          </div>
+          </span></div>
         </div></a><br/>
         </Fragment>
       )
@@ -192,15 +191,15 @@ export default class Feed extends React.Component {
             <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet>
         <Row>
-          <Col sm></Col>
-          <Col sm>
+        <Col sm>
             <div className="filter-options">
-              <a href="/"><button className="feed-option-active">Following</button></a>
-              <a href="/top"><button className="feed-option">Top</button></a>
-              {/* <a href="/new"><button className="write-button">Write a Post</button></a> */}
-
+              <a href="/"><button className="feed-option-active"><BsPersonFill size={25}/> Following</button></a><br/>
+              <a href="/top"><button className="feed-option"><BsGem  size={25}/>  Top</button></a>
             </div>
-            {this.state.posts.length === 0 && <div>Empty</div>}
+            <Recommended /><Contributors />
+          </Col>  
+                  
+          <Col >
             {this.state.isLoading && 
             <div>
               <div className="discussion-post" style={{padding:30}}>
@@ -230,11 +229,9 @@ export default class Feed extends React.Component {
             </div>}
             {!this.state.isLoading && <div>{discussionList}</div>}
             <ScrollToTop showUnder={1000}>
-              <span><GiUfo size={25}/></span>
+            <span><FaRegArrowAltCircleUp size={25} /></span>
             </ScrollToTop>
           </Col>
-
-          <Col sm><Recommended /><Contributors /></Col>
           <Col sm></Col>
 
         </Row>

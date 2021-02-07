@@ -69,8 +69,6 @@ render(){
               <SearchbarFilter/>
             </Nav>
             <Nav>
-            <Nav.Link href="/home" className="link"><RiHome5Fill size={25}/></Nav.Link>
-            <Nav.Link href="/explore" className="link"><RiCompass3Fill size={25}/></Nav.Link>
             <Nav.Link href="/notifications"  className="link"><BsBellFill size={23}/></Nav.Link>
            {/* <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/> */}
             <span class="dropdown">
@@ -78,13 +76,12 @@ render(){
                           <div class="dropdown-content">
                             <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             <hr/>
-                            <a href="/saved"  className="nowrap"><p className="contributor-item-profile"><BsBookmarks/> Reading List</p></a>
                             <a href="/forum"  className="nowrap"><p className="contributor-item-profile"><BsLightning/> Forum</p></a>
                             <a href="/leaderboard"  className="nowrap"><p className="contributor-item-profile"><BiChart/> Charts</p></a>
                             <hr/>
                             <a href="/settings" className="nowrap"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a>
                             <hr/>
-                            <a href="/login" className="nowrap">Sign Out</a>
+                            <a href="/login" className="nowrap">Log Out</a>
                           </div>
                       </span>
             <a href="/new"><button className="write-button">Write a post</button></a>
@@ -108,7 +105,7 @@ render(){
             <Nav.Link href="/leaderboard"  className="link"><BsFillBarChartFill size={25}/> Charts</Nav.Link>
             <Nav.Link href="/forum" className="link"><BsLightning size={25}/> Forum</Nav.Link>
             <Nav.Link href="/settings" className="link"><BsGear size={25}/> Account Settings</Nav.Link>
-            <Nav.Link href="/login" className="link">Sign Out</Nav.Link>
+            <Nav.Link href="/login" className="link">Log Out</Nav.Link>
             </Nav>
             
           </Navbar.Collapse>

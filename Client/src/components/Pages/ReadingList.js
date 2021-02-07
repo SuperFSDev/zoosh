@@ -23,7 +23,6 @@ export default class ReadingList extends React.Component {
   }
 
   async componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7";
     var user = JSON.parse(localStorage.getItem('user'));
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {

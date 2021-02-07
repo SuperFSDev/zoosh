@@ -22,7 +22,6 @@ export default class Two extends React.Component {
   }
 
     componentDidMount() {
-      document.body.style.backgroundColor = "#F7F7F7";
 
       var user = JSON.parse(localStorage.getItem('user'));
   
