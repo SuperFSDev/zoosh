@@ -40,7 +40,7 @@ export default class AllPosts extends React.Component {
     document.body.style.backgroundColor = "#F7F7F7";
 
     this.getUserDetails();
-    this.checkSessionStorage();
+    this.getDiscussions();
     this.onDeletePost = this.onDeletePost.bind(this);
 
     // Fetch discussions every 1 second
@@ -78,8 +78,6 @@ export default class AllPosts extends React.Component {
       }
     })
       .then((response) => {
-        // Store
-        sessionStorage.setItem('AllPosts', JSON.stringify(response.data.discussions));
         this.setState({
           discussions: response.data.discussions,
           isLoading: false,
@@ -90,24 +88,24 @@ export default class AllPosts extends React.Component {
       });
   }
 
-  // Checks if the discussion feed is stored in session storage, if not
-  // then get discussions and store them.
-  checkSessionStorage() {
-    // Retrieve from storage
-    var stored_discussions = JSON.parse(sessionStorage.getItem("AllPosts"));
+  // // Checks if the discussion feed is stored in session storage, if not
+  // // then get discussions and store them.
+  // checkSessionStorage() {
+  //   // Retrieve from storage
+  //   var stored_discussions = JSON.parse(sessionStorage.getItem("AllPosts"));
 
-    console.log(stored_discussions);
+  //   console.log(stored_discussions);
 
-    // If not stored, then get from database and store.
-    if (stored_discussions !== null && stored_discussions.length !== 0) {
-      this.setState({ discussions: stored_discussions, isLoading: false }, () => {
-        console.log(this.state.discussions);
-      })
-    } else {
-      // Get discussions from database.
-      this.getDiscussions()
-    }
-  }
+  //   // If not stored, then get from database and store.
+  //   if (stored_discussions !== null && stored_discussions.length !== 0) {
+  //     this.setState({ discussions: stored_discussions, isLoading: false }, () => {
+  //       console.log(this.state.discussions);
+  //     })
+  //   } else {
+  //     // Get discussions from database.
+  //     this.getDiscussions()
+  //   }
+  // }
 
 
   removeSaved = () => {

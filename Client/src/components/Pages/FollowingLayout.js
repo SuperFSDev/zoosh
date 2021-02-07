@@ -47,25 +47,25 @@ export default class Feed extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
-    this.CheckSessionStorage();
+    this.GetFollowedUsers();
   }
 
-  // Checks if the discussion feed is stored in session storage, if not
-  // then get discussions and store them.
-  CheckSessionStorage() {
-    // Retrieve from storage
-    var stored_discussions = JSON.parse(sessionStorage.getItem("FollowedPosts"));
+  // // Checks if the discussion feed is stored in session storage, if not
+  // // then get discussions and store them.
+  // CheckSessionStorage() {
+  //   // Retrieve from storage
+  //   var stored_discussions = JSON.parse(sessionStorage.getItem("FollowedPosts"));
 
-    // If not stored, then get from database and store.
-    if (stored_discussions !== null && stored_discussions.length !== 0) {
-      this.setState({ posts: stored_discussions, isLoading: false }, () => {
-        console.log(this.state.discussions);
-      })
-    } else {
-      // Get discussions from database.
-      this.GetFollowedUsers()
-    }
-  }
+  //   // If not stored, then get from database and store.
+  //   if (stored_discussions !== null && stored_discussions.length !== 0) {
+  //     this.setState({ posts: stored_discussions, isLoading: false }, () => {
+  //       console.log(this.state.discussions);
+  //     })
+  //   } else {
+  //     // Get discussions from database.
+  //     this.GetFollowedUsers()
+  //   }
+  // }
 
   // Gets the array of ID's that the user follows.
   GetFollowedUsers() 
@@ -101,7 +101,6 @@ export default class Feed extends React.Component {
       }
     })
     .then((response) => {
-        sessionStorage.setItem('FollowedPosts', JSON.stringify(response.data.discussions));
         this.setState({
           posts: response.data.discussions,
           isLoading: false,
@@ -137,6 +136,7 @@ export default class Feed extends React.Component {
   }
 
   render() {
+    console.log(this.state.posts);
     var user = JSON.parse(localStorage.getItem('user'));    
     const discussionList = this.state.posts.map(discussion => {
       console.log(discussion.user_id);
@@ -205,7 +205,6 @@ export default class Feed extends React.Component {
               {/* <a href="/new"><button className="write-button">Write a Post</button></a> */}
 
             </div>
-            {this.state.posts.length === 0 && <div>Empty</div>}
             {this.state.isLoading && 
             <div>
               <div className="discussion-post" style={{padding:30}}>

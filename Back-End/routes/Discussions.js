@@ -72,7 +72,7 @@ discussions.get('/get-following-feed', (req, res, next) => {
         // Gets discussions for the given user ID
         var query = DiscussionModel
             .find({user_id: following[i]})
-            .select('user society time thumbnail_pic title content likes comments user_id')
+            .select('user society time thumbnail_pic user_pic title content likes comments user_id')
             .sort({'likes': -1})
         
         query.exec(function (err, data) {
