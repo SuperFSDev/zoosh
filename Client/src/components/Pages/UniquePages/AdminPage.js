@@ -172,7 +172,7 @@ export default class AdminPage extends React.Component {
   
   
                   {discussion.picture == null && <div></div>} 
-                  {discussion.picture && <Image alt="" className="post-image" src={discussion.picture} height="90px" width="90px"/>} 
+                  {discussion.picture && <Image alt="" className="post-image" src={discussion.picture} height="90px" width="90px" />} 
                 </span><br />
                 <span className="title-post">{discussion.title}</span><br />
                 <span className="content-post">{discussion.content.slice(0, 200)}</span>
@@ -223,7 +223,7 @@ export default class AdminPage extends React.Component {
                   <Col sm>
                     <div className="community-profile" style={{borderWidth:1,borderColor:this.state.society.color}}>
                       <span>
-                        <Image alt="" src={this.state.society.picture} className="community-image" />
+                        <Image alt="" src={this.state.society.picture} className="community-image" roundedCircle/>
                         <br/><br/>
                         <button className="follow-community">Community Settings</button>
                       </span>
