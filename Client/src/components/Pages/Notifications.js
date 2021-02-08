@@ -6,7 +6,7 @@ import moment from 'moment'
 import { Row, Col, Container, Image } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
 import Avatar from '@material-ui/core/Avatar';
-
+import { BsXCircleFill } from "react-icons/bs";
 export default class Notifications extends React.Component {
 
   constructor(props) {
@@ -67,72 +67,15 @@ export default class Notifications extends React.Component {
         });
   }
 
-
-  Clearlikes() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearLikes', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
-
-
-  getNotificationUser(id) {
-    axios.get('http://localhost:4000/users/get-user-details', {
-      params: {
-        id: id,
-        fields: "fullname"
-      }
-    })
-      .then((response) => {
-        console.log(response.data.user)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-
-  ClearComments() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearComments', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
-
-
-  ClearFollows() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearFollows', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
+  deleteNotification(id){
+    alert(id);
+      axios.get('http://localhost:4000/notifications/deleteNotification',{
+        params: {
+          _id:id,   
+        }    
+  });
+}
+  
 
   render() {
     console.log(this.state.notifications);
@@ -160,19 +103,17 @@ export default class Notifications extends React.Component {
                 <h3 className="heading">Notifications</h3><hr /><br />
                 {this.state.notifications.length === 0 && <div >No Notifications</div>}
                 {this.state.notifications.reverse().map(notification =>
-                  <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion) || (notification.discussion_title == null && "/u/?id=" + notification.user)} aria-label="notification" rel="noopener"  class="nowrap">
+                  <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion_id) || (notification.discussion_title == null && "/u/?id=" + notification.user_id)} aria-label="notification" rel="noopener"  class="nowrap">
                     <div className="notification">
                     <p>
                       <span class="nowrap"><Image className="user-image-mini" roundedCircle src={notification.user_pic}/>  <b>{notification.user_name}</b> {notification.message} {notification.discussion_title != null && <b> "{notification.discussion_title}" </b>}</span>
                       <span class="nowrap">- {moment(notification.time).startOf('seconds').fromNow()}</span>
+                      
                     </p>
-                    
+                    <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button>
                   </div></a>
-
+                      
                 )}
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.Clearlikes() }}>Clear Likes</button>
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.ClearComments() }}>Clear Comments</button>
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.ClearFollows() }}>Clear Follows</button>
               </div>
             </Col>
             <Col sm></Col>

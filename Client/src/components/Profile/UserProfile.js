@@ -25,6 +25,7 @@ export default class UserProfile extends React.Component {
       posts: [],
       badges: [],
       time: '',
+      usersFollows:'',
       showFollow: false,
       showUnfollow: false,
       followBtn: false,
@@ -81,6 +82,27 @@ export default class UserProfile extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+
+
+      var user = JSON.parse(localStorage.getItem('user'));
+    // document.body.style.backgroundColor = "#F7F7F7";
+
+    await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id: user._id,
+        fields: 'following '
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          usersFollows: response.data.user.following
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
 
     axios.get('http://localhost:4000/discussions/get-user-discussions', {
       params: {
@@ -151,11 +173,8 @@ export default class UserProfile extends React.Component {
 
 
   followUser(user) {
-    this.setState({
-      isUnfollowing: false,
-    });
     addUserToFollow(user);
-    console.info("Followed User")
+    window.location.reload();
   }
 
 
@@ -195,10 +214,7 @@ export default class UserProfile extends React.Component {
       .catch(function (error) {
         console.log(error);
       })
-
-
-    alert("you just unfollowed" + user.fullname);
-
+    window.location.reload();
   }
 
   CheckDetails() {
@@ -242,6 +258,23 @@ export default class UserProfile extends React.Component {
 
   }
 
+
+  isUserFollowed(id){
+
+    if (this.state.usersFollows.includes(id) === true) {
+      return(
+        <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+      )
+    }
+    else{
+      return(
+        <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
+
+      )
+    }
+
+  }
+
   render() {
     var isUnfollowing = this.state.isUnfollowing;
     var title = this.state.user.fullname + " - Website"
@@ -275,11 +308,7 @@ export default class UserProfile extends React.Component {
                   <section class="bio-box">
                    <dl class="details"> 
                     <b className="user-name">{this.state.user.fullname}</b>
-                    {isUnfollowing ? (
-                       <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.followUser(this.state.user)}>Follow</button>
-                         ) : (
-                      <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
-                       )}
+                     {this.isUserFollowed(this.state.user._id)}
                     <br/>
                     <b>@{this.state.user.fullname}</b> <br/>
                     <span className="user-badge"><BsFillCircleFill/> Member</span>
@@ -313,6 +342,10 @@ export default class UserProfile extends React.Component {
     );
   }
 }
+
+
+
+
 
 
 // Follow the user profile and add to array
@@ -373,7 +406,6 @@ axios.post('http://localhost:4000/users/notify', notify)
     .catch(function (error) {
       console.log(error);
     })
-
 }
 
 
