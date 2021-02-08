@@ -57,6 +57,10 @@ app.use('/comments', Comments)
 var Discussions = require('./routes/Discussions');
 app.use('/discussions', Discussions)
 
+// Adds the "Notifications" route to the server.
+var Notifications = require('./routes/Notifications');
+app.use('/notifications', Notifications)
+
 // Adds the "Societies" route to the server.
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);

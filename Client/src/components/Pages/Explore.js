@@ -3,11 +3,10 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Modal, Row, Col, Container} from 'react-bootstrap';
+import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
 import CreateASoc from '../Common/CreateASoc'
-import background from "../../images/group.jpg";
 import Skeleton from 'react-loading-skeleton';
-import Avatar from '@material-ui/core/Avatar';
+import Default from '../../images/defaults/default1.jpg'
 
 export default class ListSocieties extends React.Component {
 
@@ -129,7 +128,9 @@ render(){
                         <a href={"/c/?id=" +society._id} aria-label="community" rel="noopener" className="miniprofile-post-redirect">
                         <div class="miniprofileCommunities">
                         <div className="column-head-comm" style={{ background: society.color }}/>
-                        <Avatar className="soc-item-image" src={society.picture}/>
+                        {society.picture == null && <Image  className="soc-item-image" src={Default}/>}
+                        {society.picture != null && <Image  className="soc-item-image" src={society.picture}/>}
+                        {/* <Avatar className="soc-item-image" src={society.picture}/> */}
                         <h3><b>{society.name}</b></h3>
                         <p><b>{society.users.length} members</b></p>
                         </div>

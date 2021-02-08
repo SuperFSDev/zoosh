@@ -13,13 +13,14 @@ import { RiShieldStarLine } from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
 import cogoToast from 'cogo-toast'
 
-
 export default class DiscussionPost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       discussion: '',
+      discussion_title:'',
+      user_pic:'',
       discussions: [],
       likedPosts: [],
       discussion_id: '',
@@ -142,8 +143,12 @@ export default class DiscussionPost extends React.Component {
 
   addToLikedPosts(discussion, discussion_uID, user_id, likes, user_name, title, user_pic) {
 
+
+    var user = JSON.parse(localStorage.getItem("user"))
+
+
     const addDiscussion = {
-      id: user_id,
+      id: user._id,
       discussion: discussion,
     }
     // Adds the discussion to liked list
@@ -156,19 +161,18 @@ export default class DiscussionPost extends React.Component {
       })
 
     const notify = {
+      user: user._id,
       id: discussion_uID,
-      notification: {
-        user: user_id,
-        user_name: user_name,
-        discussion: discussion,
-        discussion_title: title,
-        user_pic: user_pic,
-        message: "liked your post",
-        time: new Date().getTime()
-      }
+     // user: user_id,
+      user_name: user_name,
+      discussion: discussion,
+      discussion_title: title,
+      user_pic: user_pic,
+      message: "liked your post",
+      time: new Date().getTime()
     }
     // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/notify', notify)
+    axios.post('http://localhost:4000/notifications/notify', notify)
       .then(function (resp) {
         console.log(resp);
       })
@@ -235,22 +239,19 @@ export default class DiscussionPost extends React.Component {
 
     }
     const notify = {
-      id: this.state.discussion.user_id,
-      notification: {
-        user: user._id,
-        user_name: user.fullname,
-        user_pic: user.pic,
-        discussion: this.state.discussion._id,
-        discussion_title: this.state.discussion.title,
-        message: "commented on post",
-        time: new Date().getTime()
-      }
+      user: user._id,
+      user_name: user.fullname,
+      user_pic: user.pic,
+      discussion_id: this.state.discussion._id,
+      discussion_title: this.state.discussion.title,
+      message: "commented on post",
+      time: new Date().getTime()
     }
     axios.post('http://localhost:4000/discussions/CreateComment', newComment)
       .then()
       .catch();
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/notify', notify)
+
+    axios.post('http://localhost:4000/notifications/notify', notify)
       .then()
       .catch();
     window.location.reload();

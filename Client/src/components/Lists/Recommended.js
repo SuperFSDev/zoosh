@@ -4,6 +4,7 @@ import { StickyContainer } from 'react-sticky';
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
 import {IoMdPlanet} from 'react-icons/io'
+import Default from '../../images/defaults/default1.jpg'
 
 export default class Recommended extends React.Component {
 
@@ -61,7 +62,8 @@ render(){
                   {shuffledPosts.slice(0, size).map(society =>(
                     <a  href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><div class="miniprofileCommunity">
                       <figure class="headshot">
-                          <Image src={society.picture} className="user-image-mini"  alt=""/>
+                        {society.picture == null && <Image className="user-image-mini"  alt="" src={Default}/>}
+                        {society.picture != null && <Image src={society.picture} className="user-image-mini"  alt=""/>}
                       </figure>
                       <a href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 

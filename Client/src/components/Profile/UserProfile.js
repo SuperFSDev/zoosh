@@ -3,12 +3,11 @@ import '../../assets/App.css';
 import axios from 'axios';
 import { Image, Row, Col, Container } from 'react-bootstrap'
 import History from './ProfilePostHistory'
-// import addUserToFollow from './AddUserToFollow'
 import { Helmet } from 'react-helmet'
 import moment from 'moment'
-import { RiCake3Line } from 'react-icons/ri'
 import Skeleton from 'react-loading-skeleton';
 import {BsCircleFill, BsFillCircleFill} from 'react-icons/bs'
+import Default from '../../images/defaults/default5.jpg'
 
 export default class UserProfile extends React.Component {
 
@@ -270,7 +269,8 @@ export default class UserProfile extends React.Component {
             <div className="user-column-one">
               <p className="nowrap">
                   <figure class="headshot">
-                    <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} />
+                    {this.state.user.pic === null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
+                    {this.state.user.pic != null &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
                   </figure>
                   <section class="bio-box">
                    <dl class="details"> 
@@ -303,7 +303,7 @@ export default class UserProfile extends React.Component {
             <Col>
               <div className="top-posts">
                   {this.state.isLoading && <div  className='discussion-post'></div>}
-                  {this.state.posts != null && this.state.posts.length === 0 && <div className="top-posts-empty">No Posts</div>}
+                  {this.state.posts != null && this.state.posts.length === 0 && <div className="card-empty">{this.state.user.fullname} is staying quiet for now</div>}
                   {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
               </div>
             </Col>

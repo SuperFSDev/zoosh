@@ -133,6 +133,8 @@ discussions.get('/get-user-discussions', (req, res) => {
 })
 
 
+
+
 discussions.get('/get-society-discussions', (req, res) => {
 
     DiscussionModel.find({

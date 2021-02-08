@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const NotificationSchema = new Schema({
     user_id:String,
     user_name:String,
-    discussion:String,
+    discussion_id:String,
     discussion_title: String,
     user_pic: String,
     message:String,

@@ -8,14 +8,10 @@ import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { RiChat1Line } from 'react-icons/ri'
 import {FaRegArrowAltCircleUp} from 'react-icons/fa'
 import ScrollToTop from 'react-scroll-up'
-import {BsHeart, BsGem, BsPersonFill, BsChat} from 'react-icons/bs'
+import {BsGem, BsPersonFill, BsChat} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import Clap from '../../images/clap.png'
 // Allows array of following ids to be passed as params

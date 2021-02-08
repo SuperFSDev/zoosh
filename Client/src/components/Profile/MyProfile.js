@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import History from './ProfilePostHistory'
 import Skeleton from 'react-loading-skeleton';
 import {BsFillCircleFill, BsBookmarkFill} from 'react-icons/bs'
+import Default from '../../images/defaults/default5.jpg'
 
 export default class MyProfile extends React.Component {
 
@@ -152,7 +153,8 @@ export default class MyProfile extends React.Component {
               <p className="nowrap">
                   {/* <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} /> */}
                   <figure class="headshot">
-                    <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} />
+                    {this.state.user.pic === null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
+                    {this.state.user.pic != null &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}
                   </figure>
                   <section class="bio-box">
                    <dl class="details"> 

@@ -12,6 +12,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import {BsSquareFill} from'react-icons/bs'
+import Default from '../../../images/defaults/default1.jpg'
 
 export default class AdminPage extends React.Component {
 
@@ -221,8 +222,8 @@ export default class AdminPage extends React.Component {
             <Row>
               <Col>
               <div className="community-column-one">
-                      <Image alt="" src={this.state.society.picture} roundedCircle  width={130} height={130} />
-                    <dl class="details"> 
+              {this.state.society.picture == null && <Image className="community-image" alt="" src={Default} width={130} height={130} s />}
+                {this.state.society.picture != null && <Image className="community-image" alt="" src={this.state.society.picture}   width={130} height={130} />}                    <dl class="details"> 
                       <b className="community-name">{this.state.society.name}</b>
                       <br/>
                       <span className="community-badge"><BsSquareFill/> Community</span>

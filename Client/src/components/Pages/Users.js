@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet'
 import { Image, Row, Col, Container } from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
+import Default from '../../images/defaults/default5.jpg'
 
 export default class ListSocieties extends React.Component {
 
@@ -80,13 +81,11 @@ export default class ListSocieties extends React.Component {
         <div key={user.id}>
           <a href={"/u/?id=" + user._id} className="comm-link"><div className="users-list-items">
             <p>
-              <Image src={user.pic} className="user-image-square" roundedCircle /> <br />
+              {user.pic == null && <Image src={Default} className="user-image-square" roundedCircle />}
+              {user.pic != null && <Image src={user.pic} className="user-image-square" roundedCircle />}
+              <br/>
               <span>{user.fullname} <b className="user-score">{user.score}</b></span>
-
             </p>
-            {/* <h5></h5> */}
-
-
           </div></a>
         </div>
       )

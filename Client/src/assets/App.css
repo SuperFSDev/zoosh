@@ -250,13 +250,6 @@
   margin-left: 50px;
 }
 
-.community-badge{
-  background:#EEEEEE;
-  border-radius: 5px;
-  color:blue;
-  padding:5px;
-  font-size: 12px;
-}
 .user-badge{
   background:#EEEEEE;
   border-radius: 5px;
@@ -264,6 +257,15 @@
   padding:5px;
   font-size: 12px;
   margin-left: 10px;
+  margin-top: 10px!important;
+}
+
+.community-badge{
+  background:#EEEEEE;
+  border-radius: 5px;
+  color:gray;
+  padding:5px;
+  font-size: 12px;
   margin-top: 10px!important;
 }
 .top-posts-empty{
@@ -295,15 +297,16 @@
 
 .standard-button{
   width:auto;
-  height:50px;
+  font-size: 14px;
+  height:auto;
   padding:10px;
   outline:none!important;
-  border:none;
-  color: white;
-  margin-top: 2vh;
-  background:#393e46;
+  border:2px solid black!important;
+  background:black;
+  color:white;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 10px;
+  margin-top: 5vh;
 }
 
 .settings-button-cancel{
@@ -320,10 +323,11 @@
 }
 
 .standard-button:hover{
-  background:gray!important;
-  color:white;
-  font-weight: bold;
-  transition: 0.15s;
+  background:white;
+  color:black;
+  border:2px solid black!important;
+  cursor: pointer;
+  box-shadow: 3px 3px black;
 }
 
 .standard-button-cancel{
@@ -1974,11 +1978,11 @@ section::after {
 
 
 .user-image{
-  width:150px;
-  height:150px;
+  width:120px;
+  height:120px;
   text-align: center;
-  border:2px solid white;
   vertical-align:middle;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .follow-community, .follow-btn{
@@ -2033,7 +2037,8 @@ section::after {
 .user-image-mini{
   width:50px;
   height:50px;
-  padding:5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .commentBox{
@@ -2125,6 +2130,8 @@ section::after {
   width:25px;
   height:25px;
   margin-bottom: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1);
+
 }
 
 .edit-profile-form{
@@ -2199,12 +2206,17 @@ section::after {
 }
 
 .soc-item-image{
-  width:100%;
-  height:150px;
+  width:50px;
+  height:50px;
   margin:auto;
   margin-top: 10px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 10px;
+}
+
+.community-image{
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-bottom: 15px;
 }
 
 .thumbnail {

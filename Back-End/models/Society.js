@@ -15,7 +15,7 @@ const SocietySchema = new Schema({
     public: Boolean,
     private: Boolean,
     admin:String,
-    picture: String,
+    picture: {type:String, "default" : ""},
     users: {type: Array, "default" : []},
     mods:{type: Array, "default" : []},
     events: {type: Array, "default" : []},

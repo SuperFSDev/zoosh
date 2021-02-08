@@ -7,13 +7,10 @@ import { Helmet } from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
 import cogoToast from 'cogo-toast'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Skeleton from 'react-loading-skeleton';
-import { RiChat1Line } from 'react-icons/ri'
 import Clap from '../../../images/clap.png'
 import {BsSquareFill, BsHeart, BsChat} from 'react-icons/bs'
+import Default from '../../../images/defaults/default1.jpg'
 
 export default class CommunityPage extends React.Component {
 
@@ -186,7 +183,8 @@ export default class CommunityPage extends React.Component {
             <Row>
               <Col>
               <div className="community-column-one">
-                      <Image alt="" src={this.state.society.picture} roundedCircle  width={130} height={130} />
+                {this.state.society.picture == null && <Image className="community-image" alt="" src={Default} width={130} height={130} s />}
+                {this.state.society.picture != null && <Image className="community-image" alt="" src={this.state.society.picture}   width={130} height={130} />}
                     <dl class="details"> 
                       <b className="community-name">{this.state.society.name}</b>
                       <br/>

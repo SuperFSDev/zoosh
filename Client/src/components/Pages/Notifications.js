@@ -16,6 +16,7 @@ export default class Notifications extends React.Component {
       users: [],
       searchValue: '',
       posts: [],
+      notifications:[],
       user: '',
       notifications: [],
       name: ''
@@ -42,6 +43,28 @@ export default class Notifications extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+    
+    // Fetching the users notifications by searching the Notifications Model for documents containing the logged in users ID
+    await axios.get('http://localhost:4000/notifications/get-user-notifications', {
+        params: {
+          id: user._id,
+          fields: 'user_id user_name user_pic time message discussion_id discussion_title ',
+        }
+      })
+        .then((response) => {
+          if (this.state.notifications == undefined) {
+            this.setState({
+              notifications: response.data.notifications
+            })
+          } else {
+            this.setState({
+              notifications: this.state.notifications.concat(response.data.notifications)
+            })
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
 
 
