@@ -6,6 +6,7 @@ const NotificationSchema = new Schema({
     user_id:String,
     user_name:String,
     discussion_id:String,
+    notify_id:String,
     discussion_title: String,
     user_pic: String,
     message:String,

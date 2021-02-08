@@ -6,7 +6,7 @@ import moment from 'moment'
 import { Row, Col, Container, Image } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
 import Avatar from '@material-ui/core/Avatar';
-
+import { BsXCircleFill } from "react-icons/bs";
 export default class Notifications extends React.Component {
 
   constructor(props) {
@@ -47,7 +47,7 @@ export default class Notifications extends React.Component {
     // Fetching the users notifications by searching the Notifications Model for documents containing the logged in users ID
     await axios.get('http://localhost:4000/notifications/get-user-notifications', {
         params: {
-          id: user._id,
+          notify_id: user._id,
           fields: 'user_id user_name user_pic time message discussion_id discussion_title ',
         }
       })
@@ -67,72 +67,27 @@ export default class Notifications extends React.Component {
         });
   }
 
+  deleteNotification(id){
 
-  Clearlikes() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearLikes', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
+      axios.get('http://localhost:4000/notifications/deleteNotification',{
+        params: {
+          _id:id,   
+        }    
+  });
+  window.location.reload();
+}
 
-
-  getNotificationUser(id) {
-    axios.get('http://localhost:4000/users/get-user-details', {
+deleteAllNotification(){
+  var user = JSON.parse(localStorage.getItem('user'));
+    axios.get('http://localhost:4000/notifications/deleteAllNotifications',{
       params: {
-        id: id,
-        fields: "fullname"
-      }
-    })
-      .then((response) => {
-        console.log(response.data.user)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+        id:user._id,   
+      }    
+});
+window.location.reload();
+}
 
-
-  ClearComments() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearComments', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
-
-
-  ClearFollows() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    const UserID = {
-      id: user._id
-    }
-    // Adds the discussion to liked list
-    axios.post('http://localhost:4000/users/clearFollows', UserID)
-      .then(function (resp) {
-        console.log(resp);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    window.location.reload();
-  }
+  
 
   render() {
     console.log(this.state.notifications);
@@ -156,24 +111,28 @@ export default class Notifications extends React.Component {
           <Row>
             <Col sm></Col>
             <Col sm>
+              
               <div className="dashboard">
                 <h3 className="heading">Notifications</h3><hr /><br />
+                
                 {this.state.notifications.length === 0 && <div >No Notifications</div>}
                 {this.state.notifications.reverse().map(notification =>
-                  <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion) || (notification.discussion_title == null && "/u/?id=" + notification.user)} aria-label="notification" rel="noopener"  class="nowrap">
+                <div>
+                  <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion_id) || (notification.discussion_title == null && "/u/?id=" + notification.user_id)} aria-label="notification" rel="noopener"  class="nowrap">
                     <div className="notification">
                     <p>
                       <span class="nowrap"><Image className="user-image-mini" roundedCircle src={notification.user_pic}/>  <b>{notification.user_name}</b> {notification.message} {notification.discussion_title != null && <b> "{notification.discussion_title}" </b>}</span>
                       <span class="nowrap">- {moment(notification.time).startOf('seconds').fromNow()}</span>
+                     
                     </p>
-                    
+                  
                   </div></a>
-
-                )}
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.Clearlikes() }}>Clear Likes</button>
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.ClearComments() }}>Clear Comments</button>
-                <button aria-label="Clear Notifications" className="standard-option-btn-post" onClick={() => { this.ClearFollows() }}>Clear Follows</button>
+               <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button>
+               </div> )}
+                           
+                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Delete all  <BsXCircleFill size={30} /></button>
               </div>
+  
             </Col>
             <Col sm></Col>
           </Row>
