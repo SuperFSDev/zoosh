@@ -162,7 +162,7 @@ export default class DiscussionPost extends React.Component {
 
     const notify = {
       user: user._id,
-      id: discussion_uID,
+      notify_id: discussion_uID,
      // user: user_id,
       user_name: user_name,
       discussion: discussion,
@@ -242,6 +242,7 @@ export default class DiscussionPost extends React.Component {
       user: user._id,
       user_name: user.fullname,
       user_pic: user.pic,
+      notify_id:this.state.discussion.user_id,
       discussion_id: this.state.discussion._id,
       discussion_title: this.state.discussion.title,
       message: "commented on post",

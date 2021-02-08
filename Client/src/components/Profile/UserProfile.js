@@ -366,17 +366,16 @@ function addUserToFollow(user) {
 
   
   const notify = {
-    id:user._id,
-    notification: {
-    user:getUser._id,
+    user:user._id,
+    notify_id:getUser._id,
     user_pic:getUser.pic,
     user_name: getUser.fullname,
     message: "just followed you",
     time:new Date().getTime()
-    }
+    
 }
 // Adds the discussion to liked list
-axios.post('http://localhost:4000/users/notify', notify)
+axios.post('http://localhost:4000/notifications/notify', notify)
     .then(function (resp) {
         console.log(resp);
     })

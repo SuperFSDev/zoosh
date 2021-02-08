@@ -47,7 +47,7 @@ export default class Notifications extends React.Component {
     // Fetching the users notifications by searching the Notifications Model for documents containing the logged in users ID
     await axios.get('http://localhost:4000/notifications/get-user-notifications', {
         params: {
-          id: user._id,
+          notify_id: user._id,
           fields: 'user_id user_name user_pic time message discussion_id discussion_title ',
         }
       })
@@ -68,13 +68,25 @@ export default class Notifications extends React.Component {
   }
 
   deleteNotification(id){
-    alert(id);
+
       axios.get('http://localhost:4000/notifications/deleteNotification',{
         params: {
           _id:id,   
         }    
   });
+  window.location.reload();
 }
+
+deleteAllNotification(){
+  var user = JSON.parse(localStorage.getItem('user'));
+    axios.get('http://localhost:4000/notifications/deleteAllNotifications',{
+      params: {
+        id:user._id,   
+      }    
+});
+window.location.reload();
+}
+
   
 
   render() {
@@ -99,22 +111,28 @@ export default class Notifications extends React.Component {
           <Row>
             <Col sm></Col>
             <Col sm>
+              
               <div className="dashboard">
                 <h3 className="heading">Notifications</h3><hr /><br />
+                
                 {this.state.notifications.length === 0 && <div >No Notifications</div>}
                 {this.state.notifications.reverse().map(notification =>
+                <div>
                   <a href={(notification.discussion_title != null && "/d/?id=" + notification.discussion_id) || (notification.discussion_title == null && "/u/?id=" + notification.user_id)} aria-label="notification" rel="noopener"  class="nowrap">
                     <div className="notification">
                     <p>
                       <span class="nowrap"><Image className="user-image-mini" roundedCircle src={notification.user_pic}/>  <b>{notification.user_name}</b> {notification.message} {notification.discussion_title != null && <b> "{notification.discussion_title}" </b>}</span>
                       <span class="nowrap">- {moment(notification.time).startOf('seconds').fromNow()}</span>
-                      
+                     
                     </p>
-                    <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button>
+                  
                   </div></a>
-                      
-                )}
+               <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button>
+               </div> )}
+                           
+                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Delete all  <BsXCircleFill size={30} /></button>
               </div>
+  
             </Col>
             <Col sm></Col>
           </Row>
