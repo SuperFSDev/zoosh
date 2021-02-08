@@ -128,7 +128,7 @@ function FeaturePost() {
 
   return (
     <div>
-            <button className="post-option-btn-item-event" onClick={() => setShowPost(true)}>Post</button>
+            <button className="write-button" onClick={() => setShowPost(true)}>Post</button>
 
             <ForumPost
                 show={modalShowPost}

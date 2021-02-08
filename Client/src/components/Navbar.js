@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Modal, Image, Navbar, Nav, NavDropdown} from 'react-bootstrap'
+import {Modal, Image, Navbar, Nav, NavDropdown, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import {BsBellFill,BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
@@ -19,8 +19,6 @@ export default class NavBar extends React.Component {
     this.state = {
         id: '',
         user: '',
-        following:[],
-        followers:[],
         searchValue: '',
         filterBy: '',
         users: [],
@@ -46,8 +44,6 @@ export default class NavBar extends React.Component {
           .then((response) => {
               console.log(response);
               this.setState({ user: response.data.user,
-                // following: response.data.user.following,
-                // followers: response.data.user.followers,
               })
           })
           .catch((error) => {
@@ -61,16 +57,16 @@ render(){
   return (
       <div>
         <div id="top"></div>
-        <Navbar className="navbar"   expand="lg">
+        <Container>
+        <Row>
+        <Col sm>
           <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
+        </Col>  
+                  
+          <Col>
               <SearchbarFilter/>
-            </Nav>
-            <Nav>
-            <Nav.Link href="/notifications"  className="link"><BsBellFill size={23}/></Nav.Link>
-           {/* <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/> */}
+          </Col>
+          <Col sm>
             <span class="dropdown">
                           <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
@@ -84,10 +80,10 @@ render(){
                             <a href="/login" className="nowrap">Log Out</a>
                           </div>
                       </span>
-            <a href="/new"><button className="write-button">Write a post</button></a>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+          </Col>
+        </Row>
+        <hr/>
+      </Container>
 
         <Navbar className="mobile-navbar"  expand="lg">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

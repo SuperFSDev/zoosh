@@ -3,7 +3,7 @@ import axios from 'axios'
 import {Image} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
 import {BiRadar} from 'react-icons/bi'
-import Default from '../../images/defaults/default1.jpg'
+import Default from '../../images/defaults/default5.jpg'
 
 class Contributors extends React.Component {
 
@@ -28,9 +28,6 @@ class Contributors extends React.Component {
 
     var{users} = this.state;
 
-    const shuffledUsers = users; //shuffleArray(users);
-
-
     return (
         <div className="contributors-container">
             <div className="column-head">
@@ -50,7 +47,8 @@ class Contributors extends React.Component {
                     <a className="-recommended-item-a" href={"/u/?id="+user._id} style={{color:'black', fontWeight:'light'}}>
                     <div class="miniprofileCommunity">
                         <figure class="headshot">
-                            {user.pic === null &&<Image alt="" src={Default}  className="user-image-mini" roundedCircle />}
+
+                            {user.pic == null &&<Image alt="" src={Default}  className="user-image-mini" roundedCircle />}
                             {user.pic != null &&<Image alt="" src={user.pic}  className="user-image-mini" roundedCircle />}    
                         </figure>
                         <section class="bio-box">
@@ -69,16 +67,5 @@ class Contributors extends React.Component {
   );
   }
 }
-
-/*function shuffleArray(array) {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  }*/
 
 export default Contributors;

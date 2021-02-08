@@ -24,26 +24,7 @@ export default class ListSocieties extends React.Component {
   }
 
   async componentDidMount() {
-    document.body.style.backgroundColor = "#F7F7F7";
-
-    /*axios.get('http://localhost:4000/users/get-user-details', {
-      params: {
-        id: user_id
-      }
-    })
- 
-      .then((response) => {
-        this.setState({ user: response.data.user,
-                        forums: response.data.user.forums,
-                        socs:response.data.user.societies
-
- 
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      });*/
-
+    
     await axios.get('http://localhost:4000/users/get-users-list')
       .then((response) => {
         console.log(response);

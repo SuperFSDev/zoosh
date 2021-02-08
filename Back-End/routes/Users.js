@@ -25,6 +25,7 @@ users.post('/register', (req, res) => {
 
     const userData = {
         fullname: req.body.fullname,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         time: req.body.time,

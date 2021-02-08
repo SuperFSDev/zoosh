@@ -3,8 +3,8 @@ import axios from 'axios';
 import { StickyContainer } from 'react-sticky';
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
-import {IoMdPlanet} from 'react-icons/io'
 import Default from '../../images/defaults/default1.jpg'
+import {BiPlanet} from 'react-icons/bi'
 
 export default class Recommended extends React.Component {
 
@@ -49,7 +49,7 @@ render(){
         <div>
             <div className="recommended-container">
               <div className="column-head">
-                <p className="column-title"><IoMdPlanet size={20}/> EXPLORE</p><hr/>
+                <p className="column-title"><BiPlanet size={20}/> EXPLORE</p><hr/>
               </div>
             
             {this.state.isLoading ? ( 
@@ -123,16 +123,3 @@ render(){
             console.log(error);
         })
 }
-
-
-/*// Return a random society from the array - Shuffles them
-function shuffleArray(array) {
-  let i = array.length - 1;
-  for (; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
-}*/

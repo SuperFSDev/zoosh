@@ -146,14 +146,14 @@ export default class MyProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-        <Container fluid>
+        <Container>
           <Row>
             <Col>
             <div className="user-column-one">
               <p className="nowrap">
                   {/* <Image alt="" src={this.state.user.pic} roundedCircle  width={130} height={130} /> */}
                   <figure class="headshot">
-                    {this.state.user.pic === null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
+                    {this.state.user.pic == null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
                     {this.state.user.pic != null &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}
                   </figure>
                   <section class="bio-box">
@@ -186,14 +186,6 @@ export default class MyProfile extends React.Component {
                 <div className="top-posts">
                 {this.state.isLoading &&
                 <div>
-                  <div className="discussion-post" style={{ padding: 30 }}>
-                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
-                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
-
-                  </div>
                   <div className="discussion-post" style={{ padding: 30 }}>
                     <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
                     <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />

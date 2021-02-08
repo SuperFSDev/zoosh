@@ -6,7 +6,7 @@ import {Helmet} from 'react-helmet'
 import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
 import CreateASoc from '../Common/CreateASoc'
 import Skeleton from 'react-loading-skeleton';
-import Default from '../../images/defaults/default1.jpg'
+import Default from '../../images/defaults/default2.jpg'
 
 export default class ListSocieties extends React.Component {
 
@@ -128,9 +128,9 @@ render(){
                         <a href={"/c/?id=" +society._id} aria-label="community" rel="noopener" className="miniprofile-post-redirect">
                         <div class="miniprofileCommunities">
                         <div className="column-head-comm" style={{ background: society.color }}/>
-                        {society.picture == null && <Image  className="soc-item-image" src={Default}/>}
-                        {society.picture != null && <Image  className="soc-item-image" src={society.picture}/>}
-                        {/* <Avatar className="soc-item-image" src={society.picture}/> */}
+                        
+                        {society.picture === null && <Image  className="soc-item-image" alt="" src={Default}/>}
+                        {society.picture != null && <Image  className="soc-item-image" alt="" src={society.picture}/>}
                         <h3><b>{society.name}</b></h3>
                         <p><b>{society.users.length} members</b></p>
                         </div>

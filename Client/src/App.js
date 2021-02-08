@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 const Landing = loadable(() => import('./components/Pages/Landing/Landing'));
 const NavBar = loadable(() => import('./components/Navbar'));
-const RegisterPage = loadable(() => import('./components/auth/Login'));
-const LoginPage = loadable(() => import('./components/auth/Register'));
+const RegisterPage = loadable(() => import('./components/auth/Register'));
+const LoginPage = loadable(() => import('./components/auth/Login'));
 const NotFoundPage = loadable(() => import('./components/404/NotFoundPage'));
 
 const TopPosts = loadable(() => import('./components/Pages/AllPosts'));

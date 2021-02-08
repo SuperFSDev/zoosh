@@ -9,12 +9,13 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
-import { BsChat, BsGem, BsHeart, BsPerson } from 'react-icons/bs'
+import { BsBell, BsChat, BsGem, BsHeart, BsPerson } from 'react-icons/bs'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
 import {FaRegArrowAltCircleUp} from 'react-icons/fa'
 import Clap from '../../images/clap.png'
+import {BiPlanet} from 'react-icons/bi'
 
 export default class AllPosts extends React.Component {
 
@@ -240,7 +241,8 @@ export default class AllPosts extends React.Component {
       return (
         <Fragment key={discussion._id}>
         <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
-          <Image src={discussion.thumbnail_pic} className="post-img"/>
+          {discussion.thumbnail_pic == null && <></>}
+          {discussion.thumbnail_pic != null && <Image src={discussion.thumbnail_pic} className="post-img"/>}
           <div class="container">
             <h3><b>{discussion.title}</b></h3> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
@@ -254,16 +256,16 @@ export default class AllPosts extends React.Component {
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
             <span className="reactions">
             <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
-                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt="" /> {discussion.likes}</span>}
+                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> Be the first</span>}
+                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> {discussion.likes}</span>}
+                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> {discussion.likes}</span>}
                 </button></a>
 
 
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.comments.length === 0 && <span><BsChat size={20} /> Add comment</span>}
-                  {discussion.comments.length === 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
-                  {discussion.comments.length > 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
+                  {discussion.comments.length === 0 && <span><BsChat size={20}  className="icon"/> Add comment</span>}
+                  {discussion.comments.length === 1 && <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>}
+                  {discussion.comments.length > 1 && <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>}
                 </button></a>
           </span></div>
         </div></a><br/>
@@ -290,46 +292,51 @@ export default class AllPosts extends React.Component {
         <Row>
         <Col sm>
             <div className="filter-options">
-              <a href="/"><button className="feed-option"><BsPerson size={25}/> Following</button></a><br/>
-              <a href="/top"><button className="feed-option-active"><BsGem  size={25}/>  Top</button></a>
+              <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
+              <a href="/top"><button className="feed-option-active"><BsGem  size={25} className="icon"/>  Top</button></a>
+              <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
+              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/new"><button className="write-button">Write a post</button></a>
             </div>
-            <Recommended /><Contributors />
           </Col>  
                   
           <Col >
             {this.state.isLoading && 
-            <div>
-              <div className="discussion-post" style={{padding:30}}>
+            <div className="feed">
+              <div className="card" style={{padding:30, marginBottom: 20}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
               </div>
-              <div className="discussion-post" style={{padding:30}}>
+              <div className="card" style={{padding:30, marginBottom: 20}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
               </div>
-              <div className="discussion-post" style={{padding:30}}>
+              <div className="card" style={{padding:30, marginBottom: 20}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
               </div>
-              <div className="discussion-post" style={{padding:30}}>
+              <div className="card" style={{padding:30, marginBottom: 20}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
               </div>
             </div>}
-            {!this.state.isLoading && <div>{discussionList}</div>}
+            {!this.state.isLoading && <div className="feed">{discussionList}</div>}
             <ScrollToTop showUnder={1000}>
             <span><FaRegArrowAltCircleUp size={25} /></span>
             </ScrollToTop>
           </Col>
-          <Col sm></Col>
+          <Col sm>
+          <Recommended /><Contributors />
+
+          </Col>
 
         </Row>
       </Container>

@@ -1,10 +1,9 @@
 import React  from 'react';
-import { Nav, Form } from 'react-bootstrap';
+import { Nav, Form , Col, Row, Container, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Helmet} from 'react-helmet'
-
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
 const [picture, setPicture] = useState('');*/
@@ -94,10 +93,40 @@ class Login extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Website Name / Sign In</title>
+                <title>Website Name / Log In</title>
         </Helmet> 
       <div>
-       <div className="login-bg">
+        <Container>
+          <Row>
+            <Col></Col>
+            <Col>
+                <div className="centered">
+                  <h1 className="header">zoosh / welcome back</h1>
+                  <div class="auth-card">
+                  <Form onSubmit={this.onLogin}>
+                    <Form.Group controlId="formBasicEmail">
+                      <TextField type="email" placeholder="Email Address" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" variant="outlined" />
+                      <Form.Text className="text-muted">
+                      </Form.Text>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                      <TextField type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic"  variant="outlined" />
+                    </Form.Group>
+                    <button className="write-button" variant="primary" type="submit">
+                      Log In
+                    </button>
+                    <div className="auth-options">                  
+                    </div>
+                  </Form>
+                  <hr /><br/>
+                  <p>Want to join?<a className="links2" href="/join"> Create an account.</a></p> 
+                  </div>          
+                </div>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
+       {/* <div className="login-bg">
 
               <div className="centered">
               <a className="header-login" href="/landing"><h1 className="header-login">NAME</h1></a>
@@ -123,9 +152,9 @@ class Login extends React.Component {
             </div>
             <div className="spacing"></div>
               <a href="/join">New to our site? Join Now</a>
-          </div>
+          </div> */}
 
-          <footer className="footer">
+          {/* <footer className="footer">
             <div className="footer-items">
                 <div class="footer-column">
                   <a className="footer-links" href="/landing"><p>Our Website 2020</p></a>
@@ -143,9 +172,8 @@ class Login extends React.Component {
                 <a className="footer-links" href="/contact"><p>Contact</p></a>
                 </div>
             </div>
-          </footer>
+          </footer> */}
           
-      </div>
       </div>
       </div>
     );

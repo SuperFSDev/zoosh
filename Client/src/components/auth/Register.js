@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/App.css';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
@@ -14,12 +14,11 @@ class Register extends React.Component {
       fullname: '',
       email: '',
       password: '',
-      //retype: ''
-      // username: '',
+      username: '',
     };
 
     this.onChangeFullname = this.onChangeFullname.bind(this);
-    // this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     //this.onChangeRetype = this.onChangeRetype.bind(this);
@@ -32,11 +31,11 @@ class Register extends React.Component {
     });
   }
 
-  // onChangeUsername(e) {
-  //   this.setState({
-  //     username: e.target.value
-  //   });
-  // }
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value
+    });
+  }
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
@@ -47,11 +46,6 @@ class Register extends React.Component {
       password: e.target.value
     });
   }
-  // onChangeRetype(e) {
-  //   this.setState({
-  //     retype: e.target.value
-  //   });
-  // }
 
   onSubmit(e) {
 
@@ -59,7 +53,7 @@ class Register extends React.Component {
 
     const newUser = {
       fullname: this.state.fullname,
-      // username: this.state.username,
+      username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
@@ -86,10 +80,9 @@ class Register extends React.Component {
 
     this.setState({
       fullname: '',
-      //username: '',
+      username: '',
       email: '',
       password: '',
-      //retype: ''
     });
   }
 
@@ -105,11 +98,14 @@ class Register extends React.Component {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Website Name / Join</title>
         </Helmet> 
-        <div>
+        <Container>
+          <Row>
+            <Col></Col>
+            <Col>
+            <div>
               <div className="centered">
-              <a className="header-login" href="/landing"><h1 className="header-login">Website Name</h1></a>
-              <big className="motto">A place for students to express and innovate</big>
-              <div class="register-card">
+              <h1 className="header">zoosh / create account</h1>
+              <div class="auth-card">
               <br/>
               <Form onSubmit={this.onSubmit}>
                 {/* <Form.Group controlId="formBasicUsername">
@@ -118,13 +114,19 @@ class Register extends React.Component {
                   </Form.Text>
                 </Form.Group> */}
                 <Form.Group controlId="formBasicUsername">
-                  <TextField className="textfield-name" type="text" placeholder="Enter your Full Name" required value={this.state.fullname} onChange={this.onChangeFullname} id="outlined-basic" label="Full Name" variant="outlined" />
+                  <TextField className="textfield-name" type="text" placeholder="Enter your Full Name" required value={this.state.fullname} onChange={this.onChangeFullname} id="outlined-basic" variant="outlined" />
+                  {/* <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} /> */}
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formBasicUsername">
+                  <TextField className="textfield-name" type="text" placeholder="Create username" required value={this.state.username} onChange={this.onChangeUsername} id="outlined-basic"  variant="outlined" />
                   {/* <Form.Control type="text" placeholder="Enter your full name" required value={this.state.fullname} onChange={this.onChangeFullname} /> */}
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <TextField className="textfield-email" type="email" required  placeholder="@gmit.ie, @nuig.ie. @gti.ie" value={this.state.email} onChange={this.onChangeEmail}  id="outlined-basic" label="Email Address" variant="outlined" />
+                  <TextField className="textfield-email" type="email" required  placeholder="Enter your email address" value={this.state.email} onChange={this.onChangeEmail}  id="outlined-basic" variant="outlined" />
                   {/* <Form.Control type="email" placeholder="@gmit.ie, @nuig.ie. @gti.ie"
                     value={this.state.email}
                     onChange={this.onChangeEmail} /> */}
@@ -132,42 +134,27 @@ class Register extends React.Component {
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                  <TextField className="textfield-pw" type="password" required placeholder="Create a Password" value={this.state.password} onChange={this.onChangePassword} id="outlined-basic" label="Password" variant="outlined" />
+                  <TextField className="textfield-pw" type="password" required placeholder="Create a Password" value={this.state.password} onChange={this.onChangePassword} id="outlined-basic" variant="outlined" />
                   {/* <Form.Control type="password" placeholder="Password"
                     value={this.state.password}
                     onChange={this.onChangePassword} /> */}
                 </Form.Group>
-                <button className="register-btn" variant="primary" type="submit" >
+                <button className="write-button" variant="primary" type="submit" >
                   Create Account
                 </button>
                 <span>
                   <hr /><br/>
-                  <p>Already have an account?<a className="links2" href="/login"> Sign In.</a></p>
+                  <p>Already have an account?<a className="links2" href="/login"> Log In.</a></p>
                 </span>
               </Form>
             </div>
               </div>
-
-              <footer className="footer">
-                <div className="footer-items">
-                    <div class="footer-column">
-                      <a className="footer-links" href="/landing"><p>Our Website 2020</p></a>
-                    </div>
-                    <div class="footer-column">
-                      <a className="footer-links" href="#"><p>Privacy</p></a>
-                    </div>
-                    <div class="footer-column">
-                      <a className="footer-links" href="#"><p>Community Guidlines</p></a>
-                    </div>
-                    <div class="footer-column">
-                      <a className="footer-links" href="/manifesto"><p>Manifesto</p></a>
-                    </div>
-                    <div class="footer-column">
-                    <a className="footer-links" href="/contact"><p>Contact</p></a>
-                    </div>
-                </div>
-              </footer>
-          </div>
+              </div>
+            
+            </Col>
+            <Col></Col>
+        	</Row>
+        </Container>
       </>
     );
   }

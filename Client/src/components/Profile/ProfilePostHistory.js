@@ -7,6 +7,7 @@ import moment from 'moment'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
 import {BsTrash, BsGem} from 'react-icons/bs'
 import Clap from '../../images/clap.png'
+import Default from '../../images/defaults/default3.jpg'
 
 export default class History extends React.Component {
 
@@ -50,7 +51,7 @@ export default class History extends React.Component {
     var user = JSON.parse(localStorage.getItem('user'));
     if (id === user._id) {
       return (<div>
-        <button className="reaction-button" onClick={() => { this.onDeletePost(id, discussion_id) }}><BsTrash size={17}/></button>
+        <button className="reaction-button" onClick={() => { this.onDeletePost(id, discussion_id) }}><BsTrash size={17}/> Delete</button>
       </div>)
     }
   }
@@ -78,8 +79,10 @@ export default class History extends React.Component {
 
         {this.state.posts.map(post => (
           <div key={this.state.user._id}>
-        <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect"><div class="card2">
-          <Image src={post.thumbnail_pic} className="post-img"/>
+        <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect">
+         <div class="card2">
+          {post.thumbnail_pic === null && <div><Image src={Default} className="post-img"/></div>}
+          {post.thumbnail_pic != null && <div><Image src={post.thumbnail_pic} className="post-img"/></div>}
           <div class="container">
             <h3><b>{post.title}</b></h3> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={post.user_pic}  roundedCircle /><b> @{post.user}</b></p> 
@@ -104,6 +107,7 @@ export default class History extends React.Component {
                   {post.comments.length === 1 && <span> {post.comments.length}</span>}
                   {post.comments.length > 1 && <span> {post.comments.length}</span>}
                 </button></a>
+                {this.CheckPost(post.user_id,post.Post_id)}
           </div>
         </div></a><br/>
             </div>

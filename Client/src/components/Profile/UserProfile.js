@@ -6,7 +6,7 @@ import History from './ProfilePostHistory'
 import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
-import {BsCircleFill, BsFillCircleFill} from 'react-icons/bs'
+import {BsFillCircleFill} from 'react-icons/bs'
 import Default from '../../images/defaults/default5.jpg'
 
 export default class UserProfile extends React.Component {
@@ -62,7 +62,7 @@ export default class UserProfile extends React.Component {
     await axios.get(`http://localhost:4000/users/get-user-details`, {
       params: {
         id: user_id,
-        fields: 'fullname followers following posts likedPosts pic societies badges college time score'
+        fields: 'fullname username followers following posts likedPosts pic societies badges college time score'
       }
     })
       .then((response) => {
@@ -263,13 +263,14 @@ export default class UserProfile extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-        <Container fluid>
+        <Container >
           <Row>
             <Col>
             <div className="user-column-one">
               <p className="nowrap">
                   <figure class="headshot">
-                    {this.state.user.pic === null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
+                    {this.state.isLoading && <div><Skeleton circle={true} height={120} width={120}/></div>}
+                    {this.state.user.pic == null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
                     {this.state.user.pic != null &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
                   </figure>
                   <section class="bio-box">
@@ -281,7 +282,7 @@ export default class UserProfile extends React.Component {
                       <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
                        )}
                     <br/>
-                    <b>@{this.state.user.fullname}</b> <br/>
+                    <b>@{this.state.user.username}</b> <br/>
                     <span className="user-badge"><BsFillCircleFill/> Member</span>
                       <br/>
                       {this.state.followers.length === 0 && <span><b>{this.state.followers.length}</b> followers</span>}

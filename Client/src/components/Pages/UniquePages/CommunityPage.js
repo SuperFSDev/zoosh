@@ -179,32 +179,37 @@ export default class CommunityPage extends React.Component {
             <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
           </Helmet>
 
-          <Container fluid>
+          <Container>
             <Row>
               <Col>
-              <div className="community-column-one">
-                {this.state.society.picture == null && <Image className="community-image" alt="" src={Default} width={130} height={130} s />}
-                {this.state.society.picture != null && <Image className="community-image" alt="" src={this.state.society.picture}   width={130} height={130} />}
+              <div className="user-column-one">
+                <p className="nowrap">
+                  <figure class="headshot">
+                    {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={130} height={130} s />}
+                    {this.state.society.picture != null && <Image className="user-image" alt="" src={this.state.society.picture}   width={130} height={130} />}
+                  </figure>
+                  <section class="bio-box">
                     <dl class="details"> 
-                      <b className="community-name">{this.state.society.name}</b>
+                      <b className="user-name">{this.state.society.name}</b>
+                      <button className="follow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
                       <br/>
-                      <span className="community-badge"><BsSquareFill/> Community</span>
+                      <span className="user-badge"><BsSquareFill/> Community</span>
                       <br/>
-                      <button className="follow-community" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
-                        <br/>
-                        {this.state.users.length === 0 && <Badge variant={this.state.society.color}><b>{this.state.users.length} members</b></Badge>}
+                        {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
                       <br/><br/>
-                      <hr/>
                       <br/>
-                      <p>{this.state.society.description}</p>
                     </dl>
+                  </section>
+                </p>
               </div>
               </Col>
-              <Col sm={8}>
+            </Row>
+            <Row>
+              <Col sm>
                 <div className="top-posts">
-                      {this.state.posts.length === 0 && <div className="card-empty">No posts yet, follow this community and start posting!</div>}
+                      {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
                       {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
                       {this.state.posts.length > 0 && <div>{discussionList}</div>}
                 </div>
