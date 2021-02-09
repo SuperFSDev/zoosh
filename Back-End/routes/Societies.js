@@ -21,6 +21,8 @@ societies.post('/create', (req, res) => {
     const socData = {
         name: req.body.name,
         description: req.body.description,
+        admin: req.body.admin,
+        picture: req.body.picture
     }
 
     console.log(socData);
