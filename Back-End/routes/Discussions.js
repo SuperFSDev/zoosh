@@ -137,23 +137,28 @@ discussions.get('/get-user-discussions', (req, res) => {
 
 discussions.get('/get-society-discussions', (req, res) => {
 
-    DiscussionModel.find({
-            society: req.query.society
-        }).then(discussion => {
-            if (discussion) {
-                res.json({
-                    discussion: discussion
-                });
-            } else {
-                res.send("Discussion does not exist")
-            }
-        })
-        .catch(err => {
-            res.send(err)
-            console.log(err);
-        })
+    var sort = req.query.sort;
+
+    if(req.query.fields)
+    {
+        var query = DiscussionModel
+        .find({society: req.query.society})
+        .select(req.query.fields)
+        .sort({sort: -1})
+        .limit(parseInt(req.query.limit));
+
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                discussions: data
+            });
+        });
+    } else {
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-discussions ");
+    }
 
 })
+
 
 
 

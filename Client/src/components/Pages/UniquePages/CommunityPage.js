@@ -11,7 +11,7 @@ import Skeleton from 'react-loading-skeleton';
 import Clap from '../../../images/clap.png'
 import {BsSquareFill, BsHeart, BsChat} from 'react-icons/bs'
 import Default from '../../../images/defaults/default1.jpg'
-
+var qs = require('qs');
 export default class CommunityPage extends React.Component {
 
   constructor(props) {
@@ -51,20 +51,27 @@ export default class CommunityPage extends React.Component {
       });
 
 
-    axios.get('http://localhost:4000/discussions/get-society-discussions', {
-      params: {
-        society: society_id
+  await axios.get('http://localhost:4000/discussions/get-society-discussions', {
+    params: {
+      society: this.state.society.name,
+      fields: 'user society time thumbnail_pic title content likes comments user_id',
+      sort: 'likes'
+    }
+  })
+    .then((response) => {
+      if (this.state.post == undefined) {
+        this.setState({
+          posts: response.data.discussions
+        })
+      } else {
+        this.setState({
+          posts: this.state.posts.concat(response.data.discussions)
+        })
       }
     })
-      .then((response) => {
-        this.setState({ posts: this.state.posts.concat(response.data.discussion) })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-  }
-
+    .catch((error) => {
+      console.log(error);
+    });}
   // Adding a User to a society array and adding the society to the users array
   async addUserToSoc(soc) {
 
@@ -112,6 +119,7 @@ export default class CommunityPage extends React.Component {
   }
 
   render() {
+    console.log(this.state.posts)
     var title = this.state.society.name + " - Website"
     // var{users} = this.state;
 
