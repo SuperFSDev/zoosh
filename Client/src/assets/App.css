@@ -23,10 +23,13 @@
   width: 100%;
 }
 
+.dropdown{
+  width: 400px !important;
+}
 .dropdown-content {
   display: none;
   position: absolute;
-  left:70%;
+  left:72%;
   background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -121,10 +124,6 @@
 
 .container{
   padding:20px;
-}
-
-.container p {
-
 }
 
 .reaction-button:hover{
@@ -684,27 +683,6 @@
   background:white;
 }
 
-.notify:hover, .square:hover{
-  color:gray!important;
-  transition:0.2s;
-  cursor:pointer;
-  border-radius: 5px;
-}
-
-.discussion-div-sticky{
-  margin-top: 8rem;
-  position: fixed!important;
-  width:250px;
-}
-
-.community-sticky{
-  margin-top: 2rem;
-  padding-right: 50px;
-  width:200px;
-  position: fixed;
-}
-
-
 .navbar-title{font-size: 30px!important;padding:20px;color:black;font-weight: 500;}
 
 article {
@@ -784,17 +762,6 @@ section::after {
   border-radius: 5px!important;
 }
 
-
-.communityFilter{
-  width:900px;
-  background:white;
-  padding:10px;
-  border:1px solid lightgray;
-  border-radius: 5px!important;
-  margin-bottom: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
-}
-
 .community-card{
   background:white;
   height:auto;
@@ -804,7 +771,6 @@ section::after {
   border:1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
 }
-
 
 .empty-feed-container{
   margin-top: 20px;
@@ -833,7 +799,7 @@ section::after {
   margin-left:10px;
   outline:none!important;
   font-weight: bold;
-  color:#2196f3;
+  color:blue;
   border-radius: 5px;
   text-decoration: none!important;
 }

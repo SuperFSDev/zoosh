@@ -7,7 +7,7 @@ import {Image, Badge, Container, Row, Col} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
 import Avatar from '@material-ui/core/Avatar';
 import Default from '../../images/defaults/default5.jpg'
-import Default2 from '../../images/defaults/default1.jpg'
+import Default2 from '../../images/defaults/grey.jpg'
 
 export default class Two extends React.Component {
 
@@ -118,8 +118,8 @@ render(){
       return(
       <div>
         <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}>
-        {society.picture == null && <div><Image  src={Default2} className="user-image-mini" roundedCircle /></div>}
-        {society.picture != null && <div><Image  src={society.picture} className="user-image-mini" roundedCircle /></div>}
+        {society.picture == null && <div><Image  src={Default2} className="user-image-mini"  /></div>}
+        {society.picture != null && <div><Image  src={society.picture} className="user-image-mini"  /></div>}
 
         {society.name}</a> <b className="-contributor-user-score">{ society.score}</b></p><hr/>      
       </div>
@@ -128,7 +128,7 @@ render(){
     const topGrowingCommunities = societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=> { 
       return(
       <div>
-        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="-contributor-user-score">{ society.users.length}</b></p><hr/>      
+        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini"  />{society.name}</a> <b className="-contributor-user-score">{ society.users.length}</b></p><hr/>      
       </div>
     )})
 

@@ -3,7 +3,7 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import { Image, Row, Col, Container } from 'react-bootstrap';
+import { Image, Row, Col, Container, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
@@ -15,6 +15,7 @@ import {BsGem, BsPersonFill, BsChat, BsBell} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import Clap from '../../images/clap.png'
 import {BiPlanet} from 'react-icons/bi'
+import NewPost from './NewPost';
 
 // Allows array of following ids to be passed as params
 var qs = require('qs');
@@ -195,7 +196,7 @@ export default class Feed extends React.Component {
               <a href="/top"><button className="feed-option"><BsGem  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/new"><button className="write-button">Write a post</button></a>
+              <CreatePost/>
             </div>
           </Col>  
                   
@@ -221,3 +222,40 @@ export default class Feed extends React.Component {
     );
   }
 }
+
+// MODAL TO CREATE SOCIETY/CLUB
+function CreatePost() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <div>
+        <div>
+            <button className="write-button" onClick={() => setModalShow(true)}>Write a post</button>
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+        </div>
+    </div>
+  );
+}
+
+// MODEL HANDLE
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        textAlign="left"
+      >
+        <Modal.Header closeButton>
+          <h5>Write a post</h5>
+        </Modal.Header>
+        <Modal.Body>
+            <NewPost/>
+        </Modal.Body>
+      </Modal>
+    );
+  }

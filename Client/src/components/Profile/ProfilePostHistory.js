@@ -7,7 +7,7 @@ import moment from 'moment'
 import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
 import {BsTrash, BsGem} from 'react-icons/bs'
 import Clap from '../../images/clap.png'
-import Default from '../../images/defaults/default3.jpg'
+import Default from '../../images/defaults/default5.jpg'
 
 export default class History extends React.Component {
 
@@ -95,9 +95,9 @@ export default class History extends React.Component {
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>
             <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                  {post.likes === 0 && <span> <BsGem size={20} alt="" /> Be the first</span>}
-                  {post.likes === 1 && <span> <BsGem size={20} alt="" /> {post.likes}</span>}
-                  {post.likes > 1 && <span> <BsGem size={20} alt="" /> {post.likes}</span>}
+                  {post.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
+                  {post.likes === 1 && <span> <Image src={Clap} alt="" /> {post.likes}</span>}
+                  {post.likes > 1 && <span> <Image src={Clap} alt="" /> {post.likes}</span>}
                 </button></a>
 
 

@@ -278,7 +278,6 @@ export default class NewPost extends React.Component {
               <br/>
               <div className="post-buttons">
                 <button className="standard-button" type="submit">Publish</button>
-                <a href="/home"><button className="standard-button-cancel" type="button">Cancel</button></a>
               </div>
               
 

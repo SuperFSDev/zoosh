@@ -17,7 +17,6 @@ const TopPosts = loadable(() => import('./components/Pages/AllPosts'));
 const Following = loadable(() => import('./components/Pages/FollowingLayout'));
 const Users = loadable(() => import('./components/Pages/Users'));
 const Profile = loadable(() => import('./components/Profile/MyProfile'));
-const NewPost = loadable(() => import('./components/Pages/NewPost'));
 const ReadingList = loadable(() => import('./components/Pages/ReadingList'));
 const Forums = loadable(() => import('./components/Pages/Forum'));
 const ViewProfile = loadable(() => import('./components/Profile/UserProfile'));
@@ -42,7 +41,6 @@ class App extends React.Component {
               <Following exact path="/home"/>
               <Users exact path="/users"/>
               <Profile exact path="/me"/>
-              <NewPost exact path="/new"/>
               <ReadingList exact path="/saved"/>
               <Forums exact path="/forum"/>
               <ViewProfile exact path="/u"/>
@@ -56,6 +54,7 @@ class App extends React.Component {
               {/* 404 Not Found Exception */}
               <Router>
                 <Switch>
+                  <Following exact path="/"/>
                   <NotFoundPage  path="*"/>
                 </Switch>
               </Router>    

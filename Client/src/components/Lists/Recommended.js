@@ -3,7 +3,7 @@ import axios from 'axios';
 import { StickyContainer } from 'react-sticky';
 import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
-import Default from '../../images/defaults/default1.jpg'
+import Default from '../../images/defaults/grey.jpg'
 import {BiPlanet} from 'react-icons/bi'
 
 export default class Recommended extends React.Component {

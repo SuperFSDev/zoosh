@@ -8,7 +8,7 @@ const SocietySchema = new Schema({
     public: Boolean,
     private: Boolean,
     admin:String,
-    picture: {type:String, "default" : ""},
+    picture: {type:String, "default" : []},
     users: {type: Array, "default" : []},
     mods:{type: Array, "default" : []},
     events: {type: Array, "default" : []},
