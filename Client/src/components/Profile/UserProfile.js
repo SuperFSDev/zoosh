@@ -303,8 +303,9 @@ export default class UserProfile extends React.Component {
               <p className="nowrap">
                   <figure class="headshot">
                     {this.state.isLoading && <div><Skeleton circle={true} height={120} width={120}/></div>}
-                    {this.state.user.pic == null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}
-                    {this.state.user.pic != null &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
+                    {!this.state.isLoading &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
+                    {this.state.user.pic == null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}                  
+
                   </figure>
                   <section class="bio-box">
                    <dl class="details"> 
@@ -332,9 +333,16 @@ export default class UserProfile extends React.Component {
           <Row>
             <Col>
               <div className="top-posts">
-                  {this.state.isLoading && <div  className='discussion-post'></div>}
-                  {this.state.posts != null && this.state.posts.length === 0 && <div className="card-empty">{this.state.user.fullname} is staying quiet for now</div>}
-                  {this.state.posts != null && this.state.posts.length > 0 && <div><History /></div>}
+              {this.state.isLoading &&
+                <div style={{height:1000}}>
+                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+                </div>}
+                  {/* {this.state.posts != null && this.state.posts.length === 0 && <div className="card-empty">{this.state.user.fullname} is staying quiet for now</div>} */}
+                  {!this.state.isLoading && <div><History /></div>}
               </div>
             </Col>
           </Row>

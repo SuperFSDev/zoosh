@@ -20,22 +20,7 @@ societies.use(function (req, res, next) {
 societies.post('/create', (req, res) => {
     const socData = {
         name: req.body.name,
-        college: req.body.college,
-        category: req.body.category,
-        address: req.body.address,
         description: req.body.description,
-        public: req.body.public,
-        private: req.body.private,
-        admin:req.body.admin,
-        time: req.body.time,
-        facebook: req.body.facebook,
-        twitter: req.body.twitter,
-        instagram: req.body.instagram,
-        other: req.body.other,
-        picture: req.body.picture,
-        color: req.body.color,
-        users: req.body.admin
-        // pic: req.body.pic,
     }
 
     console.log(socData);
@@ -47,7 +32,7 @@ societies.post('/create', (req, res) => {
             console.log(society);
             // Checks if society exists in DB, if NOT, then proceed with creation.
             if (society == null) {
-                console.log("sociey is null");
+                console.log("Community is null");
                 SocietyModel.create(socData)
                     .then(society => {
                         console.log(society);
@@ -58,9 +43,9 @@ societies.post('/create', (req, res) => {
                     })
                 // If society is true then it already exists in DB.
             } else {
-                res.json({ error: 'Society already exists' })
+                res.json({ error: 'Community already exists' })
             }
-            console.log("Society " + society.name + " has been registered!");
+            console.log("Community " + society.name + " has been registered!");
         })
         .catch(err => {
             res.send(err);

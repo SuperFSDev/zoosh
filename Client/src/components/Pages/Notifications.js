@@ -5,8 +5,7 @@ import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { Row, Col, Container, Image } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
-import Avatar from '@material-ui/core/Avatar';
-import { BsXCircleFill } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 export default class Notifications extends React.Component {
 
   constructor(props) {
@@ -127,10 +126,10 @@ window.location.reload();
                     </p>
                   
                   </div></a>
-               <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button>
+               {/* <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button> */}
                </div> )}
                            
-                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Delete all  <BsXCircleFill size={30} /></button>
+                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Clear notifications  <BsTrash size={20} /></button>
               </div>
   
             </Col>

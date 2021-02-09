@@ -6,6 +6,8 @@ import {Helmet} from 'react-helmet'
 import {Image, Badge, Container, Row, Col} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
 import Avatar from '@material-ui/core/Avatar';
+import Default from '../../images/defaults/default5.jpg'
+import Default2 from '../../images/defaults/default1.jpg'
 
 export default class Two extends React.Component {
 
@@ -93,7 +95,11 @@ render(){
     const topUsersList = users.slice(0,5).sort((a,b)=> b.score- a.score).map(user=>  {
       return( 
       <a href={"/u/?id="+user._id}className="nowrap"><div>
-        <p className="nowrap"><span className="soc-leaderboard-name-item"><Image src={user.pic} className="user-image-mini" roundedCircle />{user.fullname}</span>
+        <p className="nowrap"><span className="soc-leaderboard-name-item">
+        {user.pic == null &&<Image src={user.pic} className="user-image-mini" roundedCircle />}
+        {user.pic != null && <Image src={user.pic} className="user-image-mini" roundedCircle />}
+        
+        {user.fullname}</span>
           {user.score >= 1 && user.score <=999 ? (
             <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
           ) : user.score >=1000 ?(
@@ -111,7 +117,11 @@ render(){
     const topCommunities = societies.sort((a,b)=> b.score - a.score).map(society=> { 
       return(
       <div>
-        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini" roundedCircle />{society.name}</a> <b className="-contributor-user-score">{ society.score}</b></p><hr/>      
+        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}>
+        {society.picture == null && <div><Image  src={Default2} className="user-image-mini" roundedCircle /></div>}
+        {society.picture != null && <div><Image  src={society.picture} className="user-image-mini" roundedCircle /></div>}
+
+        {society.name}</a> <b className="-contributor-user-score">{ society.score}</b></p><hr/>      
       </div>
     )})
 
@@ -141,7 +151,13 @@ render(){
 
             </div>
             <div className="spacing"></div>
-            { this.state.isLoading && <Skeleton className="leaderboard" style={{ marginBottom: 10 }} count={10} /> }
+            {this.state.isLoading && 
+            <div className="feed-skeleton-leaderboard">
+                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
+                <Skeleton height={30} width={750} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={600} style={{ marginBottom: 10 }}  /><br/>
+                <Skeleton height={30} width={800} style={{ marginBottom: 10 }}  /><br/>
+            </div>}
             { !this.state.isLoading && <>
 
             <h1 className="leaderboard-heading">CONTRIBUTORS</h1>

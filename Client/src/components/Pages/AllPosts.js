@@ -303,30 +303,10 @@ export default class AllPosts extends React.Component {
           <Col >
             {this.state.isLoading && 
             <div className="feed">
-              <div className="card" style={{padding:30, marginBottom: 20}}>
                 <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
-              </div>
-              <div className="card" style={{padding:30, marginBottom: 20}}>
-                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
-                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
-                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
-                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
-              </div>
-              <div className="card" style={{padding:30, marginBottom: 20}}>
-                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
-                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
-                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
-                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
-              </div>
-              <div className="card" style={{padding:30, marginBottom: 20}}>
-                <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }}  />
-                <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
-                <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
-                <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
-              </div>
             </div>}
             {!this.state.isLoading && <div className="feed">{discussionList}</div>}
             <ScrollToTop showUnder={1000}>

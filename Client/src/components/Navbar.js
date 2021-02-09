@@ -2,15 +2,13 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Modal, Image, Navbar, Nav, NavDropdown, Row, Col, Container} from 'react-bootstrap'
+import { Image, Navbar, Nav, NavDropdown, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
-import {BsBellFill,BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
+import {BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiChart} from 'react-icons/bi'
-import {IoMdPlanet} from 'react-icons/io'
 import Avatar from '@material-ui/core/Avatar';
-import {RiHome5Fill,RiCompass3Fill} from 'react-icons/ri'
 
 export default class NavBar extends React.Component {
   constructor(props) {

@@ -4,11 +4,11 @@ import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
-import CreateASoc from '../Common/CreateASoc'
+import CreateCommunity from '../Common/CreateCommunity'
 import Skeleton from 'react-loading-skeleton';
 import Default from '../../images/defaults/default2.jpg'
 
-export default class ListSocieties extends React.Component {
+export default class Explore extends React.Component {
 
   constructor(props) {
     super(props);
@@ -120,7 +120,9 @@ render(){
             </div>
             <br/>
 
-            {this.state.isLoading && <div><Skeleton height={50} width={700} count={20} duration={1}/></div> }
+            {this.state.isLoading && <div>
+              <Skeleton height={200} width={350} duration={1} count={3} style={{marginLeft:15}}/>
+            </div> }
 
             <div className="SocietyLayout">
                     {filteredSocietiesByName.map(society => (
@@ -175,10 +177,10 @@ function QuickOptions() {
           textAlign="left"
         >
           <Modal.Header closeButton>
-            <h3>Create a Community</h3>
+            <h5>Create a Community</h5>
           </Modal.Header>
           <Modal.Body>
-              <CreateASoc/>
+              <CreateCommunity/>
           </Modal.Body>
         </Modal>
       );

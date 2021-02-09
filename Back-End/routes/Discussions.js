@@ -30,6 +30,7 @@ discussions.post('/NewDiscussions', (req, res) => {
         content: req.body.content,  
         time: req.body.time,
         society: req.body.society.value,
+        society_id: req.body.society.society_id,
         thumbnail_pic: req.body.thumbnail_picture,
         full_pic: req.body.full_picture,
         user_pic: req.body.user_pic

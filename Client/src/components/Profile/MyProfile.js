@@ -40,7 +40,7 @@ export default class MyProfile extends React.Component {
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: 'fullname followers following likedPosts pic societies badges college time score'
+        fields: 'fullname username followers following likedPosts pic societies badges college time score'
       }
     })
       .then((response) => {
@@ -161,7 +161,7 @@ export default class MyProfile extends React.Component {
                     <b className="user-name">{this.state.user.fullname}</b><a href="/settings"><button className="community-btn-a" >Edit Profile</button></a>
                     <a href="/saved"><button className="community-btn-a" ><BsBookmarkFill size={20}/></button></a><br/>
 
-                    <b>@{this.state.user.fullname}</b> <br/>
+                    <b>@{this.state.user.username}</b> <br/>
                     <span className="user-badge"><BsFillCircleFill/> Member</span>
                       <br/>
                       {this.state.followers.length === 0 && <span><b>{this.state.followers.length}</b> followers</span>}
@@ -186,30 +186,11 @@ export default class MyProfile extends React.Component {
                 <div className="top-posts">
                 {this.state.isLoading &&
                 <div>
-                  <div className="discussion-post" style={{ padding: 30 }}>
                     <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
                     <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
                     <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
                     <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
                     <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
-
-                  </div>
-                  <div className="discussion-post" style={{ padding: 30 }}>
-                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
-                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
-
-                  </div>
-                  <div className="discussion-post" style={{ padding: 30 }}>
-                    <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
-                    <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
-                    <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
-
-                  </div>
                 </div>}
                   {!this.state.isLoading  && <div><History /></div>}
                 </div>

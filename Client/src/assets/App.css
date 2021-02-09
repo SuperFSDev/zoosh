@@ -414,6 +414,17 @@
 
 .feed{
   margin-top: 20px!important;
+  transition: 0.3s;
+  width: 500px;
+  border-radius: 10px!important;
+  margin-right: 20px;
+}
+
+.feed-skeleton-leaderboard{
+  background:white;
+  padding:50px;
+  margin-bottom: 10vh;
+  border-radius: 10px;
 }
 
 .feed-option{
@@ -1206,6 +1217,10 @@ section::after {
   box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
 }
 
+html {
+  overflow-y: scroll;
+}
+
 
 .card2 {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -1466,8 +1481,13 @@ section::after {
   transition: 0.3s;
 }
 .textfield-create-a-soc{
-  width:40vh;
+  width:100%;
+  height:50px;
+  border-radius: 5px;
+  border:2px solid rgb(56, 56, 56);
+  padding:10px;
 }
+
 .create-soc-div{
   text-align:center;
 }

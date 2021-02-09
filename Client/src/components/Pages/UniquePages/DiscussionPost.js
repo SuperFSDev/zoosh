@@ -40,7 +40,6 @@ export default class DiscussionPost extends React.Component {
   componentDidMount() {
     var id = new URLSearchParams(this.props.location.search).get("id");
 
-    // document.body.style.backgroundColor = "#F7F7F7";
     this.getUserDetails();
     axios.get('http://localhost:4000/discussions/get-discussion-page', {
       params: {
@@ -168,7 +167,7 @@ export default class DiscussionPost extends React.Component {
       discussion: discussion,
       discussion_title: title,
       user_pic: user_pic,
-      message: "liked your post",
+      message: "clapped to your post",
       time: new Date().getTime()
     }
     // Adds the discussion to liked list

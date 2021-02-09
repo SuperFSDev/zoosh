@@ -14,6 +14,7 @@ const DiscussionSchema = new Schema({
         default: Date.now,
     },
     society:String,
+    society_id:String,
     claps:Number,
     comments:Array,
     commentsCount:Number,

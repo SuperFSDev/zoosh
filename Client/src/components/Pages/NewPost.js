@@ -163,12 +163,14 @@ export default class NewPost extends React.Component {
 
     const newPost = {
       user: this.state.user,
+      username: this.state.username,
       user_id: user._id,
       title: this.state.title,
       caption: this.state.caption,
       content: this.state.content,
       time: new Date().getTime(),
       society: this.state.society,
+      society_id: this.state.society_id,
       thumbnail_picture: this.state.thumbnail_picture,
       full_picture: this.state.full_picture,
       user_pic: user.pic
@@ -189,6 +191,7 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       category: '',
       society: '',
+      society_id:'',
       thumbnail_picture: '',
       full_picture: '',
       user_pic: '',

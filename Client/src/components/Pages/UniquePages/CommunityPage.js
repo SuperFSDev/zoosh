@@ -217,9 +217,16 @@ export default class CommunityPage extends React.Component {
             <Row>
               <Col sm>
                 <div className="top-posts">
-                      {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
-                      {this.state.isLoading && <div><br /><Skeleton height={200} width={700} className="top-posts-empty" count={5} /></div>}
-                      {this.state.posts.length > 0 && <div>{discussionList}</div>}
+                  {this.state.isLoading &&
+                    <div style={{height:1000}}>
+                        <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                        <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                        <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                        <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                        <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+                    </div>}
+                    {!this.state.isLoading && <div>{discussionList}</div>}
+                    {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
                 </div>
               </Col>
             </Row>
