@@ -24,22 +24,23 @@ export default class ReadingList extends React.Component {
 
   async componentDidMount() {
     var user = JSON.parse(localStorage.getItem('user'));
+    // document.body.style.backgroundColor = "#F7F7F7";
+
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-
+        fields: 'readingList '
       }
     })
       .then((response) => {
+        console.log(response);
         this.setState({
-          user: response.data.user,
-          readingList: response.data.user.readingList,
+          readingList: response.data.user.readingList
         })
       })
       .catch((error) => {
         console.log(error);
       });
-
 
     for (var i = 0; i < this.state.readingList.length; i++) {
       this.GetReadingList(this.state.readingList[i])
