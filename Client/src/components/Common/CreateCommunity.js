@@ -149,7 +149,7 @@ export default class CreateASoc extends React.Component {
                     </Form.Label>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridSocName">
-                        <input minlength="4" type="text" placeholder="Community Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
+                        <input minlength="4" maxlength="20" type="text" placeholder="Community Name" required value={this.state.name} onChange={this.onChangeName} className="textfield-create-a-soc" id="outlined-basic" variant="outlined" />
                         </Form.Group>
                     </Form.Row>
                     <Form.Label>

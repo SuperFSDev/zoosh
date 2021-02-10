@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import NewPost from './components/Pages/NewPost';
 const Landing = loadable(() => import('./components/Pages/Landing/Landing'));
 const NavBar = loadable(() => import('./components/Navbar'));
 const RegisterPage = loadable(() => import('./components/auth/Register'));
@@ -48,6 +49,7 @@ class App extends React.Component {
               <AccountSettings exact path="/settings"/>
               <Explore exact path="/explore"/>
               <DiscussionPost exact path="/d"/>
+              <NewPost exact path="/new"/>
               <Leaderboard exact path="/leaderboard"/>
               <Notifications exact path="/notifications"/>
 

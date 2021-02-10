@@ -91,9 +91,8 @@ export default class ListSocieties extends React.Component {
 
         <Container>
           <Row>
-            <Col></Col>
             <Col >
-              <div className="global-feed">
+              <div className="search-div">
                 <h3>Meet the Community</h3>
                 <div className="container-square">
                   <div className="search-div-square">
@@ -124,7 +123,6 @@ export default class ListSocieties extends React.Component {
                   )}
               </div>
             </Col>
-            <Col></Col>
           </Row>
         </Container>
       </div>

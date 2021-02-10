@@ -95,23 +95,17 @@ export default class History extends React.Component {
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>
             <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                  {post.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                  {post.likes === 1 && <span> <Image src={Clap} alt="" /> {post.likes}</span>}
-                  {post.likes > 1 && <span> <Image src={Clap} alt="" /> {post.likes}</span>}
+                 <span> <BsGem size={20} alt="" /> {post.likes}</span>
                 </button></a>
 
 
                 <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                  <RiChat1Line size={20} />
-                  {post.comments.length === 0 && <span> Add comment</span>}
-                  {post.comments.length === 1 && <span> {post.comments.length}</span>}
-                  {post.comments.length > 1 && <span> {post.comments.length}</span>}
+                  <RiChat1Line size={20} /><span> {post.comments.length}</span>
                 </button></a>
                 {this.CheckPost(post.user_id,post.Post_id)}
           </div>
-        </div></a><br/>
-            </div>
-          
+        </div></a><hr/><br/>
+      </div>    
         ))}
       </div>
     );

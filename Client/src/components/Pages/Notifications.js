@@ -118,7 +118,7 @@ window.location.reload();
               <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
               <a href="/top"><button className="feed-option"><BsGem  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
-              <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Me</button></a>
               <CreatePost/>
             </div>
           </Col> 

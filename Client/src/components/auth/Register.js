@@ -104,7 +104,7 @@ class Register extends React.Component {
             <Col>
             <div>
               <div className="centered">
-              <h1 className="header">zoosh / create account</h1>
+              <h1 className="header">zoosh / join</h1>
               <div class="auth-card">
               <br/>
               <Form onSubmit={this.onSubmit}>

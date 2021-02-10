@@ -1,9 +1,11 @@
 import React  from 'react';
-import { Nav, Form , Col, Row, Container, Image} from 'react-bootstrap';
+import { Nav , Form, Col, Row, Container, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Helmet} from 'react-helmet'
+import { Formik, Field, ErrorMessage } from 'formik';
+
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});
 const [picture, setPicture] = useState('');*/
@@ -95,17 +97,19 @@ class Login extends React.Component {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Website Name / Log In</title>
         </Helmet> 
-      <div>
         <Container>
           <Row>
             <Col></Col>
             <Col>
                 <div className="centered">
-                  <h1 className="header">zoosh / welcome back</h1>
+                  <h1 className="header">zoosh / welcome</h1>
                   <div class="auth-card">
+                  <Formik>
+                  {({ errors, touched }) => (
                   <Form onSubmit={this.onLogin}>
                     <Form.Group controlId="formBasicEmail">
-                      <TextField type="email" placeholder="Email Address" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" variant="outlined" />
+                      <TextField type="email" name="email" placeholder="Email Address" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" variant="outlined" />
+                      <ErrorMessage component="div" name="email" />
                       <Form.Text className="text-muted">
                       </Form.Text>
                     </Form.Group>
@@ -118,6 +122,8 @@ class Login extends React.Component {
                     <div className="auth-options">                  
                     </div>
                   </Form>
+                  )}
+                  </Formik>
                   <hr /><br/>
                   <p>Want to join?<a className="links2" href="/join"> Create an account.</a></p> 
                   </div>          
@@ -126,55 +132,8 @@ class Login extends React.Component {
             <Col></Col>
           </Row>
         </Container>
-       {/* <div className="login-bg">
 
-              <div className="centered">
-              <a className="header-login" href="/landing"><h1 className="header-login">NAME</h1></a>
-              <big className="motto">A place for students to express and innovate</big>
-              <div class="login-card">
-              <Form onSubmit={this.onLogin}>
-                <Form.Group controlId="formBasicEmail">
-                  <TextField type="email" placeholder="@gmit.ie, @nuig.ie, @gti.ie" value={this.state.email} onChange={this.onChangeEmail} className="textfield-email" id="outlined-basic" label="Email Address" variant="outlined" />
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <TextField type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic" label="Password" variant="outlined" />
-                </Form.Group>
-                <button className="login-btn" variant="primary" type="submit">
-                  Log In
-                </button>
-                <div className="auth-options">
-                  <Nav.Link className="links2" href="/home"><p class="forgot-pw">Forgot Password?</p></Nav.Link>
-                  
-                </div>
-              </Form>
-            </div>
-            <div className="spacing"></div>
-              <a href="/join">New to our site? Join Now</a>
-          </div> */}
-
-          {/* <footer className="footer">
-            <div className="footer-items">
-                <div class="footer-column">
-                  <a className="footer-links" href="/landing"><p>Our Website 2020</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="#"><p>Privacy</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="#"><p>Community Guidlines</p></a>
-                </div>
-                <div class="footer-column">
-                  <a className="footer-links" href="/manifesto"><p>Manifesto</p></a>
-                </div>
-                <div class="footer-column">
-                <a className="footer-links" href="/contact"><p>Contact</p></a>
-                </div>
-            </div>
-          </footer> */}
           
-      </div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import {Image} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
 import {BiRadar} from 'react-icons/bi'
 import Default from '../../images/defaults/default5.jpg'
+import { BsCircleFill } from 'react-icons/bs';
 
 class Contributors extends React.Component {
 
@@ -31,7 +32,8 @@ class Contributors extends React.Component {
     return (
         <div className="contributors-container">
             <div className="column-head">
-              <p className="column-title"><BiRadar  size={20}/> RADAR</p><hr/>
+              {/* <p className="column-title"><BiRadar  size={20}/> RADAR</p><hr/> */}
+              <hr/>
             </div>
             
             {this.state.isLoading ? ( 
@@ -53,7 +55,10 @@ class Contributors extends React.Component {
                         </figure>
                         <section class="bio-box">
                             <span class="details"> 
-                                <b className="profile-name">{user.fullname} </b>
+                                {user.fullname.length > 15 && <span><h1 className="profile-name">{user.fullname.slice(0,15)}...</h1></span>}
+                                {user.fullname.length < 15 && <span><h1 className="profile-name">{user.fullname}</h1></span>}
+                                <span className="feed-badge"><BsCircleFill/> Member</span>
+
                             </span>
                         </section>
 

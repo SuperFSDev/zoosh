@@ -84,8 +84,7 @@ export default class UserProfile extends React.Component {
       });
 
 
-      var user = JSON.parse(localStorage.getItem('user'));
-    // document.body.style.backgroundColor = "#F7F7F7";
+    var user = JSON.parse(localStorage.getItem('user'));
 
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
@@ -263,7 +262,7 @@ export default class UserProfile extends React.Component {
 
     if (this.state.usersFollows.includes(id) === true) {
       return(
-        <button className="follow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
+        <button className="unfollow-btn" disabled={this.state.isDisabled} onClick={() => this.unfollow(this.state.user)}>Unfollow</button>
       )
     }
     else{
@@ -303,7 +302,7 @@ export default class UserProfile extends React.Component {
               <p className="nowrap">
                   <figure class="headshot">
                     {this.state.isLoading && <div><Skeleton circle={true} height={120} width={120}/></div>}
-                    {!this.state.isLoading &&<Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
+                    {!this.state.isLoading && this.state.user.pic != null && <Image alt="" className="user-image" src={this.state.user.pic} roundedCircle  width={130} height={130} />}                  
                     {this.state.user.pic == null &&<Image alt="" className="user-image" src={Default} roundedCircle  width={130} height={130} />}                  
 
                   </figure>

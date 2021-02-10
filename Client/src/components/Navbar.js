@@ -2,13 +2,14 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Image, Navbar, Nav, NavDropdown, Row, Col, Container} from 'react-bootstrap'
+import { Image, Navbar, Nav, NavDropdown, Modal, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import {BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
 import {BiChart} from 'react-icons/bi'
 import Avatar from '@material-ui/core/Avatar';
+import NewPost from '../components/Pages/NewPost';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -54,7 +55,6 @@ render(){
 
   return (
       <div>
-        <div id="top"></div>
         <Container>
         <Row>
         <Col sm>
@@ -65,8 +65,8 @@ render(){
               <SearchbarFilter/>
           </Col>
           <Col sm>
-            <span class="dropdown">
-                          <Avatar  className="link" alt="" src={this.state.user.pic}  roundedCircle/>
+          <span class="dropdown">
+                          <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
                             <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             {/* <a href="/forum"  className="nowrap"><p className="contributor-item-profile"><BsLightning/> Forum</p></a> */}

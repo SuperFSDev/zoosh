@@ -6,7 +6,7 @@
 @media (min-width: 1281px) {
   
     /* CSS */
-    .search-icon{display:none;}
+    .search-icon, .post-reactions-mobile{display:none;}
   }
   
   /* 
@@ -16,6 +16,7 @@
   
   @media (min-width: 1025px) and (max-width: 1280px) {
     #container > .div2 {width:100%;}
+    .post-reactions-mobile{display:none;}
     .community-feed{margin-top: 40vh!important;}
     .community-members-container{margin-top: 33vh;}
     .post-content,.content-post{ width:100%!important; word-wrap: break-word; margin-bottom: 4vh;}
@@ -25,7 +26,6 @@
       grid-template-columns: repeat(3, 1fr)!important;
       background-color:none;
       border-radius: 5px;
-      margin:10px 10px 20px 20px;
     }
     .user-column-one{margin-left: 10px;}
   }
@@ -142,4 +142,5 @@
       margin:0px 0px 0px 0px;
     }
     .user-column-one{margin-left: 0;width:50%!important;}
+    .post-reactions-mobile{display:block;}
   }

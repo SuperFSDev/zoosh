@@ -222,21 +222,21 @@ export default class AdminPage extends React.Component {
               <div className="user-column-one">
                 <p className="nowrap">
                   <figure class="headshot">
-                    {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={130} height={130} s />}
+                  {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={130} height={130} s />}
                     {this.state.society.picture != null && <Image className="user-image" alt="" src={this.state.society.picture}   width={130} height={130} />}
                   </figure>
                   <section class="bio-box">
                     <dl class="details"> 
                       <b className="user-name">{this.state.society.name}</b>
-                      <button className="follow-btn">Community Settings</button>
                       <br/>
                       <span className="user-badge"><BsSquareFill/> Community</span>
                       <br/>
                         {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
-                      <br/><br/>
                       <br/>
+                      <button className="follow-btn">Settings</button>
+
                     </dl>
                   </section>
                 </p>

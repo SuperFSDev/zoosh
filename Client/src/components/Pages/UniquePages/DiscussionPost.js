@@ -6,7 +6,7 @@ import { Row, Col, Container,Form } from 'react-bootstrap';
 import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
-import { BsBookmark, BsBookmarkFill } from 'react-icons/bs'
+import { BsBookmark, BsBookmarkFill, BsGem } from 'react-icons/bs'
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import { RiShieldStarLine } from 'react-icons/ri'
@@ -261,12 +261,12 @@ export default class DiscussionPost extends React.Component {
   isLiked(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) {
     if (this.state.likedPosts.includes(discussion_id) === true) {
       return (<span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
-        <Image src={Clapping} size={30} /> {this.state.discussion.likes}</button><br /></span>
+        <BsGem size={25} style={{color:'blue'}} /> {this.state.discussion.likes}</button><br /></span>
       )
     }
     else {
       return (<span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) }}>
-        <Image src={Clap} size={30} /> {this.state.discussion.likes} </button></span>
+        <BsGem size={25} /> {this.state.discussion.likes} </button></span>
       )
     }
   }
@@ -309,7 +309,7 @@ export default class DiscussionPost extends React.Component {
             <Col sm={2}>
               <div className="post-reactions">
                 <span>
-                  <Image alt={user.fullname} src={user.pic} className="user-image"  roundedCircle/>
+                  <Image alt="" src={user.pic} className="user-image"  roundedCircle/>
                   <b>{this.state.discussion.user}</b><br />
                   <a href={"/u/?id=" + this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                 </span>
@@ -324,23 +324,16 @@ export default class DiscussionPost extends React.Component {
             </Col>
             <Col sm={8}>
               <div className="discussion-container">
-
-
-                <p>
                   <p className="post-header">{this.state.discussion.title}</p>
+                  <div className="spacing"></div>
                   <p style={{ fontSize: 14, color: 'gray' }}>
                     <a href={"/u/?id=" + this.state.discussion.user_id} style={{ textDecoration: 'none', color: 'black' }}>
-                      <span class="showhim">
-                        <b>{this.state.discussion.user}</b> - {moment(this.state.discussion.time).format("MMM Do")}
-                        <span class="showme"> <b>{this.state.discussion.user}</b></span>
-                      </span>
                     </a>
                   </p>
 
                   <Image src={this.state.discussion.full_pic} className="thumbnail" />
                   {/* <img src={this.state.discussion.full_pic} className="thumbnail"/> */}
-                </p>
-
+                <div className="spacing"></div>
                 <p className="post-content">{this.state.discussion.content}</p>
 
 

@@ -9,11 +9,9 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
-import {FaRegArrowAltCircleUp} from 'react-icons/fa'
 import ScrollToTop from 'react-scroll-up'
-import {BsGem, BsPersonFill, BsChat, BsBell} from 'react-icons/bs'
+import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
-import Clap from '../../images/clap.png'
 import {BiPlanet} from 'react-icons/bi'
 import NewPost from './NewPost';
 
@@ -142,33 +140,29 @@ export default class Feed extends React.Component {
       return (
         <Fragment key={discussion._id}>
         <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
-          <Image src={discussion.thumbnail_pic} className="post-img"/>
+          {discussion.full_pic && <Image src={discussion.full_pic} className="post-img"/>}
           <div class="container">
             <h3><b>{discussion.title}</b></h3> 
-            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
+            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.username}</b></p> 
             <span>Posted in <b style={{ color: 'green' }}>
             {discussion.society == null ? (
-              <span> in <b style={{ color: 'green' }}>General</b></span>
+              <span> <b style={{ color: 'green' }}>General</b></span>
                ) : (
-              <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+              <span> <b style={{ color: 'green' }}>{discussion.society}</b></span>
               )}<br />
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
             <span className="reactions">
-            <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> Be the first</span>}
-                  {discussion.likes === 1 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> {discussion.likes}</span>}
-                  {discussion.likes > 1 && <span> <Image src={Clap} size={20} alt=""  className="icon"/> {discussion.likes}</span>}
-                </button></a>
+              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                <span> <BsGem  size={20} alt=""  className="icon"/> {discussion.likes}</span>
+              </button></a>
 
+              <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>
+              </button></a>
 
-                <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                  {discussion.comments.length === 0 && <span><BsChat size={20}  className="icon"/> Add comment</span>}
-                  {discussion.comments.length === 1 && <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>}
-                  {discussion.comments.length > 1 && <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>}
-                </button></a>
           </span></div>
-        </div></a><br/>
+        </div></a><hr/><br/>
         </Fragment>
       )
     })
@@ -195,7 +189,7 @@ export default class Feed extends React.Component {
               <a href="/"><button className="feed-option-active"><BsPersonFill size={25} className="icon"/> Following</button></a><br/>
               <a href="/top"><button className="feed-option"><BsGem  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
-              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Me</button></a>
               <CreatePost/>
             </div>
           </Col>  
@@ -210,7 +204,7 @@ export default class Feed extends React.Component {
             </div>}
             {!this.state.isLoading && <div className="feed">{discussionList}</div>}
             <ScrollToTop showUnder={1000}>
-            <span><FaRegArrowAltCircleUp size={25} /></span>
+            <span><BsArrowUp size={25} /></span>
             </ScrollToTop>
           </Col>
           <Col sm>

@@ -9,7 +9,7 @@ import moment from 'moment'
 import cogoToast from 'cogo-toast'
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../../images/clap.png'
-import {BsSquareFill, BsHeart, BsChat} from 'react-icons/bs'
+import {BsSquareFill, BsGem, BsChat} from 'react-icons/bs'
 import Default from '../../../images/defaults/grey.jpg'
 var qs = require('qs');
 export default class CommunityPage extends React.Component {
@@ -23,6 +23,7 @@ export default class CommunityPage extends React.Component {
       time: '',
       score: '',
       UserList: [],
+      societies:[],
       posts: [],
       events: [],
       questions: [],
@@ -33,6 +34,8 @@ export default class CommunityPage extends React.Component {
 
   async componentDidMount() {
     var society_id = new URLSearchParams(this.props.location.search).get("id");
+    var user = JSON.parse(localStorage.getItem('user'));
+
     await axios.get('http://localhost:4000/societies/get-societies-page', {
       params: {
         id: society_id
@@ -45,6 +48,23 @@ export default class CommunityPage extends React.Component {
           mods: response.data.society.mods,
           admin: response.data.society.admin,
           isLoading: false,
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  // Get user details to check for the community ID
+  await axios.get('http://localhost:4000/users/get-user-details', {
+      params: {
+        id: user._id,
+        fields: 'societies'
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          usersFollows: response.data.user.following
         })
       })
       .catch((error) => {
@@ -90,12 +110,7 @@ export default class CommunityPage extends React.Component {
     await axios.post('http://localhost:4000/societies/update', addUser)
       .then(function (resp) {
         console.log(resp);
-        cogoToast.success(
-          <div>
-            <h4>Welcome!</h4>
-            <div>You successfully joined this society!</div>
-          </div>
-        );
+        cogoToast.success("Followed", { position: 'bottom-center' });
       })
       .catch(function (error) {
         console.log(error); 
@@ -119,6 +134,23 @@ export default class CommunityPage extends React.Component {
       })
   }
 
+  
+  // Check to see if the user follows the community and if they do/dont display the required options
+  isCommunityFollowed(id){
+
+    if (this.state.societies.includes(id) === true) {
+      return(
+        <button className="unfollow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Unfollow</button>
+        )
+    }
+    else{
+      return(
+        <button className="follow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
+      )
+    }
+
+  }
+
   render() {
     console.log(this.state.posts)
     var title = this.state.society.name + " - Website"
@@ -128,7 +160,6 @@ export default class CommunityPage extends React.Component {
 
     const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
       return (
-        <div className="PostLayout">
         <div key={discussion._id}>
             <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
               <Image src={discussion.thumbnail_pic} className="post-img"/>
@@ -144,21 +175,16 @@ export default class CommunityPage extends React.Component {
                   </b></span><br/>
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                      {discussion.likes === 0 && <span> <Image src={Clap} size={20} alt="" /> Be the first</span>}
-                      {discussion.likes === 1 && <span> <Image src={Clap} alt="" /> {discussion.likes}</span>}
-                      {discussion.likes > 1 && <span> <Image src={Clap} alt="" /> {discussion.likes}</span>}
+                     <span> <BsGem size={20} alt="" /> {discussion.likes}</span>
                     </button></a>
 
 
                     <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                      {discussion.comments.length === 0 && <span><BsChat size={20} /> Add comment</span>}
-                      {discussion.comments.length === 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
-                      {discussion.comments.length > 1 && <span><BsChat size={20} /> {discussion.comments.length}</span>}
+                      <span><BsChat size={20} /> {discussion.comments.length}</span>
                     </button></a>
-              </div>
+              </div><hr/>
             </div></a><br/>
         </div>
-      </div>
       )
     })
 
@@ -200,16 +226,17 @@ export default class CommunityPage extends React.Component {
                   </figure>
                   <section class="bio-box">
                     <dl class="details"> 
-                      <b className="user-name">{this.state.society.name}</b>
-                      <button className="follow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
+                      <b className="user-name">{this.state.society.name}</b><br/>
+                      <span className="user-bio">{this.state.society.description}</span>
                       <br/>
                       <span className="user-badge"><BsSquareFill/> Community</span>
                       <br/>
                         {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
-                      <br/><br/>
                       <br/>
+                      {this.isCommunityFollowed(this.state.societies._id)}
+
                     </dl>
                   </section>
                 </p>
@@ -227,7 +254,7 @@ export default class CommunityPage extends React.Component {
                         <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
                         <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
                     </div>}
-                    {!this.state.isLoading && <div>{discussionList}</div>}
+                    {!this.state.isLoading && <div className="PostLayout">{discussionList}</div>}
                     {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
                 </div>
               </Col>

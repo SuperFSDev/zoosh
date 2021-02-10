@@ -5,6 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 import {Image} from 'react-bootstrap'
 import Default from '../../images/defaults/grey.jpg'
 import {BiPlanet} from 'react-icons/bi'
+import {BsSquareFill} from 'react-icons/bs'
 
 export default class Recommended extends React.Component {
 
@@ -49,7 +50,8 @@ render(){
         <div>
             <div className="recommended-container">
               <div className="column-head">
-                <p className="column-title"><BiPlanet size={20}/> EXPLORE</p><hr/>
+                {/* <p className="column-title"><BiPlanet size={20}/> EXPLORE</p> */}
+                <hr/>
               </div>
             
             {this.state.isLoading ? ( 
@@ -67,7 +69,9 @@ render(){
                       </figure>
                       <a href={"/c/?id="+society._id} aria-label="Community" rel="noopener" className="recommended-item-a" style={{color:'black', fontWeight:'light'}}><section class="bio-box">
                           <dl class="details"> 
-                              <h1 class="profile-name">{society.name}</h1>
+                              {society.name.length > 15 && <span><h1 className="profile-name">{society.name.slice(0,15)}...</h1></span>}
+                              {society.name.length < 15 && <span><h1 className="profile-name">{society.name}</h1></span>}
+                              <span className="feed-badge"><BsSquareFill/> Community</span>
                           </dl>
                       </section></a>
                   </div></a>

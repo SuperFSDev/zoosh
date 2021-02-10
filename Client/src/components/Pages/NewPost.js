@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Form, Row, Col, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const Compress = require('compress.js')
 
@@ -195,6 +196,7 @@ export default class NewPost extends React.Component {
       thumbnail_picture: '',
       full_picture: '',
       user_pic: '',
+      username: '',
       tags: []
     });
     window.location = '/';
@@ -250,6 +252,7 @@ export default class NewPost extends React.Component {
                <label><input 
                 placeholder="New post title..." 
                 className="Title-input"
+                minlength={1}
                 value={this.state.title}
                 onChange={this.onChangeTitle}
                 required
@@ -259,18 +262,22 @@ export default class NewPost extends React.Component {
                 placeholder="Post Caption" 
                 className="Content-input"
                 value={this.state.caption}
+                maxlength={140}
+                minlength={1}
                 onChange={this.onChangeCaption}
                 required
               /></label>
-
-              <label><textarea 
+              
+              <TextareaAutosize 
                 placeholder="Write your post content here ..." 
+                aria-label="empty textarea"
                 className="Content-input" 
-                rows = "5" cols = "60"
+                minlength={1}
                 value={this.state.content}
                 onChange={this.onChangeContent}
                 required
-                /></label>
+              />
+              <div className="spacing"></div>
               
               {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/>}
               <br/>
