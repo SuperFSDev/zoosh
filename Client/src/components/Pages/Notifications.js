@@ -63,7 +63,8 @@ export default class Notifications extends React.Component {
             })
           } else {
             this.setState({
-              notifications: this.state.notifications.concat(response.data.notifications)
+              notifications: this.state.notifications.concat(response.data.notifications),
+              isLoading: false
             })
           }
         })

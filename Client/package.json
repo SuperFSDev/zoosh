@@ -13,6 +13,7 @@
     "cogo-toast": "^4.2.3",
     "compress.js": "^1.1.2",
     "formik": "^2.2.6",
+    "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "qs": "^6.9.6",
     "react-avatar-editor": "^11.0.13",

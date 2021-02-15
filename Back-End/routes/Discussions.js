@@ -1,12 +1,18 @@
 const express = require('express');
 const cors = require('cors');
+const aws = require( 'aws-sdk' );
+const multerS3 = require( 'multer-s3' );
+const multer = require('multer');
+const path = require( 'path' );
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 const discussions = express.Router();
 
 //import model
 const DiscussionModel = require('../models/Discussion');
-
-//import multer and gridfs storage engine
-const singleUpload = require('../server');
 
 //Use headers to give browser access to resources
 discussions.use(cors());
@@ -18,9 +24,49 @@ discussions.use(function (req, res, next) {
     next();
 });
 
-discussions.post('/NewDiscussions', (req, res) => {
+/**
+ * Amazon S3 Credentials
+ */
+const s3 = new aws.S3({
+	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	Bucket: process.env.AWS_BUCKET_NAME
+});
 
-    console.log("ID = " + req.body.user_id);
+/**
+ * Single Upload
+ */
+const pictureUpload = multer({
+	storage: multerS3({
+		s3: s3,
+		bucket: 'zoosh-image-bucket',
+		acl: 'public-read',
+		key: function (req, file, cb) {
+			cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
+		}
+	}),
+	limits:{ fileSize: 2000000 }, // In bytes: 2000000 bytes = 2 MB
+	fileFilter: function( req, file, cb ){
+		checkFileType( file, cb );
+	}
+}).single('picture');
+
+// Checks file name
+function checkFileType( file, cb ){
+	// Allowed ext
+	const filetypes = /jpeg|jpg|png|gif/;
+	// Check ext
+	const extname = filetypes.test( path.extname( file.originalname ).toLowerCase());
+	// Check mime
+	const mimetype = filetypes.test( file.mimetype );
+	if( mimetype && extname ){
+		return cb( null, true );
+	} else {
+		cb( 'Error: Images Only!' );
+	}
+}
+
+discussions.post('/NewDiscussions', (req, res) => {
 
     DiscussionModel.create({
         user: req.body.user,
@@ -32,11 +78,37 @@ discussions.post('/NewDiscussions', (req, res) => {
         society: req.body.society.value,
         society_id: req.body.society.society_id,
         thumbnail_pic: req.body.thumbnail_picture,
-        full_pic: req.body.full_picture,
+        full_pic: req.body.full_pic,
         user_pic: req.body.user_pic
     });
-
 })
+
+// Uploads photo attached to post to Amazon S3
+discussions.post( '/picture-upload', ( req, res ) => {
+	pictureUpload( req, res, ( error ) => {
+		console.log( 'requestOkokok', req.file );
+		console.log( 'error', error );
+		if( error ){
+			console.log( 'errors', error );
+			res.json( { error: error } );
+		} else {
+			// If File not found
+			if( req.file === undefined ){
+				console.log( 'Error: No File Selected!' );
+				res.json( 'Error: No File Selected' );
+			} else {
+				// If Success
+				const imageName = req.file.key;
+				const imageLocation = req.file.location;
+                // Save the file name into database into profile model
+				res.json( {
+					image: imageName,
+					location: imageLocation
+				} );
+			}
+		}
+	});
+});
 
 // New get discussion query, selected fields are passed in when calling axios.get
 discussions.get('/get-discussions', (req, res, next) => {

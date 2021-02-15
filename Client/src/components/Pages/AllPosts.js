@@ -90,26 +90,6 @@ export default class AllPosts extends React.Component {
       });
   }
 
-  // // Checks if the discussion feed is stored in session storage, if not
-  // // then get discussions and store them.
-  // checkSessionStorage() {
-  //   // Retrieve from storage
-  //   var stored_discussions = JSON.parse(sessionStorage.getItem("AllPosts"));
-
-  //   console.log(stored_discussions);
-
-  //   // If not stored, then get from database and store.
-  //   if (stored_discussions !== null && stored_discussions.length !== 0) {
-  //     this.setState({ discussions: stored_discussions, isLoading: false }, () => {
-  //       console.log(this.state.discussions);
-  //     })
-  //   } else {
-  //     // Get discussions from database.
-  //     this.getDiscussions()
-  //   }
-  // }
-
-
   removeSaved = () => {
     this.setState({
       isSaved: false,

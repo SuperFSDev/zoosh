@@ -3,16 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-sdk": "^2.843.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
-    "slugify": "^1.4.6"
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "slugify": "^1.4.6",
+    "url": "^0.11.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client-install": "cd ../Client \" npm install --prefix client",
+    "client": "cd ../Client \" npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

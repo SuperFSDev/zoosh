@@ -7,6 +7,7 @@ import { Form, Row, Col, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import $ from 'jquery';
 
 const Compress = require('compress.js')
 
@@ -30,6 +31,7 @@ export default class NewPost extends React.Component {
       society: '',
       tags: [],
       thumbnail_picture: '',
+      selectedFile: null,
       full_picture: '',
       FollowingID: ''
     };
@@ -51,11 +53,8 @@ export default class NewPost extends React.Component {
 
     if (this.user)
       var fullname = this.user.fullname;
-    
-    this.setState({user: fullname});
 
-    // // Gets all users from the database.
-    // this.getUsers();
+    this.setState({ user: fullname });
 
     // Get the societies the current user is in from the database.
     this.getUserSocieties();
@@ -97,45 +96,49 @@ export default class NewPost extends React.Component {
 
   async onDropPicture(pictureFiles, pictureDataURLs) {
 
-    const compress = new Compress();
-
-    // Create thumbnail picture
-    compress.compress(pictureFiles, {
-      size: 4, // the max size in MB, defaults to 2MB
-      quality: 0.8, // the quality of the image, max is 1,
-      maxWidth: 200, // the max width of the output image, defaults to 1920px
-      maxHeight: 125, // the max height of the output image, defaults to 1920px
-      resize: true, // defaults to true, set false if you do not want to resize the image width and height
-    }).then((data) => {
-      if (data[0]) {
-        data = data[0];
-        var b64 = data.prefix + data.data;
-
-        this.setState({
-          //picture: this.state.picture.concat(b64)
-          thumbnail_picture: b64
-        });
-      }
+    this.setState({ full_picture: pictureFiles[0] }, () => {
+      console.log(this.state.full_picture);
     })
 
-    // Create full picture
-    compress.compress(pictureFiles, {
-      size: 4, // the max size in MB, defaults to 2MB
-      quality: 1, // the quality of the image, max is 1,
-      maxWidth: 800, // the max width of the output image, defaults to 1920px
-      maxHeight: 500, // the max height of the output image, defaults to 1920px
-      resize: true, // defaults to true, set false if you do not want to resize the image width and height
-    }).then((data) => {
-      if (data[0]) {
-        data = data[0];
-        var b64 = data.prefix + data.data;
+    // const compress = new Compress();
 
-        this.setState({
-          //picture: this.state.picture.concat(b64)
-          full_picture: b64
-        });
-      }
-    })
+    // // Create thumbnail picture
+    // compress.compress(pictureFiles, {
+    //   size: 4, // the max size in MB, defaults to 2MB
+    //   quality: 0.8, // the quality of the image, max is 1,
+    //   maxWidth: 200, // the max width of the output image, defaults to 1920px
+    //   maxHeight: 125, // the max height of the output image, defaults to 1920px
+    //   resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    // }).then((data) => {
+    //   if (data[0]) {
+    //     data = data[0];
+    //     var b64 = data.prefix + data.data;
+
+    //     this.setState({
+    //       //picture: this.state.picture.concat(b64)
+    //       thumbnail_picture: b64
+    //     });
+    //   }
+    // })
+
+    // // Create full picture
+    // compress.compress(pictureFiles, {
+    //   size: 4, // the max size in MB, defaults to 2MB
+    //   quality: 1, // the quality of the image, max is 1,
+    //   maxWidth: 800, // the max width of the output image, defaults to 1920px
+    //   maxHeight: 500, // the max height of the output image, defaults to 1920px
+    //   resize: true, // defaults to true, set false if you do not want to resize the image width and height
+    // }).then((data) => {
+    //   if (data[0]) {
+    //     data = data[0];
+    //     var b64 = data.prefix + data.data;
+
+    //     this.setState({
+    //       //picture: this.state.picture.concat(b64)
+    //       full_picture: b64
+    //     });
+    //   }
+    // })
   }
 
   getUserSocieties() {
@@ -146,21 +149,19 @@ export default class NewPost extends React.Component {
     })
       .then((response) => {
         console.log(response);
-        this.setState({societies: response.data.societies});
+        this.setState({ societies: response.data.societies });
         console.log(this.state.societies);
-      })  
+      })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
 
     var user = JSON.parse(localStorage.getItem('user'));
 
     e.preventDefault();
-
-    alert(user._id);
 
     const newPost = {
       user: this.state.user,
@@ -172,16 +173,35 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       society: this.state.society,
       society_id: this.state.society_id,
-      thumbnail_picture: this.state.thumbnail_picture,
-      full_picture: this.state.full_picture,
-      user_pic: user.pic
+      user_pic: user.pic,
+      full_pic: null
     }
 
-    alert(newPost.user_id);
+    const formData = new FormData();
 
-    axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
-      .then()
-      .catch();
+    if (this.state.full_picture) {
+      formData.append('picture', this.state.full_picture, this.state.full_picture.name);
+      await axios.post('http://localhost:4000/discussions/picture-upload', formData, {
+        headers: {
+          'accept': 'application/json',
+          'Accept-Language': 'en-US,en;q=0.8',
+          'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+        }
+      })
+        .then((response) => {
+
+          alert(JSON.stringify(response.data));
+
+          newPost.full_pic = response.data.location;
+
+          alert(newPost.full_pic);
+
+          axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
+          .then()
+          .catch();
+        })
+        .catch();
+    }
 
     this.setState({
       user: '',
@@ -192,7 +212,7 @@ export default class NewPost extends React.Component {
       time: new Date().getTime(),
       category: '',
       society: '',
-      society_id:'',
+      society_id: '',
       thumbnail_picture: '',
       full_picture: '',
       user_pic: '',
@@ -205,16 +225,15 @@ export default class NewPost extends React.Component {
   render() {
 
     let options = null;
-    
-    if(this.state.societies !== undefined)
-    {
+
+    if (this.state.societies !== undefined) {
       options = this.state.societies.map(function (society) {
         return { value: society.name, label: society.name };
       })
     } else {
       this.state.tags = "General";
     }
-      
+
     return (
       <div>
         {/* REACTJS HELMET */}
@@ -232,12 +251,12 @@ export default class NewPost extends React.Component {
           <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
         </Helmet>
 
-      <Container>
-        <Row>
-          <Col>
-          <div className="new-post-feed">
-            <Form onSubmit={this.onSubmit}>
-              <ImageUploader
+        <Container>
+          <Row>
+            <Col>
+              <div className="new-post-feed">
+                <Form onSubmit={this.onSubmit}>
+                  <ImageUploader
                     withIcon={false}
                     withPreview={true}
                     buttonText='Add a cover image'
@@ -246,55 +265,55 @@ export default class NewPost extends React.Component {
                     maxFileSize={5242880}
                     fileTypeError
                     withLabel={false}
-                    buttonStyles={{backgroundColor:'whitesmoke', color:'black', fontWeight:'bold', fontSize:20}}
-              />
-             
-               <label><input 
-                placeholder="New post title..." 
-                className="Title-input"
-                minlength={1}
-                value={this.state.title}
-                onChange={this.onChangeTitle}
-                required
-                /></label>
+                    buttonStyles={{ backgroundColor: 'whitesmoke', color: 'black', fontWeight: 'bold', fontSize: 20 }}
+                  />
 
-              <label><input 
-                placeholder="Post Caption" 
-                className="Content-input"
-                value={this.state.caption}
-                maxlength={140}
-                minlength={1}
-                onChange={this.onChangeCaption}
-                required
-              /></label>
-              
-              <TextareaAutosize 
-                placeholder="Write your post content here ..." 
-                aria-label="empty textarea"
-                className="Content-input" 
-                minlength={1}
-                value={this.state.content}
-                onChange={this.onChangeContent}
-                required
-              />
-              <div className="spacing"></div>
-              
-              {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community"  defaultValue="General"/>}
-              <br/>
-              <br/>
-              <br/>
-              <div className="post-buttons">
-                <button className="standard-button" type="submit">Publish</button>
+                  <label><input
+                    placeholder="New post title..."
+                    className="Title-input"
+                    minlength={1}
+                    value={this.state.title}
+                    onChange={this.onChangeTitle}
+                    required
+                  /></label>
+
+                  <label><input
+                    placeholder="Post Caption"
+                    className="Content-input"
+                    value={this.state.caption}
+                    maxlength={140}
+                    minlength={1}
+                    onChange={this.onChangeCaption}
+                    required
+                  /></label>
+
+                  <TextareaAutosize
+                    placeholder="Write your post content here ..."
+                    aria-label="empty textarea"
+                    className="Content-input"
+                    minlength={1}
+                    value={this.state.content}
+                    onChange={this.onChangeContent}
+                    required
+                  />
+                  <div className="spacing"></div>
+
+                  {options != null && <Select className="comm-post-selection" options={options} onChange={this.onChangeSociety} value={this.state.society} placeholder="Choose a community" defaultValue="General" />}
+                  <br />
+                  <br />
+                  <br />
+                  <div className="post-buttons">
+                    <button className="standard-button" type="submit">Publish</button>
+                  </div>
+
+
+                </Form>
               </div>
-              
+            </Col>
+          </Row>
+        </Container>
 
-            </Form>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-
-  </div>
-  );
-}
+      </div>
+    );
+  }
 }
