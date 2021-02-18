@@ -27,6 +27,7 @@ run 'npm i' in tasq/Backend
 ```
 > docker-compose up
 ```
+* Then go to localhost:3000 in your browser.
 
 ## Running the Program
 
