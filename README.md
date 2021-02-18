@@ -13,12 +13,13 @@ Our project is a web application built using the MERN stack. It is a forum for s
 
 ### Prerequisites
 
+* Latest Version of [node](https://nodejs.org/en/)
+
 * [Project dependencies](https://github.com/applied-project-2020/tasq/network/dependencies)
 ```
 run 'npm i' in tasq/Client
 run 'npm i' in tasq/Backend
 ```
-* Latest Version of [node](https://nodejs.org/en/)
 
 ## Running with Docker
 * Have the latest version of Docker installed on your device.
