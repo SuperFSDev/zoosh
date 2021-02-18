@@ -7,7 +7,7 @@ import { Form, Row, Col, Container } from 'react-bootstrap';
 import Select from 'react-select';
 import ImageUploader from 'react-images-upload';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import $ from 'jquery';
+import cogoToast from 'cogo-toast'
 
 const Compress = require('compress.js')
 
@@ -100,45 +100,6 @@ export default class NewPost extends React.Component {
       console.log(this.state.full_picture);
     })
 
-    // const compress = new Compress();
-
-    // // Create thumbnail picture
-    // compress.compress(pictureFiles, {
-    //   size: 4, // the max size in MB, defaults to 2MB
-    //   quality: 0.8, // the quality of the image, max is 1,
-    //   maxWidth: 200, // the max width of the output image, defaults to 1920px
-    //   maxHeight: 125, // the max height of the output image, defaults to 1920px
-    //   resize: true, // defaults to true, set false if you do not want to resize the image width and height
-    // }).then((data) => {
-    //   if (data[0]) {
-    //     data = data[0];
-    //     var b64 = data.prefix + data.data;
-
-    //     this.setState({
-    //       //picture: this.state.picture.concat(b64)
-    //       thumbnail_picture: b64
-    //     });
-    //   }
-    // })
-
-    // // Create full picture
-    // compress.compress(pictureFiles, {
-    //   size: 4, // the max size in MB, defaults to 2MB
-    //   quality: 1, // the quality of the image, max is 1,
-    //   maxWidth: 800, // the max width of the output image, defaults to 1920px
-    //   maxHeight: 500, // the max height of the output image, defaults to 1920px
-    //   resize: true, // defaults to true, set false if you do not want to resize the image width and height
-    // }).then((data) => {
-    //   if (data[0]) {
-    //     data = data[0];
-    //     var b64 = data.prefix + data.data;
-
-    //     this.setState({
-    //       //picture: this.state.picture.concat(b64)
-    //       full_picture: b64
-    //     });
-    //   }
-    // })
   }
 
   getUserSocieties() {
@@ -190,16 +151,51 @@ export default class NewPost extends React.Component {
       })
         .then((response) => {
 
-          alert(JSON.stringify(response.data));
+          if (200 === response.status) {
+            // If file size is larger than expected.
+            if (response.data.error) {
+              if ('LIMIT_FILE_SIZE' === response.data.error.code) {
+                cogoToast.error(
+                  <div>
+                    <h4>Error</h4>
+                    <div>File is too large, must be less than 2MB.</div>
+                  </div>
+                );
+              } else {
+                console.log(response.data);
+                // If not the given file type
+                cogoToast.error(
+                  <div>
+                    <h4>Error</h4>
+                    <div>{response.data.error}</div>
+                  </div>
+                );
+              }
+            } else {
+              // Success
+              let fileName = response.data;
+              console.log('filedata', fileName);
+              cogoToast.success(
+                <div>
+                  <h4>Success!</h4>
+                  <div>File was uploaded.</div>
+                </div>
+              );
+            }
+          }
 
           newPost.full_pic = response.data.location;
 
-          alert(newPost.full_pic);
-
           axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
-          .then()
-          .catch();
+            .then()
+            .catch();
         })
+        .catch((error) => {
+
+        });
+    } else {
+      axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
+        .then()
         .catch();
     }
 
@@ -262,7 +258,7 @@ export default class NewPost extends React.Component {
                     buttonText='Add a cover image'
                     onChange={this.onDropPicture}
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                    maxFileSize={5242880}
+                    maxFileSize={2097152}
                     fileTypeError
                     withLabel={false}
                     buttonStyles={{ backgroundColor: 'whitesmoke', color: 'black', fontWeight: 'bold', fontSize: 20 }}
