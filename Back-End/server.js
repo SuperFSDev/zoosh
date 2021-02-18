@@ -73,13 +73,6 @@ var Questions = require('./routes/Questions');
 app.use('/questions', Questions);
 
 //log connection to server
-app.listen(PORT);
-
-app.on("listening", () => {
+app.listen(PORT, () => {
     console.log("[Server]::LISTEN:%s", PORT);
-});
-
-// Callback function for checking connecting or error
-app.on("error", error => {
-    throw new Error(`[Server]::ERROR:${error.message}`);
 });

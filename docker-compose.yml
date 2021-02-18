@@ -1,12 +1,12 @@
 version: "3.8"
 services:
     frontend:
-        container_name: tasq_react_app
+        container_name: zoosh_react_app
         stdin_open: true
         build:
             context: ./Client
             dockerfile: Dockerfile
-        image: conorshortt123/tasq_react_app
+        image: conorshortt123/zoosh_react_app
         ports:
             - "3000:3000"
         volumes:
@@ -14,11 +14,11 @@ services:
             - /src/app/node_modules
         restart: always
     backend:
-        container_name: tasq_server
+        container_name: zoosh_server
         build:
             context: ./Back-End
             dockerfile: Dockerfile
-        image: conorshortt123/tasq_server
+        image: conorshortt123/zoosh_server
         ports:
             - "4000:4000"
         volumes:

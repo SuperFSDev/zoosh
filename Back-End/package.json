@@ -24,7 +24,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix ../Client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
