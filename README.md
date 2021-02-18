@@ -13,34 +13,33 @@ Our project is a web application built using the MERN stack. It is a forum for s
 
 ### Prerequisites
 
-* [Project dependencies](https://github.com/applied-project-2020/tasq/network/dependencies) - run 'npm install' in command prompt in the tasq file directory <br>
+* [Project dependencies](https://github.com/applied-project-2020/tasq/network/dependencies)
+```
+run 'npm i' in tasq/Client
+run 'npm i' in tasq/Backend
+```
 * Latest Version of [node](https://nodejs.org/en/)
+
+## Running with Docker
+* Have the latest version of Docker installed on your device.
+* In the root directory of the repository, run:
+```
+> docker-compose up
+```
 
 ## Running the Program
 
-Running the react application:
+**Running client & server concurrently:**
 ```
- > Navigate into the 'tasq' directory 
-```
-```
- > Open Command Prompt
+> Open Command Prompt
 ```
 ```
-> npm start
-```
-Running the server:
-```
-> Open new CMD window in current directory
+> Navigate into the 'tasq/Backend' directory 
 ```
 ```
-> cd ./backend 
+> npm run dev
 ```
-```
-> node server.js 
-```
-```
-> Go to 'http://localhost:3000' on your web browser
- ```
+
 
 ## Built With
 

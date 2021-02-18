@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+    frontend:
+        container_name: tasq_react_app
+        stdin_open: true
+        build:
+            context: ./Client
+            dockerfile: Dockerfile
+        image: conorshortt123/tasq_react_app
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./Client:/src/app
+            - /src/app/node_modules
+        restart: always
+    backend:
+        container_name: tasq_server
+        build:
+            context: ./Back-End
+            dockerfile: Dockerfile
+        image: conorshortt123/tasq_server
+        ports:
+            - "4000:4000"
+        volumes:
+            - ./Back-End:/src/app
+            - /src/app/node_modules

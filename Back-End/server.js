@@ -1,14 +1,13 @@
+#!/usr/bin/env node
+
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const port = 4000;
-// File handling with GridFS & Multer.
-// const multer  = require('multer');
-// const Grid = require('gridfs-stream');
-// Grid.mongo = mongoose;
-// var gfs = Grid(connection.db);
+
+// Port Environment variable
+const PORT = process.env.PORT || 4000;
 
 // Access cluster through link
 const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
@@ -73,19 +72,14 @@ app.use('/forums', Forums);
 var Questions = require('./routes/Questions');
 app.use('/questions', Questions);
 
-// // set up connection to db for file storage
-// const storage = require('multer-gridfs-storage')({
-//     db: connection.db,
-//     file: (req, file) => {
-//        return {
-//           filename: file.originalname
-//        }
-//     }
-//  });
-//  // sets file input to single file
-//  const singleUpload = multer({ storage: storage }).single('file');
-
 //log connection to server
-app.listen(port, () => console.log("Server is up on port " + port));
+app.listen(PORT);
 
-// module.exports = singleUpload;
+app.on("listening", () => {
+    console.log("[Server]::LISTEN:%s", PORT);
+});
+
+// Callback function for checking connecting or error
+app.on("error", error => {
+    throw new Error(`[Server]::ERROR:${error.message}`);
+});

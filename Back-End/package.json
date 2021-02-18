@@ -22,8 +22,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client-install": "cd ../Client \" npm install --prefix client",
-    "client": "cd ../Client \" npm start --prefix client",
+    "client": "npm start --prefix ../Client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
