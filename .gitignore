@@ -26,3 +26,9 @@ yarn-error.log*
 .idea
 .vscode
 .vs
+
+# debug file
+debug.txt
+
+# Package
+package-lock.json

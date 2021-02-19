@@ -46,24 +46,7 @@ export default class Feed extends React.Component {
 
     this.GetFollowedUsers();
   }
-
-  // // Checks if the discussion feed is stored in session storage, if not
-  // // then get discussions and store them.
-  // CheckSessionStorage() {
-  //   // Retrieve from storage
-  //   var stored_discussions = JSON.parse(sessionStorage.getItem("FollowedPosts"));
-
-  //   // If not stored, then get from database and store.
-  //   if (stored_discussions !== null && stored_discussions.length !== 0) {
-  //     this.setState({ posts: stored_discussions, isLoading: false }, () => {
-  //       console.log(this.state.discussions);
-  //     })
-  //   } else {
-  //     // Get discussions from database.
-  //     this.GetFollowedUsers()
-  //   }
-  // }
-
+  
   // Gets the array of ID's that the user follows.
   GetFollowedUsers() 
   {

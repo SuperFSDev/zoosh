@@ -156,10 +156,10 @@ users.get('/settings', (req, res) => {
 users.get('/get-users', (req, res, next) => {
 
     console.log("Fields = " + req.query.fields)
-    if(req.query.fields)
-    {
+    if (req.query.fields) {
         var query = UserModel
-            .find({/* Can input limitations e.g post likes greater than 0 */})
+            .find({
+                /* Can input limitations e.g post likes greater than 0 */ })
             .select(req.query.fields)
 
         query.exec(function (err, data) {
@@ -177,22 +177,23 @@ users.get('/get-users', (req, res, next) => {
 // Gets one users details
 users.get('/get-user-details', (req, res, next) => {
 
-    if(req.query.fields)
-    {
+    if (req.query.fields) {
         var query = UserModel
-            .findById({_id: req.query.id})
+            .findById({
+                _id: req.query.id
+            })
             .select(req.query.fields)
-        
-            query.exec(function (err, data) {
-                if (err) return next(err);
-                res.json({
-                    user: data
-                });
+
+        query.exec(function (err, data) {
+            if (err) return next(err);
+            res.json({
+                user: data
             });
+        });
     } else {
         console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-details");
     }
-    
+
 })
 
 users.get('/get-users-radar', (req, res) => {
@@ -218,17 +219,22 @@ users.get('/get-users-radar', (req, res) => {
             res.json({
                 users: data
             });
-        }).sort({'score': -1});
+        }).sort({
+        'score': -1
+    });
 
 })
 
-users.get('/get-users-list', (req, res) => {
+users.get('/get-users-list', (req, res, next) => {
 
     // Gets users for the user list.
     var query = UserModel
-        .find({/* Can input limitations e.g post likes greater than 0 */})
+        .find({
+            /* Can input limitations e.g post likes greater than 0 */ })
         .select('fullname pic score')
-        .sort({'score': -1})
+        .sort({
+            'score': -1
+        })
         .limit(10)
 
     query.exec(function (err, data) {
@@ -239,13 +245,17 @@ users.get('/get-users-list', (req, res) => {
     });
 })
 
-users.get('/get-followed-users', (req, res) => {
+users.get('/get-followed-users', (req, res, next) => {
 
     // Gets users for the user list.
     var query = UserModel
-        .findById({ _id: req.query.id })
+        .findById({
+            _id: req.query.id
+        })
         .select('following')
-        .sort({'score': -1})
+        .sort({
+            'score': -1
+        })
 
     query.exec(function (err, data) {
         console.log(data);
@@ -262,13 +272,15 @@ users.post('/edit-user-profile', (req, res) => {
         UserModel.findByIdAndUpdate({
                 _id: req.body.user_id,
             }, {
-                pic: req.body.pic,
-                fullname: req.body.fullname,
-                bio: req.body.bio,
-                college: req.body.college,
-                course: req.body.course,
-                dob: req.body.dob,
-                password: hash
+                $addToSet: {
+                    pic: req.body.pic,
+                    fullname: req.body.fullname,
+                    bio: req.body.bio,
+                    college: req.body.college,
+                    course: req.body.course,
+                    dob: req.body.dob,
+                    password: hash
+                }
             }, {
                 upsert: true,
                 new: true,
@@ -457,16 +469,18 @@ users.post('/addComment', (req, res) => {
 
 users.post('/clearLikes', (req, res) => {
     UserModel.findByIdAndUpdate({
-        
+
             _id: req.body.id,
         }, {
             $pull: {
-                notifications:{message:"liked your post"},
+                notifications: {
+                    message: "liked your post"
+                },
             }
-            
+
         }, {
             upsert: true,
-            multi:true,
+            multi: true,
             new: true,
             runValidators: true
         },
@@ -490,16 +504,18 @@ users.post('/clearLikes', (req, res) => {
 
 users.post('/clearComments', (req, res) => {
     UserModel.findByIdAndUpdate({
-        
+
             _id: req.body.id,
         }, {
             $pull: {
-                notifications:{message:"commented on post"},
+                notifications: {
+                    message: "commented on post"
+                },
             }
-            
+
         }, {
             upsert: true,
-            multi:true,
+            multi: true,
             new: true,
             runValidators: true
         },
@@ -524,16 +540,18 @@ users.post('/clearComments', (req, res) => {
 
 users.post('/clearFollows', (req, res) => {
     UserModel.findByIdAndUpdate({
-        
+
             _id: req.body.id,
         }, {
             $pull: {
-                notifications:{message:"just followed you"},
+                notifications: {
+                    message: "just followed you"
+                },
             }
-            
+
         }, {
             upsert: true,
-            multi:true,
+            multi: true,
             new: true,
             runValidators: true
         },
@@ -910,8 +928,8 @@ users.post('/removeFromReadingList', (req, res) => { //delete user
 
     UserModel.updateMany({
             $pull: {
-                readingList:req.body.discussion_id
-                
+                readingList: req.body.discussion_id
+
             }
         }, {
             new: true
