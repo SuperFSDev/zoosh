@@ -270,16 +270,15 @@ export default class AccountSettings extends React.Component {
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
-              </div><br/>
-              <div className="settings-container">
-                <h3>User Details</h3><br/>
                 <Form.Group controlId="formBio">
                   <Form.Label>Change Bio</Form.Label>
                   <Form.Control multiline type="text" placeholder="Start here" value={this.state.bio} onChange={this.onChangeBio} />
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
-                <Form.Group controlId="formCollege">
+              </div><br/>
+                
+                {/* <Form.Group controlId="formCollege">
                   <Form.Label>Change College</Form.Label>
                   <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege} />
                   <Form.Text className="text-muted">
@@ -296,29 +295,7 @@ export default class AccountSettings extends React.Component {
                   <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob} />
                   <Form.Text className="text-muted">
                   </Form.Text>
-                </Form.Group>
-              </div><br/>
-              <div className="settings-container">
-                <h3>Social Media Links</h3><br/>          
-                <Form.Group controlId="formNewPassword">
-                  <Form.Label>Instagram</Form.Label>
-                  <Form.Control type="text" placeholder="URL" />
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group controlId="formConformPassword">
-                  <Form.Label>Twitter</Form.Label>
-                  <Form.Control type="text" placeholder="URL"/>
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group controlId="formConformPassword">
-                  <Form.Label>LinkedIn</Form.Label>
-                  <Form.Control type="text" placeholder="URL"/>
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-              </div><br/>
+                </Form.Group> */}
               <div className="settings-container">
                 <h3>Account Security</h3><br/>          
                 <Form.Group controlId="formNewPassword">
@@ -335,7 +312,7 @@ export default class AccountSettings extends React.Component {
                 </Form.Group>
               </div><br/>
               
-              <div>
+              <div style={{textAlign:'center'}}>
                 <button className="standard-button" variant="secondary" type="submit" >Save changes</button>
                 <a href="/home"><button className="settings-button-cancel" variant="primary" type="button" >Cancel</button></a>
               </div>

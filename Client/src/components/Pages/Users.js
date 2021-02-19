@@ -93,11 +93,10 @@ export default class ListSocieties extends React.Component {
           <Row>
             <Col >
               <div className="search-div">
-                <h3>Meet the Community</h3>
                 <div className="container-square">
                   <div className="search-div-square">
-                    <input className="searchbar-nav-square" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category" />
-                  </div>
+                    <input className="searchbar-nav" type="text" id="mySearch" onChange={this.updateSearch.bind(this)} placeholder="Search for a user " title="Type in a category" />
+                  </div><hr/>
                 </div>
               </div>
 

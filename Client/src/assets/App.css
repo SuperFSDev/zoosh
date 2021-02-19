@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); */
 
 .navbar{
   background:white;
@@ -23,13 +24,18 @@
   width: 100%;
 }
 
+.centered{
+  line-height: 20px;
+}
+
 .dropdown{
   width: 400px !important;
 }
 .dropdown-content {
   display: none;
   position: absolute;
-  left:72%;
+  left:85%;
+  top:8%;
   background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -162,12 +168,35 @@
   text-decoration: none!important;
 }
 
+.links2{
+  color:white;
+  text-decoration: underline;
+}
+
+.links2:hover{
+  color: black;
+}
+
 .header{
   text-decoration: none!important;
-  font-size: 2rem !important;
+  font-size: 55px !important;
   font-weight: bolder;
-  color:black!important;
-  font-family: 'Comfortaa', cursive;
+  color:white;
+  font-weight: 900;
+  /* font-family: 'Comfortaa', cursive; */
+  /* font-family: 'Orbitron', sans-serif; */
+  text-align: center;
+  margin-top: 10px;
+}
+
+.header2{
+  text-decoration: none!important;
+  font-size: 35px !important;
+  font-weight: bolder;
+  color:black;
+  font-weight: 900;
+  /* font-family: 'Comfortaa', cursive; */
+  /* font-family: 'Orbitron', sans-serif; */
   text-align: center;
   margin-top: 10px;
 }
@@ -188,7 +217,7 @@
   padding:10px;
   margin-top: 5vh;
   height: auto;
-
+  line-height: 20px;
 }
 
 .post-option-btns{
@@ -328,7 +357,7 @@
   background:red;
   color:white;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 5vh;
   margin-left: 10px;
 }
@@ -406,7 +435,7 @@
   font-weight: 500;
   text-decoration: none!important;
   cursor: pointer;
-  margin-left:25vh;
+  float:right;
 }
 * {
   box-sizing: border-box;
@@ -455,7 +484,7 @@
 
 .feed-option-active{
   border:none;
-  color:blue;
+  color:rgb(0, 122, 255);
   padding:10px;
   font-size: 20px;
   background:none;
@@ -820,8 +849,9 @@ section::after {
   margin-left:10px;
   outline:none!important;
   font-weight: bold;
-  color:blue;
+  color:rgb(0, 122, 255);
   border-radius: 5px;
+  line-height: 20px;
   text-decoration: none!important;
 }
 
@@ -1530,8 +1560,14 @@ html {
 
 }
 
+html, body {
+  height: 100%;
+}
+
 .textfield-pw, .textfield-email, .textfield-name{
   width: 40vh;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .community-button-join{
@@ -1718,12 +1754,8 @@ html {
 }
 
 .search-div{
-  border:1px solid lightgray;
-  background-color:white;
-  border-radius: 10px;
   width:auto;
   padding:10px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .UsersLayout{
@@ -1852,19 +1884,13 @@ html {
 .searchbar-nav , .searchbar-nav-forum{
   margin:auto;
   width: 100%;
-  border-color: lightgray;
-  background-color: rgba(240, 240, 240, 0.5);
-  border-style: solid;
-  border-width: 1px;
+  border:none;
   height:3rem;
   outline: none;
-  padding-left: 1rem;
-  transition: all .2s;
-  transition-delay: .1s;
-  border-radius: 10px;
+  font-size: 20px;
 }
 
-.searchbar-nav:focus, .navbar-search:focus{
+.navbar-search:focus{
   transition: 0.2s;
   background:white;
   border: 1px solid blue;

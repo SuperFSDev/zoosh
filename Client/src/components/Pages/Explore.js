@@ -107,7 +107,7 @@ render(){
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Explore / website</title>
+                <title>Explore / Zoosh</title>
         </Helmet> 
 
       <Container>
@@ -115,7 +115,7 @@ render(){
           <Col>
           <div className="search-div">
             <input className="searchbar-nav" type="text" value={this.state.searchValue} onChange={this.updateSearch.bind(this)} placeholder="Search for a community " title="Type in a category"
-              />
+              /><hr/>
               <QuickOptions/>
             </div>
             <br/>

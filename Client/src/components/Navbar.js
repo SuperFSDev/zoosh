@@ -58,7 +58,7 @@ render(){
         <Container>
         <Row>
         <Col sm>
-          <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
+          <Navbar.Brand href="/" className="header2">zoosh</Navbar.Brand>
         </Col>  
                   
           <Col>
@@ -69,10 +69,7 @@ render(){
                           <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
                             <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
-                            {/* <a href="/forum"  className="nowrap"><p className="contributor-item-profile"><BsLightning/> Forum</p></a> */}
-                            <a href="/leaderboard"  className="nowrap"><p className="contributor-item-profile"><BiChart/> Charts</p></a>
                             <hr/>
-                            {/* <a href="/settings" className="nowrap"><p className="contributor-item-profile"><RiShieldStarLine size={20}/> Community Guidelines</p></a> */}
                             <a href="/login" className="nowrap">Log Out</a>
                           </div>
                       </span>

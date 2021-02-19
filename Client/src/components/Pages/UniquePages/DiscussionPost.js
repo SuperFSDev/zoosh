@@ -6,7 +6,7 @@ import { Row, Col, Container,Form } from 'react-bootstrap';
 import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
-import { BsBookmark, BsBookmarkFill, BsGem } from 'react-icons/bs'
+import { BsBookmark, BsBookmarkFill, BsGem, BsHeart, BsHeartFill } from 'react-icons/bs'
 import Clapping from '../../../images/clap-hands.png'
 import Clap from '../../../images/clap.png'
 import { RiShieldStarLine } from 'react-icons/ri'
@@ -261,12 +261,12 @@ export default class DiscussionPost extends React.Component {
   isLiked(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) {
     if (this.state.likedPosts.includes(discussion_id) === true) {
       return (<span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
-        <BsGem size={25} style={{color:'blue'}} /> {this.state.discussion.likes}</button><br /></span>
+        <BsHeartFill size={25} style={{color:'rgb(255, 59, 48)'}} /> {this.state.discussion.likes}</button><br /></span>
       )
     }
     else {
       return (<span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) }}>
-        <BsGem size={25} /> {this.state.discussion.likes} </button></span>
+        <BsHeart size={25} /> {this.state.discussion.likes} </button></span>
       )
     }
   }
@@ -309,7 +309,7 @@ export default class DiscussionPost extends React.Component {
             <Col sm={2}>
               <div className="post-reactions">
                 <span>
-                  <Image alt="" src={user.pic} className="user-image"  roundedCircle/>
+                  <Image alt="" src={user.pic} className="user-image"  roundedCircle/><br/><br/>
                   <b>{this.state.discussion.user}</b><br />
                   <a href={"/u/?id=" + this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                 </span>
@@ -366,7 +366,7 @@ export default class DiscussionPost extends React.Component {
                       <div className="comment-box">
                         <span >
                           <Avatar alt="User" src={comment.user_img} /><a href={"/u/?id=" + comment.user_id} className="post-link-a"><b>{comment.user_name} </b></a>
-                          {moment(comment.time).startOf('seconds').fromNow()}
+                          - {moment(comment.time).startOf('seconds').fromNow()}
                           <ShowMoreText
                             lines={1}
                             more='Read more'
@@ -379,8 +379,6 @@ export default class DiscussionPost extends React.Component {
                           >
                             <p className="post-content">{comment.comment}</p>
                           </ShowMoreText>
-                          <span><button aria-label="clap" className="standard-option-btn-comment">
-                            <Image alt="Clap" src={Clap} size={30} /></button></span>
                         </span>
                         <hr />
                       </div>

@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { Row, Col, Container, Image, Modal } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
-import { BsTrash, BsPerson, BsBell, BsGem } from "react-icons/bs";
-import {BiPlanet} from 'react-icons/bi'
+import { BsTrash, BsPerson, BsBell, BsGem, BsBarChart } from "react-icons/bs";
+import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
@@ -106,7 +106,7 @@ window.location.reload();
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Notifications</title>
+            <title>Notifications / Zoosh</title>
 
             {/* LINKS */}
             <link rel="canonical" href="http://mysite.com/example" />
@@ -117,8 +117,8 @@ window.location.reload();
           <Col sm>
             <div className="filter-options">
               <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
-              <a href="/top"><button className="feed-option"><BsGem  size={25} className="icon"/>  Top</button></a>
-              <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
+              <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
+              <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Me</button></a>
               <CreatePost/>
             </div>
@@ -147,7 +147,6 @@ window.location.reload();
                   </div></a>
                {/* <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button> */}
                </div> )}
-                           
                 <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Clear notifications  <BsTrash size={20} /></button>
               </div>
             </Col>

@@ -88,21 +88,22 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-bg">
       {/* REACTJS HELMET */}
       <Helmet>
                 <meta charSet="utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Website Name / Log In</title>
+                <style>{'body { background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); }'}</style>
+
+                <title>Zoosh / Log In</title>
         </Helmet> 
         <Container>
           <Row>
-            <Col></Col>
             <Col>
                 <div className="centered">
-                  <h1 className="header">zoosh / welcome</h1>
+                  <h1 className="header">Zoosh / Log in</h1><br/>
                   <div class="auth-card">
                   <Formik>
                   {({ errors, touched }) => (
@@ -124,12 +125,11 @@ class Login extends React.Component {
                   </Form>
                   )}
                   </Formik>
-                  <hr /><br/>
-                  <p>Want to join?<a className="links2" href="/join"> Create an account.</a></p> 
+                  <br/>
+                  <p style={{fontWeight:900}}>Want to join? <a className="links2" href="/join">Create an account.</a></p> 
                   </div>          
                 </div>
             </Col>
-            <Col></Col>
           </Row>
         </Container>
 

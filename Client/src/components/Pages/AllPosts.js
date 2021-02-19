@@ -9,13 +9,13 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
-import { BsBell, BsChat, BsGem, BsArrowUp, BsPerson } from 'react-icons/bs'
+import { BsBell, BsChat, BsGem, BsArrowUp, BsPerson, BsHeart, BsBarChartFill } from 'react-icons/bs'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
 import {FaRegArrowAltCircleUp} from 'react-icons/fa'
 import Clap from '../../images/clap.png'
-import {BiPlanet} from 'react-icons/bi'
+import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
 
 export default class AllPosts extends React.Component {
@@ -227,17 +227,17 @@ export default class AllPosts extends React.Component {
           <div class="container">
             <h2><b>{discussion.title}</b></h2> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.username}</b></p> 
-            <span>Posted in <b style={{ color: 'green' }}>
+            <span>Posted in <b style={{ color: 'rgb(52,199,89)' }}>
             {discussion.society == null ? (
-              <span> <b style={{ color: 'green' }}>General</b></span>
+              <span> <b style={{color: 'rgb(52,199,89)' }}>General</b></span>
                ) : (
-              <span> <b style={{ color: 'green' }}>{discussion.society}</b></span>
+              <span> <b style={{ color: 'rgb(52,199,89)' }}>{discussion.society}</b></span>
               )}<br />
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
             <span className="reactions">
               <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                <span><BsGem size={20} alt=""  className="icon"/> {discussion.likes}</span>
+                <span><BsHeart size={20} alt=""  className="icon"/> {discussion.likes}</span>
               </button></a>
 
 
@@ -258,7 +258,7 @@ export default class AllPosts extends React.Component {
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
           <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Home / Website</title>
+          <title>Top / Zoosh</title>
 
           {/* LINKS */}
 
@@ -270,8 +270,8 @@ export default class AllPosts extends React.Component {
         <Col sm>
             <div className="filter-options">
               <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
-              <a href="/top"><button className="feed-option-active"><BsGem  size={25} className="icon"/>  Top</button></a>
-              <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
+              <a href="/top"><button className="feed-option-active"><BsBarChartFill  size={25} className="icon"/>  Top</button></a>
+              <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Me</button></a>
               <CreatePost/>
             </div>

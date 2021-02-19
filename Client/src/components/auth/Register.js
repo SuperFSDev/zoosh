@@ -96,15 +96,16 @@ class Register extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Website Name / Join</title>
+                <style>{'body { background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); }'}</style>
+
+                <title>Zoosh / Join</title>
         </Helmet> 
         <Container>
           <Row>
-            <Col></Col>
             <Col>
             <div>
               <div className="centered">
-              <h1 className="header">zoosh / join</h1>
+              <h1 className="header">Zoosh / Join</h1>
               <div class="auth-card">
               <br/>
               <Form onSubmit={this.onSubmit}>
@@ -143,8 +144,8 @@ class Register extends React.Component {
                   Create Account
                 </button>
                 <span>
-                  <hr /><br/>
-                  <p>Already have an account?<a className="links2" href="/login"> Log In.</a></p>
+                  <br/><br/>
+                  <p style={{fontWeight:900}}>Already have an account? <a className="links2" href="/login">Log In.</a></p>
                 </span>
               </Form>
             </div>
@@ -152,7 +153,6 @@ class Register extends React.Component {
               </div>
             
             </Col>
-            <Col></Col>
         	</Row>
         </Container>
       </>

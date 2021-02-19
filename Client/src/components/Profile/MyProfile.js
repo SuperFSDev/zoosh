@@ -171,8 +171,6 @@ export default class MyProfile extends React.Component {
                       {this.state.following.length === 0 && <span><b>{this.state.following.length}</b> following</span>}
                       {this.state.following.length > 1 && <span><b>{this.state.following.length}</b> following</span>}
                       {this.state.following.length === 1 && <span><b>{this.state.following.length}</b> following</span>}
-
-                      <span><b>{this.state.user.score}</b> claps</span>
                     </dl>
                 </section>
               </p>   

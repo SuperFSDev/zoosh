@@ -10,9 +10,9 @@ import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
 import ScrollToTop from 'react-scroll-up'
-import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell} from 'react-icons/bs'
+import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
-import {BiPlanet} from 'react-icons/bi'
+import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
 
 // Allows array of following ids to be passed as params
@@ -175,7 +175,7 @@ export default class Feed extends React.Component {
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Home / Website</title>
+            <title>Home / Zoosh</title>
 
             {/* LINKS */}
 
@@ -187,8 +187,8 @@ export default class Feed extends React.Component {
         <Col sm>
             <div className="filter-options">
               <a href="/"><button className="feed-option-active"><BsPersonFill size={25} className="icon"/> Following</button></a><br/>
-              <a href="/top"><button className="feed-option"><BsGem  size={25} className="icon"/>  Top</button></a>
-              <a href="/explore"><button className="feed-option"><BiPlanet  size={25} className="icon"/>  Explore</button></a>
+              <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
+              <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Me</button></a>
               <CreatePost/>
             </div>
