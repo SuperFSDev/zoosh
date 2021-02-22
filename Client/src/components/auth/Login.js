@@ -95,15 +95,14 @@ class Login extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <style>{'body { background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); }'}</style>
-
+                <style>{'body { background: rgb(63,94,251); background: -moz-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: -webkit-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f5efb",endColorstr="#68d0fe",GradientType=1); }'}</style>
                 <title>Zoosh / Log In</title>
         </Helmet> 
         <Container>
           <Row>
             <Col>
                 <div className="centered">
-                  <h1 className="header">Zoosh / Log in</h1><br/>
+                  <h1 className="header">Zoosh</h1><br/>
                   <div class="auth-card">
                   <Formik>
                   {({ errors, touched }) => (
@@ -115,9 +114,9 @@ class Login extends React.Component {
                       </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
-                      <TextField type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-pw" id="outlined-basic"  variant="outlined" />
+                      <TextField type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword} className="textfield-email" id="outlined-basic"  variant="outlined" />
                     </Form.Group>
-                    <button className="write-button" variant="primary" type="submit">
+                    <button className="auth-button" variant="primary" type="submit">
                       Log In
                     </button>
                     <div className="auth-options">                  

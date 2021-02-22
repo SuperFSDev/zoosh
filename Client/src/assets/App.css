@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .navbar{
   background:white;
@@ -179,11 +179,11 @@
 
 .header{
   text-decoration: none!important;
-  font-size: 55px !important;
+  font-size: 65px !important;
   font-weight: bolder;
   color:white;
+  font-family: 'Roboto', sans-serif;
   font-weight: 900;
-  /* font-family: 'Comfortaa', cursive; */
   /* font-family: 'Orbitron', sans-serif; */
   text-align: center;
   margin-top: 10px;
@@ -201,7 +201,9 @@
   margin-top: 10px;
 }
 
-
+.header2:hover{
+  color:rgb(0, 122, 255);
+}
 .comment-container{
   background:white;
   padding:10px;
@@ -394,6 +396,20 @@
   border-radius: 5px;
 }
 
+.auth-button{
+  width:60vh;
+  font-size: 16px;
+  height:auto;
+  padding:10px;
+  outline:none!important;
+  border:2px solid black!important;
+  background:black;
+  color:white;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
 .nowrap {
   white-space: nowrap ;
   color:black;
@@ -403,7 +419,7 @@
 .nowrap b {
   line-height: 1px;
 }
-.write-button:hover{
+.write-button:hover, .auth-button:hover{
   background:white;
   color:black;
   border:2px solid black!important;
@@ -1565,7 +1581,7 @@ html, body {
 }
 
 .textfield-pw, .textfield-email, .textfield-name{
-  width: 40vh;
+  width: 60vh;
   background-color: white;
   border-radius: 5px;
 }

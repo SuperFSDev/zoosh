@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Image, Navbar, Nav, NavDropdown, Modal, Row, Col, Container} from 'react-bootstrap'
+import { Image,Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import {BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
@@ -55,7 +55,7 @@ render(){
 
   return (
       <div>
-        <Container>
+        <Container className="nav-container">
         <Row>
         <Col sm>
           <Navbar.Brand href="/" className="header2">zoosh</Navbar.Brand>
@@ -78,7 +78,29 @@ render(){
         <hr/>
       </Container>
 
-        <Navbar className="mobile-navbar"  expand="lg">
+      <Navbar className="mobile-navbar" bg="light" expand="lg">
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+
+        {/* <Navbar className="mobile-navbar"  expand="lg">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
 
@@ -91,14 +113,12 @@ render(){
             <Nav.Link href="/notifications"  className="link"><BsBell size={25}/> Notifications</Nav.Link>
             <Nav.Link href="/saved" className="link"><BsBookmarks size={25}/> Reading List</Nav.Link>
             <Nav.Link href="/explore" className="link"><BsCompass size={25}/> Explore</Nav.Link>
-            <Nav.Link href="/leaderboard"  className="link"><BsFillBarChartFill size={25}/> Charts</Nav.Link>
-            <Nav.Link href="/forum" className="link"><BsLightning size={25}/> Forum</Nav.Link>
             <Nav.Link href="/settings" className="link"><BsGear size={25}/> Account Settings</Nav.Link>
             <Nav.Link href="/login" className="link">Log Out</Nav.Link>
             </Nav>
             
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
       </div>
     );
   }

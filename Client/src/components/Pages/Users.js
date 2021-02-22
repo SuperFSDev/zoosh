@@ -65,7 +65,7 @@ export default class ListSocieties extends React.Component {
               {user.pic == null && <Image src={Default} className="user-image-square" roundedCircle />}
               {user.pic != null && <Image src={user.pic} className="user-image-square" roundedCircle />}
               <br/>
-              <span>{user.fullname} <b className="user-score">{user.score}</b></span>
+              <span>{user.fullname}</span>
             </p>
           </div></a>
         </div>
