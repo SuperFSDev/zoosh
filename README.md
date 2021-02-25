@@ -16,12 +16,8 @@ Our project is a web application built using the MERN stack. It is a forum for s
 * Latest Version of [node](https://nodejs.org/en/)
 
 * [Project dependencies](https://github.com/applied-project-2020/tasq/network/dependencies)
-```
-run 'npm i' in tasq/Client
-run 'npm i' in tasq/Backend
-```
 
-## Running with Docker
+## Running with Docker (Recommended)
 * Have the latest version of Docker installed on your device.
 * In the root directory of the repository, run:
 ```
@@ -29,9 +25,13 @@ run 'npm i' in tasq/Backend
 ```
 * Then go to localhost:3000 in your browser.
 
-## Running the Program
+## Running the Program Without Docker
 
 **Running client & server concurrently:**
+```
+> run 'npm i' in tasq/Client
+> run 'npm i' in tasq/Backend
+```
 ```
 > Open Command Prompt
 ```
