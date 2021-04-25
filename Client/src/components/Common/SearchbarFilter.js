@@ -23,6 +23,7 @@ export default class SearchbarFilter extends React.Component {
     };
     this.showFilter = this.showFilter.bind(this);
     this.closeFilter = this.closeFilter.bind(this);
+    
   }
 
   // SEARCH BAR DROPDOWN
@@ -30,7 +31,7 @@ export default class SearchbarFilter extends React.Component {
     event.preventDefault();
 
     this.setState({ showFilter: true }, () => {
-      document.addEventListener('click', this.closeFilter);
+      document.addEventListener('click', this.showFilter);
     });
   }
 
