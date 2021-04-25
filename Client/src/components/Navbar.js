@@ -60,7 +60,7 @@ render(){
         <Col sm>
           <Navbar.Brand href="/" className="header2">zoosh</Navbar.Brand>
         </Col>  
-                  
+               
           <Col>
               <SearchbarFilter/>
           </Col>

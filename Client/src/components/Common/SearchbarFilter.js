@@ -48,42 +48,35 @@ export default class SearchbarFilter extends React.Component {
   componentDidMount() {
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
-
-    // axios.get('http://localhost:4000/users/get-user-details', {
-    //   params: {
-    //     id: user._id
-    //   }
-    // })
-    //   .then((response) => {
-    //     this.setState({
-    //       user: response.data.user,
-    //       following: response.data.user.following,
-    //       followers: response.data.user.followers,
-
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
+    this.GetUsers();
+    this.GetDiscussions();
+    this.GetSocieties();
   }
 
   GetUsers() {
-    axios.get('http://localhost:4000/users/get-users')
+    axios.get('http://localhost:4000/users/get-users', {
+      params: {
+        fields: '_id fullname'
+      }
+    })
       .then((response) => {
-        this.setState({ users: response.data.users })
+        this.setState({
+          users: response.data.users,
+        })
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
   GetSocieties() {
-    axios.get('http://localhost:4000/societies/get-societies')
+    axios.get('http://localhost:4000/societies/get-societies', {
+      params: {
+        fields: '_id name'
+      }
+    })
       .then((response) => {
         this.setState({
           societies: response.data.societies,
-          isLoading: false,
         })
       })
       .catch((error) => {
@@ -94,7 +87,7 @@ export default class SearchbarFilter extends React.Component {
   GetDiscussions() {
     axios.get('http://localhost:4000/discussions/get-discussions', {
       params: {
-        fields: 'title'
+        fields: '_id title society'
       }
     })
       .then((response) => {
@@ -149,8 +142,8 @@ export default class SearchbarFilter extends React.Component {
     for (var k = 0; k < 4; k++) {
       indents.push(users[1]);
     }
-
     return (
+      
       <div>
         <input
           placeholder="Search…"
