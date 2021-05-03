@@ -10,10 +10,11 @@ import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
 import ScrollToTop from 'react-scroll-up'
-import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart} from 'react-icons/bs'
+import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
+import Avatar from '@material-ui/core/Avatar';
 
 // Allows array of following ids to be passed as params
 var qs = require('qs');
@@ -39,11 +40,34 @@ export default class Feed extends React.Component {
     };
   }
 
+  // Fetching the users Details
+  getUserDetails() {
+      var user = JSON.parse(localStorage.getItem('user'));
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user._id,
+          fields: 'forums societies likedPosts username pic'
+        }
+      })
+        .then((response) => {
+          this.setState({
+            user: response.data.user,
+            forums: response.data.user.forums,
+            socs: response.data.user.societies,
+            likedPosts: response.data.user.likedPosts
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
   componentDidMount() {
 
     var user = JSON.parse(localStorage.getItem('user'));
     this.setState({ id: user._id });
 
+    this.getUserDetails();
     this.GetFollowedUsers();
   }
   
@@ -137,7 +161,7 @@ export default class Feed extends React.Component {
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
             <span className="reactions">
               <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                <span> <BsGem  size={20} alt=""  className="icon"/> {discussion.likes}</span>
+                <span> <BsHeart  size={20} alt=""  className="icon"/> {discussion.likes}</span>
               </button></a>
 
               <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
@@ -172,7 +196,9 @@ export default class Feed extends React.Component {
               <a href="/"><button className="feed-option-active"><BsPersonFill size={25} className="icon"/> Following</button></a><br/>
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
-              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Me</button></a>
+              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/me"><button className="feed-option"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/>@{this.state.user.username}</button></a>
+
               <CreatePost/>
             </div>
           </Col>  

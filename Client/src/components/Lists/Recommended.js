@@ -50,7 +50,7 @@ render(){
         <div>
             <div className="recommended-container">
               <div className="column-head">
-                {/* <p className="column-title"><BiPlanet size={20}/> EXPLORE</p> */}
+                <p className="column-title"><BiPlanet size={20}/> EXPLORE</p>
                 <hr/>
               </div>
             
