@@ -13,10 +13,9 @@ import { BsBell, BsChat, BsGem, BsArrowUp, BsPerson, BsHeart, BsBarChartFill } f
 import { RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
-import {FaRegArrowAltCircleUp} from 'react-icons/fa'
-import Clap from '../../images/clap.png'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class AllPosts extends React.Component {
 
@@ -55,7 +54,7 @@ export default class AllPosts extends React.Component {
     axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: 'forums societies likedPosts'
+        fields: 'forums societies likedPosts username pic'
       }
     })
       .then((response) => {
@@ -272,7 +271,11 @@ export default class AllPosts extends React.Component {
               <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
               <a href="/top"><button className="feed-option-active"><BsBarChartFill  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
-              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Me</button></a>
+              <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/me"><button className="feed-option"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/>@{this.state.user.username}</button></a>
+
+              
+
               <CreatePost/>
             </div>
           </Col>  

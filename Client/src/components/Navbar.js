@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Image,Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container} from 'react-bootstrap'
+import { Image,Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container, Dropdown} from 'react-bootstrap'
 import axios from 'axios';
 import {BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
 import {RiShieldStarLine} from 'react-icons/ri'
@@ -37,7 +37,7 @@ export default class NavBar extends React.Component {
       axios.get('http://localhost:4000/users/get-user-details', {
           params: {
               id: user._id,
-              fields: 'score pic fullname'
+              fields: 'pic fullname'
           }
       })
           .then((response) => {
@@ -65,14 +65,26 @@ render(){
               <SearchbarFilter/>
           </Col>
           <Col sm>
-          <span class="dropdown">
+          {/* <span class="dropdown">
                           <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
                           <div class="dropdown-content">
                             <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
                             <hr/>
                             <a href="/login" className="nowrap">Log Out</a>
                           </div>
-                      </span>
+                      </span> */}
+          {/* <Dropdown>
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu >
+                <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
+                <hr/>
+                <a href="/login" className="nowrap">Log Out</a>
+            </Dropdown.Menu>
+          </Dropdown> */}
+
           </Col>
         </Row>
         <hr/>
