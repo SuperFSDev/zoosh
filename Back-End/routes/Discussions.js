@@ -180,7 +180,6 @@ discussions.get('/get-discussion-page', (req, res) => {
 
 })
 
-
 discussions.get('/get-user-discussions', (req, res) => {
 
     var sort = req.query.sort;
@@ -205,9 +204,6 @@ discussions.get('/get-user-discussions', (req, res) => {
 
 })
 
-
-
-
 discussions.get('/get-society-discussions', (req, res) => {
 
     var sort = req.query.sort;
@@ -227,13 +223,10 @@ discussions.get('/get-society-discussions', (req, res) => {
             });
         });
     } else {
-        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-discussions ");
+        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-society-discussions ");
     }
 
 })
-
-
-
 
 discussions.delete('/getDiscussions:id', (req, res) => {  //delete a discussion
     console.log(req.params.id);
@@ -244,6 +237,7 @@ discussions.delete('/getDiscussions:id', (req, res) => {  //delete a discussion
 
         })
 })
+
 discussions.post('/CreateComment', (req, res) => {
 
     DiscussionModel.findByIdAndUpdate(

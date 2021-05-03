@@ -138,13 +138,9 @@ export default class DiscussionPost extends React.Component {
 
   }
 
-
-
   addToLikedPosts(discussion, discussion_uID, user_id, likes, user_name, title, user_pic) {
 
-
     var user = JSON.parse(localStorage.getItem("user"))
-
 
     const addDiscussion = {
       id: user._id,
@@ -178,8 +174,6 @@ export default class DiscussionPost extends React.Component {
       .catch(function (error) {
         console.log(error);
       })
-
-
 
     const UpdateLike = {
       discussion: discussion,

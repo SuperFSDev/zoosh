@@ -6,18 +6,23 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 // Port Environment variable
 const PORT = process.env.PORT || 4000;
 
 // Access cluster through link
-const mongoDB = "mongodb+srv://tasq-admin:tasq@tasq-db.pb6yq.mongodb.net/tasqdb?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGO_DB;
+
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
     autoIndex: false
 });
-mongoose.set("useCreateIndex", true);
 
 //Use headers to give browser access to resources
 app.use(cors());
@@ -44,14 +49,6 @@ app.use(bodyParser.json({
 var Users = require('./routes/Users');
 app.use('/users', Users)
 
-// Adds the "Problems" route to the server.
-var Problems = require('./routes/Problems');
-app.use('/problems', Problems)
-
-// Adds the "Comments" route to the server.
-var Comments = require('./routes/Comments');
-app.use('/comments', Comments)
-
 // Adds the "Discussions" route to the server.
 var Discussions = require('./routes/Discussions');
 app.use('/discussions', Discussions)
@@ -67,10 +64,6 @@ app.use('/societies', Societies);
 // Adds the "Forums" route to the server.
 var Forums = require('./routes/Forums');
 app.use('/forums', Forums);
-
-// Adds the "Questions" route to the server.
-var Questions = require('./routes/Questions');
-app.use('/questions', Questions);
 
 //log connection to server
 app.listen(PORT, () => {
