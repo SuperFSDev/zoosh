@@ -5,7 +5,7 @@ services:
         stdin_open: true
         build:
             context: ./Client
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.client
         image: conorshortt123/zoosh_react_app
         ports:
             - "3000:3000"
@@ -17,7 +17,7 @@ services:
         container_name: zoosh_server
         build:
             context: ./Back-End
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.server
         image: conorshortt123/zoosh_server
         ports:
             - "4000:4000"
