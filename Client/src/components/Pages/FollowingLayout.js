@@ -10,7 +10,7 @@ import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
 import ScrollToTop from 'react-scroll-up'
-import { BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart} from 'react-icons/bs'
+import { BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart,BsHouse} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
@@ -147,7 +147,7 @@ export default class Feed extends React.Component {
       return (
         <Fragment key={discussion._id}>
         <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
-          {discussion.full_pic && <Image src={discussion.full_pic} className="post-img1" width="500px" height="250px"/>}
+          {discussion.full_pic && <Image src={discussion.full_pic} className="post-img" width="500px" height="250px"/>}
           <div class="container">
             <h3><b>{discussion.title}</b></h3> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.username}</b></p> 
@@ -193,7 +193,7 @@ export default class Feed extends React.Component {
         <Row>
         <Col sm>
             <div className="filter-options">
-              <a href="/"><button className="feed-option-active"><BsPersonFill size={25} className="icon"/> Following</button></a><br/>
+              <a href="/"><button className="feed-option-active"><BsHouse size={25} className="icon"/> Home</button></a><br/>
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>

@@ -195,10 +195,8 @@
   text-decoration: none!important;
   font-size: 35px !important;
   font-weight: bolder;
-  color:rgb(0, 122, 255);
+  color:rgb(0, 122, 255)!important;
   font-weight: 900;
-  /* font-family: 'Comfortaa', cursive; */
-  /* font-family: 'Orbitron', sans-serif; */
   text-align: center;
   margin-top: 10px;
 }
@@ -1158,6 +1156,32 @@ section::after {
   font-weight: bold;
   color:gray;
   margin-left: 20vh;
+}
+
+.mobile-btn-options{
+  width:100%;
+  background:white;
+  padding:20px;
+  
+}
+
+.mobile-btn-options{display:none;}
+
+.btn-options{
+  background:whitesmoke;
+  border-radius: 10px;
+  border:none;
+  padding:10px;
+  font-size: 14px;
+  width:100px;
+  height:60px;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+}
+
+.btn-options:hover{
+  background:lightgray;
 }
 
 .column-title{padding:10px;}

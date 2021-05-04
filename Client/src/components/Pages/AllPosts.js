@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
-import { BsBell, BsChat, BsGem, BsArrowUp, BsPerson, BsHeart, BsBarChartFill } from 'react-icons/bs'
+import { BsBell, BsChat, BsGem, BsArrowUp, BsHouse, BsHeart, BsBarChartFill } from 'react-icons/bs'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
@@ -268,7 +268,7 @@ export default class AllPosts extends React.Component {
         <Row>
         <Col sm>
             <div className="filter-options">
-              <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
+              <a href="/"><button className="feed-option"><BsHouse size={25} className="icon"/> Home</button></a><br/>
               <a href="/top"><button className="feed-option-active"><BsBarChartFill  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>

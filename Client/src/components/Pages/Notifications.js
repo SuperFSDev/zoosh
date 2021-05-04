@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { Row, Col, Container, Image, Modal } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
-import { BsTrash, BsPerson, BsBell, BsGem, BsBarChart } from "react-icons/bs";
+import { BsTrash, BsHouse, BsBell, BsGem, BsBarChart } from "react-icons/bs";
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
 import Recommended from '../Lists/Recommended'
@@ -141,13 +141,12 @@ window.location.reload();
           <Row>
           <Col sm>
             <div className="filter-options">
-              <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
+              <a href="/"><button className="feed-option"><BsHouse size={25} className="icon"/> Home</button></a><br/>
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Notifications</button></a>
               <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
-              <br/>
-                        <br/>
+              <br/><br/>
               <CreatePost/>
             </div>
           </Col> 

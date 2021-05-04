@@ -2,14 +2,11 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Image,Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container, Dropdown} from 'react-bootstrap'
+import { Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container, Dropdown} from 'react-bootstrap'
+import { BsTrash, BsHouse, BsBell, BsGem, BsBarChart, BsChat, BsTypeH1 } from "react-icons/bs";
+import {BiRocket} from 'react-icons/bi'
 import axios from 'axios';
-import {BsBookmarks, BsFillBarChartFill,BsLightningFill, BsHouseFill, BsHouse, BsBell, BsLightning,BsBookmarksFill, BsGear, BsCompass} from 'react-icons/bs'
-import {RiShieldStarLine} from 'react-icons/ri'
 import SearchbarFilter from '../components/Common/SearchbarFilter'
-import {BiChart} from 'react-icons/bi'
-import Avatar from '@material-ui/core/Avatar';
-import NewPost from '../components/Pages/NewPost';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -70,47 +67,16 @@ render(){
         <hr/>
       </Container>
 
-      <Navbar className="mobile-navbar" bg="light" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
-
-        {/* <Navbar className="mobile-navbar"  expand="lg">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Brand href="/" className="header">zoosh</Navbar.Brand>
-
-          <Navbar.Collapse id="responsive-navbar-nav">
-            
-            <Nav>
-            <a href="/new"><button className="write-button">Write a post</button></a>
-            <Nav.Link href="/me" className="link"><Image alt="" className="user-image-mini" src={this.state.user.pic}  roundedCircle/>  {this.state.user.fullname}</Nav.Link>
-            <Nav.Link href="/home" className="link"><BsHouse size={25}/> Home</Nav.Link>
-            <Nav.Link href="/notifications"  className="link"><BsBell size={25}/> Notifications</Nav.Link>
-            <Nav.Link href="/saved" className="link"><BsBookmarks size={25}/> Reading List</Nav.Link>
-            <Nav.Link href="/explore" className="link"><BsCompass size={25}/> Explore</Nav.Link>
-            <Nav.Link href="/settings" className="link"><BsGear size={25}/> Account Settings</Nav.Link>
-            <Nav.Link href="/login" className="link">Log Out</Nav.Link>
-            </Nav>
-            
-          </Navbar.Collapse>
-        </Navbar> */}
+      <h1 className="mobile-navbar" bg="none" expand="lg">
+        <h1 className="header2">zoosh</h1>
+      </h1>
+      <br/>
+      <div className="mobile-btn-options">
+        <a href="/"><button className="btn-options"><BsHouse size={25}/> For You</button></a>
+        <a href="/top"><button className="btn-options"><BsBarChart size={25}/> Top</button></a>
+        <a href="/explore"><button className="btn-options"><BiRocket size={25}/> Explore</button></a>
+        <a href="/notifications"><button className="btn-options"><BsBell size={25}/> Noties</button></a>
+      </div>
       </div>
     );
   }
