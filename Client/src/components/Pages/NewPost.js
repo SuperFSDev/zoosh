@@ -185,7 +185,7 @@ export default class NewPost extends React.Component {
           }
 
           newPost.full_pic = response.data.location;
-
+          
           axios.post('http://localhost:4000/discussions/NewDiscussions', newPost)
             .then()
             .catch();

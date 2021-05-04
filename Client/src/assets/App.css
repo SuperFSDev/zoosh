@@ -1307,6 +1307,15 @@ html {
   border-top-right-radius: 10px!important;
 }
 
+.post-img1{
+  /* border-radius: 10px 10px 0 0; */
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  max-width: 500px;
+  max-height: 250px;
+}
+
 .post-image{
   float:right;
   margin-right: 2rem;
