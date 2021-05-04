@@ -3,14 +3,14 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
-import { Image, Row, Col, Container, Modal } from 'react-bootstrap';
+import { Image, Row, Col, Container, Modal} from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
 import ScrollToTop from 'react-scroll-up'
-import {BsGem, BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart} from 'react-icons/bs'
+import { BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
@@ -169,7 +169,7 @@ export default class Feed extends React.Component {
               </button></a>
 
           </span></div>
-        </div></a><hr/><br/>
+        </div></a><br/>
         </Fragment>
       )
     })
@@ -197,8 +197,8 @@ export default class Feed extends React.Component {
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/me"><button className="feed-option"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/>@{this.state.user.username}</button></a>
-
+              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <br/><br/>
               <CreatePost/>
             </div>
           </Col>  

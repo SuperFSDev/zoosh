@@ -4,8 +4,8 @@ import { Image, Card } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { RiChat1Line, RiDeleteBinLine } from 'react-icons/ri'
-import {BsTrash, BsGem} from 'react-icons/bs'
+import { RiChat1Line } from 'react-icons/ri'
+import {BsTrash, BsHeart,BsChat} from 'react-icons/bs'
 import Clap from '../../images/clap.png'
 import Default from '../../images/defaults/default5.jpg'
 
@@ -95,12 +95,12 @@ export default class History extends React.Component {
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>
             <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                 <span> <BsGem size={20} alt="" /> {post.likes}</span>
+                 <span> <BsHeart size={20} alt="" /> {post.likes}</span>
                 </button></a>
 
 
                 <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
-                  <RiChat1Line size={20} /><span> {post.comments.length}</span>
+                  <BsChat size={20} /><span> {post.comments.length}</span>
                 </button></a>
                 {this.CheckPost(post.user_id,post.Post_id)}
           </div>

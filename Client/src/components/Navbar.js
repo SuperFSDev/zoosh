@@ -65,26 +65,6 @@ render(){
               <SearchbarFilter/>
           </Col>
           <Col sm>
-          {/* <span class="dropdown">
-                          <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
-                          <div class="dropdown-content">
-                            <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
-                            <hr/>
-                            <a href="/login" className="nowrap">Log Out</a>
-                          </div>
-                      </span> */}
-          {/* <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              <Avatar  className="link" alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle/>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu >
-                <a href="/me" className="nowrap" ><p className="contributor-item-profile"><b>My Account</b></p></a>
-                <hr/>
-                <a href="/login" className="nowrap">Log Out</a>
-            </Dropdown.Menu>
-          </Dropdown> */}
-
           </Col>
         </Row>
         <hr/>

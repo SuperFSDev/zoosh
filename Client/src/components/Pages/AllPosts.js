@@ -222,7 +222,7 @@ export default class AllPosts extends React.Component {
         <Fragment key={discussion._id}>
         <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
           {discussion.full_pic === null && <div></div>}
-          {discussion.full_pic != null && <Image src={discussion.full_pic} className="post-img2"/>}
+          {discussion.full_pic != null && <Image src={discussion.full_pic} className="post-img"/>}
           <div class="container">
             <h2><b>{discussion.title}</b></h2> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.username}</b></p> 
@@ -244,7 +244,7 @@ export default class AllPosts extends React.Component {
                   <span><BsChat size={20}  className="icon"/> {discussion.comments.length}</span>
                 </button></a>
           </span></div>
-        </div></a><hr/><br/>
+        </div></a><br/>
         </Fragment>
       )
     })
@@ -272,10 +272,8 @@ export default class AllPosts extends React.Component {
               <a href="/top"><button className="feed-option-active"><BsBarChartFill  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/me"><button className="feed-option"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/>@{this.state.user.username}</button></a>
-
-              
-
+              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <br/><br/>
               <CreatePost/>
             </div>
           </Col>  

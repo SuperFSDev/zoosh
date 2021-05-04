@@ -109,13 +109,14 @@
   cursor: auto!important;
   padding:10px;
   height:auto;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .comment-container{
   background:white;
   padding:10px;
   width:100%;
+  
 }
 
 .discussion-container{
@@ -170,7 +171,7 @@
 }
 
 .links2{
-  color:white;
+  color:rgb(0, 122, 255);
   text-decoration: underline;
 }
 
@@ -182,7 +183,7 @@
   text-decoration: none!important;
   font-size: 65px !important;
   font-weight: bolder;
-  color:white;
+  color:rgb(0, 122, 255);
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   /* font-family: 'Orbitron', sans-serif; */
@@ -194,7 +195,7 @@
   text-decoration: none!important;
   font-size: 35px !important;
   font-weight: bolder;
-  color:black;
+  color:rgb(0, 122, 255);
   font-weight: 900;
   /* font-family: 'Comfortaa', cursive; */
   /* font-family: 'Orbitron', sans-serif; */
@@ -277,7 +278,6 @@
 .top-posts{
   padding:10px;
   height:auto;
-  width:50%;
   border-radius: 5px;
   margin-top: 50px;
 }
@@ -513,13 +513,26 @@
 
 }
 
-.feed-option:hover{
+.feed-option:hover, .feed-option-avatar{
   background:whitesmoke;
   transition: 0.1s;
   color:black;
   border-radius: 10px;
   width:200px;
   text-align: left;
+  border:none;
+}
+
+.feed-option-avatar{
+  background:whitesmoke;
+  transition: 0.1s;
+  color:black;
+  border-radius: 10px;
+  width:200px;
+  text-align: center;
+  border:none;
+  font-size: 20px;
+  padding-bottom: 20px;
 }
 
 .standard-button-remove:hover{border:2px solid black;}
@@ -652,14 +665,6 @@
   border-radius: 5px;
 }
 
-.comment-box-acc{
-  background:white!important;
-  border:1px white solid!important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px!important;
-  border-radius: 5px!important;
-  cursor: auto!important;
-  padding:10px;
-}
 
 .post-link-a, .comm-link{
   text-decoration: none!important;
@@ -1037,6 +1042,26 @@ section::after {
   border:2px solid black;
 }
 
+.community-btn-s{
+  background-color: red;
+  color:white;
+  width: auto;
+  height:40px;
+  border:none;
+  border-radius: 5px;
+  margin-left: 20px!important;
+  font-weight: bold;
+  border:2px solid red;
+}
+
+.community-btn-s:hover{
+  background:white;
+  color:red;
+  cursor: pointer;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+  border:2px solid red;;
+}
+
 .comm-nav-item{
   margin-left: 10px;
   font-size: 16px;
@@ -1137,7 +1162,11 @@ section::after {
 
 .column-title{padding:10px;}
 .column-head{ color:black!important;  border-radius: 10px 10px 0 0;}
-.column-head-comm{  background:#393e46;height: 50px;  border-radius: 15px 15px 0 0;}
+.column-head-comm{  
+  background:rgb(0, 122, 255);
+
+  height: 50px;  
+  border-radius: 15px 15px 0 0;}
 
 .contributors-container{
   height:350px;
@@ -1216,12 +1245,13 @@ section::after {
   text-align:center;
 }
 .card {
-  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 500px;
-  /* border-radius: 10px!important; */
+  border-radius: 10px!important;
   border: none !important;
   margin-right: 20px;
+  margin-bottom: 20px;
   }
 
 .card-empty{
@@ -1249,7 +1279,6 @@ section::after {
 }
 
 .card:hover h3 {
-  /* box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2); */
   color:blue;
 }
 
@@ -1259,36 +1288,23 @@ html {
 
 
 .card2 {
-  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
   transition: 0.3s;
   width: 350px;
   border-radius: 10px!important;
   border: none !important;
   margin-right: 20px;
-}
-
-
-.card2:hover {
-  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
-}
-
-.post-img{
-  /* border-radius: 10px 10px 0 0; */
-  image-rendering: auto;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  width:100%;
-  height:250px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 
 .post-img{
-  /* border-radius: 10px 10px 0 0; */
   image-rendering: auto;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   max-width: 1280px;
   max-height: 1920px;
+  border-top-left-radius: 10px!important;
+  border-top-right-radius: 10px!important;
 }
 
 .post-image{

@@ -11,6 +11,7 @@ import NewPost from './NewPost';
 import Recommended from '../Lists/Recommended'
 import Contributors from '../Lists/Contributors'
 import Skeleton from 'react-loading-skeleton';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class Notifications extends React.Component {
 
@@ -30,10 +31,12 @@ export default class Notifications extends React.Component {
 
   async componentDidMount() {
     var user = JSON.parse(localStorage.getItem('user'));
+    this.getUserDetails();
+
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-        fields: "notifications"
+        fields: "notifications username pic"
       }
     })
       .then((response) => {
@@ -72,6 +75,28 @@ export default class Notifications extends React.Component {
           console.log(error);
         });
   }
+
+    // Fetching the users Details
+    getUserDetails() {
+      var user = JSON.parse(localStorage.getItem('user'));
+      axios.get('http://localhost:4000/users/get-user-details', {
+        params: {
+          id: user._id,
+          fields: 'forums societies likedPosts username pic'
+        }
+      })
+        .then((response) => {
+          this.setState({
+            user: response.data.user,
+            forums: response.data.user.forums,
+            socs: response.data.user.societies,
+            likedPosts: response.data.user.likedPosts
+          })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
   deleteNotification(id){
 
@@ -119,7 +144,10 @@ window.location.reload();
               <a href="/"><button className="feed-option"><BsPerson size={25} className="icon"/> Following</button></a><br/>
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
-              <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Me</button></a>
+              <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <br/>
+                        <br/>
               <CreatePost/>
             </div>
           </Col> 

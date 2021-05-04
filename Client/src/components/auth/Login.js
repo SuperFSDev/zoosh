@@ -95,14 +95,14 @@ class Login extends React.Component {
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <style>{'body { background: rgb(63,94,251); background: -moz-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: -webkit-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f5efb",endColorstr="#68d0fe",GradientType=1); }'}</style>
+                {/* <style>{'body { background: rgb(63,94,251); background: -moz-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: -webkit-radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(104,208,254,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f5efb",endColorstr="#68d0fe",GradientType=1); }'}</style> */}
                 <title>Zoosh / Log In</title>
         </Helmet> 
         <Container>
           <Row>
             <Col>
                 <div className="centered">
-                  <h1 className="header">Zoosh</h1><br/>
+                  <h1 className="header">zoosh</h1><br/>
                   <div class="auth-card">
                   <Formik>
                   {({ errors, touched }) => (

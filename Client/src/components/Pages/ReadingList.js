@@ -122,8 +122,8 @@ export default class ReadingList extends React.Component {
                   <Fragment key={this.state.user._id}>
                     <a href={"/d/?id=" + post._id} style={{ textDecoration: 'none' }}>
                       <p>
-                        <span className="forum-title" style={{ color: 'black' }}>{post.title}</span><br />
-                        <small>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br />
+                        <span className="forum-title" style={{ color: 'black' }}><b>{post.title}</b></span><br /><br/>
+                        <small>{moment(post.time).format(" MMM Do")} ({moment(post.time).startOf('seconds').fromNow()})</small><br /><br/>
                         {post.society == null ? (
                           <span>Posted in<b style={{ color: 'green' }}> General</b><br /></span>
                         ) : (

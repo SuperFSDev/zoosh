@@ -318,7 +318,6 @@ export default class DiscussionPost extends React.Component {
                 <br />
                 {this.isInReadingList(this.state.discussion._id, user._id,)}
                 <br />
-                <span className="voting-btn"><button aria-label="community" className="standard-option-btn-post" ><RiShieldStarLine size={30} /></button></span>
 
               </div>
             </Col>

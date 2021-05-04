@@ -9,7 +9,7 @@ import moment from 'moment'
 import cogoToast from 'cogo-toast'
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../../images/clap.png'
-import {BsSquareFill, BsGem, BsChat} from 'react-icons/bs'
+import {BsSquareFill, BsGem, BsChat, BsHeart} from 'react-icons/bs'
 import Default from '../../../images/defaults/grey.jpg'
 var qs = require('qs');
 export default class CommunityPage extends React.Component {
@@ -161,8 +161,8 @@ export default class CommunityPage extends React.Component {
     const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
       return (
         <div key={discussion._id}>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
-              <Image src={discussion.thumbnail_pic} className="post-img"/>
+            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+              <div class="card2">
               <div class="container">
                 <h3><b>{discussion.title}</b></h3> 
                 <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
@@ -175,7 +175,7 @@ export default class CommunityPage extends React.Component {
                   </b></span><br/>
                 <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                     <span> <BsGem size={20} alt="" /> {discussion.likes}</span>
+                     <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>
                     </button></a>
 
 
@@ -226,7 +226,9 @@ export default class CommunityPage extends React.Component {
                   </figure>
                   <section class="bio-box">
                     <dl class="details"> 
-                      <b className="user-name">{this.state.society.name}</b><br/>
+                      <b className="user-name">{this.state.society.name}</b>
+                      {this.isCommunityFollowed(this.state.societies._id)}
+                      <br/>
                       <span className="user-bio">{this.state.society.description}</span>
                       <br/>
                       <span className="user-badge"><BsSquareFill/> Community</span>
@@ -235,7 +237,6 @@ export default class CommunityPage extends React.Component {
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
                       <br/>
-                      {this.isCommunityFollowed(this.state.societies._id)}
 
                     </dl>
                   </section>
@@ -254,7 +255,9 @@ export default class CommunityPage extends React.Component {
                         <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
                         <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
                     </div>}
-                    {!this.state.isLoading && <div className="PostLayout">{discussionList}</div>}
+                    {!this.state.isLoading && 
+                    <div className="PostLayout">{discussionList}</div>
+                    }
                     {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
                 </div>
               </Col>

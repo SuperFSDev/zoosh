@@ -129,7 +129,7 @@ render(){
                     <div key={society.id}>
                         <a href={"/c/?id=" +society._id} aria-label="community" rel="noopener" className="miniprofile-post-redirect">
                         <div class="miniprofileCommunities">
-                        <div className="column-head-comm" style={{ background: society.color }}/>
+                        <div className="column-head-comm"/>
                         
                         {society.picture == null && <Image  className="soc-item-image" alt="" src={Default}/>}
                         {society.picture != null && <Image  className="soc-item-image" alt="" src={society.picture}/>}
