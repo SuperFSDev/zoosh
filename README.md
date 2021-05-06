@@ -18,7 +18,7 @@ Our project is a web application built using the MERN stack. It is a forum for s
 * [Project dependencies](https://github.com/applied-project-2020/tasq/network/dependencies)
 
 ## Running with Docker (Recommended)
-* Have the latest version of Docker installed on your device.
+* Have the latest version of Docker installed on your device, and **ensure** it is **running**.
 * In the root directory of the repository, run:
 ```
 > docker-compose up
