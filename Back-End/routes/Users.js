@@ -177,23 +177,29 @@ users.get('/get-users', (req, res, next) => {
 // Gets one users details
 users.get('/get-user-details', (req, res, next) => {
 
+    var query;
+
     if (req.query.fields) {
-        var query = UserModel
+        query = UserModel
             .findById({
                 _id: req.query.id
             })
             .select(req.query.fields)
-
-        query.exec(function (err, data) {
-            if (err) return next(err);
-            res.json({
-                user: data
-            });
-        });
     } else {
-        console.log("MUST PASS IN REQUIRED FIELD VARIABLES TO ROUTE: /get-user-details");
+        query = UserModel
+            .findById({
+                _id: req.query.id
+            })
+            .select()
     }
 
+    // Executes query
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            user: data
+        });
+    });
 })
 
 users.get('/get-users-radar', (req, res) => {

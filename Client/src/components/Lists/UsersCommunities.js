@@ -36,7 +36,7 @@ class UsersCommunities extends React.Component {
     axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
-
+        
       }
     })
       .then((response) => {
@@ -92,7 +92,6 @@ class UsersCommunities extends React.Component {
             <Skeleton circle={true} height={100} width={100} style={{ marginLeft: 10 }} count={7} /><br />
 
           </div>
-
         ) : (
             <li className="community-members-item-profile">
               <p className="community-items-feed">

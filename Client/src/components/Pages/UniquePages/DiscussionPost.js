@@ -7,17 +7,17 @@ import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
 import { BsBookmark, BsBookmarkFill, BsGem, BsHeart, BsHeartFill } from 'react-icons/bs'
-import Clapping from '../../../images/clap-hands.png'
-import Clap from '../../../images/clap.png'
 import { RiShieldStarLine } from 'react-icons/ri'
 import ShowMoreText from 'react-show-more-text';
 import cogoToast from 'cogo-toast'
+import Default from '../../../images/defaults/default5.jpg'
 
 export default class DiscussionPost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      user: '',
       discussion: '',
       discussion_title:'',
       user_pic:'',
@@ -40,10 +40,18 @@ export default class DiscussionPost extends React.Component {
   componentDidMount() {
     var id = new URLSearchParams(this.props.location.search).get("id");
 
+    if(!id) {
+      id = JSON.parse(window.sessionStorage.getItem("discussion_id"));
+      window.location += "id=" + id;
+    }
+    else
+      window.sessionStorage.setItem("discussion_id", JSON.stringify(id));
+
     this.getUserDetails();
+
     axios.get('http://localhost:4000/discussions/get-discussion-page', {
       params: {
-        id: id,
+        id: id
       }
     })
       .then((response) => {
@@ -60,10 +68,14 @@ export default class DiscussionPost extends React.Component {
 
   }
   async getUserDetails() {
-    var user = JSON.parse(localStorage.getItem('user'));
+    this.state.user = JSON.parse(localStorage.getItem('user'));
+    if(Object.keys(this.state.user.pic).length == 0){
+      this.setState({user_pic: Default});
+    }
+
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
-        id: user._id,
+        id: this.state.user._id,
         fields: "likedPosts readingList"
       }
     })
@@ -229,7 +241,6 @@ export default class DiscussionPost extends React.Component {
         time: new Date().getTime(),
         user_img: user.pic
       }
-
     }
     const notify = {
       user: user._id,
@@ -241,14 +252,17 @@ export default class DiscussionPost extends React.Component {
       message: "commented on post",
       time: new Date().getTime()
     }
-    axios.post('http://localhost:4000/discussions/CreateComment', newComment)
+    
+    axios.post('http://localhost:4000/notifications/NewComment', newComment)
       .then()
       .catch();
 
     axios.post('http://localhost:4000/notifications/notify', notify)
       .then()
       .catch();
-    window.location.reload();
+    
+    // var loc = "/d/?id=" + this.state.discussion._id;
+    // window.location = window.location.href + loc;
   }
 
 

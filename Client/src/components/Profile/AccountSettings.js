@@ -51,7 +51,8 @@ export default class AccountSettings extends React.Component {
 
     await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
-        id: this.user._id
+        id: this.user._id,
+        fields: 'fullname bio college course dob password pic'
       }
     })
       .then((response) => {

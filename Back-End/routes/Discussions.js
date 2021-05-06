@@ -68,6 +68,10 @@ function checkFileType( file, cb ){
 
 discussions.post('/NewDiscussions', (req, res) => {
 
+    if(Object.keys(req.body.user_pic).length == 0){
+        console.log("USER IMAGE LENGTH IS ZERO");
+    }
+
     DiscussionModel.create({
         user: req.body.user,
         user_id: req.body.user_id,

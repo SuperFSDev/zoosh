@@ -86,7 +86,8 @@ export default class Feed extends React.Component {
           following: response.data.users,
         })
         // After getting array of id's, get posts.
-        this.GetFollowingPosts();
+        if(this.state.following.length !== 0)
+          this.GetFollowingPosts();
       })
       .catch((error) => {
         console.log(error);
