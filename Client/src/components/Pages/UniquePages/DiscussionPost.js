@@ -69,7 +69,7 @@ export default class DiscussionPost extends React.Component {
   }
   async getUserDetails() {
     this.state.user = JSON.parse(localStorage.getItem('user'));
-    if(Object.keys(this.state.user.pic).length == 0){
+    if(this.state.user.pic == null){
       this.setState({user_pic: Default});
     }
 
@@ -253,7 +253,7 @@ export default class DiscussionPost extends React.Component {
       time: new Date().getTime()
     }
     
-    axios.post('http://localhost:4000/notifications/NewComment', newComment)
+    axios.post('http://localhost:4000/discussions/CreateComment', newComment)
       .then()
       .catch();
 
@@ -262,7 +262,7 @@ export default class DiscussionPost extends React.Component {
       .catch();
     
     // var loc = "/d/?id=" + this.state.discussion._id;
-    // window.location = window.location.href + loc;
+    //window.location = window.location.href + loc;
   }
 
 

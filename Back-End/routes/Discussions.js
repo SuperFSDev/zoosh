@@ -243,9 +243,7 @@ discussions.delete('/getDiscussions:id', (req, res) => {  //delete a discussion
 })
 
 discussions.post('/CreateComment', (req, res) => {
-
     DiscussionModel.findByIdAndUpdate(
-
         {
             _id: req.body._id
         }, {
@@ -257,9 +255,7 @@ discussions.post('/CreateComment', (req, res) => {
             new: true,
             runValidators: true
         },
-        //console.log('here now.' + req.body.post),
         function (err, result) {
-
             if (err) {
                 console.log("error" + err);
                 res.send(err)
