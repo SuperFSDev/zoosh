@@ -79,8 +79,9 @@ export default class History extends React.Component {
 
         {this.state.posts.map(post => (
           <div key={this.state.user._id}>
-        <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect">
+        
          <div class="card2">
+         <a href={"/d/?id=" + post._id} className="miniprofile-post-redirect">
           {post.thumbnail_pic === null && <div><Image src={Default} className="post-img"/></div>}
           {post.thumbnail_pic != null && <div><Image src={post.thumbnail_pic} className="post-img"/></div>}
           <div class="container">
@@ -102,9 +103,9 @@ export default class History extends React.Component {
                 <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
                   <BsChat size={20} /><span> {post.comments.length}</span>
                 </button></a>
-                {this.CheckPost(post.user_id,post.Post_id)}
+               
           </div>
-        </div></a><br/><br/><br/>
+          </a>{this.CheckPost(post.user_id,post._id)}</div><br/><br/><br/>
       </div>    
         ))}
       </div>
