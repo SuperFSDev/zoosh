@@ -104,7 +104,7 @@ export default class History extends React.Component {
                 </button></a>
                 {this.CheckPost(post.user_id,post.Post_id)}
           </div>
-        </div></a><hr/><br/>
+        </div></a><br/><br/><br/>
       </div>    
         ))}
       </div>

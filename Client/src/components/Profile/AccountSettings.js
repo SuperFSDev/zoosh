@@ -278,25 +278,6 @@ export default class AccountSettings extends React.Component {
                   </Form.Text>
                 </Form.Group>
               </div><br/>
-                
-                {/* <Form.Group controlId="formCollege">
-                  <Form.Label>Change College</Form.Label>
-                  <Form.Control multiline type="text" placeholder="College..." value={this.state.college} onChange={this.onChangeCollege} />
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group controlId="formCourse">
-                  <Form.Label>Change College Course</Form.Label>
-                  <Form.Control multiline type="text" placeholder="Course..." value={this.state.course} onChange={this.onChangeCourse} />
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group controlId="formDob">
-                  <Form.Label>Change Date of Birth</Form.Label>
-                  <Form.Control multiline type="text" placeholder="DOB..." value={this.state.dob} onChange={this.onChangeDob} />
-                  <Form.Text className="text-muted">
-                  </Form.Text>
-                </Form.Group> */}
               <div className="settings-container">
                 <h3>Account Security</h3><br/>          
                 <Form.Group controlId="formNewPassword">
@@ -315,7 +296,7 @@ export default class AccountSettings extends React.Component {
               
               <div style={{textAlign:'center'}}>
                 <button className="standard-button" variant="secondary" type="submit" >Save changes</button>
-                <a href="/home"><button className="settings-button-cancel" variant="primary" type="button" >Cancel</button></a>
+                <a href="/me"><button className="settings-button-cancel" variant="primary" type="button" >Cancel</button></a>
               </div>
               
             </Form>

@@ -175,7 +175,7 @@ export default class DiscussionPost extends React.Component {
       discussion: discussion,
       discussion_title: title,
       user_pic: user_pic,
-      message: "clapped to your post",
+      message: "liked your post",
       time: new Date().getTime()
     }
     // Adds the discussion to liked list
@@ -349,7 +349,6 @@ export default class DiscussionPost extends React.Component {
                   <div className="post-reactions-mobile">
                     {this.isLiked(this.state.discussion._id, this.state.discussion.user_id, user._id, this.state.discussion.likes)}
                     {this.isInReadingList(this.state.discussion._id, user._id,)}
-                    <span className="voting-btn"><button aria-label="community" className="standard-option-btn-post" ><RiShieldStarLine size={30} /></button></span>
                   </div>
                 </span>
                 <hr />

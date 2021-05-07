@@ -156,7 +156,7 @@ function QuickOptions() {
     return (
       <div>
           <div>
-              <button className="standard-button" onClick={() => setModalShow(true)}>Create a Community</button>
+              <button className="write-button" onClick={() => setModalShow(true)}>Create a Community</button>
               <MyVerticallyCenteredModal
                   show={modalShow}
                   onHide={() => setModalShow(false)}

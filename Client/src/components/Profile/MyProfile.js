@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet'
 import History from './ProfilePostHistory'
 import Skeleton from 'react-loading-skeleton';
-import {BsFillCircleFill, BsBookmarkFill} from 'react-icons/bs'
+import {BsFillCircleFill, BsBookmarkFill, BsBoxArrowInLeft} from 'react-icons/bs'
 import Default from '../../images/defaults/default5.jpg'
 
 export default class MyProfile extends React.Component {
@@ -163,8 +163,8 @@ export default class MyProfile extends React.Component {
                   <section class="bio-box">
                    <dl class="details"> 
                     <b className="user-name">{this.state.user.fullname}</b><a href="/settings"><button className="community-btn-a" >Edit Profile</button></a>
-                    <a href="/saved"><button className="community-btn-a" ><BsBookmarkFill size={20}/></button></a>
-                    <a href="/login"><button className="community-btn-s" onClick={() => { this.Logout() }}><BsBookmarkFill size={20}/>Sign Out</button></a><br/>
+                    <a href="/saved"><button className="community-btn-a" ><BsBookmarkFill size={20}/> Saved</button></a>
+                    <a href="/login"><button className="community-btn-s" onClick={() => { this.Logout() }}><BsBoxArrowInLeft size={20}/> Sign Out</button></a><br/>
 
                     <b>@{this.state.user.username}</b> <br/>
                     <span className="user-badge"><BsFillCircleFill/> Member</span>

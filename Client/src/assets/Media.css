@@ -143,6 +143,6 @@
     }
     .user-column-one{margin-left: 0;width:50%!important;}
     .post-reactions-mobile{display:block;}
-    .mobile-btn-options{display:block;}
+    .mobile-btn-options,.header2{display:block;}
 
   }

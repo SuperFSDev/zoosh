@@ -148,18 +148,18 @@ export default class Feed extends React.Component {
       return (
         <Fragment key={discussion._id}>
         <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect"><div class="card">
-          {discussion.full_pic && <Image src={discussion.full_pic} className="post-img" width="500px" height="250px"/>}
+          {discussion.full_pic && <Image src={discussion.full_pic} className="post-img" />}
           <div class="container">
             <h3><b>{discussion.title}</b></h3> 
-            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.username}</b></p> 
-            <span>Posted in <b style={{ color: 'green' }}>
+            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /></p> 
+            <span><b> @{discussion.username}</b> Posted in <b style={{ color: 'green' }}>
             {discussion.society == null ? (
               <span> <b style={{ color: 'green' }}>General</b></span>
                ) : (
               <span> <b style={{ color: 'green' }}>{discussion.society}</b></span>
               )}<br />
               </b></span><br/>
-            <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+            <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/><hr/>
             <span className="reactions">
               <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
                 <span> <BsHeart  size={20} alt=""  className="icon"/> {discussion.likes}</span>
