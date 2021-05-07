@@ -68,7 +68,7 @@ function checkFileType( file, cb ){
 
 discussions.post('/NewDiscussions', (req, res) => {
 
-    if(Object.keys(req.body.user_pic).length == 0){
+    if(req.body.user_pic == null){
         console.log("USER IMAGE LENGTH IS ZERO");
     }
 
