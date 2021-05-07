@@ -96,6 +96,22 @@
 
 }
 
+.menu{
+  width:303px!important;
+  height:400px;
+  padding:10px;
+  margin-top:5rem;
+  margin-left: 78.2rem;
+  background-color: white;
+  border:1px solid black;
+  position: fixed;
+  z-index: 1000;
+  border-radius: 5px;
+
+  top: 0;
+  box-shadow: 10px 12px 1px -2px rgb(0, 0, 0);
+}
+
 .comment-box{
   width:100%;
   overflow-wrap: break-word;
@@ -296,6 +312,15 @@
   color:gray;
   padding:5px;
   font-size: 12px;
+  margin-top: 10px!important;
+}
+
+.feed-badge-search{
+  background:#EEEEEE;
+  border-radius: 5px;
+  color:gray;
+  width:100%;
+  padding:10px;
   margin-top: 10px!important;
 }
 
@@ -711,7 +736,7 @@
   outline:none!important;
 }
 .searchFilter{
-  width:405px!important;
+  width:905px!important;
   height:350px;
   margin-left: 2vh;
   padding:10px;
@@ -719,11 +744,12 @@
   background-color: white;
   border-radius: 5px;
   position: fixed!important;
-  z-index: 1001!important;
+  z-index: 11!important;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   overflow:hidden; 
   overflow-y:scroll;
 }
+
 .post-form{border-radius: 10px!important;}
 
 .post-link{text-decoration: none!important;}
@@ -1191,7 +1217,11 @@ section::after {
 
   height: 50px;  
   border-radius: 15px 15px 0 0;}
-
+.column-head-user{  
+    background:rgb(177, 193, 211);
+  
+    height: 50px;  
+    border-radius: 15px 15px 0 0;}
 .contributors-container{
   height:350px;
   width:250px;
@@ -1736,6 +1766,19 @@ html, body {
   margin-top: 5vh;
 }
 
+
+.standard-option-btn-post, .standard-reaction-btn-post, .standard-reaction-btn-save{
+  border-radius:10px!important;
+  border:none!important;
+  padding:10px;
+  background:none;
+  color:grey;
+  outline:none!important;
+  margin-top: 5vh;
+}
+
+
+
 .standard-option-btn-comment{
   border-radius:10px!important;
   border:none!important;
@@ -1746,11 +1789,27 @@ html, body {
   margin-bottom: 1vh;
 }
 
- .standard-option-btn-post:hover, .standard-option-btn-comment:hover{
+.standard-reaction-btn-save:hover{
   cursor:pointer;
   background:white;
   transition: 0.2s;
-  color:black;
+  color:rgb(0, 122, 255);
+  border-radius: 15px;
+}
+
+ .standard-option-btn-post:hover, .standard-option-btn-comment:hover{
+  cursor:pointer;
+  background:rgb(255, 0, 0);
+  transition: 0.2s;
+  color:white;
+  border-radius: 15px;
+}
+
+.standard-reaction-btn-post:hover{
+  cursor:pointer;
+  background:white;
+  transition: 0.2s;
+  color:red;
   border-radius: 15px;
 }
 
@@ -1789,6 +1848,9 @@ html, body {
 
 .avatar-feed{
   margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 10px!important;
+  width:150px;
 }
 
 

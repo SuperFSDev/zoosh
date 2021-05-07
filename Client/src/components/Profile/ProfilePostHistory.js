@@ -103,9 +103,15 @@ export default class History extends React.Component {
                 <a href={"/d/?id=" + post._id}><button className="reaction-button" size="small" color="primary">
                   <BsChat size={20} /><span> {post.comments.length}</span>
                 </button></a>
+
+            
+
+                
                
           </div>
-          </a>{this.CheckPost(post.user_id,post._id)}</div><br/><br/><br/>
+          </a>
+              <span> {this.CheckPost(post.user_id,post._id)}</span>
+          </div><br/><br/><br/>
       </div>    
         ))}
       </div>

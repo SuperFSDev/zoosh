@@ -10,7 +10,7 @@ import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
 import ScrollToTop from 'react-scroll-up'
-import { BsPersonFill, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart,BsHouse} from 'react-icons/bs'
+import { BsSearch, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart,BsHouse} from 'react-icons/bs'
 import { Helmet } from 'react-helmet'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
@@ -152,7 +152,7 @@ export default class Feed extends React.Component {
           <div class="container">
             <h3><b>{discussion.title}</b></h3> 
             <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /></p> 
-            <span><b> @{discussion.username}</b> Posted in <b style={{ color: 'green' }}>
+            <span><b> {discussion.user}</b> Posted in <b style={{ color: 'green' }}>
             {discussion.society == null ? (
               <span> <b style={{ color: 'green' }}>General</b></span>
                ) : (
@@ -198,7 +198,8 @@ export default class Feed extends React.Component {
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <a href="/search"><button className="feed-option"><BsSearch  size={25} className="icon"/>  Search</button></a>
+              <a href="/me"><button className="feed-option-avatar"><Image alt={this.state.user.fullname} src={this.state.user.pic}  className="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
               <br/><br/>
               <CreatePost/>
             </div>

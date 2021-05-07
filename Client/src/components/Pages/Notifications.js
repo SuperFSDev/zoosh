@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import moment from 'moment'
 import { Row, Col, Container, Image, Modal } from 'react-bootstrap'
 import Clapped from '../../images/clap-hands.png'
-import { BsTrash, BsHouse, BsBell, BsGem, BsBarChart } from "react-icons/bs";
+import { BsTrash, BsHouse, BsBell, BsSearch, BsBarChart } from "react-icons/bs";
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
 import Recommended from '../Lists/Recommended'
@@ -145,7 +145,8 @@ window.location.reload();
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option-active"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <a href="/search"><button className="feed-option"><BsSearch  size={25} className="icon"/>  Search</button></a>
+              <a href="/me"><button className="feed-option-avatar"><Image alt={this.state.user.fullname} src={this.state.user.pic}  className="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
               <br/><br/>
               <CreatePost/>
             </div>
@@ -174,7 +175,7 @@ window.location.reload();
                   </div></a>
                {/* <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteNotification(notification._id) }}><BsXCircleFill size={30} /></button> */}
                </div> )}
-                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Clear notifications  <BsTrash size={20} /></button>
+                <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.deleteAllNotification() }}>Clear Notifications  <BsTrash size={20} /></button>
               </div>
             </Col>
             <Col sm>

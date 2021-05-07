@@ -6,7 +6,6 @@ import { Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, 
 import { BsTrash, BsHouse, BsBell, BsGem, BsBarChart, BsChat, BsTypeH1 } from "react-icons/bs";
 import {BiRocket} from 'react-icons/bi'
 import axios from 'axios';
-import SearchbarFilter from '../components/Common/SearchbarFilter'
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -59,7 +58,6 @@ render(){
         </Col>  
                
           <Col>
-              <SearchbarFilter/>
           </Col>
           <Col sm>
           </Col>

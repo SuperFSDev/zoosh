@@ -269,12 +269,12 @@ export default class DiscussionPost extends React.Component {
 
   isLiked(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) {
     if (this.state.likedPosts.includes(discussion_id) === true) {
-      return (<span className="voting-btn"><button className="standard-option-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
+      return (<span className="voting-btn"><button className="standard-reaction-btn-post" onClick={() => { this.RemovefromLikedPosts(discussion_id, user_id, likes) }}>
         <BsHeartFill size={25} style={{color:'rgb(255, 59, 48)'}} /> {this.state.discussion.likes}</button><br /></span>
       )
     }
     else {
-      return (<span className="voting-btn"><button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) }}>
+      return (<span className="voting-btn"><button aria-label="add" className="standard-reaction-btn-post" onClick={() => { this.addToLikedPosts(discussion_id, discussion_uID, user_id, likes, user_fullname, title, user_pic) }}>
         <BsHeart size={25} /> {this.state.discussion.likes} </button></span>
       )
     }
@@ -283,12 +283,12 @@ export default class DiscussionPost extends React.Component {
   isInReadingList(discussion_id, user_id) {
     if (this.state.readingList.includes(discussion_id) === true) {
       return (<span className="voting-btn">
-        <button aria-label="remove" className="standard-option-btn-post" onClick={() => { this.RemoveFromReadingList(discussion_id, user_id) }}><BsBookmarkFill size={30} /></button></span>
+        <button aria-label="remove" className="standard-reaction-btn-save" onClick={() => { this.RemoveFromReadingList(discussion_id, user_id) }}><BsBookmarkFill size={30} /></button></span>
       )
     }
     else {
       return (<span className="voting-btn">
-        <button aria-label="add" className="standard-option-btn-post" onClick={() => { this.addToReadingList(discussion_id, user_id) }}><BsBookmark size={30} /></button></span>
+        <button aria-label="add" className="standard-reaction-btn-save" onClick={() => { this.addToReadingList(discussion_id, user_id) }}><BsBookmark size={30} /></button></span>
       )
     }
   }

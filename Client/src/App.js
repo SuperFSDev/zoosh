@@ -27,6 +27,8 @@ const Explore = loadable(() => import('./components/Pages/Explore'));
 const DiscussionPost = loadable(() => import('./components/Pages/UniquePages/DiscussionPost'));
 const Leaderboard = loadable(() => import('./components/Pages/Leaderboard'));
 const Notifications = loadable(() => import('./components/Pages/Notifications'));
+const Search = loadable(() => import('./components/Pages/Search'));
+
 
 class App extends React.Component {
   render(){
@@ -40,6 +42,7 @@ class App extends React.Component {
             <TopPosts path="/top"/>
               <Following exact path="/"/>
               <Following exact path="/home"/>
+              <Search exact path="/search"/>
               <Users exact path="/users"/>
               <Profile exact path="/me"/>
               <ReadingList exact path="/saved"/>

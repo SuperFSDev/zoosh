@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import Button from '@material-ui/core/Button';
-import { BsBell, BsChat, BsGem, BsArrowUp, BsHouse, BsHeart, BsBarChartFill } from 'react-icons/bs'
+import { BsBell, BsChat, BsSearch, BsArrowUp, BsHouse, BsHeart, BsBarChartFill } from 'react-icons/bs'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
@@ -74,7 +74,7 @@ export default class AllPosts extends React.Component {
   getDiscussions() {
     axios.get('http://localhost:4000/discussions/get-discussions', {
       params: {
-        fields: 'username user_id society time full_pic user_pic title content likes comments',
+        fields: 'user user_id society time full_pic user_pic title content likes comments',
         sort: 'likes'
       }
     })
@@ -226,7 +226,7 @@ export default class AllPosts extends React.Component {
           <div class="container">
             <h2><b>{discussion.title}</b></h2> 
             
-            <span><p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /></p>  <b> @{discussion.username}</b> Posted in <b style={{ color: 'rgb(52,199,89)' }}>
+            <span><p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /></p>  <b> {discussion.user}</b> Posted in <b style={{ color: 'rgb(52,199,89)' }}>
             {discussion.society == null ? (
               <span> <b style={{color: 'rgb(52,199,89)' }}>General</b></span>
                ) : (
@@ -272,7 +272,8 @@ export default class AllPosts extends React.Component {
               <a href="/top"><button className="feed-option-active"><BsBarChartFill  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
-              <a href="/me"><button className="feed-option-avatar"><Avatar alt={this.state.user.fullname} src={this.state.user.pic}  roundedCircle class="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
+              <a href="/search"><button className="feed-option"><BsSearch  size={25} className="icon"/>  Search</button></a>
+              <a href="/me"><button className="feed-option-avatar"><Image alt={this.state.user.fullname} src={this.state.user.pic}   className="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
               <br/><br/>
               <CreatePost/>
             </div>
