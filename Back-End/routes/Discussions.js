@@ -4,6 +4,7 @@ const aws = require( 'aws-sdk' );
 const multerS3 = require( 'multer-s3' );
 const multer = require('multer');
 const path = require( 'path' );
+const mongoose = require('mongoose');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -142,28 +143,24 @@ discussions.get('/get-discussions', (req, res, next) => {
 discussions.get('/get-following-feed', (req, res, next) => {
 
     var following = req.query.ids.following;
-    var discussions = [];
 
-    for(var i = 0; i < following.length; i++) 
-    {
-        // Gets discussions for the given user ID
-        var query = DiscussionModel
-            .find({user_id: following[i]})
+    var query = DiscussionModel
+            .find({
+                user_id: { $in: following }
+            })
             .select('user society time full_pic user_pic title content likes comments user_id')
             .sort({'likes': -1})
         
         query.exec(function (err, data) {
             // Error check
             if (err) return next(err);
+            
+            console.log(data);
 
-            discussions.push(data);
-            if(discussions.length == following.length) {
-                res.json({
-                    discussions: data
-                });
-            }
+            res.json({
+                discussions: data
+            });
         });
-    }
 })
 
 discussions.get('/get-discussion-page', (req, res) => {
