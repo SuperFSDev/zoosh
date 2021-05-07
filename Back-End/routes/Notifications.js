@@ -20,7 +20,7 @@ notifications.use(function (req, res, next) {
 
 // Create a notification for a user 
 notifications.post('/notify', (req, res) => {
-    console.log("Notified ID = " + req.body.user_id);
+    console.log("Notified ID = " + req.body.user);
     NotificationModel.create({
 
         // user: req.body.user,

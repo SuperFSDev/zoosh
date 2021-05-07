@@ -58,6 +58,7 @@ export default class DiscussionPost extends React.Component {
         console.log(response);
         this.setState({
           discussion: response.data.discussion,
+          user_pic: response.data.discussion.user_pic,
           comments: response.data.discussion.comments,
           isLoading: false,
         })
@@ -69,7 +70,7 @@ export default class DiscussionPost extends React.Component {
   }
   async getUserDetails() {
     this.state.user = JSON.parse(localStorage.getItem('user'));
-    if(Object.keys(this.state.user.pic).length == 0){
+    if(this.state.user.pic == null){
       this.setState({user_pic: Default});
     }
 
@@ -253,7 +254,7 @@ export default class DiscussionPost extends React.Component {
       time: new Date().getTime()
     }
     
-    axios.post('http://localhost:4000/notifications/NewComment', newComment)
+    axios.post('http://localhost:4000/discussions/CreateComment', newComment)
       .then()
       .catch();
 
@@ -262,7 +263,7 @@ export default class DiscussionPost extends React.Component {
       .catch();
     
     // var loc = "/d/?id=" + this.state.discussion._id;
-    // window.location = window.location.href + loc;
+    //window.location = window.location.href + loc;
   }
 
 
@@ -317,7 +318,7 @@ export default class DiscussionPost extends React.Component {
             <Col sm={2}>
               <div className="post-reactions">
                 <span>
-                  <Image alt="" src={user.pic} className="user-image"  roundedCircle/><br/><br/>
+                  <Image alt="" src={this.state.user_pic} className="user-image"  roundedCircle/><br/><br/>
                   <b>{this.state.discussion.user}</b><br />
                   <a href={"/u/?id=" + this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                 </span>
@@ -358,7 +359,7 @@ export default class DiscussionPost extends React.Component {
                   <h4>Responses ({this.state.comments.length})</h4>
 
                   <div className="comment-box-acc">
-                    <Avatar alt="User" src={user.pic} /><br />
+                    <Avatar alt="User" src={this.state.discussion.user_pic} /><br />
                     <Form>
                       <label>
                         <textarea required rows={2} cols={40} className="comment-input" multiple placeholder="Leave a comment" value={this.state.comment} onChange={this.onChangeComment} />
