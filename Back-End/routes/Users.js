@@ -273,20 +273,18 @@ users.get('/get-followed-users', (req, res, next) => {
 })
 
 users.post('/edit-user-profile', (req, res) => {
+    
+    console.log(req.body);
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         UserModel.findByIdAndUpdate({
                 _id: req.body.user_id,
             }, {
-                $addToSet: {
-                    pic: req.body.pic,
-                    fullname: req.body.fullname,
-                    bio: req.body.bio,
-                    college: req.body.college,
-                    course: req.body.course,
-                    dob: req.body.dob,
-                    password: hash
-                }
+                pic: req.body.pic,
+                fullname: req.body.fullname,
+                username: req.body.username,
+                bio: req.body.bio,
+                password: hash
             }, {
                 upsert: true,
                 new: true,
@@ -296,7 +294,7 @@ users.post('/edit-user-profile', (req, res) => {
             function (err, result) {
 
                 if (err) {
-                    console.log("error");
+                    console.log(err);
                     res.send(err)
                 } else {
                     if (result) {

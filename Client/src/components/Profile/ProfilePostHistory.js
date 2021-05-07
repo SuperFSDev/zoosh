@@ -23,8 +23,8 @@ export default class History extends React.Component {
     var user_id = new URLSearchParams(document.location.search).get("id");
     if(user_id == null)
     {
-      var user = JSON.parse(localStorage.getItem('user'));
-      user_id = user._id;
+      this.state.user = JSON.parse(localStorage.getItem('user'));
+      user_id = this.state.user._id;
     }
 
     await axios.get('http://localhost:4000/discussions/get-user-discussions', {
@@ -86,7 +86,7 @@ export default class History extends React.Component {
           {post.thumbnail_pic != null && <div><Image src={post.thumbnail_pic} className="post-img"/></div>}
           <div class="container">
             <h3><b>{post.title}</b></h3> 
-            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={post.user_pic}  roundedCircle /><b> @{post.user}</b></p> 
+            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={this.state.user.pic}  roundedCircle /><b> @{post.user}</b></p> 
             <span>Posted in <b style={{ color: 'green' }}>
             {post.society == null ? (
               <span> in <b style={{ color: 'green' }}>General</b></span>
