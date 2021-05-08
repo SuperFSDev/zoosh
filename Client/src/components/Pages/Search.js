@@ -6,7 +6,9 @@ import {Helmet} from 'react-helmet'
 import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
 import CreateCommunity from '../Common/CreateCommunity'
 import Skeleton from 'react-loading-skeleton';
-import Default from '../../images/defaults/grey.jpg'
+import Default from '../../images/defaults/default5.jpg'
+import Default2 from '../../images/defaults/grey.jpg'
+
 import {  BsHeart } from 'react-icons/bs'
 
 export default class Search extends React.Component {
@@ -214,7 +216,7 @@ render(){
                         <div class="miniprofileCommunities">
                         <div className="column-head-comm"/>
                         
-                        {society.picture == null && <Image  className="soc-item-image" alt="" src={Default}/>}
+                        {society.picture == null && <Image  className="soc-item-image" alt="" src={Default2}/>}
                         {society.picture != null && <Image  className="soc-item-image" alt="" src={society.picture}/>}
                         <h3><b>{society.name}</b></h3>
                         <p><b>{society.users.length} members</b></p>

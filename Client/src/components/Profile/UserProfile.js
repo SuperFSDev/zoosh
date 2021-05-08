@@ -246,12 +246,12 @@ export default class UserProfile extends React.Component {
     var getUser = JSON.parse(localStorage.getItem('user'))
     if (user_id === getUser._id) {
       return (<div>
-        <b>You</b> clapped to a post written by <b>{discussionUser}.</b>
+        <b>You</b> liked a post written by <b>{discussionUser}.</b>
       </div>)
 
     } else {
       return (<div>
-        <b>{fullname}</b> clapped to a post written by <b>{discussionUser}.</b>
+        <b>{fullname}</b> liked a post written by <b>{discussionUser}.</b>
       </div>)
     }
 

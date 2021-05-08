@@ -30,7 +30,7 @@ export default class History extends React.Component {
     await axios.get('http://localhost:4000/discussions/get-user-discussions', {
       params: {
         id: user_id,
-        fields: 'user society time thumbnail_pic title content likes comments user_id',
+        fields: 'user society time thumbnail_pic title content likes comments user_id user_pic',
         sort: 'likes'
       }
     })
@@ -86,12 +86,16 @@ export default class History extends React.Component {
           {post.thumbnail_pic != null && <div><Image src={post.thumbnail_pic} className="post-img"/></div>}
           <div class="container">
             <h3><b>{post.title}</b></h3> 
-            <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={this.state.user.pic}  roundedCircle /><b> @{post.user}</b></p> 
+            <p className="nowrap"> 
+            {/* <Image alt="" className="profile-btn-wrapper-left" src={post.user_pic}  roundedCircle /> */}
+            {post.user_pic == null && <Image alt="" className="profile-btn-wrapper-left" src={Default}  roundedCircle />}
+            {post.user_pic != null && <Image alt="" className="profile-btn-wrapper-left" src={post.user_pic}  roundedCircle />}
+            <b> @{post.user}</b></p> 
             <span>Posted in <b style={{ color: 'green' }}>
             {post.society == null ? (
-              <span> in <b style={{ color: 'green' }}>General</b></span>
+              <span><b style={{ color: 'green' }}>General</b></span>
                ) : (
-              <span> in <b style={{ color: 'green' }}>{post.society}</b></span>
+              <span><b style={{ color: 'green' }}>{post.society}</b></span>
               )}<br />
               </b></span><br/>
             <span style={{ color: 'gray', fontSize: 10 }}>({moment(post.time).startOf('seconds').fromNow()})</span><br/>

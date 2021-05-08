@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import {Image, Row, Col, Container, Badge} from 'react-bootstrap'
+import {Image, Row, Col, Container, Badge, Modal, Button} from 'react-bootstrap'
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
 import moment from 'moment'
@@ -13,6 +13,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import {BsSquareFill} from'react-icons/bs'
 import Default from '../../../images/defaults/grey.jpg'
+import cogoToast from 'cogo-toast'
 
 export default class AdminPage extends React.Component {
 
@@ -151,7 +152,20 @@ export default class AdminPage extends React.Component {
           .then().catch();
           window.location = '/s/?id='+Soc_id;
           }
-             
+    
+
+    CheckSociety(id, society_id) {
+        return (<div>
+          <button className="delete-btn" onClick={() => { this.DeleteCommunity(id, society_id) }}> Delete Community</button>
+        </div>)
+    }
+    DeleteCommunity(id, society_id) {
+      axios.delete('http://localhost:4000/societies/deleteSoc' + society_id) 
+        .then()
+        .catch();
+      window.location = '/';
+    }
+
     render(){
       var title = this.state.society.name + " - Website"
     
@@ -215,7 +229,8 @@ export default class AdminPage extends React.Component {
                       <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
                       <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
               </Helmet>
-              
+
+
               <Container>
             <Row>
               <Col>
@@ -235,8 +250,7 @@ export default class AdminPage extends React.Component {
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
                       <br/>
-                      <button className="follow-btn">Settings</button>
-
+                      <span> {this.CheckSociety(this.state.society.admin,this.state.society._id)}</span>      
                     </dl>
                   </section>
                 </p>
