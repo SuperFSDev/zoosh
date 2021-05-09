@@ -22,7 +22,8 @@ societies.post('/create', (req, res) => {
         name: req.body.name,
         description: req.body.description,
         admin: req.body.admin,
-        picture: req.body.picture
+        picture: req.body.picture,
+        users: req.body.admin
     }
 
     console.log(socData);
@@ -137,6 +138,21 @@ societies.get('/get-users-societies', (req, res, next) => {
         if (err) return next(err);
         res.json({
             societies: data
+        });
+    });
+})
+
+// Gets all of the users in a society
+societies.get('/get-society-users', (req, res, next) => {
+
+    var query = SocietyModel
+        .findById({_id: req.query.id})
+        .select('users')
+
+    query.exec(function (err, data) {
+        if (err) return next(err);
+        res.json({
+            users: data
         });
     });
 })

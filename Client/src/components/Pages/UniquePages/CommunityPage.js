@@ -14,7 +14,6 @@ import Default from '../../../images/defaults/grey.jpg'
 var qs = require('qs');
 export default class CommunityPage extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -178,7 +177,6 @@ export default class CommunityPage extends React.Component {
                      <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>
                     </button></a>
 
-
                     <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
                       <span><BsChat size={20} /> {discussion.comments.length}</span>
                     </button></a>
@@ -190,14 +188,13 @@ export default class CommunityPage extends React.Component {
 
 
     if (this.state.society.admin === user._id) {
+      console.log("IS ADMIN");
       return (
         <div>
           <AdminPage />
         </div>
-
       );
     }
-
     else {
       return (
         <div>

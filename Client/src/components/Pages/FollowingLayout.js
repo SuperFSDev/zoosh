@@ -112,27 +112,7 @@ export default class Feed extends React.Component {
           posts: response.data.discussions,
           isLoading: false
          });
-
-        // var discussions = response.data.discussions;
-        // var joined;
-        
-        // for(var discussion in discussions) {
-        //   if(discussion.length > 0) {
-        //     if(discussion.length == 1) {
-        //       joined = this.state.posts.concat(discussions[0]);
-        //       this.setState({ posts: joined });
-        //     }
-        //   } else {
-        //     discussion.forEach(element => {
-        //       joined = this.state.discussions.concat(element);
-        //       this.setState({ posts: joined });
-        //     });
-        //   }     
-        // }
-        // this.setState({
-        //   posts: response.data.discussions,
-        //   isLoading: false,
-        // })
+         
     })
     .catch((error) => {
       console.log(error);

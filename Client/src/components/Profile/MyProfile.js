@@ -53,7 +53,8 @@ export default class MyProfile extends React.Component {
           society_ids: response.data.user.societies,
           badges: response.data.user.badges,
           posts: response.data.user.posts,
-          likedPosts: response.data.user.likedPosts
+          likedPosts: response.data.user.likedPosts,
+          isLoading: false
         })
         console.log(this.state.societies);
       })
@@ -69,15 +70,17 @@ export default class MyProfile extends React.Component {
       }
     })
       .then((response) => {
-        if (this.state.post == undefined) {
-          this.setState({
-            posts: response.data.discussions
-          })
-        } else {
-          this.setState({
-            posts: this.state.posts.concat(response.data.discussions)
-          })
-        }
+        console.log(response);
+        this.setState({posts: response.data.discussions});
+        // if (this.state.post == undefined) {
+        //   this.setState({
+        //     posts: response.data.discussions
+        //   })
+        // } else {
+        //   this.setState({
+        //     posts: this.state.posts.concat(response.data.discussions)
+        //   })
+        // }
       })
       .catch((error) => {
         console.log(error);

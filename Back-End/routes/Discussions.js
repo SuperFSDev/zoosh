@@ -125,7 +125,7 @@ discussions.get('/get-discussions', (req, res, next) => {
         var query = DiscussionModel
         .find()
         .select(req.query.fields)
-        .sort({sort: -1})
+        .sort({'time': -1})
         .limit(parseInt(req.query.limit));
 
         query.exec(function (err, data) {
@@ -182,7 +182,7 @@ discussions.get('/get-discussion-page', (req, res) => {
 })
 
 discussions.get('/get-user-discussions', (req, res) => {
-
+    
     var sort = req.query.sort;
 
     if(req.query.fields)
