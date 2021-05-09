@@ -125,7 +125,7 @@ discussions.get('/get-discussions', (req, res, next) => {
         var query = DiscussionModel
         .find()
         .select(req.query.fields)
-        .sort({'time': -1})
+        .sort({'likes': -1})
         .limit(parseInt(req.query.limit));
 
         query.exec(function (err, data) {
@@ -149,7 +149,7 @@ discussions.get('/get-following-feed', (req, res, next) => {
                 user_id: { $in: following }
             })
             .select('user society time full_pic user_pic title content likes comments user_id')
-            .sort({'likes': -1})
+            .sort({'time': -1})
         
         query.exec(function (err, data) {
             // Error check
@@ -205,7 +205,9 @@ discussions.get('/get-user-discussions', (req, res) => {
 
 })
 
-discussions.get('/get-society-discussions', (req, res) => {
+discussions.get('/get-society-discussions', (req, res, next) => {
+
+    console.log("ID = " + req.query.id);
 
     var sort = req.query.sort;
 
@@ -214,11 +216,11 @@ discussions.get('/get-society-discussions', (req, res) => {
         var query = DiscussionModel
         .find({society: req.query.society})
         .select(req.query.fields)
-        .sort({sort: -1})
-        .limit(parseInt(req.query.limit));
+        .sort({likes: -1})
 
         query.exec(function (err, data) {
             if (err) return next(err);
+            console.log(data);
             res.json({
                 discussions: data
             });

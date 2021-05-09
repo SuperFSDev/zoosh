@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import { Image, Container, Row, Col , Badge} from 'react-bootstrap'
+import { Image, Container, Row, Col, Badge } from 'react-bootstrap'
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import AdminPage from './AdminPage';
@@ -9,7 +9,7 @@ import moment from 'moment'
 import cogoToast from 'cogo-toast'
 import Skeleton from 'react-loading-skeleton';
 import Clap from '../../../images/clap.png'
-import {BsSquareFill, BsGem, BsChat, BsHeart} from 'react-icons/bs'
+import { BsSquareFill, BsGem, BsChat, BsHeart, BsTrash } from 'react-icons/bs'
 import Default from '../../../images/defaults/grey.jpg'
 var qs = require('qs');
 export default class CommunityPage extends React.Component {
@@ -22,7 +22,7 @@ export default class CommunityPage extends React.Component {
       time: '',
       score: '',
       UserList: [],
-      societies:[],
+      societies: [],
       posts: [],
       events: [],
       questions: [],
@@ -53,8 +53,8 @@ export default class CommunityPage extends React.Component {
         console.log(error);
       });
 
-  // Get user details to check for the community ID
-  await axios.get('http://localhost:4000/users/get-user-details', {
+    // Get user details to check for the community ID
+    await axios.get('http://localhost:4000/users/get-user-details', {
       params: {
         id: user._id,
         fields: 'societies'
@@ -70,28 +70,21 @@ export default class CommunityPage extends React.Component {
         console.log(error);
       });
 
-
-  await axios.get('http://localhost:4000/discussions/get-society-discussions', {
-    params: {
-      society: this.state.society.name,
-      fields: 'user society time thumbnail_pic title content likes comments user_id user_pic',
-      sort: 'likes'
-    }
-  })
-    .then((response) => {
-      if (this.state.post == undefined) {
-        this.setState({
-          posts: response.data.discussions
-        })
-      } else {
-        this.setState({
-          posts: this.state.posts.concat(response.data.discussions)
-        })
+    axios.get('http://localhost:4000/discussions/get-society-discussions', {
+      params: {
+        society: this.state.society.name,
+        fields: 'user user_id society time full_pic user_pic title content likes comments',
+        sort: 'likes'
       }
     })
-    .catch((error) => {
-      console.log(error);
-    });}
+      .then((response) => {
+        this.setState({ posts: this.state.posts.concat(response.data.discussions) })
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   // Adding a User to a society array and adding the society to the users array
   async addUserToSoc(soc) {
 
@@ -112,7 +105,7 @@ export default class CommunityPage extends React.Component {
         cogoToast.success("Followed", { position: 'bottom-center' });
       })
       .catch(function (error) {
-        console.log(error); 
+        console.log(error);
       })
 
 
@@ -133,20 +126,43 @@ export default class CommunityPage extends React.Component {
       })
   }
 
-  
+
   // Check to see if the user follows the community and if they do/dont display the required options
-  isCommunityFollowed(id){
+  isCommunityFollowed(id) {
 
     if (this.state.societies.includes(id) === true) {
-      return(
+      return (
         <button className="unfollow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Unfollow</button>
-        )
+      )
     }
-    else{
-      return(
+    else {
+      return (
         <button className="follow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
       )
     }
+
+  }
+
+  CheckPost(discussion_id) {
+    var user = JSON.parse(localStorage.getItem('user'));
+    if (user._id === this.state.admin) {
+      return (<div>
+        <button className="reaction-button" onClick={() => { this.onDeletePost(discussion_id) }}><BsTrash size={17} /> Delete</button>
+      </div>)
+    }
+  }
+
+  onDeletePost(discussion_id) {
+    axios.delete('http://localhost:4000/discussions/getDiscussions' + discussion_id) //deletes a discussion by ID
+      .then()
+      .catch();
+
+    const RemovedDiscussion = {
+      discussion_id: discussion_id
+    }
+    axios.post('http://localhost:4000/users/removeFromReadingList', RemovedDiscussion)
+      .then().catch();
+    window.location.reload(); //refreshes page automatically 
 
   }
 
@@ -160,38 +176,77 @@ export default class CommunityPage extends React.Component {
     const discussionList = this.state.posts.reverse().sort((a, b) => b.likes - a.likes).map(discussion => {
       return (
         <div key={discussion._id}>
-            <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
-              <div class="card2">
+          <a href={"/d/?id=" + discussion._id} className="miniprofile-post-redirect">
+            <div class="card2">
               <div class="container">
-                <h3><b>{discussion.title}</b></h3> 
-                <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic}  roundedCircle /><b> @{discussion.user}</b></p> 
+                <h3><b>{discussion.title}</b></h3>
+                <p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic} roundedCircle /><b> @{discussion.user}</b></p>
                 <span>Posted in <b style={{ color: 'green' }}>
-                {discussion.society == null ? (
-                  <span> in <b style={{ color: 'green' }}>General</b></span>
+                  {discussion.society == null ? (
+                    <span> in <b style={{ color: 'green' }}>General</b></span>
                   ) : (
-                  <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
+                    <span> in <b style={{ color: 'green' }}>{discussion.society}</b></span>
                   )}<br />
-                  </b></span><br/>
-                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br/>
+                </b></span><br />
+                <span style={{ color: 'gray', fontSize: 10 }}>({moment(discussion.time).startOf('seconds').fromNow()})</span><br />
                 <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                     <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>
-                    </button></a>
+                  <span> <BsHeart size={20} alt="" /> {discussion.likes}</span>
+                </button></a>
 
-                    <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
-                      <span><BsChat size={20} /> {discussion.comments.length}</span>
-                    </button></a>
-              </div><hr/>
-            </div></a><br/>
+                <a href={"/d/?id=" + discussion._id}><button className="reaction-button" size="small" color="primary">
+                  <span><BsChat size={20} /> {discussion.comments.length}</span>
+                </button></a>
+              </div>
+              <span> {this.CheckPost(discussion._id)}</span>
+              <hr />
+            </div></a><br />
         </div>
       )
     })
 
 
     if (this.state.society.admin === user._id) {
-      console.log("IS ADMIN");
       return (
         <div>
-          <AdminPage />
+          <Helmet>
+            <meta charSet="utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>{title}</title>
+
+            {/* LINKS */}
+            <link rel="canonical" href="http://mysite.com/example" />
+            <link rel="apple-touch-icon" href="http://mysite.com/img/apple-touch-icon-57x57.png" />
+            <link rel="apple-touch-icon" sizes="72x72" href="http://mysite.com/img/apple-touch-icon-72x72.png" />
+          </Helmet>
+
+          <Container>
+            <Row>
+              <Col>
+                <AdminPage />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm>
+                <div className="top-posts">
+                  {this.state.isLoading &&
+                    <div style={{ height: 1000 }}>
+                      <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                      <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+                    </div>}
+                  {!this.state.isLoading &&
+                    <div className="PostLayout">{discussionList}</div>
+                  }
+                  {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
+                </div>
+              </Col>
+            </Row>
+          </Container>
+
         </div>
       );
     }
@@ -215,48 +270,47 @@ export default class CommunityPage extends React.Component {
           <Container>
             <Row>
               <Col>
-              <div className="user-column-one">
-                <p className="nowrap">
-                  <figure class="headshot">
-                    {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={130} height={130} s />}
-                    {this.state.society.picture != null && <Image className="user-image" alt="" src={this.state.society.picture}   width={130} height={130} />}
-                  </figure>
-                  <section class="bio-box">
-                    <dl class="details2"> 
-                      <b className="user-name">{this.state.society.name}</b>
-                      <br/>
-                      <b className="user-bio">{this.state.society.description}</b>
-                      <br/>
-                      <span className="user-badge"><BsSquareFill/> Community</span>
-                      <br/>
+                <div className="user-column-one">
+                  <p className="nowrap">
+                    <figure class="headshot">
+                      {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={130} height={130} s />}
+                      {this.state.society.picture != null && <Image className="user-image" alt="" src={this.state.society.picture} width={130} height={130} />}
+                    </figure>
+                    <section class="bio-box">
+                      <dl class="details2">
+                        <b className="user-name">{this.state.society.name}</b>
+                        <br />
+                        <b className="user-bio">{this.state.society.description}</b>
+                        <br />
+                        <span className="user-badge"><BsSquareFill /> Community</span>
+                        <br />
                         {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
                         {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                        {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}    
-                      <br/>
-                      {this.isCommunityFollowed(this.state.societies._id)}
-
-
-                    </dl>
-                  </section>
-                </p>
-              </div>
+                        {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}
+                        <br />
+                        {this.isCommunityFollowed(this.state.society._id)}
+                        {this.state.society._id}
+                      </dl>
+                    </section>
+                  </p>
+                </div>
               </Col>
             </Row>
             <Row>
               <Col sm>
                 <div className="top-posts">
                   {this.state.isLoading &&
-                    <div style={{height:1000}}>
-                        <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
-                        <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
-                        <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
-                        <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
-                        <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
+                    <div style={{ height: 1000 }}>
+                      <Skeleton circle={true} height={30} width={30} style={{ marginRight: 10 }} />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} />
+                      <Skeleton height={30} width={300} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={400} style={{ marginBottom: 10 }} /><br />
+                      <Skeleton height={30} width={350} style={{ marginBottom: 10 }} /><br />
                     </div>}
-                    {!this.state.isLoading && 
+                  {!this.state.isLoading &&
                     <div className="PostLayout">{discussionList}</div>
-                    }
-                    {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
+                  }
+                  {this.state.posts.length === 0 && <div className="card-empty-community">No posts yet, follow this community and start posting!</div>}
                 </div>
               </Col>
             </Row>

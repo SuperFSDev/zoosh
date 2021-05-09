@@ -29,8 +29,8 @@ societies.post('/create', (req, res) => {
     console.log(socData);
 
     SocietyModel.findOne({
-        name: req.body.name
-    })
+            name: req.body.name
+        })
         .then(society => {
             console.log(society);
             // Checks if society exists in DB, if NOT, then proceed with creation.
@@ -39,14 +39,18 @@ societies.post('/create', (req, res) => {
                 SocietyModel.create(socData)
                     .then(society => {
                         console.log(society);
-                        res.json({ status: society.name + ' has been registered' });
+                        res.json({
+                            status: society.name + ' has been registered'
+                        });
                     })
                     .catch(err => {
                         res.send(err);
                     })
                 // If society is true then it already exists in DB.
             } else {
-                res.json({ error: 'Community already exists' })
+                res.json({
+                    error: 'Community already exists'
+                })
             }
             console.log("Community " + society.name + " has been registered!");
         })
@@ -59,10 +63,10 @@ societies.post('/create', (req, res) => {
 // New get societies query, selected fields are passed in when calling axios.get
 societies.get('/get-societies', (req, res, next) => {
 
-    if(req.query.fields)
-    {
+    if (req.query.fields) {
         var query = SocietyModel
-            .find({/* Can input limitations e.g post likes greater than 0 */})
+            .find({
+                /* Can input limitations e.g post likes greater than 0 */ })
             .select(req.query.fields)
             .limit(parseInt(req.query.limit))
 
@@ -129,9 +133,13 @@ societies.get('/get-users-societies', (req, res, next) => {
 
     // Gets communities of the given user for the community list on profile.
     var query = SocietyModel
-        .find({users: req.query.id})
+        .find({
+            users: req.query.id
+        })
         .select('name picture score')
-        .sort({'score': -1})
+        .sort({
+            'score': -1
+        })
         .limit(10)
 
     query.exec(function (err, data) {
@@ -146,31 +154,39 @@ societies.get('/get-users-societies', (req, res, next) => {
 societies.get('/get-society-users', (req, res, next) => {
 
     var query = SocietyModel
-        .findById({_id: req.query.id})
+        .findById({
+            _id: req.query.id
+        })
         .select('users')
 
     query.exec(function (err, data) {
         if (err) return next(err);
         res.json({
-            users: data
+            users: data.users
         });
     });
 })
 
 societies.post('/update', (req, res) => {
 
-    SocietyModel.findByIdAndUpdate(
-        { _id: req.body.society, },
-        { $addToSet: { users: req.body.user } },
-        { upsert: true, new: true, runValidators: true },
+    SocietyModel.findByIdAndUpdate({
+            _id: req.body.society,
+        }, {
+            $addToSet: {
+                users: req.body.user
+            }
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
 
         function (err, result) {
 
             if (err) {
-                res.send(err)   
-            }
-            else {
-                if(result){
+                res.send(err)
+            } else {
+                if (result) {
                     res.send(result)
                 } else {
                     res.send("User already exists");
@@ -181,23 +197,65 @@ societies.post('/update', (req, res) => {
     )
 })
 
+societies.post('/edit-society', (req, res) => {
 
-societies.post('/deleteUser', (req, res) => {  //delete user
+    console.log(req.body);
 
-
-    SocietyModel.updateOne(
-        {_id: req.body.id},
-        { $pull:{ users:{object:{_id:req.body._id}}}},
-        { new: true},
+    SocietyModel.findByIdAndUpdate({
+            _id: req.body.id,
+        }, {
+            picture: req.body.society_pic,
+            name: req.body.name,
+            description: req.body.description,
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
 
         function (err, result) {
 
             if (err) {
-                res.send(err)   
-                console.log(err)
+                console.log(err);
+                res.send(err)
+            } else {
+                if (result) {
+                    console.log(result);
+                    res.send(result)
+                } else {
+                    res.send("error");
+                }
             }
-            else {
-                if(result){
+
+        }
+    )
+})
+
+
+societies.post('/deleteUser', (req, res) => { //delete user
+
+
+    SocietyModel.updateOne({
+            _id: req.body.id
+        }, {
+            $pull: {
+                users: {
+                    object: {
+                        _id: req.body._id
+                    }
+                }
+            }
+        }, {
+            new: true
+        },
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)
+                console.log(err)
+            } else {
+                if (result) {
                     console.log(result)
                     res.send(result)
                 } else {
@@ -210,22 +268,26 @@ societies.post('/deleteUser', (req, res) => {  //delete user
 })
 
 
-societies.post('/addMod', (req, res) => {  //delete user
+societies.post('/addMod', (req, res) => { //delete user
 
 
-    SocietyModel.updateOne(
-        {_id: req.body.id},
-        { $addToSet:{ mods:req.body._id}},
-        { new: true},
+    SocietyModel.updateOne({
+            _id: req.body.id
+        }, {
+            $addToSet: {
+                mods: req.body._id
+            }
+        }, {
+            new: true
+        },
 
         function (err, result) {
 
             if (err) {
-                res.send(err)   
+                res.send(err)
                 console.log(err)
-            }
-            else {
-                if(result){
+            } else {
+                if (result) {
                     console.log(result)
                     res.send(result)
                 } else {
@@ -237,13 +299,15 @@ societies.post('/addMod', (req, res) => {  //delete user
     )
 })
 
-societies.delete('/deleteSoc:id', (req, res) => {  //delete a society
+societies.delete('/deleteSoc:id', (req, res) => { //delete a society
     console.log(req.params.id);
 
-    SocietyModel.deleteOne({ _id: req.params.id },
+    SocietyModel.deleteOne({
+            _id: req.params.id
+        },
         (error, data) => {
             res.json(data);
-            
+
         })
 })
 
