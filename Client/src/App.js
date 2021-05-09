@@ -28,6 +28,7 @@ const DiscussionPost = loadable(() => import('./components/Pages/UniquePages/Dis
 const Leaderboard = loadable(() => import('./components/Pages/Leaderboard'));
 const Notifications = loadable(() => import('./components/Pages/Notifications'));
 const Search = loadable(() => import('./components/Pages/Search'));
+const AdminSettings = loadable(() => import('./components/Profile/AdminSettings'));
 
 
 class App extends React.Component {
@@ -52,6 +53,7 @@ class App extends React.Component {
               <AccountSettings exact path="/settings"/>
               <Explore exact path="/explore"/>
               <DiscussionPost exact path="/d"/>
+              <AdminSettings exact path="/admin"/>
               <NewPost exact path="/new"/>
               <Leaderboard exact path="/leaderboard"/>
               <Notifications exact path="/notifications"/>
