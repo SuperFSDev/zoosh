@@ -70,7 +70,7 @@ export default class AccountSettings extends React.Component {
       bio: e.target.value
     });
   }
-  onChangeUsername(e) {
+  onChangePicture(e) {
     this.setState({
       username: e.target.value
     });
