@@ -5,7 +5,7 @@ import { Form, Col, Container, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { FcCheckmark } from "react-icons/fc";
 
-export default class AccountSettings extends React.Component {
+export default class AdminSettings extends React.Component {
 
   constructor(props) {
     super(props);

@@ -11,7 +11,6 @@ import Clap from '../../../images/clap.png'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { BsSquareFill } from 'react-icons/bs'
 import Default from '../../../images/defaults/grey.jpg'
 import cogoToast from 'cogo-toast'
 
