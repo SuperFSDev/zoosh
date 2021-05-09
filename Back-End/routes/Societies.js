@@ -237,6 +237,15 @@ societies.post('/addMod', (req, res) => {  //delete user
     )
 })
 
+societies.delete('/deleteSoc:id', (req, res) => {  //delete a society
+    console.log(req.params.id);
+
+    SocietyModel.deleteOne({ _id: req.params.id },
+        (error, data) => {
+            res.json(data);
+            
+        })
+})
 
 // Function to Slugify
 

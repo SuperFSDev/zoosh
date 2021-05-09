@@ -1707,6 +1707,45 @@ html, body {
   vertical-align: super;
 }
 
+.delete-btn{
+  color:white;
+  background-color:red;
+  width: 100%;
+  height:40px;
+  border:1px solid red;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  margin:10px 0px 10px 0px;
+  vertical-align: super;
+}
+
+.delete-btn:hover{
+  background:white;
+  color:red;
+  border: 2px solid red;
+}
+
+.cancel-btn{
+  color:white;
+  background-color:black;
+  width: 100px;
+  height:40px;
+  border:1px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  margin:10px 0px 10px 0px;
+  vertical-align: super;
+  margin-right:50px;
+}
+
+.cancel-btn:hover{
+  background:gray;
+  color:white;
+  border: 2px solid gray;
+}
+
 .unfollow-btn{
   color:black;
   background-color:white;
