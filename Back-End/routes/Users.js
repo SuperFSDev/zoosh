@@ -667,35 +667,7 @@ users.post('/addToReadingList', (req, res) => {
         }
     )
 })
-users.post('/removeFromReadingList', (req, res) => {
-    UserModel.findByIdAndUpdate({
-            _id: req.body.user_id,
-        }, {
-            $pull: {
-                readingList: req.body.discussion
-            }
-        }, {
-            upsert: true,
-            new: true,
-            runValidators: true
-        },
 
-        function (err, result) {
-            console.log(result);
-            if (err) {
-                res.send(err)
-            } else {
-                if (result) {
-                    console.log(result);
-                    res.send(result)
-                } else {
-                    res.send("Already in reading list.");
-                }
-            }
-
-        }
-    )
-})
 
 users.post('/addToLikedPosts', (req, res) => {
     UserModel.findByIdAndUpdate({
@@ -927,37 +899,6 @@ users.post('/deleteSoc', (req, res) => { //delete user
 })
 
 
-users.post('/removeFromReadingList', (req, res) => { //delete user
-
-
-    UserModel.updateMany({
-            $pull: {
-                readingList: req.body.discussion_id
-
-            }
-        }, {
-            new: true
-        },
-        function (err, result) {
-
-            if (err) {
-                res.send(err)
-                console.log(err)
-            } else {
-                if (result) {
-                    console.log(result)
-                    res.send(result)
-                } else {
-                    res.send("User already exists");
-                }
-            }
-
-        }
-    )
-})
-
-
-
 users.post('/unfollow', (req, res) => { //delete user
 
 
@@ -987,6 +928,39 @@ users.post('/unfollow', (req, res) => { //delete user
         }
     )
 })
+
+
+
+users.post('/removeUserFromSoc', (req, res) => { //delete user
+
+
+    UserModel.updateOne({
+            _id: req.body.user,
+        }, {
+            $pull: {
+                societies: req.body.society
+            }
+        }, {
+            new: true
+        },
+        function (err, result) {
+
+            if (err) {
+                res.send(err)
+                console.log(err)
+            } else {
+                if (result) {
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
 
 
 users.post('/DeleteFollower', (req, res) => { //delete user

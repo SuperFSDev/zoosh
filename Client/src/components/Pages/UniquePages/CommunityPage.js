@@ -62,7 +62,8 @@ export default class CommunityPage extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          usersFollows: response.data.user.following
+          usersFollows: response.data.user.following,
+          societies: response.data.user.societies
         })
       })
       .catch((error) => {
@@ -97,6 +98,8 @@ export default class CommunityPage extends React.Component {
       user: getUser._id,
     }
 
+    
+
     // Adds user to users array in society model.
     await axios.post('http://localhost:4000/societies/update', addUser)
       .then(function (resp) {
@@ -126,12 +129,49 @@ export default class CommunityPage extends React.Component {
   }
 
 
+  async removeUserFromSoc(soc) {
+
+    var getUser = JSON.parse(localStorage.getItem('user'))
+
+    console.log(soc);
+    console.log(getUser._id);
+
+    const RemovedUser = {
+      society: soc,
+      user: getUser._id,
+    }
+
+    await axios.post('http://localhost:4000/societies/RemovedUser', RemovedUser)
+    .then(function (resp) {
+      console.log(resp);
+      cogoToast.success("Unfollowed", { position: 'bottom-center' });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+
+    await axios.post('http://localhost:4000/users/removeUserFromSoc', RemovedUser)
+      .then(function (resp) {
+        console.log(resp);
+
+        // Update societies array in localStorage
+        if (!getUser.societies.includes(soc)) {
+          getUser.societies.pop(soc);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+
+
+
   // Check to see if the user follows the community and if they do/dont display the required options
   isCommunityFollowed(id) {
 
     if (this.state.societies.includes(id) === true) {
       return (
-        <button className="community-btn-b" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Unfollow</button>
+        <button className="community-btn-b" onClick={() => { this.removeUserFromSoc(this.state.society._id) }}>Unfollow</button>
       )
     }
     else {

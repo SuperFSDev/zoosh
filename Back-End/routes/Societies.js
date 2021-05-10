@@ -197,6 +197,37 @@ societies.post('/update', (req, res) => {
     )
 })
 
+
+societies.post('/RemovedUser', (req, res) => {
+
+    SocietyModel.findByIdAndUpdate({
+            _id: req.body.society,
+        }, {
+            $pull: {
+                users: req.body.user
+            }
+        }, {
+            upsert: true,
+            new: true,
+            runValidators: true
+        },
+
+        function (err, result) {
+
+            if (err) {
+                res.send(err)
+            } else {
+                if (result) {
+                    res.send(result)
+                } else {
+                    res.send("User already exists");
+                }
+            }
+
+        }
+    )
+})
+
 societies.post('/edit-society', (req, res) => {
 
     console.log(req.body);
