@@ -171,8 +171,8 @@ export default class AdminPage extends React.Component {
               <div className="user-column-one">
                 <p className="nowrap">
                   <figure class="headshot">
-                    {this.state.society.picture == null && <Image className="user-image" alt="" src={Default} width={150} height={150} s />}
-                    {this.state.society.picture != null && <Image className="user-image" alt="" src={this.state.society.picture} width={150} height={150} />}
+                    {(this.state.society.picture == null || this.state.society.picture == "") && <Image className="user-image" alt="" src={Default}width={150} height={150} s />}
+                    {(this.state.society.picture != null && this.state.society.picture != "") && <Image className="user-image" alt="" src={this.state.society.picture}width={150} height={150} s />}
                   </figure>
                   <section class="bio-box">
                     <dl class="details2">
