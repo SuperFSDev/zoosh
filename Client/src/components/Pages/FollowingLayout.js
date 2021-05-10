@@ -14,7 +14,7 @@ import { BsSearch, BsChat, BsArrowUp, BsBell, BsBarChart, BsHeart,BsHouse} from 
 import { Helmet } from 'react-helmet'
 import {BiRocket} from 'react-icons/bi'
 import NewPost from './NewPost';
-import Avatar from '@material-ui/core/Avatar';
+import {AiOutlineTrophy} from 'react-icons/ai'
 
 // Allows array of following ids to be passed as params
 var qs = require('qs');
@@ -46,15 +46,16 @@ export default class Feed extends React.Component {
       axios.get('http://localhost:4000/users/get-user-details', {
         params: {
           id: user._id,
-          fields: 'forums societies likedPosts username pic'
+          fields: 'forums societies likedPosts username pic following'
         }
       })
         .then((response) => {
           this.setState({
             user: response.data.user,
-            forums: response.data.user.forums,
             socs: response.data.user.societies,
-            likedPosts: response.data.user.likedPosts
+            likedPosts: response.data.user.likedPosts,
+            following: response.data.user.following
+
           })
         })
         .catch((error) => {
@@ -201,6 +202,7 @@ export default class Feed extends React.Component {
               <a href="/top"><button className="feed-option"><BsBarChart  size={25} className="icon"/>  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket  size={25} className="icon"/>  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell  size={25} className="icon"/>  Notifications</button></a>
+              <a href="/leaderboard"><button className="feed-option"><AiOutlineTrophy size={30} className="icon" />  Leaderboard</button></a>
               <a href="/search"><button className="feed-option"><BsSearch  size={25} className="icon"/>  Search</button></a>
               <a href="/me"><button className="feed-option-avatar"><Image alt={this.state.user.fullname} src={this.state.user.pic}  className="avatar-feed"/><b>@{this.state.user.username}</b></button></a>
               <br/><br/>
@@ -215,6 +217,11 @@ export default class Feed extends React.Component {
                 <Skeleton height={30} width={350} style={{ marginBottom: 10 }}  />
                 <Skeleton height={30} width={300} style={{ marginBottom: 10 }}  /><br/>
                 <Skeleton height={30} width={400} style={{ marginBottom: 10 }}  /><br/>
+            </div>}
+            {this.state.user.following == 0  && 
+            <div class="card4">
+              <h4>It's pretty quiet in here...</h4>
+              <a href="/users"><button className="community-btn-b">Find Friends</button></a>
             </div>}
             {!this.state.isLoading && <div className="feed">{discussionList}</div>}
             <ScrollToTop showUnder={1000}>

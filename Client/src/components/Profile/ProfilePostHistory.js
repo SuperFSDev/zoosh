@@ -1,12 +1,10 @@
 import React from 'react';
 import '../../assets/App.css';
-import { Image, Card } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
-import { RiChat1Line } from 'react-icons/ri'
 import { BsTrash, BsHeart, BsChat } from 'react-icons/bs'
-import Clap from '../../images/clap.png'
 import Default from '../../images/defaults/default5.jpg'
 
 export default class History extends React.Component {

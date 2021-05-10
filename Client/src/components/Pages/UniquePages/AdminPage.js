@@ -1,18 +1,10 @@
 import React, { Fragment } from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import { Image, Row, Col, Container, Badge, Modal, Button } from 'react-bootstrap'
+import { Image, Row, Col, Container} from 'react-bootstrap'
 import axios from 'axios';
 import { Helmet } from 'react-helmet'
-import moment from 'moment'
-import Skeleton from 'react-loading-skeleton';
-import { RiChat1Line } from 'react-icons/ri'
-import Clap from '../../../images/clap.png'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Default from '../../../images/defaults/grey.jpg'
-import cogoToast from 'cogo-toast'
+import Default from '../../../images/defaults/gray.png'
 
 export default class AdminPage extends React.Component {
 

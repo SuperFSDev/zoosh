@@ -1,16 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import '../../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
-import { Image, Container, Row, Col, Badge } from 'react-bootstrap'
+import { Image, Container, Row, Col } from 'react-bootstrap'
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import AdminPage from './AdminPage';
 import moment from 'moment'
 import cogoToast from 'cogo-toast'
 import Skeleton from 'react-loading-skeleton';
-import Clap from '../../../images/clap.png'
-import { BsSquareFill, BsGem, BsChat, BsHeart, BsTrash } from 'react-icons/bs'
-import Default from '../../../images/defaults/grey.jpg'
+import { BsSquareFill, BsChat, BsHeart, BsTrash } from 'react-icons/bs'
+import Default from '../../../images/defaults/gray.png'
 var qs = require('qs');
 export default class CommunityPage extends React.Component {
 
@@ -132,12 +131,12 @@ export default class CommunityPage extends React.Component {
 
     if (this.state.societies.includes(id) === true) {
       return (
-        <button className="unfollow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Unfollow</button>
+        <button className="community-btn-b" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Unfollow</button>
       )
     }
     else {
       return (
-        <button className="follow-btn" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
+        <button className="community-btn-b" onClick={() => { this.addUserToSoc(this.state.society._id) }}>Follow</button>
       )
     }
 
@@ -280,16 +279,15 @@ export default class CommunityPage extends React.Component {
                       <dl class="details2">
                         <b className="user-name">{this.state.society.name}</b>
                         <br />
-                        <b className="user-bio">{this.state.society.description}</b>
-                        <br />
                         <span className="user-badge"><BsSquareFill /> Community</span>
-                        <br />
-                        {this.state.users.length === 0 && <b>{this.state.users.length} members</b>}
-                        {this.state.users.length > 1 && <b>{this.state.users.length} members</b>}
-                        {this.state.users.length === 1 && <b>{this.state.users.length} member</b>}
+                        <span className="user-badge">
+                          {this.state.users.length === 0 &&<b>{this.state.users.length} members</b>}
+                          {this.state.users.length > 1 &&<b>{this.state.users.length} members</b>}
+                          {this.state.users.length === 1 &&<b>{this.state.users.length} member</b>}
+                        </span>
+                        
                         <br />
                         {this.isCommunityFollowed(this.state.society._id)}
-                        {this.state.society._id}
                       </dl>
                     </section>
                   </p>
@@ -297,6 +295,11 @@ export default class CommunityPage extends React.Component {
               </Col>
             </Row>
             <Row>
+              <br/>
+              <b className="user-bio">{this.state.society.description}</b>
+            </Row>
+            <Row>
+
               <Col sm>
                 <div className="top-posts">
                   {this.state.isLoading &&

@@ -15,7 +15,7 @@ import ScrollToTop from 'react-scroll-up'
 import { Helmet } from 'react-helmet'
 import { BiRocket } from 'react-icons/bi'
 import NewPost from './NewPost';
-import Avatar from '@material-ui/core/Avatar';
+import {AiOutlineTrophy} from 'react-icons/ai'
 
 export default class AllPosts extends React.Component {
 
@@ -272,6 +272,7 @@ export default class AllPosts extends React.Component {
               <a href="/top"><button className="feed-option-active"><BsBarChartFill size={25} className="icon" />  Top</button></a>
               <a href="/explore"><button className="feed-option"><BiRocket size={25} className="icon" />  Explore</button></a>
               <a href="/notifications"><button className="feed-option"><BsBell size={25} className="icon" />  Notifications</button></a>
+              <a href="/leaderboard"><button className="feed-option"><AiOutlineTrophy size={30} className="icon" />  Leaderboard</button></a>
               <a href="/search"><button className="feed-option"><BsSearch size={25} className="icon" />  Search</button></a>
               <a href="/me"><button className="feed-option-avatar"><Image alt={this.state.user.fullname} src={this.state.user.pic} className="avatar-feed" /><b>@{this.state.user.username}</b></button></a>
               <br /><br />

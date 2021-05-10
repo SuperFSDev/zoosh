@@ -2,8 +2,8 @@ import React from 'react';
 import '../assets/App.css';
 import '../assets/Media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, FormControl, Button,  Navbar, Nav, NavDropdown, Modal, Row, Col, Container, Dropdown} from 'react-bootstrap'
-import { BsTrash, BsHouse, BsBell, BsGem, BsBarChart, BsChat, BsTypeH1 } from "react-icons/bs";
+import { Navbar,  Row, Col, Container} from 'react-bootstrap'
+import {  BsHouse, BsBell, BsBarChart} from "react-icons/bs";
 import {BiRocket} from 'react-icons/bi'
 import axios from 'axios';
 

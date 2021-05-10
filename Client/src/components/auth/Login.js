@@ -1,10 +1,10 @@
 import React  from 'react';
-import { Nav , Form, Col, Row, Container, Image} from 'react-bootstrap';
+import {  Form, Col, Row, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Helmet} from 'react-helmet'
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 
 /*const [login, setLogin] = useState(false);
 const [data, setData] = useState({});

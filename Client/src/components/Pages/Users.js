@@ -43,7 +43,7 @@ export default class ListSocieties extends React.Component {
   }
 
   render() {
-    var size = 10;
+    var size = 20;
 
     let filteredUsers = this.state.users.filter(
 

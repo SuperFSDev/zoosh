@@ -7,7 +7,7 @@ import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
 import CreateCommunity from '../Common/CreateCommunity'
 import Skeleton from 'react-loading-skeleton';
 import Default from '../../images/defaults/default5.jpg'
-import Default2 from '../../images/defaults/grey.jpg'
+import Default2 from '../../images/defaults/gray.png'
 
 import {  BsHeart } from 'react-icons/bs'
 

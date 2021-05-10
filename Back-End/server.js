@@ -61,10 +61,6 @@ app.use('/notifications', Notifications)
 var Societies = require('./routes/Societies');
 app.use('/societies', Societies);
 
-// Adds the "Forums" route to the server.
-var Forums = require('./routes/Forums');
-app.use('/forums', Forums);
-
 //log connection to server
 app.listen(PORT, () => {
     console.log("[Server]::LISTEN:%s", PORT);

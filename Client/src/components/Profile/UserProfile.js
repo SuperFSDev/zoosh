@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Image, Row, Col, Container } from 'react-bootstrap'
 import History from './ProfilePostHistory'
 import { Helmet } from 'react-helmet'
-import moment from 'moment'
 import Skeleton from 'react-loading-skeleton';
 import {BsFillCircleFill,BsHeart} from 'react-icons/bs'
 import Default from '../../images/defaults/default5.jpg'

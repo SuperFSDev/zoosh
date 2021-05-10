@@ -3,13 +3,11 @@ import '../../assets/App.css';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import {Helmet} from 'react-helmet'
-import {Image, Badge, Container, Row, Col} from 'react-bootstrap'
+import {Image, Container, Row, Col} from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton';
-import Avatar from '@material-ui/core/Avatar';
-import Default from '../../images/defaults/default5.jpg'
-import Default2 from '../../images/defaults/grey.jpg'
+import Default from '../../images/defaults/gray.png'
 
-export default class Two extends React.Component {
+export default class Leaderboard extends React.Component {
 
   constructor(props) {
     super(props);
@@ -92,43 +90,15 @@ render(){
       
     );
 
-    const topUsersList = users.slice(0,5).sort((a,b)=> b.score- a.score).map(user=>  {
-      return( 
-      <a href={"/u/?id="+user._id}className="nowrap"><div>
-        <p className="nowrap"><span className="soc-leaderboard-name-item">
-        {user.pic == null &&<Image src={user.pic} className="user-image-mini" roundedCircle />}
-        {user.pic != null && <Image src={user.pic} className="user-image-mini" roundedCircle />}
-        
-        {user.fullname}</span>
-          {user.score >= 1 && user.score <=999 ? (
-            <span  className="-contributor-user-score"><b className="user-member">{ user.score}</b><br/></span>
-          ) : user.score >=1000 ?(
-              <span  className="-contributor-user-score"><b  className="user-mod"><Badge>{ user.score}</Badge></b><br/></span>
-          ) : user.score >= 5000 ? (
-              <span  className="-contributor-user-score"><b  className="user-admin">{ user.score}</b><br/></span>
-          ) : (
-              <span className="-contributor-user-score"><b  className="user-member">{ user.score}</b><br/></span>
-          )} 
-          {/* <b className="soc-leaderboard-score-item">{ user.score}</b> */}
-        </p><hr/>      
-      </div></a> 
-    )})
-
-    const topCommunities = societies.sort((a,b)=> b.score - a.score).map(society=> { 
-      return(
-      <div>
-        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}>
-        {society.picture == null && <div><Image  src={Default2} className="user-image-mini"  /></div>}
-        {society.picture != null && <div><Image  src={society.picture} className="user-image-mini"  /></div>}
-
-        {society.name}</a> <b className="-contributor-user-score">{ society.score}</b></p><hr/>      
-      </div>
-    )})
-
     const topGrowingCommunities = societies.slice(0,10).sort((a,b)=> b.users.length - a.users.length).map(society=> { 
       return(
       <div>
-        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}><Image src={society.picture} className="user-image-mini"  />{society.name}</a> <b className="-contributor-user-score">{ society.users.length}</b></p><hr/>      
+        <p className="nowrap"><a className="nowrap" href={"/c?id="+society._id}>
+          {society.picture == null && <Image  className="user-image-mini" alt="" src={Default}  />}
+          {society.picture != null && <Image  className="user-image-mini" alt="" src={society.picture} />}
+          {/* <Image src={society.picture} className="user-image-mini"  /> */}
+          <span style={{marginLeft:20}}>{society.name}</span></a> 
+          <b className="-contributor-user-score">{ society.users.length} members</b></p><hr/>   
       </div>
     )})
 
@@ -141,7 +111,7 @@ render(){
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title>Charts - Website</title>
+                <title>Leaderboard / Zoosh</title>
         </Helmet>
 
         <Container>
@@ -160,18 +130,12 @@ render(){
             </div>}
             { !this.state.isLoading && <>
 
-            <h1 className="leaderboard-heading">CONTRIBUTORS</h1>
+            <h1 className="leaderboard-heading">Top Communities</h1>
+            <div className="spacing"></div>
             <div className="leaderboard">
-              { !this.state.isLoading && <div>{topUsersList}</div>}
+            { !this.state.isLoading && <div>{topGrowingCommunities}</div>}
             </div>
-            <h1 className="leaderboard-heading">COMMUNITIES</h1>
-            <div className="leaderboard">
-              { !this.state.isLoading && <div>{topCommunities}</div>}
-            </div>
-            <h1 className="leaderboard-heading">GROWING</h1>
-            <div className="leaderboard">
-              { !this.state.isLoading && <div>{topGrowingCommunities}</div>}
-            </div>
+
             </>
             }
           </Col>

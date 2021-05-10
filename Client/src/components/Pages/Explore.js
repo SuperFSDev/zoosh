@@ -6,7 +6,7 @@ import {Helmet} from 'react-helmet'
 import {Modal, Row, Col, Container, Image} from 'react-bootstrap';
 import CreateCommunity from '../Common/CreateCommunity'
 import Skeleton from 'react-loading-skeleton';
-import Default from '../../images/defaults/grey.jpg'
+import Default from '../../images/defaults/gray.png'
 
 export default class Explore extends React.Component {
 

@@ -2,7 +2,6 @@ import React from 'react';
 import '../../assets/App.css';
 import { Form, Col } from 'react-bootstrap'
 import axios from 'axios';
-import { TextField } from '@material-ui/core';
 import cogoToast from 'cogo-toast'
 import ImageUploader from 'react-images-upload';
 

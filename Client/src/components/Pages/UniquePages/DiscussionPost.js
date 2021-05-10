@@ -6,8 +6,7 @@ import { Row, Col, Container,Form } from 'react-bootstrap';
 import moment from 'moment'
 import { Image } from 'react-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
-import { BsBookmark, BsBookmarkFill, BsGem, BsHeart, BsHeartFill } from 'react-icons/bs'
-import { RiShieldStarLine } from 'react-icons/ri'
+import { BsBookmark, BsBookmarkFill, BsHeart, BsHeartFill } from 'react-icons/bs'
 import ShowMoreText from 'react-show-more-text';
 import cogoToast from 'cogo-toast'
 import Default from '../../../images/defaults/default5.jpg'

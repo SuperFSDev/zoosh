@@ -8,7 +8,6 @@ import {
   Route,
 } from "react-router-dom";
 import NewPost from './components/Pages/NewPost';
-const Landing = loadable(() => import('./components/Pages/Landing/Landing'));
 const NavBar = loadable(() => import('./components/Navbar'));
 const RegisterPage = loadable(() => import('./components/auth/Register'));
 const LoginPage = loadable(() => import('./components/auth/Login'));
@@ -19,7 +18,6 @@ const Following = loadable(() => import('./components/Pages/FollowingLayout'));
 const Users = loadable(() => import('./components/Pages/Users'));
 const Profile = loadable(() => import('./components/Profile/MyProfile'));
 const ReadingList = loadable(() => import('./components/Pages/ReadingList'));
-const Forums = loadable(() => import('./components/Pages/Forum'));
 const ViewProfile = loadable(() => import('./components/Profile/UserProfile'));
 const CommunityPage = loadable(() => import('./components/Pages/UniquePages/CommunityPage'));
 const AccountSettings = loadable(() => import('./components/Profile/AccountSettings'));
@@ -47,7 +45,6 @@ class App extends React.Component {
               <Users exact path="/users"/>
               <Profile exact path="/me"/>
               <ReadingList exact path="/saved"/>
-              <Forums exact path="/forum"/>
               <ViewProfile exact path="/u"/>
               <CommunityPage exact path="/c"/>
               <AccountSettings exact path="/settings"/>
@@ -76,7 +73,6 @@ class App extends React.Component {
       <Router>
         {/* <PreNavbar/>    */}
         <Switch>
-          <Landing exact path="/landing"/>
           <LoginPage exact path="/login"/>
           <RegisterPage exact path="/join"/>
 
