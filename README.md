@@ -1,5 +1,5 @@
 # Project Overview
-Our project is a web application built using the MERN stack. It is a forum for students in Galway, specifically for clubs and societies. Students can log on with their college email and create their own Club/Society for which they can have discussions, events, and many more features.
+Our project is a web application built using the MERN stack. It is a forum for students in Galway, specifically for clubs and societies. Students can log on with their email and create their own Club/Society for which they can have discussions, and many more features.
 
 ## Authors
 
