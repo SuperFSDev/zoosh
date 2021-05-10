@@ -131,7 +131,6 @@
     .SocietyLayout{  grid-template-columns: repeat(1, 1fr);    }
     .navbar, .user-profile-activity-container, .user-profile-communities-container{display:none!important;}
     .mobile-navbar{display:block!important; background:white!important;}
-    .header{display:none!important;}
     .top-posts{margin-top:0vh;}
     .top-posts, .top-posts-empty, .card{width:100%;}
     .PostLayout {

@@ -171,7 +171,7 @@ export default class CommunityPage extends React.Component {
 
     if (this.state.societies.includes(id) === true) {
       return (
-        <button className="community-btn-b" onClick={() => { this.removeUserFromSoc(this.state.society._id) }}>Unfollow</button>
+        <button className="community-btn-b-unfollow" onClick={() => { this.removeUserFromSoc(this.state.society._id) }}>Unfollow</button>
       )
     }
     else {

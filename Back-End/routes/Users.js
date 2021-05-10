@@ -731,7 +731,7 @@ users.post('/removeFromLikedPosts', (req, res) => {
 
 users.post('/removeFromReadinglist', (req, res) => {
     UserModel.findByIdAndUpdate({
-            _id: req.body.id,
+            _id: req.body.user_id,
         }, {
             $pull: {
                 readingList: req.body.discussion
@@ -751,7 +751,7 @@ users.post('/removeFromReadinglist', (req, res) => {
                     console.log(result);
                     res.send(result)
                 } else {
-                    res.send("Already in liked list.");
+                    res.send("Already in reading list.");
                 }
             }
 
