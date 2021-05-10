@@ -238,6 +238,7 @@ societies.post('/edit-society', (req, res) => {
             picture: req.body.society_pic,
             name: req.body.name,
             description: req.body.description,
+            color: req.body.color
         }, {
             upsert: true,
             new: true,

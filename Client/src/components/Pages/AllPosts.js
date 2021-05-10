@@ -16,6 +16,7 @@ import { Helmet } from 'react-helmet'
 import { BiRocket } from 'react-icons/bi'
 import NewPost from './NewPost';
 import {AiOutlineTrophy} from 'react-icons/ai'
+import Default from '../../images/defaults/default5.jpg'
 
 export default class AllPosts extends React.Component {
 
@@ -226,7 +227,11 @@ export default class AllPosts extends React.Component {
             <div class="container">
               <h2><b>{discussion.title}</b></h2>
 
-              <span><p className="nowrap"> <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic} roundedCircle /></p>  <b> {discussion.user}</b> Posted in <b style={{ color: 'rgb(52,199,89)' }}>
+              <span><p className="nowrap"> 
+                {(discussion.user_pic != "" && discussion.user_pic != null) && <Image alt="" className="profile-btn-wrapper-left" src={discussion.user_pic} roundedCircle />}
+                {(discussion.user_pic == "" || discussion.user_pic == null) && <Image alt="" className="profile-btn-wrapper-left" src={Default} roundedCircle />}
+              </p> 
+              <b> {discussion.user}</b> Posted in <b style={{ color: 'rgb(52,199,89)' }}>
                 {discussion.society == null ? (
                   <span> <b style={{ color: 'rgb(52,199,89)' }}>General</b></span>
                 ) : (

@@ -30,7 +30,7 @@ export default class DiscussionPost extends React.Component {
       hearts: 0,
       views: 0,
       isSaved: false,
-      comment: '',
+      comment: ''
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeComment = this.onChangeComment.bind(this);
@@ -108,6 +108,8 @@ export default class DiscussionPost extends React.Component {
 
   addToReadingList(discussion, user_id) {
 
+    this.setState({tempAdd: true});
+
     const addDiscussion = {
       user_id: user_id,
       discussion: discussion,
@@ -126,8 +128,12 @@ export default class DiscussionPost extends React.Component {
         <div>Added to your reading list!</div>
       </div>
     );
+
+    window.location.reload();
   }
   RemoveFromReadingList(discussion, user_id) {
+
+    this.setState({tempAdd: false});
 
     const RemovedDiscussion = {
       user_id: user_id,
@@ -148,6 +154,7 @@ export default class DiscussionPost extends React.Component {
       </div>
     );
 
+    window.location.reload();
   }
 
   addToLikedPosts(discussion, discussion_uID, user_id, likes, user_name, title, user_pic) {
@@ -203,7 +210,7 @@ export default class DiscussionPost extends React.Component {
   }
 
   RemovefromLikedPosts(discussion, user_id, likes) {
-
+    
     const removeDiscussion = {
       id: user_id,
       discussion: discussion,
@@ -317,7 +324,8 @@ export default class DiscussionPost extends React.Component {
             <Col sm={2}>
               <div className="post-reactions">
                 <span>
-                  <Image alt="" src={this.state.user_pic} className="user-image"  roundedCircle/><br/><br/>
+                  {(this.state.discussion.user_pic != "" && this.state.discussion.user_pic != null) && <Image alt="" className="user-image" src={this.state.discussion.user_pic} roundedCircle />}
+                  {(this.state.discussion.user_pic == "" || this.state.discussion.user_pic == null) && <Image alt="" className="user-image" src={Default} roundedCircle />}
                   <b>{this.state.discussion.user}</b><br />
                   <a href={"/u/?id=" + this.state.discussion.user_id}><button aria-label="view" className="standard-button">View Profile</button></a>
                 </span>
