@@ -79,7 +79,6 @@ export default class DiscussionPost extends React.Component {
         fields: "likedPosts readingList"
       }
     })
-
       .then((response) => {
         this.setState({
           likedPosts: response.data.user.likedPosts,
@@ -177,7 +176,6 @@ export default class DiscussionPost extends React.Component {
     const notify = {
       user: user._id,
       notify_id: discussion_uID,
-     // user: user_id,
       user_name: user_name,
       discussion: discussion,
       discussion_title: title,
@@ -251,11 +249,11 @@ export default class DiscussionPost extends React.Component {
     }
     const notify = {
       user: user._id,
-      user_name: user.fullname,
-      user_pic: user.pic,
       notify_id:this.state.discussion.user_id,
-      discussion_id: this.state.discussion._id,
+      user_name: user.fullname,
+      discussion: this.state.discussion._id,
       discussion_title: this.state.discussion.title,
+      user_pic: user.pic,
       message: "commented on post",
       time: new Date().getTime()
     }

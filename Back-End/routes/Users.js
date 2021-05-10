@@ -185,7 +185,7 @@ users.get('/get-user-details', (req, res, next) => {
                 _id: req.query.id
             })
             .select(req.query.fields)
-    } else {
+    } else if(req.query.fields == "" || req.query.fields == null) {
         query = UserModel
             .findById({
                 _id: req.query.id
